@@ -54,6 +54,9 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de espectaculo");
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
+		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
