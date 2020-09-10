@@ -61,6 +61,7 @@ public class EspectaculoController implements IEspectaculo {
 	private LocalTime horainicio;
 	private ArrayList<String> invitados;
 	private LocalDate fechaAlta;
+	private Espectaculo espectaculo;
 	
 	@Override
 	public void elegirEspectaculo(String nomEspectaculo) {
