@@ -44,7 +44,7 @@ public class Plataforma {
 		this.url = url;
 	}
 
-	public void setEspectaculos(Map<String, Espectaculo> espectaculos) {
+	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 	
