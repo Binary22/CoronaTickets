@@ -1,5 +1,6 @@
 package logica;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class Espectaculo {
 	public LocalDateTime getFechaReg() {
 		return fechaReg;
 	}
-	public void setFechaReg(LocalDateTime fechaReg) {
+	public void setFechaReg(LocalDate fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 	public float getCosto() {
@@ -50,7 +51,7 @@ public class Espectaculo {
 		this.maxEspectadores = maxEspectadores;
 	}
 	public Espectaculo(String nombre, int duracion, String descripcion, int minEspectadores, int maxEspectadores,
-			String url, LocalDateTime fechaReg, float costo) {
+			String url, LocalDate fechaReg, float costo) {
 		super();
 		this.nombre = nombre;
 		this.duracion = duracion;
@@ -67,7 +68,7 @@ public class Espectaculo {
 	private int minEspectadores;
 	private int maxEspectadores;
 	private String url;
-	private LocalDateTime fechaReg;
+	private LocalDate fechaReg;
 	private float costo;
 	
 	public ArrayList<Funcion> getAllFunciones();

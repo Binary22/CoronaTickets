@@ -1,10 +1,10 @@
 package datatypes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class DtEspectaculo {
 	public DtEspectaculo(String nombre, int duracion, String descripcion, int minEspectadores, int maxEspectadores,
-			String url, LocalDateTime fechaReg, float costo) {
+			String url, LocalDate fechaReg, float costo) {
 		super();
 		this.nombre = nombre;
 		this.duracion = duracion;
@@ -33,7 +33,7 @@ public class DtEspectaculo {
 	public String getUrl() {
 		return url;
 	}
-	public LocalDateTime getFechaReg() {
+	public LocalDate getFechaReg() {
 		return fechaReg;
 	}
 	public float getCosto() {
@@ -45,6 +45,6 @@ public class DtEspectaculo {
 	private int minEspectadores;
 	private int maxEspectadores;
 	private String url;
-	private LocalDateTime fechaReg;
+	private LocalDate fechaReg;
 	private float costo;
 }

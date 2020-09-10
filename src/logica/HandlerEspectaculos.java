@@ -1,13 +1,13 @@
 package logica;
 
-import java.util.Map;
+import java.util.HashMap;
 
 public class HandlerEspectaculos {
-	private Map<String,Espectaculo> mapEspectaculos;
+	private HashMap<String,Espectaculo> mapEspectaculos;
 	public Espectaculo getEspectaculo(String nomEspectaculo) {
 		return mapEspectaculos.get(nomEspectaculo);
 	}
-	public Map<String,Espectaculo> getEspectaculosPlataforma(String nomPlata) {
+	public HashMap<String,Espectaculo> getEspectaculosPlataforma(String nomPlata) {
 		return mapEspectaculos;
 	}
 }
