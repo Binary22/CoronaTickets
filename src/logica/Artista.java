@@ -1,6 +1,9 @@
 package logica;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import datatypes.DtEspectaculo;
 
 public class Artista extends Usuario {
 	private String descripcion;
@@ -38,6 +41,7 @@ public class Artista extends Usuario {
 	//operaciones de la clase
 	
 	public ArrayList<DtEspectaculo> obtenerEspectaculosOrganizados(){
+		return null;
 		
 	}
 	public void confirmarUpdateArtista(String nombre,String apellido,LocalDate fechaNac,String desc,String bio,String web) {

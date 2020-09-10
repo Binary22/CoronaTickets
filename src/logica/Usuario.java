@@ -1,6 +1,11 @@
 package logica;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import datatypes.DtEspectaculo;
+import datatypes.DtFuncion;
+import datatypes.DtRegistro;
 
 public class Usuario {
 	private String nickname;
@@ -66,20 +71,25 @@ public class Usuario {
 	
 	//operaciones de la clase
 	
-	public ArrayLista<DtEspectaculo> obtenerEspectaculosOrganizados(){
+	public ArrayList<DtEspectaculo> obtenerEspectaculosOrganizados(){
+		return null;
 		
 	}
-	public ArrayLista<DtFuncion> obtenerFuncionesRegistradas(){
+	public ArrayList<DtFuncion> obtenerFuncionesRegistradas(){
+		return null;
 		
 	}
 	public Espectaculo obtenerEspectaculo(String nomespect) {
+		return null;
 		
 	}
 	public Funcion obtenerFuncion(String nomFuncion) {
+		return null;
 		
 	}
 	
-	ArrayLista<DtRegistro> getRegistrosPrevios(){
+	ArrayList<DtRegistro> getRegistrosPrevios(){
+		return null;
 		
 	}
 	public void canjearRegistros(int id1,int id2,int id3) {
@@ -87,10 +97,12 @@ public class Usuario {
 	}
 	
 	public boolean tieneRegistroAFuncion(String nomfuncion) {
+		return false;
 		
 	}
 	
 	public boolean llegoLimiteFuncion(String nomfuncion) {
+		return false;
 		
 	}
 	

@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 
-public class handlerUsuarios {
+public class HandlerUsuarios {
 	//SINGLETON
-	private HashMap<Usuario, String> usuarios;
-	private static handlerUsuarios instancia = null;
+	private HashMap<String, Usuario> usuarios;
+	private static HandlerUsuarios instancia = null;
 	
-	private handlerUsuarios() {
+	private HandlerUsuarios() {
 		
 	}
 	
-	public static handlerUsuarios getInstancia() {
+	public static HandlerUsuarios getInstancia() {
 		if(instancia == null)
-			instancia = new handlerUsuarios();
+			instancia = new HandlerUsuarios();
 		return instancia;
 	}
 	public ArrayList<String> getNombres(){
@@ -31,11 +31,11 @@ public class handlerUsuarios {
 		
 	}
 
-	public HashMap<Usuario, String> getUsuarios() {
+	public HashMap<String, Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(HashMap<Usuario, String> usuarios) {
+	public void setUsuarios(HashMap<String, Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 	

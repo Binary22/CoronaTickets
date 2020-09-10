@@ -14,6 +14,6 @@ public class HandlerPlataforma {
 		return colPlataforma.get(nomPlataforma);
 	}
 	private void agregarPlataforma(Plataforma p) {
-		this.colPlataforma.add(p.getNombre(), p);
+		this.colPlataforma.put(p.getNombre(), p);
 	}
 }

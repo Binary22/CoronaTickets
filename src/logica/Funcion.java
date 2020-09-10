@@ -1,6 +1,10 @@
 package logica;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+
+import datatypes.DtFuncion;
+
 import java.time.LocalDate;
 
 public class Funcion {
@@ -59,9 +63,11 @@ public class Funcion {
 		this.espectaculo = espectaculo;
 	}
 	public DtFuncion getDt() {
+		return null;
 		
 	}
 	public int getLimite() {
+		return 0;
 		
 	}
 	public void addEspectador(Registro reg) {
