@@ -2,6 +2,10 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtEspectaculo;
+import datatypes.DtFuncion;
+import datatypes.DtUsuario;
+
 public class ConsultaController implements IConsulta {
 	private Funcion funcion;
 	private Espectaculo espectaculo;
@@ -59,6 +63,42 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public ArrayList<String> listarFuncionesEspect(String nomEspectaculo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DtUsuario mostrarDatos(String nickname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<DtEspectaculo> listarEspectaculosQueOrganiza() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<DtFuncion> mostrarFuncionesQueSeRegistro() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DtPaquete mostrarPaquete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DtEspectaculo mostrarEspectaculo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DtFuncion mostrarFuncion() {
 		// TODO Auto-generated method stub
 		return null;
 	}
