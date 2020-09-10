@@ -1,13 +1,13 @@
 package logica;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PaqueteController implements IPaquete {
 
 	@Override
-	public void crearPaquete(String nombre, String descrip, LocalDateTime fechaini, LocalDateTime fechafin, int desc,
-			LocalDateTime fechaalta) {
+	public void crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc,
+			LocalDate fechaalta) {
 		// TODO Auto-generated method stub
 
 	}

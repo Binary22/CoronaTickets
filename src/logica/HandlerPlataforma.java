@@ -1,20 +1,19 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class HandlerPlataforma {
-	private ArrayList<String> colNomPlataforma;
-	private ArrayList<Plataforma> colPlataforma;
+	private Map<String, Plataforma> colPlataforma;
 	
 	private ArrayList<String> getNombres() {
-		return colNomPlataforma;
+		ArrayList<String> list = new ArrayList<String>(colPlataforma.keySet());;
+		return list;
 	}
 	private Plataforma getPlataforma(String nomPlataforma) {
-		int i = colNomPlataforma.indexOf(nomPlataforma);
-		return colPlataforma.get(i);
+		return colPlataforma.get(nomPlataforma);
 	}
 	private void agregarPlataforma(Plataforma p) {
-		this.colNomPlataforma.add(p.getNombre());
-		this.colPlataforma.add(p);
+		this.colPlataforma.add(p.getNombre(), p);
 	}
 }
