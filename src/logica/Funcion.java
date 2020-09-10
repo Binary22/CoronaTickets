@@ -1,13 +1,13 @@
 package logica;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Funcion {
 	private String nombre;
-	private Date fecha;
-	private Time horaInicio;
-	private Date fechaReg;
+	private LocalDate fecha;
+	private LocalTime horaInicio;
+	private LocalDate fechaReg;
 	
 	private ArrayList<Artista> artistasInvitados;
 	private ArrayList<Registro> registros;
@@ -22,22 +22,22 @@ public class Funcion {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	public Time getHoraInicio() {
+	public LocalTime getHoraInicio() {
 		return horaInicio;
 	}
-	public void setHoraInicio(Time horaInicio) {
+	public void setHoraInicio(LocalTime horaInicio) {
 		this.horaInicio = horaInicio;
 	}
-	public Date getFechaReg() {
+	public LocalDate getFechaReg() {
 		return fechaReg;
 	}
-	public void setFechaReg(Date fechaReg) {
+	public void setFechaReg(LocalDate fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 	public ArrayList<Artista> getArtistasInvitados() {
@@ -67,7 +67,7 @@ public class Funcion {
 	public void addEspectador(Registro reg) {
 		
 	}
-	public Funcion(String nombre, Date fecha, Time horaInicio, Date fechaReg, ArrayList<Artista> artistasInvitados,
+	public Funcion(String nombre, LocalDate fecha, LocalTime horaInicio, LocalDate fechaReg, ArrayList<Artista> artistasInvitados,
 			ArrayList<Registro> registros, Espectaculo espectaculo) {
 		super();
 		this.nombre = nombre;

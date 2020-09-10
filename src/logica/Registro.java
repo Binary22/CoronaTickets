@@ -1,18 +1,18 @@
 package logica;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Registro {
-	private Date fecha;
+	private LocalDate fecha;
 	private boolean canjeado;
 	private int id;
 	
 	private Usuario usuario;
 	private Funcion funcion;
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public boolean isCanjeado() {
@@ -39,7 +39,7 @@ public class Registro {
 	public void setFuncion(Funcion funcion) {
 		this.funcion = funcion;
 	}
-	public Registro(Date fecha, boolean canjeado, int id, Usuario usuario, Funcion funcion) {
+	public Registro(LocalDate fecha, boolean canjeado, int id, Usuario usuario, Funcion funcion) {
 		super();
 		this.fecha = fecha;
 		this.canjeado = canjeado;

@@ -1,10 +1,12 @@
 package logica;
 
+import java.util.HashMap;
 import java.util.ArrayList;
+
 
 public class handlerUsuarios {
 	//SINGLETON
-	private ArrayLista<Usuario> usuarios;
+	private HashMap<Usuario, String> usuarios;
 	private static handlerUsuarios instancia = null;
 	
 	private handlerUsuarios() {
@@ -29,11 +31,11 @@ public class handlerUsuarios {
 		
 	}
 
-	public ArrayLista<Usuario> getUsuarios() {
+	public HashMap<Usuario, String> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(ArrayLista<Usuario> usuarios) {
+	public void setUsuarios(HashMap<Usuario, String> usuarios) {
 		this.usuarios = usuarios;
 	}
 	

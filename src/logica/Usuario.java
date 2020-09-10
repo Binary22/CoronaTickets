@@ -1,13 +1,13 @@
 package logica;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Usuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	
 	private ArrayList<Compra> compraPaquete;
 	private ArrayList<Vale> vales;
@@ -57,10 +57,10 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
@@ -98,10 +98,10 @@ public class Usuario {
 		
 	}
 	
-	public void confirmarUpdateUsuario(String nombre,String apellido,Date fechaNac) {
+	public void confirmarUpdateUsuario(String nombre,String apellido,LocalDate fechaNac) {
 		
 	}
-	public Usuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento) {
+	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;

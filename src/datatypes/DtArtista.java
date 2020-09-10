@@ -1,6 +1,6 @@
 package datatypes;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DtArtista extends DtUsuario {
 	private String descripcion;
@@ -27,7 +27,7 @@ public class DtArtista extends DtUsuario {
 		this.website = website;
 	}
 	
-	public DtArtista(String nickname, String nombre, String apellido, String email, Date fechaNacimiento,
+	public DtArtista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
 			String descripcion, String biografia, String website) {
 		super(nickname, nombre, apellido, email, fechaNacimiento);
 		this.descripcion = descripcion;

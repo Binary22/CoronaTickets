@@ -1,17 +1,17 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 import datatypes.DtUsuario;
 
-public class usuarioController implements IUsuario{
+public class UsuarioController implements IUsuario{
 	
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	
 	private Usuario usuario;
 	private Artista artista;
@@ -66,16 +66,16 @@ public class usuarioController implements IUsuario{
 		this.email = email;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	@Override
-	public void altaUsuario(String nickname, String nombre, String apellido, String mail, Date fechanac) {
+	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -105,13 +105,13 @@ public class usuarioController implements IUsuario{
 	}
 
 	@Override
-	public void updateUsuario(String nombre, String apellido, Date fechaNac) {
+	public void updateUsuario(String nombre, String apellido, LocalDate fechaNac) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateArtista(String nombre, String apellido, Date fechaNac, String desc, String bio, String web) {
+	public void updateArtista(String nombre, String apellido, LocalDate fechaNac, String desc, String bio, String web) {
 		// TODO Auto-generated method stub
 		
 	}
