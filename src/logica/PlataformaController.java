@@ -13,6 +13,10 @@ public class PlataformaController implements IPlataforma {
 		this.setUrl(descrip);
 	}
 	
+	public PlataformaController() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public ArrayList<String> listarPlataformas() {
 		// TODO Auto-generated method stub

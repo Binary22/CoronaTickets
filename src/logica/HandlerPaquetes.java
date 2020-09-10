@@ -11,6 +11,18 @@ import datatypes.DtPaquete;
 public class HandlerPaquetes {
 	private HashMap<String,Paquete> colPaquete;
 	
+	private static HandlerPaquetes instancia = null;
+
+    private HandlerPaquetes() {
+    };
+	
+    public static HandlerPaquetes getInstance() {
+        if (instancia == null) {
+            instancia = new HandlerPaquetes();
+        }
+        return instancia;
+    }
+	
 	private void agregarPaquete(Paquete p) {
 		colPaquete.put(p.getNombre(), p);
 	}

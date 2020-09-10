@@ -20,6 +20,10 @@ public class ConsultaController implements IConsulta {
 		usuario = null;
 	}
 	
+	public ConsultaController() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public ArrayList<String> listarUsuarios() {
 		// TODO Auto-generated method stub
