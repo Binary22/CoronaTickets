@@ -1,13 +1,13 @@
 package datatypes;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DtUsuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	
 	
 	public String getNickname() {
@@ -34,15 +34,15 @@ public class DtUsuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	//constructor
 	
-	public DtUsuario(String nickname, String nombre, String apellido, String email, Date fechaNacimiento) {
+	public DtUsuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;

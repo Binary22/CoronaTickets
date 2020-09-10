@@ -1,6 +1,6 @@
 package logica;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Artista extends Usuario {
 	private String descripcion;
@@ -40,11 +40,11 @@ public class Artista extends Usuario {
 	public ArrayList<DtEspectaculo> obtenerEspectaculosOrganizados(){
 		
 	}
-	public void confirmarUpdateArtista(String nombre,String apellido,Date fechaNac,String desc,String bio,String web) {
+	public void confirmarUpdateArtista(String nombre,String apellido,LocalDate fechaNac,String desc,String bio,String web) {
 		
 	}
 	
-	public Artista(String nickname, String nombre, String apellido, String email, Date fechaNacimiento,
+	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
 			String descripcion, String biografia, String website) {
 		super(nickname, nombre, apellido, email, fechaNacimiento);
 		this.descripcion = descripcion;
