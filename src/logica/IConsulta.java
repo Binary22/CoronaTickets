@@ -2,6 +2,10 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtEspectaculo;
+import datatypes.DtFuncion;
+import datatypes.DtUsuario;
+
 public interface IConsulta {
 	public ArrayList<String> listarUsuarios();
 	public DtUsuario mostrarDatos(String nickname);
@@ -15,7 +19,6 @@ public interface IConsulta {
 	public ArrayList<String> listarPlataformas();
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
 	public DtEspectaculo mostrarEspectaculo();
-	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
 	public ArrayList<String> listarFuncionesEspect(String nomEspectaculo);
 	public DtFuncion mostrarFuncion();
 }

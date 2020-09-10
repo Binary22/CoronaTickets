@@ -1,6 +1,6 @@
 package logica;
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.HashMap;
 
 public class Paquete {
 	private String nombre;
@@ -8,7 +8,7 @@ public class Paquete {
 	private LocalDate fechaF;
 	private int descuento;
 	private String descripcion;
-	private Map<String,Espectaculo> espectaculos;
+	private HashMap<String,Espectaculo> espectaculos;
 	
 	public Paquete(String nombre, LocalDate fechaI, LocalDate fechaF, int descuento, String descripcion) {
 		super();
@@ -20,6 +20,7 @@ public class Paquete {
 	}
 	
 	public void addEspectaculo(Espectaculo e) {
+		espectaculos.put(e.getNombre(), e);
 		
 	}
 	
