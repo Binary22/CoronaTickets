@@ -1,21 +1,19 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 public class Plataforma {
 	private String nombre;
 	private String descrip;
 	private String url;
-	private Map<String,Espectaculo> espectaculos;
+	private HashMap<String,Espectaculo> espectaculos;
 	
-	public Plataforma(String nombre, String descrip, String url, Map<String, Espectaculo> espectaculos) {
+	public Plataforma(String nombre, String descrip, String url) {
 		super();
 		this.nombre = nombre;
 		this.descrip = descrip;
 		this.url = url;
-		this.espectaculos = espectaculos;
-		//a plataforma nunca se le agregan espectaculos??
 	}
 
 	public ArrayList<Espectaculo> getEspectaculos(){
@@ -50,8 +48,9 @@ public class Plataforma {
 		this.espectaculos = espectaculos;
 	}
 	
-	
-	
+	public void addEspectaculo(Espectaculo espectaculo){
+		espectaculos.put(espectaculo.getNombre(), espectaculo);
+	}
 }
 
 	
