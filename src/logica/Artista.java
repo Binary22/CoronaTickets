@@ -48,6 +48,13 @@ public class Artista extends Usuario {
 	public void confirmarUpdateArtista(String nombre,String apellido,LocalDate fechaNac,String desc,String bio,String web) {
 		
 	}
+
+	public Artista(Usuario usuario, String desc, String bio, String web) {
+		super(usuario.getNickname(),usuario.getNombre(),usuario.getApellido(),usuario.getEmail(), usuario.getFechaNacimiento());
+		this.descripcion = desc;
+		this.biografia = bio;
+		this.website = web;
+	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
 			String descripcion, String biografia, String website) {

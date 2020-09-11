@@ -13,6 +13,10 @@ public class HandlerUsuarios {
 		usuarios = new HashMap<String, Usuario>();
 	}
 	
+	public Boolean existeUsuario(String nick) {
+		return usuarios.containsKey(nick);
+	}
+	
 	public static HandlerUsuarios getInstancia() {
 		if(instancia == null)
 			instancia = new HandlerUsuarios();
@@ -30,7 +34,7 @@ public class HandlerUsuarios {
 		return null;
 	}
 	public void agregarUsuario(Usuario u) {
-		
+		usuarios.put(u.getNickname(), u);
 	}
 
 	public HashMap<String, Usuario> getUsuarios() {
@@ -46,5 +50,7 @@ public class HandlerUsuarios {
 		return u.esArtista_();
 	}
 	
+	
+
 }
 
