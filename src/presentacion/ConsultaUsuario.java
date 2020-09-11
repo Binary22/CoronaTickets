@@ -74,20 +74,22 @@ public class ConsultaUsuario extends JInternalFrame {
 		getContentPane().add(lblUsuario, gbc_lblUsuario);
 		
 		// aca trato de conseguir la lista para mostarla en el combobox
-		ArrayList<String > listanicknames = icontrolador.listarUsuarios();
-		String[] arraynicknames = new String[listanicknames.size()];
-		arraynicknames = listanicknames.toArray(arraynicknames);
+		//ArrayList<String > listanicknames = icontrolador.listarUsuarios();
+		//String[] arraynicknames = new String[listanicknames.size()];
+		//arraynicknames = listanicknames.toArray(arraynicknames);
 		
 		//String[] test = {"juan", "jose"};
 		
-		JComboBox comboBox = new JComboBox(arraynicknames);
+		JComboBox comboBox = new JComboBox();
 		comboBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				// esto es para que se actualize el combobox cuando se agregan usuarios, capaz es al pedo
+				comboBox.removeAllItems();
 				ArrayList<String > listanicknames = icontrolador.listarUsuarios();
-				String[] arraynicknames = new String[listanicknames.size()];
-				arraynicknames = listanicknames.toArray(arraynicknames);
+				for (int i = 0; i < listanicknames.size(); i++) {
+					comboBox.addItem(listanicknames.get(i));
+				}
 			}
 		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
