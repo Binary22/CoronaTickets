@@ -22,6 +22,7 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaEspectaculoInternalFrame;
 
 	/**
 	 * Launch the application.
@@ -45,7 +46,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(900, 900, 900, 900);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -78,6 +79,14 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 		mnEspectaculos.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de espectaculo");
+		mntmConsultaDeEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaEspectaculoInternalFrame.setVisible(true);
+			}
+		});
+		mnEspectaculos.add(mntmConsultaDeEspectaculo);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -90,6 +99,11 @@ public class Principal extends JFrame {
         AltaUsuarioInternalFrame = new AltaUsuario();
         AltaUsuarioInternalFrame.setVisible(false);
         getContentPane().add(AltaUsuarioInternalFrame);
+        
+        ConsultaEspectaculoInternalFrame = new ConsultaEspectaculo();
+        ConsultaEspectaculoInternalFrame.setClosable(true);
+        ConsultaEspectaculoInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaEspectaculoInternalFrame, BorderLayout.CENTER);
         
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
