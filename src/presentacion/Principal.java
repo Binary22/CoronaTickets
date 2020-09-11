@@ -22,6 +22,7 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaDeUsuarioInternalFrame;
 
 	/**
 	 * Launch the application.
@@ -45,7 +46,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 650, 500);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -69,6 +70,14 @@ public class Principal extends JFrame {
 			}
 		});
 		mnUsuarios.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
+		mntmConsultaDeDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaDeUsuarioInternalFrame.setVisible(true);
+			}
+		});
+		mnUsuarios.add(mntmConsultaDeDatos);
 		
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
@@ -94,6 +103,10 @@ public class Principal extends JFrame {
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
         getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
+        
+        ConsultaDeUsuarioInternalFrame = new ConsultaUsuario();
+        ConsultaDeUsuarioInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaDeUsuarioInternalFrame);
 	
 	}
 

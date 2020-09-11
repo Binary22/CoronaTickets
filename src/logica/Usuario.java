@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import datatypes.DtUsuario;
 
 public class Usuario {
 	private String nickname;
@@ -120,6 +121,11 @@ public class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	public DtUsuario getDt() {
+		DtUsuario ret;
+		ret = new DtUsuario(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento());
+		return ret;
 	}
 	
 

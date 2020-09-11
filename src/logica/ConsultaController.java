@@ -24,10 +24,11 @@ public class ConsultaController implements IConsulta {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public ArrayList<String> listarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		ArrayList<String> listanombres = hu.getNombres();
+		
+		return listanombres;
 	}
 
 	@Override
@@ -74,8 +75,10 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public DtUsuario mostrarDatos(String nickname) {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario u = hu.getUsuario(nickname);
+		DtUsuario dtu = u.getDt();
+		return dtu;
 	}
 
 	@Override
