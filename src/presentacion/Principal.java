@@ -19,6 +19,10 @@ import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
@@ -45,7 +49,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 700, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -75,8 +79,20 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de espectaculo");
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
+		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
+			public void actionPerformed(ActionEvent e) {                 
+				getContentPane().removeAll();                 
+				contentPane.repaint();                 
+				AltaDeEspectaculo intFrame = new AltaDeEspectaculo();                 
+				intFrame.setLocation(0, 0);                 
+				intFrame.setBounds(48, 33, 570, 513);                 
+				intFrame.setVisible(true);                 
+				getContentPane().add(intFrame);             
+				}         
+			});
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de funcion de espectaculo");
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

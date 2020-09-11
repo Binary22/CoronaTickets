@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class HandlerUsuarios {
 	//SINGLETON
 	private HashMap<String, Usuario> usuarios;
+	private HashMap<String, Usuario> artistas; //por ende se crea esto
 	private static HandlerUsuarios instancia = null;
 	
 	private HandlerUsuarios() {
@@ -19,10 +20,11 @@ public class HandlerUsuarios {
 		return instancia;
 	}
 	public ArrayList<String> getNombres(){
-		return null;
+		ArrayList<String> list = new ArrayList<String>(artistas.keySet());; //Necesito esto, ya que si tengo usuarios, como distingo cuales son artistas en el mapa?
+		return list;
 	}
 	public Usuario getUsuario(String nickname) {
-		return null;
+		return usuarios.get(nickname);
 	}
 	public ArrayList<Artista> getArtistasInvitados(ArrayList<String> invitados){
 		return null;
@@ -30,7 +32,11 @@ public class HandlerUsuarios {
 	public void agregarUsuario(Usuario u) {
 		
 	}
-
+	
+	public void agregarArtista(Artista a) {
+		
+	}
+	
 	public HashMap<String, Usuario> getUsuarios() {
 		return usuarios;
 	}

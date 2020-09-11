@@ -10,19 +10,86 @@ import datatypes.DtFuncion;
 import datatypes.DtRegistro;
 
 public class EspectaculoController implements IEspectaculo {
-	
+	private String nomPlataforma;
+	private String nickArtista;
 	private String nomespec;
+	private String descripcion;
+	private String nomfuncion;
+	private String url;
+	private int minEspect;
+	private int maxEspect;
+	private float costo;
+	private LocalTime horainicio;
+	private LocalDate fechaAlta;
+	private LocalTime duracion;
+	private LocalDate fecha;
+	private ArrayList<String> invitados;
+	private Espectaculo espectaculo;
+	
+	
+	public int getMinEspect() {
+		return minEspect;
+	}
+	public void setMinEspect(int minEspect) {
+		this.minEspect = minEspect;
+	}
+	public void setNickArtista(String nickArtista) {
+		this.nickArtista = nickArtista;
+	}
+
 	public String getNomespec() {
 		return nomespec;
 	}
 	public void setNomespec(String nomespec) {
 		this.nomespec = nomespec;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getNomPlataforma() {
+		return nomPlataforma;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNomPlataforma(String nomPlataforma) {
+		this.nomPlataforma = nomPlataforma;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getMaxEspect() {
+		return maxEspect;
+	}
+	public void setMaxEspect(int maxEspect) {
+		this.maxEspect = maxEspect;
+	}
+	public float getCosto() {
+		return costo;
+	}
+	public void setCosto(float costo) {
+		this.costo = costo;
+	}
+	public LocalDate getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(LocalDate duracion) {
+		this.duracion = duracion;
+	}
+	public Espectaculo getEspectaculo() {
+		return espectaculo;
+	}
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
+	}
+	public String getNickArtista() {
+		return nickArtista;
+	}
+	public void setNickname(String nickArtista) {
+		this.nickArtista = nickArtista;
 	}
 	public String getNomfuncion() {
 		return nomfuncion;
@@ -54,14 +121,7 @@ public class EspectaculoController implements IEspectaculo {
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
-	
-	private String nickname;
-	private String nomfuncion;
-	private LocalDate fecha;
-	private LocalTime horainicio;
-	private ArrayList<String> invitados;
-	private LocalDate fechaAlta;
-	private Espectaculo espectaculo;
+
 	
 	@Override
 	public void elegirEspectaculo(String nomEspectaculo) {
@@ -79,11 +139,14 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public ArrayList<String> listarPlataformas() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		ArrayList<String> platlist= hplat.getNombres();
+		return platlist;
 	}
+	
 	@Override
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat) {
 		// TODO Auto-generated method stub
@@ -141,19 +204,37 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	@Override
 	public ArrayList<String> listarArtistas() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		ArrayList<String> artlist= huser.getNombres();
+		return artlist;
 	}
 	@Override
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			int duracion, int maxEspec, String url, float costo, LocalDate fechaAlta) {
-		// TODO Auto-generated method stub
+			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) {
+		this.nomPlataforma= nomPlataforma;
+		this.nickArtista= nickArtista;
+		this.nomespec= nombre;
+		this.descripcion= descripcion;
+		this.duracion= duracion;
+		this.minEspect= minEspec;
+		this.maxEspect= maxEspec;
+		this.url= url;
+		this.costo= costo;
+		this.fechaAlta= fechaAlta;
 		
 	}
+	
 	@Override
 	public void confirmarAltaEspectaculo() {
-		// TODO Auto-generated method stub
-		
+		HandlerUsuarios huser= HandlerUsuarios.getInstancia();
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		HandlerEspectaculos hesp= HandlerEspectaculos.getInstance();
+		Artista art= (Artista) huser.getUsuario(nickArtista);
+		Plataforma plat= hplat.getPlataforma(nomPlataforma);
+		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);
+		esp.setPlataforma(plat);
+		esp.setArtista(art);
+		hesp.addEspectaculo(esp);
 	}
 
 	
