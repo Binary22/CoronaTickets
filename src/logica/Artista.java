@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
 
 public class Artista extends Usuario {
@@ -56,5 +57,13 @@ public class Artista extends Usuario {
 		this.website = website;
 	}
 	
+	public boolean esArtista_() {
+		return true;
+	}
+	
+	public DtArtista getDtArtista() {
+		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
+		return dta;
+	}
 	
 }

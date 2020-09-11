@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
@@ -126,6 +127,14 @@ public class Usuario {
 		DtUsuario ret;
 		ret = new DtUsuario(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento());
 		return ret;
+	}
+	public boolean esArtista_() {
+		return false;
+		
+	}
+	
+	public DtArtista getDtArtista() {
+		return null;
 	}
 	
 

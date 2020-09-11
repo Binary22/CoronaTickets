@@ -6,6 +6,8 @@ import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JTree;
 
+import datatypes.DtArtista;
+import datatypes.DtFuncion;
 import datatypes.DtUsuario;
 import logica.Fabrica;
 import logica.IConsulta;
@@ -21,7 +23,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.JTable;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ConsultaUsuario extends JInternalFrame {
 
@@ -53,9 +60,9 @@ public class ConsultaUsuario extends JInternalFrame {
 		setBounds(100, 100, 450, 422);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 206, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
@@ -74,6 +81,15 @@ public class ConsultaUsuario extends JInternalFrame {
 		//String[] test = {"juan", "jose"};
 		
 		JComboBox comboBox = new JComboBox(arraynicknames);
+		comboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				// esto es para que se actualize el combobox cuando se agregan usuarios, capaz es al pedo
+				ArrayList<String > listanicknames = icontrolador.listarUsuarios();
+				String[] arraynicknames = new String[listanicknames.size()];
+				arraynicknames = listanicknames.toArray(arraynicknames);
+			}
+		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -81,18 +97,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_comboBox.gridy = 0;
 		getContentPane().add(comboBox, gbc_comboBox);
 		
-		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// se apreta consultar:
-				DtUsuario dtu = icontrolador.mostrarDatos((String)comboBox.getSelectedItem());
-			}
-		});
-		GridBagConstraints gbc_btnConsultar = new GridBagConstraints();
-		gbc_btnConsultar.insets = new Insets(0, 0, 5, 0);
-		gbc_btnConsultar.gridx = 1;
-		gbc_btnConsultar.gridy = 1;
-		getContentPane().add(btnConsultar, gbc_btnConsultar);
+		
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -164,10 +169,49 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 		JLabel lblWebsite = new JLabel("Website:");
 		GridBagConstraints gbc_lblWebsite = new GridBagConstraints();
+		gbc_lblWebsite.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWebsite.anchor = GridBagConstraints.WEST;
 		gbc_lblWebsite.gridx = 1;
 		gbc_lblWebsite.gridy = 10;
 		getContentPane().add(lblWebsite, gbc_lblWebsite);
+		
+		
+		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// se apreta consultar:
+				DtUsuario dtu = icontrolador.mostrarDatos((String)comboBox.getSelectedItem());
+				lblNickname.setText("Nickname: " + dtu.getNickname());
+				lblNombre.setText("Nombre: " + dtu.getNombre());
+				lblApellido.setText("Apellido: " + dtu.getApellido());
+				lblEmail.setText("Email: " + dtu.getEmail());
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+				lblFechaDeNacimiento.setText("Fecha de nacimiento: " + dtu.getFechaNacimiento().format(formatter));
+					
+				if (icontrolador.esArtista(dtu.getNickname())) {
+					DtArtista dta = icontrolador.mostrarDatosArtista(dtu.getNickname());
+					lblDescripcion.setText("Descripcion: " + dta.getDescripcion());
+					lblBiografa.setText("Biografía: " + dta.getBiografia());
+					lblWebsite.setText("Website: " + dta.getWebsite());
+				}
+				
+			}
+		});
+		GridBagConstraints gbc_btnConsultar = new GridBagConstraints();
+		gbc_btnConsultar.insets = new Insets(0, 0, 5, 0);
+		gbc_btnConsultar.gridx = 1;
+		gbc_btnConsultar.gridy = 1;
+		getContentPane().add(btnConsultar, gbc_btnConsultar);
+		
+		JLabel lblFuncionesALas = new JLabel("Funciones a las que se registro:");
+		GridBagConstraints gbc_lblFuncionesALas = new GridBagConstraints();
+		gbc_lblFuncionesALas.insets = new Insets(0, 0, 5, 0);
+		gbc_lblFuncionesALas.gridx = 1;
+		gbc_lblFuncionesALas.gridy = 11;
+		getContentPane().add(lblFuncionesALas, gbc_lblFuncionesALas);
+		
+
+
 
 	}
 

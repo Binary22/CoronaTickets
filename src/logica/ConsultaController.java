@@ -2,6 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtPaquete;
@@ -109,6 +110,17 @@ public class ConsultaController implements IConsulta {
 	public DtFuncion mostrarFuncion() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public boolean esArtista(String nickname) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		return hu.esArtista_(nickname);
+	}
+	public DtArtista mostrarDatosArtista(String nickname) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario u = hu.getUsuario(nickname);
+		DtArtista dta = u.getDtArtista();
+		return dta;
 	}
 
 }
