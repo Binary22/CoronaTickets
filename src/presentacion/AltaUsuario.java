@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class AltaUsuario extends JInternalFrame {
 
@@ -29,10 +33,6 @@ public class AltaUsuario extends JInternalFrame {
 	 */
 	public AltaUsuario() {
 		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JButton btnTest = new JButton("test");
-		getContentPane().add(btnTest);
 
 	}
 
