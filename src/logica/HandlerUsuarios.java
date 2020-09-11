@@ -13,6 +13,10 @@ public class HandlerUsuarios {
 		usuarios = new HashMap<String, Usuario>();
 	}
 	
+	public Boolean existeUsuario(String nick) {
+		return usuarios.containsKey(nick);
+	}
+	
 	public static HandlerUsuarios getInstancia() {
 		if(instancia == null)
 			instancia = new HandlerUsuarios();

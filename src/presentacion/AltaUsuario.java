@@ -25,8 +25,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
+import javax.swing.JCheckBox;
 
 public class AltaUsuario extends JInternalFrame {
 	private JTextField textField;
@@ -40,9 +43,10 @@ public class AltaUsuario extends JInternalFrame {
 	private JTextField textField_6;
 	private JLabel lblWebsite;
 	private JTextField textField_7;
-	private JRadioButton rdbtnEsArtista;
+	private JCheckBox checkEsArtista;
 	private JButton btnNewButton;
 	private JButton btnCancelar;
+	private ArrayList<JTextField> textfieldSet;
 
 	/**
 	 * Launch the application.
@@ -73,7 +77,7 @@ public class AltaUsuario extends JInternalFrame {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0, 0.0, 0.0};
 		getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblNickname = new JLabel("Nickname");
+		JLabel lblNickname = new JLabel("Nickname*");
 		GridBagConstraints gbc_lblNickname = new GridBagConstraints();
 		gbc_lblNickname.anchor = GridBagConstraints.EAST;
 		gbc_lblNickname.insets = new Insets(0, 0, 5, 5);
@@ -90,7 +94,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textField, gbc_textField);
 		textField.setColumns(10);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		JLabel lblNombre = new JLabel("Nombre*");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.EAST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -107,7 +111,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblApellido = new JLabel("Apellido");
+		JLabel lblApellido = new JLabel("Apellido*");
 		GridBagConstraints gbc_lblApellido = new GridBagConstraints();
 		gbc_lblApellido.anchor = GridBagConstraints.EAST;
 		gbc_lblApellido.insets = new Insets(0, 0, 5, 5);
@@ -124,7 +128,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblMail = new JLabel("Mail");
+		JLabel lblMail = new JLabel("Mail*");
 		GridBagConstraints gbc_lblMail = new GridBagConstraints();
 		gbc_lblMail.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMail.gridx = 1;
@@ -140,7 +144,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textField_3, gbc_textField_3);
 		textField_3.setColumns(10);
 		
-		JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento");
+		JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento*");
 		GridBagConstraints gbc_lblFechaDeNacimiento = new GridBagConstraints();
 		gbc_lblFechaDeNacimiento.anchor = GridBagConstraints.EAST;
 		gbc_lblFechaDeNacimiento.insets = new Insets(0, 0, 5, 5);
@@ -167,12 +171,12 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
-		rdbtnEsArtista = new JRadioButton("Es Artista");
+		checkEsArtista = new JCheckBox("Es Artista");
 		GridBagConstraints gbc_rdbtnEsArtista = new GridBagConstraints();
 		gbc_rdbtnEsArtista.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnEsArtista.gridx = 1;
 		gbc_rdbtnEsArtista.gridy = 5;
-		getContentPane().add(rdbtnEsArtista, gbc_rdbtnEsArtista);
+		getContentPane().add(checkEsArtista, gbc_rdbtnEsArtista);
 		
 		lblDescripcion = new JLabel("Descripcion");
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
@@ -233,36 +237,85 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textField_7, gbc_textField_7);
 		textField_7.setColumns(10);
 		
+		
+		textfieldSet = new ArrayList<JTextField>();
+		this.textfieldSet.add(textField);
+		this.textfieldSet.add(textField_1);
+		this.textfieldSet.add(textField_2);
+		this.textfieldSet.add(textField_3);
+		this.textfieldSet.add(textField_4);
+		this.textfieldSet.add(textField_5);
+		this.textfieldSet.add(textField_6);
+		this.textfieldSet.add(textField_7);
+		
 		btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!checkEsArtista.isSelected()) {
+					for(int i = 1; i < 5; i++) {
+						if (textfieldSet.get(i).getText().trim().length() == 0) {
+							JOptionPane.showMessageDialog(null, "Para dar de alta un usuario debe rellenar todos los campos indicados con *");
+							return;
+						}
+					}
+				} else {
+					for(int i = 1; i < 8; i++) {
+						if (textfieldSet.get(i).getText().trim().length() == 0) {
+							JOptionPane.showMessageDialog(null, "Para dar de alta un artista debe rellenar todos los campos.");
+							return;
+						}
+					}
+				}
 				String nickname = textField.getText();
 				String nombre = textField_1.getText();
 				String apellido = textField_2.getText();
 				String mail = textField_3.getText();
 				String fecha = textField_4.getText();
+
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				LocalDate fechanac = LocalDate.parse(fecha, formatter);
-				UsuarioController UC = new UsuarioController();
-				System.out.print(nickname);
-				System.out.print(nombre);
-				System.out.print(apellido);
-				System.out.print(mail);
-				System.out.print(fechanac.toString());
-				Boolean esArtista = rdbtnEsArtista.getAutoscrolls();
-				if (esArtista) {
-					UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
-				} else {
-					String descripcion = textField_5.getText();
-					String bio = textField_6.getText();
-					String website = textField_7.getText();
-					UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
-					UC.altaArtista(descripcion, bio, website);
+				LocalDate fechanac = null;
+				try {
+					fechanac = LocalDate.parse(fecha, formatter);
 				}
-				int input = JOptionPane.showConfirmDialog(null, "Desea confirmar el siguiente usuario?");
-				if (input == 0) {
-					UC.confirmarAltaUsuario();
-					dispose();
+				catch(DateTimeParseException e1) {
+					JOptionPane.showMessageDialog(null, "Fecha Invalida");
+					System.out.print("Fallo el parseo de la fecha");
+					return;
+				}
+				
+				UsuarioController UC = new UsuarioController();
+				System.out.print("nickname: " + nickname + "\n");
+				System.out.print("nombre: " + nombre + "\n");
+				System.out.print("apellido: " + apellido + "\n");
+				System.out.print("mail: " + mail + "\n");
+				System.out.print("fecha: " + fechanac.toString() + "\n");
+				Boolean esArtista = checkEsArtista.isSelected();
+				
+				//Checkeo si existe el usuario:
+				
+				HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+				if (hu.existeUsuario(nickname)) {
+					JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese Nickname");
+				} else {
+					if (esArtista) {
+						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
+					} else {
+						String descripcion = textField_5.getText();
+						String bio = textField_6.getText();
+						String website = textField_7.getText();
+						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
+						UC.altaArtista(descripcion, bio, website);
+					}
+					int input = JOptionPane.showConfirmDialog(null, "Desea confirmar el usuario?");
+					if (input == 0) {
+						UC.confirmarAltaUsuario();
+						textfieldSet.forEach(textfield -> textfield.setText(""));
+						dispose();
+					}
+					if (input == 2) {
+						textfieldSet.forEach(textfield -> textfield.setText(""));
+						dispose();
+					}
 				}
 			}
 		});
