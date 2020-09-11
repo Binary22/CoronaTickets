@@ -10,7 +10,7 @@ public class HandlerUsuarios {
 	private static HandlerUsuarios instancia = null;
 	
 	private HandlerUsuarios() {
-		
+		usuarios = new HashMap<String, Usuario>();
 	}
 	
 	public static HandlerUsuarios getInstancia() {
@@ -22,13 +22,13 @@ public class HandlerUsuarios {
 		return null;
 	}
 	public Usuario getUsuario(String nickname) {
-		return null;
+		return usuarios.get(nickname);
 	}
 	public ArrayList<Artista> getArtistasInvitados(ArrayList<String> invitados){
 		return null;
 	}
 	public void agregarUsuario(Usuario u) {
-		
+		usuarios.put(u.getNickname(), u);
 	}
 
 	public HashMap<String, Usuario> getUsuarios() {
