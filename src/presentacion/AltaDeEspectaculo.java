@@ -33,6 +33,8 @@ import java.awt.Component;
 
 import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class AltaDeEspectaculo extends JInternalFrame {
     /**
@@ -47,7 +49,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JTextField textFieldNombre;
     private JLabel lblDescripcion;
     private JTextPane tpaneDescripcion;
-    private JTextField textFieldDescripcion;
     private JLabel lblDuracion;
     private JSpinner spnDuracionhs;
     private JSpinner spnDuracionmin;
@@ -61,8 +62,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JSpinner spnCosto;
     private JLabel lblFecha;
     private JCalendar calFecha;
-    //private ArrayList<String> plataformas;
-    //private ArrayList<String> artistas;
+    private ArrayList<String> plataformas;
+    private ArrayList<String> artistas;
 
     
     
@@ -96,8 +97,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		setBounds(100, 100, 645, 560);
 		Fabrica f = Fabrica.getInstance();
 		IEspectaculo iesp= f.getIEspectaculo();
-		//plataformas= iesp.listarPlataformas();
-		//artistas= iesp.listarArtistas();
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{177, 348, 206, 45, 0};
@@ -114,8 +113,15 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel.gridy = 0;
 		getContentPane().add(lblPlataforma, gbc_lblNewLabel);
 		
-		//plataformas.toArray(new String[plataformas.size()]) esto va adentro del jcombobox<string>
+		
 		comboBoxPlataformas = new JComboBox<String>();
+		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				plataformas= iesp.listarPlataformas();
+				updateComboBox(plataformas, comboBoxPlataformas);
+			}
+		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -133,8 +139,15 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_1.gridy = 1;
 		getContentPane().add(lblArtista, gbc_lblNewLabel_1);
 		
-		//artistas.toArray(new String[artistas.size()]) esto va adentro del jcombobox<string>
+		
 		comboBoxArtistas = new JComboBox<String>();
+		comboBoxArtistas.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				artistas= iesp.listarArtistas();
+				updateComboBox(artistas, comboBoxArtistas);
+			}
+		});
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 2;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
@@ -308,7 +321,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 				Instant instant= calFecha.getDate().toInstant();
 				ZonedDateTime zdt= instant.atZone(ZoneId.systemDefault());
 				LocalDate altaFecha= zdt.toLocalDate(); //esto es un asco pero se hace asi, salvo que cambiemos a date.
-				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getName(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
+				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getText(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
 				iesp.confirmarAltaEspectaculo();
 			}
 		});
@@ -322,7 +335,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setForeground(Color.RED);
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				//limpiarFormulario(); creo que esto no es necesario, ademas me genera problemas
 				dispose();
 			}
@@ -334,7 +347,13 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(btnNewButton, gbc_btnNewButton);
 
 	}
+	private void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
+	    cb.removeAllItems();
+	    lista.forEach(el -> cb.addItem(el));
+	}
 }
+
+
 
 
 

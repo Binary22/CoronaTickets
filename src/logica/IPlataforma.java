@@ -7,4 +7,5 @@ public interface IPlataforma {
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
 	public void altaPlataforma(String nombre, String descrip, String url);
 	public void confirmarAltaPlataforma();
-}
+	public void agregarEspectaculoPlataforma(Plataforma p, Espectaculo e);
+	}
