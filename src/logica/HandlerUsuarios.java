@@ -11,7 +11,11 @@ public class HandlerUsuarios {
 	private static HandlerUsuarios instancia = null;
 	
 	private HandlerUsuarios() {
-		
+		usuarios = new HashMap<String, Usuario>();
+	}
+	
+	public Boolean existeUsuario(String nick) {
+		return usuarios.containsKey(nick);
 	}
 	
 	public static HandlerUsuarios getInstancia() {
@@ -30,7 +34,7 @@ public class HandlerUsuarios {
 		return null;
 	}
 	public void agregarUsuario(Usuario u) {
-		
+		usuarios.put(u.getNickname(), u);
 	}
 	
 	public void agregarArtista(Artista a) {
