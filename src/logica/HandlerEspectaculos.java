@@ -7,6 +7,7 @@ public class HandlerEspectaculos {
 	private static HandlerEspectaculos instancia = null;
 
     private HandlerEspectaculos() {
+    	mapEspectaculos = new HashMap<String, Espectaculo>();
     };
 	
     public static HandlerEspectaculos getInstance() {
