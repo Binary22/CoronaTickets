@@ -33,6 +33,8 @@ import java.awt.Component;
 
 import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class AltaDeEspectaculo extends JInternalFrame {
     /**
@@ -95,8 +97,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		setBounds(100, 100, 645, 560);
 		Fabrica f = Fabrica.getInstance();
 		IEspectaculo iesp= f.getIEspectaculo();
-		plataformas= iesp.listarPlataformas();
-		artistas= iesp.listarArtistas();
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{177, 348, 206, 45, 0};
@@ -115,7 +115,13 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		
 		
 		comboBoxPlataformas = new JComboBox<String>();
-		updateComboBox(plataformas, comboBoxPlataformas);
+		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				plataformas= iesp.listarPlataformas();
+				updateComboBox(plataformas, comboBoxPlataformas);
+			}
+		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -135,7 +141,13 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		
 		
 		comboBoxArtistas = new JComboBox<String>();
-		updateComboBox(artistas, comboBoxArtistas);
+		comboBoxArtistas.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				artistas= iesp.listarArtistas();
+				updateComboBox(artistas, comboBoxArtistas);
+			}
+		});
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 2;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);

@@ -26,6 +26,7 @@ public class Principal extends JFrame {
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaDeUsuarioInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
+	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	
 
 	/**
@@ -92,14 +93,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
-			public void actionPerformed(ActionEvent e) {                 
-				getContentPane().removeAll();                 
-				contentPane.repaint();                 
-				AltaDeEspectaculo intFrameAltaDeEspectaculo = new AltaDeEspectaculo();                 
-				intFrameAltaDeEspectaculo.setLocation(0, 0);                 
-				intFrameAltaDeEspectaculo.setBounds(48, 33, 570, 513);                 
-				intFrameAltaDeEspectaculo.setVisible(true);                 
-				getContentPane().add(intFrameAltaDeEspectaculo);             
+			public void actionPerformed(ActionEvent e) {                                 
+				AltaDeEspectaculoInternalFrame.setVisible(true);                             
 				}         
 			});
 		
@@ -139,6 +134,10 @@ public class Principal extends JFrame {
         AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
         AltaFuncionInternalFrame.setVisible(false);
         getContentPane().add(AltaFuncionInternalFrame);
+        
+        AltaDeEspectaculoInternalFrame = new AltaDeEspectaculo();
+        AltaDeEspectaculoInternalFrame.setVisible(false);
+        getContentPane().add(AltaDeEspectaculoInternalFrame);
         
         Fabrica fab= Fabrica.getInstance();
         IPlataforma iplat= fab.getIPlataforma();
