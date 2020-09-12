@@ -75,13 +75,11 @@ public class Principal extends JFrame {
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
 		
-		//caso de uso alta de espectaculo
+		//menu alta de espectaculo
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de espectaculo");
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
 
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
-
+		//caso de uso alta de espectaculo
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
 			public void actionPerformed(ActionEvent e) {                 
 				getContentPane().removeAll();                 
@@ -96,6 +94,7 @@ public class Principal extends JFrame {
 		
 		//caso de uso alta de funcion de espectaculo
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
