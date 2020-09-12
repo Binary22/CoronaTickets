@@ -14,6 +14,7 @@ public class Plataforma {
 		this.nombre = nombre;
 		this.descrip = descrip;
 		this.url = url;
+		espectaculos = new HashMap<String,Espectaculo>();
 	}
 
 	public HashMap<String, Espectaculo> getEspectaculos(){

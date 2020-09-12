@@ -301,13 +301,15 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	public void cargarEspectaculos(String nomplat) {
 		comboBoxEspectaculos.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
-		for(int i = 0; i < nombres.size(); i++) {
-        	comboBoxEspectaculos.addItem(nombres.get(i));
-        	
+		if (ctrlEspect.listarEspectaculosPlataforma(nomplat) != null) {
+			ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
+			for(int i = 0; i < nombres.size(); i++) {
+				comboBoxEspectaculos.addItem(nombres.get(i));
         	}
+		} else {
+			JOptionPane.showMessageDialog(null, "Esta Plataforma no tiene Espectaculos");
 		}
-	
+	}
 	protected void cmdAltaFuncion() {
         // TODO Auto-generated method stub
 

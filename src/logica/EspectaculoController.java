@@ -181,9 +181,14 @@ public class EspectaculoController implements IEspectaculo {
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma){
 		HandlerPlataforma hp = HandlerPlataforma.getInstance();
 		Plataforma plataforma = hp.getPlataforma(nomPlataforma);
+		if (plataforma == null) {
+			return null;
+		}
+		if (plataforma.getEspectaculos() == null) {
+			return null;
+		}
 		ArrayList<String> nombresEspect = new ArrayList<String>(plataforma.getEspectaculos().keySet());
 		return nombresEspect;
-		
 	}
 	@Override
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat) {
@@ -269,9 +274,12 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerEspectaculos hesp= HandlerEspectaculos.getInstance();
 		Artista art= (Artista) huser.getUsuario(nickArtista);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(this.nomespec,this.duracion, this.descripcion, this.minEspect, this.maxEspect, this.url, this.fechaAlta, this.costo);
+		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);		
+		Fabrica f = Fabrica.getInstance();
+		IPlataforma pc = f.getIPlataforma();
 		esp.setPlataforma(plat);
 		esp.setArtista(art);
+		pc.agregarEspectaculoPlataforma(plat, esp);
 		hesp.addEspectaculo(esp);
 	}
 	
