@@ -114,7 +114,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblPlataforma, gbc_lblNewLabel);
 		
 		
-		comboBoxPlataformas = new JComboBox<String>(plataformas.toArray(new String[plataformas.size()]));
+		comboBoxPlataformas = new JComboBox<String>();
+		updateComboBox(plataformas, comboBoxPlataformas);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -133,7 +134,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblArtista, gbc_lblNewLabel_1);
 		
 		
-		comboBoxArtistas = new JComboBox<String>(artistas.toArray(new String[artistas.size()]));
+		comboBoxArtistas = new JComboBox<String>();
+		updateComboBox(artistas, comboBoxArtistas);
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 2;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
@@ -321,7 +323,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setForeground(Color.RED);
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				//limpiarFormulario(); creo que esto no es necesario, ademas me genera problemas
 				dispose();
 			}
@@ -333,7 +335,13 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(btnNewButton, gbc_btnNewButton);
 
 	}
+	private void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
+	    cb.removeAllItems();
+	    lista.forEach(el -> cb.addItem(el));
+	}
 }
+
+
 
 
 

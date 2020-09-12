@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import logica.Fabrica;
 import logica.IEspectaculo;
+import logica.IPlataforma;
 import logica.IUsuario;
 
 import javax.swing.JMenuBar;
@@ -138,6 +139,20 @@ public class Principal extends JFrame {
         AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
         AltaFuncionInternalFrame.setVisible(false);
         getContentPane().add(AltaFuncionInternalFrame);
+        
+        Fabrica fab= Fabrica.getInstance();
+        IPlataforma iplat= fab.getIPlataforma();
+        iplat.altaPlataforma("Twitch", "Ni judas se atrevio a tanto", "https://www.twitch.tv/rubius");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Youtube", "Tema del anio", "https://youtu.be/Pu8LH6r-wOU?t=25");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Facebook", "Campeon del mundialito", "https://www.facebook.com/fingudelar/");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Instagram", "Gato maricon", "https://www.instagram.com/shadow_and_company/");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Openfing", "Bienvenides", "https://open.fing.edu.uy/courses/c2/9");
+        iplat.confirmarAltaPlataforma();
+        
 	
 	}
 

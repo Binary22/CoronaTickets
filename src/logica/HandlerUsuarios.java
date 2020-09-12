@@ -25,6 +25,14 @@ public class HandlerUsuarios {
 	public ArrayList<String> getNombres(){
 		ArrayList<String> list= new ArrayList<String>(usuarios.size());
 		for (String key : usuarios.keySet()) {
+			list.add(usuarios.get(key).getNickname());
+			}
+		return list;
+	}
+	
+	public ArrayList<String> getNombresArtistas(){
+		ArrayList<String> list= new ArrayList<String>(usuarios.size());
+		for (String key : usuarios.keySet()) {
 			if(usuarios.get(key).esArtista()) {
 				list.add(usuarios.get(key).getNickname());
 			}
