@@ -3,6 +3,16 @@ package datatypes;
 import java.time.LocalDate;
 
 public class DtEspectaculo {
+	
+	private String nombre;
+	private int duracion;
+	private String descripcion;
+	private int minEspectadores;
+	private int maxEspectadores;
+	private String url;
+	private LocalDate fechaReg;
+	private float costo;
+	
 	public DtEspectaculo(String nombre, int duracion, String descripcion, int minEspectadores, int maxEspectadores,
 			String url, LocalDate fechaReg, float costo) {
 		super();
@@ -39,12 +49,11 @@ public class DtEspectaculo {
 	public float getCosto() {
 		return costo;
 	}
-	private String nombre;
-	private int duracion;
-	private String descripcion;
-	private int minEspectadores;
-	private int maxEspectadores;
-	private String url;
-	private LocalDate fechaReg;
-	private float costo;
+	
+	
+	/* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
+	    */
+	   public String toString() {
+	       return getNombre();
+	   }
 }

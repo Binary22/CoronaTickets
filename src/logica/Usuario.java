@@ -122,5 +122,10 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
+	//esta funcion es para saber si un usuario es artista o no
+	public boolean esArtista() {
+		return false;
+	}
+	
 
 }

@@ -4,6 +4,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Espectaculo {
+	private String nombre;
+	private int duracion;
+	private String descripcion;
+	private int minEspectadores;
+	private int maxEspectadores;
+	private String url;
+	private LocalDate fechaReg;
+	private float costo;
+	private ArrayList<Funcion> setFunciones;
+	private Plataforma plataforma;
+	private Artista artista;
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -61,17 +74,7 @@ public class Espectaculo {
 		this.fechaReg = fechaReg;
 		this.costo = costo;
 	}
-	private String nombre;
-	private int duracion;
-	private String descripcion;
-	private int minEspectadores;
-	private int maxEspectadores;
-	private String url;
-	private LocalDate fechaReg;
-	private float costo;
-	private ArrayList<Funcion> setFunciones;
-	private Plataforma plataforma;
-	private Artista artista;
+	
 	
 	
 	public ArrayList<Funcion> getAllFunciones() {
@@ -81,6 +84,7 @@ public class Espectaculo {
 		return null;
 	}
 	public void agregarFuncion(Funcion f) {
+		this.setFunciones.add(f);
 	}
 	public int getMaxEspectadores() {
 		return 0;

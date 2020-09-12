@@ -13,7 +13,7 @@ public class Funcion {
 	private LocalTime horaInicio;
 	private LocalDate fechaReg;
 	
-	private ArrayList<Artista> artistasInvitados;
+	private ArrayList<Usuario> artistasInvitados;
 	private ArrayList<Registro> registros;
 	private Espectaculo espectaculo;
 	
@@ -44,10 +44,10 @@ public class Funcion {
 	public void setFechaReg(LocalDate fechaReg) {
 		this.fechaReg = fechaReg;
 	}
-	public ArrayList<Artista> getArtistasInvitados() {
+	public ArrayList<Usuario> getArtistasInvitados() {
 		return artistasInvitados;
 	}
-	public void setArtistasInvitados(ArrayList<Artista> artistasInvitados) {
+	public void setArtistasInvitados(ArrayList<Usuario> artistasInvitados) {
 		this.artistasInvitados = artistasInvitados;
 	}
 	public ArrayList<Registro> getRegistros() {
@@ -73,15 +73,14 @@ public class Funcion {
 	public void addEspectador(Registro reg) {
 		
 	}
-	public Funcion(String nombre, LocalDate fecha, LocalTime horaInicio, LocalDate fechaReg, ArrayList<Artista> artistasInvitados,
-			ArrayList<Registro> registros, Espectaculo espectaculo) {
+	public Funcion(String nombre, LocalDate fecha, LocalTime horaInicio, LocalDate fechaReg, ArrayList<Usuario> artistasInvitados, Espectaculo espectaculo) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.horaInicio = horaInicio;
 		this.fechaReg = fechaReg;
 		this.artistasInvitados = artistasInvitados;
-		this.registros = registros;
+		//this.registros = registros;
 		this.espectaculo = espectaculo;
 	}
 	

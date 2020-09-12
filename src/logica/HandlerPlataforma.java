@@ -18,14 +18,24 @@ public class HandlerPlataforma {
         return instancia;
     }
 	
-	private ArrayList<String> getNombres() {
+	public ArrayList<String> getNombres() {
 		ArrayList<String> list = new ArrayList<String>(colPlataforma.keySet());;
 		return list;
 	}
-	private Plataforma getPlataforma(String nomPlataforma) {
+	public  Plataforma getPlataforma(String nomPlataforma) {
 		return colPlataforma.get(nomPlataforma);
 	}
-	private void agregarPlataforma(Plataforma p) {
+	public void agregarPlataforma(Plataforma p) {
 		this.colPlataforma.put(p.getNombre(), p);
 	}
+
+	public Map<String, Plataforma> getColPlataforma() {
+		return colPlataforma;
+	}
+
+	public void setColPlataforma(Map<String, Plataforma> colPlataforma) {
+		this.colPlataforma = colPlataforma;
+	}
+	
+	
 }

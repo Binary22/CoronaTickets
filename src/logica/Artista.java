@@ -56,5 +56,9 @@ public class Artista extends Usuario {
 		this.website = website;
 	}
 	
+	public boolean esArtista() {
+		return true;
+	}
+	
 	
 }

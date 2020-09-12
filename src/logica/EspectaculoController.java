@@ -1,17 +1,29 @@
 package logica;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Iterator;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+//import jdk.nashorn.internal.objects.IteratorResult;
+//import sun.security.jca.GetInstance;
 
 public class EspectaculoController implements IEspectaculo {
 	
 	private String nomespec;
+	private String nickname;
+	private String nomfuncion;
+	private LocalDate fecha;
+	private LocalTime horainicio;
+	private ArrayList<String> invitados;
+	private LocalDate fechaAlta;
+	private Espectaculo espectaculo;
+	
+	
 	public String getNomespec() {
 		return nomespec;
 	}
@@ -54,35 +66,79 @@ public class EspectaculoController implements IEspectaculo {
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+	public Espectaculo getEspectaculo() {
+		return espectaculo;
+	}
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
+	}
 	
-	private String nickname;
-	private String nomfuncion;
-	private LocalDate fecha;
-	private LocalTime horainicio;
-	private ArrayList<String> invitados;
-	private LocalDate fechaAlta;
-	private Espectaculo espectaculo;
+	
 	
 	@Override
 	public void elegirEspectaculo(String nomEspectaculo) {
 		// TODO Auto-generated method stub
+		HandlerEspectaculos espect = HandlerEspectaculos.getInstance();
+		this.espectaculo = espect.getEspectaculo(nomEspectaculo);
 		
 	}
 	@Override
 	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,
 			LocalDate fechaAlta) {
 		// TODO Auto-generated method stub
+		this.nomfuncion = nombre;
+		this.fecha = fecha;
+		this.horainicio = horaInicio;
+		this.invitados = invitados;
+		this.fechaAlta = fechaAlta;
+		
+		
+		
 		
 	}
 	@Override
 	public void ConfirmarAltaFuncion() {
 		// TODO Auto-generated method stub
 		
+		//chequeo que existan los artistas invitados
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		HashMap<String, Usuario> usuarios = hu.getUsuarios();
+		//Iterator<Entry<String, Usuario>> it = usuarios.entrySet().iterator();
+		
+		ArrayList<String> inv = this.invitados;
+		Iterator<String> it2 = inv.iterator();
+		
+		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
+		
+		while(it2.hasNext()) {
+			//hago downcast
+			Usuario artista = usuarios.get(it2.next());
+			if(artista != null && artista.esArtista()) {
+				nuevosinv.add(artista);
+			}
+			
+		}
+		//creo la instancia nueva de funcion
+		Funcion nuevafun = new Funcion(this.nomfuncion, this.fechaAlta, this.horainicio, this.fecha, nuevosinv, this.espectaculo);
+		this.espectaculo.agregarFuncion(nuevafun);
+		
+		
 	}
 	@Override
 	public ArrayList<String> listarPlataformas() {
 		// TODO Auto-generated method stub
-		return null;
+		HandlerPlataforma hp = HandlerPlataforma.getInstance();
+		ArrayList<String> nombresPlat = hp.getNombres();
+		return nombresPlat;
+		
+	}
+	
+	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma){
+		HandlerPlataforma hp = HandlerPlataforma.getInstance();
+		Plataforma plataforma = hp.getPlataforma(nomPlataforma);
+		ArrayList<String> nombresEspect = new ArrayList<String>(plataforma.getEspectaculos().keySet());
+		return nombresEspect;
+		
 	}
 	@Override
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat) {
@@ -155,6 +211,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	
 	

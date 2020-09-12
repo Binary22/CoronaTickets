@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class HandlerEspectaculos {
 	
 	private static HandlerEspectaculos instancia = null;
+	private HashMap<String,Espectaculo> mapEspectaculos;
 
     private HandlerEspectaculos() {
     };
@@ -16,7 +17,7 @@ public class HandlerEspectaculos {
         return instancia;
     }
     
-	private HashMap<String,Espectaculo> mapEspectaculos;
+	
 	public Espectaculo getEspectaculo(String nomEspectaculo) {
 		return mapEspectaculos.get(nomEspectaculo);
 	}

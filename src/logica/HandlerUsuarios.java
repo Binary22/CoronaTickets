@@ -22,7 +22,7 @@ public class HandlerUsuarios {
 		return null;
 	}
 	public Usuario getUsuario(String nickname) {
-		return null;
+		return usuarios.get(nickname);
 	}
 	public ArrayList<Artista> getArtistasInvitados(ArrayList<String> invitados){
 		return null;
