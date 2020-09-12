@@ -1,7 +1,6 @@
 package logica;
 
 import java.time.LocalDate;
-//import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,28 +12,46 @@ import datatypes.DtRegistro;
 //import sun.security.jca.GetInstance;
 
 public class EspectaculoController implements IEspectaculo {
-	
+	private String nomPlataforma;
+	private String nickArtista;
 	private String nomespec;
-	private String nickname;
+	private String descripcion;
 	private String nomfuncion;
-	private LocalDate fecha;
+	private String url;
+	private int minEspect;
+	private int maxEspect;
+	private float costo;
 	private LocalTime horainicio;
-	private ArrayList<String> invitados;
 	private LocalDate fechaAlta;
+	private LocalTime duracion;
+	private LocalDate fecha;
+	private ArrayList<String> invitados;
 	private Espectaculo espectaculo;
 	
 	
+	public String getNomPlataforma() {
+		return nomPlataforma;
+	}
+	public void setNomPlataforma(String nomPlataforma) {
+		this.nomPlataforma = nomPlataforma;
+	}
+	public String getNickArtista() {
+		return nickArtista;
+	}
+	public void setNickArtista(String nickArtista) {
+		this.nickArtista = nickArtista;
+	}
 	public String getNomespec() {
 		return nomespec;
 	}
 	public void setNomespec(String nomespec) {
 		this.nomespec = nomespec;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	public String getNomfuncion() {
 		return nomfuncion;
@@ -42,11 +59,29 @@ public class EspectaculoController implements IEspectaculo {
 	public void setNomfuncion(String nomfuncion) {
 		this.nomfuncion = nomfuncion;
 	}
-	public LocalDate getFecha() {
-		return fecha;
+	public String getUrl() {
+		return url;
 	}
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getMinEspect() {
+		return minEspect;
+	}
+	public void setMinEspect(int minEspect) {
+		this.minEspect = minEspect;
+	}
+	public int getMaxEspect() {
+		return maxEspect;
+	}
+	public void setMaxEspect(int maxEspect) {
+		this.maxEspect = maxEspect;
+	}
+	public float getCosto() {
+		return costo;
+	}
+	public void setCosto(float costo) {
+		this.costo = costo;
 	}
 	public LocalTime getHorainicio() {
 		return horainicio;
@@ -54,17 +89,35 @@ public class EspectaculoController implements IEspectaculo {
 	public void setHorainicio(LocalTime horainicio) {
 		this.horainicio = horainicio;
 	}
+	public LocalDate getFechaAlta() {
+		return fechaAlta;
+	}
+	public void setFechaAlta(LocalDate fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+	public LocalTime getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(LocalTime duracion) {
+		this.duracion = duracion;
+	}
+	public LocalDate getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
 	public ArrayList<String> getInvitados() {
 		return invitados;
 	}
 	public void setInvitados(ArrayList<String> invitados) {
 		this.invitados = invitados;
 	}
-	public LocalDate getFechaAlta() {
-		return fechaAlta;
+	public Espectaculo getEspectaculo() {
+		return espectaculo;
 	}
-	public void setFechaAlta(LocalDate fechaAlta) {
-		this.fechaAlta = fechaAlta;
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
 	}
 	public Espectaculo getEspectaculo() {
 		return espectaculo;
@@ -124,13 +177,12 @@ public class EspectaculoController implements IEspectaculo {
 		
 		
 	}
+	
 	@Override
 	public ArrayList<String> listarPlataformas() {
-		// TODO Auto-generated method stub
-		HandlerPlataforma hp = HandlerPlataforma.getInstance();
-		ArrayList<String> nombresPlat = hp.getNombres();
-		return nombresPlat;
-		
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		ArrayList<String> platlist= hplat.getNombres();
+		return platlist;
 	}
 	
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma){
@@ -197,23 +249,38 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	@Override
 	public ArrayList<String> listarArtistas() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		ArrayList<String> artlist= huser.getNombres();
+		return artlist;
 	}
 	@Override
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			int duracion, int maxEspec, String url, float costo, LocalDate fechaAlta) {
-		// TODO Auto-generated method stub
+			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) {
+		this.nomPlataforma= nomPlataforma;
+		this.nickArtista= nickArtista;
+		this.nomespec= nombre;
+		this.descripcion= descripcion;
+		this.duracion= duracion;
+		this.minEspect= minEspec;
+		this.maxEspect= maxEspec;
+		this.url= url;
+		this.costo= costo;
+		this.fechaAlta= fechaAlta;
 		
 	}
+	
 	@Override
 	public void confirmarAltaEspectaculo() {
-		// TODO Auto-generated method stub
-		
+		HandlerUsuarios huser= HandlerUsuarios.getInstancia();
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		HandlerEspectaculos hesp= HandlerEspectaculos.getInstance();
+		Artista art= (Artista) huser.getUsuario(nickArtista);
+		Plataforma plat= hplat.getPlataforma(nomPlataforma);
+		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);
+		esp.setPlataforma(plat);
+		esp.setArtista(art);
+		hesp.addEspectaculo(esp);
 	}
-	
-
-	
 	
 
 }
