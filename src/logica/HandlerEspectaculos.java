@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class HandlerEspectaculos {
 	private HashMap<String,Espectaculo> mapEspectaculos;
 	private static HandlerEspectaculos instancia = null;
-	private HashMap<String,Espectaculo> mapEspectaculos;
 
     private HandlerEspectaculos() {
     };

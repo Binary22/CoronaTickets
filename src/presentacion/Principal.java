@@ -103,8 +103,8 @@ public class Principal extends JFrame {
 			});
 		
 		//caso de uso alta de funcion de espectaculo
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
+		//JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
+		//JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

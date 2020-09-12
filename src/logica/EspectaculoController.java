@@ -119,13 +119,6 @@ public class EspectaculoController implements IEspectaculo {
 	public void setEspectaculo(Espectaculo espectaculo) {
 		this.espectaculo = espectaculo;
 	}
-	public Espectaculo getEspectaculo() {
-		return espectaculo;
-	}
-	public void setEspectaculo(Espectaculo espectaculo) {
-		this.espectaculo = espectaculo;
-	}
-	
 	
 	
 	@Override
