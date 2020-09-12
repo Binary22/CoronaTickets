@@ -243,7 +243,7 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public ArrayList<String> listarArtistas() {
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
-		ArrayList<String> artlist= huser.getNombres();
+		ArrayList<String> artlist= huser.getNombresArtistas();
 		return artlist;
 	}
 	@Override
@@ -269,7 +269,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerEspectaculos hesp= HandlerEspectaculos.getInstance();
 		Artista art= (Artista) huser.getUsuario(nickArtista);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);
+		Espectaculo esp= new Espectaculo(this.nomespec,this.duracion, this.descripcion, this.minEspect, this.maxEspect, this.url, this.fechaAlta, this.costo);
 		esp.setPlataforma(plat);
 		esp.setArtista(art);
 		hesp.addEspectaculo(esp);
