@@ -8,12 +8,11 @@ import datatypes.DtFuncion;
 import datatypes.DtRegistro;
 
 public class Usuario {
-	protected String nickname;
-	protected String nombre;
-	protected String apellido;
-	protected String email;
-	protected LocalDate fechaNacimiento;
-	
+	private String nickname;
+	private String nombre;
+	private String apellido;
+	private String email;
+	private LocalDate fechaNacimiento;
 	private ArrayList<Compra> compraPaquete;
 	private ArrayList<Vale> vales;
 	private ArrayList<Registro> registros;
