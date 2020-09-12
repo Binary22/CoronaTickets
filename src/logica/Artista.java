@@ -67,10 +67,12 @@ public class Artista extends Usuario {
 	public boolean esArtista_() {
 		return true;
 	}
+	public boolean esArtista() {
+		return true;
+	}
 	
 	public DtArtista getDtArtista() {
 		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
 		return dta;
 	}
-	
 }

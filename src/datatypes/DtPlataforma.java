@@ -23,4 +23,10 @@ public class DtPlataforma {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	/* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
+    */
+   public String toString() {
+       return getNombre();
+   }
 }

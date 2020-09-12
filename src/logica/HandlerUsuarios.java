@@ -37,7 +37,7 @@ public class HandlerUsuarios {
 	}
 
 	public HashMap<String, Usuario> getUsuarios() {
-		return usuarios;
+		return this.usuarios;
 	}
 
 	public void setUsuarios(HashMap<String, Usuario> usuarios) {

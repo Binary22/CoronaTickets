@@ -26,4 +26,5 @@ public interface IEspectaculo {
 	public ArrayList<String> listarArtistas();
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion, LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta);
 	public void confirmarAltaEspectaculo();
+	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
 }

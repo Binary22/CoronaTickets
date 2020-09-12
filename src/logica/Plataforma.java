@@ -1,6 +1,5 @@
 package logica;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Plataforma {
@@ -9,6 +8,7 @@ public class Plataforma {
 	private String url;
 	private HashMap<String,Espectaculo> espectaculos;
 	
+	
 	public Plataforma(String nombre, String descrip, String url) {
 		super();
 		this.nombre = nombre;
@@ -16,8 +16,8 @@ public class Plataforma {
 		this.url = url;
 	}
 
-	public ArrayList<Espectaculo> getEspectaculos(){
-		return null;
+	public HashMap<String, Espectaculo> getEspectaculos(){
+		return this.espectaculos;
 	}
 
 	public String getNombre() {
