@@ -22,6 +22,7 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaEspectaculoInternalFrame;
 
 	/**
@@ -46,7 +47,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(900, 900, 900, 900);
+		setBounds(500, 500, 1300, 900);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -71,6 +72,14 @@ public class Principal extends JFrame {
 		});
 		mnUsuarios.add(mntmNewMenuItem_1);
 		
+		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
+		mntmConsultaDeDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaDeUsuarioInternalFrame.setVisible(true);
+			}
+		});
+		mnUsuarios.add(mntmConsultaDeDatos);
+		
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
 		
@@ -78,6 +87,22 @@ public class Principal extends JFrame {
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
+
+		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
+			public void actionPerformed(ActionEvent e) {                 
+				getContentPane().removeAll();                 
+				contentPane.repaint();                 
+				AltaDeEspectaculo intFrameAltaDeEspectaculo = new AltaDeEspectaculo();                 
+				intFrameAltaDeEspectaculo.setLocation(0, 0);                 
+				intFrameAltaDeEspectaculo.setBounds(48, 33, 570, 513);                 
+				intFrameAltaDeEspectaculo.setVisible(true);                 
+				getContentPane().add(intFrameAltaDeEspectaculo);             
+				}         
+			});
+		
+		//caso de uso alta de funcion de espectaculo
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
+
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de espectaculo");
@@ -108,6 +133,10 @@ public class Principal extends JFrame {
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
         getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
+        
+        ConsultaDeUsuarioInternalFrame = new ConsultaUsuario();
+        ConsultaDeUsuarioInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaDeUsuarioInternalFrame);
 	
 	}
 
