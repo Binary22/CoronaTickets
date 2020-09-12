@@ -53,6 +53,16 @@ public class HandlerUsuarios {
 		Usuario u = usuarios.get(nickname);
 		return u.esArtista_();
 	}
+
+	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname) {
+		Usuario u = usuarios.get(nickname);
+		ArrayList<Registro>  listareg = u.getRegistros();
+		ArrayList<String> ret = new ArrayList<String>();
+		for (int i = 0; i < listareg.size(); i++) {
+			ret.add(listareg.get(i).getFuncion().getNombre());
+		}
+		return ret;
+	}
 	
 	
 

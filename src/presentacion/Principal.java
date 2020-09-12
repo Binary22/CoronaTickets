@@ -138,6 +138,8 @@ public class Principal extends JFrame {
         AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
         AltaFuncionInternalFrame.setVisible(false);
         getContentPane().add(AltaFuncionInternalFrame);
+        
+        
 	
 	}
 
