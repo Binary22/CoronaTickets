@@ -86,6 +86,22 @@ public class Principal extends JFrame {
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
+
+		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
+			public void actionPerformed(ActionEvent e) {                 
+				getContentPane().removeAll();                 
+				contentPane.repaint();                 
+				AltaDeEspectaculo intFrameAltaDeEspectaculo = new AltaDeEspectaculo();                 
+				intFrameAltaDeEspectaculo.setLocation(0, 0);                 
+				intFrameAltaDeEspectaculo.setBounds(48, 33, 570, 513);                 
+				intFrameAltaDeEspectaculo.setVisible(true);                 
+				getContentPane().add(intFrameAltaDeEspectaculo);             
+				}         
+			});
+		
+		//caso de uso alta de funcion de espectaculo
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
+
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

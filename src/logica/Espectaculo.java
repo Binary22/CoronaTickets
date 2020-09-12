@@ -1,19 +1,45 @@
 package logica;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Espectaculo {
+	private String nombre;
+	private String descripcion;
+	private String url;
+	private int minEspectadores;
+	private int maxEspectadores;
+	private float costo;
+	private LocalTime duracion;
+	private LocalDate fechaReg;
+	private Plataforma plataforma;
+	private Artista artista;
+	private ArrayList<Funcion> setFunciones;
+	
+	
+	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
+			String url, LocalDate fechaReg, float costo) {
+		this.nombre = nombre;
+		this.duracion = duracion;
+		this.descripcion = descripcion;
+		this.minEspectadores = minEspectadores;
+		this.maxEspectadores = maxEspectadores;
+		this.url = url;
+		this.fechaReg = fechaReg;
+		this.costo = costo;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getDuracion() {
+	public LocalTime getDuracion() {
 		return duracion;
 	}
-	public void setDuracion(int duracion) {
+	public void setDuracion(LocalTime duracion) {
 		this.duracion = duracion;
 	}
 	public String getDescripcion() {
@@ -40,6 +66,18 @@ public class Espectaculo {
 	public void setFechaReg(LocalDate fechaReg) {
 		this.fechaReg = fechaReg;
 	}
+	public Plataforma getPlataforma() {
+		return plataforma;
+	}
+	public void setPlataforma(Plataforma plataforma) {
+		this.plataforma = plataforma;
+	}
+	public Artista getArtista() {
+		return artista;
+	}
+	public void setArtista(Artista artista) {
+		this.artista = artista;
+	}
 	public float getCosto() {
 		return costo;
 	}
@@ -49,30 +87,6 @@ public class Espectaculo {
 	public void setMaxEspectadores(int maxEspectadores) {
 		this.maxEspectadores = maxEspectadores;
 	}
-	public Espectaculo(String nombre, int duracion, String descripcion, int minEspectadores, int maxEspectadores,
-			String url, LocalDate fechaReg, float costo) {
-		super();
-		this.nombre = nombre;
-		this.duracion = duracion;
-		this.descripcion = descripcion;
-		this.minEspectadores = minEspectadores;
-		this.maxEspectadores = maxEspectadores;
-		this.url = url;
-		this.fechaReg = fechaReg;
-		this.costo = costo;
-	}
-	private String nombre;
-	private int duracion;
-	private String descripcion;
-	private int minEspectadores;
-	private int maxEspectadores;
-	private String url;
-	private LocalDate fechaReg;
-	private float costo;
-	private ArrayList<Funcion> setFunciones;
-	private Plataforma plataforma;
-	private Artista artista;
-	
 	
 	public ArrayList<Funcion> getAllFunciones() {
 		return null;
