@@ -47,7 +47,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JTextField textFieldNombre;
     private JLabel lblDescripcion;
     private JTextPane tpaneDescripcion;
-    private JTextField textFieldDescripcion;
     private JLabel lblDuracion;
     private JSpinner spnDuracionhs;
     private JSpinner spnDuracionmin;
@@ -61,8 +60,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JSpinner spnCosto;
     private JLabel lblFecha;
     private JCalendar calFecha;
-    //private ArrayList<String> plataformas;
-    //private ArrayList<String> artistas;
+    private ArrayList<String> plataformas;
+    private ArrayList<String> artistas;
 
     
     
@@ -96,8 +95,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		setBounds(100, 100, 645, 560);
 		Fabrica f = Fabrica.getInstance();
 		IEspectaculo iesp= f.getIEspectaculo();
-		//plataformas= iesp.listarPlataformas();
-		//artistas= iesp.listarArtistas();
+		plataformas= iesp.listarPlataformas();
+		artistas= iesp.listarArtistas();
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{177, 348, 206, 45, 0};
@@ -114,8 +113,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel.gridy = 0;
 		getContentPane().add(lblPlataforma, gbc_lblNewLabel);
 		
-		//plataformas.toArray(new String[plataformas.size()]) esto va adentro del jcombobox<string>
-		comboBoxPlataformas = new JComboBox<String>();
+		
+		comboBoxPlataformas = new JComboBox<String>(plataformas.toArray(new String[plataformas.size()]));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -133,8 +132,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_1.gridy = 1;
 		getContentPane().add(lblArtista, gbc_lblNewLabel_1);
 		
-		//artistas.toArray(new String[artistas.size()]) esto va adentro del jcombobox<string>
-		comboBoxArtistas = new JComboBox<String>();
+		
+		comboBoxArtistas = new JComboBox<String>(artistas.toArray(new String[artistas.size()]));
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 2;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
