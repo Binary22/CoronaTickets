@@ -31,14 +31,17 @@ public class PlataformaController implements IPlataforma {
 
 	@Override
 	public void altaPlataforma(String nombre, String descrip, String url) {
-		// TODO Auto-generated method stub
+		this.nombre= nombre;
+		this.descrip= descrip;
+		this.url= url;
 
 	}
 
 	@Override
 	public void confirmarAltaPlataforma() {
-		// TODO Auto-generated method stub
-
+		Plataforma p= new Plataforma(nombre,descrip,url);
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		hplat.agregarPlataforma(p);
 	}
 
 	public String getUrl() {

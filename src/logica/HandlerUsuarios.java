@@ -23,7 +23,12 @@ public class HandlerUsuarios {
 		return instancia;
 	}
 	public ArrayList<String> getNombres(){
-		ArrayList<String> list = new ArrayList<String>(artistas.keySet());; //Necesito esto, ya que si tengo usuarios, como distingo cuales son artistas en el mapa?
+		ArrayList<String> list= new ArrayList<String>(usuarios.size());
+		for (String key : usuarios.keySet()) {
+			if(usuarios.get(key).esArtista()) {
+				list.add(usuarios.get(key).getNickname());
+			}
+		}
 		return list;
 	}
 	public Usuario getUsuario(String nickname) {
