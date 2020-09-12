@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -56,14 +58,6 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		IConsulta ic = f.getIConsulta();
 		plataformas = ic.listarPlataformas();
 		
-		if (plataformas == null) {
-			plataformas = new ArrayList<String>(4);
-			for(int i=1;i <4; i++) {
-				plataformas.add("hola");
-			}
-			plataformas.add("chau");
-		}
-		
 		setBounds(300, 300, 900, 350);
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
@@ -73,31 +67,26 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.WEST, lblPlataforma, 140, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblPlataforma);
 		
-		JComboBox<String> comboBox = new JComboBox<String>(plataformas.toArray(new String[plataformas.size()]));
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String plataforma = (String) comboBox.getSelectedItem();
 				espectaculos = ic.listarEspectaculosPlataforma(plataforma);
 				if (espectaculos == null) {
-					//System.out.print("No hay espectaculos en esa plataforma");
-					//Tirar un dialogo que avise esto.
-					if (plataforma == "hola") {
-						espectaculos = new ArrayList<String>(2);
-							espectaculos.add("Maluma");
-							espectaculos.add("Ozuna");
-							updateComboBox(espectaculos);
-					} else {
-						espectaculos = new ArrayList<String>(2);
-						espectaculos.add("La Vela Puerca");
-						espectaculos.add("NTVG");
-						updateComboBox(espectaculos);
-					}
+					JOptionPane.showMessageDialog(null, "No hay espectaculos en esa plataforma");
+					System.out.print("No hay espectaculos en esa plataforma");
 				} else {
-					updateComboBox(espectaculos);
+					updateComboBox(espectaculos, comboBox_1);
 				}
 			}
 		});
 		
+		if (plataformas == null) {
+			JOptionPane.showMessageDialog(getParent(), "No hay Plataformas en el sistema");
+			System.out.print("No hay plataformas en el sistema");
+		} else {
+			updateComboBox(plataformas, comboBox);
+		}
 		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 60, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 117, SpringLayout.EAST, lblPlataforma);
@@ -120,11 +109,13 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_1, 56, SpringLayout.SOUTH, comboBox);
 		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, 0, SpringLayout.EAST, comboBox);
 		getContentPane().add(comboBox_1);
-		
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Abre el caso de uso anidado
+				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado();
+				getParent().add(cea);
+				cea.setVisible(true);
+				cea.setClosable(true);
 				dispose();
 			}
 		});
@@ -144,8 +135,8 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 	}
 	
-	private void updateComboBox(ArrayList<String> lista) {
-		comboBox_1.removeAllItems();
-		lista.forEach(el -> comboBox_1.addItem(el));
+	private void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
+		cb.removeAllItems();
+		lista.forEach(el -> cb.addItem(el));
 	}
 }

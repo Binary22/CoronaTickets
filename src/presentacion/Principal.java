@@ -108,7 +108,10 @@ public class Principal extends JFrame {
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de espectaculo");
 		mntmConsultaDeEspectaculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				ConsultaEspectaculoInternalFrame = new ConsultaEspectaculo();
+		        ConsultaEspectaculoInternalFrame.setClosable(true);
 				ConsultaEspectaculoInternalFrame.setVisible(true);
+		        getContentPane().add(ConsultaEspectaculoInternalFrame, BorderLayout.CENTER);
 			}
 		});
 		mnEspectaculos.add(mntmConsultaDeEspectaculo);
@@ -125,10 +128,6 @@ public class Principal extends JFrame {
         AltaUsuarioInternalFrame.setVisible(false);
         getContentPane().add(AltaUsuarioInternalFrame);
         
-        ConsultaEspectaculoInternalFrame = new ConsultaEspectaculo();
-        ConsultaEspectaculoInternalFrame.setClosable(true);
-        ConsultaEspectaculoInternalFrame.setVisible(false);
-        getContentPane().add(ConsultaEspectaculoInternalFrame, BorderLayout.CENTER);
         
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
