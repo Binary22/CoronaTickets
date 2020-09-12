@@ -321,7 +321,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 				Instant instant= calFecha.getDate().toInstant();
 				ZonedDateTime zdt= instant.atZone(ZoneId.systemDefault());
 				LocalDate altaFecha= zdt.toLocalDate(); //esto es un asco pero se hace asi, salvo que cambiemos a date.
-				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getName(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
+				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getText(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
 				iesp.confirmarAltaEspectaculo();
 			}
 		});
