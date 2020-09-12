@@ -30,6 +30,7 @@ public class Principal extends JFrame {
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaDeUsuarioInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
+	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	
 
 	/**
@@ -96,14 +97,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
-			public void actionPerformed(ActionEvent e) {                 
-				getContentPane().removeAll();                 
-				contentPane.repaint();                 
-				AltaDeEspectaculo intFrameAltaDeEspectaculo = new AltaDeEspectaculo();                 
-				intFrameAltaDeEspectaculo.setLocation(0, 0);                 
-				intFrameAltaDeEspectaculo.setBounds(48, 33, 570, 513);                 
-				intFrameAltaDeEspectaculo.setVisible(true);                 
-				getContentPane().add(intFrameAltaDeEspectaculo);             
+			public void actionPerformed(ActionEvent e) {                                 
+				AltaDeEspectaculoInternalFrame.setVisible(true);                             
 				}         
 			});
 		
@@ -156,6 +151,22 @@ public class Principal extends JFrame {
         AltaFuncionInternalFrame.setVisible(false);
         getContentPane().add(AltaFuncionInternalFrame);
         
+        AltaDeEspectaculoInternalFrame = new AltaDeEspectaculo();
+        AltaDeEspectaculoInternalFrame.setVisible(false);
+        getContentPane().add(AltaDeEspectaculoInternalFrame);
+        
+        Fabrica fab= Fabrica.getInstance();
+        IPlataforma iplat= fab.getIPlataforma();
+        iplat.altaPlataforma("Twitch", "Ni judas se atrevio a tanto", "https://www.twitch.tv/rubius");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Youtube", "Tema del anio", "https://youtu.be/Pu8LH6r-wOU?t=25");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Facebook", "Campeon del mundialito", "https://www.facebook.com/fingudelar/");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Instagram", "Gato maricon", "https://www.instagram.com/shadow_and_company/");
+        iplat.confirmarAltaPlataforma();
+        iplat.altaPlataforma("Openfing", "Bienvenides", "https://open.fing.edu.uy/courses/c2/9");
+        iplat.confirmarAltaPlataforma();
         
 	
 	}

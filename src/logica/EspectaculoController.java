@@ -248,7 +248,7 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public ArrayList<String> listarArtistas() {
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
-		ArrayList<String> artlist= huser.getNombres();
+		ArrayList<String> artlist= huser.getNombresArtistas();
 		return artlist;
 	}
 	@Override
