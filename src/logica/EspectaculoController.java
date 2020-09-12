@@ -111,7 +111,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
 		
 		while(it2.hasNext()) {
-			//hago downcast
+			
 			Usuario artista = usuarios.get(it2.next());
 			if(artista != null && artista.esArtista()) {
 				nuevosinv.add(artista);

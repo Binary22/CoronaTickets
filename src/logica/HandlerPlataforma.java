@@ -1,14 +1,15 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 public class HandlerPlataforma {
-	private Map<String, Plataforma> colPlataforma;
+	private HashMap<String, Plataforma> colPlataforma;
 	
 	private static HandlerPlataforma instancia = null;
 
     private HandlerPlataforma() {
+    	colPlataforma = new HashMap<String, Plataforma>();
     };
 	
     public static HandlerPlataforma getInstance() {
@@ -19,7 +20,7 @@ public class HandlerPlataforma {
     }
 	
 	public ArrayList<String> getNombres() {
-		ArrayList<String> list = new ArrayList<String>(colPlataforma.keySet());;
+		ArrayList<String> list = new ArrayList<String>(colPlataforma.keySet());
 		return list;
 	}
 	public  Plataforma getPlataforma(String nomPlataforma) {
@@ -29,11 +30,11 @@ public class HandlerPlataforma {
 		this.colPlataforma.put(p.getNombre(), p);
 	}
 
-	public Map<String, Plataforma> getColPlataforma() {
+	public HashMap<String, Plataforma> getColPlataforma() {
 		return colPlataforma;
 	}
 
-	public void setColPlataforma(Map<String, Plataforma> colPlataforma) {
+	public void setColPlataforma(HashMap<String, Plataforma> colPlataforma) {
 		this.colPlataforma = colPlataforma;
 	}
 	

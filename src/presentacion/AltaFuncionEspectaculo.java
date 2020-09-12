@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import logica.Fabrica;
 import logica.IEspectaculo;
 
@@ -14,15 +16,19 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
-import com.toedter.calendar.JDateChooser;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.text.ParseException;
+
+import javax.swing.JFormattedTextField;
 
 public class AltaFuncionEspectaculo extends JInternalFrame {
 	/**
@@ -42,7 +48,9 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JSpinner spinnerMinuto;
 	private JTextField textElegirArtista;
 	private ArrayList<String> artistas;
-	private JDateChooser dateChooser;
+	private JButton btnCancelar;
+	private JButton btnAceptar;
+	private JFormattedTextField formattedTextField;
 	/**
 	 * Launch the application.
 	 */
@@ -65,6 +73,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	public AltaFuncionEspectaculo() {
 		Fabrica fabrica = Fabrica.getInstance();
         ctrlEspect = fabrica.getIEspectaculo();
+        
+        artistas = new ArrayList<String>();
 	
 		setTitle("Alta Funcion de Espectaculo");
 		setIconifiable(true);
@@ -73,7 +83,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		setClosable(true);
 		setBounds(100, 100, 502, 337);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{15, 49, 68, 54, 40, 39, 50, -47, 0};
+		gridBagLayout.columnWidths = new int[]{15, 49, 68, 54, 66, 83, 50, -47, 0};
 		gridBagLayout.rowHeights = new int[]{0, 32, 25, 0, 78, -10, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -89,9 +99,16 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		//LISTAR PLATAFORMAS
 		comboBoxPlataformas = new JComboBox<String>();
+		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				cargarPlataformas();
+			}
+		});
 		comboBoxPlataformas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
+				cargarEspectaculos(nombrePlataforma);
 			}
 		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -149,19 +166,32 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		JLabel lblFechaFuncion = new JLabel("Fecha funcion:");
 		GridBagConstraints gbc_lblFechaFuncion = new GridBagConstraints();
+		gbc_lblFechaFuncion.anchor = GridBagConstraints.EAST;
 		gbc_lblFechaFuncion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFechaFuncion.gridx = 1;
 		gbc_lblFechaFuncion.gridy = 4;
 		getContentPane().add(lblFechaFuncion, gbc_lblFechaFuncion);
 		
-		dateChooser = new JDateChooser();
-		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
-		gbc_dateChooser.gridwidth = 3;
-		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
-		gbc_dateChooser.fill = GridBagConstraints.BOTH;
-		gbc_dateChooser.gridx = 2;
-		gbc_dateChooser.gridy = 4;
-		getContentPane().add(dateChooser, gbc_dateChooser);
+		MaskFormatter mask = null;
+        try {
+            // Create a MaskFormatter for accepting phone number, the # symbol accept
+            // only a number. We can also set the empty value with a place holder
+            // character.
+            mask = new MaskFormatter("##/##/####");
+            mask.setPlaceholderCharacter('_');
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+		
+		formattedTextField = new JFormattedTextField(mask);
+		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+		gbc_formattedTextField.gridwidth = 3;
+		gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_formattedTextField.gridx = 2;
+		gbc_formattedTextField.gridy = 4;
+		getContentPane().add(formattedTextField, gbc_formattedTextField);
 		
 		JLabel lblNewLabel_3 = new JLabel("Hora inicio:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -173,6 +203,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		//SPINNER HORA
 		spinnerHora = new JSpinner();
 		GridBagConstraints gbc_spinnerHora = new GridBagConstraints();
+		gbc_spinnerHora.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnerHora.insets = new Insets(0, 0, 5, 5);
 		gbc_spinnerHora.gridx = 2;
 		gbc_spinnerHora.gridy = 5;
@@ -188,6 +219,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		//SPINER MINUTO
 		spinnerMinuto = new JSpinner();
 		GridBagConstraints gbc_spinnerMinuto = new GridBagConstraints();
+		gbc_spinnerMinuto.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnerMinuto.insets = new Insets(0, 0, 5, 5);
 		gbc_spinnerMinuto.gridx = 4;
 		gbc_spinnerMinuto.gridy = 5;
@@ -225,7 +257,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		gbc_btnElegirArtista.gridy = 6;
 		getContentPane().add(btnElegirArtista, gbc_btnElegirArtista);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cmdAltaFuncion();
@@ -240,7 +272,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		gbc_btnAceptar.gridy = 8;
 		getContentPane().add(btnAceptar, gbc_btnAceptar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				limpiarVentana();
@@ -256,35 +288,25 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 
 	}
 	
+	
 	public void cargarPlataformas() {
-		/* VERSION INCO
-		 * DefaultComboBoxModel<DataUsuario> model;
-        try {
-            model = new DefaultComboBoxModel<DataUsuario>(controlUsr.getUsuarios());
-            comboBoxUsuarios.setModel(model);
-        } catch (UsuarioNoExisteException e) {
-            // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
-        }*/
-
-      
-            ArrayList<String> nombres = ctrlEspect.listarPlataformas(); 
-            for(int i = 0; i < nombres.size(); i++) {
-            	comboBoxPlataformas.addItem(nombres.get(i));
+		comboBoxPlataformas.removeAll();
+        ArrayList<String> nombres = ctrlEspect.listarPlataformas(); 
+            
+        for(int i = 0; i < nombres.size(); i++) {
+        	comboBoxPlataformas.addItem(nombres.get(i));
             	
             	}
-        
-		
-	}
+        }
 	
-	public void cargarEspectaculos() {
+	public void cargarEspectaculos(String nomplat) {
 		comboBoxEspectaculos.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nombrePlataforma);
+		ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
 		for(int i = 0; i < nombres.size(); i++) {
         	comboBoxEspectaculos.addItem(nombres.get(i));
         	
         	}
-		
-	}
+		}
 	
 	protected void cmdAltaFuncion() {
         // TODO Auto-generated method stub
@@ -294,42 +316,22 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
         int hora = (int) this.spinnerHora.getValue();
         int minuto = (int) this.spinnerMinuto.getValue();
         LocalTime horaInicio = LocalTime.of(hora, minuto);
-         
-        Instant instant= dateChooser.getDate().toInstant();
-        ZonedDateTime zdt= instant.atZone(ZoneId.systemDefault());
-        LocalDate fecha = zdt.toLocalDate();
-       
-        
         LocalDate fechaHoy = LocalDate.now();
-        ctrlEspect.altaFuncion(nombreFuncion, fecha, horaInicio, artistas, fechaHoy);
         
-        
-        
-        
+        String fecha = formattedTextField.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate fechaFuncion = null;
+		try {
+			fechaFuncion = LocalDate.parse(fecha, formatter);
+		}
+		catch(DateTimeParseException e1) {
+			JOptionPane.showMessageDialog(null, "Fecha Invalida");
+			System.out.print("Fallo el parseo de la fecha");
+			return;
+		}
 
-        /*if (checkFormulario()) {
-            try {
-                controlUsr.registrarUsuario(nombreU, apellidoU, ciU);
-
-                // Muestro éxito de la operación
-                JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Registrar Usuario",
-                        JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (UsuarioRepetidoException e) {
-                // Muestro error de registro
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
-            }
-
-            // Limpio el internal frame antes de cerrar la ventana
-            limpiarFormulario();
-            setVisible(false);
-        }*/
-        
+        ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, artistas, fechaHoy); 
     }
-	
-	
-		
-	
 	
 	private void limpiarVentana() {
 		textFieldNomFuncion.setText(null);
@@ -338,7 +340,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		spinnerMinuto.removeAll();
 		comboBoxPlataformas.removeAll();
 		comboBoxEspectaculos.removeAll();
-		dateChooser.removeAll();
+		formattedTextField.removeAll();
+		
     }
 
 }
