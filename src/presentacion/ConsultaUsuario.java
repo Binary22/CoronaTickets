@@ -153,7 +153,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_lblFechaDeNacimiento.gridy = 7;
 		getContentPane().add(lblFechaDeNacimiento, gbc_lblFechaDeNacimiento);
 		
-		JLabel lblDescripcion = new JLabel("Descripcion:");
+		JLabel lblDescripcion = new JLabel("");
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
 		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDescripcion.anchor = GridBagConstraints.WEST;
@@ -161,7 +161,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_lblDescripcion.gridy = 8;
 		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
 		
-		JLabel lblBiografa = new JLabel("Biografía:");
+		JLabel lblBiografa = new JLabel("");
 		GridBagConstraints gbc_lblBiografa = new GridBagConstraints();
 		gbc_lblBiografa.insets = new Insets(0, 0, 5, 0);
 		gbc_lblBiografa.anchor = GridBagConstraints.WEST;
@@ -169,7 +169,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_lblBiografa.gridy = 9;
 		getContentPane().add(lblBiografa, gbc_lblBiografa);
 		
-		JLabel lblWebsite = new JLabel("Website:");
+		JLabel lblWebsite = new JLabel("");
 		GridBagConstraints gbc_lblWebsite = new GridBagConstraints();
 		gbc_lblWebsite.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWebsite.anchor = GridBagConstraints.WEST;
@@ -195,6 +195,10 @@ public class ConsultaUsuario extends JInternalFrame {
 					lblDescripcion.setText("Descripcion: " + dta.getDescripcion());
 					lblBiografa.setText("Biografía: " + dta.getBiografia());
 					lblWebsite.setText("Website: " + dta.getWebsite());
+				} else {
+					lblDescripcion.setText("");
+					lblBiografa.setText("");
+					lblWebsite.setText("");
 				}
 				
 			}
