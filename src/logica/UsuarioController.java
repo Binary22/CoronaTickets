@@ -15,6 +15,7 @@ public class UsuarioController implements IUsuario{
 	
 	private Usuario usuario;
 	private Artista artista;
+	private boolean esArtista;
 	
 	//getters and setters
 
@@ -76,20 +77,25 @@ public class UsuarioController implements IUsuario{
 	
 	@Override
 	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) {
-		// TODO Auto-generated method stub
-		
+		this.esArtista = false;
+		this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac);
 	}
 
 	@Override
 	public void altaArtista(String desc, String bio, String web) {
-		// TODO Auto-generated method stub
-		
+		this.esArtista = true;
+		this.artista = new Artista(this.usuario, desc, bio, web);
 	}
 
 	@Override
 	public void confirmarAltaUsuario() {
-		// TODO Auto-generated method stub
-		
+		HandlerUsuarios up = HandlerUsuarios.getInstancia();
+		if (esArtista) {
+			//up.agregarArtista(artista);
+			up.agregarUsuario(artista);
+		} else {
+			up.agregarUsuario(usuario);
+		}
 	}
 
 	@Override
