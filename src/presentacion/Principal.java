@@ -19,10 +19,6 @@ import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
@@ -49,7 +45,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 700);
+		setBounds(100, 100, 450, 300);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -74,25 +70,33 @@ public class Principal extends JFrame {
 		});
 		mnUsuarios.add(mntmNewMenuItem_1);
 		
+		
+		//menudeespectaculos
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
 		
+		//caso de uso alta de espectaculo
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de espectaculo");
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
+<<<<<<< Updated upstream
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
+=======
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
 			public void actionPerformed(ActionEvent e) {                 
 				getContentPane().removeAll();                 
 				contentPane.repaint();                 
-				AltaDeEspectaculo intFrame = new AltaDeEspectaculo();                 
-				intFrame.setLocation(0, 0);                 
-				intFrame.setBounds(48, 33, 570, 513);                 
-				intFrame.setVisible(true);                 
-				getContentPane().add(intFrame);             
+				AltaDeEspectaculo intFrameAltaDeEspectaculo = new AltaDeEspectaculo();                 
+				intFrameAltaDeEspectaculo.setLocation(0, 0);                 
+				intFrameAltaDeEspectaculo.setBounds(48, 33, 570, 513);                 
+				intFrameAltaDeEspectaculo.setVisible(true);                 
+				getContentPane().add(intFrameAltaDeEspectaculo);             
 				}         
 			});
 		
-		
+		//caso de uso alta de funcion de espectaculo
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de funcion de espectaculo");
+>>>>>>> Stashed changes
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
