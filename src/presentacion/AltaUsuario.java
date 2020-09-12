@@ -301,7 +301,7 @@ public class AltaUsuario extends JInternalFrame {
 				if (hu.existeUsuario(nickname)) {
 					JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese Nickname");
 				} else {
-					if (esArtista) {
+					if (!esArtista) {
 						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
 					} else {
 						String descripcion = textField_5.getText();

@@ -22,7 +22,16 @@ public class HandlerUsuarios {
 			instancia = new HandlerUsuarios();
 		return instancia;
 	}
+	
 	public ArrayList<String> getNombres(){
+		ArrayList<String> list= new ArrayList<String>(usuarios.size());
+		for (String key : usuarios.keySet()) {
+			list.add(usuarios.get(key).getNickname());
+		}
+		return list;
+	}
+	
+	public ArrayList<String> getNombresArtista(){
 		ArrayList<String> list= new ArrayList<String>(usuarios.size());
 		for (String key : usuarios.keySet()) {
 			if(usuarios.get(key).esArtista()) {
