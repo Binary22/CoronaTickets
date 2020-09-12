@@ -60,9 +60,9 @@ public class ConsultaUsuario extends JInternalFrame {
 		setBounds(100, 100, 450, 422);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 206, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
@@ -81,6 +81,10 @@ public class ConsultaUsuario extends JInternalFrame {
 		//String[] test = {"juan", "jose"};
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		comboBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -98,20 +102,6 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 0;
 		getContentPane().add(comboBox, gbc_comboBox);
-		
-		
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-			}
-		});
-		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-		gbc_btnCancelar.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCancelar.gridx = 1;
-		gbc_btnCancelar.gridy = 2;
-		getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 		JLabel lblNickname = new JLabel("Nickname:");
 		GridBagConstraints gbc_lblNickname = new GridBagConstraints();
@@ -215,6 +205,27 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_lblFuncionesALas.gridx = 1;
 		gbc_lblFuncionesALas.gridy = 11;
 		getContentPane().add(lblFuncionesALas, gbc_lblFuncionesALas);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.gridx = 1;
+		gbc_comboBox_1.gridy = 12;
+		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		
+		
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+			}
+		});
+		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
+		gbc_btnCancelar.gridx = 1;
+		gbc_btnCancelar.gridy = 13;
+		getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 
 
