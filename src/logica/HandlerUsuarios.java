@@ -22,7 +22,12 @@ public class HandlerUsuarios {
 			instancia = new HandlerUsuarios();
 		return instancia;
 	}
+	
 	public ArrayList<String> getNombres(){
+		return new ArrayList<String>(usuarios.keySet());
+	}
+	
+	public ArrayList<String> getNombresArtista(){
 		ArrayList<String> list= new ArrayList<String>(usuarios.size());
 		for (String key : usuarios.keySet()) {
 			list.add(usuarios.get(key).getNickname());
@@ -60,6 +65,16 @@ public class HandlerUsuarios {
 	public boolean esArtista_(String nickname) {
 		Usuario u = usuarios.get(nickname);
 		return u.esArtista_();
+	}
+
+	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname) {
+		Usuario u = usuarios.get(nickname);
+		ArrayList<Registro>  listareg = u.getRegistros();
+		ArrayList<String> ret = new ArrayList<String>();
+		for (int i = 0; i < listareg.size(); i++) {
+			ret.add(listareg.get(i).getFuncion().getNombre());
+		}
+		return ret;
 	}
 	
 	

@@ -89,9 +89,9 @@ public class ConsultaController implements IConsulta {
 	}
 
 	@Override
-	public ArrayList<String> mostrarFuncionesQueSeRegistro() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		return hu.listarFuncionesQueSeRegistro(nickname);
 	}
 
 	@Override
