@@ -2,6 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtPaquete;
@@ -24,10 +25,11 @@ public class ConsultaController implements IConsulta {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public ArrayList<String> listarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		ArrayList<String> listanombres = hu.getNombres();
+		
+		return listanombres;
 	}
 
 	@Override
@@ -74,8 +76,10 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public DtUsuario mostrarDatos(String nickname) {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario u = hu.getUsuario(nickname);
+		DtUsuario dtu = u.getDt();
+		return dtu;
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class ConsultaController implements IConsulta {
 	}
 
 	@Override
-	public ArrayList<DtFuncion> mostrarFuncionesQueSeRegistro() {
+	public ArrayList<String> mostrarFuncionesQueSeRegistro() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -106,6 +110,17 @@ public class ConsultaController implements IConsulta {
 	public DtFuncion mostrarFuncion() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public boolean esArtista(String nickname) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		return hu.esArtista_(nickname);
+	}
+	public DtArtista mostrarDatosArtista(String nickname) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario u = hu.getUsuario(nickname);
+		DtArtista dta = u.getDtArtista();
+		return dta;
 	}
 
 }

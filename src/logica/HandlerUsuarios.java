@@ -40,13 +40,18 @@ public class HandlerUsuarios {
 	public void agregarUsuario(Usuario u) {
 		usuarios.put(u.getNickname(), u);
 	}
-	
+
 	public HashMap<String, Usuario> getUsuarios() {
-		return usuarios;
+		return this.usuarios;
 	}
 
 	public void setUsuarios(HashMap<String, Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public boolean esArtista_(String nickname) {
+		Usuario u = usuarios.get(nickname);
+		return u.esArtista_();
 	}
 	
 	

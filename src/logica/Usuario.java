@@ -3,9 +3,11 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import datatypes.DtUsuario;
 
 public class Usuario {
 	private String nickname;
@@ -119,6 +121,24 @@ public class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	public DtUsuario getDt() {
+		DtUsuario ret;
+		ret = new DtUsuario(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento());
+		return ret;
+	}
+	public boolean esArtista_() {
+		return false;
+		
+	}
+	
+	public DtArtista getDtArtista() {
+		return null;
+	}
+	
+	//esta funcion es para saber si un usuario es artista o no
+	public boolean esArtista() {
+		return false;
 	}
 	
 

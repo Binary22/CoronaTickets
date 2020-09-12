@@ -95,6 +95,7 @@ public class Espectaculo {
 		return null;
 	}
 	public void agregarFuncion(Funcion f) {
+		this.setFunciones.add(f);
 	}
 	public int getMaxEspectadores() {
 		return 0;

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logica.Fabrica;
+import logica.IEspectaculo;
 import logica.IUsuario;
 
 import javax.swing.JMenuBar;
@@ -22,6 +23,9 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaDeUsuarioInternalFrame;
+	private JInternalFrame AltaFuncionInternalFrame;
+	
 
 	/**
 	 * Launch the application.
@@ -70,16 +74,22 @@ public class Principal extends JFrame {
 		});
 		mnUsuarios.add(mntmNewMenuItem_1);
 		
+		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
+		mntmConsultaDeDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaDeUsuarioInternalFrame.setVisible(true);
+			}
+		});
+		mnUsuarios.add(mntmConsultaDeDatos);
 		
-		//menudeespectaculos
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
 		
-		//menu alta de espectaculo
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de espectaculo");
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 
-		//caso de uso alta de espectaculo
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
 			public void actionPerformed(ActionEvent e) {                 
 				getContentPane().removeAll();                 
@@ -96,6 +106,11 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
 
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AltaFuncionInternalFrame.setVisible(true);
+			}
+		});
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -106,6 +121,8 @@ public class Principal extends JFrame {
 		// EL CODIGO QUE SE AGREGA (SIN SER RESPUESTAS A EVENTOS) VA ACA ABAJO  //
         //////////////////////////////////////////////////////////////////////////
 		
+		
+        
         AltaUsuarioInternalFrame = new AltaUsuario();
         AltaUsuarioInternalFrame.setVisible(false);
         getContentPane().add(AltaUsuarioInternalFrame);
@@ -113,6 +130,14 @@ public class Principal extends JFrame {
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
         getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
+        
+        ConsultaDeUsuarioInternalFrame = new ConsultaUsuario();
+        ConsultaDeUsuarioInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaDeUsuarioInternalFrame);
+        
+        AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
+        AltaFuncionInternalFrame.setVisible(false);
+        getContentPane().add(AltaFuncionInternalFrame);
 	
 	}
 
