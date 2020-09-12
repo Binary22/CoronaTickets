@@ -89,7 +89,7 @@ public class ConsultaController implements IConsulta {
 	}
 
 	@Override
-	public ArrayList<DtFuncion> mostrarFuncionesQueSeRegistro() {
+	public ArrayList<String> mostrarFuncionesQueSeRegistro() {
 		// TODO Auto-generated method stub
 		return null;
 	}

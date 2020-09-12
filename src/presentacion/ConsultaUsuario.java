@@ -57,12 +57,12 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 		setTitle("Consulta de usuario");
 		setClosable(true);
-		setBounds(100, 100, 450, 422);
+		setBounds(100, 100, 460, 446);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 206, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
@@ -102,6 +102,13 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 0;
 		getContentPane().add(comboBox, gbc_comboBox);
+		
+		JLabel lblEsartista = new JLabel("");
+		GridBagConstraints gbc_lblEsartista = new GridBagConstraints();
+		gbc_lblEsartista.insets = new Insets(0, 0, 5, 0);
+		gbc_lblEsartista.gridx = 1;
+		gbc_lblEsartista.gridy = 2;
+		getContentPane().add(lblEsartista, gbc_lblEsartista);
 		
 		JLabel lblNickname = new JLabel("Nickname:");
 		GridBagConstraints gbc_lblNickname = new GridBagConstraints();
@@ -167,6 +174,13 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_lblWebsite.gridy = 10;
 		getContentPane().add(lblWebsite, gbc_lblWebsite);
 		
+		JComboBox comboBoxFun = new JComboBox();
+		GridBagConstraints gbc_comboBoxFun = new GridBagConstraints();
+		gbc_comboBoxFun.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxFun.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxFun.gridx = 1;
+		gbc_comboBoxFun.gridy = 12;
+		getContentPane().add(comboBoxFun, gbc_comboBoxFun);
 		
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
@@ -181,15 +195,22 @@ public class ConsultaUsuario extends JInternalFrame {
 				lblFechaDeNacimiento.setText("Fecha de nacimiento: " + dtu.getFechaNacimiento().format(formatter));
 					
 				if (icontrolador.esArtista(dtu.getNickname())) {
+					lblEsartista.setText("Artista");
 					DtArtista dta = icontrolador.mostrarDatosArtista(dtu.getNickname());
 					lblDescripcion.setText("Descripcion: " + dta.getDescripcion());
 					lblBiografa.setText("Biografía: " + dta.getBiografia());
 					lblWebsite.setText("Website: " + dta.getWebsite());
 				} else {
+					lblEsartista.setText("Usuario");
 					lblDescripcion.setText("");
 					lblBiografa.setText("");
 					lblWebsite.setText("");
 				}
+				
+				ArrayList<String> listadtfun = icontrolador.mostrarFuncionesQueSeRegistro();
+				
+				
+				
 				
 			}
 		});
@@ -204,17 +225,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		gbc_lblFuncionesALas.insets = new Insets(0, 0, 5, 0);
 		gbc_lblFuncionesALas.gridx = 1;
 		gbc_lblFuncionesALas.gridy = 11;
-		getContentPane().add(lblFuncionesALas, gbc_lblFuncionesALas);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 1;
-		gbc_comboBox_1.gridy = 12;
-		getContentPane().add(comboBox_1, gbc_comboBox_1);
-		
-		
+		getContentPane().add(lblFuncionesALas, gbc_lblFuncionesALas);	
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -222,9 +233,27 @@ public class ConsultaUsuario extends JInternalFrame {
 				setVisible(false);
 			}
 		});
+		
+		JButton btnConsultarFuncion = new JButton("Consultar función");
+		btnConsultarFuncion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		GridBagConstraints gbc_btnConsultarFuncion = new GridBagConstraints();
+		gbc_btnConsultarFuncion.insets = new Insets(0, 0, 5, 0);
+		gbc_btnConsultarFuncion.gridx = 1;
+		gbc_btnConsultarFuncion.gridy = 13;
+		getContentPane().add(btnConsultarFuncion, gbc_btnConsultarFuncion);
+		
+		JButton btnConsultarEspectaculo = new JButton("Consultar espectáculo");
+		GridBagConstraints gbc_btnConsultarEspectaculo = new GridBagConstraints();
+		gbc_btnConsultarEspectaculo.insets = new Insets(0, 0, 5, 0);
+		gbc_btnConsultarEspectaculo.gridx = 1;
+		gbc_btnConsultarEspectaculo.gridy = 14;
+		getContentPane().add(btnConsultarEspectaculo, gbc_btnConsultarEspectaculo);
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.gridx = 1;
-		gbc_btnCancelar.gridy = 13;
+		gbc_btnCancelar.gridy = 16;
 		getContentPane().add(btnCancelar, gbc_btnCancelar);
 		
 

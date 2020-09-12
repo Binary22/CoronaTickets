@@ -12,7 +12,7 @@ public interface IConsulta {
 	public ArrayList<String> listarUsuarios();
 	public DtUsuario mostrarDatos(String nickname);
 	public ArrayList<DtEspectaculo> listarEspectaculosQueOrganiza();
-	public ArrayList<DtFuncion> mostrarFuncionesQueSeRegistro();
+	public ArrayList<String> mostrarFuncionesQueSeRegistro();
 	public void elegirEspectaculo(String nomespect);
 	public void elegirFuncion(String nomFuncion);
 	public ArrayList<String> listarPaquetes();
