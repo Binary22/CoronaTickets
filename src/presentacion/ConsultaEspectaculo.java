@@ -81,10 +81,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 			}
 		});
 		
-		if (plataformas == null) {
-			JOptionPane.showMessageDialog(getParent(), "No hay Plataformas en el sistema");
-			System.out.print("No hay plataformas en el sistema");
-		} else {
+		if (plataformas != null) {
 			updateComboBox(plataformas, comboBox);
 		}
 		
