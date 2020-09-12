@@ -1,7 +1,6 @@
 package logica;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -18,11 +17,61 @@ public class EspectaculoController implements IEspectaculo {
 	public void setNomespec(String nomespec) {
 		this.nomespec = nomespec;
 	}
+
 	public String getNickname() {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+
+	public String getNomPlataforma() {
+		return nomPlataforma;
+	}
+	public void setNomPlataforma(String nomPlataforma) {
+		this.nomPlataforma = nomPlataforma;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getMaxEspect() {
+		return maxEspect;
+	}
+	public void setMaxEspect(int maxEspect) {
+		this.maxEspect = maxEspect;
+	}
+	public float getCosto() {
+		return costo;
+	}
+	public void setCosto(float costo) {
+		this.costo = costo;
+	}
+	public LocalTime getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(LocalTime duracion) {
+		this.duracion = duracion;
+	}
+	public Espectaculo getEspectaculo() {
+		return espectaculo;
+	}
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
+	}
+	public String getNickArtista() {
+		return nickArtista;
+	}
+	public void setNickname(String nickArtista) {
+		this.nickArtista = nickArtista;
+
 	}
 	public String getNomfuncion() {
 		return nomfuncion;

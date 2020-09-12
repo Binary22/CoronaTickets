@@ -13,7 +13,6 @@ public class Usuario {
 	private String apellido;
 	private String email;
 	private LocalDate fechaNacimiento;
-	
 	private ArrayList<Compra> compraPaquete;
 	private ArrayList<Vale> vales;
 	private ArrayList<Registro> registros;
