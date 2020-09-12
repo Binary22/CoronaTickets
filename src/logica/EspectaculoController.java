@@ -26,129 +26,29 @@ public class EspectaculoController implements IEspectaculo {
 	private Espectaculo espectaculo;
 	
 	
-	public int getMinEspect() {
-		return minEspect;
+	public String getNomPlataforma() {
+		return nomPlataforma;
 	}
-	public void setMinEspect(int minEspect) {
-		this.minEspect = minEspect;
+	public void setNomPlataforma(String nomPlataforma) {
+		this.nomPlataforma = nomPlataforma;
+	}
+	public String getNickArtista() {
+		return nickArtista;
 	}
 	public void setNickArtista(String nickArtista) {
 		this.nickArtista = nickArtista;
 	}
-
 	public String getNomespec() {
 		return nomespec;
 	}
 	public void setNomespec(String nomespec) {
 		this.nomespec = nomespec;
 	}
-<<<<<<< HEAD
-	public String getNomPlataforma() {
-		return nomPlataforma;
-=======
-
-	public String getNickname() {
-		return nickname;
->>>>>>> refs/heads/caso_Alta_de_Espectaculo
-	}
-<<<<<<< HEAD
-	public void setNomPlataforma(String nomPlataforma) {
-		this.nomPlataforma = nomPlataforma;
-	}
 	public String getDescripcion() {
 		return descripcion;
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public int getMaxEspect() {
-		return maxEspect;
-	}
-	public void setMaxEspect(int maxEspect) {
-		this.maxEspect = maxEspect;
-	}
-	public float getCosto() {
-		return costo;
-	}
-	public void setCosto(float costo) {
-		this.costo = costo;
-	}
-	public LocalDate getDuracion() {
-		return duracion;
-	}
-	public void setDuracion(LocalDate duracion) {
-		this.duracion = duracion;
-	}
-	public Espectaculo getEspectaculo() {
-		return espectaculo;
-	}
-	public void setEspectaculo(Espectaculo espectaculo) {
-		this.espectaculo = espectaculo;
-	}
-	public String getNickArtista() {
-		return nickArtista;
-	}
-	public void setNickname(String nickArtista) {
-		this.nickArtista = nickArtista;
-=======
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-
-	public String getNomPlataforma() {
-		return nomPlataforma;
-	}
-	public void setNomPlataforma(String nomPlataforma) {
-		this.nomPlataforma = nomPlataforma;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public int getMaxEspect() {
-		return maxEspect;
-	}
-	public void setMaxEspect(int maxEspect) {
-		this.maxEspect = maxEspect;
-	}
-	public float getCosto() {
-		return costo;
-	}
-	public void setCosto(float costo) {
-		this.costo = costo;
-	}
-	public LocalTime getDuracion() {
-		return duracion;
-	}
-	public void setDuracion(LocalTime duracion) {
-		this.duracion = duracion;
-	}
-	public Espectaculo getEspectaculo() {
-		return espectaculo;
-	}
-	public void setEspectaculo(Espectaculo espectaculo) {
-		this.espectaculo = espectaculo;
-	}
-	public String getNickArtista() {
-		return nickArtista;
-	}
-	public void setNickname(String nickArtista) {
-		this.nickArtista = nickArtista;
-
->>>>>>> refs/heads/caso_Alta_de_Espectaculo
 	}
 	public String getNomfuncion() {
 		return nomfuncion;
@@ -156,11 +56,29 @@ public class EspectaculoController implements IEspectaculo {
 	public void setNomfuncion(String nomfuncion) {
 		this.nomfuncion = nomfuncion;
 	}
-	public LocalDate getFecha() {
-		return fecha;
+	public String getUrl() {
+		return url;
 	}
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getMinEspect() {
+		return minEspect;
+	}
+	public void setMinEspect(int minEspect) {
+		this.minEspect = minEspect;
+	}
+	public int getMaxEspect() {
+		return maxEspect;
+	}
+	public void setMaxEspect(int maxEspect) {
+		this.maxEspect = maxEspect;
+	}
+	public float getCosto() {
+		return costo;
+	}
+	public void setCosto(float costo) {
+		this.costo = costo;
 	}
 	public LocalTime getHorainicio() {
 		return horainicio;
@@ -168,20 +86,37 @@ public class EspectaculoController implements IEspectaculo {
 	public void setHorainicio(LocalTime horainicio) {
 		this.horainicio = horainicio;
 	}
-	public ArrayList<String> getInvitados() {
-		return invitados;
-	}
-	public void setInvitados(ArrayList<String> invitados) {
-		this.invitados = invitados;
-	}
 	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+	public LocalTime getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(LocalTime duracion) {
+		this.duracion = duracion;
+	}
+	public LocalDate getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	public ArrayList<String> getInvitados() {
+		return invitados;
+	}
+	public void setInvitados(ArrayList<String> invitados) {
+		this.invitados = invitados;
+	}
+	public Espectaculo getEspectaculo() {
+		return espectaculo;
+	}
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
+	}
 
-	
 	@Override
 	public void elegirEspectaculo(String nomEspectaculo) {
 		// TODO Auto-generated method stub
@@ -295,8 +230,5 @@ public class EspectaculoController implements IEspectaculo {
 		esp.setArtista(art);
 		hesp.addEspectaculo(esp);
 	}
-
-	
-	
 
 }

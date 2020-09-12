@@ -45,7 +45,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 700, 700);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -78,10 +78,10 @@ public class Principal extends JFrame {
 		//caso de uso alta de espectaculo
 		JMenuItem mntmAltaDeEspectaculo = new JMenuItem("Alta de espectaculo");
 		mnEspectaculos.add(mntmAltaDeEspectaculo);
-<<<<<<< Updated upstream
+
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de función de espectáculo");
-=======
+
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
 			public void actionPerformed(ActionEvent e) {                 
 				getContentPane().removeAll();                 
@@ -95,8 +95,8 @@ public class Principal extends JFrame {
 			});
 		
 		//caso de uso alta de funcion de espectaculo
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Alta de funcion de espectaculo");
->>>>>>> Stashed changes
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta de funcion de espectaculo");
+
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
