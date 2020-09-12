@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class HandlerUsuarios {
 	//SINGLETON
 	private HashMap<String, Usuario> usuarios;
-	private HashMap<String, Usuario> artistas; //por ende se crea esto
 	private static HandlerUsuarios instancia = null;
 	
 	private HandlerUsuarios() {
@@ -36,17 +35,18 @@ public class HandlerUsuarios {
 	public void agregarUsuario(Usuario u) {
 		usuarios.put(u.getNickname(), u);
 	}
-	
-	public void agregarArtista(Artista a) {
-		
-	}
-	
+
 	public HashMap<String, Usuario> getUsuarios() {
 		return usuarios;
 	}
 
 	public void setUsuarios(HashMap<String, Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public boolean esArtista_(String nickname) {
+		Usuario u = usuarios.get(nickname);
+		return u.esArtista_();
 	}
 	
 	
