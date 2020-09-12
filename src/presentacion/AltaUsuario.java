@@ -9,7 +9,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import logica.Fabrica;
 import logica.HandlerUsuarios;
+import logica.IUsuario;
 import logica.UsuarioController;
 
 import java.awt.GridBagLayout;
@@ -283,7 +285,9 @@ public class AltaUsuario extends JInternalFrame {
 					return;
 				}
 				
-				UsuarioController UC = new UsuarioController();
+				Fabrica f = Fabrica.getInstance();
+				IUsuario UC = f.getIUsuario();
+				
 				System.out.print("nickname: " + nickname + "\n");
 				System.out.print("nombre: " + nombre + "\n");
 				System.out.print("apellido: " + apellido + "\n");
@@ -297,7 +301,7 @@ public class AltaUsuario extends JInternalFrame {
 				if (hu.existeUsuario(nickname)) {
 					JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese Nickname");
 				} else {
-					if (esArtista) {
+					if (!esArtista) {
 						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
 					} else {
 						String descripcion = textField_5.getText();

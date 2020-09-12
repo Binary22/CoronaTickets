@@ -121,6 +121,10 @@ public class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
+		this.compraPaquete = new ArrayList<Compra>();
+		this.vales = new ArrayList<Vale>();
+		this.registros = new ArrayList<Registro>();		
+
 	}
 	public DtUsuario getDt() {
 		DtUsuario ret;
@@ -134,6 +138,11 @@ public class Usuario {
 	
 	public DtArtista getDtArtista() {
 		return null;
+	}
+	
+	//esta funcion es para saber si un usuario es artista o no
+	public boolean esArtista() {
+		return false;
 	}
 	
 

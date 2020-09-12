@@ -22,8 +22,18 @@ public class HandlerUsuarios {
 			instancia = new HandlerUsuarios();
 		return instancia;
 	}
+	
 	public ArrayList<String> getNombres(){
-		ArrayList<String> list = new ArrayList<String>();; //Necesito esto, ya que si tengo usuarios, como distingo cuales son artistas en el mapa?
+		return new ArrayList<String>(usuarios.keySet());
+	}
+	
+	public ArrayList<String> getNombresArtista(){
+		ArrayList<String> list= new ArrayList<String>(usuarios.size());
+		for (String key : usuarios.keySet()) {
+			if(usuarios.get(key).esArtista()) {
+				list.add(usuarios.get(key).getNickname());
+			}
+		}
 		return list;
 	}
 	public Usuario getUsuario(String nickname) {
@@ -37,7 +47,7 @@ public class HandlerUsuarios {
 	}
 
 	public HashMap<String, Usuario> getUsuarios() {
-		return usuarios;
+		return this.usuarios;
 	}
 
 	public void setUsuarios(HashMap<String, Usuario> usuarios) {
@@ -47,6 +57,16 @@ public class HandlerUsuarios {
 	public boolean esArtista_(String nickname) {
 		Usuario u = usuarios.get(nickname);
 		return u.esArtista_();
+	}
+
+	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname) {
+		Usuario u = usuarios.get(nickname);
+		ArrayList<Registro>  listareg = u.getRegistros();
+		ArrayList<String> ret = new ArrayList<String>();
+		for (int i = 0; i < listareg.size(); i++) {
+			ret.add(listareg.get(i).getFuncion().getNombre());
+		}
+		return ret;
 	}
 	
 	
