@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import excepciones.UsuarioConMismoMailException;
+import excepciones.UsuarioConMismoNickException;
 import logica.HandlerUsuarios;
 import logica.UsuarioController;
 
@@ -25,7 +27,15 @@ class UsuarioControllerTest {
 	@Test
 	void testAltaUsuario() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
-		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		try {
+			icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		} catch (UsuarioConMismoNickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UsuarioConMismoMailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(icontroller.getUsuario().getNickname(), "santiacq");
 		assertEquals(icontroller.getUsuario().getNombre(), "santiago");
 		assertEquals(icontroller.getUsuario().getApellido(), "acquarone");
@@ -36,8 +46,21 @@ class UsuarioControllerTest {
 	@Test
 	void testAltaArtista() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
-		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
-		icontroller.altaArtista("el number 1", "...", "acqua.com");
+		try {
+			icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		} catch (UsuarioConMismoNickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UsuarioConMismoMailException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			icontroller.altaArtista("el number 1", "...", "acqua.com");
+		} catch (UsuarioConMismoNickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(icontroller.getArtista().getDescripcion(), "el number 1");
 		assertEquals(icontroller.getArtista().getBiografia(), "...");
 		assertEquals(icontroller.getArtista().getWebsite(), "acqua.com");
@@ -46,8 +69,21 @@ class UsuarioControllerTest {
 	@Test
 	void testConfirmarAltaUsuarioArtista() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
-		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
-		icontroller.altaArtista("el number 1", "...", "acqua.com");
+		try {
+			icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		} catch (UsuarioConMismoNickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UsuarioConMismoMailException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			icontroller.altaArtista("el number 1", "...", "acqua.com");
+		} catch (UsuarioConMismoNickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		icontroller.confirmarAltaUsuario();
 		
 		hu = HandlerUsuarios.getInstancia();
@@ -59,7 +95,15 @@ class UsuarioControllerTest {
 	void testConfirmarAltaUsuarioUsuario() {
 		hu = HandlerUsuarios.getInstancia();
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
-		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		try {
+			icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		} catch (UsuarioConMismoNickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UsuarioConMismoMailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		icontroller.confirmarAltaUsuario();
 		
 		assertTrue(hu.getUsuarios().containsKey("santiacq"));
