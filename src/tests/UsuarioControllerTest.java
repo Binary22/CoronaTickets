@@ -7,16 +7,19 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import logica.HandlerUsuarios;
 import logica.UsuarioController;
 
 class UsuarioControllerTest {
 	
 	private static UsuarioController icontroller;
+	private static HandlerUsuarios hu;
 	
 	@BeforeAll
 	static void iniciar() {
 		// aca no use la fabrica porque sino no tenemos getters y setters para testear
 		icontroller = new UsuarioController();
+		
 	}
 
 	@Test
@@ -55,6 +58,7 @@ class UsuarioControllerTest {
 		icontroller.confirmarAltaUsuario();
 	}
 
+	/*
 	@Test
 	void testMostrarUsuarios() {
 		fail("Not yet implemented");
@@ -79,5 +83,6 @@ class UsuarioControllerTest {
 	void testConfirmarUpdateUsuario() {
 		fail("Not yet implemented");
 	}
-
+	*/
+	
 }

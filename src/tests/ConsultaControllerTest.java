@@ -8,11 +8,14 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import logica.Artista;
 import logica.ConsultaController;
 import logica.Espectaculo;
+import logica.Funcion;
 import logica.HandlerEspectaculos;
 import logica.HandlerPlataforma;
 import logica.HandlerUsuarios;
+import logica.Plataforma;
 import logica.PlataformaController;
 import logica.Usuario;
 
@@ -55,10 +58,14 @@ class ConsultaControllerTest {
 
 	@Test
 	void testElegirFuncion() {
-		fail("Not yet implemented");
+		Espectaculo e = new Espectaculo("b", LocalTime.now(), "b", 10, 200, "c", LocalDate.now(), 5);
+		he.addEspectaculo(e);
+		//ArrayList<String> a = new ArrayList<String>
+		Funcion f = new Funcion("f", LocalDate.now(), LocalTime.now(), LocalDate.now(), null, e);
+		icontroller.elegirFuncion("b", "f");
 	}
 
-	@Test
+/*	@Test
 	void testListarPaquetes() {
 		fail("Not yet implemented");
 	}
@@ -66,32 +73,49 @@ class ConsultaControllerTest {
 	@Test
 	void testSeleccionarPaquete() {
 		fail("Not yet implemented");
-	}
+	} */
 
 	@Test
 	void testListarPlataformas() {
-		fail("Not yet implemented");
+		Plataforma p1 = new Plataforma("a", "b", "c");
+		Plataforma p2 = new Plataforma("d", "e", "f");
+		hp.agregarPlataforma(p1);
+		hp.agregarPlataforma(p2);
+		assertTrue(icontroller.listarPlataformas().contains("a"));
+		assertTrue(icontroller.listarPlataformas().contains("d"));
 	}
 
 	@Test
 	void testListarEspectaculosPlataforma() {
-		fail("Not yet implemented");
+		Plataforma p3 = new Plataforma("r", "b", "c");
+		hp.agregarPlataforma(p3);
+		Espectaculo e = new Espectaculo("f", LocalTime.now(), "b", 10, 200, "c", LocalDate.now(), 5);
+		p3.addEspectaculo(e);
+		assertTrue(icontroller.listarEspectaculosPlataforma("r").contains("f"));
 	}
 
 	@Test
 	void testListarFuncionesEspect() {
-		fail("Not yet implemented");
+		Espectaculo e = new Espectaculo("f", LocalTime.now(), "b", 10, 200, "c", LocalDate.now(), 5);
+		he.addEspectaculo(e);
+		Funcion f = new Funcion("x", LocalDate.now(), LocalTime.now(), LocalDate.now(), null, e);
+		e.agregarFuncion(f);
+		assertTrue(icontroller.listarFuncionesEspect("f").contains("x"));
 	}
 
 	@Test
 	void testMostrarDatos() {
-		fail("Not yet implemented");
+		
+		Usuario u1 = new Usuario("aa", "b", "c", "d", LocalDate.now());
+		hu.agregarUsuario(u1);
+		assertEquals(icontroller.mostrarDatos("aa").getApellido(), "c");
+		assertEquals(icontroller.mostrarDatos("aa").getNombre(), "b");
 	}
 
-	@Test
+	/*@Test
 	void testListarEspectaculosQueOrganiza() {
 		fail("Not yet implemented");
-	}
+	} */
 
 	@Test
 	void testListarFuncionesQueSeRegistro() {
@@ -103,24 +127,38 @@ class ConsultaControllerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
+/*	@Test
 	void testMostrarPaquete() {
 		fail("Not yet implemented");
-	}
+	} */
 
 	@Test
 	void testMostrarEspectaculo() {
-		fail("Not yet implemented");
+		Espectaculo e = new Espectaculo("fff", LocalTime.now(), "b", 10, 200, "c", LocalDate.now(), 5);
+		he.addEspectaculo(e);
+		icontroller.elegirEspectaculo("fff");
+		assertEquals(icontroller.mostrarEspectaculo().getNombre(),"fff");
+		
 	}
 
 	@Test
 	void testMostrarFuncion() {
-		fail("Not yet implemented");
+		Espectaculo e = new Espectaculo("q", LocalTime.now(), "b", 10, 200, "c", LocalDate.now(), 5);
+		he.addEspectaculo(e);
+		Funcion f = new Funcion("z", LocalDate.now(), LocalTime.now(), LocalDate.now(), null, e);
+		e.agregarFuncion(f);
+		icontroller.elegirFuncion("q", "z");
+		assertEquals(icontroller.mostrarFuncion().getNombre(),"z");
 	}
 
 	@Test
 	void testEsArtista() {
-		fail("Not yet implemented");
+		Usuario u1 = new Usuario("aa", "b", "c", "d", LocalDate.now());
+		hu.agregarUsuario(u1);
+		Usuario u2 = new Artista("aaaaa", "b", "c", "d", LocalDate.now(), "a", "a", "a");
+		hu.agregarUsuario(u2);
+		assertTrue(!icontroller.esArtista("aa"));
+		assertTrue(icontroller.esArtista("aaaaa"));
 	}
 
 	@Test
