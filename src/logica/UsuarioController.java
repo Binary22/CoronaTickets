@@ -75,7 +75,6 @@ public class UsuarioController implements IUsuario{
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	@Override
 	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) {
 		this.esArtista = false;
 		this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac);
