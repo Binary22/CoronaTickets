@@ -290,10 +290,12 @@ public class Principal extends JFrame {
 				String[] artistax = funcion[5].split(",");
 				ArrayList<String> artistas = new ArrayList<String>();
 				for(String s:artistax) {
-					if (s != "") artistas.add(s);
+					if (s != ""){
+						 artistas.add(s);
+					}
 				}
 				ec.elegirEspectaculo(funcion[4]);
-				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas, LocalDate.parse(funcion[3], formatter));		
+				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas.isEmpty()? artistas : null, LocalDate.parse(funcion[3], formatter));		
 				ec.ConfirmarAltaFuncion();
 			}
 			br.close();

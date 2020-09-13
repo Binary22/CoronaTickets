@@ -151,6 +151,7 @@ public class EspectaculoController implements IEspectaculo {
 		//chequeo que existan los artistas invitados
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
+		if (invitados != null) {
 		invitados.forEach(el -> {
 			if (!hu.getUsuarios().containsKey(el)) {
 				System.out.print("No existe el artista:" + el);
@@ -158,6 +159,7 @@ public class EspectaculoController implements IEspectaculo {
 				nuevosinv.add(hu.getUsuarios().get(el));
 			}
 		});
+		}
 		
 		//creo la instancia nueva de funcion
 		Funcion nuevafun = new Funcion(this.nomfuncion, this.fecha, this.horainicio, this.fechaAlta, nuevosinv, this.espectaculo);
