@@ -160,6 +160,9 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 				getParent().add(cdea);
 				cdea.setVisible(true);
 				cdea.setClosable(true);
+				
+				// para que se vaya la ventana de consultar funcion (no anidado)
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnConsultarFuncin = new GridBagConstraints();
