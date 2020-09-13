@@ -314,14 +314,14 @@ public class AltaDeEspectaculo extends JInternalFrame {
 				String artista= (String) comboBoxArtistas.getSelectedItem();
 				int hora= (int) spnDuracionhs.getValue();
 				int min= (int) spnDuracionmin.getValue();
-				LocalTime Duracion= LocalTime.of(hora, min);
+				LocalTime Duracion= LocalTime.of(hora, min);// no puede durar mas de 23hs...por el tipo local time
 				int maxEsp= (int) spnMaxEsp.getValue();
 				int minEsp= (int) spnMinEsp.getValue();
 				float costo= (float) spnCosto.getValue();
 				Instant instant= calFecha.getDate().toInstant();
 				ZonedDateTime zdt= instant.atZone(ZoneId.systemDefault());
 				LocalDate altaFecha= zdt.toLocalDate(); //esto es un asco pero se hace asi, salvo que cambiemos a date.
-				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getName(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
+				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getText(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
 				iesp.confirmarAltaEspectaculo();
 			}
 		});
