@@ -42,6 +42,8 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	private JInternalFrame ConsultaFuncionInternalFrame;
+	private JInternalFrame RegistroFunEspectInternalFrame;
+	
 
 	/**
 	 * Launch the application.
@@ -123,6 +125,14 @@ public class Principal extends JFrame {
 		});
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		
+		JMenuItem mntmRegistroAFuncion = new JMenuItem("Registro a funcion de espectaculo");
+		mntmRegistroAFuncion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegistroFunEspectInternalFrame.setVisible(true);
+			}
+		});
+		mnEspectaculos.add(mntmRegistroAFuncion);
+		
 		JMenuItem mntmConsultaFuncion = new JMenuItem("Consulta de función de espectaculo");
 		mntmConsultaFuncion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -180,6 +190,10 @@ public class Principal extends JFrame {
         AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
         AltaFuncionInternalFrame.setVisible(false);
         getContentPane().add(AltaFuncionInternalFrame);
+        
+        RegistroFunEspectInternalFrame = new RegistroAFuncionDeEspectaculo();
+        RegistroFunEspectInternalFrame.setVisible(false);
+        getContentPane().add(RegistroFunEspectInternalFrame);
         
         AltaDeEspectaculoInternalFrame = new AltaDeEspectaculo();
         AltaDeEspectaculoInternalFrame.setVisible(false);
