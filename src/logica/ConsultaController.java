@@ -11,6 +11,14 @@ import datatypes.DtUsuario;
 public class ConsultaController implements IConsulta {
 	private Funcion funcion;
 	private Espectaculo espectaculo;
+	public Espectaculo getEspectaculo() {
+		return espectaculo;
+	}
+
+	public void setEspectaculo(Espectaculo espectaculo) {
+		this.espectaculo = espectaculo;
+	}
+
 	private Paquete paquete;
 	private Usuario usuario;
 	

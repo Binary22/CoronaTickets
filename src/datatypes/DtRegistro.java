@@ -6,10 +6,10 @@ public class DtRegistro {
 	private LocalDate fecha;
 	private boolean canjeado;
 	private int id;
-	public DtRegistro(LocalDate fecha, boolean canjeado, int id) {
+	
+	public DtRegistro(LocalDate fecha, int id) {
 		super();
 		this.fecha = fecha;
-		this.canjeado = canjeado;
 		this.id = id;
 	}
 	public LocalDate getFecha() {
@@ -30,6 +30,12 @@ public class DtRegistro {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	/* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
+     */
+    public String toString() {
+        return "Fecha: " + getFecha() + "|Id:" + getId();
+    }
 	
 	
 }

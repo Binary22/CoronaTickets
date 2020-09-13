@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.HashMap;
 
 public class Espectaculo {
@@ -93,7 +94,9 @@ public class Espectaculo {
 	public HashMap<String,Funcion> getAllFunciones() {
 		return setFunciones;
 	}
-
+	public Funcion getFuncion(String nomfuncion) {
+		return setFunciones.get(nomfuncion);
+	}
 	public void agregarFuncion(Funcion f) {
 		this.setFunciones.put(f.getNombre(), f);
 	}
