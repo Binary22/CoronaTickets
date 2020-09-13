@@ -8,7 +8,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import logica.Artista;
 import logica.Fabrica;
+import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPlataforma;
 import logica.IUsuario;
@@ -21,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
@@ -29,6 +32,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaEspectaculoInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	
@@ -112,6 +116,17 @@ public class Principal extends JFrame {
 			}
 		});
 		mnEspectaculos.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de espectaculo");
+		mntmConsultaDeEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaEspectaculoInternalFrame = new ConsultaEspectaculo();
+		        ConsultaEspectaculoInternalFrame.setClosable(true);
+				ConsultaEspectaculoInternalFrame.setVisible(true);
+		        getContentPane().add(ConsultaEspectaculoInternalFrame, BorderLayout.CENTER);
+			}
+		});
+		mnEspectaculos.add(mntmConsultaDeEspectaculo);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -138,6 +153,7 @@ public class Principal extends JFrame {
         AltaUsuarioInternalFrame = new AltaUsuario();
         AltaUsuarioInternalFrame.setVisible(false);
         getContentPane().add(AltaUsuarioInternalFrame);
+        
         
         ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
         ModificarDatosDeUsuarioInternalFrame.setVisible(false);
@@ -197,8 +213,17 @@ public class Principal extends JFrame {
 		ec.confirmarAltaEspectaculo();
 		ec.altaEspectaculo("TwitchTv", "santia", "GitKraken Corp Fest", "Una celebracion del capitalismo.", LocalTime.of(6, 06), 1, 12, "gitkrakenfest.com", 95000, LocalDate.now());
 		ec.confirmarAltaEspectaculo();
-	
 		
+		ArrayList<String> megustaelarte = new ArrayList<String>();
+		megustaelarte.add("santia");
+		
+		ec.altaFuncion("Master", fecha1, LocalTime.of(8,45), megustaelarte, LocalDate.now());
+		ec.elegirEspectaculo("GitKraken Corp Fest");
+		ec.ConfirmarAltaFuncion();
+		
+		ec.altaFuncion("Dev", fecha1, LocalTime.of(10,30), megustaelarte, LocalDate.now());
+		ec.elegirEspectaculo("GitKraken Corp Fest");
+		ec.ConfirmarAltaFuncion();
 
 	}
 

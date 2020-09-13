@@ -12,6 +12,7 @@ public class HandlerPaquetes {
 	private static HandlerPaquetes instancia = null;
 
     private HandlerPaquetes() {
+    	colPaquete = new HashMap<String,Paquete>();
     };
 	
     public static HandlerPaquetes getInstance() {
@@ -21,21 +22,34 @@ public class HandlerPaquetes {
         return instancia;
     }
 	
-	private void agregarPaquete(Paquete p) {
+	public void agregarPaquete(Paquete p) {
 		colPaquete.put(p.getNombre(), p);
 	}
-	private DtPaquete crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta) {
+	public DtPaquete crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta) {
 		//TODO
 		return null;
 	}
-	private ArrayList<DtPaquete> getPaquetesDt(){
+	public ArrayList<DtPaquete> getPaquetesDt(){
 		//TODO
 		return null;
 	}
-	private Paquete getPaquete(String nomPaquete) {
+	public Paquete getPaquete(String nomPaquete) {
 		return colPaquete.get(nomPaquete);
 	}
-	private ArrayList<String> getNombresPaquete() {
+	
+	public ArrayList<String> getNombresPaquetesEspectaculo(String nomEspectulo) {
+		ArrayList<String> list = new ArrayList<String>();
+		if (colPaquete != null) {
+		this.colPaquete.forEach((s, p) -> {
+			if (p.getEspectaculos().containsKey(nomEspectulo)) {
+				list.add(s);
+			}
+		});
+		}
+			return list;
+	}
+	
+	public ArrayList<String> getNombresPaquete() {
 		ArrayList<String> list = new ArrayList<String>(colPaquete.keySet());;
 		return list;
 	}
