@@ -9,6 +9,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import excepciones.NombreEspectaculoExisteException;
+import excepciones.UsuarioConMismoMailException;
+import excepciones.UsuarioConMismoNickException;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
 import logica.IUsuario;
@@ -297,10 +300,10 @@ public class AltaUsuario extends JInternalFrame {
 				
 				//Checkeo si existe el usuario:
 				
-				HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-				if (hu.existeUsuario(nickname)) {
-					JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese Nickname");
-				} else {
+				//HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+				//if (hu.existeUsuario(nickname)) {
+				//JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese Nickname");
+				try{
 					if (!esArtista) {
 						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
 					} else {
@@ -320,6 +323,10 @@ public class AltaUsuario extends JInternalFrame {
 						textfieldSet.forEach(textfield -> textfield.setText(""));
 						dispose();
 					}
+				}catch(UsuarioConMismoNickException ex){
+					 JOptionPane.showMessageDialog(null, ex.getMessage(), "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+				}catch(UsuarioConMismoMailException ex2){
+					JOptionPane.showMessageDialog(null, ex2.getMessage(), "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

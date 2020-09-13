@@ -52,6 +52,10 @@ public class Plataforma {
 	public void addEspectaculo(Espectaculo espectaculo){
 		espectaculos.put(espectaculo.getNombre(), espectaculo);
 	}
+	
+	public Espectaculo getEspectaculo(String nomEsp){
+		return espectaculos.get(nomEsp);
+	}
 }
 
 	

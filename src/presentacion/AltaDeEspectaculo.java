@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import com.toedter.calendar.JCalendar;
 
+import excepciones.NombreEspectaculoExisteException;
 import logica.Fabrica;
 import logica.IEspectaculo;
 
@@ -333,11 +334,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
 				Instant instant= calFecha.getDate().toInstant();
 				ZonedDateTime zdt= instant.atZone(ZoneId.systemDefault());
 				LocalDate altaFecha= zdt.toLocalDate(); //esto es un asco pero se hace asi, salvo que cambiemos a date.
-				try {
-						
-					}catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto");
-				}
 				if (maxEsp < minEsp) {
 					spnMaxEsp.setValue(0);
 					spnMinEsp.setValue(0);
@@ -355,9 +351,14 @@ public class AltaDeEspectaculo extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto.");
 				}
 				else {
+					try {	
 					iesp.altaEspectaculo(plataforma, artista, nombre, descripcion, Duracion, minEsp, maxEsp, URL, costo, altaFecha);
 					iesp.confirmarAltaEspectaculo();
 					JOptionPane.showMessageDialog(null, "Espectaculo creado con exito!");
+					}catch(NombreEspectaculoExisteException ex) {
+						 JOptionPane.showMessageDialog(null, ex.getMessage(), "Registrar espectaculo", JOptionPane.ERROR_MESSAGE);
+					}
+					
 				}
 				
 			}

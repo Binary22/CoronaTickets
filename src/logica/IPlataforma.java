@@ -2,6 +2,8 @@ package logica;
 
 import java.util.ArrayList;
 
+
+
 public interface IPlataforma {
 	public ArrayList<String> listarPlataformas();
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);

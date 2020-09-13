@@ -91,6 +91,15 @@ public class HandlerUsuarios {
 		return null;
 	}
 	
+	public boolean existeMail(String mail){
+		for (String key : usuarios.keySet()) {
+			if(usuarios.get(key).getEmail().compareTo(mail) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 
 }

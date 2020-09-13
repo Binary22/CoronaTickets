@@ -10,6 +10,11 @@ import java.util.Iterator;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+//import jdk.nashorn.internal.objects.IteratorResult;
+//import sun.security.jca.GetInstance;
+import excepciones.NombreEspectaculoExisteException;
+import excepciones.NombreFuncionexisteException;
+import excepciones.UsuarioConMismoMailException;
 import datatypes.DtUsuario;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
@@ -135,13 +140,17 @@ public class EspectaculoController implements IEspectaculo {
 		}
 	}
 	@Override
-	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,
-			LocalDate fechaAlta) {
-		this.nomfuncion = nombre;
-		this.fecha = fecha;
-		this.horainicio = horaInicio;
-		this.invitados = invitados;
-		this.fechaAlta = fechaAlta;
+	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,LocalDate fechaAlta) throws NombreFuncionexisteException{
+		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+		if(!hesp.existeNombreFuncion(nombre)) {
+			this.nomfuncion = nombre;
+			this.fecha = fecha;
+			this.horainicio = horaInicio;
+			this.invitados = invitados;
+			this.fechaAlta = fechaAlta;
+		}
+		else
+			throw new NombreFuncionexisteException("El nombre " + nombre + " ya esta en uso");
 		
 	}
 	@Override
@@ -385,18 +394,23 @@ public class EspectaculoController implements IEspectaculo {
 	
 	@Override
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) {
-		this.nomPlataforma= nomPlataforma;
-		this.nickUsuario= nickArtista;
-		this.nomespec= nombre;
-		this.descripcion= descripcion;
-		this.duracion= duracion;
-		this.minEspect= minEspec;
-		this.maxEspect= maxEspec;
-		this.url= url;
-		this.costo= costo;
-		this.fechaAlta= fechaAlta;
+			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) throws NombreEspectaculoExisteException {
 		
+		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+		if( hesp.getEspectaculo(nombre) == null) {
+			this.nomespec= nombre;
+			this.nomPlataforma= nomPlataforma;
+			this.nickArtista= nickArtista;
+			this.descripcion= descripcion;
+			this.duracion= duracion;
+			this.minEspect= minEspec;
+			this.maxEspect= maxEspec;
+			this.url= url;
+			this.costo= costo;
+			this.fechaAlta= fechaAlta;
+		}
+		else
+			throw new NombreEspectaculoExisteException("El nombre de espectaculo " + nombre + " ya esta en uso");	
 	}
 	
 	@Override

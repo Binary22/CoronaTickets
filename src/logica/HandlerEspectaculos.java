@@ -29,5 +29,16 @@ public class HandlerEspectaculos {
 	public HashMap<String,Espectaculo> getEspectaculosPlataforma(String nomPlata) {
 		return mapEspectaculos;
 	}
+	
+	public boolean existeNombreFuncion(String f) {
+		for (String key : mapEspectaculos.keySet()) {
+			HashMap<String,Funcion> funciones = mapEspectaculos.get(key).getAllFunciones();
+			if(funciones.containsKey(f)) {
+				return true;
+			}	
+		}
+		return false;
+		
+	}
 }
 
