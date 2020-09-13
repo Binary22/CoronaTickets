@@ -5,14 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import com.toedter.calendar.JCalendar;
 
@@ -29,7 +27,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.Component;
 
 import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;

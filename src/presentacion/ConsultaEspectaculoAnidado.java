@@ -167,6 +167,13 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String func = (String) comboBox.getSelectedItem();
+				ic.elegirFuncion(dte.getNombre(), func);
+				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(ic);
+				getParent().add(cdea);
+				cdea.setVisible(true);
+				cdea.setClosable(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnConsultar = new GridBagConstraints();
