@@ -41,9 +41,12 @@ class EspectaculoControllerTest {
 		ArrayList<String> artistas = new ArrayList<String>();
 		artistas.add("vpeople");
 		artistas.add("lospimpi");
+		try {
 		ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(),artistas, LocalDate.now());
 		ie.ConfirmarAltaFuncion();
-		
+		} catch(Exception e) {
+			fail(e.getMessage());
+		}
 		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion"));
 		
 	};
