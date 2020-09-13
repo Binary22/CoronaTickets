@@ -35,7 +35,7 @@ public class Principal extends JFrame {
 	private JInternalFrame ConsultaEspectaculoInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
-	
+	private JInternalFrame ConsultaFuncionInternalFrame;
 
 	/**
 	 * Launch the application.
@@ -117,6 +117,14 @@ public class Principal extends JFrame {
 		});
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		
+		JMenuItem mntmConsultaFuncion = new JMenuItem("Consulta de función de espectaculo");
+		mntmConsultaFuncion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaFuncionInternalFrame.setVisible(true);
+			}
+		});
+		mnEspectaculos.add(mntmConsultaFuncion);
+		
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de espectaculo");
 		mntmConsultaDeEspectaculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -171,19 +179,10 @@ public class Principal extends JFrame {
         AltaDeEspectaculoInternalFrame.setVisible(false);
         getContentPane().add(AltaDeEspectaculoInternalFrame);
         
-        Fabrica fab= Fabrica.getInstance();
-        IPlataforma iplat= fab.getIPlataforma();
-        iplat.altaPlataforma("Twitch", "Ni judas se atrevio a tanto", "https://www.twitch.tv/rubius");
-        iplat.confirmarAltaPlataforma();
-        iplat.altaPlataforma("Youtube", "Tema del anio", "https://youtu.be/Pu8LH6r-wOU?t=25");
-        iplat.confirmarAltaPlataforma();
-        iplat.altaPlataforma("Facebook", "Campeon del mundialito", "https://www.facebook.com/fingudelar/");
-        iplat.confirmarAltaPlataforma();
-        iplat.altaPlataforma("Instagram", "Gato maricon", "https://www.instagram.com/shadow_and_company/");
-        iplat.confirmarAltaPlataforma();
-        iplat.altaPlataforma("Openfing", "Bienvenides", "https://open.fing.edu.uy/courses/c2/9");
-        iplat.confirmarAltaPlataforma();
-        
+        ConsultaFuncionInternalFrame = new ConsultaFuncionEspectaculo();
+        ConsultaFuncionInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaFuncionInternalFrame);
+           
 	
 	}
 

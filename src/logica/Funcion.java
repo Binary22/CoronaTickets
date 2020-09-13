@@ -63,7 +63,8 @@ public class Funcion {
 		this.espectaculo = espectaculo;
 	}
 	public DtFuncion getDt() {
-		return null;
+		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fecha);
+		return ret;
 		
 	}
 	public int getLimite() {
@@ -82,6 +83,15 @@ public class Funcion {
 		this.artistasInvitados = artistasInvitados;
 		//this.registros = registros;
 		this.espectaculo = espectaculo;
+		/*
+		 * 	
+	
+	
+	private ArrayList<Usuario> artistasInvitados;
+	private ArrayList<Registro> registros;
+	private Espectaculo espectaculo;
+		 */
+		
 	}
 	
 	
