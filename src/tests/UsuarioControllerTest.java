@@ -85,10 +85,15 @@ class UsuarioControllerTest {
 			e.printStackTrace();
 		}
 		icontroller.confirmarAltaUsuario();
+		
+		hu = HandlerUsuarios.getInstancia();
+		assertTrue(hu.getUsuarios().containsKey("santiacq"));
+		assertTrue(hu.getUsuario("santiacq").esArtista() == true);
 	}
 	
 	@Test
 	void testConfirmarAltaUsuarioUsuario() {
+		hu = HandlerUsuarios.getInstancia();
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
 		try {
 			icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
@@ -100,13 +105,13 @@ class UsuarioControllerTest {
 			e.printStackTrace();
 		}
 		icontroller.confirmarAltaUsuario();
+		
+		assertTrue(hu.getUsuarios().containsKey("santiacq"));
+		assertTrue(hu.getUsuario("santiacq").esArtista() == false);
 	}
 
+	
 	/*
-	@Test
-	void testMostrarUsuarios() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testMostrarDatos() {
