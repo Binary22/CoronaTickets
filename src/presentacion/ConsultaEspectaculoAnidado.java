@@ -44,9 +44,9 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaEspectaculoAnidado() {
-		
-		
+	public ConsultaEspectaculoAnidado(IConsulta ic) {
+		this.ic = ic;
+		DtEspectaculo dte = ic.mostrarEspectaculo();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -67,6 +67,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_jlbNombre.gridx = 3;
 		gbc_jlbNombre.gridy = 1;
 		getContentPane().add(jlbNombre, gbc_jlbNombre);
+		jlbNombre.setText(dte.getNombre());
 		
 		JLabel lblNewLabel_1 = new JLabel("Duracion:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -81,6 +82,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblDuracion.gridx = 3;
 		gbc_lblDuracion.gridy = 2;
 		getContentPane().add(lblDuracion, gbc_lblDuracion);
+		lblDuracion.setText(dte.getDuracion().toString());
 		
 		JLabel lblNewLabel_2 = new JLabel("Descripcion:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -88,6 +90,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblNewLabel_2.gridx = 1;
 		gbc_lblNewLabel_2.gridy = 3;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
+		lblNewLabel_2.setText(dte.getDescripcion());
 		
 		JLabel lblDesc = new JLabel("desc");
 		GridBagConstraints gbc_lblDesc = new GridBagConstraints();
@@ -95,6 +98,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblDesc.gridx = 3;
 		gbc_lblDesc.gridy = 3;
 		getContentPane().add(lblDesc, gbc_lblDesc);
+		lblDesc.setText(dte.getDescripcion());
 		
 		JLabel lblEspectadores = new JLabel("Espectadores:");
 		GridBagConstraints gbc_lblEspectadores = new GridBagConstraints();
@@ -109,6 +113,8 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblMinToMax.gridx = 3;
 		gbc_lblMinToMax.gridy = 4;
 		getContentPane().add(lblMinToMax, gbc_lblMinToMax);
+		String min2max = dte.getMinEspectadores() + " hasta " + dte.getMaxEspectadores();
+		lblMinToMax.setText(min2max);
 		
 		JLabel lblUrl = new JLabel("URL:");
 		GridBagConstraints gbc_lblUrl = new GridBagConstraints();
@@ -123,6 +129,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblUrl_1.gridx = 3;
 		gbc_lblUrl_1.gridy = 5;
 		getContentPane().add(lblUrl_1, gbc_lblUrl_1);
+		lblUrl_1.setText(dte.getUrl());
 		
 		JLabel lblCosto = new JLabel("Costo:");
 		GridBagConstraints gbc_lblCosto = new GridBagConstraints();
@@ -137,6 +144,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblCost.gridx = 3;
 		gbc_lblCost.gridy = 6;
 		getContentPane().add(lblCost, gbc_lblCost);
+		lblCost.setText(String.valueOf(dte.getCosto()));
 		
 		JLabel lblFunciones = new JLabel("Funciones:");
 		GridBagConstraints gbc_lblFunciones = new GridBagConstraints();
@@ -145,13 +153,16 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblFunciones.gridy = 7;
 		getContentPane().add(lblFunciones, gbc_lblFunciones);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 3;
 		gbc_comboBox.gridy = 7;
 		getContentPane().add(comboBox, gbc_comboBox);
+		
+		funciones = ic.listarFuncionesEspect(dte.getNombre());
+		ConsultaEspectaculo.updateComboBox(funciones, comboBox);
 		
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
@@ -171,13 +182,16 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_lblPaquetes.gridy = 8;
 		getContentPane().add(lblPaquetes, gbc_lblPaquetes);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox_1.gridx = 3;
 		gbc_comboBox_1.gridy = 8;
 		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		
+		paquetes = ic.listarPaquetes();
+		ConsultaEspectaculo.updateComboBox(paquetes, comboBox_1);
 		
 		JButton btnConsultar_1 = new JButton("Consultar");
 		btnConsultar_1.addActionListener(new ActionListener() {
@@ -193,6 +207,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		JButton btnTerminar = new JButton("Terminar");
 		btnTerminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 		GridBagConstraints gbc_btnTerminar = new GridBagConstraints();
@@ -203,8 +218,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		
 	}
 	
-	public ConsultaEspectaculoAnidado(IConsulta ic) {
-		this.ic = ic;
+	public ConsultaEspectaculoAnidado() {
 		setBounds(300, 300, 900, 350);
 
 	}

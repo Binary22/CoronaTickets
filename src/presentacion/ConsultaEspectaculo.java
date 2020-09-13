@@ -23,6 +23,8 @@ import logica.Fabrica;
 import logica.IConsulta;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -68,22 +70,16 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		getContentPane().add(lblPlataforma);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
+		updateComboBox(plataformas, comboBox);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String plataforma = (String) comboBox.getSelectedItem();
 				espectaculos = ic.listarEspectaculosPlataforma(plataforma);
-				if (espectaculos == null) {
-					JOptionPane.showMessageDialog(null, "No hay espectaculos en esa plataforma");
-					System.out.print("No hay espectaculos en esa plataforma");
-				} else {
+				if (espectaculos != null) {
 					updateComboBox(espectaculos, comboBox_1);
 				}
 			}
 		});
-		
-		if (plataformas != null) {
-			updateComboBox(plataformas, comboBox);
-		}
 		
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 60, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 117, SpringLayout.EAST, lblPlataforma);
@@ -109,7 +105,8 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado();
+				ic.elegirEspectaculo((String)comboBox_1.getSelectedItem());
+				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(ic);
 				getParent().add(cea);
 				cea.setVisible(true);
 				cea.setClosable(true);
@@ -132,7 +129,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 	}
 	
-	private void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
+	static void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
 		cb.removeAllItems();
 		lista.forEach(el -> cb.addItem(el));
 	}

@@ -34,8 +34,8 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public void elegirEspectaculo(String nomespect) {
-		// TODO Auto-generated method stub
-
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		espectaculo = he.getEspectaculo(nomespect);
 	}
 
 	@Override
@@ -46,8 +46,8 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public ArrayList<String> listarPaquetes() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+		return hpaq.getNombresPaquetesEspectaculo(espectaculo.getNombre());
 	}
 
 	@Override
@@ -58,20 +58,21 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public ArrayList<String> listarPlataformas() {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		ArrayList<String> platlist= hplat.getNombres();
+		return platlist;
 	}
 
 	@Override
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma) {
-		// TODO Auto-generated method stub
-		return null;
+		HandlerPlataforma hp = HandlerPlataforma.getInstance();
+		Plataforma plat = hp.getPlataforma(nomPlataforma);
+		return new ArrayList<String>(plat.getEspectaculos().keySet());
 	}
 
 	@Override
 	public ArrayList<String> listarFuncionesEspect(String nomEspectaculo) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<String>(this.espectaculo.getAllFunciones().keySet());
 	}
 
 	@Override
@@ -102,8 +103,7 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public DtEspectaculo mostrarEspectaculo() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DtEspectaculo(espectaculo);
 	}
 
 	@Override

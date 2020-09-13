@@ -131,14 +131,11 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,
 			LocalDate fechaAlta) {
-		// TODO Auto-generated method stub
 		this.nomfuncion = nombre;
 		this.fecha = fecha;
 		this.horainicio = horaInicio;
 		this.invitados = invitados;
 		this.fechaAlta = fechaAlta;
-		
-		
 		
 		
 	}
@@ -148,27 +145,18 @@ public class EspectaculoController implements IEspectaculo {
 		
 		//chequeo que existan los artistas invitados
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-		HashMap<String, Usuario> usuarios = hu.getUsuarios();
-		//Iterator<Entry<String, Usuario>> it = usuarios.entrySet().iterator();
-		
-		ArrayList<String> inv = this.invitados;
-		Iterator<String> it2 = inv.iterator();
-		
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
-		
-		while(it2.hasNext()) {
-			
-			Usuario artista = usuarios.get(it2.next());
-			if(artista != null && artista.esArtista()) {
-				nuevosinv.add(artista);
+		invitados.forEach(el -> {
+			if (!hu.getUsuarios().containsKey(el)) {
+				System.out.print("No existe el artista:" + el);
+			} else {
+				nuevosinv.add(hu.getUsuarios().get(el));
 			}
-			
-		}
+		});
+		
 		//creo la instancia nueva de funcion
 		Funcion nuevafun = new Funcion(this.nomfuncion, this.fechaAlta, this.horainicio, this.fecha, nuevosinv, this.espectaculo);
 		this.espectaculo.agregarFuncion(nuevafun);
-		
-		
 	}
 	
 	@Override
