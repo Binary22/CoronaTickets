@@ -2,40 +2,73 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class EspectaculoControllerTest {
+import datatypes.DtEspectaculo;
+import logica.Espectaculo;
+import logica.EspectaculoController;
+import logica.HandlerEspectaculos;
+import logica.IEspectaculo;
 
-	@Test
-	void testElegirEspectaculo() {
-		fail("Not yet implemented");
+class EspectaculoControllerTest {
+	
+	IEspectaculo ie = new EspectaculoController();
+	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+		presentacion.Principal.cargarDatos();
+	}
+
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
 	}
 
 	@Test
-	void testAltaFuncion() {
-		fail("Not yet implemented");
+	void testElegirEspectaculo() {
+		ie.elegirEspectaculo("Los Village Volvieron");
 	}
 
 	@Test
 	void testConfirmarAltaFuncion() {
-		fail("Not yet implemented");
-	}
-
+		ie.elegirEspectaculo("Los Village Volvieron");
+		ArrayList<String> artistas = new ArrayList<String>();
+		artistas.add("vpeople");
+		artistas.add("lospimpi");
+		ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(),artistas, LocalDate.now());
+		ie.ConfirmarAltaFuncion();
+		
+		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion"));
+		
+	};
+	
 	@Test
 	void testListarPlataformas() {
-		fail("Not yet implemented");
+		assertTrue(ie.listarPlataformas().contains("Facebook Watch"));
+		
 	}
 
+	
 	@Test
 	void testListarEspectaculosPlataforma() {
-		fail("Not yet implemented");
+		assertTrue(ie.listarEspectaculosPlataforma("Instagram Live").contains("Los Village Volvieron"));
 	}
 
+	
 	@Test
 	void testMostrarEspectaculosPlataforma() {
-		fail("Not yet implemented");
+		Espectaculo e = he.getEspectaculo("Los Village Volvieron");
+		DtEspectaculo dte = new DtEspectaculo(e);
+		ie.mostrarEspectaculosPlataforma("Instagram Live").contains(dte);
 	}
 
+	/*
 	@Test
 	void testMostrarFuncionesEspectaculo() {
 		fail("Not yet implemented");
@@ -43,6 +76,11 @@ class EspectaculoControllerTest {
 
 	@Test
 	void testListarFuncionesEspectaculo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testMostarFuncion() {
 		fail("Not yet implemented");
 	}
 
@@ -97,6 +135,11 @@ class EspectaculoControllerTest {
 	}
 
 	@Test
+	void testListarUsuarios() {
+		fail("Not yet implemented");
+	}
+
+	@Test
 	void testAltaEspectaculo() {
 		fail("Not yet implemented");
 	}
@@ -110,5 +153,6 @@ class EspectaculoControllerTest {
 	void testElegirFuncion() {
 		fail("Not yet implemented");
 	}
-
+	
+	*/
 }

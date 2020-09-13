@@ -206,7 +206,7 @@ public class Principal extends JFrame {
 	
 	}
 
-	protected void cargarDatos() {
+	public static void cargarDatos() {
 		// TODO Auto-generated method stub
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
@@ -305,7 +305,7 @@ public class Principal extends JFrame {
 	}
 
 
-	private LocalTime String2LocalTime(String s){
+	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);
 	}
 }

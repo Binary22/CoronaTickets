@@ -103,11 +103,6 @@ public class UsuarioController implements IUsuario{
 		return null;
 	}
 
-	@Override
-	public DtUsuario mostrarDatos(String nickname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void updateUsuario(String nombre, String apellido, LocalDate fechaNac) {
