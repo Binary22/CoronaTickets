@@ -41,8 +41,18 @@ class UsuarioControllerTest {
 	}
 
 	@Test
-	void testConfirmarAltaUsuario() {
-		fail("Not yet implemented");
+	void testConfirmarAltaUsuarioArtista() {
+		LocalDate fechanac = LocalDate.of(2000, 03, 29);
+		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		icontroller.altaArtista("el number 1", "...", "acqua.com");
+		icontroller.confirmarAltaUsuario();
+	}
+	
+	@Test
+	void testConfirmarAltaUsuarioUsuario() {
+		LocalDate fechanac = LocalDate.of(2000, 03, 29);
+		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		icontroller.confirmarAltaUsuario();
 	}
 
 	@Test
