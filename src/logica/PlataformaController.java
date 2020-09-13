@@ -69,8 +69,6 @@ public class PlataformaController implements IPlataforma {
 	}
 	
 	public void agregarEspectaculoPlataforma(Plataforma p, Espectaculo e) {
-		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
-		hplat.getPlataforma(p.getNombre());
 		p.addEspectaculo(e);
 	}
 
