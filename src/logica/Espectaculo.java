@@ -95,14 +95,7 @@ public class Espectaculo {
 		return setFunciones;
 	}
 	public Funcion getFuncion(String nomfuncion) {
-		ArrayList<Funcion> fun = this.setFunciones;
-		Iterator<Funcion> it = fun.iterator();
-		while(it.hasNext()) {
-			if(it.next().getNombre() == nomfuncion) {
-				return it.next();
-			}
-		}
-		return null;
+		return setFunciones.get(nomfuncion);
 	}
 	public void agregarFuncion(Funcion f) {
 		this.setFunciones.put(f.getNombre(), f);

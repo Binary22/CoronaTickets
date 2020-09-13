@@ -211,20 +211,20 @@ public class EspectaculoController implements IEspectaculo {
 		this.nomespec = nomespec;
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		Espectaculo e = he.getEspectaculo(nomespec);
-		ArrayList<Funcion> funciones = e.getAllFunciones();
-		Iterator<Funcion> it = funciones.iterator();
+		HashMap<String,Funcion> mpFunciones = e.getAllFunciones();
+		ArrayList<String> funciones = new ArrayList<String>(mpFunciones.keySet());
 		ArrayList<DtFuncion> dtFunciones = new ArrayList<DtFuncion>();
 		
-		while(it.hasNext()) {
-			Funcion fun = it.next();
+		for(int i = 1; i<funciones.size(); i++) {
+			Funcion fun = mpFunciones.get(funciones.get(i));
 			String nombre = fun.getNombre();
 			LocalDate fecha = fun.getFecha();
 			LocalTime horainicio = fun.getHoraInicio();
 			LocalDate fechaReg = fun.getFechaReg();
 			DtFuncion nueva = new DtFuncion(nombre, fecha, horainicio, fechaReg);
 			dtFunciones.add(nueva);
-			
-			}
+		}
+
 		return dtFunciones;
 		
 	}
