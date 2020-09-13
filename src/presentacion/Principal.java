@@ -55,7 +55,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 500, 1300, 900);
+		setBounds(350, 150, 500, 500);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
