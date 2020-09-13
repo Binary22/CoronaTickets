@@ -6,6 +6,7 @@ import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 
+import logica.Fabrica;
 import logica.IConsulta;
 
 import java.awt.GridBagConstraints;
@@ -33,7 +34,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaFuncionEspectaculoAnidado() {
+	public ConsultaFuncionEspectaculoAnidado(IConsulta icontrolador) {
 		setClosable(true);
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -66,7 +67,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblFecha, gbc_lblFecha);
 		
 		JLabel lblDate = new JLabel("date");
-		lblName.setText(icontrolador.mostrarFuncion().getFecha().toString());
+		lblDate.setText(icontrolador.mostrarFuncion().getFecha().toString());
 		GridBagConstraints gbc_lblDate = new GridBagConstraints();
 		gbc_lblDate.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDate.gridx = 1;
@@ -81,7 +82,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblHoraInicio, gbc_lblHoraInicio);
 		
 		JLabel lblTimeini = new JLabel("timeini");
-		lblName.setText(icontrolador.mostrarFuncion().getHorainicio().toString());
+		lblTimeini.setText(icontrolador.mostrarFuncion().getHorainicio().toString());
 		GridBagConstraints gbc_lblTimeini = new GridBagConstraints();
 		gbc_lblTimeini.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTimeini.gridx = 1;
@@ -96,16 +97,16 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblFechaDeRegistro, gbc_lblFechaDeRegistro);
 		
 		JLabel lblDatereg = new JLabel("datereg");
-		lblName.setText(icontrolador.mostrarFuncion().getFechaReg().toString());
+		lblDatereg.setText(icontrolador.mostrarFuncion().getFechaReg().toString());
 		GridBagConstraints gbc_lblDatereg = new GridBagConstraints();
 		gbc_lblDatereg.gridx = 1;
 		gbc_lblDatereg.gridy = 3;
 		getContentPane().add(lblDatereg, gbc_lblDatereg);
 
 	}
+	
+	public ConsultaFuncionEspectaculoAnidado() {
 
-	public ConsultaFuncionEspectaculoAnidado(IConsulta icontrolador) {
-		this.icontrolador = icontrolador;
 	}
 
 }

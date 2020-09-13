@@ -137,12 +137,11 @@ public class EspectaculoController implements IEspectaculo {
 		this.invitados = invitados;
 		this.fechaAlta = fechaAlta;
 		
-		
 	}
 	@Override
 	public void ConfirmarAltaFuncion() {
 		// TODO Auto-generated method stub
-		
+	
 		//chequeo que existan los artistas invitados
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();

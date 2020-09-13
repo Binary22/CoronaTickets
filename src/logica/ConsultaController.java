@@ -39,9 +39,12 @@ public class ConsultaController implements IConsulta {
 	}
 
 	@Override
-	public void elegirFuncion(String nomFuncion) {
-		// TODO Auto-generated method stub
-
+	public void elegirFuncion(String espectaculo, String nomFuncion) {
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo espec = he.getEspectaculo(espectaculo);
+		Funcion f = espec.getAllFunciones().get(nomFuncion);
+		//aca quizas deberia tirar una exepcion o algo
+		funcion = f;
 	}
 
 	@Override
@@ -110,7 +113,6 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public DtFuncion mostrarFuncion() {
-		// TODO Auto-generated method stub
 		return funcion.getDt();
 	}
 	

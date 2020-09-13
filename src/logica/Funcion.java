@@ -83,6 +83,15 @@ public class Funcion {
 		this.artistasInvitados = artistasInvitados;
 		//this.registros = registros;
 		this.espectaculo = espectaculo;
+		/*
+		 * 	
+	
+	
+	private ArrayList<Usuario> artistasInvitados;
+	private ArrayList<Registro> registros;
+	private Espectaculo espectaculo;
+		 */
+		
 	}
 	
 	

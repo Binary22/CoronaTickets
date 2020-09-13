@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ConsultaFuncionEspectaculo extends JInternalFrame {
+	private String espec;
 
 	/**
 	 * Launch the application.
@@ -126,7 +127,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		JButton btnVerFunciones = new JButton("Ver funciones");
 		btnVerFunciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String espec = (String)comboBox_1.getSelectedItem();
+				espec = (String)comboBox_1.getSelectedItem();
 				ArrayList<String> funcs = icontrolador.listarFuncionesEspect(espec);
 				//System.out.print("DEBUG" + funcs.size());
 				comboBox_2.removeAllItems();
@@ -155,7 +156,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// ACA TENGO QUE ABRIR EL CASO DE USO ANIDADO
 				// codigo de otro CU
-				icontrolador.elegirFuncion((String)comboBox_2.getSelectedItem());
+				icontrolador.elegirFuncion(espec, (String)comboBox_2.getSelectedItem());
 				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(icontrolador);
 				getParent().add(cdea);
 				cdea.setVisible(true);

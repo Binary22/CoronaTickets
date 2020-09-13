@@ -14,7 +14,7 @@ public interface IConsulta {
 	public ArrayList<DtEspectaculo> listarEspectaculosQueOrganiza();
 	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname);
 	public void elegirEspectaculo(String nomespect);
-	public void elegirFuncion(String nomFuncion);
+	//public void elegirFuncion(String nomFuncion);
 	public ArrayList<String> listarPaquetes();
 	public void seleccionarPaquete(String nompaquete);
 	public DtPaquete mostrarPaquete();
@@ -25,5 +25,6 @@ public interface IConsulta {
 	public DtFuncion mostrarFuncion();
 	public boolean esArtista(String nickname);
 	public DtArtista mostrarDatosArtista(String nickname);
+	public void elegirFuncion(String espectaculo, String nomFuncion);
 	
 }
