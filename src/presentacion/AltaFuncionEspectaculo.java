@@ -365,8 +365,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private void limpiarVentana() {
 		textFieldNomFuncion.setText(null);
 		comboBoxArtistas.removeAll();
-		spinnerHora.removeAll();
-		spinnerMinuto.removeAll();
+		//spinnerHora.removeAll();
+		//spinnerMinuto.removeAll();
 		comboBoxPlataformas.removeAll();
 		comboBoxEspectaculos.removeAll();
 		formattedTextField.removeAll();
