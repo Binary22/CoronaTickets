@@ -72,6 +72,8 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public ArrayList<String> listarFuncionesEspect(String nomEspectaculo) {
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		espectaculo = he.getEspectaculo(nomEspectaculo);
 		return new ArrayList<String>(this.espectaculo.getAllFunciones().keySet());
 	}
 

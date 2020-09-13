@@ -128,6 +128,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				String espec = (String)comboBox_1.getSelectedItem();
 				ArrayList<String> funcs = icontrolador.listarFuncionesEspect(espec);
+				//System.out.print("DEBUG" + funcs.size());
 				comboBox_2.removeAllItems();
 				for (int i = 0; i < funcs.size(); i++) {
 					comboBox_2.addItem(funcs.get(i));
