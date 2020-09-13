@@ -1,11 +1,14 @@
 package datatypes;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+
+import logica.Espectaculo;
 
 public class DtEspectaculo {
 	
 	private String nombre;
-	private int duracion;
+	private LocalTime duracion;
 	private String descripcion;
 	private int minEspectadores;
 	private int maxEspectadores;
@@ -13,7 +16,7 @@ public class DtEspectaculo {
 	private LocalDate fechaReg;
 	private float costo;
 	
-	public DtEspectaculo(String nombre, int duracion, String descripcion, int minEspectadores, int maxEspectadores,
+	public DtEspectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
 			String url, LocalDate fechaReg, float costo) {
 		super();
 		this.nombre = nombre;
@@ -25,10 +28,21 @@ public class DtEspectaculo {
 		this.fechaReg = fechaReg;
 		this.costo = costo;
 	}
+	public DtEspectaculo(Espectaculo e) {
+		nombre = e.getNombre();
+		duracion = e.getDuracion();
+		descripcion = e.getDescripcion();
+		minEspectadores = e.getMinEspectadores();
+		maxEspectadores = e.getMaxEspectadores();
+		url = e.getUrl();
+		fechaReg = e.getFechaReg();
+		costo = e.getCosto();
+		
+	}
 	public String getNombre() {
 		return nombre;
 	}
-	public int getDuracion() {
+	public LocalTime getDuracion() {
 		return duracion;
 	}
 	public String getDescripcion() {
