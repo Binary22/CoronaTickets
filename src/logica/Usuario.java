@@ -2,6 +2,7 @@ package logica;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
@@ -90,7 +91,19 @@ public class Usuario {
 	}
 	
 	ArrayList<DtRegistro> getRegistrosPrevios(){
-		return null;
+		ArrayList<DtRegistro> regsPrevios = new ArrayList<DtRegistro>();
+		ArrayList<Registro> regs = this.registros;
+		Iterator<Registro> it = regs.iterator();
+		while(it.hasNext()) {
+			if(!it.next().isCanjeado()) {
+				LocalDate fecha = it.next().getFecha();
+				int id = it.next().getId();
+				DtRegistro reg = new DtRegistro(fecha, id);
+				regsPrevios.add(reg);
+			}
+			
+		}
+		return regsPrevios;
 		
 	}
 	public void canjearRegistros(int id1,int id2,int id3) {
@@ -98,8 +111,14 @@ public class Usuario {
 	}
 	
 	public boolean tieneRegistroAFuncion(String nomfuncion) {
+		ArrayList<Registro> regs = this.registros;
+		Iterator<Registro> it = regs.iterator();
+		while(it.hasNext()) {
+			String nombreFuncion = it.next().getFuncion().getNombre();
+			if(nombreFuncion == nomfuncion)
+				return true;
+		}
 		return false;
-		
 	}
 	
 	public boolean llegoLimiteFuncion(String nomfuncion) {
@@ -108,7 +127,7 @@ public class Usuario {
 	}
 	
 	public void addFuncion(Registro reg) {
-		
+		this.registros.add(reg);
 	}
 	
 	public void confirmarUpdateUsuario(String nombre,String apellido,LocalDate fechaNac) {

@@ -47,6 +47,7 @@ public class HandlerUsuarios {
 		}
 		return list;
 	}
+	
 	public Usuario getUsuario(String nickname) {
 		return usuarios.get(nickname);
 	}

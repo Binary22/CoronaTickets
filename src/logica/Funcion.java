@@ -73,7 +73,7 @@ public class Funcion {
 		
 	}
 	public void addEspectador(Registro reg) {
-		
+		this.registros.add(reg);
 	}
 	public Funcion(String nombre, LocalDate fecha, LocalTime horaInicio, LocalDate fechaReg, ArrayList<Usuario> artistasInvitados, Espectaculo espectaculo) {
 		super();

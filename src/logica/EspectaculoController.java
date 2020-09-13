@@ -1,19 +1,22 @@
 package logica;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
-//import jdk.nashorn.internal.objects.IteratorResult;
-//import sun.security.jca.GetInstance;
+import datatypes.DtUsuario;
+import excepciones.noSeleccionoTres;
+import excepciones.usuarioNoExiste;
 
 public class EspectaculoController implements IEspectaculo {
 	private String nomPlataforma;
-	private String nickArtista;
+	private String nickUsuario;
 	private String nomespec;
 	private String descripcion;
 	private String nomfuncion;
@@ -27,7 +30,8 @@ public class EspectaculoController implements IEspectaculo {
 	private LocalDate fecha;
 	private ArrayList<String> invitados;
 	private Espectaculo espectaculo;
-	
+	private Registro[] regsCanjeados;
+	private boolean registroFueCanjeado = false;
 	
 	public String getNomPlataforma() {
 		return nomPlataforma;
@@ -36,10 +40,10 @@ public class EspectaculoController implements IEspectaculo {
 		this.nomPlataforma = nomPlataforma;
 	}
 	public String getNickArtista() {
-		return nickArtista;
+		return nickUsuario;
 	}
 	public void setNickArtista(String nickArtista) {
-		this.nickArtista = nickArtista;
+		this.nickUsuario = nickArtista;
 	}
 	public String getNomespec() {
 		return nomespec;
@@ -126,7 +130,9 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerEspectaculos espect = HandlerEspectaculos.getInstance();
 		this.espectaculo = espect.getEspectaculo(nomEspectaculo);
-		
+		if (this.espectaculo == null) {
+			System.out.print("no existe el espectaculo " + nomEspectaculo);
+		}
 	}
 	@Override
 	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,
@@ -180,12 +186,47 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat) {
 		// TODO Auto-generated method stub
-		return null;
+		HandlerPlataforma hp = HandlerPlataforma.getInstance();
+		Plataforma p = hp.getPlataforma(nomplat);
+		HashMap<String, Espectaculo> espect = p.getEspectaculos();
+		
+		ArrayList<DtEspectaculo> dtespect = new ArrayList<DtEspectaculo>();
+		for (Espectaculo value : espect.values()) {
+			String nombre = espect.get(value).getNombre();
+			LocalTime duracion = espect.get(value).getDuracion();
+			String descrip = espect.get(value).getDescripcion();
+			int minEspect = espect.get(value).getMinEspectadores();
+			int maxEspect = espect.get(value).getMaxEspectadores();
+			String url = espect.get(value).getUrl();
+			LocalDate fechaReg = espect.get(value).getFechaReg();
+			float costo = espect.get(value).getCosto();
+			DtEspectaculo nuevo = new DtEspectaculo(nombre, duracion, descrip, minEspect, maxEspect, url, fechaReg, costo);
+			dtespect.add(nuevo);
+		}
+		return dtespect;
 	}
 	@Override
 	public ArrayList<DtFuncion> mostrarFuncionesEspectaculo(String nomespec) {
 		// TODO Auto-generated method stub
-		return null;
+		this.nomespec = nomespec;
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(nomespec);
+		HashMap<String,Funcion> mpFunciones = e.getAllFunciones();
+		ArrayList<String> funciones = new ArrayList<String>(mpFunciones.keySet());
+		ArrayList<DtFuncion> dtFunciones = new ArrayList<DtFuncion>();
+		
+		for(int i = 1; i<funciones.size(); i++) {
+			Funcion fun = mpFunciones.get(funciones.get(i));
+			String nombre = fun.getNombre();
+			LocalDate fecha = fun.getFecha();
+			LocalTime horainicio = fun.getHoraInicio();
+			LocalDate fechaReg = fun.getFechaReg();
+			DtFuncion nueva = new DtFuncion(nombre, fecha, horainicio, fechaReg);
+			dtFunciones.add(nueva);
+		}
+
+		return dtFunciones;
+		
 	}
 	public ArrayList<String> listarFuncionesEspectaculo(String nomespec) {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
@@ -193,34 +234,82 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<String> nomfun = new ArrayList<String>(e.getAllFunciones().keySet());
 		return nomfun;
 	}
+	
+	public DtFuncion mostarFuncion(String nomFuncion) {
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(this.nomespec);
+		Funcion f = e.getFuncion(nomFuncion);
+		DtFuncion nueva = new DtFuncion(f.getNombre(), f.getFecha(), f.getHoraInicio(), f.getFechaReg());
+		return nueva;
+	}
+	
 	@Override
 	public ArrayList<String> mostrarEspectadores() {
 		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		return hu.getNombres();
 	}
 	@Override
-	public void ingresarDatosRegistro(String nickname, String nomfuncion, LocalDate fecha) {
+	public void ingresarDatosRegistro(String nickname, String nomfuncion) {
 		// TODO Auto-generated method stub
+		this.nickUsuario = nickname;
+		this.nomfuncion = nomfuncion;
 		
 	}
 	@Override
 	public ArrayList<DtRegistro> obtenerRegistrosPrevios() {
 		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		return espectador.getRegistrosPrevios();
 	}
 	@Override
-	public void canjearRegistros(int id1, int id2, int id3) {
+	public void canjearRegistros(DtRegistro[] dtRegs) throws noSeleccionoTres {
 		// TODO Auto-generated method stub
-		
+		if(dtRegs.length != 3) {
+			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
+		}
+		int id1 = dtRegs[0].getId();
+		int id2 =dtRegs[1].getId();
+		int id3 = dtRegs[2].getId();
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		ArrayList<Registro> regs = espectador.getRegistros();
+		Iterator<Registro> it = regs.iterator();
+		int i = 0;
+		while(it.hasNext()) {
+			Registro temp = it.next();
+			int idTemp = temp.getId();
+			if(idTemp == id1 || idTemp == id2 ||idTemp == id3) {
+				this.regsCanjeados[i] = temp;
+				i++;
+			}
+		}
+		this.registroFueCanjeado = true;
 	}
 	@Override
 	public boolean existeRegistroEspecAFun() {
 		// TODO Auto-generated method stub
-		return false;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		return espectador.tieneRegistroAFuncion(this.nomfuncion);
+		
 	}
 	@Override
-	public boolean funcionAlcanzoLimiteReg() {
+	public boolean funcionAlcanzoLimiteReg(String nomespect) {
 		// TODO Auto-generated method stub
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(nomespect);
+		Funcion fun = e.getFuncion(this.nomfuncion);
+		ArrayList<Registro> regs = fun.getRegistros();
+		int cant = 0;
+		for(int i = 0; i < regs.size(); i++) {
+			cant++;
+		}
+		if(cant >= e.getMaxEspectadores()) {
+			return true;
+		}
+			
 		return false;
 	}
 	@Override
@@ -234,8 +323,27 @@ public class EspectaculoController implements IEspectaculo {
 		
 	}
 	@Override
-	public void confirmarRegistro() {
+	public void confirmarRegistro(String nomespect) {
 		// TODO Auto-generated method stub
+		//obtengo la funcion
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(nomespect);
+		Funcion fun = e.getFuncion(this.nomfuncion);
+		//obtengo al usuario
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		LocalDate fechahoy = LocalDate.now();
+		Registro nuevo;
+		if(this.registroFueCanjeado) {
+			nuevo = new Registro(fechahoy, false, espectador, fun, 0);
+			nuevo.setRegsCanjeados(this.regsCanjeados);
+			this.registroFueCanjeado = false;
+		}else {
+			nuevo = new Registro(fechahoy, false, espectador, fun, e.getCosto());
+		}
+		
+		espectador.addFuncion(nuevo);
+		fun.addEspectador(nuevo);
 		
 	}
 	@Override
@@ -244,11 +352,40 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<String> artlist= huser.getNombresArtistas();
 		return artlist;
 	}
+	
+	public DtUsuario[] listarUsuarios() throws usuarioNoExiste{
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Collection<Usuario> usrs = hu.getUsuarios().values();
+		Object[] o = usrs.toArray();
+        Usuario[] usuarios = new Usuario[o.length];
+        for (int i = 0; i < o.length; i++) {
+            usuarios[i] = (Usuario) o[i];
+        }
+		
+
+        if (usuarios != null) {
+            DtUsuario[] du = new DtUsuario[usuarios.length];
+            Usuario user;
+
+            // Para separar lógica de presentación, no se deben devolver los Usuario,
+            // sino los DataUsuario
+            for (int i = 0; i < usuarios.length; i++) {
+                user = usuarios[i];
+                du[i] = new DtUsuario(user.getNickname(), user.getNombre(), user.getApellido(), user.getEmail(), user.getFechaNacimiento());
+            }
+
+            return du;
+        } else
+            throw new usuarioNoExiste("No existen usuarios registrados");
+
+    }
+		
+	
 	@Override
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion,
 			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) {
 		this.nomPlataforma= nomPlataforma;
-		this.nickArtista= nickArtista;
+		this.nickUsuario= nickArtista;
 		this.nomespec= nombre;
 		this.descripcion= descripcion;
 		this.duracion= duracion;
@@ -265,7 +402,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerUsuarios huser= HandlerUsuarios.getInstancia();
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
 		HandlerEspectaculos hesp= HandlerEspectaculos.getInstance();
-		Artista art= (Artista) huser.getUsuario(nickArtista);
+		Artista art= (Artista) huser.getUsuario(nickUsuario);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
 		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);		
 		Fabrica f = Fabrica.getInstance();
