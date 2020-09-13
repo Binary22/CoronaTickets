@@ -30,6 +30,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ConsultaFuncionEspectaculoAnidado() {
+		setClosable(true);
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};

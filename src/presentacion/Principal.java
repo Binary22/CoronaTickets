@@ -35,7 +35,8 @@ public class Principal extends JFrame {
 	private JInternalFrame ConsultaEspectaculoInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
-	
+	private JInternalFrame ConsultaFuncionInternalFrame;
+	private JInternalFrame ConsultaFuncionAnidadoInternalFrame;
 
 	/**
 	 * Launch the application.
@@ -117,6 +118,14 @@ public class Principal extends JFrame {
 		});
 		mnEspectaculos.add(mntmNewMenuItem_2);
 		
+		JMenuItem mntmConsultaFuncion = new JMenuItem("Consulta de función de espectaculo");
+		mntmConsultaFuncion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaFuncionInternalFrame.setVisible(true);
+			}
+		});
+		mnEspectaculos.add(mntmConsultaFuncion);
+		
 		JMenuItem mntmConsultaDeEspectaculo = new JMenuItem("Consulta de espectaculo");
 		mntmConsultaDeEspectaculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -170,6 +179,14 @@ public class Principal extends JFrame {
         AltaDeEspectaculoInternalFrame = new AltaDeEspectaculo();
         AltaDeEspectaculoInternalFrame.setVisible(false);
         getContentPane().add(AltaDeEspectaculoInternalFrame);
+        
+        ConsultaFuncionInternalFrame = new ConsultaFuncionEspectaculo();
+        ConsultaFuncionInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaFuncionInternalFrame);
+        
+        ConsultaFuncionAnidadoInternalFrame = new ConsultaFuncionEspectaculoAnidado();
+        ConsultaFuncionAnidadoInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaFuncionAnidadoInternalFrame);
         
         Fabrica fab= Fabrica.getInstance();
         IPlataforma iplat= fab.getIPlataforma();
