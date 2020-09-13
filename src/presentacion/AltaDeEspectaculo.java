@@ -314,7 +314,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 				String artista= (String) comboBoxArtistas.getSelectedItem();
 				int hora= (int) spnDuracionhs.getValue();
 				int min= (int) spnDuracionmin.getValue();
-				LocalTime Duracion= LocalTime.of(hora, min);
+				LocalTime Duracion= LocalTime.of(hora, min);// no puede durar mas de 23hs...por el tipo local time
 				int maxEsp= (int) spnMaxEsp.getValue();
 				int minEsp= (int) spnMinEsp.getValue();
 				float costo= (float) spnCosto.getValue();

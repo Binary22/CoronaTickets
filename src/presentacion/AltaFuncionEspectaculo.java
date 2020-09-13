@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import logica.Artista;
 import logica.Fabrica;
 import logica.IEspectaculo;
 
@@ -46,11 +47,12 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private String nombreEspectaculo;
 	private JSpinner spinnerHora;
 	private JSpinner spinnerMinuto;
-	private JTextField textElegirArtista;
+	private JComboBox<String> comboBoxArtistas;
 	private ArrayList<String> artistas;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
 	private JFormattedTextField formattedTextField;
+	private ArrayList<String> ArtistasElegidos = new ArrayList<String>();
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +85,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		setClosable(true);
 		setBounds(100, 100, 502, 337);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{15, 49, 68, 54, 66, 83, 50, -47, 0};
+		gridBagLayout.columnWidths = new int[]{15, 96, 88, 54, 87, 83, 50, -47, 0};
 		gridBagLayout.rowHeights = new int[]{0, 32, 25, 0, 78, -10, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -102,7 +104,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				cargarPlataformas();
+				cargarPlataformas();	
 			}
 		});
 		comboBoxPlataformas.addActionListener(new ActionListener() {
@@ -233,25 +235,33 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_6.gridy = 6;
 		getContentPane().add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
-		textElegirArtista = new JTextField();
-		GridBagConstraints gbc_textElegirArtista = new GridBagConstraints();
-		gbc_textElegirArtista.gridwidth = 3;
-		gbc_textElegirArtista.insets = new Insets(0, 0, 5, 5);
-		gbc_textElegirArtista.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textElegirArtista.gridx = 2;
-		gbc_textElegirArtista.gridy = 6;
-		getContentPane().add(textElegirArtista, gbc_textElegirArtista);
-		textElegirArtista.setColumns(10);
+		comboBoxArtistas = new JComboBox<String>();
+		comboBoxArtistas.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent arg0) {
+				cargarArtistasSinInvitar(ArtistasElegidos);// Tengo que cargar el box pero sin el artista que fue seleccionado.
+			}
+		});
+		GridBagConstraints gbc_comboBox2 = new GridBagConstraints();
+		gbc_comboBox2.gridwidth = 3;
+		gbc_comboBox2.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox2.gridx = 2;
+		gbc_comboBox2.gridy = 6;
+		getContentPane().add(comboBoxArtistas, gbc_comboBox2);
+		
+		
 		
 		JButton btnElegirArtista = new JButton("Elegir");
 		btnElegirArtista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String nombre = textElegirArtista.getText();
+				String nombre = (String) comboBoxArtistas.getSelectedItem();
+				ArtistasElegidos.add(nombre);
 				artistas.add(nombre);
-				textElegirArtista.setText(null);
+				comboBoxArtistas.removeItem(comboBoxArtistas.getSelectedItem());
 			}
 		});
 		GridBagConstraints gbc_btnElegirArtista = new GridBagConstraints();
+		gbc_btnElegirArtista.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnElegirArtista.insets = new Insets(0, 0, 5, 5);
 		gbc_btnElegirArtista.gridx = 5;
 		gbc_btnElegirArtista.gridy = 6;
@@ -265,8 +275,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			}
 		});
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-		gbc_btnAceptar.anchor = GridBagConstraints.WEST;
-		gbc_btnAceptar.gridwidth = 2;
+		gbc_btnAceptar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAceptar.gridx = 2;
 		gbc_btnAceptar.gridy = 8;
@@ -280,7 +289,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			}
 		});
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-		gbc_btnCancelar.gridwidth = 2;
+		gbc_btnCancelar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCancelar.gridx = 4;
 		gbc_btnCancelar.gridy = 8;
@@ -298,6 +307,24 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
             	
             	}
         }
+	
+	public void cargarArtistas() {
+		comboBoxArtistas.removeAll();
+        ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
+        for(int i = 0; i < nombres.size(); i++) {
+        		comboBoxArtistas.addItem(nombres.get(i));
+        }
+    }
+
+	
+	public void cargarArtistasSinInvitar(ArrayList<String> ArtistasElegidos) {
+		comboBoxArtistas.removeAll();
+        ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
+        for(int i = 0; i < nombres.size(); i++) {
+        	if (!ArtistasElegidos.contains(nombres.get(i)))
+        		comboBoxArtistas.addItem(nombres.get(i));
+        }
+    }
 	
 	public void cargarEspectaculos(String nomplat) {
 		comboBoxEspectaculos.removeAllItems();
@@ -337,7 +364,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	private void limpiarVentana() {
 		textFieldNomFuncion.setText(null);
-		textElegirArtista.setText(null);
+		comboBoxArtistas.removeAll();
 		spinnerHora.removeAll();
 		spinnerMinuto.removeAll();
 		comboBoxPlataformas.removeAll();
