@@ -191,11 +191,13 @@ public class Principal extends JFrame {
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
 		
-		pc.altaPlataforma("FaceBook Live", "Servicio de streaming de FaceBook", "https://www.live.facebook.com");
+		pc.altaPlataforma("Facebook Live", "Servicio de streaming de FaceBook", "https://www.live.facebook.com");
 		pc.confirmarAltaPlataforma();
 		pc.altaPlataforma("YouTube", "Red Social de compartir videos", "https://www.youtube.com");
 		pc.confirmarAltaPlataforma();
-		pc.altaPlataforma("TwitchTv", "Servicio de streaming live de Gamers que nunca dicen n-word en vivo", "https://www.twitch.tv");
+		pc.altaPlataforma("Twitch", "Servicio de streaming live de Gamers que nunca dicen n-word en vivo", "https://www.twitch.tv");
+		pc.confirmarAltaPlataforma();
+		pc.altaPlataforma("Instagram", "Servicio de streaming de instagram", "https://www.instagram.com");
 		pc.confirmarAltaPlataforma();
 		
 		IUsuario uc = f.getIUsuario();
@@ -210,7 +212,7 @@ public class Principal extends JFrame {
 		IEspectaculo ec = f.getIEspectaculo();
 		ec.altaEspectaculo("YouTube", "santia", "OpenSourceFEst", "Una celebracion del reggeton y el open source.", LocalTime.of(8, 30), 1, 5, "opensourcefest.io", 950, LocalDate.now());
 		ec.confirmarAltaEspectaculo();
-		ec.altaEspectaculo("TwitchTv", "santia", "GitKraken Corp Fest", "Una celebracion del capitalismo.", LocalTime.of(6, 06), 1, 12, "gitkrakenfest.com", 95000, LocalDate.now());
+		ec.altaEspectaculo("Twitch", "santia", "GitKraken Corp Fest", "Una celebracion del capitalismo.", LocalTime.of(6, 06), 1, 12, "gitkrakenfest.com", 95000, LocalDate.now());
 		ec.confirmarAltaEspectaculo();
 		
 		ArrayList<String> megustaelarte = new ArrayList<String>();
