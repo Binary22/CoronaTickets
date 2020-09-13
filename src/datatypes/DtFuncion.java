@@ -8,6 +8,7 @@ public class DtFuncion {
 	private LocalDate fecha;
 	private LocalTime horainicio;
 	private LocalDate fechaReg;
+	private String espectaculo;
 	public DtFuncion(String nombre, LocalDate fecha, LocalTime horainicio, LocalDate fechaReg) {
 		super();
 		this.nombre = nombre;
@@ -15,6 +16,15 @@ public class DtFuncion {
 		this.horainicio = horainicio;
 		this.fechaReg = fechaReg;
 	}
+	
+	public String getEspectaculo() {
+		return espectaculo;
+	}
+
+	public void setEspectaculo(String espectaculo) {
+		this.espectaculo = espectaculo;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

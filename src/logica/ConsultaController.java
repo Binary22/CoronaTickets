@@ -99,6 +99,11 @@ public class ConsultaController implements IConsulta {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		return hu.listarFuncionesQueSeRegistro(nickname);
 	}
+	
+	public ArrayList<DtFuncion> listarFuncionesDtQueSeRegistro(String nickname) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		return hu.listarFuncionesDtQueSeRegistro(nickname);
+	}
 
 	@Override
 	public DtPaquete mostrarPaquete() {

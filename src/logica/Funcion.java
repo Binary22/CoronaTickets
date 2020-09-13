@@ -64,6 +64,7 @@ public class Funcion {
 	}
 	public DtFuncion getDt() {
 		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fecha);
+		ret.setEspectaculo(getEspectaculo().getNombre());
 		return ret;
 		
 	}

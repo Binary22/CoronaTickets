@@ -207,7 +207,7 @@ public class ConsultaUsuario extends JInternalFrame {
 					lblWebsite.setText("");
 				}
 				
-				ArrayList<String> listafun = icontrolador.listarFuncionesQueSeRegistro(dtu.getNickname());
+				ArrayList<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
 				comboBoxFun.removeAllItems();
 				for (int i = 0; i < listafun.size(); i++) {
 					comboBoxFun.addItem(listafun.get(i));
@@ -239,7 +239,14 @@ public class ConsultaUsuario extends JInternalFrame {
 		btnConsultarFuncion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// aca se deberia llamar al caso de uso anidado consulta de funcion
-				String sel = (String)comboBoxFun.getSelectedItem();
+				DtFuncion sel = (DtFuncion) comboBoxFun.getSelectedItem();
+				icontrolador.elegirFuncion(sel.getEspectaculo(), sel.getNombre());
+				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(icontrolador);
+				getParent().add(cdea);
+				cdea.setVisible(true);
+				cdea.setClosable(true);
+				// para que se vaya la ventana de consultar funcion (no anidado)
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnConsultarFuncion = new GridBagConstraints();
@@ -253,6 +260,12 @@ public class ConsultaUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// aca se deberia llamar al caso de uso anidado consulta de espectaculo
 				String sel = (String)comboBoxFun.getSelectedItem();
+				icontrolador.elegirEspectaculo(sel);
+				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(icontrolador);
+				getParent().add(cea);
+				cea.setVisible(true);
+				cea.setClosable(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnConsultarEspectaculo = new GridBagConstraints();

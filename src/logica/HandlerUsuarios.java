@@ -1,6 +1,9 @@
 package logica;
 
 import java.util.HashMap;
+
+import datatypes.DtFuncion;
+
 import java.util.ArrayList;
 
 
@@ -75,6 +78,16 @@ public class HandlerUsuarios {
 			ret.add(listareg.get(i).getFuncion().getNombre());
 		}
 		return ret;
+	}
+
+	public ArrayList<DtFuncion> listarFuncionesDtQueSeRegistro(String nickname) {
+		Usuario u = usuarios.get(nickname);
+		ArrayList<Registro>  listareg = u.getRegistros();
+		ArrayList<DtFuncion> ret = new ArrayList<DtFuncion>();
+		for (int i = 0; i < listareg.size(); i++) {
+			ret.add(listareg.get(i).getFuncion().getDt());
+		}
+		return null;
 	}
 	
 	
