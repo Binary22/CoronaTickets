@@ -208,9 +208,11 @@ public class ConsultaUsuario extends JInternalFrame {
 				}
 				
 				ArrayList<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
-				comboBoxFun.removeAllItems();
-				for (int i = 0; i < listafun.size(); i++) {
-					comboBoxFun.addItem(listafun.get(i));
+				if (listafun != null) {
+					comboBoxFun.removeAllItems();
+					for (int i = 0; i < listafun.size(); i++) {
+						comboBoxFun.addItem(listafun.get(i));
+					}
 				}
 				
 			}

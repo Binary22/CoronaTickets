@@ -4,8 +4,11 @@ import java.time.LocalDate;
 
 public class Registro {
 	private LocalDate fecha;
-	private boolean canjeado;
+	private boolean yaFueCanjeado;
 	private int id;
+	private Registro[] regsCanjeados;
+	private float costo;
+	private static int seed = 1;
 	
 	private Usuario usuario;
 	private Funcion funcion;
@@ -16,10 +19,10 @@ public class Registro {
 		this.fecha = fecha;
 	}
 	public boolean isCanjeado() {
-		return canjeado;
+		return yaFueCanjeado;
 	}
 	public void setCanjeado(boolean canjeado) {
-		this.canjeado = canjeado;
+		this.yaFueCanjeado = canjeado;
 	}
 	public int getId() {
 		return id;
@@ -39,13 +42,27 @@ public class Registro {
 	public void setFuncion(Funcion funcion) {
 		this.funcion = funcion;
 	}
-	public Registro(LocalDate fecha, boolean canjeado, int id, Usuario usuario, Funcion funcion) {
+	public Registro(LocalDate fecha, boolean canjeado, Usuario usuario, Funcion funcion, float costo) {
 		super();
 		this.fecha = fecha;
-		this.canjeado = canjeado;
-		this.id = id;
+		this.yaFueCanjeado = canjeado;
+		this.id = seed++;
 		this.usuario = usuario;
 		this.funcion = funcion;
+		this.regsCanjeados = new Registro[3];
+		this.costo = costo;
+	}
+	public float getCosto() {
+		return costo;
+	}
+	public void setCosto(float costo) {
+		this.costo = costo;
+	}
+	public Registro[] getRegsCanjeados() {
+		return regsCanjeados;
+	}
+	public void setRegsCanjeados(Registro[] regsCanjeados) {
+		this.regsCanjeados = regsCanjeados;
 	}
 	
 	
