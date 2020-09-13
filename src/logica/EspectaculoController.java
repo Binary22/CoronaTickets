@@ -1,5 +1,6 @@
 package logica;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -126,7 +127,9 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerEspectaculos espect = HandlerEspectaculos.getInstance();
 		this.espectaculo = espect.getEspectaculo(nomEspectaculo);
-		
+		if (this.espectaculo == null) {
+			System.out.print("no existe el espectaculo " + nomEspectaculo);
+		}
 	}
 	@Override
 	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,
