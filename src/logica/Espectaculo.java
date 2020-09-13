@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Espectaculo {
 	private String nombre;
@@ -89,9 +90,16 @@ public class Espectaculo {
 	}
 	
 	public ArrayList<Funcion> getAllFunciones() {
-		return null;
+		return this.setFunciones;
 	}
 	public Funcion getFuncion(String nomfuncion) {
+		ArrayList<Funcion> fun = this.setFunciones;
+		Iterator<Funcion> it = fun.iterator();
+		while(it.hasNext()) {
+			if(it.next().getNombre() == nomfuncion) {
+				return it.next();
+			}
+		}
 		return null;
 	}
 	public void agregarFuncion(Funcion f) {

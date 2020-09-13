@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import datatypes.DtUsuario;
+import excepciones.noSeleccionoTres;
+import excepciones.usuarioNoExiste;
 
 public interface IEspectaculo {
 	public void elegirEspectaculo(String nomEspectaculo);
@@ -15,16 +18,18 @@ public interface IEspectaculo {
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat);
 	public ArrayList<DtFuncion> mostrarFuncionesEspectaculo(String nomespec);
 	public ArrayList<String> mostrarEspectadores();
-	public void ingresarDatosRegistro(String nickname, String nomfuncion, LocalDate fecha);
+	public void ingresarDatosRegistro(String nickname, String nomfuncion);
 	public ArrayList<DtRegistro> obtenerRegistrosPrevios();
-	public void canjearRegistros(int id1, int id2, int id3);
+	public void canjearRegistros(DtRegistro[] regs) throws noSeleccionoTres;
 	public boolean existeRegistroEspecAFun();
-	public boolean funcionAlcanzoLimiteReg();
+	public boolean funcionAlcanzoLimiteReg(String nomespect);
 	public void elegirNuevaFuncion(String nomfuncion);
 	public void elegirNuevoEspectador(String nickname);
-	public void confirmarRegistro();
+	public void confirmarRegistro(String nomespect);
 	public ArrayList<String> listarArtistas();
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion, LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta);
 	public void confirmarAltaEspectaculo();
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
+	public DtUsuario[] listarUsuarios() throws usuarioNoExiste;
+	public DtFuncion mostarFuncion(String nomFuncion);
 }
