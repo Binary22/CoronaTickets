@@ -52,7 +52,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JButton btnCancelar;
 	private JButton btnAceptar;
 	private JFormattedTextField formattedTextField;
-	String ArtistaElegido="";
+	private ArrayList<String> ArtistasElegidos = new ArrayList<String>();
 	/**
 	 * Launch the application.
 	 */
@@ -104,7 +104,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				cargarPlataformas();
+				cargarPlataformas();	
 			}
 		});
 		comboBoxPlataformas.addActionListener(new ActionListener() {
@@ -238,7 +238,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxArtistas = new JComboBox<String>();
 		comboBoxArtistas.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent arg0) {
-				cargarArtistas(ArtistaElegido);// Tengo que cargar el box pero sin el artista que fue seleccionado.
+				cargarArtistasSinInvitar(ArtistasElegidos);// Tengo que cargar el box pero sin el artista que fue seleccionado.
 			}
 		});
 		GridBagConstraints gbc_comboBox2 = new GridBagConstraints();
@@ -255,7 +255,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		btnElegirArtista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre = (String) comboBoxArtistas.getSelectedItem();
-				ArtistaElegido= nombre;
+				ArtistasElegidos.add(nombre);
 				artistas.add(nombre);
 				comboBoxArtistas.removeItem(comboBoxArtistas.getSelectedItem());
 			}
@@ -308,15 +308,21 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
             	}
         }
 	
-	
-	public void cargarArtistas(String ArtistaElegido) {
+	public void cargarArtistas() {
 		comboBoxArtistas.removeAll();
         ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
         for(int i = 0; i < nombres.size(); i++) {
-        	if (nombres.get(i) != ArtistaElegido)
         		comboBoxArtistas.addItem(nombres.get(i));
-        	
-         
+        }
+    }
+
+	
+	public void cargarArtistasSinInvitar(ArrayList<String> ArtistasElegidos) {
+		comboBoxArtistas.removeAll();
+        ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
+        for(int i = 0; i < nombres.size(); i++) {
+        	if (!ArtistasElegidos.contains(nombres.get(i)))
+        		comboBoxArtistas.addItem(nombres.get(i));
         }
     }
 	
