@@ -21,10 +21,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -32,6 +36,7 @@ import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Font;
 
 public class AltaDeEspectaculo extends JInternalFrame {
     /**
@@ -91,13 +96,14 @@ public class AltaDeEspectaculo extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
 		setTitle("Alta de espectaculo");
-		setBounds(100, 100, 645, 560);
+		setBounds(100, 100, 543, 436);
 		Fabrica f = Fabrica.getInstance();
 		IEspectaculo iesp= f.getIEspectaculo();
 		
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{177, 348, 206, 45, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 116, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{177, 26, 150, 45, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 73, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
@@ -181,6 +187,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblDescripcion, gbc_lblNewLabel_3);
 		
 		tpaneDescripcion = new JTextPane();
+		tpaneDescripcion.setFont(new Font("Arial", Font.PLAIN, 13));
 		GridBagConstraints gbc_textPane = new GridBagConstraints();
 		gbc_textPane.gridwidth = 2;
 		gbc_textPane.insets = new Insets(0, 0, 5, 5);
@@ -198,7 +205,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblDuracion, gbc_lblNewLabel_4);
 		
 		spnDuracionhs = new JSpinner();
-		spnDuracionhs.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spnDuracionhs.setModel(new SpinnerNumberModel(0, 0, 23, 1));
 		GridBagConstraints gbc_spinner_1 = new GridBagConstraints();
 		gbc_spinner_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner_1.insets = new Insets(0, 0, 5, 5);
@@ -207,7 +214,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(spnDuracionhs, gbc_spinner_1);
 		
 		spnDuracionmin = new JSpinner();
-		spnDuracionmin.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spnDuracionmin.setModel(new SpinnerNumberModel(0, 0, 59, 1));
 		GridBagConstraints gbc_spinner_2 = new GridBagConstraints();
 		gbc_spinner_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner_2.insets = new Insets(0, 0, 5, 5);
@@ -294,6 +301,10 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(lblFecha, gbc_lblNewLabel_9);
 		
 		calFecha = new JCalendar();
+		Date datem = new Date();  
+		Date dateM = new GregorianCalendar(2030, Calendar.DECEMBER, 31).getTime();
+		calFecha.setMinSelectableDate(datem);
+		calFecha.setMaxSelectableDate(dateM);
 		calFecha.getDayChooser().getDayPanel().setBackground(Color.WHITE);
 		calFecha.getDayChooser().getDayPanel().setForeground(Color.WHITE);
 		GridBagConstraints gbc_calendar = new GridBagConstraints();
@@ -309,17 +320,45 @@ public class AltaDeEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				String plataforma= (String) comboBoxPlataformas.getSelectedItem();
 				String artista= (String) comboBoxArtistas.getSelectedItem();
+				String nombre= textFieldNombre.getText();
+				String descripcion= tpaneDescripcion.getText();
+				String URL = textFieldURL.getText();
 				int hora= (int) spnDuracionhs.getValue();
 				int min= (int) spnDuracionmin.getValue();
-				LocalTime Duracion= LocalTime.of(hora, min);// no puede durar mas de 23hs...por el tipo local time
+				LocalTime Duracion= LocalTime.of(hora, min);
 				int maxEsp= (int) spnMaxEsp.getValue();
 				int minEsp= (int) spnMinEsp.getValue();
 				float costo= (float) spnCosto.getValue();
 				Instant instant= calFecha.getDate().toInstant();
 				ZonedDateTime zdt= instant.atZone(ZoneId.systemDefault());
 				LocalDate altaFecha= zdt.toLocalDate(); //esto es un asco pero se hace asi, salvo que cambiemos a date.
-				iesp.altaEspectaculo(plataforma, artista, textFieldNombre.getText(), tpaneDescripcion.getText(), Duracion, minEsp, maxEsp, textFieldURL.getText(), costo, altaFecha);
-				iesp.confirmarAltaEspectaculo();
+				try {
+						
+					}catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto");
+				}
+				if (maxEsp < minEsp) {
+					spnMaxEsp.setValue(0);
+					spnMinEsp.setValue(0);
+					JOptionPane.showMessageDialog(null, "El maximo de espectadores debe ser menor al minimo.");
+				}
+				else if (maxEsp==0) {
+					JOptionPane.showMessageDialog(null, "El maximo de espectadores debe ser mayor a 0");
+				}
+				else if ((hora == 0) && (min < 10)) {
+					spnDuracionhs.setValue(0);
+					spnDuracionmin.setValue(0);
+					JOptionPane.showMessageDialog(null, "La duracion no puede ser menor a 10 minutos.");
+				}
+				else if (textFieldNombre.getText().equals("") || tpaneDescripcion.getText().equals("") || textFieldURL.getText().equals("")|| tpaneDescripcion.getText().equals("") || textFieldURL.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto.");
+				}
+				else {
+					iesp.altaEspectaculo(plataforma, artista, nombre, descripcion, Duracion, minEsp, maxEsp, URL, costo, altaFecha);
+					iesp.confirmarAltaEspectaculo();
+					JOptionPane.showMessageDialog(null, "Espectaculo creado con exito!");
+				}
+				
 			}
 		});
 		btnNewButton_1.setForeground(Color.BLUE);
@@ -351,30 +390,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
 }
 
 
-
-
-
-/*private boolean checkFormulario() {
-    String PlataformaE = this.textFieldPlataforma:.getText();
-    String apellidoU = this.textFieldApellido.getText();
-    String ciU = this.textFieldCI.getText();
-
-    if (nombreU.isEmpty() || apellidoU.isEmpty() || ciU.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario",
-                JOptionPane.ERROR_MESSAGE);
-        return false;
-    }
-
-    try {
-        Integer.parseInt(ciU);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "La CI debe ser un numero", "Registrar Usuario",
-                JOptionPane.ERROR_MESSAGE);
-        return false;
-    }
-
-    return true;
-}*/
 
 /*private void limpiarFormulario() {
 	comboBoxPlataformas.removeAllItems();

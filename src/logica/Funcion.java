@@ -63,7 +63,7 @@ public class Funcion {
 		this.espectaculo = espectaculo;
 	}
 	public DtFuncion getDt() {
-		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fecha);
+		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fechaReg);
 		ret.setEspectaculo(getEspectaculo().getNombre());
 		return ret;
 		

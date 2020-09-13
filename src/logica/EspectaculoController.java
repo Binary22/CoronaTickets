@@ -157,7 +157,7 @@ public class EspectaculoController implements IEspectaculo {
 		});
 		
 		//creo la instancia nueva de funcion
-		Funcion nuevafun = new Funcion(this.nomfuncion, this.fechaAlta, this.horainicio, this.fecha, nuevosinv, this.espectaculo);
+		Funcion nuevafun = new Funcion(this.nomfuncion, this.fecha, this.horainicio, this.fechaAlta, nuevosinv, this.espectaculo);
 		this.espectaculo.agregarFuncion(nuevafun);
 	}
 	
