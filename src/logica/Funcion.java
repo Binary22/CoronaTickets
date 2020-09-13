@@ -63,7 +63,8 @@ public class Funcion {
 		this.espectaculo = espectaculo;
 	}
 	public DtFuncion getDt() {
-		return null;
+		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fecha);
+		return ret;
 		
 	}
 	public int getLimite() {

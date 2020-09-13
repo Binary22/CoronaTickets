@@ -109,7 +109,7 @@ public class ConsultaController implements IConsulta {
 	@Override
 	public DtFuncion mostrarFuncion() {
 		// TODO Auto-generated method stub
-		return null;
+		return funcion.getDt();
 	}
 	
 	public boolean esArtista(String nickname) {
@@ -121,6 +121,10 @@ public class ConsultaController implements IConsulta {
 		Usuario u = hu.getUsuario(nickname);
 		DtArtista dta = u.getDtArtista();
 		return dta;
+	}
+	
+	public Funcion getFuncion() {
+		return funcion;
 	}
 
 }

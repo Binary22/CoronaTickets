@@ -36,7 +36,6 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	private JInternalFrame ConsultaFuncionInternalFrame;
-	private JInternalFrame ConsultaFuncionAnidadoInternalFrame;
 
 	/**
 	 * Launch the application.
@@ -184,9 +183,6 @@ public class Principal extends JFrame {
         ConsultaFuncionInternalFrame.setVisible(false);
         getContentPane().add(ConsultaFuncionInternalFrame);
         
-        ConsultaFuncionAnidadoInternalFrame = new ConsultaFuncionEspectaculoAnidado();
-        ConsultaFuncionAnidadoInternalFrame.setVisible(false);
-        getContentPane().add(ConsultaFuncionAnidadoInternalFrame);
         
         Fabrica fab= Fabrica.getInstance();
         IPlataforma iplat= fab.getIPlataforma();

@@ -188,6 +188,12 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public ArrayList<String> listarFuncionesEspectaculo(String nomespec) {
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(nomespec);
+		ArrayList<String> nomfun = new ArrayList<String>(e.getAllFunciones().keySet());
+		return nomfun;
+	}
 	@Override
 	public ArrayList<String> mostrarEspectadores() {
 		// TODO Auto-generated method stub
@@ -269,6 +275,11 @@ public class EspectaculoController implements IEspectaculo {
 		esp.setArtista(art);
 		pc.agregarEspectaculoPlataforma(plat, esp);
 		hesp.addEspectaculo(esp);
+	}
+	@Override
+	public void elegirFuncion(String selectedItem) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 
 import logica.Fabrica;
+import logica.IConsulta;
 import logica.IEspectaculo;
 
 import java.awt.GridBagConstraints;
@@ -43,7 +44,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 	public ConsultaFuncionEspectaculo() {
 		setClosable(true);
 		Fabrica f = Fabrica.getInstance();
-		IEspectaculo icontrolador= f.getIEspectaculo();
+		IConsulta icontrolador= f.getIConsulta();
 		
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -60,6 +61,15 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		gbc_lblPlataformas.gridx = 0;
 		gbc_lblPlataformas.gridy = 0;
 		getContentPane().add(lblPlataformas, gbc_lblPlataformas);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.gridx = 1;
+		gbc_comboBox_1.gridy = 2;
+		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addFocusListener(new FocusAdapter() {
@@ -83,6 +93,11 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		btnVerEspectaculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String plat = (String)comboBox.getSelectedItem();
+				ArrayList<String> especs = icontrolador.listarEspectaculosPlataforma(plat);
+				comboBox_1.removeAllItems();
+				for (int i = 0; i < especs.size(); i++) {
+					comboBox_1.addItem(especs.get(i));
+				}
 				
 			}
 		});
@@ -100,18 +115,23 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		gbc_lblEspectaculos.gridy = 2;
 		getContentPane().add(lblEspectaculos, gbc_lblEspectaculos);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 1;
-		gbc_comboBox_1.gridy = 2;
-		getContentPane().add(comboBox_1, gbc_comboBox_1);
-		
+		JComboBox comboBox_2 = new JComboBox();
+		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
+		gbc_comboBox_2.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2.gridx = 1;
+		gbc_comboBox_2.gridy = 4;
+		getContentPane().add(comboBox_2, gbc_comboBox_2);
+
 		JButton btnVerFunciones = new JButton("Ver funciones");
 		btnVerFunciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String espec = (String)comboBox_1.getSelectedItem();
+				ArrayList<String> funcs = icontrolador.listarFuncionesEspect(espec);
+				comboBox_2.removeAllItems();
+				for (int i = 0; i < funcs.size(); i++) {
+					comboBox_2.addItem(funcs.get(i));
+				}
 			}
 		});
 		GridBagConstraints gbc_btnVerFunciones = new GridBagConstraints();
@@ -128,15 +148,19 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		gbc_lblFunciones.gridy = 4;
 		getContentPane().add(lblFunciones, gbc_lblFunciones);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		gbc_comboBox_2.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_2.gridx = 1;
-		gbc_comboBox_2.gridy = 4;
-		getContentPane().add(comboBox_2, gbc_comboBox_2);
 		
 		JButton btnConsultarFuncin = new JButton("Consultar función");
+		btnConsultarFuncin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// ACA TENGO QUE ABRIR EL CASO DE USO ANIDADO
+				// codigo de otro CU
+				icontrolador.elegirFuncion((String)comboBox_2.getSelectedItem());
+				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(icontrolador);
+				getParent().add(cdea);
+				cdea.setVisible(true);
+				cdea.setClosable(true);
+			}
+		});
 		GridBagConstraints gbc_btnConsultarFuncin = new GridBagConstraints();
 		gbc_btnConsultarFuncin.gridx = 1;
 		gbc_btnConsultarFuncin.gridy = 5;

@@ -25,4 +25,5 @@ public interface IConsulta {
 	public DtFuncion mostrarFuncion();
 	public boolean esArtista(String nickname);
 	public DtArtista mostrarDatosArtista(String nickname);
+	
 }

@@ -5,10 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+
+import logica.IConsulta;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
+	private IConsulta icontrolador;
 
 	/**
 	 * Launch the application.
@@ -47,6 +51,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblNombre, gbc_lblNombre);
 		
 		JLabel lblName = new JLabel("name");
+		lblName.setText(icontrolador.mostrarFuncion().getNombre());
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.insets = new Insets(0, 0, 5, 0);
 		gbc_lblName.gridx = 1;
@@ -61,6 +66,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblFecha, gbc_lblFecha);
 		
 		JLabel lblDate = new JLabel("date");
+		lblName.setText(icontrolador.mostrarFuncion().getFecha().toString());
 		GridBagConstraints gbc_lblDate = new GridBagConstraints();
 		gbc_lblDate.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDate.gridx = 1;
@@ -75,6 +81,7 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblHoraInicio, gbc_lblHoraInicio);
 		
 		JLabel lblTimeini = new JLabel("timeini");
+		lblName.setText(icontrolador.mostrarFuncion().getHorainicio().toString());
 		GridBagConstraints gbc_lblTimeini = new GridBagConstraints();
 		gbc_lblTimeini.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTimeini.gridx = 1;
@@ -89,11 +96,16 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblFechaDeRegistro, gbc_lblFechaDeRegistro);
 		
 		JLabel lblDatereg = new JLabel("datereg");
+		lblName.setText(icontrolador.mostrarFuncion().getFechaReg().toString());
 		GridBagConstraints gbc_lblDatereg = new GridBagConstraints();
 		gbc_lblDatereg.gridx = 1;
 		gbc_lblDatereg.gridy = 3;
 		getContentPane().add(lblDatereg, gbc_lblDatereg);
 
+	}
+
+	public ConsultaFuncionEspectaculoAnidado(IConsulta icontrolador) {
+		this.icontrolador = icontrolador;
 	}
 
 }
