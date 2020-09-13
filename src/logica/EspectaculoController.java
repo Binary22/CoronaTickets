@@ -400,7 +400,7 @@ public class EspectaculoController implements IEspectaculo {
 		if( hesp.getEspectaculo(nombre) == null) {
 			this.nomespec= nombre;
 			this.nomPlataforma= nomPlataforma;
-			this.nickArtista= nickArtista;
+			this.nickUsuario = nickArtista;
 			this.descripcion= descripcion;
 			this.duracion= duracion;
 			this.minEspect= minEspec;
