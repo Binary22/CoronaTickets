@@ -3,10 +3,12 @@ package presentacion;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import java.lang.Integer;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.SplitPaneUI;
 
 import logica.Artista;
 import logica.Fabrica;
@@ -19,12 +21,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
+import java.time.*;
+import java.io.*;
 
 public class Principal extends JFrame {
 
@@ -191,39 +197,99 @@ public class Principal extends JFrame {
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
 		
-		pc.altaPlataforma("FaceBook Live", "Servicio de streaming de FaceBook", "https://www.live.facebook.com");
-		pc.confirmarAltaPlataforma();
-		pc.altaPlataforma("YouTube", "Red Social de compartir videos", "https://www.youtube.com");
-		pc.confirmarAltaPlataforma();
-		pc.altaPlataforma("TwitchTv", "Servicio de streaming live de Gamers que nunca dicen n-word en vivo", "https://www.twitch.tv");
-		pc.confirmarAltaPlataforma();
-		
 		IUsuario uc = f.getIUsuario();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate fecha1 = LocalDate.parse("07/10/1999", formatter);
-		uc.altaUsuario("santic", "Santiago", "Costa", "santicosta@fing.edu.uy", fecha1);
+		uc.altaUsuario("eleven11","Eleven","Ten","eleven11@gmail.com",LocalDate.parse("31/12/1971",formatter));
 		uc.confirmarAltaUsuario();
-		uc.altaUsuario("santia", "Santiago", "Acquarone", "santiacqua@fing.edu.uy", fecha1);
-		uc.altaArtista("Reggeatonero profesional", "Cantante Uruguayo que canta sobre el open source", "www.opensanti.io");
+		uc.altaUsuario("costas","Gerardo","Costas","gcostas@gmail.com",LocalDate.parse("15/11/1983", formatter));
 		uc.confirmarAltaUsuario();
+		uc.altaUsuario("waston","Emma","Watson","e.watson@gmail.com",LocalDate.parse("15/04/1990", formatter));
+		uc.confirmarAltaUsuario();
+		uc.altaUsuario("house","Gregory","House", "greghouse@gmail.com",LocalDate.parse("15/05/1959", formatter));
+		uc.confirmarAltaUsuario();
+		uc.altaUsuario("sergiop", "Sergio","Puglia","puglia@alpanpan.com.uy",LocalDate.parse("28/01/1950", formatter));
+		uc.confirmarAltaUsuario();
+		uc.altaUsuario("chino","Alvaro","Recoba","chino@trico.org.uy", LocalDate.parse("17/03/1976", formatter));
+		uc.confirmarAltaUsuario();
+		uc.altaUsuario("tonyp","Antonio","Pacheco","eltony@manya.org.uy",LocalDate.parse("14/02/1955",formatter));
+		uc.confirmarAltaUsuario();
+		uc.altaUsuario("lachiqui","Mirtha","Legrand","lachiqui@hotmail.com.ar",LocalDate.parse("23/02/1927",formatter));
+		uc.confirmarAltaUsuario();
+		uc.altaUsuario("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",LocalDate.parse("08/05/1937",formatter));
 		
-		IEspectaculo ec = f.getIEspectaculo();
-		ec.altaEspectaculo("YouTube", "santia", "OpenSourceFEst", "Una celebracion del reggeton y el open source.", LocalTime.of(8, 30), 1, 5, "opensourcefest.io", 950, LocalDate.now());
-		ec.confirmarAltaEspectaculo();
-		ec.altaEspectaculo("TwitchTv", "santia", "GitKraken Corp Fest", "Una celebracion del capitalismo.", LocalTime.of(6, 06), 1, 12, "gitkrakenfest.com", 95000, LocalDate.now());
-		ec.confirmarAltaEspectaculo();
 		
-		ArrayList<String> megustaelarte = new ArrayList<String>();
-		megustaelarte.add("santia");
-		
-		ec.altaFuncion("Master", fecha1, LocalTime.of(8,45), megustaelarte, LocalDate.now());
-		ec.elegirEspectaculo("GitKraken Corp Fest");
-		ec.ConfirmarAltaFuncion();
-		
-		ec.altaFuncion("Dev", fecha1, LocalTime.of(10,30), megustaelarte, LocalDate.now());
-		ec.elegirEspectaculo("GitKraken Corp Fest");
-		ec.ConfirmarAltaFuncion();
+		String line = "nl";
+		String splitBy = ",";
 
+
+		//carga artistas.
+		try   
+		{  
+		//parsing a CSV file into BufferedReader class constructor  
+			BufferedReader br = new BufferedReader(new FileReader("data/artistas.csv"));  
+			while ((line = br.readLine()) != null)   //returns a Boolean value  
+			{  
+			String[] artista = line.split(splitBy);    // use comma as separator  
+			uc.altaUsuario(artista[0], artista[2], artista[3], artista[1], LocalDate.parse(artista[4], formatter));
+			uc.altaArtista(artista[5], artista[6], artista[7]);
+			uc.confirmarAltaUsuario();
+			} 
+			br.close();
+		} catch (IOException e) {  
+			e.printStackTrace();  
+		};
+
+		IEspectaculo ec = f.getIEspectaculo();
+		try{
+			BufferedReader br = new BufferedReader(new FileReader("data/plataformas.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] plataforma = line.split(splitBy);
+				pc.altaPlataforma(plataforma[0], plataforma[1], plataforma[2]);
+				pc.confirmarAltaPlataforma();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
+
+		splitBy = ";";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/espectaculos.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] espectaculo = line.split(splitBy);
+				ec.altaEspectaculo(espectaculo[1], espectaculo[0], espectaculo[2], espectaculo[3], String2LocalTime(espectaculo[4]), Integer.parseInt(espectaculo[5]), Integer.parseInt(espectaculo[6]), espectaculo[7], Float.parseFloat(espectaculo[8]), LocalDate.parse(espectaculo[9], formatter));
+				ec.confirmarAltaEspectaculo();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/funciones.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] funcion = line.split(splitBy);
+				String[] artistax = funcion[5].split(",");
+				ArrayList<String> artistas = new ArrayList<String>();
+				for(String s:artistax) {
+					if (s != "") artistas.add(s);
+				}
+				ec.elegirEspectaculo(funcion[4]);
+				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas, LocalDate.parse(funcion[3], formatter));		
+				ec.ConfirmarAltaFuncion();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+
+	private LocalTime String2LocalTime(String s){
+		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);
+	}
 }
