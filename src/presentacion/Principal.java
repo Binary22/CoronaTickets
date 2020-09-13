@@ -8,6 +8,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import excepciones.NombreEspectaculoExisteException;
+import excepciones.NombreFuncionexisteException;
+import excepciones.UsuarioConMismoMailException;
+import excepciones.UsuarioConMismoNickException;
 import logica.Artista;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
@@ -146,7 +150,21 @@ public class Principal extends JFrame {
 		JMenuItem mntmCargarDatos = new JMenuItem("Cargar Datos");
 		mntmCargarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarDatos();
+				try {
+					cargarDatos();
+				} catch (NombreEspectaculoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UsuarioConMismoNickException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UsuarioConMismoMailException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NombreFuncionexisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -186,7 +204,7 @@ public class Principal extends JFrame {
 	
 	}
 
-	protected void cargarDatos() {
+	protected void cargarDatos() throws NombreEspectaculoExisteException, UsuarioConMismoNickException, UsuarioConMismoMailException, NombreFuncionexisteException {
 		// TODO Auto-generated method stub
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();

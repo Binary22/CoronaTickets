@@ -93,9 +93,7 @@ public class Espectaculo {
 	public HashMap<String,Funcion> getAllFunciones() {
 		return setFunciones;
 	}
-	public Funcion getFuncion(String nomfuncion) {
-		return null;
-	}
+
 	public void agregarFuncion(Funcion f) {
 		this.setFunciones.put(f.getNombre(), f);
 	}
