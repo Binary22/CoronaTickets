@@ -125,6 +125,18 @@ class UsuarioControllerTest {
 		assertTrue(hu.getUsuarios().containsKey("santiacq"));
 		assertTrue(hu.getUsuario("santiacq").esArtista() == false);
 	}
+	
+	@Test
+	void testSettersGetters() {
+		icontroller.setApellido("Gonzalez");
+		icontroller.setNombre("Joaquin");
+		icontroller.setEmail("jotaseis@gmail.com");
+		icontroller.setFechaNacimiento(LocalDate.of(1997, 04, 19));
+		assertTrue(icontroller.getApellido().equals("Gonzalez"));
+		assertTrue(icontroller.getNombre().equals("Joaquin"));
+		assertTrue(icontroller.getEmail().equals("jotaseis@gmail.com"));
+		assertTrue(icontroller.getFechaNacimiento().equals(LocalDate.of(1997, 04, 19)));
+	}
 
 	
 	/*

@@ -197,8 +197,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_comboBox_1.gridy = 8;
 		getContentPane().add(comboBox_1, gbc_comboBox_1);
 		
-		paquetes = ic.listarPaquetes();
-		ConsultaEspectaculo.updateComboBox(paquetes, comboBox_1);
+		//ConsultaEspectaculo.updateComboBox(paquetes, comboBox_1);
 		
 		JButton btnConsultar_1 = new JButton("Consultar");
 		btnConsultar_1.addActionListener(new ActionListener() {

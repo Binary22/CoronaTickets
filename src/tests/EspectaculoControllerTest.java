@@ -214,14 +214,104 @@ class EspectaculoControllerTest {
 		assertFalse(ie.existeRegistroEspecAFun());
 	}
 	
-	/*
-
-
 	@Test
-	void testCanjearRegistros() {
-		fail("Not yet implemented");
+	void testElegirFuncion() {
+		ie.elegirFuncion("Los Village Volvieron - 1");
+		assertTrue(ie.getNomfuncion().equals("Los Village Volvieron - 1"));
 	}
+	
+	@Test
+	void testCanjearRegistrosNoSonTres() {
+		ie.ingresarNombreEspectador("waston");
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ie.confirmarRegistro("Los Village Volvieron");
+		ie.ingresarNombreEspectador("waston");
+		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
+		ie.confirmarRegistro("Los Village Volvieron");
+		ie.ingresarNombreEspectador("waston");
+		DtRegistro[] dtr = new DtRegistro[2];
+		ArrayList<DtRegistro> dtre = ie.obtenerRegistrosPrevios();
+		for (int i = 0; i<2; i++) {
+			dtr[i] = dtre.get(i);
+		}
+		try {
+		ie.canjearRegistros(dtr);
+		} catch (noSeleccionoTres e) {
+			e.printStackTrace();
+		}
+		
+		assertThrows(noSeleccionoTres.class , () -> ie.canjearRegistros(dtr));
+		
+	}
+	
 
+
+	
+	@Test
+	void testConfirmarCanje() {
+		ie.ingresarNombreEspectador("waston");
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ie.confirmarRegistro("Los Village Volvieron");
+		ie.ingresarNombreEspectador("waston");
+		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
+		ie.confirmarRegistro("Los Village Volvieron");
+		ie.ingresarNombreEspectador("waston");
+		ie.ingresarNombreFuncion("Los Village Volvieron - 3");
+		ie.confirmarRegistro("Los Village Volvieron");
+		DtRegistro[] dtr = new DtRegistro[3];
+		ArrayList<DtRegistro> dtre = ie.obtenerRegistrosPrevios();
+		for (int i = 0; i<3; i++) {
+			dtr[i] = dtre.get(i);
+		}
+		try {
+		ie.canjearRegistros(dtr);
+		} catch (noSeleccionoTres e) {
+			e.printStackTrace();
+		}
+		ie.ingresarNombreFuncion("Memphis Blues World - A");
+		ie.ingresarNombreEspectador("waston");
+		ie.confirmarRegistro("Memphis Blues World");
+	}
+	
+	@Test
+	void testGetSetEspectaculo() {
+		ie.setNomPlataforma("Facebook Watch");
+		assertTrue(ie.getNomPlataforma().equals("Facebook Watch"));
+		
+		ie.setNickArtista("vpeople");
+		assertTrue(ie.getNickArtista().equals("vpeople"));
+		
+		ie.setNomespec("Memphis Blues World");
+		assertTrue(ie.getNomespec().equals("Memphis Blues World"));
+		
+		ie.setDescripcion("desc");
+		assertTrue(ie.getDescripcion().equals("desc"));
+		
+		ie.setNomfuncion("Memphis Blues World - A");
+		assertTrue(ie.getNomfuncion().equals("Memphis Blues World - A"));
+		
+		ie.setUrl("url");
+		assertTrue(ie.getUrl().equals("url"));
+		
+		ie.setMinEspect(50);
+		assertTrue(ie.getMinEspect() == 50);
+		
+		ie.setMaxEspect(500);
+		assertTrue(ie.getMaxEspect()== 500);
+		
+		ie.setCosto(Float.valueOf("100"));
+		assertTrue(ie.getCosto() == 100);
+		
+		ie.setHorainicio(LocalTime.MIDNIGHT);
+		assertTrue(ie.getHorainicio().equals(LocalTime.MIDNIGHT));
+		
+		ie.setFechaAlta(LocalDate.of(2020, 10, 10));
+		assertTrue(ie.getFechaAlta().equals(LocalDate.of(2020, 10, 10)));
+		
+	}
+	
+
+	/*
 	
 
 	

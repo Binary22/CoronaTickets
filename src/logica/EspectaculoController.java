@@ -291,6 +291,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<Registro> regs = espectador.getRegistros();
 		Iterator<Registro> it = regs.iterator();
 		int i = 0;
+		this.regsCanjeados = new Registro[3];
 		while(it.hasNext()) {
 			Registro temp = it.next();
 			int idTemp = temp.getId();
@@ -298,6 +299,9 @@ public class EspectaculoController implements IEspectaculo {
 				this.regsCanjeados[i] = temp;
 				i++;
 			}
+		}
+		for (int j = 0; j<3;j++) {
+		this.regsCanjeados[j] = null;
 		}
 		this.registroFueCanjeado = true;
 	}
@@ -434,7 +438,7 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	@Override
 	public void elegirFuncion(String selectedItem) {
-		// TODO Auto-generated method stub
+		this.nomfuncion = selectedItem;
 		
 	}
 	

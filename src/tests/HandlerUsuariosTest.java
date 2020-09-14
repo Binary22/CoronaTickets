@@ -30,6 +30,14 @@ class HandlerUsuariosTest {
 		ArrayList<String> l = hu.getNombresArtistas();
 		assertTrue(l.contains("vpeople"));
 	}
+	@Test
+	void testListarFuncionesQueSeRegistro() {
+		hu.listarFuncionesQueSeRegistro("waston").isEmpty();
+	}
+	@Test
+	void testListarFuncionesDtQueSeRegistro() {
+		hu.listarFuncionesDtQueSeRegistro("waston");
+	}
 	
 	
 	/*
@@ -48,15 +56,6 @@ class HandlerUsuariosTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testListarFuncionesQueSeRegistro() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListarFuncionesDtQueSeRegistro() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testExisteMail() {
