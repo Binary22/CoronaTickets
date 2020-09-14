@@ -116,7 +116,7 @@ public class Usuario {
 		Iterator<Registro> it = regs.iterator();
 		while(it.hasNext()) {
 			String nombreFuncion = it.next().getFuncion().getNombre();
-			if(nombreFuncion.compareTo(nomfuncion) == 0)
+			if(nombreFuncion.compareTo(nomfuncion)==0)
 				return true;
 		}
 		return false;

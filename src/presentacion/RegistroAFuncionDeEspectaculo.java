@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import java.awt.Insets;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
+
 import com.toedter.calendar.JCalendar;
 
 import datatypes.DtFuncion;
@@ -34,7 +36,13 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import javax.swing.JRadioButton;
+import javax.swing.JFormattedTextField;
 
 public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	private JTextField textFieldFechaFun;
@@ -49,7 +57,9 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	private String nombreEspectaculo;
 	private JComboBox<String> comboBoxFuncionesEspect;
 	private String nombreFuncion;
-	JList<DtRegistro> listRegistros;
+	JList<String> listRegistros;
+	private JFormattedTextField formattedTextField;
+	private LocalDate fechaFuncion;
 
 	/**
 	 * Launch the application.
@@ -81,9 +91,9 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		setTitle("Registro a funcion de espectaculo");
 		setBounds(100, 100, 641, 640);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 159, 179, 126, 0, 128, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 159, 179, 59, 0, 128, 0, 0};
 		gridBagLayout.rowHeights = new int[]{18, 27, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 107, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
@@ -173,6 +183,8 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_2.gridy = 3;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
+		
+		
 		textFieldFechaFun = new JTextField();
 		textFieldFechaFun.setEditable(false);
 		GridBagConstraints gbc_textFieldFechaFun = new GridBagConstraints();
@@ -240,19 +252,29 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			}
 		});
 		
-comboBoxEspectadores = new JComboBox<String>();
-		
-		comboBoxEspectadores.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
+		JButton btnVerEspectadores = new JButton("Ver espectadores");
+		btnVerEspectadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				cargarEspectadores();
 			}
 		});
 		
+		GridBagConstraints gbc_btnVerEspectadores = new GridBagConstraints();
+		gbc_btnVerEspectadores.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerEspectadores.gridx = 6;
+		gbc_btnVerEspectadores.gridy = 7;
+		getContentPane().add(btnVerEspectadores, gbc_btnVerEspectadores);
+		
+		comboBoxEspectadores = new JComboBox<String>();
 		comboBoxEspectadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreEspectador = (String) comboBoxEspectadores.getSelectedItem();
 				ctrlEspect.ingresarNombreEspectador(nombreEspectador);
+				if(ctrlEspect.existeRegistroEspecAFun()) {
+				
+					JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elige otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
+					comboBoxEspectadores.removeAllItems();
+				}
 				
 			}
 		});
@@ -313,6 +335,8 @@ comboBoxEspectadores = new JComboBox<String>();
 		gbc_lblNewLabel_12.gridy = 7;
 		getContentPane().add(lblNewLabel_12, gbc_lblNewLabel_12);
 		
+	
+		
 		
 		
 		JLabel lblObtenerRegistrosPrevios = new JLabel("Obtener registros previos:");
@@ -345,7 +369,7 @@ comboBoxEspectadores = new JComboBox<String>();
 		gbc_lblNewLabel_14.gridy = 9;
 		getContentPane().add(lblNewLabel_14, gbc_lblNewLabel_14);
 		
-		listRegistros = new JList<DtRegistro>();
+		listRegistros = new JList<String>();
 		
 		GridBagConstraints gbc_listRegistros = new GridBagConstraints();
 		gbc_listRegistros.gridheight = 3;
@@ -361,12 +385,12 @@ comboBoxEspectadores = new JComboBox<String>();
 
 		btnCanjear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(!ctrlEspect.existeRegistroEspecAFun()) {
+				//if(!ctrlEspect.existeRegistroEspecAFun()) {
 					canjear();
-				}else {
-					JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elige otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
+				//}else {
+				//	JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elige otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 					
-				}
+				//}
 			}
 		});
 		
@@ -379,17 +403,47 @@ comboBoxEspectadores = new JComboBox<String>();
 		gbc_btnCanjear.gridy = 10;
 		getContentPane().add(btnCanjear, gbc_btnCanjear);
 		
+		JLabel lblFecha = new JLabel("Fecha:");
+		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
+		gbc_lblFecha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFecha.anchor = GridBagConstraints.EAST;
+		gbc_lblFecha.gridx = 1;
+		gbc_lblFecha.gridy = 13;
+		getContentPane().add(lblFecha, gbc_lblFecha);
+		
+		MaskFormatter mask = null;
+        try {
+            // Create a MaskFormatter for accepting phone number, the # symbol accept
+            // only a number. We can also set the empty value with a place holder
+            // character.
+            mask = new MaskFormatter("##/##/####");
+            mask.setPlaceholderCharacter('_');
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		
+		formattedTextField = new JFormattedTextField(mask);
+		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+		gbc_formattedTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_formattedTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_formattedTextField.gridx = 2;
+		gbc_formattedTextField.gridy = 13;
+		getContentPane().add(formattedTextField, gbc_formattedTextField);
+		
+		
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setForeground(Color.BLUE);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				confirmarRegistroFuncion();
+				confirmarRegistro();
+				limpiarVentana();
 			}
 		});
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAceptar.gridx = 2;
-		gbc_btnAceptar.gridy = 12;
+		gbc_btnAceptar.gridy = 15;
 		getContentPane().add(btnAceptar, gbc_btnAceptar);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
@@ -401,10 +455,11 @@ comboBoxEspectadores = new JComboBox<String>();
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.anchor = GridBagConstraints.WEST;
 		gbc_btnNewButton_1.gridwidth = 2;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 3;
-		gbc_btnNewButton_1.gridy = 12;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_1.gridx = 5;
+		gbc_btnNewButton_1.gridy = 15;
 		getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
 
 	}
@@ -460,19 +515,19 @@ comboBoxEspectadores = new JComboBox<String>();
 	public void cargarRegistrosPrevios() {
 		//elimino lo anterior
 		listRegistros.removeAll();
-		//Crear un objeto DefaultListModel
-		
-		//Recorrer el contenido del ArrayList
+	
 		ArrayList<DtRegistro> regs = ctrlEspect.obtenerRegistrosPrevios();
+		
 		if(!regs.isEmpty()) {
-			DefaultListModel<DtRegistro> listModel = new DefaultListModel<DtRegistro>();
+			
+			DefaultListModel<String> listModel = new DefaultListModel<String>();
 		
 			for(int i=0; i<regs.size(); i++) {
-				//Añadir cada elemento del ArrayList en el modelo de la lista
-				listModel.add(i, regs.get(i));
+				listModel.add(i,String.valueOf(regs.get(i).getId()));
 			}
 			//Asociar el modelo de lista al JList
 			listRegistros.setModel(listModel);
+			
 		}else {
 			JOptionPane.showMessageDialog(null, "El usuario no posee registros previos", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 			
@@ -485,10 +540,10 @@ comboBoxEspectadores = new JComboBox<String>();
 
 	    // Get all the selected items using the indices
 		int i;
-		DtRegistro[] regSelect = new DtRegistro[3];
+		int[] regSelect = new int[3];
 	    for (i = 0; i < selectedIx.length; i++) {
-	      DtRegistro sel = listRegistros.getModel().getElementAt(selectedIx[i]);
-	      regSelect[i] = sel;
+	      String sel = listRegistros.getModel().getElementAt(selectedIx[i]);
+	      regSelect[i] = Integer.parseInt(sel);
 	    }
 	    
             try {
@@ -500,9 +555,7 @@ comboBoxEspectadores = new JComboBox<String>();
             }
 	}
 	
-	public void confirmarRegistroFuncion() {
-		ctrlEspect.confirmarRegistro(nombreEspectaculo);
-	}
+	
 	
 	public void limpiarVentana() {
 		textFieldFechaFun.setText(null);
@@ -512,6 +565,25 @@ comboBoxEspectadores = new JComboBox<String>();
 		comboBoxEspectPlat.removeAllItems();
 		comboBoxEspectadores.removeAllItems();
 		comboBoxFuncionesEspect.removeAllItems();
+		listRegistros.removeAll();
+		formattedTextField.setText(null);
+	}
+	
+	public void confirmarRegistro() {
+		String fecha = formattedTextField.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		fechaFuncion = null;
+		try {
+			fechaFuncion = LocalDate.parse(fecha, formatter);
+		}
+		catch(DateTimeParseException e1) {
+			JOptionPane.showMessageDialog(null, "Fecha Invalida");
+			System.out.print("Fallo el parseo de la fecha");
+			return;
+		}
+		ctrlEspect.confirmarRegistro(nombreEspectaculo, fechaFuncion);
+		
+		
 	}
 	
 	/*public DtRegistro[] cargarRegistrosPrevios(){

@@ -31,11 +31,7 @@ public class DtRegistro {
 		this.id = id;
 	}
 	
-	/* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
-     */
-    public String toString() {
-        return "Fecha: " + getFecha() + "|Id:" + getId();
-    }
+	
 	
 	
 }
