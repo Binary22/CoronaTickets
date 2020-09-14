@@ -79,6 +79,7 @@ public class UsuarioController implements IUsuario{
 	
 	@Override
 	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
+		this.esArtista = false;
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
 		boolean existemail= huser.existeMail(mail);
 		if ((huser.getUsuario(nickname) == null) && (!existemail)) {

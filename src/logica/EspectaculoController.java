@@ -202,15 +202,15 @@ public class EspectaculoController implements IEspectaculo {
 		HashMap<String, Espectaculo> espect = p.getEspectaculos();
 		
 		ArrayList<DtEspectaculo> dtespect = new ArrayList<DtEspectaculo>();
-		for (Espectaculo value : espect.values()) {
-			String nombre = espect.get(value).getNombre();
-			LocalTime duracion = espect.get(value).getDuracion();
-			String descrip = espect.get(value).getDescripcion();
-			int minEspect = espect.get(value).getMinEspectadores();
-			int maxEspect = espect.get(value).getMaxEspectadores();
-			String url = espect.get(value).getUrl();
-			LocalDate fechaReg = espect.get(value).getFechaReg();
-			float costo = espect.get(value).getCosto();
+		for (String key : espect.keySet()) {
+			String nombre = espect.get(key).getNombre();
+			LocalTime duracion = espect.get(key).getDuracion();
+			String descrip = espect.get(key).getDescripcion();
+			int minEspect = espect.get(key).getMinEspectadores();
+			int maxEspect = espect.get(key).getMaxEspectadores();
+			String url = espect.get(key).getUrl();
+			LocalDate fechaReg = espect.get(key).getFechaReg();
+			float costo = espect.get(key).getCosto();
 			DtEspectaculo nuevo = new DtEspectaculo(nombre, duracion, descrip, minEspect, maxEspect, url, fechaReg, costo);
 			dtespect.add(nuevo);
 		}
@@ -226,7 +226,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<String> funciones = new ArrayList<String>(mpFunciones.keySet());
 		ArrayList<DtFuncion> dtFunciones = new ArrayList<DtFuncion>();
 		
-		for(int i = 1; i<funciones.size(); i++) {
+		for(int i = 0; i<funciones.size(); i++) {
 			Funcion fun = mpFunciones.get(funciones.get(i));
 			String nombre = fun.getNombre();
 			LocalDate fecha = fun.getFecha();
@@ -247,8 +247,7 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	
 	public DtFuncion mostarFuncion(String nomFuncion) {
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		Espectaculo e = he.getEspectaculo(this.nomespec);
+		Espectaculo e = this.espectaculo;
 		Funcion f = e.getFuncion(nomFuncion);
 		DtFuncion nueva = new DtFuncion(f.getNombre(), f.getFecha(), f.getHoraInicio(), f.getFechaReg());
 		return nueva;
