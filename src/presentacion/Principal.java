@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.SplitPaneUI;
 
+import excepciones.NombreEspectaculoExisteException;
+import excepciones.NombreFuncionexisteException;
+import excepciones.UsuarioConMismoMailException;
+import excepciones.UsuarioConMismoNickException;
 import logica.Artista;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
@@ -67,7 +71,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(350, 150, 500, 500);
+		setBounds(100, 100, 1200, 800);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -162,7 +166,21 @@ public class Principal extends JFrame {
 		JMenuItem mntmCargarDatos = new JMenuItem("Cargar Datos");
 		mntmCargarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cargarDatos();
+				try {
+					cargarDatos();
+				} catch (NombreEspectaculoExisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UsuarioConMismoNickException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UsuarioConMismoMailException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NombreFuncionexisteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -206,7 +224,7 @@ public class Principal extends JFrame {
 	
 	}
 
-	protected void cargarDatos() {
+	public static void cargarDatos() throws UsuarioConMismoNickException, UsuarioConMismoMailException, NumberFormatException, NombreEspectaculoExisteException, NombreFuncionexisteException {
 		// TODO Auto-generated method stub
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
@@ -296,10 +314,12 @@ public class Principal extends JFrame {
 				String[] artistax = funcion[5].split(",");
 				ArrayList<String> artistas = new ArrayList<String>();
 				for(String s:artistax) {
-					if (s != "") artistas.add(s);
+					if (s != ""){
+						 artistas.add(s);
+					}
 				}
 				ec.elegirEspectaculo(funcion[4]);
-				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas, LocalDate.parse(funcion[3], formatter));		
+				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas.isEmpty()? artistas : null, LocalDate.parse(funcion[3], formatter));		
 				ec.ConfirmarAltaFuncion();
 			}
 			br.close();
@@ -309,7 +329,7 @@ public class Principal extends JFrame {
 	}
 
 
-	private LocalTime String2LocalTime(String s){
+	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);
 	}
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 import datatypes.DtUsuario;
+import excepciones.UsuarioConMismoMailException;
+import excepciones.UsuarioConMismoNickException;
 
 public class UsuarioController implements IUsuario{
 	
@@ -76,15 +78,30 @@ public class UsuarioController implements IUsuario{
 	}
 	
 	@Override
-	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) {
-		this.esArtista = false;
-		this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac);
+	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		boolean existemail= huser.existeMail(mail);
+		if ((huser.getUsuario(nickname) == null) && (!existemail)) {
+			this.esArtista = false;
+			this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac);
+		}
+		else if(huser.getUsuario(nickname) != null)
+			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
+		else if(existemail)
+			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
 	}
 
+	
+
 	@Override
-	public void altaArtista(String desc, String bio, String web) {
-		this.esArtista = true;
-		this.artista = new Artista(this.usuario, desc, bio, web);
+	public void altaArtista(String desc, String bio, String web) throws UsuarioConMismoNickException  {
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		if (huser.getUsuario(nickname) == null) {
+			this.esArtista = true;
+			this.artista = new Artista(this.usuario, desc, bio, web);
+		}
+		else
+			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
 	}
 
 	@Override
@@ -104,11 +121,6 @@ public class UsuarioController implements IUsuario{
 		return null;
 	}
 
-	@Override
-	public DtUsuario mostrarDatos(String nickname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void updateUsuario(String nombre, String apellido, LocalDate fechaNac) {

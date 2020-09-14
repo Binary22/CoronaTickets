@@ -2,6 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 
+
 public class PlataformaController implements IPlataforma {
 	private String nombre;
 	private String descrip;
@@ -68,7 +69,7 @@ public class PlataformaController implements IPlataforma {
 		this.nombre = nombre;
 	}
 	
-	public void agregarEspectaculoPlataforma(Plataforma p, Espectaculo e) {
+	public void agregarEspectaculoPlataforma(Plataforma p, Espectaculo e) {	
 		p.addEspectaculo(e);
 	}
 

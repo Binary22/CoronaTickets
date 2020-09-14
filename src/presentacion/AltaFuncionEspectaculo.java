@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+
+import excepciones.NombreFuncionexisteException;
+
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -104,13 +107,14 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				cargarPlataformas();	
+				cargarPlataformas();
 			}
 		});
 		comboBoxPlataformas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
 				cargarEspectaculos(nombrePlataforma);
+				cargarArtistas();
 			}
 		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -134,6 +138,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreEspectaculo = (String) comboBoxEspectaculos.getSelectedItem();
 				ctrlEspect.elegirEspectaculo(nombreEspectaculo);
+				cargarArtistas();
 				
 			}
 		});
@@ -238,7 +243,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxArtistas = new JComboBox<String>();
 		comboBoxArtistas.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent arg0) {
-				cargarArtistasSinInvitar(ArtistasElegidos);// Tengo que cargar el box pero sin el artista que fue seleccionado.
+				//cargarArtistasSinInvitar(ArtistasElegidos);// Tengo que cargar el box pero sin el artista que fue seleccionado.
 			}
 		});
 		GridBagConstraints gbc_comboBox2 = new GridBagConstraints();
@@ -256,8 +261,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre = (String) comboBoxArtistas.getSelectedItem();
 				ArtistasElegidos.add(nombre);
-				artistas.add(nombre);
-				comboBoxArtistas.removeItem(comboBoxArtistas.getSelectedItem());
+				cargarArtistasSinInvitar(ArtistasElegidos);
+				//comboBoxArtistas.removeItem(comboBoxArtistas.getSelectedItem());
 			}
 		});
 		GridBagConstraints gbc_btnElegirArtista = new GridBagConstraints();
@@ -299,9 +304,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	
 	public void cargarPlataformas() {
-		comboBoxPlataformas.removeAll();
-        ArrayList<String> nombres = ctrlEspect.listarPlataformas(); 
-            
+		comboBoxPlataformas.removeAllItems();
+        ArrayList<String> nombres = ctrlEspect.listarPlataformas();   
         for(int i = 0; i < nombres.size(); i++) {
         	comboBoxPlataformas.addItem(nombres.get(i));
             	
@@ -309,7 +313,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
         }
 	
 	public void cargarArtistas() {
-		comboBoxArtistas.removeAll();
+		comboBoxArtistas.removeAllItems();
         ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
         for(int i = 0; i < nombres.size(); i++) {
         		comboBoxArtistas.addItem(nombres.get(i));
@@ -318,7 +322,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 
 	
 	public void cargarArtistasSinInvitar(ArrayList<String> ArtistasElegidos) {
-		comboBoxArtistas.removeAll();
+		comboBoxArtistas.removeAllItems();
         ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
         for(int i = 0; i < nombres.size(); i++) {
         	if (!ArtistasElegidos.contains(nombres.get(i)))
@@ -333,10 +337,11 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			for(int i = 0; i < nombres.size(); i++) {
 				comboBoxEspectaculos.addItem(nombres.get(i));
         	}
-		} else {
+		} /*else {
 			JOptionPane.showMessageDialog(null, "Esta Plataforma no tiene Espectaculos");
-		}
+			}*/
 	}
+		
 	protected void cmdAltaFuncion() {
         // TODO Auto-generated method stub
 
@@ -359,7 +364,11 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 			return;
 		}
 
-        ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, artistas, fechaHoy); 
+        try {
+			ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, artistas, fechaHoy);
+		} catch (NombreFuncionexisteException ex3) {
+			JOptionPane.showMessageDialog(null, ex3.getMessage(), "Registrar funcion", JOptionPane.ERROR_MESSAGE);
+		} 
     }
 	
 	private void limpiarVentana() {
