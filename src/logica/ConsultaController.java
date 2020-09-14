@@ -131,7 +131,7 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public DtFuncion mostrarFuncion() {
-		return funcion.getDt();
+		return this.funcion.getDt();
 	}
 	
 	public boolean esArtista(String nickname) {

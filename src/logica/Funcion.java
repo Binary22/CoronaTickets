@@ -63,15 +63,20 @@ public class Funcion {
 		this.espectaculo = espectaculo;
 	}
 	public DtFuncion getDt() {
-		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fechaReg);
-		ret.setEspectaculo(getEspectaculo().getNombre());
-		return ret;
-		
+		return new DtFuncion(this);
 	}
 	public int getLimite() {
 		return 0;
 		
 	}
+	public ArrayList<String> listarArtistas() {
+		ArrayList<String> lista = new ArrayList<String>();
+		for(Usuario a : artistasInvitados) {
+			lista.add(a.getNickname());
+		}
+		return lista;
+	}
+	
 	public void addEspectador(Registro reg) {
 		this.registros.add(reg);
 	}

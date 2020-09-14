@@ -90,13 +90,13 @@ public class Principal extends JFrame {
 		});
 		mnUsuarios.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar datos de usuario");
+		/*JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar datos de usuario");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ModificarDatosDeUsuarioInternalFrame.setVisible(true);
 			}
-		});
-		mnUsuarios.add(mntmNewMenuItem_1);
+		}); 
+		mnUsuarios.add(mntmNewMenuItem_1); */
 		
 		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
 		mntmConsultaDeDatos.addActionListener(new ActionListener() {
@@ -327,7 +327,7 @@ public class Principal extends JFrame {
 					}
 				}
 				ec.elegirEspectaculo(funcion[4]);
-				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas.isEmpty()? artistas : null, LocalDate.parse(funcion[3], formatter));		
+				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), (artistas != null)? artistas : null, LocalDate.parse(funcion[3], formatter));		
 				ec.ConfirmarAltaFuncion();
 			}
 			br.close();
