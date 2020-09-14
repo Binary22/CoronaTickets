@@ -65,6 +65,9 @@ public class Funcion {
 	public DtFuncion getDt() {
 		DtFuncion ret = new DtFuncion(nombre, fecha, horaInicio, fechaReg);
 		ret.setEspectaculo(getEspectaculo().getNombre());
+		for (int i = 0; i < artistasInvitados.size(); i++) {
+			ret.addArtista(artistasInvitados.get(i).getDtArtista());
+		}
 		return ret;
 		
 	}

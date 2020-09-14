@@ -2,6 +2,7 @@ package datatypes;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class DtFuncion {
 	private String nombre;
@@ -9,12 +10,22 @@ public class DtFuncion {
 	private LocalTime horainicio;
 	private LocalDate fechaReg;
 	private String espectaculo;
+	private ArrayList<DtArtista> artistas;
+	
 	public DtFuncion(String nombre, LocalDate fecha, LocalTime horainicio, LocalDate fechaReg) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.horainicio = horainicio;
 		this.fechaReg = fechaReg;
+		this.artistas = new ArrayList<DtArtista>();
+	}
+	
+	public void addArtista(DtArtista a) {
+		artistas.add(a);
+	}
+	public ArrayList<DtArtista> getArtistas() {
+		return artistas;
 	}
 	
 	public String getEspectaculo() {
