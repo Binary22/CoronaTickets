@@ -229,22 +229,18 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 				String espec = (String) comboBoxEspectPlat.getSelectedItem();
 				ctrlEspect.elegirEspectaculo(espec);
 				nombreFuncion = (String) comboBoxFuncionesEspect.getSelectedItem();
-				
 				ctrlEspect.ingresarNombreFuncion(nombreFuncion);
+				DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
+				textFieldFechaFun.setText(null);
+				textFieldFechaFun.setText(infoFun.getFecha().toString());
 				
+				textFieldHoraFuncion.setText(null);
+				textFieldHoraFuncion.setText(infoFun.getHorainicio().toString());
 				
-				if(!ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
-					
-					DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
-					textFieldFechaFun.setText(null);
-					textFieldFechaFun.setText(infoFun.getFecha().toString());
-					
-					textFieldHoraFuncion.setText(null);
-					textFieldHoraFuncion.setText(infoFun.getHorainicio().toString());
-					
-					textFieldFechaRegFuncion.setText(null);
-					textFieldFechaRegFuncion.setText(infoFun.getFechaReg().toString());
-				}else {
+				textFieldFechaRegFuncion.setText(null);
+				textFieldFechaRegFuncion.setText(infoFun.getFechaReg().toString());
+				
+				if(ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
 					JOptionPane.showMessageDialog(null, "La funcion seleccionada alcanzo el maximo de espectadores. Elige otra funcion", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 					textFieldFechaFun.setText(null);
 					textFieldHoraFuncion.setText(null);
