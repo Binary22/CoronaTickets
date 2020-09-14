@@ -44,7 +44,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	private IEspectaculo ctrlEspect;
 	private String nombrePlataforma;
 	private JComboBox<String> comboBoxEspectPlat;
-	private JComboBox<DtUsuario> comboBoxEspectadores;
+	private JComboBox<String> comboBoxEspectadores;
 	private String nombreEspectador;
 	private String nombreEspectaculo;
 	private JComboBox<String> comboBoxFuncionesEspect;
@@ -240,7 +240,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			}
 		});
 		
-comboBoxEspectadores = new JComboBox<DtUsuario>();
+comboBoxEspectadores = new JComboBox<String>();
 		
 		comboBoxEspectadores.addFocusListener(new FocusAdapter() {
 			@Override
@@ -430,7 +430,12 @@ comboBoxEspectadores = new JComboBox<DtUsuario>();
 		}
 	public void cargarEspectadores() {
 		
-		DefaultComboBoxModel<DtUsuario> model;
+		comboBoxEspectadores.removeAllItems();
+		ArrayList<String> nombres = ctrlEspect.mostrarEspectadores();
+		for(int i = 0; i < nombres.size(); i++) {
+        	comboBoxEspectadores.addItem(nombres.get(i));
+		}
+		/*DefaultComboBoxModel<DtUsuario> model;
 	      try {
 	          model = new DefaultComboBoxModel<DtUsuario>(ctrlEspect.listarUsuarios());
 	          comboBoxEspectadores.setModel(model);
@@ -438,7 +443,7 @@ comboBoxEspectadores = new JComboBox<DtUsuario>();
 	          // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
 	    	  JOptionPane.showMessageDialog(this, e.getMessage(), "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 				//return;
-	      }
+	      }*/
 	}
 	  
       
@@ -503,10 +508,10 @@ comboBoxEspectadores = new JComboBox<DtUsuario>();
 		textFieldFechaFun.setText(null);
 		textFieldHoraFuncion.setText(null);
 		textFieldFechaRegFuncion.setText(null);
-		//comboBoxPlataformas.removeAllItems();
-		//comboBoxEspectPlat.removeAllItems();
-		//comboBoxEspectadores.removeAllItems();
-		//comboBoxFuncionesEspect.removeAllItems();
+		comboBoxPlataformas.removeAllItems();
+		comboBoxEspectPlat.removeAllItems();
+		comboBoxEspectadores.removeAllItems();
+		comboBoxFuncionesEspect.removeAllItems();
 	}
 	
 	/*public DtRegistro[] cargarRegistrosPrevios(){
