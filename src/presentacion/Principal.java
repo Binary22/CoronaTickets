@@ -257,6 +257,7 @@ public class Principal extends JFrame {
 		uc.altaUsuario("lachiqui","Mirtha","Legrand","lachiqui@hotmail.com.ar",LocalDate.parse("23/02/1927",formatter));
 		uc.confirmarAltaUsuario();
 		uc.altaUsuario("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",LocalDate.parse("08/05/1937",formatter));
+		uc.confirmarAltaUsuario();
 		
 		
 		//uc.altaUsuario("vpeople", "Village", "People", "vpeople@tuta.io", LocalDate.parse("01/01/1977",formatter));
