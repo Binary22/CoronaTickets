@@ -105,7 +105,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxPlataformas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
-				cargarEspectaculos(nombrePlataforma);
+				
 			}
 		});
 		
@@ -116,6 +116,18 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_comboBoxPlataformas.gridx = 2;
 		gbc_comboBoxPlataformas.gridy = 1;
 		getContentPane().add(comboBoxPlataformas, gbc_comboBoxPlataformas);
+		
+		JButton btnVerEspectaculos = new JButton("Ver espectaculos");
+		btnVerEspectaculos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cargarEspectaculos(nombrePlataforma);
+			}
+		});
+		GridBagConstraints gbc_btnVerEspectaculos = new GridBagConstraints();
+		gbc_btnVerEspectaculos.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerEspectaculos.gridx = 6;
+		gbc_btnVerEspectaculos.gridy = 1;
+		getContentPane().add(btnVerEspectaculos, gbc_btnVerEspectaculos);
 		
 		JLabel lblNewLabel_1 = new JLabel("Espectaculos de la plataforma:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -129,7 +141,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxEspectPlat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreEspectaculo = (String) comboBoxEspectPlat.getSelectedItem();
-				cargarFuncionesEspectaculo(nombreEspectaculo);
+				
 			}
 		});
 		GridBagConstraints gbc_comboBoxEspectPlat = new GridBagConstraints();
@@ -139,6 +151,19 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_comboBoxEspectPlat.gridx = 2;
 		gbc_comboBoxEspectPlat.gridy = 2;
 		getContentPane().add(comboBoxEspectPlat, gbc_comboBoxEspectPlat);
+		
+		JButton btnVerFunciones = new JButton("Ver funciones");
+		btnVerFunciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cargarFuncionesEspectaculo(nombreEspectaculo);
+			}
+		});
+		GridBagConstraints gbc_btnVerFunciones = new GridBagConstraints();
+		gbc_btnVerFunciones.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnVerFunciones.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerFunciones.gridx = 6;
+		gbc_btnVerFunciones.gridy = 2;
+		getContentPane().add(btnVerFunciones, gbc_btnVerFunciones);
 		
 		JLabel lblNewLabel_2 = new JLabel("Funciones del espectaculo:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -349,7 +374,7 @@ comboBoxEspectadores = new JComboBox<DtUsuario>();
 		
 		GridBagConstraints gbc_btnCanjear = new GridBagConstraints();
 		gbc_btnCanjear.gridwidth = 2;
-		gbc_btnCanjear.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCanjear.insets = new Insets(0, 0, 5, 0);
 		gbc_btnCanjear.gridx = 5;
 		gbc_btnCanjear.gridy = 10;
 		getContentPane().add(btnCanjear, gbc_btnCanjear);
