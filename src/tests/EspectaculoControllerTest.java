@@ -199,7 +199,7 @@ class EspectaculoControllerTest {
 	void testConfirmarRegistro() {
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
 		ie.ingresarNombreEspectador("waston");
-		ie.confirmarRegistro("Los Village Volvieron");
+		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
 	};
 	
 	@Test
@@ -229,16 +229,14 @@ class EspectaculoControllerTest {
 	void testCanjearRegistrosNoSonTres() {
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
-		ie.confirmarRegistro("Los Village Volvieron");
+		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
-		ie.confirmarRegistro("Los Village Volvieron");
+		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
-		DtRegistro[] dtr = new DtRegistro[2];
-		ArrayList<DtRegistro> dtre = ie.obtenerRegistrosPrevios();
-		for (int i = 0; i<2; i++) {
-			dtr[i] = dtre.get(i);
-		}
+		int[] dtr = new int[2];
+		dtr[0] = 1;
+		dtr[1] = 2;
 		try {
 		ie.canjearRegistros(dtr);
 		} catch (noSeleccionoTres e) {
@@ -256,17 +254,16 @@ class EspectaculoControllerTest {
 	void testConfirmarCanje() {
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
-		ie.confirmarRegistro("Los Village Volvieron");
+		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
-		ie.confirmarRegistro("Los Village Volvieron");
+		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 3");
-		ie.confirmarRegistro("Los Village Volvieron");
-		DtRegistro[] dtr = new DtRegistro[3];
-		ArrayList<DtRegistro> dtre = ie.obtenerRegistrosPrevios();
+		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		int[] dtr = new int[3];
 		for (int i = 0; i<3; i++) {
-			dtr[i] = dtre.get(i);
+			dtr[i] = 1;
 		}
 		try {
 		ie.canjearRegistros(dtr);
@@ -275,7 +272,7 @@ class EspectaculoControllerTest {
 		}
 		ie.ingresarNombreFuncion("Memphis Blues World - A");
 		ie.ingresarNombreEspectador("waston");
-		ie.confirmarRegistro("Memphis Blues World");
+		ie.confirmarRegistro("Memphis Blues World",LocalDate.of(2020, 10, 10));
 	}
 	
 	@Test
