@@ -426,11 +426,11 @@ public class Principal extends JFrame {
 		        int[] registrosFiltrados = new int[3];
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==6)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[0] = registros.get(i).getId();
 		            if(i==9)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[1] = registros.get(i).getId();
 		            if(i==16)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R22
@@ -452,11 +452,11 @@ public class Principal extends JFrame {
 		        registros = ec.obtenerRegistrosPrevios();
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==0)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[0] = registros.get(i).getId();
 		            if(i==5)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[1] = registros.get(i).getId();
 		            if(i==8)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R26
@@ -470,11 +470,11 @@ public class Principal extends JFrame {
 		        registros = ec.obtenerRegistrosPrevios();
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==2)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[0] = registros.get(i).getId();
 		            if(i==3)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[1] = registros.get(i).getId();
 		            if(i==19)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R28
@@ -500,11 +500,11 @@ public class Principal extends JFrame {
 		        registros = ec.obtenerRegistrosPrevios();
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==1)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[0] = registros.get(i).getId();
 		            if(i==12)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[1] = registros.get(i).getId();
 		            if(i==18)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R31

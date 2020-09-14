@@ -215,7 +215,7 @@ class EspectaculoControllerTest {
 		ie.ingresarNombreEspectador("waston");
 		assertTrue(ie.existeRegistroEspecAFun());
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
-		ie.ingresarNombreEspectador("costas");
+		ie.ingresarNombreEspectador("cbochinche");
 		assertFalse(ie.existeRegistroEspecAFun());
 	}
 	
