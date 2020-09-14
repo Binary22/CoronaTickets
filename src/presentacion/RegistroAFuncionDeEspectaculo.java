@@ -57,7 +57,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	private String nombreEspectaculo;
 	private JComboBox<String> comboBoxFuncionesEspect;
 	private String nombreFuncion;
-	JList<DtRegistro> listRegistros;
+	JList<String> listRegistros;
 	private JFormattedTextField formattedTextField;
 	private LocalDate fechaFuncion;
 
@@ -252,6 +252,19 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			}
 		});
 		
+		JButton btnVerEspectadores = new JButton("Ver espectadores");
+		btnVerEspectadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cargarEspectadores();
+			}
+		});
+		
+		GridBagConstraints gbc_btnVerEspectadores = new GridBagConstraints();
+		gbc_btnVerEspectadores.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerEspectadores.gridx = 6;
+		gbc_btnVerEspectadores.gridy = 7;
+		getContentPane().add(btnVerEspectadores, gbc_btnVerEspectadores);
+		
 		comboBoxEspectadores = new JComboBox<String>();
 		comboBoxEspectadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -322,22 +335,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_12.gridy = 7;
 		getContentPane().add(lblNewLabel_12, gbc_lblNewLabel_12);
 		
-		
-		
-		
-		
-		JButton btnVerEspectadores = new JButton("Ver espectadores");
-		btnVerEspectadores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cargarEspectadores();
-			}
-		});
-		
-		GridBagConstraints gbc_btnVerEspectadores = new GridBagConstraints();
-		gbc_btnVerEspectadores.insets = new Insets(0, 0, 5, 0);
-		gbc_btnVerEspectadores.gridx = 6;
-		gbc_btnVerEspectadores.gridy = 7;
-		getContentPane().add(btnVerEspectadores, gbc_btnVerEspectadores);
+	
 		
 		
 		
@@ -371,7 +369,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_14.gridy = 9;
 		getContentPane().add(lblNewLabel_14, gbc_lblNewLabel_14);
 		
-		listRegistros = new JList<DtRegistro>();
+		listRegistros = new JList<String>();
 		
 		GridBagConstraints gbc_listRegistros = new GridBagConstraints();
 		gbc_listRegistros.gridheight = 3;
@@ -517,19 +515,19 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	public void cargarRegistrosPrevios() {
 		//elimino lo anterior
 		listRegistros.removeAll();
-		//Crear un objeto DefaultListModel
-		
-		//Recorrer el contenido del ArrayList
+	
 		ArrayList<DtRegistro> regs = ctrlEspect.obtenerRegistrosPrevios();
+		
 		if(!regs.isEmpty()) {
-			DefaultListModel<DtRegistro> listModel = new DefaultListModel<DtRegistro>();
+			
+			DefaultListModel<String> listModel = new DefaultListModel<String>();
 		
 			for(int i=0; i<regs.size(); i++) {
-				//Añadir cada elemento del ArrayList en el modelo de la lista
-				listModel.add(i, regs.get(i));
+				listModel.add(i,String.valueOf(regs.get(i).getId()));
 			}
 			//Asociar el modelo de lista al JList
 			listRegistros.setModel(listModel);
+			
 		}else {
 			JOptionPane.showMessageDialog(null, "El usuario no posee registros previos", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 			
@@ -542,10 +540,10 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 
 	    // Get all the selected items using the indices
 		int i;
-		DtRegistro[] regSelect = new DtRegistro[3];
+		int[] regSelect = new int[3];
 	    for (i = 0; i < selectedIx.length; i++) {
-	      DtRegistro sel = listRegistros.getModel().getElementAt(selectedIx[i]);
-	      regSelect[i] = sel;
+	      String sel = listRegistros.getModel().getElementAt(selectedIx[i]);
+	      regSelect[i] = Integer.parseInt(sel);
 	    }
 	    
             try {
@@ -567,6 +565,8 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxEspectPlat.removeAllItems();
 		comboBoxEspectadores.removeAllItems();
 		comboBoxFuncionesEspect.removeAllItems();
+		listRegistros.removeAll();
+		formattedTextField.setText(null);
 	}
 	
 	public void confirmarRegistro() {

@@ -283,19 +283,20 @@ public class EspectaculoController implements IEspectaculo {
 		return espectador.getRegistrosPrevios();
 	}
 	@Override
-	public void canjearRegistros(DtRegistro[] dtRegs) throws noSeleccionoTres {
+	public void canjearRegistros(int[] regsId) throws noSeleccionoTres {
 		// TODO Auto-generated method stub
-		if(dtRegs.length != 3) {
+		if(regsId.length != 3) {
 			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
 		}
-		int id1 = dtRegs[0].getId();
-		int id2 =dtRegs[1].getId();
-		int id3 = dtRegs[2].getId();
+		int id1 = regsId[0];
+		int id2 =regsId[1];
+		int id3 = regsId[2];
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
 		ArrayList<Registro> regs = espectador.getRegistros();
 		Iterator<Registro> it = regs.iterator();
 		int i = 0;
+		
 		while(it.hasNext()) {
 			Registro temp = it.next();
 			int idTemp = temp.getId();
@@ -311,7 +312,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
-		System.out.println(espectador.getNickname());
+		System.out.println(this.nomfuncion);
 		return espectador.tieneRegistroAFuncion(this.nomfuncion);
 		
 	}

@@ -24,7 +24,7 @@ public interface IEspectaculo {
 	public void ingresarNombreFuncion(String nomfuncion);
 	public void ingresarNombreEspectador(String nickname);
 	public ArrayList<DtRegistro> obtenerRegistrosPrevios();
-	public void canjearRegistros(DtRegistro[] regs) throws noSeleccionoTres;
+	public void canjearRegistros(int[] regsId) throws noSeleccionoTres;
 	public boolean existeRegistroEspecAFun();
 	public boolean funcionAlcanzoLimiteReg(String nomespect);
 	public void elegirNuevaFuncion(String nomfuncion);
