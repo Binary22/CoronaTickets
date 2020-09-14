@@ -162,11 +162,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
 		if (invitados != null) {
 		invitados.forEach(el -> {
-			if (!hu.getUsuarios().containsKey(el)) {
-				System.out.print("No existe el artista:" + el);
-			} else {
 				nuevosinv.add(hu.getUsuarios().get(el));
-			}
 		});
 		}
 		
@@ -226,7 +222,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<String> funciones = new ArrayList<String>(mpFunciones.keySet());
 		ArrayList<DtFuncion> dtFunciones = new ArrayList<DtFuncion>();
 		
-		for(int i = 1; i<funciones.size(); i++) {
+		for(int i = 0; i<funciones.size(); i++) {
 			Funcion fun = mpFunciones.get(funciones.get(i));
 			String nombre = fun.getNombre();
 			LocalDate fecha = fun.getFecha();
@@ -247,8 +243,7 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	
 	public DtFuncion mostarFuncion(String nomFuncion) {
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		Espectaculo e = he.getEspectaculo(this.nomespec);
+		Espectaculo e = this.espectaculo;
 		Funcion f = e.getFuncion(nomFuncion);
 		DtFuncion nueva = new DtFuncion(f.getNombre(), f.getFecha(), f.getHoraInicio(), f.getFechaReg());
 		return nueva;
@@ -296,6 +291,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<Registro> regs = espectador.getRegistros();
 		Iterator<Registro> it = regs.iterator();
 		int i = 0;
+		this.regsCanjeados = new Registro[3];
 		while(it.hasNext()) {
 			Registro temp = it.next();
 			int idTemp = temp.getId();
@@ -303,6 +299,9 @@ public class EspectaculoController implements IEspectaculo {
 				this.regsCanjeados[i] = temp;
 				i++;
 			}
+		}
+		for (int j = 0; j<3;j++) {
+		this.regsCanjeados[j] = null;
 		}
 		this.registroFueCanjeado = true;
 	}
@@ -439,7 +438,7 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	@Override
 	public void elegirFuncion(String selectedItem) {
-		// TODO Auto-generated method stub
+		this.nomfuncion = selectedItem;
 		
 	}
 	

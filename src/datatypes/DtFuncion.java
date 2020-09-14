@@ -3,6 +3,8 @@ package datatypes;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import logica.Funcion;
+
 public class DtFuncion {
 	private String nombre;
 	private LocalDate fecha;
@@ -17,6 +19,13 @@ public class DtFuncion {
 		this.fechaReg = fechaReg;
 	}
 	
+	public DtFuncion(Funcion f) {
+		this.nombre = f.getNombre();
+		this.fecha = f.getFecha();
+		this.horainicio = f.getHoraInicio();
+		this.fechaReg = f.getFechaReg();
+	}
+
 	public String getEspectaculo() {
 		return espectaculo;
 	}

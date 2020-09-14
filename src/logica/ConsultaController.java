@@ -57,9 +57,14 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public ArrayList<String> listarPaquetes() {
-		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
-		return hpaq.getNombresPaquetesEspectaculo(espectaculo.getNombre());
+		return null;
 	}
+	
+//	@Override
+//	public ArrayList<String> listarPaquetes() {
+//		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+//		return hpaq.getNombresPaquetesEspectaculo(espectaculo.getNombre());
+//	}
 
 	@Override
 	public void seleccionarPaquete(String nompaquete) {

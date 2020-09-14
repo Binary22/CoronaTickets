@@ -79,6 +79,7 @@ public class UsuarioController implements IUsuario{
 	
 	@Override
 	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
+		this.esArtista = false;
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
 		boolean existemail= huser.existeMail(mail);
 		if ((huser.getUsuario(nickname) == null) && (!existemail)) {
@@ -94,14 +95,10 @@ public class UsuarioController implements IUsuario{
 	
 
 	@Override
-	public void altaArtista(String desc, String bio, String web) throws UsuarioConMismoNickException  {
+	public void altaArtista(String desc, String bio, String web) {
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
-		if (huser.getUsuario(nickname) == null) {
-			this.esArtista = true;
-			this.artista = new Artista(this.usuario, desc, bio, web);
-		}
-		else
-			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
+		this.esArtista = true;
+		this.artista = new Artista(this.usuario, desc, bio, web);
 	}
 
 	@Override
