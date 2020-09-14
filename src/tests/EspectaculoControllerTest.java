@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
+import datatypes.DtRegistro;
 import datatypes.DtUsuario;
 import logica.Espectaculo;
 import logica.EspectaculoController;
@@ -27,7 +28,7 @@ class EspectaculoControllerTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		presentacion.Principal.cargarDatos();
+		//presentacion.Principal.cargarDatos();
 	}
 
 	@AfterAll
@@ -38,6 +39,11 @@ class EspectaculoControllerTest {
 	void testElegirEspectaculo() {
 		ie.elegirEspectaculo("Los Village Volvieron");
 		assertTrue(ie.getEspectaculo().getNombre().equals("Los Village Volvieron"));
+	}
+	@Test
+	void testElegirEspectaculoNoExiste() {
+		ie.elegirEspectaculo("fake");
+		assertTrue(ie.getEspectaculo() == null);
 	}
 
 	@Test
@@ -155,17 +161,35 @@ class EspectaculoControllerTest {
 		}
 		assertTrue(succ);
 	}
-	/*
+	
+	@Test
+	void testAltaEspectaculo() {
+		try {
+			ie.altaEspectaculo("Facebook Watch", "vpeople", "Los Village Volvieron", "Test", LocalTime.of(1, 30), 5, 10, "url", 500, LocalDate.of(2020, 10, 10));
+		} catch (NombreEspectaculoExisteException e) {
+			e.printStackTrace();
+		}
+		assertThrows(NombreEspectaculoExisteException.class, () -> ie.altaEspectaculo("Instagram Live", "vpeople", "Los Village Volvieron", "Test", LocalTime.of(1, 30), 5, 10, "url", 500, LocalDate.of(2020, 10, 10)));
+	}
 
 	@Test
 	void testIngresarDatosRegistro() {
-		fail("Not yet implemented");
+		ie.ingresarDatosRegistro("waston", "Los Village Volvieron - 1");
 	}
-
+	
 	@Test
 	void testObtenerRegistrosPrevios() {
-		fail("Not yet implemented");
+		ArrayList<DtRegistro> dtrs = ie.obtenerRegistrosPrevios();
 	}
+	
+	
+	@Test
+	void testConfirmarRegistro() {
+		ie.confirmarRegistro("Los Village Volvieron");
+	}
+	
+	/*
+
 
 	@Test
 	void testCanjearRegistros() {
@@ -192,16 +216,7 @@ class EspectaculoControllerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testConfirmarRegistro() {
-		fail("Not yet implemented");
-	}
-
-
-	@Test
-	void testAltaEspectaculo() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	void testConfirmarAltaEspectaculo() {

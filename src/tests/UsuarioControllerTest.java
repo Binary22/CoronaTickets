@@ -47,7 +47,7 @@ class UsuarioControllerTest {
 	void testAltaArtista() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
 		try {
-			icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+			icontroller.altaUsuario("santiacq3", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
 		} catch (UsuarioConMismoNickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

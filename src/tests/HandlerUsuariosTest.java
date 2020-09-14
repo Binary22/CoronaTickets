@@ -32,7 +32,7 @@ class HandlerUsuariosTest {
 	}
 	
 	
-	
+	/*
 	@Test
 	void testExisteUsuario() {
 		fail("Not yet implemented");
@@ -62,5 +62,6 @@ class HandlerUsuariosTest {
 	void testExisteMail() {
 		fail("Not yet implemented");
 	}
+	*/
 
 }

@@ -162,11 +162,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
 		if (invitados != null) {
 		invitados.forEach(el -> {
-			if (!hu.getUsuarios().containsKey(el)) {
-				System.out.print("No existe el artista:" + el);
-			} else {
 				nuevosinv.add(hu.getUsuarios().get(el));
-			}
 		});
 		}
 		
@@ -262,6 +258,7 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public void ingresarDatosRegistro(String nickname, String nomfuncion) {
 		// TODO Auto-generated method stub
+		System.out.print(nickname);
 		this.nickUsuario = nickname;
 		this.nomfuncion = nomfuncion;
 		
@@ -271,6 +268,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		System.out.print(espectador.getNombre());
 		return espectador.getRegistrosPrevios();
 	}
 	@Override
