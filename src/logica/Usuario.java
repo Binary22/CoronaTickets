@@ -95,9 +95,10 @@ public class Usuario {
 		ArrayList<Registro> regs = this.registros;
 		Iterator<Registro> it = regs.iterator();
 		while(it.hasNext()) {
-			if(!it.next().isCanjeado()) {
-				LocalDate fecha = it.next().getFecha();
-				int id = it.next().getId();
+			Registro temp = it.next();
+			if(!temp.isCanjeado()) {
+				LocalDate fecha = temp.getFecha();
+				int id = temp.getId();
 				DtRegistro reg = new DtRegistro(fecha, id);
 				regsPrevios.add(reg);
 			}
@@ -115,7 +116,7 @@ public class Usuario {
 		Iterator<Registro> it = regs.iterator();
 		while(it.hasNext()) {
 			String nombreFuncion = it.next().getFuncion().getNombre();
-			if(nombreFuncion == nomfuncion)
+			if(nombreFuncion.compareTo(nomfuncion) == 0)
 				return true;
 		}
 		return false;

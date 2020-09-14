@@ -251,6 +251,12 @@ public class Principal extends JFrame {
 		uc.altaUsuario("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",LocalDate.parse("08/05/1937",formatter));
 		
 		
+		//uc.altaUsuario("vpeople", "Village", "People", "vpeople@tuta.io", LocalDate.parse("01/01/1977",formatter));
+		
+		
+		
+		
+		
 		String line = "nl";
 		String splitBy = ",";
 

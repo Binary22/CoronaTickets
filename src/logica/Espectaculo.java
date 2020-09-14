@@ -101,6 +101,6 @@ public class Espectaculo {
 		this.setFunciones.put(f.getNombre(), f);
 	}
 	public int getMaxEspectadores() {
-		return 0;
+		return this.maxEspectadores;
 	}
 }

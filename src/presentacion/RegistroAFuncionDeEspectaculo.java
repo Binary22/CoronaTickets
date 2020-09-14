@@ -105,7 +105,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxPlataformas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
-				cargarEspectaculos(nombrePlataforma);
+				
 			}
 		});
 		
@@ -116,6 +116,18 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_comboBoxPlataformas.gridx = 2;
 		gbc_comboBoxPlataformas.gridy = 1;
 		getContentPane().add(comboBoxPlataformas, gbc_comboBoxPlataformas);
+		
+		JButton btnVerEspectaculos = new JButton("Ver espectaculos");
+		btnVerEspectaculos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cargarEspectaculos(nombrePlataforma);
+			}
+		});
+		GridBagConstraints gbc_btnVerEspectaculos = new GridBagConstraints();
+		gbc_btnVerEspectaculos.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerEspectaculos.gridx = 6;
+		gbc_btnVerEspectaculos.gridy = 1;
+		getContentPane().add(btnVerEspectaculos, gbc_btnVerEspectaculos);
 		
 		JLabel lblNewLabel_1 = new JLabel("Espectaculos de la plataforma:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -129,7 +141,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxEspectPlat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreEspectaculo = (String) comboBoxEspectPlat.getSelectedItem();
-				cargarFuncionesEspectaculo(nombreEspectaculo);
+				
 			}
 		});
 		GridBagConstraints gbc_comboBoxEspectPlat = new GridBagConstraints();
@@ -139,6 +151,19 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_comboBoxEspectPlat.gridx = 2;
 		gbc_comboBoxEspectPlat.gridy = 2;
 		getContentPane().add(comboBoxEspectPlat, gbc_comboBoxEspectPlat);
+		
+		JButton btnVerFunciones = new JButton("Ver funciones");
+		btnVerFunciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cargarFuncionesEspectaculo(nombreEspectaculo);
+			}
+		});
+		GridBagConstraints gbc_btnVerFunciones = new GridBagConstraints();
+		gbc_btnVerFunciones.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnVerFunciones.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerFunciones.gridx = 6;
+		gbc_btnVerFunciones.gridy = 2;
+		getContentPane().add(btnVerFunciones, gbc_btnVerFunciones);
 		
 		JLabel lblNewLabel_2 = new JLabel("Funciones del espectaculo:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -181,12 +206,21 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		getContentPane().add(textFieldFechaRegFuncion, gbc_textFieldFechaRegFuncion);
 		textFieldFechaRegFuncion.setColumns(10);
 		
+		
+		
+		
+		
 		///////////////////////////////////////////////////////
 		comboBoxFuncionesEspect = new JComboBox<String>();
 		comboBoxFuncionesEspect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreFuncion = (String) comboBoxFuncionesEspect.getSelectedItem();
+				
+				ctrlEspect.ingresarNombreFuncion(nombreFuncion);
+				
+				
 				if(!ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
+					
 					DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
 					textFieldFechaFun.setText(null);
 					textFieldFechaFun.setText(infoFun.getFecha().toString());
@@ -201,10 +235,38 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 					textFieldFechaFun.setText(null);
 					textFieldHoraFuncion.setText(null);
 					textFieldFechaRegFuncion.setText(null);
-					return;
+					
 				}
 			}
 		});
+		
+comboBoxEspectadores = new JComboBox<DtUsuario>();
+		
+		comboBoxEspectadores.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				cargarEspectadores();
+			}
+		});
+		
+		comboBoxEspectadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				nombreEspectador = (String) comboBoxEspectadores.getSelectedItem();
+				ctrlEspect.ingresarNombreEspectador(nombreEspectador);
+				
+			}
+		});
+		
+		GridBagConstraints gbc_comboBoxEspectadores = new GridBagConstraints();
+		gbc_comboBoxEspectadores.gridwidth = 4;
+		gbc_comboBoxEspectadores.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxEspectadores.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxEspectadores.gridx = 2;
+		gbc_comboBoxEspectadores.gridy = 7;
+		getContentPane().add(comboBoxEspectadores, gbc_comboBoxEspectadores);
+		
+		
+		
 		GridBagConstraints gbc_comboBoxFuncionesEspect = new GridBagConstraints();
 		gbc_comboBoxFuncionesEspect.gridwidth = 4;
 		gbc_comboBoxFuncionesEspect.insets = new Insets(0, 0, 5, 5);
@@ -251,29 +313,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_12.gridy = 7;
 		getContentPane().add(lblNewLabel_12, gbc_lblNewLabel_12);
 		
-		comboBoxEspectadores = new JComboBox<DtUsuario>();
 		
-		comboBoxEspectadores.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				cargarEspectadores();
-			}
-		});
-		
-		comboBoxEspectadores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				nombreEspectador = (String) comboBoxEspectadores.getSelectedItem();
-				ctrlEspect.ingresarDatosRegistro(nombreEspectador, nombreFuncion);
-			}
-		});
-		
-		GridBagConstraints gbc_comboBoxEspectadores = new GridBagConstraints();
-		gbc_comboBoxEspectadores.gridwidth = 4;
-		gbc_comboBoxEspectadores.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxEspectadores.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxEspectadores.gridx = 2;
-		gbc_comboBoxEspectadores.gridy = 7;
-		getContentPane().add(comboBoxEspectadores, gbc_comboBoxEspectadores);
 		
 		JLabel lblObtenerRegistrosPrevios = new JLabel("Obtener registros previos:");
 		GridBagConstraints gbc_lblObtenerRegistrosPrevios = new GridBagConstraints();
@@ -326,7 +366,6 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 				}else {
 					JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elige otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 					
-					return;
 				}
 			}
 		});
@@ -335,7 +374,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		
 		GridBagConstraints gbc_btnCanjear = new GridBagConstraints();
 		gbc_btnCanjear.gridwidth = 2;
-		gbc_btnCanjear.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCanjear.insets = new Insets(0, 0, 5, 0);
 		gbc_btnCanjear.gridx = 5;
 		gbc_btnCanjear.gridy = 10;
 		getContentPane().add(btnCanjear, gbc_btnCanjear);
@@ -431,7 +470,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			listRegistros.setModel(listModel);
 		}else {
 			JOptionPane.showMessageDialog(null, "El usuario no posee registros previos", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
-			return;
+			
 		}
 		
 	}
@@ -464,10 +503,10 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		textFieldFechaFun.setText(null);
 		textFieldHoraFuncion.setText(null);
 		textFieldFechaRegFuncion.setText(null);
-		comboBoxPlataformas.removeAllItems();
-		comboBoxEspectPlat.removeAllItems();
-		comboBoxEspectadores.removeAllItems();
-		comboBoxFuncionesEspect.removeAllItems();
+		//comboBoxPlataformas.removeAllItems();
+		//comboBoxEspectPlat.removeAllItems();
+		//comboBoxEspectadores.removeAllItems();
+		//comboBoxFuncionesEspect.removeAllItems();
 	}
 	
 	/*public DtRegistro[] cargarRegistrosPrevios(){

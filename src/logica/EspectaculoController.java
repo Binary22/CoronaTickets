@@ -198,15 +198,15 @@ public class EspectaculoController implements IEspectaculo {
 		HashMap<String, Espectaculo> espect = p.getEspectaculos();
 		
 		ArrayList<DtEspectaculo> dtespect = new ArrayList<DtEspectaculo>();
-		for (String key : espect.keySet()) {
-			String nombre = espect.get(key).getNombre();
-			LocalTime duracion = espect.get(key).getDuracion();
-			String descrip = espect.get(key).getDescripcion();
-			int minEspect = espect.get(key).getMinEspectadores();
-			int maxEspect = espect.get(key).getMaxEspectadores();
-			String url = espect.get(key).getUrl();
-			LocalDate fechaReg = espect.get(key).getFechaReg();
-			float costo = espect.get(key).getCosto();
+		for (String value : espect.keySet()) {
+			String nombre = espect.get(value).getNombre();
+			LocalTime duracion = espect.get(value).getDuracion();
+			String descrip = espect.get(value).getDescripcion();
+			int minEspect = espect.get(value).getMinEspectadores();
+			int maxEspect = espect.get(value).getMaxEspectadores();
+			String url = espect.get(value).getUrl();
+			LocalDate fechaReg = espect.get(value).getFechaReg();
+			float costo = espect.get(value).getCosto();
 			DtEspectaculo nuevo = new DtEspectaculo(nombre, duracion, descrip, minEspect, maxEspect, url, fechaReg, costo);
 			dtespect.add(nuevo);
 		}
@@ -256,13 +256,20 @@ public class EspectaculoController implements IEspectaculo {
 		return hu.getNombres();
 	}
 	@Override
-	public void ingresarDatosRegistro(String nickname, String nomfuncion) {
+	public void ingresarNombreFuncion(String nomfuncion) {
 		// TODO Auto-generated method stub
-		System.out.print(nickname);
-		this.nickUsuario = nickname;
+		//this.nickUsuario = nickname;
 		this.nomfuncion = nomfuncion;
 		
 	}
+	
+	public void ingresarNombreEspectador(String nickname) {
+		// TODO Auto-generated method stub
+		this.nickUsuario = nickname;
+		//this.nomfuncion = nomfuncion;
+		
+	}
+	
 	@Override
 	public ArrayList<DtRegistro> obtenerRegistrosPrevios() {
 		// TODO Auto-generated method stub
@@ -309,6 +316,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		Espectaculo e = he.getEspectaculo(nomespect);
 		Funcion fun = e.getFuncion(this.nomfuncion);
+		System.out.println(fun.getNombre());
 		ArrayList<Registro> regs = fun.getRegistros();
 		int cant = 0;
 		for(int i = 0; i < regs.size(); i++) {

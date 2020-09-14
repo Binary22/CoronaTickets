@@ -51,7 +51,7 @@ public class Funcion {
 		this.artistasInvitados = artistasInvitados;
 	}
 	public ArrayList<Registro> getRegistros() {
-		return registros;
+		return this.registros;
 	}
 	public void setRegistros(ArrayList<Registro> registros) {
 		this.registros = registros;
@@ -82,17 +82,9 @@ public class Funcion {
 		this.horaInicio = horaInicio;
 		this.fechaReg = fechaReg;
 		this.artistasInvitados = artistasInvitados;
-		//this.registros = registros;
 		this.espectaculo = espectaculo;
-		/*
-		 * 	
+		this.registros = new ArrayList<Registro>();
 	
-	
-	private ArrayList<Usuario> artistasInvitados;
-	private ArrayList<Registro> registros;
-	private Espectaculo espectaculo;
-		 */
-		
 	}
 	
 	
