@@ -18,7 +18,9 @@ public interface IEspectaculo {
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat);
 	public ArrayList<DtFuncion> mostrarFuncionesEspectaculo(String nomespec);
 	public ArrayList<String> mostrarEspectadores();
-	public void ingresarDatosRegistro(String nickname, String nomfuncion);
+	//public void ingresarDatosRegistro(String nickname, String nomfuncion);
+	public void ingresarNombreFuncion(String nomfuncion);
+	public void ingresarNombreEspectador(String nickname);
 	public ArrayList<DtRegistro> obtenerRegistrosPrevios();
 	public void canjearRegistros(DtRegistro[] regs) throws noSeleccionoTres;
 	public boolean existeRegistroEspecAFun();
