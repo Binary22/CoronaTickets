@@ -24,12 +24,12 @@ public interface IEspectaculo {
 	public void ingresarNombreFuncion(String nomfuncion);
 	public void ingresarNombreEspectador(String nickname);
 	public ArrayList<DtRegistro> obtenerRegistrosPrevios();
-	public void canjearRegistros(DtRegistro[] regs) throws noSeleccionoTres;
+	public void canjearRegistros(int[] regsId) throws noSeleccionoTres;
 	public boolean existeRegistroEspecAFun();
 	public boolean funcionAlcanzoLimiteReg(String nomespect);
 	public void elegirNuevaFuncion(String nomfuncion);
 	public void elegirNuevoEspectador(String nickname);
-	public void confirmarRegistro(String nomespect);
+	public void confirmarRegistro(String nomespect, LocalDate fecha);
 	public ArrayList<String> listarArtistas();
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion, LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) throws NombreEspectaculoExisteException;
 	public void confirmarAltaEspectaculo();
