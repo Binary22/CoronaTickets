@@ -311,6 +311,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		System.out.println(espectador.getNickname());
 		return espectador.tieneRegistroAFuncion(this.nomfuncion);
 		
 	}
@@ -343,7 +344,7 @@ public class EspectaculoController implements IEspectaculo {
 		
 	}
 	@Override
-	public void confirmarRegistro(String nomespect) {
+	public void confirmarRegistro(String nomespect, LocalDate fecha) {
 		// TODO Auto-generated method stub
 		//obtengo la funcion
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
@@ -361,7 +362,7 @@ public class EspectaculoController implements IEspectaculo {
 		}else {
 			nuevo = new Registro(fechahoy, false, espectador, fun, e.getCosto());
 		}
-		
+		nuevo.setFecha(fecha);
 		espectador.addFuncion(nuevo);
 		fun.addEspectador(nuevo);
 		
