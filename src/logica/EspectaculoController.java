@@ -222,7 +222,7 @@ public class EspectaculoController implements IEspectaculo {
 		ArrayList<String> funciones = new ArrayList<String>(mpFunciones.keySet());
 		ArrayList<DtFuncion> dtFunciones = new ArrayList<DtFuncion>();
 		
-		for(int i = 0; i<funciones.size(); i++) {
+		for(int i = 0; i < funciones.size(); i++) {
 			Funcion fun = mpFunciones.get(funciones.get(i));
 			String nombre = fun.getNombre();
 			LocalDate fecha = fun.getFecha();
@@ -243,7 +243,9 @@ public class EspectaculoController implements IEspectaculo {
 	}
 	
 	public DtFuncion mostarFuncion(String nomFuncion) {
-		Espectaculo e = this.espectaculo;
+		//Espectaculo e = this.espectaculo;
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(this.nomespec);
 		Funcion f = e.getFuncion(nomFuncion);
 		DtFuncion nueva = new DtFuncion(f.getNombre(), f.getFecha(), f.getHoraInicio(), f.getFechaReg());
 		return nueva;
@@ -289,20 +291,27 @@ public class EspectaculoController implements IEspectaculo {
 		int id3 = regsId[2];
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
-		ArrayList<Registro> regs = espectador.getRegistros();
-		Iterator<Registro> it = regs.iterator();
-		int i = 0;
 		
-		while(it.hasNext()) {
-			Registro temp = it.next();
-			int idTemp = temp.getId();
+		ArrayList<Registro> regs = espectador.getRegistros();
+		//Iterator<Registro> it = regs.iterator();
+		Registro[] regsTempo = new Registro[3];
+		//int i = 0;
+		int j = 0;
+		for (int i = 0; i < regs.size(); i++) {
+			int idTemp = regs.get(i).getId();
 			if(idTemp == id1 || idTemp == id2 ||idTemp == id3) {
-				this.regsCanjeados[i] = temp;
-				i++;
-			}
+				regs.get(i).setCanjeado(true);
+				regsTempo[j] = regs.get(i);
+				j++;
 		}
-		this.registroFueCanjeado = true;
+		
 	}
+		
+		this.registroFueCanjeado = true;
+		this.regsCanjeados = regsTempo;
+	}
+		
+	
 	@Override
 	public boolean existeRegistroEspecAFun() {
 		// TODO Auto-generated method stub
@@ -315,10 +324,11 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public boolean funcionAlcanzoLimiteReg(String nomespect) {
 		// TODO Auto-generated method stub
+		//this.nomespec = nomespect;
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		Espectaculo e = he.getEspectaculo(nomespect);
+		Espectaculo e = he.getEspectaculo(nomespec);
 		Funcion fun = e.getFuncion(this.nomfuncion);
-		System.out.println(fun.getNombre());
+		//System.out.println(fun.getNombre());
 		ArrayList<Registro> regs = fun.getRegistros();
 		int cant = 0;
 		for(int i = 0; i < regs.size(); i++) {
@@ -351,6 +361,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
 		Registro nuevo;
+		if(!(fun == null) && !(espectador == null)) {
 		if(this.registroFueCanjeado) {
 			nuevo = new Registro(fecha, false, espectador, fun, 0);
 			nuevo.setRegsCanjeados(this.regsCanjeados);
@@ -361,6 +372,7 @@ public class EspectaculoController implements IEspectaculo {
 		
 		espectador.addFuncion(nuevo);
 		fun.addEspectador(nuevo);
+		}
 		
 	}
 	@Override
