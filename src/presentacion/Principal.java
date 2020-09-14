@@ -419,19 +419,20 @@ public class Principal extends JFrame {
 		        //R21
 		        ec.ingresarNombreFuncion("Memphis Blues World - A");
 		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("19/07/20",formatter));
-		        //esto se hace solo si se canjean
 		        ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
 		        int[] registrosFiltrados = new int[3];
-		        for (int i = 0; i <= registros.size(); i++) {
-		            if(i==6)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==9)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==16)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		        for (int i = 0; i < registros.size(); i++) {
+		            if(registros.get(i).getId() == 7)
+		                registrosFiltrados[0] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 10)
+		                registrosFiltrados[1] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 17)
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
+		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("19/07/20",formatter));
+		        //esto se hace solo si se canjean
+		       
 		        //R22
 		        ec.ingresarNombreFuncion("Memphis Blues World - B");
 		        ec.ingresarNombreEspectador("eleven11");
@@ -447,17 +448,18 @@ public class Principal extends JFrame {
 		        //R25
 		        ec.ingresarNombreFuncion("Memphis Blues World - C");
 		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("15/08/20",formatter));
 		        registros = ec.obtenerRegistrosPrevios();
-		        for (int i = 0; i <= registros.size(); i++) {
-		            if(i==0)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==5)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==8)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		        for (int i = 0; i < registros.size(); i++) {
+		            if(registros.get(i).getId() == 1)
+		                registrosFiltrados[0] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 6)
+		                registrosFiltrados[1] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 9)
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
+		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("15/08/20",formatter));
+		        
 		        //R26
 		        ec.ingresarNombreFuncion("Memphis Blues World - C");
 		        ec.ingresarNombreEspectador("eleven11");
@@ -465,17 +467,18 @@ public class Principal extends JFrame {
 		        //R27
 		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
 		        ec.ingresarNombreEspectador("chino");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("19/07/20",formatter));
 		        registros = ec.obtenerRegistrosPrevios();
-		        for (int i = 0; i <= registros.size(); i++) {
-		            if(i==2)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==3)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==19)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		        for (int i = 0; i < registros.size(); i++) {
+		            if(registros.get(i).getId() == 3)
+		                registrosFiltrados[0] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 4)
+		                registrosFiltrados[1] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 20)
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
+		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("19/07/20",formatter));
+		        
 		        //R28
 		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
 		        ec.ingresarNombreEspectador("tonyp");
@@ -495,17 +498,18 @@ public class Principal extends JFrame {
 		        //R30
 		        ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
 		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("01/08/20",formatter));
 		        registros = ec.obtenerRegistrosPrevios();
-		        for (int i = 0; i <= registros.size(); i++) {
-		            if(i==1)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==12)
-		                registrosFiltrados[i] = registros.get(i).getId();
-		            if(i==18)
-		                registrosFiltrados[i] = registros.get(i).getId();
+		        for (int i = 0; i < registros.size(); i++) {
+		            if(registros.get(i).getId() == 2)
+		                registrosFiltrados[0] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 13)
+		                registrosFiltrados[1] = registros.get(i).getId();
+		            if(registros.get(i).getId() == 19)
+		                registrosFiltrados[2] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
+		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("01/08/20",formatter));
+		        
 		        //R31
 		        ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
 		        ec.ingresarNombreEspectador("house");

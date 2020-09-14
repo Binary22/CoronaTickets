@@ -234,6 +234,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 				if(!ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
 					
 					DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
+					
 					textFieldFechaFun.setText(null);
 					textFieldFechaFun.setText(infoFun.getFecha().toString());
 					
@@ -437,7 +438,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				confirmarRegistro();
-				limpiarVentana();
+				//limpiarVentana();
 			}
 		});
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
@@ -450,7 +451,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		btnNewButton_1.setForeground(Color.RED);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limpiarVentana();
+				//limpiarVentana();
 				setVisible(false);
 			}
 		});
