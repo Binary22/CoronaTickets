@@ -300,9 +300,6 @@ public class EspectaculoController implements IEspectaculo {
 				i++;
 			}
 		}
-		for (int j = 0; j<3;j++) {
-		this.regsCanjeados[j] = null;
-		}
 		this.registroFueCanjeado = true;
 	}
 	@Override

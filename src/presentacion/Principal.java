@@ -336,6 +336,7 @@ public class Principal extends JFrame {
 		}
 		
 		//este es R1
+				formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
 				ec.ingresarNombreFuncion("Los Village Volvieron - 1");
 		        ec.ingresarNombreEspectador("costas");
 		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("09/04/20",formatter));
