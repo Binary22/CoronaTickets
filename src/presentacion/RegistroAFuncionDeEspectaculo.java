@@ -239,7 +239,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 				
 				if(!ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
 					
-					DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
+					//DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
 					
 					textFieldFechaFun.setText(null);
 					textFieldFechaFun.setText(infoFun.getFecha().toString());
