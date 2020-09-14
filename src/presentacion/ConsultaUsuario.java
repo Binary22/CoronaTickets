@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JTextPane;
@@ -31,6 +32,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class ConsultaUsuario extends JInternalFrame {
+	
+	HashMap<String, DtFuncion> funciones;
 
 	/**
 	 * Launch the application.
@@ -54,6 +57,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	public ConsultaUsuario() {
 		Fabrica fabrica = Fabrica.getInstance();
 		IConsulta icontrolador = fabrica.getIConsulta();
+		funciones = new HashMap<String, DtFuncion>();
 		
 		setTitle("Consulta de usuario");
 		setClosable(true);
@@ -211,7 +215,8 @@ public class ConsultaUsuario extends JInternalFrame {
 				if (listafun != null) {
 					comboBoxFun.removeAllItems();
 					for (int i = 0; i < listafun.size(); i++) {
-						comboBoxFun.addItem(listafun.get(i));
+						funciones.put(listafun.get(i).getNombre(), listafun.get(i));
+						comboBoxFun.addItem(listafun.get(i).getNombre());
 					}
 				}
 				
@@ -241,8 +246,9 @@ public class ConsultaUsuario extends JInternalFrame {
 		btnConsultarFuncion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// aca se deberia llamar al caso de uso anidado consulta de funcion
-				DtFuncion sel = (DtFuncion) comboBoxFun.getSelectedItem();
-				icontrolador.elegirFuncion(sel.getEspectaculo(), sel.getNombre());
+				String sel = (String) comboBoxFun.getSelectedItem();
+				
+				icontrolador.elegirFuncion(funciones.get(sel).getEspectaculo(), sel);
 				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(icontrolador);
 				getParent().add(cdea);
 				cdea.setVisible(true);
@@ -262,7 +268,7 @@ public class ConsultaUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// aca se deberia llamar al caso de uso anidado consulta de espectaculo
 				String sel = (String)comboBoxFun.getSelectedItem();
-				icontrolador.elegirEspectaculo(sel);
+				icontrolador.elegirEspectaculo(funciones.get(sel).getEspectaculo());
 				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(icontrolador);
 				getParent().add(cea);
 				cea.setVisible(true);

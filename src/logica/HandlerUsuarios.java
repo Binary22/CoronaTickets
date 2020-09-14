@@ -88,7 +88,7 @@ public class HandlerUsuarios {
 		for (int i = 0; i < listareg.size(); i++) {
 			ret.add(listareg.get(i).getFuncion().getDt());
 		}
-		return null;
+		return ret;
 	}
 	
 	public boolean existeMail(String mail){
