@@ -275,7 +275,6 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
-		System.out.print(espectador.getNombre());
 		return espectador.getRegistrosPrevios();
 	}
 	@Override

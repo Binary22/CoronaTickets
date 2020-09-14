@@ -173,19 +173,45 @@ class EspectaculoControllerTest {
 	}
 
 	@Test
-	void testIngresarDatosRegistro() {
-		ie.ingresarDatosRegistro("waston", "Los Village Volvieron - 1");
+	void testIngresarNombreFuncion() {
+		ie.ingresarNombreFuncion("Los Village Volvieron");
+	}
+		
+	@Test
+	void testIngresarNombreEspectador() {
+		ie.ingresarNombreEspectador("waston");
 	}
 	
 	@Test
 	void testObtenerRegistrosPrevios() {
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ie.ingresarNombreEspectador("waston");
 		ArrayList<DtRegistro> dtrs = ie.obtenerRegistrosPrevios();
 	}
 	
 	
 	@Test
 	void testConfirmarRegistro() {
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ie.ingresarNombreEspectador("waston");
 		ie.confirmarRegistro("Los Village Volvieron");
+	};
+	
+	@Test
+	void testFuncionAlcanzoLimiteReg() {
+		Funcion f = he.getEspectaculo("Los Village Volvieron").getFuncion("los Village Volvieron - 1");
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		assertFalse(ie.funcionAlcanzoLimiteReg("Los Village Volvieron"));	
+	}
+	
+	@Test
+	void testExisteRegistroEspecAFun() {
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ie.ingresarNombreEspectador("waston");
+		assertTrue(ie.existeRegistroEspecAFun());
+		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ie.ingresarNombreEspectador("costas");
+		assertFalse(ie.existeRegistroEspecAFun());
 	}
 	
 	/*
@@ -196,15 +222,9 @@ class EspectaculoControllerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testExisteRegistroEspecAFun() {
-		fail("Not yet implemented");
-	}
+	
 
-	@Test
-	void testFuncionAlcanzoLimiteReg() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	void testElegirNuevaFuncion() {
