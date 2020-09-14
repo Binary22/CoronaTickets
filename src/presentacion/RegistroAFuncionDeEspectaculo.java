@@ -226,6 +226,8 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxFuncionesEspect = new JComboBox<String>();
 		comboBoxFuncionesEspect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String espec = (String) comboBoxEspectPlat.getSelectedItem();
+				ctrlEspect.elegirEspectaculo(espec);
 				nombreFuncion = (String) comboBoxFuncionesEspect.getSelectedItem();
 				
 				ctrlEspect.ingresarNombreFuncion(nombreFuncion);
