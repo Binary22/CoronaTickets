@@ -352,16 +352,15 @@ public class EspectaculoController implements IEspectaculo {
 		//obtengo al usuario
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
-		LocalDate fechahoy = LocalDate.now();
 		Registro nuevo;
 		if(this.registroFueCanjeado) {
-			nuevo = new Registro(fechahoy, false, espectador, fun, 0);
+			nuevo = new Registro(fecha, false, espectador, fun, 0);
 			nuevo.setRegsCanjeados(this.regsCanjeados);
 			this.registroFueCanjeado = false;
 		}else {
-			nuevo = new Registro(fechahoy, false, espectador, fun, e.getCosto());
+			nuevo = new Registro(fecha, false, espectador, fun, e.getCosto());
 		}
-		nuevo.setFecha(fecha);
+		
 		espectador.addFuncion(nuevo);
 		fun.addEspectador(nuevo);
 		
