@@ -124,7 +124,8 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		String espec = icontrolador.mostrarEspectaculo().getNombre();
+		//String espec = icontrolador.mostrarEspectaculo().getNombre();
+		String espec = dtf.getEspectaculo();
 		ArrayList<String> arte = he.getEspectaculo(espec).getFuncion(dtf.getNombre()).listarArtistas();
 		System.out.print(espec);
 		System.out.print("\n" + dtf.getNombre());
