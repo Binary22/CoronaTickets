@@ -95,14 +95,10 @@ public class UsuarioController implements IUsuario{
 	
 
 	@Override
-	public void altaArtista(String desc, String bio, String web) throws UsuarioConMismoNickException  {
+	public void altaArtista(String desc, String bio, String web) {
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
-		if (huser.getUsuario(nickname) == null) {
-			this.esArtista = true;
-			this.artista = new Artista(this.usuario, desc, bio, web);
-		}
-		else
-			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
+		this.esArtista = true;
+		this.artista = new Artista(this.usuario, desc, bio, web);
 	}
 
 	@Override

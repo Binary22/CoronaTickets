@@ -55,16 +55,37 @@ class UsuarioControllerTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
-			icontroller.altaArtista("el number 1", "...", "acqua.com");
-		} catch (UsuarioConMismoNickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		icontroller.altaArtista("el number 1", "...", "acqua.com");
 		assertEquals(icontroller.getArtista().getDescripcion(), "el number 1");
 		assertEquals(icontroller.getArtista().getBiografia(), "...");
 		assertEquals(icontroller.getArtista().getWebsite(), "acqua.com");
 	}
+	
+	@Test
+	void testAltaUsuarioMismoMail() {
+		LocalDate fechanac = LocalDate.of(2000, 03, 29);
+		try {
+		icontroller.altaUsuario("santiacqua", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		} catch(UsuarioConMismoMailException e1) {
+			e1.printStackTrace();
+		} catch(UsuarioConMismoNickException e2) {
+			e2.printStackTrace();
+		}
+		assertThrows(UsuarioConMismoMailException.class, () -> icontroller.altaUsuario("santiacqua", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac));
+		}
+	
+	@Test
+	void testAltaUsuarioMismoNick() {
+		LocalDate fechanac = LocalDate.of(2000, 03, 29);
+		try {
+		icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		} catch(UsuarioConMismoMailException e1) {
+			e1.printStackTrace();
+		} catch(UsuarioConMismoNickException e2) {
+			e2.printStackTrace();
+		}
+		assertThrows(UsuarioConMismoNickException.class, () -> icontroller.altaUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac));
+		}
 
 	@Test
 	void testConfirmarAltaUsuarioArtista() {
@@ -78,12 +99,7 @@ class UsuarioControllerTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
-			icontroller.altaArtista("el number 1", "...", "acqua.com");
-		} catch (UsuarioConMismoNickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		icontroller.altaArtista("el number 1", "...", "acqua.com");
 		icontroller.confirmarAltaUsuario();
 		
 		hu = HandlerUsuarios.getInstancia();
