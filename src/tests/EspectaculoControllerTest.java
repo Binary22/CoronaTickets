@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
+import datatypes.DtUsuario;
 import logica.Espectaculo;
 import logica.EspectaculoController;
 import logica.Funcion;
@@ -134,6 +135,26 @@ class EspectaculoControllerTest {
 		assertTrue(espec.contains("vpeople"));
 	}
 	
+	@Test
+	void testListarArtistas() {
+		ArrayList<String> megustaelarte = ie.listarArtistas();
+		assertTrue(megustaelarte.contains("vpeople"));
+		assertFalse(megustaelarte.contains("waston"));
+	}
+	
+	@Test
+	void testListarUsuarios() {
+		boolean succ = false;
+		try {
+		DtUsuario[] dtus = ie.listarUsuarios();
+		for (DtUsuario dt : dtus) {
+			if (dt.getNickname().equals("waston")) succ = true;
+		}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		assertTrue(succ);
+	}
 	/*
 
 	@Test
@@ -176,15 +197,6 @@ class EspectaculoControllerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testListarArtistas() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListarUsuarios() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testAltaEspectaculo() {
