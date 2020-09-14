@@ -62,6 +62,7 @@ class EspectaculoControllerTest {
 		}
 		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion"));
 		//Test que los artistas verdaderamente se agreguen a la funcion.
+		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion").listarArtistas().contains("vpeople"));
 		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion").getArtistasInvitados().contains(hu.getUsuario("vpeople")));
 		
 	};
