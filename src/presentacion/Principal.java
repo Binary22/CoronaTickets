@@ -10,10 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.SplitPaneUI;
 
+import datatypes.DtRegistro;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
+import excepciones.noSeleccionoTres;
 import logica.Artista;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
@@ -180,6 +182,12 @@ public class Principal extends JFrame {
 				} catch (NombreFuncionexisteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (noSeleccionoTres e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -224,7 +232,7 @@ public class Principal extends JFrame {
 	
 	}
 
-	public static void cargarDatos() throws UsuarioConMismoNickException, UsuarioConMismoMailException, NumberFormatException, NombreEspectaculoExisteException, NombreFuncionexisteException {
+	public static void cargarDatos() throws UsuarioConMismoNickException, UsuarioConMismoMailException, NumberFormatException, NombreEspectaculoExisteException, NombreFuncionexisteException, noSeleccionoTres {
 		// TODO Auto-generated method stub
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
@@ -413,14 +421,14 @@ public class Principal extends JFrame {
 		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("19/07/20",formatter));
 		        //esto se hace solo si se canjean
 		        ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
-		        DtRegistro[] registrosFiltrados = new DtRegistro[3];
+		        int[] registrosFiltrados = new int[3];
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==6)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==9)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==16)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R22
@@ -442,11 +450,11 @@ public class Principal extends JFrame {
 		        registros = ec.obtenerRegistrosPrevios();
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==0)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==5)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==8)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R26
@@ -460,11 +468,11 @@ public class Principal extends JFrame {
 		        registros = ec.obtenerRegistrosPrevios();
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==2)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==3)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==19)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R28
@@ -490,11 +498,11 @@ public class Principal extends JFrame {
 		        registros = ec.obtenerRegistrosPrevios();
 		        for (int i = 0; i <= registros.size(); i++) {
 		            if(i==1)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==12)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		            if(i==18)
-		                registrosFiltrados[i] = registros.get(i);
+		                registrosFiltrados[i] = registros.get(i).getId();
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        //R31
@@ -562,8 +570,6 @@ public class Principal extends JFrame {
 		        ec.ingresarNombreEspectador("costas");
 		        ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
 		    }	
-		
-	}
 
 	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);
