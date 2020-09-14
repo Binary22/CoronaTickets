@@ -88,13 +88,13 @@ public class Principal extends JFrame {
 		});
 		mnUsuarios.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar datos de usuario");
+		/*JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar datos de usuario");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ModificarDatosDeUsuarioInternalFrame.setVisible(true);
 			}
-		});
-		mnUsuarios.add(mntmNewMenuItem_1);
+		}); 
+		mnUsuarios.add(mntmNewMenuItem_1); */
 		
 		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
 		mntmConsultaDeDatos.addActionListener(new ActionListener() {
