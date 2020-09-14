@@ -270,11 +270,11 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreEspectador = (String) comboBoxEspectadores.getSelectedItem();
 				ctrlEspect.ingresarNombreEspectador(nombreEspectador);
-				if(ctrlEspect.existeRegistroEspecAFun()) {
+				/*if(ctrlEspect.existeRegistroEspecAFun()) {
 				
 					JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elige otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 					comboBoxEspectadores.removeAllItems();
-				}
+				}*/
 				
 			}
 		});
