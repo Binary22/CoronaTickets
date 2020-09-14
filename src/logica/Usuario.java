@@ -93,17 +93,18 @@ public class Usuario {
 	ArrayList<DtRegistro> getRegistrosPrevios(){
 		ArrayList<DtRegistro> regsPrevios = new ArrayList<DtRegistro>();
 		ArrayList<Registro> regs = this.registros;
-		Iterator<Registro> it = regs.iterator();
-		while(it.hasNext()) {
-			Registro temp = it.next();
-			if(!temp.isCanjeado()) {
-				LocalDate fecha = temp.getFecha();
-				int id = temp.getId();
+		//Iterator<Registro> it = regs.iterator();
+		for (int i = 0; i < regs.size(); i++) {
+			if(!regs.get(i).isCanjeado()) {
+				LocalDate fecha = regs.get(i).getFecha();
+				int id = regs.get(i).getId();
 				DtRegistro reg = new DtRegistro(fecha, id);
 				regsPrevios.add(reg);
 			}
-			
 		}
+		
+			
+		
 		return regsPrevios;
 		
 	}
