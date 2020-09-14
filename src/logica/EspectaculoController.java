@@ -280,6 +280,7 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public void canjearRegistros(int[] regsId) throws noSeleccionoTres {
 		// TODO Auto-generated method stub
+		this.regsCanjeados = new Registro[3];
 		if(regsId.length != 3) {
 			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
 		}
