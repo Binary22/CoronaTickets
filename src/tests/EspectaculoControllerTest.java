@@ -18,6 +18,7 @@ import logica.Espectaculo;
 import logica.EspectaculoController;
 import logica.Funcion;
 import logica.HandlerEspectaculos;
+import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import excepciones.*;
 
@@ -25,6 +26,7 @@ class EspectaculoControllerTest {
 	
 	EspectaculoController ie = new EspectaculoController();
 	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -59,6 +61,8 @@ class EspectaculoControllerTest {
 			e.printStackTrace();
 		}
 		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion"));
+		//Test que los artistas verdaderamente se agreguen a la funcion.
+		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion").getArtistasInvitados().contains(hu.getUsuario("vpeople")));
 		
 	};
 	
