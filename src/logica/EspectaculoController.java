@@ -278,20 +278,20 @@ public class EspectaculoController implements IEspectaculo {
 		return espectador.getRegistrosPrevios();
 	}
 	@Override
-	public void canjearRegistros(DtRegistro[] dtRegs) throws noSeleccionoTres {
+	public void canjearRegistros(int[] regsId) throws noSeleccionoTres {
 		// TODO Auto-generated method stub
-		if(dtRegs.length != 3) {
+		if(regsId.length != 3) {
 			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
 		}
-		int id1 = dtRegs[0].getId();
-		int id2 =dtRegs[1].getId();
-		int id3 = dtRegs[2].getId();
+		int id1 = regsId[0];
+		int id2 =regsId[1];
+		int id3 = regsId[2];
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
 		ArrayList<Registro> regs = espectador.getRegistros();
 		Iterator<Registro> it = regs.iterator();
 		int i = 0;
-		this.regsCanjeados = new Registro[3];
+		
 		while(it.hasNext()) {
 			Registro temp = it.next();
 			int idTemp = temp.getId();
@@ -310,6 +310,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		System.out.println(this.nomfuncion);
 		return espectador.tieneRegistroAFuncion(this.nomfuncion);
 		
 	}
@@ -342,7 +343,7 @@ public class EspectaculoController implements IEspectaculo {
 		
 	}
 	@Override
-	public void confirmarRegistro(String nomespect) {
+	public void confirmarRegistro(String nomespect, LocalDate fecha) {
 		// TODO Auto-generated method stub
 		//obtengo la funcion
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
@@ -360,7 +361,7 @@ public class EspectaculoController implements IEspectaculo {
 		}else {
 			nuevo = new Registro(fechahoy, false, espectador, fun, e.getCosto());
 		}
-		
+		nuevo.setFecha(fecha);
 		espectador.addFuncion(nuevo);
 		fun.addEspectador(nuevo);
 		
