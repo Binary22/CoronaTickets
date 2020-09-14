@@ -55,7 +55,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JButton btnCancelar;
 	private JButton btnAceptar;
 	private JFormattedTextField formattedTextField;
-	private ArrayList<String> ArtistasElegidos = new ArrayList<String>();
+	private ArrayList<String> ArtistasElegidos;
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +78,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	public AltaFuncionEspectaculo() {
 		Fabrica fabrica = Fabrica.getInstance();
         ctrlEspect = fabrica.getIEspectaculo();
+        
+        ArtistasElegidos = new ArrayList<String>();
         
         artistas = new ArrayList<String>();
 	
@@ -365,7 +367,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		}
 
         try {
-			ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, artistas, fechaHoy);
+			ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, ArtistasElegidos, fechaHoy);
 		} catch (NombreFuncionexisteException ex3) {
 			JOptionPane.showMessageDialog(null, ex3.getMessage(), "Registrar funcion", JOptionPane.ERROR_MESSAGE);
 		} 

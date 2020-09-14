@@ -122,18 +122,16 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		gbc_lblDatereg.gridy = 3;
 		getContentPane().add(lblDatereg, gbc_lblDatereg);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				comboBox.removeAllItems();
-				HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-				System.out.print(he.getEspectaculo(dtf.getEspectaculo()).getFuncion(dtf.getNombre()).getArtistasInvitados().size());
-				for (int i = 0; i < dtf.getArtistas().size(); i++) {
-					comboBox.addItem(dtf.getArtistas().get(i).getNickname() + dtf.getArtistas().get(i).getNombre() + dtf.getArtistas().get(i).getApellido());
-				}
-			}
-		});
+		JComboBox<String> comboBox = new JComboBox<String>();
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		String espec = icontrolador.mostrarEspectaculo().getNombre();
+		ArrayList<String> arte = he.getEspectaculo(espec).getFuncion(dtf.getNombre()).listarArtistas();
+		System.out.print(espec);
+		System.out.print("\n" + dtf.getNombre());
+		for(String s: arte) {
+			System.out.print(s);
+		}
+		ConsultaEspectaculo.updateComboBox(arte, comboBox);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 0, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;

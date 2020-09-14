@@ -319,7 +319,7 @@ public class Principal extends JFrame {
 					}
 				}
 				ec.elegirEspectaculo(funcion[4]);
-				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), artistas.isEmpty()? artistas : null, LocalDate.parse(funcion[3], formatter));		
+				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), (artistas != null)? artistas : null, LocalDate.parse(funcion[3], formatter));		
 				ec.ConfirmarAltaFuncion();
 			}
 			br.close();

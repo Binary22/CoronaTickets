@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import logica.Funcion;
+import logica.Usuario;
 
 public class DtFuncion {
 	private String nombre;
@@ -31,10 +32,16 @@ public class DtFuncion {
 	}
 	
 	public DtFuncion(Funcion f) {
+		this.artistas = new ArrayList<DtArtista>();
 		this.nombre = f.getNombre();
 		this.fecha = f.getFecha();
 		this.horainicio = f.getHoraInicio();
 		this.fechaReg = f.getFechaReg();
+		if (f.getArtistasInvitados() != null) {
+			for(Usuario u : f.getArtistasInvitados()) {
+				this.artistas.add(u.getDtArtista());
+			}
+		}
 	}
 
 	public String getEspectaculo() {
