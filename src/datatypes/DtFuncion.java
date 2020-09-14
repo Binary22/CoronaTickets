@@ -32,6 +32,7 @@ public class DtFuncion {
 	}
 	
 	public DtFuncion(Funcion f) {
+		this.espectaculo = f.getEspectaculo().getNombre();
 		this.artistas = new ArrayList<DtArtista>();
 		this.nombre = f.getNombre();
 		this.fecha = f.getFecha();
