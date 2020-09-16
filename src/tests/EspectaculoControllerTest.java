@@ -42,11 +42,6 @@ class EspectaculoControllerTest {
 		ie.elegirEspectaculo("Los Village Volvieron");
 		assertTrue(ie.getEspectaculo().getNombre().equals("Los Village Volvieron"));
 	}
-	@Test
-	void testElegirEspectaculoNoExiste() {
-		ie.elegirEspectaculo("fake");
-		assertTrue(ie.getEspectaculo() == null);
-	}
 
 	@Test
 	void testConfirmarAltaFuncion() {
@@ -204,8 +199,8 @@ class EspectaculoControllerTest {
 	
 	@Test
 	void testFuncionAlcanzoLimiteReg() {
-		Funcion f = he.getEspectaculo("Los Village Volvieron").getFuncion("los Village Volvieron - 1");
-		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
+		Funcion f = he.getEspectaculo("Los Village Volvieron").getFuncion("Los Village Volvieron - 1");
+		ie.ingresarNombreFuncion(f.getNombre());
 		assertFalse(ie.funcionAlcanzoLimiteReg("Los Village Volvieron"));	
 	}
 	

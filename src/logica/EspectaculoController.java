@@ -135,6 +135,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerEspectaculos espect = HandlerEspectaculos.getInstance();
 		this.espectaculo = espect.getEspectaculo(nomEspectaculo);
+		this.nomespec = this.espectaculo.getNombre();
 		if (this.espectaculo == null) {
 			System.out.print("no existe el espectaculo " + nomEspectaculo);
 		}
@@ -322,12 +323,12 @@ public class EspectaculoController implements IEspectaculo {
 		
 	}
 	@Override
-	public boolean funcionAlcanzoLimiteReg(String nomespect) {
+	public boolean funcionAlcanzoLimiteReg(String nomespectac) {
 		// TODO Auto-generated method stub
 		//this.nomespec = nomespect;
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		Espectaculo e = he.getEspectaculo(nomespec);
-		Funcion fun = e.getFuncion(this.nomfuncion);
+		Espectaculo e = he.getEspectaculo(nomespectac);
+		Funcion fun = e.getFuncion(nomfuncion);
 		//System.out.println(fun.getNombre());
 		ArrayList<Registro> regs = fun.getRegistros();
 		int cant = 0;
