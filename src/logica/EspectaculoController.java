@@ -324,9 +324,9 @@ public class EspectaculoController implements IEspectaculo {
 	@Override
 	public boolean funcionAlcanzoLimiteReg(String nomespect) {
 		// TODO Auto-generated method stub
-		//this.nomespec = nomespect;
+		this.nomespec = nomespect;
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		Espectaculo e = he.getEspectaculo(nomespec);
+		Espectaculo e = he.getEspectaculo(nomespect);
 		Funcion fun = e.getFuncion(this.nomfuncion);
 		//System.out.println(fun.getNombre());
 		ArrayList<Registro> regs = fun.getRegistros();
@@ -334,7 +334,7 @@ public class EspectaculoController implements IEspectaculo {
 		for(int i = 0; i < regs.size(); i++) {
 			cant++;
 		}
-		if(cant >= e.getMaxEspectadores()) {
+		if(cant > e.getMaxEspectadores()) {
 			return true;
 		}
 			
