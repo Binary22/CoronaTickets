@@ -3,19 +3,24 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import excepciones.PaqueteConMismoNombreException;
+
 public class PaqueteController implements IPaquete {
+	private Paquete p;
 
 	@Override
-	public void crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc,
-			LocalDate fechaalta) {
-		// TODO Auto-generated method stub
-
+	public void crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta) throws PaqueteConMismoNombreException {
+		HandlerPaquetes hq= HandlerPaquetes.getInstance();
+		if(hq.getPaquete(nombre) == null)
+			this.p = hq.crearPaquete(nombre,descrip,fechaini,fechafin,desc,fechaalta);
+		else
+			throw new PaqueteConMismoNombreException("El paquete de nombre:" + nombre + "ya esta en uso");
 	}
 
 	@Override
 	public void confirmarCrearPaquete() {
-		// TODO Auto-generated method stub
-
+		HandlerPaquetes hq= HandlerPaquetes.getInstance();
+		hq.agregarPaquete(p);
 	}
 
 	@Override
