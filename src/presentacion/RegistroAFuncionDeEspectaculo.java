@@ -152,6 +152,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				nombreEspectaculo = (String) comboBoxEspectPlat.getSelectedItem();
 				
+				
 			}
 		});
 		GridBagConstraints gbc_comboBoxEspectPlat = new GridBagConstraints();
@@ -182,6 +183,8 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_2.gridx = 1;
 		gbc_lblNewLabel_2.gridy = 3;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		
 		
 		
 		
@@ -226,20 +229,21 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxFuncionesEspect = new JComboBox<String>();
 		comboBoxFuncionesEspect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String espec = (String) comboBoxEspectPlat.getSelectedItem();
-				ctrlEspect.elegirEspectaculo(espec);
+				//String espec = (String) comboBoxEspectPlat.getSelectedItem();
+				//ctrlEspect.elegirEspectaculo(espec);
+				
 				nombreFuncion = (String) comboBoxFuncionesEspect.getSelectedItem();
 				ctrlEspect.ingresarNombreFuncion(nombreFuncion);
-				DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
-				textFieldFechaFun.setText(null);
-				textFieldFechaFun.setText(infoFun.getFecha().toString());
 				
-				textFieldHoraFuncion.setText(null);
-				textFieldHoraFuncion.setText(infoFun.getHorainicio().toString());
 				
+			}
+		});
+		
+		JButton btnVerDatos = new JButton("Ver datos");
+		btnVerDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				if(!ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
-					
-					//DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
+					DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
 					
 					textFieldFechaFun.setText(null);
 					textFieldFechaFun.setText(infoFun.getFecha().toString());
@@ -258,6 +262,12 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 				}
 			}
 		});
+		GridBagConstraints gbc_btnVerDatos = new GridBagConstraints();
+		gbc_btnVerDatos.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnVerDatos.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVerDatos.gridx = 6;
+		gbc_btnVerDatos.gridy = 3;
+		getContentPane().add(btnVerDatos, gbc_btnVerDatos);
 		
 		JButton btnVerEspectadores = new JButton("Ver espectadores");
 		btnVerEspectadores.addActionListener(new ActionListener() {
@@ -443,7 +453,15 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		btnAceptar.setForeground(Color.BLUE);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				confirmarRegistro();
+				int respuesta = JOptionPane.showConfirmDialog(null, "Confirmar los datos ingresados", "Confirmacion", JOptionPane.YES_NO_OPTION);
+				if(respuesta == JOptionPane.YES_OPTION) {
+					confirmarRegistro();
+					dispose();
+				}
+				if(respuesta == JOptionPane.NO_OPTION) {
+					dispose();
+				}
+				
 				//limpiarVentana();
 			}
 		});

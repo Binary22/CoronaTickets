@@ -26,6 +26,8 @@ import logica.IUsuario;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.time.LocalDate;
@@ -49,6 +51,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	private JInternalFrame ConsultaFuncionInternalFrame;
 	private JInternalFrame RegistroFunEspectInternalFrame;
+	private boolean datosyafueroncargados = false;
 	
 
 	/**
@@ -165,11 +168,15 @@ public class Principal extends JFrame {
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
 		
+		datosyafueroncargados = false;
+		
 		JMenuItem mntmCargarDatos = new JMenuItem("Cargar Datos");
 		mntmCargarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!datosyafueroncargados) {
 				try {
 					cargarDatos();
+					datosyafueroncargados = true;
 				} catch (NombreEspectaculoExisteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -188,6 +195,9 @@ public class Principal extends JFrame {
 				} catch (noSeleccionoTres e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+				} else {
+					JOptionPane.showMessageDialog(null, "Los datos ya fueron cargados anteriormente.");
 				}
 			}
 		});
@@ -575,7 +585,9 @@ public class Principal extends JFrame {
 		        ec.ingresarNombreFuncion("30 años - 2");
 		        ec.ingresarNombreEspectador("costas");
 		        ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
-		    }	
+		    
+		        JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");
+	}	
 
 	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);
