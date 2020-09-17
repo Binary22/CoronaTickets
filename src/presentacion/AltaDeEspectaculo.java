@@ -386,7 +386,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
 
 	}
 	private void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
-	    cb.removeAllItems();
+		cb.removeAllItems();
+		lista.sort(String::compareToIgnoreCase);
 	    lista.forEach(el -> cb.addItem(el));
 	}
 }
