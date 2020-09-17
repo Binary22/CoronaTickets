@@ -8,17 +8,19 @@ public class Paquete {
 	private String nombre;
 	private LocalDate fechaI;
 	private LocalDate fechaF;
+	private LocalDate fechaAlta;
 	private int descuento;
 	private String descripcion;
 	private HashMap<String,Espectaculo> espectaculos;
 	
-	public Paquete(String nombre, LocalDate fechaI, LocalDate fechaF, int descuento, String descripcion) {
+	public Paquete(String nombre, LocalDate fechaI, LocalDate fechaF, int descuento, String descripcion, LocalDate fechaalta) {
 		super();
 		this.nombre = nombre;
 		this.fechaI = fechaI;
 		this.fechaF = fechaF;
 		this.descuento = descuento;
 		this.descripcion = descripcion;
+		this.fechaAlta = fechaalta;
 	}
 	
 	public void addEspectaculo(Espectaculo e) {
@@ -28,6 +30,10 @@ public class Paquete {
 	
 	public DtPaquete getDt() {
 		return null;
+	}
+
+	public String getNombre() {
+		return this.nombre;
 	}
 
 //	public String getNombre() {

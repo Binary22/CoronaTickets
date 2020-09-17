@@ -39,6 +39,8 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class AltaDeEspectaculo extends JInternalFrame {
     /**
@@ -52,7 +54,6 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JLabel lblNombre;
     private JTextField textFieldNombre;
     private JLabel lblDescripcion;
-    private JTextPane tpaneDescripcion;
     private JLabel lblDuracion;
     private JSpinner spnDuracionhs;
     private JSpinner spnDuracionmin;
@@ -68,6 +69,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JCalendar calFecha;
     private ArrayList<String> plataformas;
     private ArrayList<String> artistas;
+    private JTextArea txtaDescripcion;
+    private JScrollPane scrollPane;
 
     
     
@@ -98,15 +101,15 @@ public class AltaDeEspectaculo extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
 		setTitle("Alta de espectaculo");
-		setBounds(100, 100, 543, 436);
+		setBounds(100, 100, 543, 495);
 		Fabrica f = Fabrica.getInstance();
 		IEspectaculo iesp= f.getIEspectaculo();
 		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{177, 26, 150, 45, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 73, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{177, 26, 150, 35, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
@@ -188,15 +191,17 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		gbc_lblNewLabel_3.gridy = 3;
 		getContentPane().add(lblDescripcion, gbc_lblNewLabel_3);
 		
-		tpaneDescripcion = new JTextPane();
-		tpaneDescripcion.setFont(new Font("Arial", Font.PLAIN, 13));
-		GridBagConstraints gbc_textPane = new GridBagConstraints();
-		gbc_textPane.gridwidth = 2;
-		gbc_textPane.insets = new Insets(0, 0, 5, 5);
-		gbc_textPane.fill = GridBagConstraints.BOTH;
-		gbc_textPane.gridx = 1;
-		gbc_textPane.gridy = 3;
-		getContentPane().add(tpaneDescripcion, gbc_textPane);
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 3;
+		getContentPane().add(scrollPane, gbc_scrollPane);
+		
+		txtaDescripcion = new JTextArea();
+		scrollPane.setViewportView(txtaDescripcion);
 		
 		lblDuracion = new JLabel("Duracion:");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
@@ -323,7 +328,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 				String plataforma= (String) comboBoxPlataformas.getSelectedItem();
 				String artista= (String) comboBoxArtistas.getSelectedItem();
 				String nombre= textFieldNombre.getText();
-				String descripcion= tpaneDescripcion.getText();
+				String descripcion= txtaDescripcion.getText();
 				String URL = textFieldURL.getText();
 				int hora= (int) spnDuracionhs.getValue();
 				int min= (int) spnDuracionmin.getValue();
@@ -347,7 +352,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 					spnDuracionmin.setValue(0);
 					JOptionPane.showMessageDialog(null, "La duracion no puede ser menor a 10 minutos.");
 				}
-				else if (textFieldNombre.getText().equals("") || tpaneDescripcion.getText().equals("") || textFieldURL.getText().equals("")|| tpaneDescripcion.getText().equals("") || textFieldURL.getText().equals("")) {
+				else if (textFieldNombre.getText().equals("") || textFieldURL.getText().equals("")|| txtaDescripcion.getText().equals("") || textFieldURL.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto.");
 				}
 				else {
