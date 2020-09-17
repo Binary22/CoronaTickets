@@ -222,6 +222,9 @@ public class CrearPaquete extends JInternalFrame {
 				String Nombre = textNombre.getText();
 				String Descripcion = textPaneDescripcion.getText();
 				int Descuento = (int) spnDescuento.getValue();
+				if (Descuento <= 0) {
+					JOptionPane.showMessageDialog(null, "El descuento no puede ser 0");
+				}
 				Fabrica f = Fabrica.getInstance();
 				IPaquete cp = f.getIPaquete();
 				try {

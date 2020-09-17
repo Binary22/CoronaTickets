@@ -172,6 +172,15 @@ public class Principal extends JFrame {
 		JMenuItem mntmCrearPaquete = new JMenuItem("Crear paquete");
 		mnPaquetes.add(mntmCrearPaquete);
 		
+		mntmCrearPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				CrearPaqueteInternalFrame = new CrearPaquete();
+				CrearPaqueteInternalFrame.setClosable(true);
+				CrearPaqueteInternalFrame.setVisible(true);
+				getContentPane().add(CrearPaqueteInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
 		
