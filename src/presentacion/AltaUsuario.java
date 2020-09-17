@@ -36,6 +36,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class AltaUsuario extends JInternalFrame {
 	private JTextField textField;
@@ -181,6 +183,13 @@ public class AltaUsuario extends JInternalFrame {
 		textField_4.setColumns(10);
 		
 		checkEsArtista = new JCheckBox("Es Artista");
+		checkEsArtista.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent ie) {
+				textField_6.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
+				textField_5.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
+				textField_7.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
+			}
+		});
 		GridBagConstraints gbc_rdbtnEsArtista = new GridBagConstraints();
 		gbc_rdbtnEsArtista.anchor = GridBagConstraints.EAST;
 		gbc_rdbtnEsArtista.insets = new Insets(0, 0, 5, 5);
@@ -207,9 +216,9 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		textField_6 = new JTextField();
+		textField_6.setEnabled(false);
 		scrollPane.setViewportView(textField_6);
 		textField_6.setColumns(10);
-		this.textfieldSet.add(textField_6);
 		
 		lblNewLabel = new JLabel("Biografia:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -232,7 +241,7 @@ public class AltaUsuario extends JInternalFrame {
 		scrollPane_1.setViewportView(textField_5);
 		textField_5.setColumns(10);
 		textField_5.setColumns(10);
-		this.textfieldSet.add(textField_5);
+		textField_5.setEnabled(false);
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel.gridx = 1;
@@ -247,6 +256,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(lblWebsite, gbc_lblWebsite);
 		
 		textField_7 = new JTextField();
+		textField_7.setEnabled(false);
 		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
 		gbc_textField_7.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_7.fill = GridBagConstraints.HORIZONTAL;
@@ -262,6 +272,8 @@ public class AltaUsuario extends JInternalFrame {
 		this.textfieldSet.add(textField_2);
 		this.textfieldSet.add(textField_3);
 		this.textfieldSet.add(textField_4);
+		this.textfieldSet.add(textField_5);
+		this.textfieldSet.add(textField_6);
 		this.textfieldSet.add(textField_7);
 		
 		btnCancelar = new JButton("Cancelar");
