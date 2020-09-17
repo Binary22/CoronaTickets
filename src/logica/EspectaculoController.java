@@ -135,6 +135,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		HandlerEspectaculos espect = HandlerEspectaculos.getInstance();
 		this.espectaculo = espect.getEspectaculo(nomEspectaculo);
+		this.nomespec = this.espectaculo.getNombre();
 		if (this.espectaculo == null) {
 			System.out.print("no existe el espectaculo " + nomEspectaculo);
 		}
