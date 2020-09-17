@@ -18,6 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JTextPane;
 import javax.swing.text.MaskFormatter;
+
+import excepciones.PaqueteConMismoNombreException;
+import logica.Fabrica;
+import logica.IPaquete;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -169,17 +174,66 @@ public class CrearPaquete extends JInternalFrame {
 		gbc_lblNewLabel_5.gridy = 5;
 		getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		JSpinner spinner = new JSpinner();
+		JSpinner spnDescuento = new JSpinner();
 		GridBagConstraints gbc_spinner = new GridBagConstraints();
 		gbc_spinner.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinner.insets = new Insets(0, 0, 5, 5);
 		gbc_spinner.gridx = 1;
 		gbc_spinner.gridy = 5;
-		getContentPane().add(spinner, gbc_spinner);
+		getContentPane().add(spnDescuento, gbc_spinner);
 		
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//aca cargo las 3 fechas
+				String fecha = textFechaIni.getText();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				LocalDate fechaIni = null;
+				try {
+					fechaIni = LocalDate.parse(fecha, formatter);
+				}
+				catch(DateTimeParseException e1) {
+					JOptionPane.showMessageDialog(null, "Fecha Invalida");
+					System.out.print("Fallo el parseo de la fecha");
+					return;
+				}
+				fecha = textFechaFin.getText();
+				LocalDate fechaFin = null;
+				try {
+					fechaFin = LocalDate.parse(fecha, formatter);
+				}
+				catch(DateTimeParseException e1) {
+					JOptionPane.showMessageDialog(null, "Fecha Invalida");
+					System.out.print("Fallo el parseo de la fecha");
+					return;
+				}
+				fecha = textFechaAlta.getText();
+				LocalDate fechaAlta = null;
+				try {
+					fechaAlta = LocalDate.parse(fecha, formatter);
+				}
+				catch(DateTimeParseException e1) {
+					JOptionPane.showMessageDialog(null, "Fecha Invalida");
+					System.out.print("Fallo el parseo de la fecha");
+					return;
+				}
+				//hasta aca cargo fechas
+				
+				String Nombre = textNombre.getText();
+				String Descripcion = textPaneDescripcion.getText();
+				int Descuento = (int) spnDescuento.getValue();
+				if (Descuento <= 0) {
+					JOptionPane.showMessageDialog(null, "El descuento no puede ser 0");
+				}
+				Fabrica f = Fabrica.getInstance();
+				IPaquete cp = f.getIPaquete();
+				try {
+					cp.crearPaquete(Nombre, Descripcion, fechaIni, fechaFin, Descuento, fechaAlta);
+					cp.confirmarCrearPaquete();
+				} catch (PaqueteConMismoNombreException ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Crear Paquete", JOptionPane.ERROR_MESSAGE);
+				}
+				
 				
 			}
 		});
@@ -205,16 +259,6 @@ public class CrearPaquete extends JInternalFrame {
 
 	}
 	
-	/*String fecha = textFechaIni.getText();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	LocalDate fechanac = null;
-	try {
-		fechanac = LocalDate.parse(fecha, formatter);
-	}
-	catch(DateTimeParseException e1) {
-		JOptionPane.showMessageDialog(null, "Fecha Invalida");
-		System.out.print("Fallo el parseo de la fecha");
-		return;
-	}*/
+
 
 }

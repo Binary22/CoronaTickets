@@ -51,6 +51,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	private JInternalFrame ConsultaFuncionInternalFrame;
 	private JInternalFrame RegistroFunEspectInternalFrame;
+	private JInternalFrame CrearPaqueteInternalFrame;
 	private boolean datosyafueroncargados = false;
 	
 
@@ -165,6 +166,21 @@ public class Principal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		JMenu mnPaquetes = new JMenu("Paquetes");
+		menuBar.add(mnPaquetes);
+		
+		JMenuItem mntmCrearPaquete = new JMenuItem("Crear paquete");
+		mnPaquetes.add(mntmCrearPaquete);
+		
+		mntmCrearPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				CrearPaqueteInternalFrame = new CrearPaquete();
+				CrearPaqueteInternalFrame.setClosable(true);
+				CrearPaqueteInternalFrame.setVisible(true);
+				getContentPane().add(CrearPaqueteInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
 		
@@ -244,6 +260,11 @@ public class Principal extends JFrame {
         ConsultaFuncionInternalFrame = new ConsultaFuncionEspectaculo();
         ConsultaFuncionInternalFrame.setVisible(false);
         getContentPane().add(ConsultaFuncionInternalFrame);
+        
+        CrearPaqueteInternalFrame = new CrearPaquete();
+        CrearPaqueteInternalFrame.setVisible(false);
+        getContentPane().add(CrearPaqueteInternalFrame);
+
            
 	
 	}
