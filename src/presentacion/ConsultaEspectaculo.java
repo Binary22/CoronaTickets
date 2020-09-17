@@ -131,6 +131,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	
 	static void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
 		cb.removeAllItems();
+		lista.sort(String::compareToIgnoreCase);
 		lista.forEach(el -> cb.addItem(el));
 	}
 }

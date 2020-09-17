@@ -319,16 +319,17 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	public void cargarPlataformas() {
 		comboBoxPlataformas.removeAllItems();
-        ArrayList<String> nombres = ctrlEspect.listarPlataformas();   
+		ArrayList<String> nombres = ctrlEspect.listarPlataformas();
+		nombres.sort(String::compareToIgnoreCase); 
         for(int i = 0; i < nombres.size(); i++) {
-        	comboBoxPlataformas.addItem(nombres.get(i));
-            	
-            	}
+        	comboBoxPlataformas.addItem(nombres.get(i));	
+            }
         }
 	
 	public void cargarArtistas() {
 		comboBoxArtistas.removeAllItems();
-        ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
+		ArrayList<String> nombres = ctrlEspect.listarArtistas();
+		nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
         		comboBoxArtistas.addItem(nombres.get(i));
         }
@@ -337,7 +338,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	public void cargarArtistasSinInvitar(ArrayList<String> ArtistasElegidos) {
 		comboBoxArtistas.removeAllItems();
-        ArrayList<String> nombres = ctrlEspect.listarArtistas(); 
+		ArrayList<String> nombres = ctrlEspect.listarArtistas();
+		nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
         	if (!ArtistasElegidos.contains(nombres.get(i)))
         		comboBoxArtistas.addItem(nombres.get(i));
@@ -348,6 +350,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxEspectaculos.removeAllItems();
 		if (ctrlEspect.listarEspectaculosPlataforma(nomplat) != null) {
 			ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
+			nombres.sort(String::compareToIgnoreCase);
 			for(int i = 0; i < nombres.size(); i++) {
 				comboBoxEspectaculos.addItem(nombres.get(i));
         	}
@@ -380,6 +383,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 
         try {
 			ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, ArtistasElegidos, fechaHoy);
+			JOptionPane.showMessageDialog(null, "Función creada con exito.");
 		} catch (NombreFuncionexisteException ex3) {
 			JOptionPane.showMessageDialog(null, ex3.getMessage(), "Registrar funcion", JOptionPane.ERROR_MESSAGE);
 		} 

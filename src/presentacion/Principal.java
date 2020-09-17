@@ -26,6 +26,8 @@ import logica.IUsuario;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.time.LocalDate;
@@ -50,6 +52,7 @@ public class Principal extends JFrame {
 	private JInternalFrame ConsultaFuncionInternalFrame;
 	private JInternalFrame RegistroFunEspectInternalFrame;
 	private JInternalFrame CrearPaqueteInternalFrame;
+	private boolean datosyafueroncargados = false;
 	
 
 	/**
@@ -172,29 +175,42 @@ public class Principal extends JFrame {
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
 		
+		datosyafueroncargados = false;
+		
 		JMenuItem mntmCargarDatos = new JMenuItem("Cargar Datos");
 		mntmCargarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!datosyafueroncargados) {
 				try {
 					cargarDatos();
+					datosyafueroncargados = true;
 				} catch (NombreEspectaculoExisteException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (UsuarioConMismoNickException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (UsuarioConMismoMailException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (NombreFuncionexisteException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (noSeleccionoTres e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
+				}
+				} else {
+					JOptionPane.showMessageDialog(null, "Los datos ya fueron cargados anteriormente.");
 				}
 			}
 		});
@@ -251,36 +267,23 @@ public class Principal extends JFrame {
 		
 		IUsuario uc = f.getIUsuario();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		//LocalDate fecha1 = LocalDate.parse("07/10/1999", formatter);
-		uc.altaUsuario("eleven11","Eleven","Ten","eleven11@gmail.com",LocalDate.parse("31/12/1971",formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("costas","Gerardo","Costas","gcostas@gmail.com",LocalDate.parse("15/11/1983", formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("waston","Emma","Watson","e.watson@gmail.com",LocalDate.parse("15/04/1990", formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("house","Gregory","House", "greghouse@gmail.com",LocalDate.parse("15/05/1959", formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("sergiop", "Sergio","Puglia","puglia@alpanpan.com.uy",LocalDate.parse("28/01/1950", formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("chino","Alvaro","Recoba","chino@trico.org.uy", LocalDate.parse("17/03/1976", formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("tonyp","Antonio","Pacheco","eltony@manya.org.uy",LocalDate.parse("14/02/1955",formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("lachiqui","Mirtha","Legrand","lachiqui@hotmail.com.ar",LocalDate.parse("23/02/1927",formatter));
-		uc.confirmarAltaUsuario();
-		uc.altaUsuario("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",LocalDate.parse("08/05/1937",formatter));
-		uc.confirmarAltaUsuario();
-		
-		
-		//uc.altaUsuario("vpeople", "Village", "People", "vpeople@tuta.io", LocalDate.parse("01/01/1977",formatter));
-		
-		
-		
 		
 		
 		String line = "nl";
 		String splitBy = ",";
-
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader("data/usuarios.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] usuario = line.split(splitBy);
+				uc.altaUsuario(usuario[0], usuario[1], usuario[2], usuario[3], LocalDate.parse(usuario[4], formatter));
+				uc.confirmarAltaUsuario();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
 
 		//carga artistas.
 		try   
@@ -587,7 +590,9 @@ public class Principal extends JFrame {
 		        ec.ingresarNombreFuncion("30 años - 2");
 		        ec.ingresarNombreEspectador("costas");
 		        ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
-		    }	
+		    
+		        JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");
+	}	
 
 	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);

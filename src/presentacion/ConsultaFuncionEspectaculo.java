@@ -78,6 +78,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 			public void focusGained(FocusEvent arg0) {
 				comboBox.removeAllItems();
 				ArrayList<String > listap = icontrolador.listarPlataformas();
+				listap.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < listap.size(); i++) {
 					comboBox.addItem(listap.get(i));
 				}
@@ -96,6 +97,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 				String plat = (String)comboBox.getSelectedItem();
 				ArrayList<String> especs = icontrolador.listarEspectaculosPlataforma(plat);
 				comboBox_1.removeAllItems();
+				especs.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < especs.size(); i++) {
 					comboBox_1.addItem(especs.get(i));
 				}
@@ -129,6 +131,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				espec = (String)comboBox_1.getSelectedItem();
 				ArrayList<String> funcs = icontrolador.listarFuncionesEspect(espec);
+				funcs.sort(String::compareToIgnoreCase);
 				//System.out.print("DEBUG" + funcs.size());
 				comboBox_2.removeAllItems();
 				for (int i = 0; i < funcs.size(); i++) {
