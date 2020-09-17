@@ -179,21 +179,27 @@ public class Principal extends JFrame {
 					datosyafueroncargados = true;
 				} catch (NombreEspectaculoExisteException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (UsuarioConMismoNickException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (UsuarioConMismoMailException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (NombreFuncionexisteException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				} catch (noSeleccionoTres e1) {
 					// TODO Auto-generated catch block
+					System.out.print(e1.getMessage());
 					e1.printStackTrace();
 				}
 				} else {
