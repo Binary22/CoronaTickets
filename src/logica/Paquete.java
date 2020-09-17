@@ -26,7 +26,6 @@ public class Paquete {
 	
 	public void addEspectaculo(Espectaculo e) {
 		espectaculos.put(e.getNombre(), e);
-		
 	}
 	
 	public DtPaquete getDt() {
