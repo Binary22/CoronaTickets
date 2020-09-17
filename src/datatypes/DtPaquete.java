@@ -1,29 +1,48 @@
 package datatypes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import logica.Paquete;
 
 public class DtPaquete {
 	private String nombre;
-	private LocalDateTime fechaI;
-	private LocalDateTime fechaF;
+	private LocalDate fechaI;
+	private LocalDate fechaF;
 	private int descuento;
 	private String descripcion;
+	private ArrayList<String> espectaculos;
+
+	public DtPaquete(Paquete paquete) {
+		nombre = paquete.getNombre();
+		fechaI = paquete.getFechaI();
+		fechaF = paquete.getFechaF();
+		descripcion = paquete.getDescripcion();
+		descuento = paquete.getDescuento();
+		if (paquete.getEspectaculos().isEmpty()){
+			espectaculos = new ArrayList<String>();
+		}
+		else{
+			espectaculos = new ArrayList<String>(paquete.getEspectaculos().keySet());
+		}
+
+	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public LocalDateTime getFechaI() {
+	public LocalDate getFechaI() {
 		return fechaI;
 	}
-	public void setFechaI(LocalDateTime fechaI) {
+	public void setFechaI(LocalDate fechaI) {
 		this.fechaI = fechaI;
 	}
-	public LocalDateTime getFechaF() {
+	public LocalDate getFechaF() {
 		return fechaF;
 	}
-	public void setFechaF(LocalDateTime fechaF) {
+	public void setFechaF(LocalDate fechaF) {
 		this.fechaF = fechaF;
 	}
 	public int getDescuento() {
@@ -38,4 +57,9 @@ public class DtPaquete {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public ArrayList<String> getEspectaculos() {
+		return espectaculos;
+	}
+
 }

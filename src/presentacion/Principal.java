@@ -20,6 +20,7 @@ import logica.Artista;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
+import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
 
@@ -52,6 +53,7 @@ public class Principal extends JFrame {
 	private JInternalFrame ConsultaFuncionInternalFrame;
 	private JInternalFrame RegistroFunEspectInternalFrame;
 	private JInternalFrame CrearPaqueteInternalFrame;
+	private JInternalFrame ConsultaPaqueteInternalFrame;
 	private boolean datosyafueroncargados = false;
 	
 
@@ -120,7 +122,7 @@ public class Principal extends JFrame {
 
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
 			public void actionPerformed(ActionEvent e) {                                 
-				AltaDeEspectaculoInternalFrame.setVisible(true);                             
+				AltaDeEspectaculoInternalFrame.setVisible(true);                   
 				}         
 			});
 		
@@ -178,6 +180,17 @@ public class Principal extends JFrame {
 				CrearPaqueteInternalFrame.setClosable(true);
 				CrearPaqueteInternalFrame.setVisible(true);
 				getContentPane().add(CrearPaqueteInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
+		JMenuItem mntmConsultaPaquete = new JMenuItem("Consultar Paquete");
+		mnPaquetes.add(mntmConsultaPaquete);
+		mntmConsultaPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				ConsultaPaqueteInternalFrame = new ConsultaPaquete();
+				ConsultaPaqueteInternalFrame.setClosable(true);
+				ConsultaPaqueteInternalFrame.setVisible(true);
+				getContentPane().add(ConsultaPaqueteInternalFrame, BorderLayout.CENTER);
 			}
 		});
 
@@ -354,6 +367,26 @@ public class Principal extends JFrame {
 				ec.elegirEspectaculo(funcion[4]);
 				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), (artistas != null)? artistas : null, LocalDate.parse(funcion[3], formatter));		
 				ec.ConfirmarAltaFuncion();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		IPaquete pqc = f.getIPaquete();
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/paquetes.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] paquete = line.split(splitBy);
+				try{
+				pqc.crearPaquete(paquete[0], paquete[1], LocalDate.parse(paquete[3],formatter), LocalDate.parse(paquete[4],formatter), Integer.parseInt(paquete[2]), LocalDate.parse(paquete[5], formatter));
+				} catch(Exception e) {
+					System.out.print(e.getMessage());
+					e.printStackTrace();
+				}
+				pqc.confirmarCrearPaquete();
 			}
 			br.close();
 		} catch (IOException e) {
@@ -601,7 +634,8 @@ public class Principal extends JFrame {
 		        ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
 		    
 		        JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");
-	}	
+	}
+	
 
 	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);

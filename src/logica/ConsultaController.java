@@ -7,6 +7,8 @@ import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtPaquete;
 import datatypes.DtUsuario;
+import excepciones.NoExistePaqueteException;
+import excepciones.NoHayPaquetesException;
 
 public class ConsultaController implements IConsulta {
 	private Funcion funcion;
@@ -56,8 +58,11 @@ public class ConsultaController implements IConsulta {
 	}
 
 	@Override
-	public ArrayList<String> listarPaquetes() {
-		return null;
+	public ArrayList<String> listarPaquetes() throws NoHayPaquetesException {
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		ArrayList<String> res = hp.getNombresPaquete();
+		if (res.isEmpty()) throw new NoHayPaquetesException("No hay paquetes en el sistema");
+		return hp.getNombresPaquete();
 	}
 	
 //	@Override
@@ -67,9 +72,9 @@ public class ConsultaController implements IConsulta {
 //	}
 
 	@Override
-	public void seleccionarPaquete(String nompaquete) {
-		// TODO Auto-generated method stub
-
+	public void seleccionarPaquete(String nompaquete) throws NoExistePaqueteException{
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		paquete = hp.getPaquete(nompaquete);
 	}
 
 	@Override
@@ -120,8 +125,7 @@ public class ConsultaController implements IConsulta {
 
 	@Override
 	public DtPaquete mostrarPaquete() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DtPaquete(paquete);
 	}
 
 	@Override
