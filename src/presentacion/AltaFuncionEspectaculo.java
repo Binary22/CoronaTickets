@@ -56,6 +56,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JButton btnAceptar;
 	private JFormattedTextField formattedTextField;
 	private ArrayList<String> ArtistasElegidos;
+	private JButton btnVerEspectaculos;
 	/**
 	 * Launch the application.
 	 */
@@ -114,9 +115,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		});
 		comboBoxPlataformas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
-				cargarEspectaculos(nombrePlataforma);
-				cargarArtistas();
+				
 			}
 		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -126,6 +125,20 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		gbc_comboBox.gridx = 2;
 		gbc_comboBox.gridy = 1;
 		getContentPane().add(comboBoxPlataformas, gbc_comboBox);
+		
+		btnVerEspectaculos = new JButton("Ver espectaculos");
+		btnVerEspectaculos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
+				cargarEspectaculos(nombrePlataforma);
+				cargarArtistas();
+			}
+		});
+		GridBagConstraints gbc_btnVerEspectaculos = new GridBagConstraints();
+		gbc_btnVerEspectaculos.insets = new Insets(0, 0, 5, 5);
+		gbc_btnVerEspectaculos.gridx = 5;
+		gbc_btnVerEspectaculos.gridy = 1;
+		getContentPane().add(btnVerEspectaculos, gbc_btnVerEspectaculos);
 		
 		JLabel lblEspectaculos = new JLabel("Espectaculos:");
 		GridBagConstraints gbc_lblEspectaculos = new GridBagConstraints();
@@ -138,9 +151,6 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxEspectaculos = new JComboBox<String>();
 		comboBoxEspectaculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				nombreEspectaculo = (String) comboBoxEspectaculos.getSelectedItem();
-				ctrlEspect.elegirEspectaculo(nombreEspectaculo);
-				cargarArtistas();
 				
 			}
 		});
@@ -277,6 +287,8 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				nombreEspectaculo = (String) comboBoxEspectaculos.getSelectedItem();
+				ctrlEspect.elegirEspectaculo(nombreEspectaculo);
 				cmdAltaFuncion();
 				ctrlEspect.ConfirmarAltaFuncion();
 			}
