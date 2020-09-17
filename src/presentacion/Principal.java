@@ -49,6 +49,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	private JInternalFrame ConsultaFuncionInternalFrame;
 	private JInternalFrame RegistroFunEspectInternalFrame;
+	private JInternalFrame CrearPaqueteInternalFrame;
 	
 
 	/**
@@ -162,6 +163,12 @@ public class Principal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		JMenu mnPaquetes = new JMenu("Paquetes");
+		menuBar.add(mnPaquetes);
+		
+		JMenuItem mntmCrearPaquete = new JMenuItem("Crear paquete");
+		mnPaquetes.add(mntmCrearPaquete);
+		
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
 		
@@ -228,6 +235,11 @@ public class Principal extends JFrame {
         ConsultaFuncionInternalFrame = new ConsultaFuncionEspectaculo();
         ConsultaFuncionInternalFrame.setVisible(false);
         getContentPane().add(ConsultaFuncionInternalFrame);
+        
+        CrearPaqueteInternalFrame = new CrearPaquete();
+        CrearPaqueteInternalFrame.setVisible(false);
+        getContentPane().add(CrearPaqueteInternalFrame);
+
            
 	
 	}
@@ -239,7 +251,7 @@ public class Principal extends JFrame {
 		
 		IUsuario uc = f.getIUsuario();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate fecha1 = LocalDate.parse("07/10/1999", formatter);
+		//LocalDate fecha1 = LocalDate.parse("07/10/1999", formatter);
 		uc.altaUsuario("eleven11","Eleven","Ten","eleven11@gmail.com",LocalDate.parse("31/12/1971",formatter));
 		uc.confirmarAltaUsuario();
 		uc.altaUsuario("costas","Gerardo","Costas","gcostas@gmail.com",LocalDate.parse("15/11/1983", formatter));
