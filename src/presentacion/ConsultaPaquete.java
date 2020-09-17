@@ -31,6 +31,7 @@ public class ConsultaPaquete extends JInternalFrame {
 	private JLabel lblFechai;
 	private JLabel lblDesc;
 	private ArrayList<String> paquetes;
+	private JComboBox<String> comboBox_1;
 
 	public ConsultaPaquete() {
 		Fabrica f = Fabrica.getInstance();
@@ -166,7 +167,7 @@ public class ConsultaPaquete extends JInternalFrame {
 		gbc_lblEspectaculos.gridy = 7;
 		getContentPane().add(lblEspectaculos, gbc_lblEspectaculos);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox<String>();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
@@ -180,6 +181,17 @@ public class ConsultaPaquete extends JInternalFrame {
 		gbc_btnConsultar_1.gridx = 3;
 		gbc_btnConsultar_1.gridy = 7;
 		getContentPane().add(btnConsultar_1, gbc_btnConsultar_1);
+
+		btnConsultar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cc.elegirEspectaculo((String)comboBox_1.getSelectedItem());
+				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(cc);
+				getParent().add(cea);
+				cea.setVisible(true);
+				cea.setClosable(true);
+				dispose();
+			}
+		});
 	}
 
 	protected void updateDatos(DtPaquete p) {
@@ -188,6 +200,7 @@ public class ConsultaPaquete extends JInternalFrame {
 		lblFechaf.setText(p.getFechaF().toString());
 		lblOff.setText(String.valueOf(p.getDescuento()));
 		lblDesc.setText(p.getDescripcion());
+		ConsultaEspectaculo.updateComboBox(p.getEspectaculos(), comboBox_1);
 	}
 
 	public static void main(String[] args) {
