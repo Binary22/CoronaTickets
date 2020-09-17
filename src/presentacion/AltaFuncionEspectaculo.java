@@ -380,6 +380,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 
         try {
 			ctrlEspect.altaFuncion(nombreFuncion, fechaFuncion, horaInicio, ArtistasElegidos, fechaHoy);
+			JOptionPane.showMessageDialog(null, "Función creada con exito.");
 		} catch (NombreFuncionexisteException ex3) {
 			JOptionPane.showMessageDialog(null, ex3.getMessage(), "Registrar funcion", JOptionPane.ERROR_MESSAGE);
 		} 
