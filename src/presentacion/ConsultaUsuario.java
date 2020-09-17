@@ -19,7 +19,9 @@ import javax.swing.JPanel;
 
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JTextPane;
@@ -95,6 +97,7 @@ public class ConsultaUsuario extends JInternalFrame {
 				// esto es para que se actualize el combobox cuando se agregan usuarios, capaz es al pedo
 				comboBox.removeAllItems();
 				ArrayList<String > listanicknames = icontrolador.listarUsuarios();
+				listanicknames.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < listanicknames.size(); i++) {
 					comboBox.addItem(listanicknames.get(i));
 				}
@@ -216,7 +219,9 @@ public class ConsultaUsuario extends JInternalFrame {
 					comboBoxFun.removeAllItems();
 					for (int i = 0; i < listafun.size(); i++) {
 						funciones.put(listafun.get(i).getNombre(), listafun.get(i));
-						comboBoxFun.addItem(listafun.get(i).getNombre());
+						ArrayList<String> funKeys = new ArrayList<String>(funciones.keySet());
+						funKeys.sort(String::compareToIgnoreCase);
+						comboBoxFun.addItem(funKeys.get(i));
 					}
 				}
 				
