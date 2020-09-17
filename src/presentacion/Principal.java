@@ -292,7 +292,7 @@ public class Principal extends JFrame {
 		
 		
 		String line = "nl";
-		String splitBy = ",";
+		String splitBy = ";";
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader("data/usuarios.csv"));

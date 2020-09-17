@@ -44,9 +44,9 @@ public class ConsultaPaquete extends JInternalFrame {
 		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		getContentPane().setLayout(gridBagLayout);
 
 		JLabel lblNewLabel = new JLabel("Paquete:");
@@ -142,14 +142,14 @@ public class ConsultaPaquete extends JInternalFrame {
 
 		JLabel lblDescripcion = new JLabel("Descripcion:");
 		GridBagConstraints gbc_lblDescripcion = new GridBagConstraints();
-		gbc_lblDescripcion.insets = new Insets(0, 0, 0, 5);
+		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDescripcion.gridx = 1;
 		gbc_lblDescripcion.gridy = 6;
 		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
 
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 6;
@@ -157,6 +157,29 @@ public class ConsultaPaquete extends JInternalFrame {
 
 		lblDesc = new JLabel("");
 		panel.add(lblDesc);
+		
+		JLabel lblEspectaculos = new JLabel("Espectaculos:");
+		GridBagConstraints gbc_lblEspectaculos = new GridBagConstraints();
+		gbc_lblEspectaculos.anchor = GridBagConstraints.EAST;
+		gbc_lblEspectaculos.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEspectaculos.gridx = 1;
+		gbc_lblEspectaculos.gridy = 7;
+		getContentPane().add(lblEspectaculos, gbc_lblEspectaculos);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.gridx = 2;
+		gbc_comboBox_1.gridy = 7;
+		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		
+		JButton btnConsultar_1 = new JButton("Consultar");
+		GridBagConstraints gbc_btnConsultar_1 = new GridBagConstraints();
+		gbc_btnConsultar_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnConsultar_1.gridx = 3;
+		gbc_btnConsultar_1.gridy = 7;
+		getContentPane().add(btnConsultar_1, gbc_btnConsultar_1);
 	}
 
 	protected void updateDatos(DtPaquete p) {
