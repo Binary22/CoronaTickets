@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import datatypes.DtPaquete;
+import excepciones.NoExistePaqueteException;
 
 public class HandlerPaquetes {
 	private HashMap<String,Paquete> colPaquete;
@@ -30,7 +31,8 @@ public class HandlerPaquetes {
 //		//TODO
 //		return null;
 //	}
-	public Paquete getPaquete(String nomPaquete) {
+	public Paquete getPaquete(String nomPaquete) throws NoExistePaqueteException {
+		if (!colPaquete.containsKey(nomPaquete)) throw new NoExistePaqueteException("No se encontro el paquete");
 		return colPaquete.get(nomPaquete);
 	}
 //	
@@ -46,10 +48,10 @@ public class HandlerPaquetes {
 //			return list;
 //	}
 //	
-//	public ArrayList<String> getNombresPaquete() {
-//		ArrayList<String> list = new ArrayList<String>(colPaquete.keySet());;
-//		return list;
-//	}
+	public ArrayList<String> getNombresPaquete() {
+		ArrayList<String> list = new ArrayList<String>(colPaquete.keySet());;
+		return list;
+	}
 
 	public void agregarPaquete(Paquete p) {
 		colPaquete.put(p.getNombre(), p);
