@@ -512,6 +512,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		
 		comboBoxEspectadores.removeAllItems();
 		ArrayList<String> nombres = ctrlEspect.mostrarEspectadores();
+		nombres.sort(String::compareToIgnoreCase);
 		for(int i = 0; i < nombres.size(); i++) {
         	comboBoxEspectadores.addItem(nombres.get(i));
 		}
@@ -532,6 +533,9 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	public void cargarFuncionesEspectaculo(String nombreEspect) {
 		comboBoxFuncionesEspect.removeAllItems();
 		ArrayList<DtFuncion> funciones = ctrlEspect.mostrarFuncionesEspectaculo(nombreEspect);
+		funciones.sort((DtFuncion f, DtFuncion g) -> {
+			return f.getNombre().compareToIgnoreCase(g.getNombre());
+		});
 		for(int i = 0; i < funciones.size(); i++) {
 			comboBoxFuncionesEspect.addItem(funciones.get(i).getNombre());
 		}
