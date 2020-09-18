@@ -38,6 +38,7 @@ public interface IEspectaculo {
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
 	public ArrayList<String> listarFuncionesEspectaculo(String nomespec);
 	public void elegirFuncion(String selectedItem);
+	public void setRegistroFueCanjeado(boolean canj);
 	
 	public DtUsuario[] listarUsuarios() throws usuarioNoExiste;
 	public DtFuncion mostarFuncion(String nomFuncion);

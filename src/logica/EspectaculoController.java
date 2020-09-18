@@ -37,6 +37,10 @@ public class EspectaculoController implements IEspectaculo {
 	private Espectaculo espectaculo;
 	private Registro[] regsCanjeados;
 	private boolean registroFueCanjeado = false;
+	
+	public void setRegistroFueCanjeado(boolean canj) {
+		this.registroFueCanjeado = canj;
+	}
 
 	public String getNomPlataforma() {
 		return nomPlataforma;
@@ -406,7 +410,7 @@ public class EspectaculoController implements IEspectaculo {
 				}
 				nuevo = new Registro(fecha, true, espectador, fun, 0);
 				nuevo.setRegsCanjeados(this.regsCanjeados);
-				this.registroFueCanjeado = false;
+				
 			}else {
 				nuevo = new Registro(fecha, false, espectador, fun, e.getCosto());
 			}
@@ -415,6 +419,7 @@ public class EspectaculoController implements IEspectaculo {
 			fun.addEspectador(nuevo);
 			
 		}
+		this.registroFueCanjeado = false;
 		
 	}
 	

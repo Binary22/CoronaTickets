@@ -14,6 +14,9 @@ public class UsuarioController implements IUsuario{
 	private String apellido;
 	private String email;
 	private LocalDate fechaNacimiento;
+	private String descrip;
+	private String biografia;
+	private String web;
 	
 	private Usuario usuario;
 	private Artista artista;
@@ -115,20 +118,34 @@ public class UsuarioController implements IUsuario{
 	@Override
 	public ArrayList<String> mostrarUsuarios() {
 		// TODO Auto-generated method stub
-		return null;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		return hu.getNombres();
 	}
 
-
+	public DtUsuario mostrarUsuario(String nomUsuario) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario u = hu.getUsuario(nomUsuario);
+		return u.getDt();
+	}
+	
 	@Override
 	public void updateUsuario(String nombre, String apellido, LocalDate fechaNac) {
 		// TODO Auto-generated method stub
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNac;
 		
 	}
 
 	@Override
 	public void updateArtista(String nombre, String apellido, LocalDate fechaNac, String desc, String bio, String web) {
 		// TODO Auto-generated method stub
-		
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNac;
+		this.descrip = desc;
+		this.biografia = bio;
+		this.web = web;
 	}
 
 	@Override

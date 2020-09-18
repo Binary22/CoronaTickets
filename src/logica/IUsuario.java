@@ -16,6 +16,8 @@ public interface IUsuario {
 	public void confirmarAltaUsuario();
 	
 	public ArrayList<String> mostrarUsuarios();
+	
+	public DtUsuario mostrarUsuario(String nomUsuario);
 		
 	public void updateUsuario(String nombre,String apellido,LocalDate fechaNac);
 	
