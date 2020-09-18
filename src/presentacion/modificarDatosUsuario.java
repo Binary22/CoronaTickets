@@ -9,9 +9,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.GridBagConstraints;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.text.MaskFormatter;
 
 import datatypes.DtArtista;
 import datatypes.DtUsuario;
@@ -21,7 +24,9 @@ import logica.IUsuario;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -191,7 +196,14 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_lblNewLabel_1.gridy = 6;
 		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		textField_4 = new JTextField();
+		MaskFormatter mask = null;
+        try {
+            mask = new MaskFormatter("##/##/####");
+            mask.setPlaceholderCharacter('_');
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		textField_4 = new JFormattedTextField(mask);
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.gridwidth = 2;
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
@@ -256,13 +268,15 @@ public class modificarDatosUsuario extends JInternalFrame {
 		IUsuario uc = fabrica.getIUsuario();
 		
 		JButton btnAceptar = new JButton("Aceptar");
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nick = textField.getText();
 				String nombre = textField_1.getText();
 				String apellido = textField_2.getText();
 				String mail = textField_3.getText();
-				LocalDate fechanac = LocalDate.parse(textField_4.getText());
+				LocalDate fechanac = LocalDate.parse(textField_4.getText(),formatter);
 				uc.updateUsuario(nick, nombre, apellido,mail, fechanac);
 				if (icontrolador.esArtista(nick)) {
 					String desc = textField_5.getText();
@@ -324,7 +338,9 @@ public class modificarDatosUsuario extends JInternalFrame {
 		textField_1.setText(dtu.getNombre());
 		textField_2.setText(dtu.getApellido());
 		textField_3.setText(dtu.getEmail());
-		textField_4.setText(dtu.getFechaNacimiento().toString());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String s = dtu.getFechaNacimiento().format(formatter);
+		textField_4.setText(s);
 		textField_5.setEnabled(false);
 		textField_6.setEnabled(false);
 		textField_7.setEnabled(false);
