@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
+import datatypes.DtUsuario;
 
 public class Artista extends Usuario {
 	private String descripcion;
@@ -72,6 +73,11 @@ public class Artista extends Usuario {
 	}
 	
 	public DtArtista getDtArtista() {
+		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
+		return dta;
+	}
+	
+	public DtUsuario getDt() {
 		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
 		return dta;
 	}
