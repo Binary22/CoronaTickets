@@ -147,23 +147,9 @@ public class ConsultaUsuarioFix extends JInternalFrame {
 					textWebsite.setText("");
 				}
 				
-				ArrayList<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
+				ArrayList<String> listafun = icontrolador.listarFuncionesQueSeRegistro(dtu.getNickname());
 				if (listafun != null) {
-					comboFuncionesReg.removeAllItems();
-					for (int i = 0; i < listafun.size(); i++) {
-						funciones.put(listafun.get(i).getNombre(), listafun.get(i));
-						ArrayList<String> funKeys = new ArrayList<String>(funciones.keySet());
-						funKeys.sort(String::compareToIgnoreCase);
-						comboFuncionesReg.addItem(funKeys.get(i));
-					if (comboFuncionesReg.getItemCount() != 0) {
-						btnConsultarFun.setEnabled(true);
-						btnConsultarEspectaculo.setEnabled(true);
-					}
-					else {
-						btnConsultarFun.setEnabled(false);
-						btnConsultarEspectaculo.setEnabled(false);
-					}
-					}
+					ConsultaEspectaculo.updateComboBox(listafun,comboFuncionesReg);
 				}
 				
 			}

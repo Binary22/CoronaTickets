@@ -38,7 +38,8 @@ public class DtFuncion {
 		this.fecha = f.getFecha();
 		this.horainicio = f.getHoraInicio();
 		this.fechaReg = f.getFechaReg();
-		if (f.getArtistasInvitados() != null) {
+		this.artistas = new ArrayList<DtArtista>();
+		if (f.getArtistasInvitados() != null && !f.getArtistasInvitados().isEmpty()) {
 			for(Usuario u : f.getArtistasInvitados()) {
 				this.artistas.add(u.getDtArtista());
 			}
