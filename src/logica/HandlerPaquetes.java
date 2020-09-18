@@ -57,5 +57,16 @@ public class HandlerPaquetes {
 		colPaquete.put(p.getNombre(), p);
 	}
 	
+	public ArrayList<String> getPaquetesDeEspectaculo(String espec) {
+		ArrayList<String> ret = new ArrayList<String>();
+		ArrayList<Paquete> listapaq = new ArrayList<Paquete>(colPaquete.values());
+		for (int i = 0; i < colPaquete.size(); i++) {
+			if (listapaq.get(i).getEspectaculos().containsKey(espec)) {
+				ret.add(listapaq.get(i).getNombre());
+			}
+		}
+		return ret;
+	}
+	
 }
 	

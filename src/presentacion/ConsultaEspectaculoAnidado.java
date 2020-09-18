@@ -1,5 +1,6 @@
 package presentacion;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -9,6 +10,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 
 import datatypes.DtEspectaculo;
+import excepciones.NoExistePaqueteException;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -197,11 +199,28 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_comboBox_1.gridy = 8;
 		getContentPane().add(comboBox_1, gbc_comboBox_1);
 		
-		//ConsultaEspectaculo.updateComboBox(paquetes, comboBox_1);
+		paquetes = ic.listarPaquetesDeEspectaculo(dte.getNombre());
+		ConsultaEspectaculo.updateComboBox(paquetes, comboBox_1);
+		
 		
 		JButton btnConsultar_1 = new JButton("Consultar");
 		btnConsultar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// aca se deberia llamar al caso de uso anidado
+				ConsultaPaquete cp = new ConsultaPaquete();
+				getParent().add(cp);
+				cp.setVisible(true);
+				cp.setClosable(true);
+				setVisible(false);
+				
+				try {
+					cp.PasarPaquete((String)comboBox_1.getSelectedItem());
+				} catch (NoExistePaqueteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
 			}
 		});
 		GridBagConstraints gbc_btnConsultar_1 = new GridBagConstraints();

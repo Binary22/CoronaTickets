@@ -135,7 +135,7 @@ public class AgregarEspectaculo extends JInternalFrame {
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
-				int input = JOptionPane.showConfirmDialog(null, "Desea confirmar el usuario?");
+				int input = JOptionPane.showConfirmDialog(null, "Desea confirmar la operación?");
 					if (input == 0) {
 						ip.confirmarAgregarEspectAPaquete();
 						dispose();
