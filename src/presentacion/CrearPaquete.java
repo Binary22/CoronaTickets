@@ -224,16 +224,22 @@ public class CrearPaquete extends JInternalFrame {
 				String Nombre = textNombre.getText();
 				String Descripcion = textPaneDescripcion.getText();
 				int Descuento = (int) spnDescuento.getValue();
+				LocalDate fechaActual = LocalDate.now();
 				if (Descuento <= 0) {
 					JOptionPane.showMessageDialog(null, "El descuento no puede ser 0");
 				}
 				else if (fechaAlta.isAfter(fechaFin) || fechaAlta.isAfter(fechaIni) || fechaAlta.isEqual(fechaFin))
-					JOptionPane.showMessageDialog(null, "La fecha de alta no puede ser mayor a la fecha de inicio ni mayor o igual a la de finalizacion.");
+					JOptionPane.showMessageDialog(null, "La fecha de alta no puede ser posterior a la fecha de inicio, ni posterior o igual a la de finalizacion.");
 				else if (fechaFin.isBefore(fechaIni))
-					JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser mayor a la de finalizacion.");
+					JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser posterior a la de finalizacion.");
+
+				else if (fechaAlta.isBefore(fechaActual) || fechaFin.isBefore(fechaActual) || fechaIni.isBefore(fechaActual))
+					JOptionPane.showMessageDialog(null, "La fecha debe ser igual o posterior a la actual");
+				
 				else if (Nombre.equals("") || Descripcion.equals("")) 
 					JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto.");
-				else {
+				
+					else {
 						Fabrica f = Fabrica.getInstance();
 						IPaquete cp = f.getIPaquete();
 						try {
