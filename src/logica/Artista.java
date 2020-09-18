@@ -72,6 +72,7 @@ public class Artista extends Usuario {
 		return true;
 	}
 	
+	@Override
 	public DtArtista getDtArtista() {
 		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
 		return dta;

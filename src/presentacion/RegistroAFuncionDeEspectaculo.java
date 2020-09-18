@@ -552,6 +552,9 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	public void cargarFuncionesEspectaculo(String nombreEspect) {
 		comboBoxFuncionesEspect.removeAllItems();
 		ArrayList<DtFuncion> funciones = ctrlEspect.mostrarFuncionesEspectaculo(nombreEspect);
+		funciones.sort((DtFuncion f, DtFuncion g) -> {
+			return f.getNombre().compareToIgnoreCase(g.getNombre());
+		});
 		for(int i = 0; i < funciones.size(); i++) {
 			comboBoxFuncionesEspect.addItem(funciones.get(i).getNombre());
 		}
