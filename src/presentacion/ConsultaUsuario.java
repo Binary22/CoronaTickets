@@ -57,13 +57,16 @@ public class ConsultaUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ConsultaUsuario() {
+		setResizable(true);
+		setIconifiable(true);
+		setMaximizable(true);
 		Fabrica fabrica = Fabrica.getInstance();
 		IConsulta icontrolador = fabrica.getIConsulta();
 		funciones = new HashMap<String, DtFuncion>();
 		
 		setTitle("Consulta de usuario");
 		setClosable(true);
-		setBounds(100, 100, 460, 446);
+		setBounds(100, 100, 693, 545);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 206, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

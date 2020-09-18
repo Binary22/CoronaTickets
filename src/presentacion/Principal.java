@@ -46,6 +46,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaUsuarioFixInternalFrame;
 	private JInternalFrame ConsultaEspectaculoInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
@@ -108,6 +109,15 @@ public class Principal extends JFrame {
 			}
 		});
 		mnUsuarios.add(mntmConsultaDeDatos);
+		
+		//este es un posible fix
+		JMenuItem mntmConsultaDeDatosFix = new JMenuItem("Consulta de usuario FIX");
+		mntmConsultaDeDatosFix.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConsultaUsuarioFixInternalFrame.setVisible(true);
+			}
+		});
+		mnUsuarios.add(mntmConsultaDeDatosFix);
 		
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
@@ -228,6 +238,10 @@ public class Principal extends JFrame {
         ConsultaDeUsuarioInternalFrame = new ConsultaUsuario();
         ConsultaDeUsuarioInternalFrame.setVisible(false);
         getContentPane().add(ConsultaDeUsuarioInternalFrame);
+        
+        ConsultaUsuarioFixInternalFrame = new ConsultaUsuarioFix();
+        ConsultaUsuarioFixInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaUsuarioFixInternalFrame);
         
         AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
         AltaFuncionInternalFrame.setVisible(false);
