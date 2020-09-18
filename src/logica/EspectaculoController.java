@@ -1,6 +1,5 @@
 package logica;
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -37,99 +36,127 @@ public class EspectaculoController implements IEspectaculo {
 	private Espectaculo espectaculo;
 	private Registro[] regsCanjeados;
 	private boolean registroFueCanjeado = false;
-	
+
 	public String getNomPlataforma() {
 		return nomPlataforma;
 	}
+
 	public void setNomPlataforma(String nomPlataforma) {
 		this.nomPlataforma = nomPlataforma;
 	}
+
 	public String getNickArtista() {
 		return nickUsuario;
 	}
+
 	public void setNickArtista(String nickArtista) {
 		this.nickUsuario = nickArtista;
 	}
+
 	public String getNomespec() {
 		return nomespec;
 	}
+
 	public void setNomespec(String nomespec) {
 		this.nomespec = nomespec;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
 	public String getNomfuncion() {
 		return nomfuncion;
 	}
+
 	public void setNomfuncion(String nomfuncion) {
 		this.nomfuncion = nomfuncion;
 	}
+
 	public String getUrl() {
 		return url;
 	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
 	public int getMinEspect() {
 		return minEspect;
 	}
+
 	public void setMinEspect(int minEspect) {
 		this.minEspect = minEspect;
 	}
+
 	public int getMaxEspect() {
 		return maxEspect;
 	}
+
 	public void setMaxEspect(int maxEspect) {
 		this.maxEspect = maxEspect;
 	}
+
 	public float getCosto() {
 		return costo;
 	}
+
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
+
 	public LocalTime getHorainicio() {
 		return horainicio;
 	}
+
 	public void setHorainicio(LocalTime horainicio) {
 		this.horainicio = horainicio;
 	}
+
 	public LocalDate getFechaAlta() {
 		return fechaAlta;
 	}
+
 	public void setFechaAlta(LocalDate fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+
 	public LocalTime getDuracion() {
 		return duracion;
 	}
+
 	public void setDuracion(LocalTime duracion) {
 		this.duracion = duracion;
 	}
+
 	public LocalDate getFecha() {
 		return fecha;
 	}
+
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
+
 	public ArrayList<String> getInvitados() {
 		return invitados;
 	}
+
 	public void setInvitados(ArrayList<String> invitados) {
 		this.invitados = invitados;
 	}
+
 	public Espectaculo getEspectaculo() {
 		return espectaculo;
 	}
+
 	public void setEspectaculo(Espectaculo espectaculo) {
 		this.espectaculo = espectaculo;
 	}
-	
-	
+
 	@Override
 	public void elegirEspectaculo(String nomEspectaculo) {
 		// TODO Auto-generated method stub
@@ -140,31 +167,41 @@ public class EspectaculoController implements IEspectaculo {
 			System.out.print("no existe el espectaculo " + nomEspectaculo);
 		}
 	}
+
 	@Override
-	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,LocalDate fechaAlta) throws NombreFuncionexisteException{
+	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados,
+			LocalDate fechaAlta) throws NombreFuncionexisteException {
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		if(!hesp.existeNombreFuncion(nombre)) {
+		if (!hesp.existeNombreFuncion(nombre)) {
 			this.nomfuncion = nombre;
 			this.fecha = fecha;
 			this.horainicio = horaInicio;
 			this.invitados = invitados;
 			this.fechaAlta = fechaAlta;
-		}
-		else
+		} else
 			throw new NombreFuncionexisteException("El nombre " + nombre + " ya esta en uso");
-		
+
 	}
+
 	@Override
 	public void ConfirmarAltaFuncion() {
 		// TODO Auto-generated method stub
-	
-		//chequeo que existan los artistas invitados
+
+		// chequeo que existan los artistas invitados
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		ArrayList<Usuario> nuevosinv = new ArrayList<Usuario>();
 		if (invitados != null) {
-		invitados.forEach(el -> {
-				nuevosinv.add(hu.getUsuarios().get(el));
-		});
+			invitados.forEach(el -> {
+				Usuario nuevo = hu.getUsuarios().get(el);
+				if (nuevo == null)
+					try {
+						throw new Exception("el usuario " + el + " no existe.");
+					} catch (Exception e) {
+						System.out.print(e.getMessage() + "\n");
+						e.printStackTrace();
+					}
+					nuevosinv.add(nuevo);
+			});
 		}
 		
 		//creo la instancia nueva de funcion
