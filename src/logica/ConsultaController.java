@@ -152,5 +152,10 @@ public class ConsultaController implements IConsulta {
 	public Funcion getFuncion() {
 		return funcion;
 	}
+	
+	public ArrayList<String> listarPaquetesDeEspectaculo(String espec) {
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		return hp.getPaquetesDeEspectaculo(espec);
+	}
 
 }

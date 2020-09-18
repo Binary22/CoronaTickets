@@ -32,10 +32,11 @@ public class ConsultaPaquete extends JInternalFrame {
 	private JLabel lblDesc;
 	private ArrayList<String> paquetes;
 	private JComboBox<String> comboBox_1;
+	private IConsulta cc;
 
 	public ConsultaPaquete() {
 		Fabrica f = Fabrica.getInstance();
-		IConsulta cc = f.getIConsulta();
+		cc = f.getIConsulta();
 		paquetes = new ArrayList<String>();
 		try {
 			paquetes = cc.listarPaquetes();
@@ -207,5 +208,10 @@ public class ConsultaPaquete extends JInternalFrame {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public void PasarPaquete(String paq) throws NoExistePaqueteException {
+		cc.seleccionarPaquete(paq);
+		updateDatos(cc.mostrarPaquete());
+	}
+		
 }

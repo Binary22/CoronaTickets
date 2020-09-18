@@ -29,5 +29,5 @@ public interface IConsulta {
 	public DtArtista mostrarDatosArtista(String nickname);
 	public void elegirFuncion(String espectaculo, String nomFuncion);
 	public ArrayList<DtFuncion> listarFuncionesDtQueSeRegistro(String nickname);
-	
+	public ArrayList<String> listarPaquetesDeEspectaculo(String espec);
 }
