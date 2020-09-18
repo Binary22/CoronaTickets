@@ -55,6 +55,7 @@ public class Principal extends JFrame {
 	private JInternalFrame CrearPaqueteInternalFrame;
 	private JInternalFrame ConsultaPaqueteInternalFrame;
 	private boolean datosyafueroncargados = false;
+	private JInternalFrame AgregarEspectaculoInternalFrame;
 	
 
 	/**
@@ -191,6 +192,17 @@ public class Principal extends JFrame {
 				ConsultaPaqueteInternalFrame.setClosable(true);
 				ConsultaPaqueteInternalFrame.setVisible(true);
 				getContentPane().add(ConsultaPaqueteInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
+		JMenuItem mntmAgregarEspectaculo = new JMenuItem("Agregar Espectaculo a Paquete");
+		mnPaquetes.add(mntmAgregarEspectaculo);
+		mntmAgregarEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				AgregarEspectaculoInternalFrame = new AgregarEspectaculo();
+				AgregarEspectaculoInternalFrame.setClosable(true);
+				AgregarEspectaculoInternalFrame.setVisible(true);
+				getContentPane().add(AgregarEspectaculoInternalFrame, BorderLayout.CENTER);
 			}
 		});
 
