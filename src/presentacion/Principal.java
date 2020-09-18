@@ -2,24 +2,13 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
+import java.lang.Integer;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.SplitPaneUI;
 
 import datatypes.DtRegistro;
 import excepciones.NombreEspectaculoExisteException;
@@ -27,17 +16,36 @@ import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
+import logica.Artista;
 import logica.Fabrica;
+import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
 
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.awt.event.ActionEvent;
+import java.time.*;
+import java.io.*;
+
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private JInternalFrame AltaUsuarioInternalFrame;
-	private JInternalFrame modificarDatosDeUsuarioInternalFrame;
+	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaUsuarioFixInternalFrame;
 	private JInternalFrame ConsultaEspectaculoInternalFrame;
@@ -89,19 +97,24 @@ public class Principal extends JFrame {
 			}
 		});
 		mnUsuarios.add(mntmNewMenuItem);
-
-		JMenuItem mntmModUsuario = new JMenuItem("Modificar Usuario");
-		mntmModUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				modificarDatosDeUsuarioInternalFrame = new modificarDatosUsuario();
-				getContentPane().add(modificarDatosDeUsuarioInternalFrame);
-				modificarDatosDeUsuarioInternalFrame.setResizable(true);
-				modificarDatosDeUsuarioInternalFrame.setClosable(true);
-				modificarDatosDeUsuarioInternalFrame.setMaximizable(true);
-				modificarDatosDeUsuarioInternalFrame.setVisible(true);
-			}
-		});
 		
+		/*JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar datos de usuario");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ModificarDatosDeUsuarioInternalFrame.setVisible(true);
+			}
+		}); 
+		mnUsuarios.add(mntmNewMenuItem_1); */
+		
+		// JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
+		// mntmConsultaDeDatos.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent arg0) {
+		// 		ConsultaDeUsuarioInternalFrame.setVisible(true);
+		// 	}
+		// });
+		// mnUsuarios.add(mntmConsultaDeDatos);
+		
+		//este es un posible fix
 		JMenuItem mntmConsultaDeDatosFix = new JMenuItem("Consulta de usuario");
 		mntmConsultaDeDatosFix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -110,8 +123,6 @@ public class Principal extends JFrame {
 		});
 		mnUsuarios.add(mntmConsultaDeDatosFix);
 		
-		mnUsuarios.add(mntmModUsuario);
-
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
 		
@@ -260,6 +271,10 @@ public class Principal extends JFrame {
         AltaUsuarioInternalFrame.setVisible(false);
         getContentPane().add(AltaUsuarioInternalFrame);
         
+        
+        ModificarDatosDeUsuarioInternalFrame = new ModificarDatosDeUsuario();
+        ModificarDatosDeUsuarioInternalFrame.setVisible(false);
+        getContentPane().add(ModificarDatosDeUsuarioInternalFrame);
         
         ConsultaDeUsuarioInternalFrame = new ConsultaUsuario();
         ConsultaDeUsuarioInternalFrame.setVisible(false);

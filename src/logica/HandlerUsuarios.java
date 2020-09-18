@@ -99,10 +99,6 @@ public class HandlerUsuarios {
 		}
 		return false;
 	}
-
-	public void rempazar(String nick, Usuario u) {
-		this.usuarios.put(nick, u);
-	}
 	
 	
 
