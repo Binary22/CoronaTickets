@@ -33,6 +33,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 
 public class CrearPaquete extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
 	private JTextField textFechaIni;
 	private JTextField textFechaFin;
