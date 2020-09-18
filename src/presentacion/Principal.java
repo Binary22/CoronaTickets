@@ -47,6 +47,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaUsuarioInternalFrame;
 	private JInternalFrame ModificarDatosDeUsuarioInternalFrame;
 	private JInternalFrame ConsultaDeUsuarioInternalFrame;
+	private JInternalFrame ConsultaUsuarioFixInternalFrame;
 	private JInternalFrame ConsultaEspectaculoInternalFrame;
 	private JInternalFrame AltaFuncionInternalFrame;
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
@@ -105,13 +106,22 @@ public class Principal extends JFrame {
 		}); 
 		mnUsuarios.add(mntmNewMenuItem_1); */
 		
-		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
-		mntmConsultaDeDatos.addActionListener(new ActionListener() {
+		// JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
+		// mntmConsultaDeDatos.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent arg0) {
+		// 		ConsultaDeUsuarioInternalFrame.setVisible(true);
+		// 	}
+		// });
+		// mnUsuarios.add(mntmConsultaDeDatos);
+		
+		//este es un posible fix
+		JMenuItem mntmConsultaDeDatosFix = new JMenuItem("Consulta de usuario");
+		mntmConsultaDeDatosFix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConsultaDeUsuarioInternalFrame.setVisible(true);
+				ConsultaUsuarioFixInternalFrame.setVisible(true);
 			}
 		});
-		mnUsuarios.add(mntmConsultaDeDatos);
+		mnUsuarios.add(mntmConsultaDeDatosFix);
 		
 		JMenu mnEspectaculos = new JMenu("Espectaculos");
 		menuBar.add(mnEspectaculos);
@@ -270,6 +280,10 @@ public class Principal extends JFrame {
         ConsultaDeUsuarioInternalFrame.setVisible(false);
         getContentPane().add(ConsultaDeUsuarioInternalFrame);
         
+        ConsultaUsuarioFixInternalFrame = new ConsultaUsuarioFix();
+        ConsultaUsuarioFixInternalFrame.setVisible(false);
+        getContentPane().add(ConsultaUsuarioFixInternalFrame);
+        
         AltaFuncionInternalFrame = new AltaFuncionEspectaculo();
         AltaFuncionInternalFrame.setVisible(false);
         getContentPane().add(AltaFuncionInternalFrame);
@@ -372,12 +386,12 @@ public class Principal extends JFrame {
 				String[] artistax = funcion[5].split(",");
 				ArrayList<String> artistas = new ArrayList<String>();
 				for(String s:artistax) {
-					if (s != ""){
+					if (!s.equals("n/a")){
 						 artistas.add(s);
 					}
 				}
 				ec.elegirEspectaculo(funcion[4]);
-				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]), (artistas != null)? artistas : null, LocalDate.parse(funcion[3], formatter));		
+				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]),artistas, LocalDate.parse(funcion[3], formatter));		
 				ec.ConfirmarAltaFuncion();
 			}
 			br.close();

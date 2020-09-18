@@ -55,6 +55,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ConsultaEspectaculo() {
+		setTitle("Consulta de Espectaculo");
 		
 		Fabrica f = Fabrica.getInstance();
 		IConsulta ic = f.getIConsulta();
