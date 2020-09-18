@@ -102,16 +102,16 @@ public class Principal extends JFrame {
 		}); 
 		mnUsuarios.add(mntmNewMenuItem_1); */
 		
-		JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
-		mntmConsultaDeDatos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ConsultaDeUsuarioInternalFrame.setVisible(true);
-			}
-		});
-		mnUsuarios.add(mntmConsultaDeDatos);
+		// JMenuItem mntmConsultaDeDatos = new JMenuItem("Consulta de usuario");
+		// mntmConsultaDeDatos.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent arg0) {
+		// 		ConsultaDeUsuarioInternalFrame.setVisible(true);
+		// 	}
+		// });
+		// mnUsuarios.add(mntmConsultaDeDatos);
 		
 		//este es un posible fix
-		JMenuItem mntmConsultaDeDatosFix = new JMenuItem("Consulta de usuario FIX");
+		JMenuItem mntmConsultaDeDatosFix = new JMenuItem("Consulta de usuario");
 		mntmConsultaDeDatosFix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ConsultaUsuarioFixInternalFrame.setVisible(true);
