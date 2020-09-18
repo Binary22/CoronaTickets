@@ -20,6 +20,7 @@ import logica.Artista;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
+import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
 
@@ -52,7 +53,10 @@ public class Principal extends JFrame {
 	private JInternalFrame AltaDeEspectaculoInternalFrame;
 	private JInternalFrame ConsultaFuncionInternalFrame;
 	private JInternalFrame RegistroFunEspectInternalFrame;
+	private JInternalFrame CrearPaqueteInternalFrame;
+	private JInternalFrame ConsultaPaqueteInternalFrame;
 	private boolean datosyafueroncargados = false;
+	private JInternalFrame AgregarEspectaculoInternalFrame;
 	
 
 	/**
@@ -129,7 +133,7 @@ public class Principal extends JFrame {
 
 		mntmAltaDeEspectaculo.addActionListener(new ActionListener() {             
 			public void actionPerformed(ActionEvent e) {                                 
-				AltaDeEspectaculoInternalFrame.setVisible(true);                             
+				AltaDeEspectaculoInternalFrame.setVisible(true);                   
 				}         
 			});
 		
@@ -175,6 +179,43 @@ public class Principal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		JMenu mnPaquetes = new JMenu("Paquetes");
+		menuBar.add(mnPaquetes);
+		
+		JMenuItem mntmCrearPaquete = new JMenuItem("Crear paquete");
+		mnPaquetes.add(mntmCrearPaquete);
+		
+		mntmCrearPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				CrearPaqueteInternalFrame = new CrearPaquete();
+				CrearPaqueteInternalFrame.setClosable(true);
+				CrearPaqueteInternalFrame.setVisible(true);
+				getContentPane().add(CrearPaqueteInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
+		JMenuItem mntmConsultaPaquete = new JMenuItem("Consultar Paquete");
+		mnPaquetes.add(mntmConsultaPaquete);
+		mntmConsultaPaquete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				ConsultaPaqueteInternalFrame = new ConsultaPaquete();
+				ConsultaPaqueteInternalFrame.setClosable(true);
+				ConsultaPaqueteInternalFrame.setVisible(true);
+				getContentPane().add(ConsultaPaqueteInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
+		JMenuItem mntmAgregarEspectaculo = new JMenuItem("Agregar Espectaculo a Paquete");
+		mnPaquetes.add(mntmAgregarEspectaculo);
+		mntmAgregarEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				AgregarEspectaculoInternalFrame = new AgregarEspectaculo();
+				AgregarEspectaculoInternalFrame.setClosable(true);
+				AgregarEspectaculoInternalFrame.setVisible(true);
+				getContentPane().add(AgregarEspectaculoInternalFrame, BorderLayout.CENTER);
+			}
+		});
+
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
 		
@@ -258,6 +299,11 @@ public class Principal extends JFrame {
         ConsultaFuncionInternalFrame = new ConsultaFuncionEspectaculo();
         ConsultaFuncionInternalFrame.setVisible(false);
         getContentPane().add(ConsultaFuncionInternalFrame);
+        
+        CrearPaqueteInternalFrame = new CrearPaquete();
+        CrearPaqueteInternalFrame.setVisible(false);
+        getContentPane().add(CrearPaqueteInternalFrame);
+
            
 	
 	}
@@ -272,7 +318,7 @@ public class Principal extends JFrame {
 		
 		
 		String line = "nl";
-		String splitBy = ",";
+		String splitBy = ";";
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader("data/usuarios.csv"));
@@ -352,249 +398,291 @@ public class Principal extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+		IPaquete pqc = f.getIPaquete();
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/paquetes.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] paquete = line.split(splitBy);
+				try{
+				pqc.crearPaquete(paquete[0], paquete[1], LocalDate.parse(paquete[3],formatter), LocalDate.parse(paquete[4],formatter), Integer.parseInt(paquete[2]), LocalDate.parse(paquete[5], formatter));
+				} catch(Exception e) {
+					System.out.print(e.getMessage());
+					e.printStackTrace();
+				}
+				pqc.confirmarCrearPaquete();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		//este es R1
-				formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
-				ec.ingresarNombreFuncion("Los Village Volvieron - 1");
-		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("09/04/20",formatter));
-		        //R2
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 1");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("10/04/20",formatter));
-		        //R3
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 1");
-		        ec.ingresarNombreEspectador("chino");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("12/04/20",formatter));
-		        //R4
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 2");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("15/04/20",formatter));
-		        //R5
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 2");
-		        ec.ingresarNombreEspectador("tonyp");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("20/04/20",formatter));
-		        //R6
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 2");
-		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("25/04/20",formatter));
-		        //R7
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 2");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("28/04/20",formatter));
-		        //R8
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 3");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("16/04/20",formatter));
-		        //R9
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 3");
-		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("15/05/20",formatter));
-		        //R10
-		        ec.ingresarNombreFuncion("Los Village Volvieron - 3");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("20/05/20",formatter));
-		        //R11
-		        ec.ingresarNombreFuncion("Global Spirit (I)");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("05/05/20",formatter));
-		        //R12
-		        ec.ingresarNombreFuncion("Global Spirit (I)");
-		        ec.ingresarNombreEspectador("waston");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("10/05/20",formatter));
-		        //R13
-		        ec.ingresarNombreFuncion("Global Spirit (I)");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("15/05/20",formatter));
-		        //R14
-		        ec.ingresarNombreFuncion("Global Spirit (I)");
-		        ec.ingresarNombreEspectador("tonyp");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("20/05/20",formatter));
-		        //R15
-		        ec.ingresarNombreFuncion("Global Spirit (II)");
-		        ec.ingresarNombreEspectador("house");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("08/06/20",formatter));
-		        //R16
-		        ec.ingresarNombreFuncion("Global Spirit (II)");
-		        ec.ingresarNombreEspectador("waston");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("13/06/20",formatter));
-		        //R17
-		        ec.ingresarNombreFuncion("Global Spirit (II)");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("25/06/20",formatter));
-		        //R18
-		        ec.ingresarNombreFuncion("Global Spirit (III)");
-		        ec.ingresarNombreEspectador("cbochinche");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("05/07/20",formatter));
-		        //R19
-		        ec.ingresarNombreFuncion("Global Spirit (III)");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("11/07/20",formatter));
-		        //R20
-		        ec.ingresarNombreFuncion("Global Spirit (III)");
-		        ec.ingresarNombreEspectador("chino");
-		        ec.confirmarRegistro("Global Spirit", LocalDate.parse("18/07/20",formatter));
-		        //R21
-		        ec.ingresarNombreFuncion("Memphis Blues World - A");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
-		        int[] registrosFiltrados = new int[3];
-		        for (int i = 0; i < registros.size(); i++) {
-		            if(registros.get(i).getId() == 7)
-		                registrosFiltrados[0] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 10)
-		                registrosFiltrados[1] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 17)
-		                registrosFiltrados[2] = registros.get(i).getId();
-		        }
-		        ec.canjearRegistros(registrosFiltrados);
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("19/07/20",formatter));
-		        //esto se hace solo si se canjean
-		       
-		        //R22
-		        ec.ingresarNombreFuncion("Memphis Blues World - B");
-		        ec.ingresarNombreEspectador("eleven11");
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("17/08/20",formatter));
-		        //R23
-		        ec.ingresarNombreFuncion("Memphis Blues World - B");
-		        ec.ingresarNombreEspectador("house");
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("20/08/20",formatter));
-		        //R24
-		        ec.ingresarNombreFuncion("Memphis Blues World - B");
-		        ec.ingresarNombreEspectador("chino");
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("23/08/20",formatter));
-		        //R25
-		        ec.ingresarNombreFuncion("Memphis Blues World - C");
-		        ec.ingresarNombreEspectador("costas");
-		        registros = ec.obtenerRegistrosPrevios();
-		        for (int i = 0; i < registros.size(); i++) {
-		            if(registros.get(i).getId() == 1)
-		                registrosFiltrados[0] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 6)
-		                registrosFiltrados[1] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 9)
-		                registrosFiltrados[2] = registros.get(i).getId();
-		        }
-		        ec.canjearRegistros(registrosFiltrados);
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("15/08/20",formatter));
-		        
-		        //R26
-		        ec.ingresarNombreFuncion("Memphis Blues World - C");
-		        ec.ingresarNombreEspectador("eleven11");
-		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("26/08/20",formatter));
-		        //R27
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		        ec.ingresarNombreEspectador("chino");
-		        registros = ec.obtenerRegistrosPrevios();
-		        for (int i = 0; i < registros.size(); i++) {
-		            if(registros.get(i).getId() == 3)
-		                registrosFiltrados[0] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 4)
-		                registrosFiltrados[1] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 20)
-		                registrosFiltrados[2] = registros.get(i).getId();
-		        }
-		        ec.canjearRegistros(registrosFiltrados);
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("19/07/20",formatter));
-		        
-		        //R28
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		        ec.ingresarNombreEspectador("tonyp");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("16/08/20",formatter));
-		        //R29
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("24/08/20",formatter));
-		        //R28
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		        ec.ingresarNombreEspectador("chino");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("17/08/20",formatter));
-		        //R29
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		        ec.ingresarNombreEspectador("lachiqui");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("24/08/20",formatter));
-		        //R30
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
-		        ec.ingresarNombreEspectador("sergiop");
-		        registros = ec.obtenerRegistrosPrevios();
-		        for (int i = 0; i < registros.size(); i++) {
-		            if(registros.get(i).getId() == 2)
-		                registrosFiltrados[0] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 13)
-		                registrosFiltrados[1] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 19)
-		                registrosFiltrados[2] = registros.get(i).getId();
-		        }
-		        ec.canjearRegistros(registrosFiltrados);
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("01/08/20",formatter));
-		        
-		        //R31
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
-		        ec.ingresarNombreEspectador("house");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("30/08/20",formatter));
-		        //R32
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
-		        ec.ingresarNombreEspectador("eleven11");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("16/08/20",formatter));
-		        //R33
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
-		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("16/08/20",formatter));
-		        //R34
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
-		        ec.ingresarNombreEspectador("waston");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("01/09/20",formatter));
-		        //R35
-		        ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("05/09/20",formatter));
-		        //R36
-		        ec.ingresarNombreFuncion("Bien de Familia - A");
-		        ec.ingresarNombreEspectador("house");
-		        ec.confirmarRegistro("Bien de Familia", LocalDate.parse("16/08/20",formatter));
-		        //R37
-		        ec.ingresarNombreFuncion("Bien de Familia - A");
-		        ec.ingresarNombreEspectador("cbochinche");
-		        ec.confirmarRegistro("Bien de Familia", LocalDate.parse("03/09/20",formatter));
-		        //R38
-		        ec.ingresarNombreFuncion("Bien de Familia - B");
-		        ec.ingresarNombreEspectador("eleven11");
-		        ec.confirmarRegistro("Bien de Familia", LocalDate.parse("16/08/20",formatter));
-		        //R39
-		        ec.ingresarNombreFuncion("Bien de Familia - B");
-		        ec.ingresarNombreEspectador("cbochinche");
-		        ec.confirmarRegistro("Bien de Familia", LocalDate.parse("06/09/20",formatter));
-		        //R40
-		        ec.ingresarNombreFuncion("Bien de Familia - C");
-		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("Bien de Familia", LocalDate.parse("01/09/20",formatter));
-		        //R41
-		        ec.ingresarNombreFuncion("30 años - 1");
-		        ec.ingresarNombreEspectador("sergiop");
-		        ec.confirmarRegistro("30 años", LocalDate.parse("16/08/20",formatter));
-		        //R42
-		        ec.ingresarNombreFuncion("30 años - 1");
-		        ec.ingresarNombreEspectador("eleven11");
-		        ec.confirmarRegistro("30 años", LocalDate.parse("20/08/20",formatter));
-		        //R43
-		        ec.ingresarNombreFuncion("30 años - 1");
-		        ec.ingresarNombreEspectador("tonyp");
-		        ec.confirmarRegistro("30 años", LocalDate.parse("31/08/20",formatter));
-		        //R44
-		        ec.ingresarNombreFuncion("30 años - 2");
-		        ec.ingresarNombreEspectador("chino");
-		        ec.confirmarRegistro("30 años", LocalDate.parse("16/08/20",formatter));
-		        //R45
-		        ec.ingresarNombreFuncion("30 años - 2");
-		        ec.ingresarNombreEspectador("tonyp");
-		        ec.confirmarRegistro("30 años", LocalDate.parse("20/08/20",formatter));
-		        //R46
-		        ec.ingresarNombreFuncion("30 años - 2");
-		        ec.ingresarNombreEspectador("costas");
-		        ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
-		    
+		formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+		ec.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("09/04/20",formatter));
+		//R2
+		ec.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("10/04/20",formatter));
+		//R3
+		ec.ingresarNombreFuncion("Los Village Volvieron - 1");
+		ec.ingresarNombreEspectador("chino");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("12/04/20",formatter));
+		//R4
+		ec.ingresarNombreFuncion("Los Village Volvieron - 2");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("15/04/20",formatter));
+		//R5
+		ec.ingresarNombreFuncion("Los Village Volvieron - 2");
+		ec.ingresarNombreEspectador("tonyp");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("20/04/20",formatter));
+		//R6
+		ec.ingresarNombreFuncion("Los Village Volvieron - 2");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("25/04/20",formatter));
+		//R7
+		ec.ingresarNombreFuncion("Los Village Volvieron - 2");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("28/04/20",formatter));
+		//R8
+		ec.ingresarNombreFuncion("Los Village Volvieron - 3");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("16/04/20",formatter));
+		//R9
+		ec.ingresarNombreFuncion("Los Village Volvieron - 3");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("15/05/20",formatter));
+		//R10
+		ec.ingresarNombreFuncion("Los Village Volvieron - 3");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("20/05/20",formatter));
+		//R11
+		ec.ingresarNombreFuncion("Global Spirit (I)");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("05/05/20",formatter));
+		//R12
+		ec.ingresarNombreFuncion("Global Spirit (I)");
+		ec.ingresarNombreEspectador("waston");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("10/05/20",formatter));
+		//R13
+		ec.ingresarNombreFuncion("Global Spirit (I)");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("15/05/20",formatter));
+		//R14
+		ec.ingresarNombreFuncion("Global Spirit (I)");
+		ec.ingresarNombreEspectador("tonyp");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("20/05/20",formatter));
+		//R15
+		ec.ingresarNombreFuncion("Global Spirit (II)");
+		ec.ingresarNombreEspectador("house");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("08/06/20",formatter));
+		//R16
+		ec.ingresarNombreFuncion("Global Spirit (II)");
+		ec.ingresarNombreEspectador("waston");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("13/06/20",formatter));
+		//R17
+		ec.ingresarNombreFuncion("Global Spirit (II)");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("25/06/20",formatter));
+		//R18
+		ec.ingresarNombreFuncion("Global Spirit (III)");
+		ec.ingresarNombreEspectador("cbochinche");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("05/07/20",formatter));
+		//R19
+		ec.ingresarNombreFuncion("Global Spirit (III)");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("11/07/20",formatter));
+		//R20
+		ec.ingresarNombreFuncion("Global Spirit (III)");
+		ec.ingresarNombreEspectador("chino");
+		ec.confirmarRegistro("Global Spirit", LocalDate.parse("18/07/20",formatter));
+		//R21
+		ec.ingresarNombreFuncion("Memphis Blues World - A");
+		ec.ingresarNombreEspectador("lachiqui");
+		ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
+		int[] registrosFiltrados = new int[3];
+		for (int i = 0; i < registros.size(); i++) {
+			if(registros.get(i).getId() == 7)
+				registrosFiltrados[0] = registros.get(i).getId();
+			if(registros.get(i).getId() == 10)
+				registrosFiltrados[1] = registros.get(i).getId();
+			if(registros.get(i).getId() == 17)
+				registrosFiltrados[2] = registros.get(i).getId();
+		}
+		ec.canjearRegistros(registrosFiltrados);
+		ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("19/07/20",formatter));
+		//esto se hace solo si se canjean
+		
+		//R22
+		ec.ingresarNombreFuncion("Memphis Blues World - B");
+		ec.ingresarNombreEspectador("eleven11");
+		ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("17/08/20",formatter));
+		//R23
+		ec.ingresarNombreFuncion("Memphis Blues World - B");
+		ec.ingresarNombreEspectador("house");
+		ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("20/08/20",formatter));
+		//R24
+		ec.ingresarNombreFuncion("Memphis Blues World - B");
+		ec.ingresarNombreEspectador("chino");
+		ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("23/08/20",formatter));
+		//R25
+		ec.ingresarNombreFuncion("Memphis Blues World - C");
+		ec.ingresarNombreEspectador("costas");
+		registros = ec.obtenerRegistrosPrevios();
+		for (int i = 0; i < registros.size(); i++) {
+			if(registros.get(i).getId() == 1)
+				registrosFiltrados[0] = registros.get(i).getId();
+			if(registros.get(i).getId() == 6)
+				registrosFiltrados[1] = registros.get(i).getId();
+			if(registros.get(i).getId() == 9)
+				registrosFiltrados[2] = registros.get(i).getId();
+		}
+		ec.canjearRegistros(registrosFiltrados);
+		ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("15/08/20",formatter));
+		
+		//R26
+		ec.ingresarNombreFuncion("Memphis Blues World - C");
+		ec.ingresarNombreEspectador("eleven11");
+		ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("26/08/20",formatter));
+		//R27
+		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
+		ec.ingresarNombreEspectador("chino");
+		registros = ec.obtenerRegistrosPrevios();
+		for (int i = 0; i < registros.size(); i++) {
+			if(registros.get(i).getId() == 3)
+				registrosFiltrados[0] = registros.get(i).getId();
+			if(registros.get(i).getId() == 4)
+				registrosFiltrados[1] = registros.get(i).getId();
+			if(registros.get(i).getId() == 20)
+				registrosFiltrados[2] = registros.get(i).getId();
+		}
+		ec.canjearRegistros(registrosFiltrados);
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("19/07/20",formatter));
+		
+		//R28
+		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
+		ec.ingresarNombreEspectador("tonyp");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("16/08/20",formatter));
+		//R29
+		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("24/08/20",formatter));
+		//R28
+		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
+		ec.ingresarNombreEspectador("chino");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("17/08/20",formatter));
+		//R29
+		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("24/08/20",formatter));
+		//R30
+		ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
+		ec.ingresarNombreEspectador("sergiop");
+		registros = ec.obtenerRegistrosPrevios();
+		for (int i = 0; i < registros.size(); i++) {
+			if(registros.get(i).getId() == 2)
+				registrosFiltrados[0] = registros.get(i).getId();
+			if(registros.get(i).getId() == 13)
+				registrosFiltrados[1] = registros.get(i).getId();
+			if(registros.get(i).getId() == 19)
+				registrosFiltrados[2] = registros.get(i).getId();
+		}
+		ec.canjearRegistros(registrosFiltrados);
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("01/08/20",formatter));
+		
+		//R31
+		ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
+		ec.ingresarNombreEspectador("house");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("30/08/20",formatter));
+		//R32
+		ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
+		ec.ingresarNombreEspectador("eleven11");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("16/08/20",formatter));
+		//R33
+		ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("16/08/20",formatter));
+		//R34
+		ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
+		ec.ingresarNombreEspectador("waston");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("01/09/20",formatter));
+		//R35
+		ec.ingresarNombreFuncion("Springsteen on Broadway - iii");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("05/09/20",formatter));
+		//R36
+		ec.ingresarNombreFuncion("Bien de Familia - A");
+		ec.ingresarNombreEspectador("house");
+		ec.confirmarRegistro("Bien de Familia", LocalDate.parse("16/08/20",formatter));
+		//R37
+		ec.ingresarNombreFuncion("Bien de Familia - A");
+		ec.ingresarNombreEspectador("cbochinche");
+		ec.confirmarRegistro("Bien de Familia", LocalDate.parse("03/09/20",formatter));
+		//R38
+		ec.ingresarNombreFuncion("Bien de Familia - B");
+		ec.ingresarNombreEspectador("eleven11");
+		ec.confirmarRegistro("Bien de Familia", LocalDate.parse("16/08/20",formatter));
+		//R39
+		ec.ingresarNombreFuncion("Bien de Familia - B");
+		ec.ingresarNombreEspectador("cbochinche");
+		ec.confirmarRegistro("Bien de Familia", LocalDate.parse("06/09/20",formatter));
+		//R40
+		ec.ingresarNombreFuncion("Bien de Familia - C");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Bien de Familia", LocalDate.parse("01/09/20",formatter));
+		//R41
+		ec.ingresarNombreFuncion("30 años - 1");
+		ec.ingresarNombreEspectador("sergiop");
+		ec.confirmarRegistro("30 años", LocalDate.parse("16/08/20",formatter));
+		//R42
+		ec.ingresarNombreFuncion("30 años - 1");
+		ec.ingresarNombreEspectador("eleven11");
+		ec.confirmarRegistro("30 años", LocalDate.parse("20/08/20",formatter));
+		//R43
+		ec.ingresarNombreFuncion("30 años - 1");
+		ec.ingresarNombreEspectador("tonyp");
+		ec.confirmarRegistro("30 años", LocalDate.parse("31/08/20",formatter));
+		//R44
+		ec.ingresarNombreFuncion("30 años - 2");
+		ec.ingresarNombreEspectador("chino");
+		ec.confirmarRegistro("30 años", LocalDate.parse("16/08/20",formatter));
+		//R45
+		ec.ingresarNombreFuncion("30 años - 2");
+		ec.ingresarNombreEspectador("tonyp");
+		ec.confirmarRegistro("30 años", LocalDate.parse("20/08/20",formatter));
+		//R46
+		ec.ingresarNombreFuncion("30 años - 2");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
+			
+				
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/espectaculoEnPaquete.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] espac = line.split(splitBy);
+				try{
+					pqc.seleccionarPaquete(espac[0]);
+					pqc.elegirEspectaculo(espac[1]);
+					pqc.confirmarAgregarEspectAPaquete();;
+				} catch(Exception e) {
+					System.out.print(e.getMessage());
+					e.printStackTrace();
+				}
+				pqc.confirmarCrearPaquete();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		        JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");
-	}	
+	}
+	
 
 	public static LocalTime String2LocalTime(String s){
 		return LocalTime.of(Integer.parseInt(s) / 60, Integer.parseInt(s) % 60);

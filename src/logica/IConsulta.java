@@ -7,6 +7,8 @@ import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtPaquete;
 import datatypes.DtUsuario;
+import excepciones.NoExistePaqueteException;
+import excepciones.NoHayPaquetesException;
 
 public interface IConsulta {
 	public ArrayList<String> listarUsuarios();
@@ -15,8 +17,8 @@ public interface IConsulta {
 	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname);
 	public void elegirEspectaculo(String nomespect);
 	//public void elegirFuncion(String nomFuncion);
-	public ArrayList<String> listarPaquetes();
-	public void seleccionarPaquete(String nompaquete);
+	public ArrayList<String> listarPaquetes() throws NoHayPaquetesException;
+	public void seleccionarPaquete(String nompaquete) throws NoExistePaqueteException;
 	public DtPaquete mostrarPaquete();
 	public ArrayList<String> listarPlataformas();
 	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);

@@ -36,6 +36,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -44,6 +46,8 @@ public class AltaUsuario extends JInternalFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextArea textArea;
+	private JTextArea textArea_1;
 	private JFormattedTextField textField_4;
 	private JLabel lblNewLabel;
 	private JTextField textField_5;
@@ -185,8 +189,8 @@ public class AltaUsuario extends JInternalFrame {
 		checkEsArtista = new JCheckBox("Es Artista");
 		checkEsArtista.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent ie) {
-				textField_6.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
-				textField_5.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
+				textArea_1.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
+				textArea.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
 				textField_7.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
 			}
 		});
@@ -215,10 +219,10 @@ public class AltaUsuario extends JInternalFrame {
 		gbc_scrollPane.gridy = 6;
 		getContentPane().add(scrollPane, gbc_scrollPane);
 		
-		textField_6 = new JTextField();
-		textField_6.setEnabled(false);
-		scrollPane.setViewportView(textField_6);
-		textField_6.setColumns(10);
+		textArea_1 = new JTextArea();
+		textArea_1.setEnabled(false);
+		scrollPane.setViewportView(textArea_1);
+		textArea_1.setColumns(10);
 		
 		lblNewLabel = new JLabel("Biografia:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -237,11 +241,11 @@ public class AltaUsuario extends JInternalFrame {
 		gbc_scrollPane_1.gridy = 7;
 		getContentPane().add(scrollPane_1, gbc_scrollPane_1);
 		
-		textField_5 = new JTextField();
-		scrollPane_1.setViewportView(textField_5);
-		textField_5.setColumns(10);
-		textField_5.setColumns(10);
-		textField_5.setEnabled(false);
+		textArea = new JTextArea();
+		scrollPane_1.setViewportView(textArea);
+		textArea.setColumns(10);
+		textArea.setColumns(10);
+		textArea.setEnabled(false);
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel.gridx = 1;
@@ -272,13 +276,18 @@ public class AltaUsuario extends JInternalFrame {
 		this.textfieldSet.add(textField_2);
 		this.textfieldSet.add(textField_3);
 		this.textfieldSet.add(textField_4);
-		this.textfieldSet.add(textField_5);
-		this.textfieldSet.add(textField_6);
 		this.textfieldSet.add(textField_7);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textfieldSet.forEach(textfield -> textfield.setText(""));
+				textArea.setText("");
+				textArea.setEnabled(false);
+				textArea_1.setText("");
+				textArea_1.setEnabled(false);
+				checkEsArtista.setSelected(false);
+				dispose();
 				dispose();
 			}
 		});
@@ -294,11 +303,15 @@ public class AltaUsuario extends JInternalFrame {
 						}
 					}
 				} else {
-					for(int i = 1; i < 8; i++) {
+					for(int i = 1; i < 6; i++) {
 						if (textfieldSet.get(i).getText().trim().length() == 0) {
 							JOptionPane.showMessageDialog(null, "Para dar de alta un artista debe rellenar todos los campos.");
 							return;
 						}
+					}
+					if  (textArea_1.getText().trim().length() == 0){
+						JOptionPane.showMessageDialog(null, "Para dar de alta un artista debe rellenar todos los campos.");
+						return;
 					}
 				}
 				String nickname = textField.getText();
@@ -337,8 +350,8 @@ public class AltaUsuario extends JInternalFrame {
 					if (!esArtista) {
 						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
 					} else {
-						String descripcion = textField_5.getText();
-						String bio = textField_6.getText();
+						String descripcion = textArea_1.getText();
+						String bio = textArea.getText();
 						String website = textField_7.getText();
 						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
 						UC.altaArtista(descripcion, bio, website);
@@ -347,10 +360,20 @@ public class AltaUsuario extends JInternalFrame {
 					if (input == 0) {
 						UC.confirmarAltaUsuario();
 						textfieldSet.forEach(textfield -> textfield.setText(""));
+						textArea.setText("");
+						textArea.setEnabled(false);
+						textArea_1.setText("");
+						textArea_1.setEnabled(false);
+						checkEsArtista.setSelected(false);
 						dispose();
 					}
 					if (input == 2) {
 						textfieldSet.forEach(textfield -> textfield.setText(""));
+						textArea.setText("");
+						textArea.setEnabled(false);
+						textArea_1.setText("");
+						textArea_1.setEnabled(false);
+						checkEsArtista.setSelected(false);
 						dispose();
 					}
 				}catch(UsuarioConMismoNickException ex){

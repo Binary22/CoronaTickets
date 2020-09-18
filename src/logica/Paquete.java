@@ -21,11 +21,11 @@ public class Paquete {
 		this.descuento = descuento;
 		this.descripcion = descripcion;
 		this.fechaAlta = fechaalta;
+		this.espectaculos = new HashMap<String,Espectaculo>();
 	}
 	
 	public void addEspectaculo(Espectaculo e) {
 		espectaculos.put(e.getNombre(), e);
-		
 	}
 	
 	public DtPaquete getDt() {
@@ -33,56 +33,52 @@ public class Paquete {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
-//	public String getNombre() {
-//		return nombre;
-//	}
-//
-//	public void setNombre(String nombre) {
-//		this.nombre = nombre;
-//	}
-//
-//	public LocalDate getFechaI() {
-//		return fechaI;
-//	}
-//
-//	public void setFechaI(LocalDate fechaI) {
-//		this.fechaI = fechaI;
-//	}
-//
-//	public LocalDate getFechaF() {
-//		return fechaF;
-//	}
-//
-//	public void setFechaF(LocalDate fechaF) {
-//		this.fechaF = fechaF;
-//	}
-//
-//	public int getDescuento() {
-//		return descuento;
-//	}
-//
-//	public void setDescuento(int descuento) {
-//		this.descuento = descuento;
-//	}
-//
-//	public String getDescripcion() {
-//		return descripcion;
-//	}
-//
-//	public void setDescripcion(String descripcion) {
-//		this.descripcion = descripcion;
-//	}
-//
-//	public HashMap<String, Espectaculo> getEspectaculos() {
-//		return espectaculos;
-//	}
-//
-//	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
-//		this.espectaculos = espectaculos;
-//	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public LocalDate getFechaI() {
+		return fechaI;
+	}
+
+	public void setFechaI(LocalDate fechaI) {
+		this.fechaI = fechaI;
+	}
+
+	public LocalDate getFechaF() {
+		return fechaF;
+	}
+
+	public void setFechaF(LocalDate fechaF) {
+		this.fechaF = fechaF;
+	}
+
+	public int getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public HashMap<String, Espectaculo> getEspectaculos() {
+		return espectaculos;
+	}
+
+	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
+		this.espectaculos = espectaculos;
+	}
 	
 	
 
