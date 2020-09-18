@@ -351,7 +351,7 @@ public class Principal extends JFrame {
 		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("12/04/20",formatter));
 		        //R4
 		        ec.ingresarNombreFuncion("Los Village Volvieron - 2");
-		        ec.ingresarNombreEspectador("sergiop");
+		        ec.ingresarNombreEspectador("chino");
 		        ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("15/04/20",formatter));
 		        //R5
 		        ec.ingresarNombreFuncion("Los Village Volvieron - 2");
@@ -423,12 +423,16 @@ public class Principal extends JFrame {
 		        ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
 		        int[] registrosFiltrados = new int[3];
 		        for (int i = 0; i < registros.size(); i++) {
-		            if(registros.get(i).getId() == 7)
+		            if(registros.get(i).getId() == 7) 
 		                registrosFiltrados[0] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 10)
+		            
+		            if(registros.get(i).getId() == 10) 
 		                registrosFiltrados[1] = registros.get(i).getId();
-		            if(registros.get(i).getId() == 17)
+		           
+		            if(registros.get(i).getId() == 17) 
 		                registrosFiltrados[2] = registros.get(i).getId();
+		            
+		            
 		        }
 		        ec.canjearRegistros(registrosFiltrados);
 		        ec.confirmarRegistro("Memphis Blues World", LocalDate.parse("19/07/20",formatter));

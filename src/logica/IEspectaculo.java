@@ -8,6 +8,7 @@ import datatypes.DtFuncion;
 import datatypes.DtRegistro;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
+import excepciones.fechaPosterior;
 import datatypes.DtUsuario;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
@@ -30,6 +31,7 @@ public interface IEspectaculo {
 	public void elegirNuevaFuncion(String nomfuncion);
 	public void elegirNuevoEspectador(String nickname);
 	public void confirmarRegistro(String nomespect, LocalDate fecha);
+	public void esFechaInvalida(String nomespect, LocalDate fecha) throws fechaPosterior;
 	public ArrayList<String> listarArtistas();
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion, LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) throws NombreEspectaculoExisteException;
 	public void confirmarAltaEspectaculo();

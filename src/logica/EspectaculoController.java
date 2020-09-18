@@ -15,6 +15,7 @@ import datatypes.DtRegistro;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
+import excepciones.fechaPosterior;
 import datatypes.DtUsuario;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
@@ -283,30 +284,28 @@ public class EspectaculoController implements IEspectaculo {
 	public void canjearRegistros(int[] regsId) throws noSeleccionoTres {
 		// TODO Auto-generated method stub
 		this.regsCanjeados = new Registro[3];
-		if(regsId.length != 3) {
-			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
-		}
 		int id1 = regsId[0];
 		int id2 =regsId[1];
 		int id3 = regsId[2];
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
-		
 		ArrayList<Registro> regs = espectador.getRegistros();
-		//Iterator<Registro> it = regs.iterator();
 		Registro[] regsTempo = new Registro[3];
-		//int i = 0;
+		int cantSelected = 0;
 		int j = 0;
 		for (int i = 0; i < regs.size(); i++) {
 			int idTemp = regs.get(i).getId();
-			if(idTemp == id1 || idTemp == id2 ||idTemp == id3) {
-				regs.get(i).setCanjeado(true);
+			if(idTemp == id1 || idTemp == id2 || idTemp == id3) {
 				regsTempo[j] = regs.get(i);
 				j++;
+				cantSelected++;
+				}
+			}
+		
+		if(cantSelected != 3) {
+			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
 		}
-		
-	}
-		
+			
 		this.registroFueCanjeado = true;
 		this.regsCanjeados = regsTempo;
 	}
@@ -334,7 +333,7 @@ public class EspectaculoController implements IEspectaculo {
 		for(int i = 0; i < regs.size(); i++) {
 			cant++;
 		}
-		if(cant > e.getMaxEspectadores()) {
+		if(cant == e.getMaxEspectadores()) {
 			return true;
 		}
 			
@@ -351,7 +350,7 @@ public class EspectaculoController implements IEspectaculo {
 		
 	}
 	@Override
-	public void confirmarRegistro(String nomespect, LocalDate fecha) {
+	public void confirmarRegistro(String nomespect, LocalDate fecha){
 		// TODO Auto-generated method stub
 		//obtengo la funcion
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
@@ -362,19 +361,41 @@ public class EspectaculoController implements IEspectaculo {
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
 		Registro nuevo;
 		if(!(fun == null) && !(espectador == null)) {
-		if(this.registroFueCanjeado) {
-			nuevo = new Registro(fecha, false, espectador, fun, 0);
-			nuevo.setRegsCanjeados(this.regsCanjeados);
-			this.registroFueCanjeado = false;
-		}else {
-			nuevo = new Registro(fecha, false, espectador, fun, e.getCosto());
-		}
-		
-		espectador.addFuncion(nuevo);
-		fun.addEspectador(nuevo);
+					
+			if(this.registroFueCanjeado) {
+				for(int i = 0; i < this.regsCanjeados.length; i++) {
+					this.regsCanjeados[i].setCanjeado(true);
+				}
+				nuevo = new Registro(fecha, true, espectador, fun, 0);
+				nuevo.setRegsCanjeados(this.regsCanjeados);
+				this.registroFueCanjeado = false;
+			}else {
+				nuevo = new Registro(fecha, false, espectador, fun, e.getCosto());
+			}
+				
+			espectador.addFuncion(nuevo);
+			fun.addEspectador(nuevo);
+			
 		}
 		
 	}
+	
+	
+	//CONFIRMAR REGISTRO PARA INTERFAZ
+	
+	public void esFechaInvalida(String nomespect, LocalDate fecha) throws fechaPosterior{
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(nomespect);
+		Funcion fun = e.getFuncion(this.nomfuncion);
+		LocalTime hora = LocalTime.now();
+		LocalDate fechaHoy = LocalDate.now();
+		if((fecha.equals(fun.getFecha()) && !hora.isBefore(fun.getHoraInicio())) || fecha.isAfter(fun.getFecha()) || fecha.isBefore(fechaHoy)) {
+				throw new fechaPosterior("Lo sentimos, la fecha introducida es invalida");
+		}
+		
+		
+	}
+	
 	@Override
 	public ArrayList<String> listarArtistas() {
 		HandlerUsuarios huser = HandlerUsuarios.getInstancia();

@@ -8,7 +8,7 @@ public class Registro {
 	private int id;
 	private Registro[] regsCanjeados;
 	private float costo;
-	private static int seed = 1;
+	private static int seed = 0;
 	
 	private Usuario usuario;
 	private Funcion funcion;
@@ -46,7 +46,7 @@ public class Registro {
 		super();
 		this.fecha = fecha;
 		this.yaFueCanjeado = canjeado;
-		this.id = seed++;
+		this.id = ++seed;
 		this.usuario = usuario;
 		this.funcion = funcion;
 		this.regsCanjeados = new Registro[3];
