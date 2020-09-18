@@ -292,7 +292,7 @@ public class AltaUsuario extends JInternalFrame {
 			}
 		});
 		
-		btnNewButton = new JButton("Confirmar");
+		btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!checkEsArtista.isSelected()) {
