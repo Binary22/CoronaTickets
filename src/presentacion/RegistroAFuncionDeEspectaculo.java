@@ -475,7 +475,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 					
 				}
 				
-				
+				ctrlEspect.setRegistroFueCanjeado(false);
 				
 				
 				//limpiarVentana();
