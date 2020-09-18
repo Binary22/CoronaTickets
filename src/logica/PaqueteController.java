@@ -16,7 +16,7 @@ public class PaqueteController implements IPaquete {
 		if(!hq.getNombresPaquete().contains(nombre))
 			this.p = hq.crearPaquete(nombre,descrip,fechaini,fechafin,desc,fechaalta);
 		else
-			throw new PaqueteConMismoNombreException("El paquete de nombre:" + nombre + "ya esta en uso");
+			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
 	}
 
 	@Override
