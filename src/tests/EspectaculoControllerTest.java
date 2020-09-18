@@ -229,9 +229,10 @@ class EspectaculoControllerTest {
 		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
 		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
-		int[] dtr = new int[2];
+		int[] dtr = new int[3];
 		dtr[0] = 1;
 		dtr[1] = 2;
+		dtr[2] = 0;
 		try {
 		ie.canjearRegistros(dtr);
 		} catch (noSeleccionoTres e) {
