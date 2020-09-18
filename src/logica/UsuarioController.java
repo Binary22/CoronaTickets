@@ -129,20 +129,20 @@ public class UsuarioController implements IUsuario{
 	}
 	
 	@Override
-	public void updateUsuario(String nombre, String apellido, LocalDate fechaNac) {
+	public void updateUsuario(String nickviejo, String nombre, String apellido, String mail, LocalDate fechaNac) {
 		// TODO Auto-generated method stub
+		this.nickname = nickviejo;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.email = mail;
 		this.fechaNacimiento = fechaNac;
 		
 	}
 
 	@Override
-	public void updateArtista(String nombre, String apellido, LocalDate fechaNac, String desc, String bio, String web) {
+	public void updateArtista(String desc, String bio, String web) {
 		// TODO Auto-generated method stub
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.fechaNacimiento = fechaNac;
+		this.esArtista = true;
 		this.descrip = desc;
 		this.biografia = bio;
 		this.web = web;
@@ -150,8 +150,13 @@ public class UsuarioController implements IUsuario{
 
 	@Override
 	public void confirmarUpdateUsuario() {
-		// TODO Auto-generated method stub
-		
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento);
+		if (esArtista) {
+			artista = new Artista(usuario, descrip, biografia, web);
+			hu.rempazar(nickname, artista);
+		}
+		hu.rempazar(nickname,usuario);
 	}
 
 }
