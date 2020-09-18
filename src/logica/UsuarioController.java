@@ -155,8 +155,9 @@ public class UsuarioController implements IUsuario{
 		if (esArtista) {
 			artista = new Artista(usuario, descrip, biografia, web);
 			hu.rempazar(nickname, artista);
-		}
+		} else {
 		hu.rempazar(nickname,usuario);
+		};
 	}
 
 }
