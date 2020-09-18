@@ -94,7 +94,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		setTitle("Registro a funcion de espectaculo");
 		setBounds(100, 100, 641, 640);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 274, 179, 59, 91, 128, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 278, 179, 59, 91, 128, 0, 0};
 		gridBagLayout.rowHeights = new int[]{18, 27, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 107, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -133,8 +133,10 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		JButton btnVerEspectaculos = new JButton("Ver espectaculos");
 		btnVerEspectaculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cargarEspectaculos(nombrePlataforma);
-				btnVerFunciones.setEnabled(true);
+				if(comboBoxPlataformas.getSelectedIndex() != -1) {
+					cargarEspectaculos(nombrePlataforma);
+					btnVerFunciones.setEnabled(true);
+				}
 			}
 		});
 		
@@ -432,47 +434,52 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		btnAceptar.setForeground(Color.BLUE);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean confirmar = true;
-				if(ctrlEspect.existeRegistroEspecAFun()) {
-					JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elija otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
-					//comboBoxEspectadores.removeAllItems();
-					confirmar = false;
+				if(comboBoxEspectPlat.getSelectedIndex() != -1 && comboBoxEspectadores.getSelectedIndex() != -1 && comboBoxFuncionesEspect.getSelectedIndex() != -1) {
 					
-					}
-				
-				if(ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
-					JOptionPane.showMessageDialog(null, "La funcion seleccionada alcanzo el maximo de espectadores. Elige otra funcion", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
-					textFieldFechaFun.setText(null);
-					textFieldHoraFuncion.setText(null);
-					textFieldFechaRegFuncion.setText(null);
-					confirmar = false;
-				}
-				//Recojo los datos de la fecha introducidos
-				String fecha = formattedTextField.getText();
-		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				fechaFuncion = null;
-				try {
-					fechaFuncion = LocalDate.parse(fecha, formatter);
-				}
-				catch(DateTimeParseException e1) {
-					JOptionPane.showMessageDialog(null, "Fecha Invalida");
-					System.out.print("Fallo el parseo de la fecha");
-					return;
-				}
-				//chequeo que la fecha sea valida
-				try {
-					ctrlEspect.esFechaInvalida(nombreEspectaculo, fechaFuncion);
-					if(confirmar) {
-						int respuesta = JOptionPane.showConfirmDialog(null, "Confirmar los datos ingresados", "Confirmacion", JOptionPane.YES_NO_OPTION);
-						if(respuesta == JOptionPane.YES_OPTION) {
-							confirmarRegistro();
-							dispose();
-							}
+					boolean confirmar = true;
+					if(ctrlEspect.existeRegistroEspecAFun()) {
+						JOptionPane.showMessageDialog(null, "El usuario ya esta registrado a la funcion seleccionada. Elija otro espectador", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
+						//comboBoxEspectadores.removeAllItems();
+						confirmar = false;
+						
 						}
 					
-				}catch(fechaPosterior e){
-					JOptionPane.showMessageDialog(null, e.getMessage(), "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
-					
+					if(ctrlEspect.funcionAlcanzoLimiteReg(nombreEspectaculo)) {
+						JOptionPane.showMessageDialog(null, "La funcion seleccionada alcanzo el maximo de espectadores. Elige otra funcion", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
+						textFieldFechaFun.setText(null);
+						textFieldHoraFuncion.setText(null);
+						textFieldFechaRegFuncion.setText(null);
+						confirmar = false;
+					}
+					//Recojo los datos de la fecha introducidos
+					String fecha = formattedTextField.getText();
+			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					fechaFuncion = null;
+					try {
+						fechaFuncion = LocalDate.parse(fecha, formatter);
+					}
+					catch(DateTimeParseException e1) {
+						JOptionPane.showMessageDialog(null, "Fecha Invalida");
+						System.out.print("Fallo el parseo de la fecha");
+						return;
+					}
+					//chequeo que la fecha sea valida
+					try {
+						ctrlEspect.esFechaInvalida(nombreEspectaculo, fechaFuncion);
+						if(confirmar) {
+							int respuesta = JOptionPane.showConfirmDialog(null, "Confirmar los datos ingresados", "Confirmacion", JOptionPane.YES_NO_OPTION);
+							if(respuesta == JOptionPane.YES_OPTION) {
+								confirmarRegistro();
+								dispose();
+								}
+							}
+						
+					}catch(fechaPosterior e){
+						JOptionPane.showMessageDialog(null, e.getMessage(), "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
+						
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Faltan campos por llenar", "Registro a funcion de espectaculo", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 				ctrlEspect.setRegistroFueCanjeado(false);
