@@ -19,9 +19,9 @@ public interface IUsuario {
 	
 	public DtUsuario mostrarUsuario(String nomUsuario);
 		
-	public void updateUsuario(String nombre,String apellido,LocalDate fechaNac);
+	public void updateUsuario(String nickviejo, String nombre,String apellido, String mail,LocalDate fechaNac);
 	
-	public void updateArtista(String nombre,String apellido,LocalDate fechaNac,String desc,String bio,String web);
+	public void updateArtista(String desc,String bio,String web);
 
 	public void confirmarUpdateUsuario();
 
