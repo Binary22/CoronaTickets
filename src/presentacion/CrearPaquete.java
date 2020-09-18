@@ -236,6 +236,10 @@ public class CrearPaquete extends JInternalFrame {
 				else if (fechaAlta.isBefore(fechaActual) || fechaFin.isBefore(fechaActual) || fechaIni.isBefore(fechaActual))
 					JOptionPane.showMessageDialog(null, "La fecha debe ser igual o posterior a la actual");
 				
+				else if ((int) spnDescuento.getValue() >= 100) {
+					JOptionPane.showMessageDialog(null, "El descuento no puede ser mayor a 100%");
+				}
+				
 				else if (Nombre.equals("") || Descripcion.equals("")) 
 					JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto.");
 				
