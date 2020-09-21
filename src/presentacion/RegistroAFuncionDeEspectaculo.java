@@ -241,7 +241,9 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//String espec = (String) comboBoxEspectPlat.getSelectedItem();
 				//ctrlEspect.elegirEspectaculo(espec);
-				
+				textFieldFechaFun.setText(null);
+				textFieldHoraFuncion.setText(null);
+				textFieldFechaRegFuncion.setText(null);
 				nombreFuncion = (String) comboBoxFuncionesEspect.getSelectedItem();
 				ctrlEspect.ingresarNombreFuncion(nombreFuncion);
 				
@@ -256,13 +258,11 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 				
 					DtFuncion infoFun = ctrlEspect.mostarFuncion(nombreFuncion);
 					
-					textFieldFechaFun.setText(null);
+					
 					textFieldFechaFun.setText(infoFun.getFecha().toString());
 					
-					textFieldHoraFuncion.setText(null);
 					textFieldHoraFuncion.setText(infoFun.getHorainicio().toString());
 					
-					textFieldFechaRegFuncion.setText(null);
 					textFieldFechaRegFuncion.setText(infoFun.getFechaReg().toString());
 				
 			}
@@ -290,6 +290,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxEspectadores = new JComboBox<String>();
 		comboBoxEspectadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				eliminarListaRegistro();
 				nombreEspectador = (String) comboBoxEspectadores.getSelectedItem();
 				ctrlEspect.ingresarNombreEspectador(nombreEspectador);
 				
@@ -611,6 +612,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	}
 	public void eliminarListaRegistro() {
 		//for(int i = 0; i < listRegistros.getModel().getSize(); i++) {
+		if(listRegistros.getModel().getSize() > 0)
 			((DefaultListModel<String>) listRegistros.getModel()).clear();
 		//}
 	}
