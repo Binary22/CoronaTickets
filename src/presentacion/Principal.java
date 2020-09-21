@@ -556,14 +556,8 @@ public class Principal extends JFrame {
 		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
 		ec.ingresarNombreEspectador("lachiqui");
 		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("24/08/20",formatter));
-		//R28
-		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		ec.ingresarNombreEspectador("chino");
-		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("17/08/20",formatter));
-		//R29
-		ec.ingresarNombreFuncion("Springsteen on Broadway - i");
-		ec.ingresarNombreEspectador("lachiqui");
-		ec.confirmarRegistro("Springsteen on Broadway", LocalDate.parse("24/08/20",formatter));
+		
+		
 		//R30
 		ec.ingresarNombreFuncion("Springsteen on Broadway - ii");
 		ec.ingresarNombreEspectador("sergiop");
