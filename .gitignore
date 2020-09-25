@@ -1,4 +1,6 @@
-/bin
+ 
+/centralserver/bin
+/workstation/bin
 /.metadata
-.project
-
+/centralserver/.project
+/workstation/.project
