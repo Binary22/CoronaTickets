@@ -1,0 +1,6 @@
+vpeople;Instagram Live;Los Village Volvieron;Espectáculo de retorno de los Village People.;90;10;800;https:// www.instagram.com/realvillagepeop;550;31/03/2020;nl
+dmode;Facebook Watch;Global Spirit;Espectáculo donde se presenta el álbum Spirit.;120;30;1300;https://es-la.facebook.com/depechemode/;750;20/04/2020;nl
+clauper;Twitter Live;Memphis Blues World;Espectáculo promoviendo álbum Memphis Blues.;110;5;1000;https://twitter.com/cyndilauper;800;30/05/2020;nl
+bruceTheBoss;Youtube;Springsteen on Broadway;Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografíade 2016, Born to Run.;100;100;1500;https:// www.youtube.com/BruceSpringsteen;980;07/06/2020;nl
+lospimpi;Twitter Live;Bien de Familia;El dúo estará presentando sus más sonados éxitos y también nuevas canciones.;150;10;500;https://twitter.com/PimpinelaNet;500;08/07/2020;nl
+alcides;Twitter Live;30 años;Espectáculo conmemorando los 30 años de Violeta.;80;30;150;https://twitter.com/alcides_shows;450;31/07/2020;
