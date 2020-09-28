@@ -1,7 +1,7 @@
 const navTemplate = document.createElement('template');
 navTemplate.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" style="font-family: 'Lobster', cursive; font-size: x-large;">CoronaTickets.uy</a>
+    <a class="navbar-brand" href="index.html" style="font-family: 'Lobster', cursive; font-size: x-large;">CoronaTickets.uy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,7 +9,7 @@ navTemplate.innerHTML = `
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li id="home" class="nav-item">
-                <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="home.html">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li id="espectaculos" class="nav-item">
                 <a class="nav-link" href="espectaculos.html">Espectaculos</a>
@@ -37,7 +37,7 @@ navTemplate.innerHTML = `
             <input class="form-control mr-sm-2 d-none d-md-block" type="email" placeholder="Email" aria-label="Usuario">
             <input class="form-control mr-sm-2 d-none d-md-block" type="password" placeholder="Contraseña">
             <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px">Ingresar</button>
-            <button type="button" class="btn btn-outline-primary my-2 my-sm-0">Registrarse</button>
+            <a type="button" class="btn btn-outline-primary my-2 my-sm-0" href="registro.html">Registrarse</a>
         </form>
         <div id='miperfil' class="navbar-nav" hidden>
             <li class="nav-item dropleft">
