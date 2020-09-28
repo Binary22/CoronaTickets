@@ -4,3 +4,5 @@
 /.metadata
 /centralserver/.project
 /workstation/.project
+/webserver/bin
+/webserver/.project
