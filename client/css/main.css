@@ -1,0 +1,7 @@
+carta-espectaculo {
+    transition: transform 250ms ease-in-out;
+}
+carta-espectaculo:hover {
+    transform: scale(1.05);
+    margin: 0 0 10 10;
+}

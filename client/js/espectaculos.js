@@ -34,29 +34,17 @@ function parseData(data){
 
 var espectaculosLista = document.querySelector("#espectaculos-lista");
 
-var mytable = "<div class=\"row\">"
-
-var desc = "<p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>"
-
-var boton = "<a href=\"#\" class=\"btn btn-primary\">Ver Espectaculo</a>"
+var mytable = '<div class="card-deck pt-3">';
 
 function cargarDatos(espectaculos) {
     console.log(espectaculos);
     for( var i=0; i<espectaculos.length; i++) {
         titulo = espectaculos[i][2];
         desc = espectaculos[i][3];
-        if ((i+1)%3 == 1 && i !=1) {
-            mytable += "</div><div class=\"card-deck\">";
+        if ((i+1)%3 == 1 && i !=0) {
+            mytable += '</div><div class="card-deck pt-3">';
         }
-        mytable += `<div class=\"card mt-3 ml-5\" style=\"width:18rem\">
-                        <div class=\"card-body\">
-                            <h5 class=\"card-title\">`+ titulo +`</h5>
-                            <div class="card-text">` + desc + `</div>
-                        </div>
-                        <div class="card-footer">`
-                            + boton +
-                        `</div>
-                    </div>`;
+        mytable += `<carta-espectaculo img='${espectaculos[i][10]}' titulo='${espectaculos[i][2]}' descripcion="${espectaculos[i][3]}"></carta-espectaculo>`;
     }
     espectaculosLista.innerHTML = mytable;
 

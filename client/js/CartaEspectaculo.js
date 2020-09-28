@@ -1,26 +1,29 @@
 const template = document.createElement('template');
 
 template.innerHTML = `
-<div class=\"card mt-3 ml-5\" style=\"width:18rem\">
+    </style>
+    <img class="card-img-top" alt="...">
     <div class=\"card-body\">
-        <h5 class=\"card-title\"><slot name="titulo"></slot></h5>
-        <div class="card-text">
-        </div>
+        <h5 class="card-title"><slot name="titulo"></slot></h5>
+        <p class="card-text">
+        </p>
     </div>
     <div class="card-footer">
         <a href="#" class="btn btn-primary">Ver Espectaculo</a>
-    </div>
-</div>`
+    </div>`
 
 class espectaculoCard extends HTMLElement {
     constructor() {
         super();
         this.appendChild(template.content.cloneNode(true));
+        this.setAttribute('class',"card");
+        this.setAttribute('style',"width:18rem");
     }
 
     connectedCallback() {
         this.querySelector('.card-title').innerHTML = this.getAttribute('titulo');
         this.querySelector('.card-text').innerHTML = this.getAttribute('descripcion');
+        this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
     }
 
     espectaculoDetails() {
