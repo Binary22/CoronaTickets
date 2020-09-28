@@ -1,5 +1,5 @@
 const navTemplate = document.createElement('template');
-template.innerHTML = `
+navTemplate.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">CoronaTickets.uy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@ template.innerHTML = `
 class NavBar extends HTMLElement {
     constructor() {
         super();
-        this.appendChild(template.content.cloneNode(true));
+        this.appendChild(navTemplate.content.cloneNode(true));
         let active = this.getAttribute('active');
         this.querySelector('#' + active).setAttribute('class','nav-item active')
     }
