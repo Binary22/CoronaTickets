@@ -1,4 +1,4 @@
-const template = document.createElement('template');
+const navTemplate = document.createElement('template');
 template.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">CoronaTickets.uy</a>
@@ -46,7 +46,7 @@ template.innerHTML = `
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Editar Perfil</a>
-                    <a id="logout" class="dropdown-item" hrwf="#">Salir de mi perfil</a>
+                    <a class="dropdown-item" id="logout" href="#">Salir de mi perfil</a>
                 </div>
             </li>
         </div>

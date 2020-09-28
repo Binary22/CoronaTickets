@@ -46,12 +46,14 @@ function cargarDatos(espectaculos) {
         titulo = espectaculos[i][2];
         desc = espectaculos[i][3];
         if ((i+1)%3 == 1 && i !=1) {
-            mytable += "</div><div class=\"row\">";
+            mytable += "</div><div class=\"card-deck\">";
         }
         mytable += `<div class=\"card mt-3 ml-5\" style=\"width:18rem\">
                         <div class=\"card-body\">
-                            <h5 class=\"card-title\">`+ titulo +`</h5>`
-                            + desc + "<br/>"
+                            <h5 class=\"card-title\">`+ titulo +`</h5>
+                            <div class="card-text">` + desc + `</div>
+                        </div>
+                        <div class="card-footer">`
                             + boton +
                         `</div>
                     </div>`;
