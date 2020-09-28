@@ -1,7 +1,7 @@
 const navTemplate = document.createElement('template');
-template.innerHTML = `
+navTemplate.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">CoronaTickets.uy</a>
+    <a class="navbar-brand" href="#" style="font-family: 'Lobster', cursive; font-size: x-large;">CoronaTickets.uy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,7 @@ template.innerHTML = `
                 <a class="nav-link" href="#">Usuarios</a>
             </li>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle disabled" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Menu Artista
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -34,8 +34,8 @@ template.innerHTML = `
             </li>
         </ul>
         <form id="login-form" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 d-none d-md-block" type="email" placeholder="email" aria-label="Usuario">
-            <input class="form-control mr-sm-2 d-none d-md-block" type="password" placeholder="Password">
+            <input class="form-control mr-sm-2 d-none d-md-block" type="email" placeholder="Email" aria-label="Usuario">
+            <input class="form-control mr-sm-2 d-none d-md-block" type="password" placeholder="Contraseña">
             <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px">Ingresar</button>
             <button type="button" class="btn btn-outline-primary my-2 my-sm-0">Registrarse</button>
         </form>
@@ -57,7 +57,7 @@ template.innerHTML = `
 class NavBar extends HTMLElement {
     constructor() {
         super();
-        this.appendChild(template.content.cloneNode(true));
+        this.appendChild(navTemplate.content.cloneNode(true));
         let active = this.getAttribute('active');
         this.querySelector('#' + active).setAttribute('class','nav-item active')
     }
