@@ -9,7 +9,7 @@ template.innerHTML = `
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li id="home" class="nav-item">
-                <a class="nav-link" href="home.html">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li id="espectaculos" class="nav-item">
                 <a class="nav-link" href="espectaculos.html">Espectaculos</a>
