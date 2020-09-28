@@ -78,7 +78,7 @@ class NavBar extends HTMLElement {
         this.querySelector('#login-form').addEventListener('submit', (e) => this.onSubmit(e));
         this.querySelector('#logout').addEventListener('click', () => {
             this.logOut();
-        })
+        });
     }
     
 }
