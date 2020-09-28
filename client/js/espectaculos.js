@@ -17,6 +17,8 @@ function readImage(input) {
             
  }
  }
+
+ document.querySelector('#file-input').toggleAttribute('hidden');
 }
 
 var espectaculos = [];
