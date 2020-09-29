@@ -15,7 +15,7 @@ navTemplate.innerHTML = `
                 <a class="nav-link" href="espectaculos.html">Espectaculos</a>
             </li>
             <li id="paquetes" class="nav-item">
-                <a class="nav-link" href="#">Paquetes</a>
+                <a class="nav-link" href="paquetes.html">Paquetes</a>
             </li>
             <li id="usuarios" class="nav-item">
                 <a class="nav-link" href="#">Usuarios</a>

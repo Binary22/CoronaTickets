@@ -32,20 +32,21 @@ function parseData(data){
     cargarDatos(csvData);
 }
 
-var espectaculosLista = document.querySelector("#espectaculos-lista");
+
 
 var mytable = '<div class="card-deck pt-3">';
 
-function cargarDatos(espectaculos) {
-    console.log(espectaculos);
-    for( var i=0; i<espectaculos.length; i++) {
-        titulo = espectaculos[i][2];
-        desc = espectaculos[i][3];
+function cargarDatos(paquetes) {
+    var paquetesLista = document.querySelector("#paquetes-lista");
+    console.log(paquetes);
+    for( var i=0; i<paquetes.length; i++) {
+        titulo = paquetes[i][2];
+        desc = paquetes[i][3];
         if ((i+1)%3 == 1 && i !=0) {
             mytable += '</div><div class="card-deck pt-3">';
         }
-        mytable += `<carta-espectaculo class="carta" img='${espectaculos[i][10]}' titulo='${espectaculos[i][1]}' descripcion="${espectaculos[i][3]}" precio="${espectaculos[i][8]}"></carta-espectaculo>`;
+        mytable += `<carta-paquete img='${paquetes[i][6]}' titulo='${paquetes[i][0]}' descripcion="${paquetes[i][1]}" precio="${paquetes[i][2]}"></carta-paquete>`;
     }
-    espectaculosLista.innerHTML = mytable;
+    paquetesLista.innerHTML = mytable;
 
 }

@@ -8,7 +8,7 @@ template.innerHTML = `
         <p id="desc" class="card-text">
         </p>
         <ul class="list-group list-group-horizontal">
-            <a href="#" class="list-group-item list-group-item-action">Ver Espectaculo</a>
+            <a href="#" class="list-group-item list-group-item-action active">Ver Espectaculo</a>
             <li id="precio" class="list-group-item">$</li>
         </ul>
     </div>
@@ -18,7 +18,7 @@ class espectaculoCard extends HTMLElement {
     constructor() {
         super();
         this.appendChild(template.content.cloneNode(true));
-        this.setAttribute('class',"card");
+        this.setAttribute('class',"card carta");
         this.setAttribute('style',"width:18rem");
     }
 
