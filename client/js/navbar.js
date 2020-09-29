@@ -1,7 +1,7 @@
 const navTemplate = document.createElement('template');
 navTemplate.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html" style="font-family: 'Lobster', cursive; font-size: x-large;">CoronaTickets.uy</a>
+    <a class="navbar-brand" href="home.html" style="font-family: 'Lobster', cursive; font-size: x-large;">CoronaTickets.uy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
