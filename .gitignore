@@ -2,7 +2,4 @@
 /centralserver/bin
 /workstation/bin
 /.metadata
-/centralserver/.project
-/workstation/.project
 /webserver/bin
-/webserver/.project
