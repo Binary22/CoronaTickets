@@ -44,7 +44,7 @@ function cargarDatos(espectaculos) {
         if ((i+1)%3 == 1 && i !=0) {
             mytable += '</div><div class="card-deck pt-3">';
         }
-        mytable += `<carta-espectaculo img='${espectaculos[i][10]}' titulo='${espectaculos[i][2]}' descripcion="${espectaculos[i][3]}"></carta-espectaculo>`;
+        mytable += `<carta-espectaculo img='${espectaculos[i][10]}' titulo='${espectaculos[i][2]}' descripcion="${espectaculos[i][3]}" precio="${espectaculos[i][8]}"></carta-espectaculo>`;
     }
     espectaculosLista.innerHTML = mytable;
 

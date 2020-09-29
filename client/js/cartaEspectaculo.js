@@ -5,12 +5,14 @@ template.innerHTML = `
     <img class="card-img-top" alt="...">
     <div class=\"card-body\">
         <h5 class="card-title"><slot name="titulo"></slot></h5>
-        <p class="card-text">
+        <p id="desc" class="card-text">
         </p>
+        <ul class="list-group list-group-horizontal">
+            <a href="#" class="list-group-item list-group-item-action">Ver Espectaculo</a>
+            <li id="precio" class="list-group-item">$</li>
+        </ul>
     </div>
-    <div class="card-footer">
-        <a href="#" class="btn btn-primary">Ver Espectaculo</a>
-    </div>`
+    `
 
 class espectaculoCard extends HTMLElement {
     constructor() {
@@ -22,8 +24,9 @@ class espectaculoCard extends HTMLElement {
 
     connectedCallback() {
         this.querySelector('.card-title').innerHTML = this.getAttribute('titulo');
-        this.querySelector('.card-text').innerHTML = this.getAttribute('descripcion');
+        this.querySelector('#desc').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
+        this.querySelector('#precio').innerHTML += this.getAttribute('precio');
     }
 
     espectaculoDetails() {
