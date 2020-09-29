@@ -20,18 +20,6 @@ navTemplate.innerHTML = `
             <li id="usuarios" class="nav-item">
                 <a class="nav-link" href="#">Usuarios</a>
             </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Menu Artista
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Alta de espectáculo</a>
-                <a class="dropdown-item" href="#">Alta de función de espectáculo</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Crear paquete de espectáculos</a>
-                <a class="dropdown-item" href="#">Agregar espectáculo a paquete</a>
-            </div>
-            </li>
         </ul>
         <form id="login-form" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2 d-none d-md-block" type="email" placeholder="Email" aria-label="Usuario">
@@ -40,13 +28,25 @@ navTemplate.innerHTML = `
             <a type="button" class="btn btn-outline-primary my-2 my-sm-0" href="registro.html">Registrarse</a>
         </form>
         <div id='miperfil' class="navbar-nav" hidden>
-            <li class="nav-item dropleft">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Mi Perfil
+                    Rigo23
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <h5 class="dropdown-header"> Menu de artista </h5>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Alta de espectáculo</a>
+                    <a class="dropdown-item" href="#">Alta de función de espectáculo</a>
+                    <a class="dropdown-item" href="#">Crear paquete de espectáculos</a>
+                    <a class="dropdown-item" href="#">Agregar espectáculo a paquete</a>
+                    
+                    <div class="dropdown-divider"></div>
+                    <h5 class="dropdown-header"> Menu de usuario </h5>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Editar Perfil</a>
                     <a class="dropdown-item" id="logout" href="#">Salir de mi perfil</a>
+
+
                 </div>
             </li>
         </div>
