@@ -1,14 +1,14 @@
 const template = document.createElement('template');
 
 template.innerHTML = `
-    </style>
     <img class="card-img-top" alt="...">
     <div class=\"card-body\">
-        <h5 class="card-title"><slot name="titulo"></slot></h5>
+        <h5 class="card-title"></slot></h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
         <p id="desc" class="card-text">
         </p>
         <ul class="list-group list-group-horizontal">
-            <a href="#" class="list-group-item list-group-item-action active">Ver Espectaculo</a>
+            <a href="../html/detallesEspectaculo.html" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
             <li id="precio" class="list-group-item">$</li>
         </ul>
     </div>
@@ -27,6 +27,7 @@ class espectaculoCard extends HTMLElement {
         this.querySelector('#desc').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
         this.querySelector('#precio').innerHTML += this.getAttribute('precio');
+        this.querySelector('.card-subtitle').innerHTML += this.getAttribute('artista');
     }
 
     espectaculoDetails() {

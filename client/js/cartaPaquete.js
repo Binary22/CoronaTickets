@@ -1,14 +1,13 @@
 const templatePaquete = document.createElement('template');
 
 templatePaquete.innerHTML = `
-    </style>
     <img class="card-img-top" alt="...">
     <div class=\"card-body\">
         <h5 class="card-title"><slot name="titulo"></slot></h5>
         <p class="card-text">
         </p>
         <ul class="list-group list-group-horizontal">
-            <a href="#" class="list-group-item card-link flex-fill">Ver Paquete</a>
+            <a href="#" class="list-group-item card-link active flex-fill">Ver Paquete</a>
             <li id="precio" class="list-group-item flex-fill"></li>
         </ul>
     </div>
