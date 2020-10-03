@@ -13,14 +13,13 @@
       </head>
 
     <body>
-        <input type="file" id="file-input" onchange="readImage(this)">
-
         <navbar-component active="espectaculos"></navbar-component>
         
         <div class="container">
             <fieldset class="mt-2">
                 <label for="plataforma">Plataforma:</label>
-                <select name="plataforma">
+                <select name="plataforma" id="plataforma" onchange="plataformaSelected(this.value)">
+                    <option default disabled selected value="">--Elegir Plataforma--</option>
                     <option value="Twitter Live">Twitter Live</option>
                     <option value="Facebook Watch">Facebook Watch</option>
                     <option value="Instagram Live">Instagram Live</option>
