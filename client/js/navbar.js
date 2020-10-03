@@ -37,7 +37,7 @@ navTemplate.innerHTML = `
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Alta de espectáculo</a>
                     <a class="dropdown-item" href="#">Alta de función de espectáculo</a>
-                    <a class="dropdown-item" href="#">Crear paquete de espectáculos</a>
+                    <a class="dropdown-item" href="crearPaquete.html">Crear paquete de espectáculos</a>
                     <a class="dropdown-item" href="#">Agregar espectáculo a paquete</a>
                     
                     <div class="dropdown-divider"></div>
