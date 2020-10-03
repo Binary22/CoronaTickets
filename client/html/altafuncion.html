@@ -17,10 +17,13 @@
     <navbar-component active="home"></navbar-component>
 
     <div class="container">
-
       <div class="d-flex justify-content-center">
         <div class="card input-group mt-3" style="width:40rem;"">
         <div class="card-body">
+          <!-- esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal
+          <div class="alert alert-danger" role="alert">
+            Ingrese una duración mayor a 0.
+          </div> -->
 
         <h4> Alta de espectaculo </h4>
         <br>
@@ -66,16 +69,16 @@
               <input type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
             </div>
             <div class="form-group">
-                <label>Categorias</label>
-                <select class="form-control" multiple>
-                  <option>Rock</option>
-                  <option>Pop</option>
-                  <option>Duos</option>
-                  <option>Murga</option>
-                  <option>Solistas</option>
-                  <option>Cumbia</option>
-                </select>
-              </div>
+              <label>Categorias</label>
+              <select class="form-control" multiple>
+                <option>Rock</option>
+                <option>Pop</option>
+                <option>Duos</option>
+                <option>Murga</option>
+                <option>Solistas</option>
+                <option>Cumbia</option>
+              </select>
+            </div>
             <div class="form-group">
               <label>Costo</label>
               <input type="number" class="form-control"  placeholder="Ej. 300">
