@@ -2,12 +2,12 @@ const template = document.createElement('template');
 
 template.innerHTML = `
     <img class="card-img-top" alt="...">
-    <div class=\"card-body\">
+    <div class="card-body d-flex flex-column">
         <h5 class="card-title"></slot></h5>
         <h6 class="card-subtitle mb-2 text-muted"></h6>
         <p id="desc" class="card-text">
         </p>
-        <ul class="list-group list-group-horizontal">
+        <ul class="list-group mt-auto list-group-horizontal">
             <a href="../html/detallesEspectaculo.html" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
             <li id="precio" class="list-group-item">$</li>
         </ul>
