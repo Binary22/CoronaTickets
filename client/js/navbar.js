@@ -35,7 +35,7 @@ navTemplate.innerHTML = `
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <h5 class="dropdown-header"> Menu de artista </h5>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Alta de espectáculo</a>
+                    <a class="dropdown-item" href="altaespectaculo.html">Alta de espectáculo</a>
                     <a class="dropdown-item" href="#">Alta de función de espectáculo</a>
                     <a class="dropdown-item" href="#">Crear paquete de espectáculos</a>
                     <a class="dropdown-item" href="#">Agregar espectáculo a paquete</a>
