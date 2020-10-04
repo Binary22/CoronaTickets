@@ -2,38 +2,22 @@ var obj_csv = {
     size:0,
     dataFile:[]
 };
+
+var espectaculo3 = ["Cyndi Lauper","Twitter Live","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",110,5,1000,"https://twitter.com/cyndilauper",800,30/05/2020,"../media/espectaculos/3.jpeg"];
+var espectaculo5 = ["Pimpinela Pimpinela","Twitter Live","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",150,10,500,"https://twitter.com/PimpinelaNet",500,08/07/2020,"../media/espectaculos/5.jpeg"];
+var espectaculo6 = ["Violeta Alcides", "Twitter Live","30 años","Espectáculo conmemorandolos 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31/07/20,"../media/espectaculos/6.jpeg"]
  
-document.querySelector('#plataforma').value="";
+var espectaculo1 = ["Village People","Instagram Live","Los Village Volvieron","Espectáculo de retorno de los Village People.",90,10,800,"https:// www.instagram.com/realvillagepeop",550,31/03/2020,"../media/espectaculos/1.jpeg"];
+var espectaculo2 = ["Depeche Mode","Facebook Watch","Global Spirit","Espectáculo donde se presenta el álbum Spirit.",120,30,1300,"https://es-la.facebook.com/depechemode/",750,20/04/2020,"../media/espectaculos/2.jpeg"];
 
-function readImage(input) {
-    console.log(input)
- if (input.files && input.files[0]) {
-	 let reader = new FileReader();
-	        reader.readAsText(input.files[0]);
-	 reader.onload = function (e) {
-		 console.log(e);
-		 obj_csv.size = e.total;
-		 obj_csv.dataFile = e.target.result
-		 console.log(obj_csv.dataFile)
-		 parseData(obj_csv.dataFile)		            
-	}
- }
+var espectaculo4 = ["Bruce Springsteen","Youtube","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografíade 2016, Born to Run.",100,100,1500,"https:// www.youtube.com/BruceSpringsteen",980,07/06/2020,"../media/espectaculos/4.jpeg"]
 
- document.querySelector('#file-input').toggleAttribute('hidden');
-}
 
-var espectaculos = [];
- 
-function parseData(data){
-    let csvData = [];
-    let lbreak = data.split("nl");
-    lbreak.forEach(res => {
-        csvData.push(res.split(";"));
-    });
-    cargarDatos(csvData);
-}
+document.querySelector('#paquete').value="";
 
-var espectaculosLista = document.querySelector("#espectaculos-lista");
+var espectaculosLista = document.querySelector("#espectaculos-lista2");
+
+
 function cargarDatos(espectaculos) {
     var mytable = '<div class="card-deck pt-3">';
     console.log(espectaculos);
@@ -50,9 +34,15 @@ function cargarDatos(espectaculos) {
     }
     espectaculosLista.innerHTML = mytable;
 };
+
 function mostrarDatosPaquete(value){
-   (value == "Bandas") ? cargarDatos([espectaculo3,espectaculo5,espectaculo6]) : espectaculosLista.innerHTML = "";
-   (value == "Solistas") ? cargarDatos([espectaculo3,espectaculo5,espectaculo6]) : espectaculosLista.innerHTML = "";
-   (value == "Latino") ? cargarDatos([espectaculo3,espectaculo5,espectaculo6]) : espectaculosLista.innerHTML = "";
-	
+    if (value == "Bandas") {
+        cargarDatos([espectaculo1,espectaculo2]);
+    }
+    if (value == "Solistas") {
+        cargarDatos([espectaculo3,espectaculo4]);
+    }
+    if (value == "Latino") {
+        cargarDatos([espectaculo5,espectaculo6]);
+    }
 }
