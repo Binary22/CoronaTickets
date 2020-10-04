@@ -1,36 +1,7 @@
-var obj_csv = {
-    size:0,
-    dataFile:[]
-};
- 
-function readImage(input) {
-    console.log(input)
- if (input.files && input.files[0]) {
- let reader = new FileReader();
-        reader.readAsText(input.files[0]);
- reader.onload = function (e) {
- console.log(e);
- obj_csv.size = e.total;
- obj_csv.dataFile = e.target.result
-            console.log(obj_csv.dataFile)
-            parseData(obj_csv.dataFile)
-            
- }
- }
-
- document.querySelector('#file-input').toggleAttribute('hidden');
-}
-
-var usuarios = [];
- 
-function parseData(data){
-    let csvData = [];
-    let lbreak = data.split("nl");
-    lbreak.forEach(res => {
-        csvData.push(res.split(";"));
-    });
-    cargarDatos(csvData);
-}
+var usuario1 = ['eleven11','Eleven','Ten','eleven11@gmail.com',31/12/1971,'../media/usuarios/eleven.png'];
+var usuario2 = ['costas','Gerardo','Costas','gcostas@gmail.com',15/11/1983,'../media/usuarios/ger.jpeg']
+var usuario3 = ['waston','Emma','Watsone','watson@gmail.com',15/4/1990,'../media/usuarios/emma.jpeg']
+var usuarios =[usuario1,usuario2,usuario3];
 
 var usuariosLista = document.querySelector("#usuarios-lista");
 
@@ -44,8 +15,14 @@ function cargarDatos(usuarios) {
         if ((i+1)%3 == 1 && i !=0) {
             mytable += '</div><div class="card-deck pt-3">';
         }
-        mytable += `<carta-usuario class="carta" img='${usuarios[i][10]}' nickname='${usuarios[i][2]}'></carta-usuarios>`;
+        mytable += `<carta-usuario class="carta" img='${usuarios[i][5]}' descripcion='${usuarios[i][1]} ${usuarios[i][2]}' titulo='${usuarios[i][0]}'></carta-usuario>`;
+    }
+
+    if  (!((i+1)%3 == 1)) {
+        mytable+='</div>'
     }
     usuariosLista.innerHTML = mytable;
 
 }
+
+cargarDatos(usuarios);
