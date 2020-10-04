@@ -18,7 +18,7 @@ navTemplate.innerHTML = `
                 <a class="nav-link" href="paquetes.html">Paquetes</a>
             </li>
             <li id="usuarios" class="nav-item">
-                <a class="nav-link" href="#">Usuarios</a>
+                <a class="nav-link" href="usuarios.html">Usuarios</a>
             </li>
         </ul>
         <form id="login-form" class="form-inline my-2 my-lg-0">
