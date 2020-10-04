@@ -18,7 +18,7 @@
 
     <div class="container">
       <div class="d-flex justify-content-center">
-        <div class="card input-group mt-3" style="width:40rem;"">
+        <div class="card input-group mt-3" style="width:30rem;"">
         <div class="card-body">
             <!-- esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal
             <div class="alert alert-danger" role="alert">
@@ -29,50 +29,26 @@
             <br>
                     
             <form>
-                <div class="form-group" >
+                <div class="form-group">
                     <label>Paquetes</label>
-                    <select class="form-control" id="paquete" onchange="mostrarDatosPaquete(value)">
+                    <select class="form-control" id="paquete">
                         <option default disabled selected value="">--Elegir paquete--</option>
                         <option value="Bandas">Bandas</option>
                         <option value="Solistas">Solistas</option>
                         <option value="Latino">Latino</option>
                     </select>
                 </div>
-                <!-- Esto solo es visible si se selecciona un Paquete -->
-                <!-- <div id="datosPaquete" hidden class="container">
-                    <div class="row">
-                        <div class="col-sm pt-5 pb-5">
-                            <div class="card" style="width: 100%;">
-                                <img class="card-img-top" src="../media/espectaculos/5.jpeg" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"></slot>Espectaculo:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Bien de Familia</h6>
-                                    <h5 class="card-title"></slot>Artista:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
-                                    <h5 class="card-title">Descripcion:</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">El dúo estará presentandosus más sonados éxitos y también nuevas canciones.</h6>
-                                    <h5 class="card-title">Duracion:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">150</h6>
-                                    <h5 class="card-title"></slot>Link:</h5>
-                                    <h6 href="https://twitter.com/PimpinelaNet/" class="card-subtitle mb-2 text-muted">Twitter.com/PimpinelaNet</h6>
-                                    <h5 class="card-title"></slot>Precio:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">$500</h6>
-                                    <h5 class="card-title"></slot>Plataforma:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Twitter Live</h6>
-                                    <h5 class="card-title"></slot>Espectadores:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">De 10 a 500</h6>
-                                    <h5 class="card-title"></slot>Fecha de alta:</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">08/07/2020</h6>
-                                </div>  
-                            </div>
-                        </div>
-                        <div class="col-sm pt-5 pb-5">
-                            <carta-paquete img="../media/paquetes/3.jpeg" titulo="Paquete Latino" precio="15"></carta-paquete>
-                        </div>
-                    </div>
-                </div> -->
-            </form>
-                <br>
+                <div class="form-group">
+                    <label>Plataformas</label>
+                    <select class="form-control" id="plataforma" onchange="mostrarDatosPaquete(value)">
+                        <option default disabled selected value="">--Elegir paquete--</option>
+                        <option value="Instagram Live">Instagram Live</option>
+                        <option value="Facebook Watch">Facebook Watch</option>
+                        <option value="Twitter Live">Twitter Live</option>
+                        <option value="Youtube">Youtube</option>
+                    </select>
+                </div>
+           </form>
         </div>
         </div>
       </div>

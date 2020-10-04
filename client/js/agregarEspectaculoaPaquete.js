@@ -13,7 +13,7 @@ var espectaculo2 = ["Depeche Mode","Facebook Watch","Global Spirit","Espectácul
 var espectaculo4 = ["Bruce Springsteen","Youtube","Springsteen on Broadway","Springsteen tocando guitarra o piano y relatando anécdotas recogidas en su autobiografíade 2016, Born to Run.",100,100,1500,"https:// www.youtube.com/BruceSpringsteen",980,07/06/2020,"../media/espectaculos/4.jpeg"]
 
 
-document.querySelector('#paquete').value="";
+document.querySelector('#plataforma').value="";
 
 var espectaculosLista = document.querySelector("#espectaculos-lista2");
 
@@ -36,13 +36,16 @@ function cargarDatos(espectaculos) {
 };
 
 function mostrarDatosPaquete(value){
-    if (value == "Bandas") {
-        cargarDatos([espectaculo1,espectaculo2]);
+    if (value == "Instagram Live") {
+        cargarDatos([espectaculo1]);
     }
-    if (value == "Solistas") {
-        cargarDatos([espectaculo3,espectaculo4]);
+    if (value == "Facebook Watch") {
+        cargarDatos([espectaculo2]);
     }
-    if (value == "Latino") {
-        cargarDatos([espectaculo5,espectaculo6]);
+    if (value == "Twitter Live") {
+        cargarDatos([espectaculo3,espectaculo5,espectaculo6]);
     }
+	if (value == "Youtube"){
+		cargarDatos([espectaculo4]);
+	}
 }
