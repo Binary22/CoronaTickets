@@ -1,8 +1,9 @@
 .carousel-control-next,
 .carousel-control-prev {
-    filter: invert(100%);
+    display: none;
 }
 
 .carousel-indicators{
     filter: invert(100%);
+    bottom:-3.5em;
 }
