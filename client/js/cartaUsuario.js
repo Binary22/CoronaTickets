@@ -1,13 +1,13 @@
 const templateUser = document.createElement('template');
 
 templateUser.innerHTML = `
-    <img class="card-img-top" style="height:300px" alt="...">
+    <img class="card-img-top" style="object-fit: cover; height:18rem" alt="...">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"></h5>
         <p class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="../html/detallesPaquete.html" class="list-group-item card-link active flex-fill">Seguir</a>
+            <a href="../html/detallesUsuario.html" class="list-group-item card-link active flex-fill">Ver perfil</a>
         </ul>
     </div>
     `
@@ -17,7 +17,7 @@ class userCard extends HTMLElement {
         super();
         this.appendChild(templateUser.content.cloneNode(true));
         this.setAttribute('class',"card carta");
-        this.setAttribute('style',"width:18rem");
+        this.setAttribute('style',"width:18rem;");
     }
 
     connectedCallback() {
