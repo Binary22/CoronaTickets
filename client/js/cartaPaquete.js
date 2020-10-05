@@ -1,7 +1,7 @@
 const templatePaquete = document.createElement('template');
 
 templatePaquete.innerHTML = `
-    <img class="card-img-top" alt="...">
+    <img class="card-img-top" alt="..." style="height:13rem">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"><slot name="titulo"></slot></h5>
         <p class="card-text">
@@ -17,8 +17,8 @@ class paqueteCard extends HTMLElement {
     constructor() {
         super();
         this.appendChild(templatePaquete.content.cloneNode(true));
-        this.setAttribute('class',"card carta");
-        this.setAttribute('style',"width:18rem");
+        this.setAttribute('class',"card carta mb-3");
+        //this.setAttribute('style',"width:18rem");
     }
 
     connectedCallback() {

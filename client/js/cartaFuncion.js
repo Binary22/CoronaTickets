@@ -1,7 +1,7 @@
 const templatefuncard = document.createElement('template');
 
 templatefuncard.innerHTML = `
-    <img class="card-img-top" alt="...">
+    <img class="card-img-top" style="width: 100%; object-fit: cover;" alt="...">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"></slot></h5>
         <h6 class="card-subtitle mb-2 text-muted" hidden>Artistas Invitados:</h6>
@@ -21,7 +21,7 @@ class funcionCard extends HTMLElement {
         super();
         this.appendChild(templatefuncard.content.cloneNode(true));
         this.setAttribute('class',"card carta mt-3");
-        this.setAttribute('style',"width:18rem");
+        //this.setAttribute('style',"width:18rem");
     }
 
     connectedCallback() {
