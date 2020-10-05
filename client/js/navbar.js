@@ -44,7 +44,7 @@ navTemplate.innerHTML = `
                     <div class="dropdown-divider"></div>
                     <h5 class="dropdown-header"> Menu de usuario </h5>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="detallesUsuario.html"> Mi perfil </a>
+                    <a class="dropdown-item" href="detallesArtista.html"> Mi perfil </a>
                     <a class="dropdown-item" href="modificarusuario.html"> Modificar usuario</a>
                     <a class="dropdown-item" id="logout" href="#">Salir de mi perfil</a>
 
