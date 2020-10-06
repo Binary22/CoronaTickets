@@ -1,6 +1,6 @@
 var usuario1 = ['eleven11','Eleven','Ten','eleven11@gmail.com',31/12/1971,'../media/usuarios/eleven.png'];
 var usuario2 = ['costas','Gerardo','Costas','gcostas@gmail.com',15/11/1983,'../media/usuarios/ger.jpeg']
-var usuario3 = ['waston','Emma','Watsone','watson@gmail.com',15/4/1990,'../media/usuarios/emma.jpeg']
+var usuario3 = ['waston','Emma','Watsone','watson@gmail.com',15/4/1990,'../media/usuarios/Emma-Watson-1.jpg']
 var usuarios =[usuario1,usuario2,usuario3];
 
 var usuariosLista = document.querySelector("#usuarios-lista");
