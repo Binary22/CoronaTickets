@@ -22,7 +22,7 @@ public class Home extends HttpServlet {
     }
      
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/home/iniciar.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);
 	}
     
 	/**
