@@ -19,6 +19,8 @@ public class Usuario {
 	private ArrayList<Compra> compraPaquete;
 	private ArrayList<Vale> vales;
 	private ArrayList<Registro> registros;
+	private String contrasenia;
+	private String imagen;
 	
 	
 	
@@ -144,7 +146,8 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.compraPaquete = new ArrayList<Compra>();
 		this.vales = new ArrayList<Vale>();
-		this.registros = new ArrayList<Registro>();		
+		this.registros = new ArrayList<Registro>();
+		this.contrasenia = "1234";
 
 	}
 	public DtUsuario getDt() {
