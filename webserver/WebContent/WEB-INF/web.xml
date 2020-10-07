@@ -6,7 +6,7 @@
   </welcome-file-list>
     <servlet>
         <servlet-name>Home</servlet-name>
-        <servlet-class>Home</servlet-class>
+        <servlet-class>controladores.Home</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
