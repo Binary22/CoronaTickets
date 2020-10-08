@@ -28,7 +28,7 @@
               <div class="card-deck">
                 <div class="col-md-4">
                   <div class="card h-100">
-                    <img class="card-img-top" alt="..." src="../media/espectaculos/3.jpeg">
+                    <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Memphis Blues World</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Cyndi Lauper</h6>
@@ -44,7 +44,7 @@
     
                 <div class="col-md-4 ">
                   <div class="card h-100">
-                    <img class="card-img-top" alt="..." src="../media/espectaculos/5.jpeg">
+                    <img class="card-img-top" alt="..." src="resources/media/espectaculos/5.jpeg">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Bien de Familia</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
@@ -59,7 +59,7 @@
     
                 <div class="col-md-4 ">
                   <div class="card h-100"> 
-                    <img class="card-img-top" alt="..." src="../media/espectaculos/6.jpeg">
+                    <img class="card-img-top" alt="..." src="resources/media/espectaculos/6.jpeg">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">30 años</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Violeta Alcides</h6>
@@ -84,7 +84,7 @@
                 <div class="card-deck">
                   <div class="col-md-4">
                     <div class="card h-100">
-                      <img class="card-img-top" alt="..." src="../media/espectaculos/3.jpeg">
+                      <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
                       <div class="card-body d-flex flex-column">
                           <h5 class="card-title">Memphis Blues World</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Cyndi Lauper</h6>
@@ -100,7 +100,7 @@
       
                   <div class="col-md-4 ">
                     <div class="card h-100">
-                      <img class="card-img-top" alt="..." src="../media/espectaculos/5.jpeg">
+                      <img class="card-img-top" alt="..." src="resources/media/espectaculos/5.jpeg">
                       <div class="card-body d-flex flex-column">
                           <h5 class="card-title">Bien de Familia</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
@@ -115,7 +115,7 @@
       
                   <div class="col-md-4 ">
                     <div class="card h-100"> 
-                      <img class="card-img-top" alt="..." src="../media/espectaculos/6.jpeg">
+                      <img class="card-img-top" alt="..." src="resources/media/espectaculos/6.jpeg">
                       <div class="card-body d-flex flex-column">
                           <h5 class="card-title">30 años</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Violeta Alcides</h6>
@@ -139,7 +139,7 @@
                 <div class="card-deck">
                   <div class="col-md-4">
                     <div class="card h-100">
-                      <img class="card-img-top" alt="..." src="../media/espectaculos/3.jpeg">
+                      <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
                       <div class="card-body d-flex flex-column">
                           <h5 class="card-title">Memphis Blues World</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Cyndi Lauper</h6>
@@ -155,7 +155,7 @@
       
                   <div class="col-md-4 ">
                     <div class="card h-100">
-                      <img class="card-img-top" alt="..." src="../media/espectaculos/5.jpeg">
+                      <img class="card-img-top" alt="..." src="resources/media/espectaculos/5.jpeg">
                       <div class="card-body d-flex flex-column">
                           <h5 class="card-title">Bien de Familia</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
@@ -170,7 +170,7 @@
       
                   <div class="col-md-4 ">
                     <div class="card h-100"> 
-                      <img class="card-img-top" alt="..." src="../media/espectaculos/6.jpeg">
+                      <img class="card-img-top" alt="..." src="resources/media/espectaculos/6.jpeg">
                       <div class="card-body d-flex flex-column">
                           <h5 class="card-title">30 años</h5>
                           <h6 class="card-subtitle mb-2 text-muted">Violeta Alcides</h6>

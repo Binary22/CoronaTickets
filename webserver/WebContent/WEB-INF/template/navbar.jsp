@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="home" style="font-family: 'Lobster', cursive; font-size: x-large;"><img style="max-height: 1.7em;" src="../media/coronatickets.svg"></a>
+<a class="navbar-brand" href="home.html" style="font-family: 'Lobster', cursive; font-size: x-large;"><img style="max-height: 1.7em;" src="resources/media/coronatickets.svg"></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
@@ -39,8 +39,8 @@
                 <a class="dropdown-item" href="altafuncion.html">Alta de función de espectáculo</a>
                 <a class="dropdown-item" href="crearPaquete.html">Crear paquete de espectáculos</a>
                 <a class="dropdown-item" href="agregarEspectaculoaPaquete.html">Agregar espectáculo a paquete</a>
-                <%} %>
                 <div class="dropdown-divider"></div>
+                <%} %>
                 <h5 class="dropdown-header"> Menu de usuario </h5>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="detallesArtista.html"> Mi perfil </a>
