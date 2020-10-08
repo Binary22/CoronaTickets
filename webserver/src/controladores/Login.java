@@ -51,8 +51,7 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	
 	// redirige a la página principal para que luego rediriga a la página
 	// que corresponde
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
-    dispatcher.forward(request, response);
+    response.sendRedirect("home");
 }
     
 	/**
