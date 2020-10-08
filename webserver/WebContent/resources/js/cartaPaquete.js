@@ -7,7 +7,7 @@ templatePaquete.innerHTML = `
         <p class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="../html/detallesPaquete.html" class="list-group-item card-link active flex-fill">Ver Paquete</a>
+            <a href="detallesPaquete" class="list-group-item card-link active flex-fill">Ver Paquete</a>
             <li id="precio" class="list-group-item flex-fill"></li>
         </ul>
     </div>
