@@ -21,10 +21,10 @@
             <a class="nav-link" href="usuarios.html">Usuarios</a>
         </li>
     </ul>
-    <form id="login-form" class="form-inline my-2 my-lg-0" action="webserver/login" method="POST">
+    <form id="login-form" class="form-inline my-2 my-lg-0" action="login" method="POST">
         <input class="form-control mr-sm-2 d-none d-md-block" type="text" name="nickname" placeholder="Nickname" aria-label="Usuario">
         <input class="form-control mr-sm-2 d-none d-md-block" type="password" name="password" placeholder="Contraseña">
-        <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px" onclick="submit(); reload();">Ingresar</button>
+        <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px" onclick="submit();reload()">Ingresar</button>
         <a type="button" class="btn btn-outline-primary my-2 my-sm-0" href="registro.html">Registrarse</a>
     </form>
     <div id='miperfil' class="navbar-nav" hidden>

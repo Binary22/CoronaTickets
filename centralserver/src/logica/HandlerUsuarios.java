@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import datatypes.DtFuncion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -14,6 +15,14 @@ public class HandlerUsuarios {
 	
 	private HandlerUsuarios() {
 		usuarios = new HashMap<String, Usuario>();
+		Usuario u1 = new Usuario("carlos1", "Carlos", "Garcia", "carlosgarcia@gmail.com", LocalDate.now());
+		Usuario u2 = new Usuario("carlos2", "Carlos2", "Garcia2", "carlosgarcia@gmail.com", LocalDate.now());
+		Usuario u3 = new Usuario("carlos3", "Carlos3", "Garcia3", "carlosgarcia@gmail.com", LocalDate.now());
+		Usuario u4 = new Usuario("carlos4", "Carlos4", "Garcia4", "carlosgarcia@gmail.com", LocalDate.now());
+		usuarios.put(u1.getNickname(), u1);
+		usuarios.put(u2.getNickname(), u2);
+		usuarios.put(u3.getNickname(), u3);
+		usuarios.put(u4.getNickname(), u4);
 	}
 	
 	public Boolean existeUsuario(String nick) {
