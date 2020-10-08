@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,28 +9,46 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
     <title>CoronaTickets.uy</title>
   </head>
   <body>
-    <div class="centrar-login" style="min-height: 100%; min-height: 100vh; display:flex; align-items:center">
+
+    
+    <navbar-component active="home"></navbar-component>
+
     <div class="container">
-        <h3> CoronaTickets</h3>
-        <form id="loginForm">
-            <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="container mt-6">
+
+            <div class="d-flex justify-content-center">
+            <div class="card input-group mt-3" style="width:40rem;"">
+            <div class="card-body">
+    
+            <h4>Compra de paquete de espectáculos </h4>
+            <br>
+                    
+            <form>
+                <div class="form-group">
+                    <label>Paquete</label>
+                    <select class="form-control">
+                      <option>Paquete 1</option>
+                      <option>Paquete 2</option>
+                      <option>Paquete 3</option>
+                      <option selected="selected">Paquete 4</option>
+                      <option>Paquete 5</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Comprar</button>
+            </form>
             </div>
-            <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
             </div>
-            <div class="form-group form-check">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    
+        </div>
+        <br>
+
     </div>
 
     <!-- Optional JavaScript -->
@@ -37,6 +57,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="../js/login.js"></script>
+    <script src="../js/navbar.js"></script>
 
 </body>
 </html>
