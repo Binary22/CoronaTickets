@@ -1,6 +1,7 @@
 package controladores;
 
-import logica.*;
+import logica.HandlerUsuarios;
+import logica.Usuario;
 
 import java.io.IOException;
 
