@@ -23,7 +23,7 @@
     </ul>
     
     <% if (session.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {  %>
-    <div id='miperfil' class="navbar-nav" hidden>
+    <div id='miperfil' class="navbar-nav">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Rigo23

@@ -31,20 +31,20 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	HttpSession objSesion = request.getSession();
 	String nickname = request.getParameter("nickname");
 	String password = request.getParameter("password");
-	EstadoSesion nuevoEstado;
+	String nuevoEstado;
         
 	// chequea contraseña
 	try {
 		Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
 		if(u.getPassword().equals(password)) {
 			request.getSession().setAttribute("usuario_logueado", u.getNickname());
-			nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
+			nuevoEstado = "LOGIN_CORRECTO";
 		}
 		else {
-			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
+			nuevoEstado = "LOGIN_INCORRECTO";
 		}
 	} catch(Exception ex){
-		nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
+		nuevoEstado = "LOGIN_INCORRECTO";
 	}
 	
     objSesion.setAttribute("estado_sesion", nuevoEstado);
