@@ -54,9 +54,9 @@ function cargarDatos(espectaculos) {
     espectaculosLista.innerHTML = mytable;
 };
 
-var espectaculo3 = ["Cyndi Lauper","Twitter Live","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",110,5,1000,"https://twitter.com/cyndilauper",800,30/05/2020,"../media/espectaculos/3.jpeg"];
-var espectaculo5 = ["Pimpinela Pimpinela","Twitter Live","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",150,10,500,"https://twitter.com/PimpinelaNet",500,08/07/2020,"../media/espectaculos/5.jpeg"];
-var espectaculo6 = ["Violeta Alcides", "Twitter Live","30 años","Espectáculo conmemorandolos 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31/07/20,"../media/espectaculos/6.jpeg"]
+var espectaculo3 = ["Cyndi Lauper","Twitter Live","Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",110,5,1000,"https://twitter.com/cyndilauper",800,30/05/2020,"resources/media/espectaculos/3.jpeg"];
+var espectaculo5 = ["Pimpinela Pimpinela","Twitter Live","Bien de Familia","El dúo estará presentando sus más sonados éxitos y también nuevas canciones.",150,10,500,"https://twitter.com/PimpinelaNet",500,08/07/2020,"resources/media/espectaculos/5.jpeg"];
+var espectaculo6 = ["Violeta Alcides", "Twitter Live","30 años","Espectáculo conmemorandolos 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31/07/20,"resources/media/espectaculos/6.jpeg"]
 
 function plataformaSelected(value){
    (value == "Twitter Live") ? cargarDatos([espectaculo3,espectaculo5,espectaculo6]) : espectaculosLista.innerHTML = "";
