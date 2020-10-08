@@ -54,19 +54,7 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
     response.sendRedirect("home");
 }
     
-	/**
-	 * Devuelve el usuario logueado
-	 * @param request
-	 * @return
-	 * @throws UsuarioNoEncontrado 
-	 */
-	static public Usuario getUsuarioLogueado(HttpServletRequest request)
-			throws Exception
-	{
-		return HandlerUsuarios.getInstancia().getUsuario(
-				(String) request.getSession().getAttribute("usuario_logueado")
-			);
-	}
+	
     
     ////////////////////////////
 

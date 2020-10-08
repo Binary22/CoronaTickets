@@ -42,7 +42,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="detallesArtista.html"> Mi perfil </a>
                 <a class="dropdown-item" href="modificarusuario.html"> Modificar usuario</a>
-                <a class="dropdown-item" id="logout" href="#">Salir de mi perfil</a>
+                <a class="dropdown-item" id="logout" href="logout">Salir de mi perfil</a>
         	</div>
         </li>
     </div>
