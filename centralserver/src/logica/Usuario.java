@@ -19,9 +19,23 @@ public class Usuario {
 	private ArrayList<Compra> compraPaquete;
 	private ArrayList<Vale> vales;
 	private ArrayList<Registro> registros;
+	private String password;
+	private String imagen;
 	
 	
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	public ArrayList<Compra> getCompraPaquete() {
 		return compraPaquete;
 	}
@@ -144,7 +158,8 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.compraPaquete = new ArrayList<Compra>();
 		this.vales = new ArrayList<Vale>();
-		this.registros = new ArrayList<Registro>();		
+		this.registros = new ArrayList<Registro>();	
+		this.password = "1234";
 
 	}
 	public DtUsuario getDt() {
