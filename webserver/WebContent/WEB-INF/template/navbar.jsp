@@ -22,13 +22,16 @@
         </li>
     </ul>
     
-    <% if (session.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {  %>
+    <% if (session.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {  
+    	String nickname = (String)session.getAttribute("usuario_logueado"); %>
     <div id='miperfil' class="navbar-nav">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Rigo23
+                <%=nickname%>
             </a>
+            
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            	<%if((boolean)session.getAttribute("esArtista")){ %>
                 <h5 class="dropdown-header"> Menu de artista </h5>
                 <div class="dropdown-divider"></div>
 
@@ -36,7 +39,7 @@
                 <a class="dropdown-item" href="altafuncion.html">Alta de función de espectáculo</a>
                 <a class="dropdown-item" href="crearPaquete.html">Crear paquete de espectáculos</a>
                 <a class="dropdown-item" href="agregarEspectaculoaPaquete.html">Agregar espectáculo a paquete</a>
-                
+                <%} %>
                 <div class="dropdown-divider"></div>
                 <h5 class="dropdown-header"> Menu de usuario </h5>
                 <div class="dropdown-divider"></div>
