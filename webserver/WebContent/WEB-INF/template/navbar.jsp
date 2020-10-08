@@ -39,8 +39,8 @@
                 <a class="dropdown-item" href="altafuncion.html">Alta de función de espectáculo</a>
                 <a class="dropdown-item" href="crearPaquete.html">Crear paquete de espectáculos</a>
                 <a class="dropdown-item" href="agregarEspectaculoaPaquete.html">Agregar espectáculo a paquete</a>
-                <%} %>
                 <div class="dropdown-divider"></div>
+                <%} %>
                 <h5 class="dropdown-header"> Menu de usuario </h5>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="detallesArtista.html"> Mi perfil </a>
