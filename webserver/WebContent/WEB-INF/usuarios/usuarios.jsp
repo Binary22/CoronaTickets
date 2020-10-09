@@ -28,7 +28,7 @@
     <script src="resources/js/cartaUsuario.js"></script>
 
     <!-- style -->
-    <link rel="stylesheet" href="../css/main.css"></style>
+    <link rel="stylesheet" href="resources/css/main.css"></style>
 
     </body>
 </html>
