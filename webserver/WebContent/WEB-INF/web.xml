@@ -36,6 +36,10 @@
         <servlet-name>Registroafuncion</servlet-name>
         <servlet-class>controladores.Registroafuncion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Modificarusuario</servlet-name>
+        <servlet-class>controladores.Modificarusuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Paquetes</servlet-name>
         <url-pattern>/paquetes</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>Registroafuncion</servlet-name>
         <url-pattern>/registroafuncion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Modificarusuario</servlet-name>
+        <url-pattern>/modificarusuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
