@@ -65,6 +65,14 @@ public class Artista extends Usuario {
 		this.website = website;
 	}
 	
+	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
+			String descripcion, String biografia, String website, String password, String imagen) {
+		super(nickname, nombre, apellido, email, fechaNacimiento, password, imagen);
+		this.descripcion = descripcion;
+		this.biografia = biografia;
+		this.website = website;
+	}
+	
 	public boolean esArtista_() {
 		return true;
 	}

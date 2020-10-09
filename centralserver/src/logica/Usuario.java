@@ -159,7 +159,23 @@ public class Usuario {
 		this.compraPaquete = new ArrayList<Compra>();
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();	
-		this.password = "1234";
+		
+
+	}
+	
+	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String password, String imagen) {
+		super();
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.fechaNacimiento = fechaNacimiento;
+		this.compraPaquete = new ArrayList<Compra>();
+		this.vales = new ArrayList<Vale>();
+		this.registros = new ArrayList<Registro>();
+		this.password = password;
+		this.imagen = imagen;
+		
 
 	}
 	public DtUsuario getDt() {
