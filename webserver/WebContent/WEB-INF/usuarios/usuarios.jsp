@@ -13,7 +13,7 @@
       </head>
 
     <body>
-        <navbar-component active="usuarios"></navbar-component>
+        <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         
         <div id="usuarios-lista" class="container">
         </div>

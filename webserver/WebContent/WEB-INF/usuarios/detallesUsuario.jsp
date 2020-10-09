@@ -17,7 +17,7 @@
       </head>
 
     <body>
-        <navbar-component active="paquetes"></navbar-component>
+        <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         <br>
         <center>
         <h3>Datos del usuario</h3>
