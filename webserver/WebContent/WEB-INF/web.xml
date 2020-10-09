@@ -24,6 +24,14 @@
         <servlet-name>Registro</servlet-name>
         <servlet-class>controladores.Registro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Altafuncion</servlet-name>
+        <servlet-class>controladores.Altafuncion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Registroafuncion</servlet-name>
+        <servlet-class>controladores.Registroafuncion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -43,6 +51,14 @@
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Altafuncion</servlet-name>
+        <url-pattern>/altafuncion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registroafuncion</servlet-name>
+        <url-pattern>/registroafuncion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
