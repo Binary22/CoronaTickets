@@ -48,6 +48,14 @@
         <servlet-name>comprapaquete</servlet-name>
         <url-pattern>/comprapaquete</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CrearPaquete</servlet-name>
+        <servlet-class>controladores.CrearPaquete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CrearPaquete</servlet-name>
+        <url-pattern>/crearPaquete</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
