@@ -52,8 +52,8 @@
     
     <% } else { %>
     <form id="login-form" class="form-inline my-2 my-lg-0" action="login" method="POST">
-        <input class="form-control mr-sm-2 d-none d-md-block" type="text" name="nickname" placeholder="Nickname" aria-label="Usuario">
-        <input class="form-control mr-sm-2 d-none d-md-block" type="password" name="password" placeholder="Contraseña">
+        <input class="form-control mr-sm-2" type="text" name="nickname" placeholder="Nickname" aria-label="Usuario">
+        <input class="form-control mr-sm-2" type="password" name="password" placeholder="Contraseña">
         <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px">Ingresar</button>
         <a type="button" class="btn btn-outline-primary my-2 my-sm-0" href="registro">Registrarse</a>
     </form>
