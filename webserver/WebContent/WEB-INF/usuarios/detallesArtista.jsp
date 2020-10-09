@@ -10,14 +10,14 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../css/colorFlecha.css">
+        <link rel="stylesheet" href="resources/css/colorFlecha.css">
 
 
         <title>CoronaTickets.uy</title>
       </head>
 
     <body>
-        <navbar-component active="paquetes"></navbar-component>
+        <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         <br>
         <center>
         <h3>Datos del usuario</h3>
@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                       <img class="card-img-bottom" src="../media/usuarios/pimpinela.jpg" class="rounded" width="155"> 
+                       <img class="card-img-bottom" src="resources/media/usuarios/pimpinela.jpg" class="rounded" width="155"> 
                             
                         <h4 class="mb-0 mt-0">lospimpi</h4> 
                         <div class=" w-100">

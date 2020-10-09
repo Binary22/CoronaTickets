@@ -8,7 +8,7 @@ template.innerHTML = `
         <p id="desc" class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="../html/detallesEspectaculo.html" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
             <li id="precio" class="list-group-item">$</li>
         </ul>
     </div>

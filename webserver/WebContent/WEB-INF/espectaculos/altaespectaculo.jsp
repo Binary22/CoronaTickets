@@ -16,7 +16,7 @@
   <body>
 
     
-    <navbar-component active="home"></navbar-component>
+    <jsp:include page="/WEB-INF/template/navbar.jsp"/>
 
     <div class="container">
       <div class="d-flex justify-content-center">

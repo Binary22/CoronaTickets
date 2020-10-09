@@ -21,12 +21,40 @@
         <servlet-class>controladores.Logout</servlet-class>
     </servlet>
     <servlet>
+    	<servlet-name>Altaespectaculo</servlet-name>
+    	<servlet-class>controladores.Altaespectaculo</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>AgregarEspectaculoaPaquete</servlet-name>
+    	<servlet-class>controladores.AgregarEspectaculoaPaquete</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>DetallesEspectaculo</servlet-name>
+    	<servlet-class>controladores.DetallesEspectaculo</servlet-class>
+    </servlet>
+     <servlet>
+    	<servlet-name>DetallesArtista</servlet-name>
+    	<servlet-class>controladores.DetallesArtista</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Registro</servlet-name>
         <servlet-class>controladores.Registro</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Paquetes</servlet-name>
         <servlet-class>controladores.Paquetes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Altafuncion</servlet-name>
+        <servlet-class>controladores.Altafuncion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Registroafuncion</servlet-name>
+        <servlet-class>controladores.Registroafuncion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Modificarusuario</servlet-name>
+        <servlet-class>controladores.Modificarusuario</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Paquetes</servlet-name>
@@ -72,9 +100,38 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>Altaespectaculo</servlet-name>
+        <url-pattern>/altaespectaculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarEspectaculoaPaquete</servlet-name>
+        <url-pattern>/agregarEspectaculoaPaquete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetallesEspectaculo</servlet-name>
+        <url-pattern>/detallesEspectaculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetallesArtista</servlet-name>
+        <url-pattern>/detallesArtista</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Altafuncion</servlet-name>
+        <url-pattern>/altafuncion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registroafuncion</servlet-name>
+        <url-pattern>/registroafuncion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Modificarusuario</servlet-name>
+        <url-pattern>/modificarusuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

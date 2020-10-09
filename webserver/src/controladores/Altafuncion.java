@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Altafuncion
  */
-@WebServlet("/Altafuncion")
 public class Altafuncion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,12 +21,16 @@ public class Altafuncion extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
+	}
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -35,7 +38,7 @@ public class Altafuncion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		processRequest(request, response);
 	}
 
 }
