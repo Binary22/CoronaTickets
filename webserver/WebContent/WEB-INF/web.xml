@@ -70,6 +70,30 @@
         <servlet-name>Paquetes</servlet-name>
         <url-pattern>/paquetes</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>detallesPaquete</servlet-name>
+        <servlet-class>controladores.DetallesPaquete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>detallesPaquete</servlet-name>
+        <url-pattern>/detallesPaquete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>comprapaquete</servlet-name>
+        <servlet-class>controladores.Comprapaquete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>comprapaquete</servlet-name>
+        <url-pattern>/comprapaquete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CrearPaquete</servlet-name>
+        <servlet-class>controladores.CrearPaquete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CrearPaquete</servlet-name>
+        <url-pattern>/crearPaquete</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>

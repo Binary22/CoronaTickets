@@ -3,16 +3,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-    <title>CoronaTickets.uy</title>
-
+        <jsp:include page="/WEB-INF/template/head.jsp"/>
   </head>
   <style>
   button{
@@ -20,9 +11,7 @@
   }
   </style>
   <body onload="uncheckArtista()">
-
-    
-    <navbar-component active="home"></navbar-component>
+    <jsp:include page="/WEB-INF/template/navbar.jsp"/>
 
     <div class="container mt-6">
         <div class="d-flex justify-content-center">
