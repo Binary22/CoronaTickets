@@ -60,6 +60,10 @@
         <servlet-name>Usuarios</servlet-name>
         <servlet-class>controladores.Usuarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetallesUsuario</servlet-name>
+        <servlet-class>controladores.DetallesUsuario</servlet-class>
+    </servlet>
    
    
     <servlet-mapping>
@@ -117,6 +121,10 @@
     <servlet-mapping>
         <servlet-name>Usuarios</servlet-name>
         <url-pattern>/usuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetallesUsuario</servlet-name>
+        <url-pattern>/detallesUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
