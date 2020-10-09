@@ -11,7 +11,7 @@ templatefuncard.innerHTML = `
         <p id="desc" class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="registroafuncion.html" class="list-group-item card-link active flex-fill">Registrarse</a>
+            <a href="registroafuncion" class="list-group-item card-link active flex-fill">Registrarse</a>
         </ul>
     </div>
     `
