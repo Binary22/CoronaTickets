@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import excepciones.NombreCategoriaExistente;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.fechaPosterior;
@@ -42,4 +43,7 @@ public interface IEspectaculo {
 	
 	public DtUsuario[] listarUsuarios() throws usuarioNoExiste;
 	public DtFuncion mostarFuncion(String nomFuncion);
+	
+	public ArrayList<String> listarCategorias();
+	public void ConfirmarCategoria(String nombre)throws NombreCategoriaExistente;
 }

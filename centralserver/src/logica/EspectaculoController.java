@@ -9,6 +9,7 @@ import java.util.Iterator;
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import excepciones.NombreCategoriaExistente;
 //import jdk.nashorn.internal.objects.IteratorResult;
 //import sun.security.jca.GetInstance;
 import excepciones.NombreEspectaculoExisteException;
@@ -37,6 +38,7 @@ public class EspectaculoController implements IEspectaculo {
 	private Espectaculo espectaculo;
 	private Registro[] regsCanjeados;
 	private boolean registroFueCanjeado = false;
+	private String nomCategoria;
 	
 	public void setRegistroFueCanjeado(boolean canj) {
 		this.registroFueCanjeado = canj;
@@ -515,6 +517,25 @@ public class EspectaculoController implements IEspectaculo {
 		this.nomfuncion = selectedItem;
 		
 	}
+	
+	public ArrayList<String> listarCategorias(){
+		HandlerCategorias hc = HandlerCategorias.getInstance();
+		ArrayList<String> nomCategorias = new ArrayList<String>(hc.getCategorias().keySet());
+		return nomCategorias;
+	}
+	
+	public void ConfirmarCategoria(String nombre)throws NombreCategoriaExistente {
+		HandlerCategorias hc = HandlerCategorias.getInstance();
+		if(!hc.existeCategoria(nombre)) {
+			Categoria cat = new Categoria(nombre);
+			hc.getCategorias().put(nombre, cat);
+		}else {
+			throw new NombreCategoriaExistente("El nombre de la categoria " + nombre + " ya existe");
+		}
+		
+	}
+	
+	
 	
 
 }

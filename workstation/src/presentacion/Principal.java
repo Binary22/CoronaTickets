@@ -49,6 +49,7 @@ public class Principal extends JFrame {
 	private JInternalFrame ConsultaPaqueteInternalFrame;
 	private boolean datosyafueroncargados = false;
 	private JInternalFrame AgregarEspectaculoInternalFrame;
+	private JInternalFrame AltaCategoriaFrame;
 	
 
 	/**
@@ -163,10 +164,8 @@ public class Principal extends JFrame {
 			}
 		});
 		mnEspectaculos.add(mntmConsultaDeEspectaculo);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		
+		
 		
 		JMenu mnPaquetes = new JMenu("Paquetes");
 		menuBar.add(mnPaquetes);
@@ -204,6 +203,20 @@ public class Principal extends JFrame {
 				getContentPane().add(AgregarEspectaculoInternalFrame, BorderLayout.CENTER);
 			}
 		});
+		
+		JMenuItem mntmAltaDeCategoria = new JMenuItem("Alta de categoria");
+		mnEspectaculos.add(mntmAltaDeCategoria);
+		mntmAltaDeCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AltaCategoriaFrame = new AltaCategoria();
+				AltaCategoriaFrame.setClosable(true);
+				AltaCategoriaFrame.setVisible(true);
+				getContentPane().add(AltaCategoriaFrame, BorderLayout.CENTER);
+				
+			}
+		});
+		
+		
 
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
