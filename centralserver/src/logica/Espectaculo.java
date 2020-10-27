@@ -18,7 +18,21 @@ public class Espectaculo {
 	private Plataforma plataforma;
 	private Artista artista;
 	private HashMap<String,Funcion> setFunciones;
+	private boolean yaFueValuado;
+	private boolean aceptado;
+	private String imagen;
 	
+	public void setYaFueValuado(boolean yaFueValuado) {
+		this.yaFueValuado = yaFueValuado;
+	}
+
+	public void setAceptado(boolean aceptado) {
+		this.aceptado = aceptado;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
 			String url, LocalDate fechaReg, float costo) {
@@ -31,6 +45,8 @@ public class Espectaculo {
 		this.fechaReg = fechaReg;
 		this.costo = costo;
 		this.setFunciones = new HashMap<String,Funcion>();
+		this.yaFueValuado = false;
+		this.aceptado = false;
 	}
 	
 	public String getNombre() {
@@ -102,5 +118,13 @@ public class Espectaculo {
 	}
 	public int getMaxEspectadores() {
 		return this.maxEspectadores;
+	}
+
+	public boolean isYaFueValuado() {
+		return yaFueValuado;
+	}
+
+	public boolean isAceptado() {
+		return aceptado;
 	}
 }

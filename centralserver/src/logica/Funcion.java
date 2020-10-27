@@ -16,6 +16,7 @@ public class Funcion {
 	private ArrayList<Usuario> artistasInvitados;
 	private ArrayList<Registro> registros;
 	private Espectaculo espectaculo;
+	private String imagen;
 	
 	
 	

@@ -12,6 +12,7 @@ public class Paquete {
 	private int descuento;
 	private String descripcion;
 	private HashMap<String,Espectaculo> espectaculos;
+	private String imagen;
 	
 	public Paquete(String nombre, LocalDate fechaI, LocalDate fechaF, int descuento, String descripcion, LocalDate fechaalta) {
 		super();

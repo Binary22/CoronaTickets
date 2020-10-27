@@ -40,5 +40,9 @@ public class HandlerEspectaculos {
 		return false;
 		
 	}
+	
+	public HashMap<String, Espectaculo> getEspectaculos(){
+		return this.mapEspectaculos;
+	}
 }
 

@@ -535,6 +535,28 @@ public class EspectaculoController implements IEspectaculo {
 		
 	}
 	
+	public ArrayList<String> listarEspectaculosIngresados(){
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		ArrayList<String> ingresados = new ArrayList<String>();
+		for (String key : he.getEspectaculos().keySet()) {
+			if(!he.getEspectaculos().get(key).isYaFueValuado()) {
+				ingresados.add(key);
+			}
+		}
+		return ingresados;
+	}
+	
+	public void aceptarRechazar(String nombreEspect, boolean aceptado) {
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		Espectaculo e = he.getEspectaculo(nombreEspect);
+		e.setYaFueValuado(true);
+		if(aceptado)
+			e.setAceptado(aceptado);
+	
+	}
+	
+	
+	
 	
 	
 

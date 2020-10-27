@@ -50,6 +50,7 @@ public class Principal extends JFrame {
 	private boolean datosyafueroncargados = false;
 	private JInternalFrame AgregarEspectaculoInternalFrame;
 	private JInternalFrame AltaCategoriaFrame;
+	private JInternalFrame AceptarRechazarEspectFrame;
 	
 
 	/**
@@ -206,6 +207,8 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmAltaDeCategoria = new JMenuItem("Alta de categoria");
 		mnEspectaculos.add(mntmAltaDeCategoria);
+		
+		
 		mntmAltaDeCategoria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AltaCategoriaFrame = new AltaCategoria();
@@ -215,6 +218,18 @@ public class Principal extends JFrame {
 				
 			}
 		});
+		
+		JMenuItem mntmAcpetarrechazarEspectaculo = new JMenuItem("Acpetar/Rechazar espectaculo");
+		mntmAcpetarrechazarEspectaculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AceptarRechazarEspectFrame = new AceptarRechazarEspect();
+				AceptarRechazarEspectFrame.setClosable(true);
+				AceptarRechazarEspectFrame.setVisible(true);
+				getContentPane().add(AceptarRechazarEspectFrame,BorderLayout.CENTER);
+				
+			}
+		});
+		mnEspectaculos.add(mntmAcpetarrechazarEspectaculo);
 		
 		
 

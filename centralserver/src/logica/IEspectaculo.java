@@ -46,4 +46,7 @@ public interface IEspectaculo {
 	
 	public ArrayList<String> listarCategorias();
 	public void ConfirmarCategoria(String nombre)throws NombreCategoriaExistente;
+	
+	public ArrayList<String> listarEspectaculosIngresados();
+	public void aceptarRechazar(String nombreEspect, boolean aceptado);
 }
