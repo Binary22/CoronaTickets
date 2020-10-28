@@ -3,3 +3,7 @@
 /workstation/bin
 /.metadata
 /webserver/bin
+/.pmd
+/centralserver/.pmd
+/workstation/.pmd
+/webserver/.pmd
