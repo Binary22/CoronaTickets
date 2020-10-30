@@ -337,7 +337,7 @@ class EspectaculoControllerTest {
 		assertTrue(he.getEspectaculo("Los Village Volvieron").isAceptado());
 		assertTrue(he.getEspectaculo("Los Village Volvieron").isYaFueValuado());
 		ArrayList<String> ingresados = ie.listarEspectaculosIngresados();
-		assertTrue(ingresados.contains("Los Village Volvieron"));
+		assertFalse(ingresados.contains("Los Village Volvieron"));
 	}
 
 	/*
