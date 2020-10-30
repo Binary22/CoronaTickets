@@ -31,8 +31,8 @@
         <h4> Registro </h4>
         <br>
                 
-        <form>
-            <div class="form-group" action="registro" method="POST">
+        <form action="registro" method="POST">
+            <div class="form-group" >
               <label>Nickname</label>
               <input type="text" class="form-control" name = "nickname" placeholder="Ej. Rigo23">
             </div>
@@ -86,7 +86,7 @@
               </div>
             </div>
 
-            <a href="home" type="submit" class="btn btn-primary">Registrar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
         </div>
         </div>

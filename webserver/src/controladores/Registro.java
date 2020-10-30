@@ -46,10 +46,12 @@ public class Registro extends HttpServlet {
 		String imagen = req.getParameter("imagen");
 		String esArtista = req.getParameter("esArtista");
 		
+		System.out.print(nickname + nombre + apellido + mail + password + imagen);
+		
 		Fabrica fabrica = Fabrica.getInstance();
         IUsuario ctrlU = fabrica.getIUsuario();
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
 		//si es artista
 		if(esArtista != null) {
@@ -62,6 +64,7 @@ public class Registro extends HttpServlet {
 			ctrlU.altaUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
 		}
 			ctrlU.confirmarAltaUsuario();
+			System.out.print(nickname + nombre + apellido + mail + date + password + imagen);
 		
 			req.getSession().setAttribute("usuario_logueado", nickname);
 			
