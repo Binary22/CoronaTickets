@@ -16,8 +16,8 @@ public class HandlerUsuarios {
 	private HandlerUsuarios() {
 		usuarios = new HashMap<String, Usuario>();
 		Usuario u1 = new Usuario("carlos1", "Carlos", "Garcia", "carlosgarcia@gmail.com", LocalDate.now());
-		Usuario u2 = new Usuario("waston", "Carlos2", "Garcia2", "carlosgarcia@gmail.com", LocalDate.now(), "mkji648", "hola");
-		Usuario u3 = new Artista("lospimpi", "Carlos3", "Garcia3", "carlosgarcia@gmail.com", LocalDate.now(),"hola", "hola", "hola", "jhvf395", "hola");
+		Usuario u2 = new Usuario("waston", "Carlos2", "Garcia2", "carlosgarcia@gmail.com", LocalDate.now(), "1234", "hola");
+		Usuario u3 = new Artista("lospimpi", "Carlos3", "Garcia3", "carlosgarcia@gmail.com", LocalDate.now(),"hola", "hola", "hola", "1234", "hola");
 		Usuario u4 = new Usuario("carlos4", "Carlos4", "Garcia4", "carlosgarcia@gmail.com", LocalDate.now());
 		usuarios.put(u1.getNickname(), u1);
 		usuarios.put(u2.getNickname(), u2);

@@ -94,12 +94,42 @@ public class UsuarioController implements IUsuario{
 		else if(existemail)
 			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
 	}
+	
+	public void altaUsuarioWeb(String nickname, String nombre, String apellido, String mail, LocalDate fechanac, String password, String imagen) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
+		this.esArtista = false;
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		boolean existemail= huser.existeMail(mail);
+		if ((huser.getUsuario(nickname) == null) && (!existemail)) {
+			this.esArtista = false;
+			this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac, password, imagen);
+		}
+		else if(huser.getUsuario(nickname) != null)
+			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
+		else if(existemail)
+			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
+	}
+	
+	
+	public void altaArtistaWeb(String nickname, String nombre, String apellido, String mail, LocalDate fechanac, String desc, String bio, String web, String password, String imagen)throws UsuarioConMismoNickException, UsuarioConMismoMailException {
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		boolean existemail= huser.existeMail(mail);
+		if ((huser.getUsuario(nickname) == null) && (!existemail)) {
+			this.esArtista = true;
+			this.artista = new Artista(nickname,nombre, apellido, mail, fechanac, desc, bio, web, password, imagen);
+		}
+		else if(huser.getUsuario(nickname) != null)
+			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
+		else if(existemail)
+			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
+	}
+	
+	
 
 	
 
 	@Override
 	public void altaArtista(String desc, String bio, String web) {
-		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		
 		this.esArtista = true;
 		this.artista = new Artista(this.usuario, desc, bio, web);
 	}
