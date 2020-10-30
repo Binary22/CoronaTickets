@@ -7,7 +7,7 @@ templateUser.innerHTML = `
         <p class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="detallesUsuario" class="list-group-item card-link active flex-fill">Ver perfil</a>
+            <a class="list-group-item card-link active flex-fill">Ver perfil</a>
         </ul>
     </div>
     `
@@ -22,6 +22,7 @@ class userCard extends HTMLElement {
 
     connectedCallback() {
         this.querySelector('.card-title').innerHTML = this.getAttribute('titulo');
+		this.querySelector('a').href = 'detallesUsuario?' + this.getAttribute('titulo');
         this.querySelector('.card-text').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
     }

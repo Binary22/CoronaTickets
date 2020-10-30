@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Map, logica.Usuario" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -14,9 +15,39 @@
 
     <body>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
-        
-        <div id="usuarios-lista" class="container">
+        <div class="container">
+               
+        <% Map<String, Usuario> m = (Map<String, Usuario>) session.getAttribute("usuarios");
+        int i = 0;
+        for (Map.Entry<String, Usuario> entry : m.entrySet()) {      	
+	        	String key = entry.getKey();
+	        	Usuario value = entry.getValue();
+
+        		String descripcion = value.getNombre() + " " + value.getApellido();
+        	
+        		 if ((i % 3) == 0) { %>
+        		<div class="card-deck pt-3">
+        		<% } %>
+        		<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="<%=descripcion%>" titulo="<%=key%>" style="width:18rem;"></carta-usuario>
+        		<% if ((i % 3) == 2 || i == m.size()) { %>
+	        		<% if (i == m.size() && (i % 3 == 0)) { %>
+	        			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
+	        		<% } %>
+	        		<% if (i == m.size() && (i % 3 == 1)) { %>
+	        			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
+	        			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
+	        		<% } %>
+        		
+        		</div>
+        		<% }
+        		i++;
+        		%>
+        		
+        <% } %>
         </div>
+        <br>
+        <!-- <div id="usuarios-lista" class="container">
+        </div>-->
 		
         
 
