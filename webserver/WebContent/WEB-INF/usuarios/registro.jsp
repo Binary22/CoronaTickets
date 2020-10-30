@@ -32,57 +32,57 @@
         <br>
                 
         <form>
-            <div class="form-group">
+            <div class="form-group" action="registro" method="POST">
               <label>Nickname</label>
-              <input type="text" class="form-control"  placeholder="Ej. Rigo23">
+              <input type="text" class="form-control" name = "nickname" placeholder="Ej. Rigo23">
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control"  placeholder="Ej. Rigoberto">
+              <input type="text" class="form-control" name = "nombre" placeholder="Ej. Rigoberto">
             </div>
             <div class="form-group">
               <label>Apellido</label>
-              <input type="text" class="form-control"  placeholder="Ej. Ramirez">
+              <input type="text" class="form-control" name = "apellido"  placeholder="Ej. Ramirez">
             </div>
             <div class="form-group">
               <label>Mail</label>
-              <input type="email" class="form-control"  placeholder="Ej. rigo23@gmail.com">
+              <input type="email" class="form-control" name = "mail" placeholder="Ej. rigo23@gmail.com">
             </div>
             <div class="form-group">
               <label>Fecha de nacimiento</label>
-              <input type="date" class="form-control"  placeholder="Ej. rigo23@gmail.com">
+              <input type="date" class="form-control" name = "fechaNac"  placeholder="Ej. rigo23@gmail.com">
             </div>
             <!-- aca hay que agregar fecha de nacimiento -->
             <div class="form-group">
               <label>Contraseña</label>
-              <input type="password" class="form-control" placeholder="Ej. 123456">
+              <input type="password" class="form-control" name = "password" placeholder="Ej. 123456">
             </div>
             <div class="form-group">
               <label>Confirmar contraseña</label>
-              <input type="password" class="form-control" placeholder="Ej. 123456">
+              <input type="password" class="form-control" name = "confPassword" placeholder="Ej. 123456">
             </div>
             <div class="form-group">
               <label>Elegir imagen</label>
               <br>
-              <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+              <input type="file" id="avatar" name="imagen" accept="image/png, image/jpeg">
             </div>
             <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="artista" onclick="mostrarCamposArtista(this)"> 
+              <input type="checkbox" name = "esArtista" class="form-check-input" id="artista" onclick="mostrarCamposArtista(this)"> 
               <label class="form-check-label"> Artista </label>
             </div>
             <!-- Esto solo es visible si se desea agregar a un artista -->
             <div id="camposArtista" style="display: none;">
               <div class="form-group">
                 <label>Descripción</label>
-                <textarea class="form-control" placeholder="Ej. El proyecto solista de Rigoberto"></textarea>
+                <textarea class="form-control" name = "descripcion" placeholder="Ej. El proyecto solista de Rigoberto"></textarea>
               </div>
               <div class="form-group">
                 <label>Biografía</label>
-                <textarea class="form-control" placeholder="Ej. Rigoberto Rock empezo como proyecto personal en 1995."></textarea>
+                <textarea class="form-control" name = "biografia" placeholder="Ej. Rigoberto Rock empezo como proyecto personal en 1995."></textarea>
               </div>
               <div class="form-group">
                 <label>Website</label>
-                <input type="url" class="form-control" placeholder="Ej. rigobertorock.com">
+                <input type="url" class="form-control" name = "website" placeholder="Ej. rigobertorock.com">
               </div>
             </div>
 

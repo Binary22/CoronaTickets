@@ -24,6 +24,11 @@ public interface IUsuario {
 	public void updateArtista(String desc,String bio,String web);
 
 	public void confirmarUpdateUsuario();
+	
+	public void altaUsuarioWeb(String nickname, String nombre, String apellido, String mail, LocalDate fechanac, String password, String imagen) throws UsuarioConMismoNickException, UsuarioConMismoMailException;
+	
+	public void altaArtistaWeb(String nickname, String nombre, String apellido, String mail, LocalDate fechanac, String desc, String bio, String web, String password, String imagen)throws UsuarioConMismoNickException, UsuarioConMismoMailException;
+	
 
 }
 
