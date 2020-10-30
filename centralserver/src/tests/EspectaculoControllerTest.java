@@ -17,6 +17,7 @@ import datatypes.DtUsuario;
 import logica.Espectaculo;
 import logica.EspectaculoController;
 import logica.Funcion;
+import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
@@ -308,6 +309,36 @@ class EspectaculoControllerTest {
 		
 	}
 	
+	
+	@Test
+	void testConfirmarCategoria() {
+		try {
+			ie.ConfirmarCategoria("Electronica");
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		HandlerCategorias hc = HandlerCategorias.getInstance();
+		assertTrue(hc.existeCategoria("Electronica"));
+	}
+	
+	@Test
+	void testConfirmarCategoriaExcept() {
+		try {
+			ie.ConfirmarCategoria("Electronica");
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		assertThrows(NombreCategoriaExistente.class, () -> ie.ConfirmarCategoria("Electronica"));
+	}
+	
+	@Test
+	void testListarEspectaculosIngresados() {
+		ie.aceptarRechazar("Los Village Volvieron",true);
+		assertTrue(he.getEspectaculo("Los Village Volvieron").isAceptado());
+		assertTrue(he.getEspectaculo("Los Village Volvieron").isYaFueValuado());
+		ArrayList<String> ingresados = ie.listarEspectaculosIngresados();
+		assertTrue(ingresados.contains("Los Village Volvieron"));
+	}
 
 	/*
 	

@@ -166,6 +166,7 @@ public class UsuarioController implements IUsuario{
 		this.apellido = apellido;
 		this.email = mail;
 		this.fechaNacimiento = fechaNac;
+		this.esArtista = false;
 		
 	}
 

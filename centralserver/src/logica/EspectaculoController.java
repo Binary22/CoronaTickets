@@ -437,8 +437,6 @@ public class EspectaculoController implements IEspectaculo {
 		if((fecha.equals(fun.getFecha()) && !hora.isBefore(fun.getHoraInicio())) || fecha.isAfter(fun.getFecha()) || fecha.isBefore(fechaHoy)) {
 				throw new fechaPosterior("Lo sentimos, la fecha introducida es invalida");
 		}
-		
-		
 	}
 	
 	@Override
@@ -552,7 +550,6 @@ public class EspectaculoController implements IEspectaculo {
 		e.setYaFueValuado(true);
 		if(aceptado)
 			e.setAceptado(aceptado);
-	
 	}
 	
 	
