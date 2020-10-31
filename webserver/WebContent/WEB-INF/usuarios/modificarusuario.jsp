@@ -32,7 +32,7 @@
             <form action="modificarusuario" method="POST">
                 <div class="form-group">
                   <label>Nickname</label>
-                  <input type="text" class="form-control" name = "nickname" value="<%=usuariolog.getNickname()%>" readonly>
+                  <input type="text" class="form-control disabled" name = "nickname" value="<%=usuariolog.getNickname()%>" readonly>
                 </div>
                 <div class="form-group">
                   <label>Nombre</label>
