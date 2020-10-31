@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="logica.Usuario" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -27,20 +28,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                       <img class="card-img-bottom" src="resources/media/usuarios/Emma-Watson-1.jpg" class="rounded" width="155"> 
-                            
-                        <h4 class="mb-0 mt-0">Waston</h4> 
-                        <div class=" w-100">
-                            <div class="button mt-2 d-flex flex-row align-items-center"> 
-                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
-                                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">56,4mill</span> </div>
-                                </button> 
-                                <button class="btn btn-sm btn-primary w-100 ml-2">                                    
-                                    <div class="d-flex flex-column"> <span class="followers">Following</span> <span class="number2">2546</span> </div>
-                                </button> 
-                            </div>
-                        </div>
-                            
+	                	<div class="card">
+	                       <img class="card-img-top" src="resources/media/usuarios/Emma-Watson-1.jpg" class="rounded" width="155"> 
+	                        
+	                        <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
+	                        <div class="card-body">
+		                        <h4 class="mb-0 mt-0 card-title" style="text-align:center"><%=u.getNickname()%></h4> 
+		                        <div class=" w-100">
+		                            <div class="button mt-2 d-flex flex-row align-items-center"> 
+		                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
+		                                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">56,4mill</span> </div>
+		                                </button> 
+		                                <button class="btn btn-sm btn-primary w-100 ml-2">                                    
+		                                    <div class="d-flex flex-column"> <span class="followers">Following</span> <span class="number2">2546</span> </div>
+		                                </button> 
+		                            </div>
+		                        </div>
+	                        </div>
+                          </div>
                        
                     </div>
                 
@@ -48,15 +53,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></slot>Nickname:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Waston</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getNickname()%></h6>
                                 <h5 class="card-title"></slot>Nombre:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Emma</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getNombre()%></h6>
                                 <h5 class="card-title">Apellido:</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">Watson</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getApellido()%></h6>
                                 <h5 class="card-title">e-mail:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">e.watson@gmail.com</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getEmail()%></h6>
                                 <h5 class="card-title"></slot>Fecha de Nacimiento:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">15/4/1990</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getFechaNacimiento().toString()%></h6>
                                 
                             </div>
                         </div>
