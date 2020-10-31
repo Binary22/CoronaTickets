@@ -64,6 +64,9 @@
                 <a class="dropdown-item" href="<%=url%>"> Mi perfil </a>
                 <a class="dropdown-item" href="modificarusuario"> Modificar usuario</a>
                 <a class="dropdown-item" id="logout" href="logout">Salir de mi perfil</a>
+                
+                <div class="dropdown-divider"></div>
+        		<a class="dropdown-item" href="cargardatos">Cargar Datos</a>
         	</div>
         </li>
     </div>
