@@ -15,7 +15,7 @@
 
     <title>CoronaTickets.uy</title>
   </head>
-  <body onload="uncheckArtista()">
+  <body>
 
     
     <jsp:include page="/WEB-INF/template/navbar.jsp"/>
