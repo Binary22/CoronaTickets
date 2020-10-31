@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +35,6 @@ public class Modificarusuario extends HttpServlet {
 		HttpSession objSesion = req.getSession();
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-		System.out.print(nickname);
         Usuario userlog = husers.getUsuario(nickname);
         
         objSesion.setAttribute("usuariolog", userlog);
@@ -40,7 +42,34 @@ public class Modificarusuario extends HttpServlet {
 	}
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		
+		String nombre = req.getParameter("nombre");
+		String apellido = req.getParameter("apellido");
+		String mail = req.getParameter("mail");
+		String fechanac = req.getParameter("fechaNac");
+		String password = req.getParameter("password");
+		String confipassword = req.getParameter("confirmpassword");
+		String imagen = req.getParameter("avatar");
+		
+		Fabrica fabrica = Fabrica.getInstance();
+        IUsuario ctrlU = fabrica.getIUsuario();
+		
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+        Usuario userlog = husers.getUsuario(nickname);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fechanac, formatter);
+        
+        ctrlU.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+        if(userlog.esArtista()) {
+        	String descripcion = req.getParameter("descripcion");
+        	String biografia = req.getParameter("biografia");
+        	String website = req.getParameter("website");    
+        	ctrlU.updateArtista(descripcion, biografia, website);
+        }
+        resp.sendRedirect("home");
 	}
     
 	/**

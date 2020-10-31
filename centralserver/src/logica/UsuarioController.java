@@ -17,6 +17,8 @@ public class UsuarioController implements IUsuario{
 	private String descrip;
 	private String biografia;
 	private String web;
+	private String password;
+	private String imagen;
 	
 	private Usuario usuario;
 	private Artista artista;
@@ -168,6 +170,18 @@ public class UsuarioController implements IUsuario{
 		this.fechaNacimiento = fechaNac;
 		
 	}
+	
+	public void updateUsuarioWeb(String nickviejo, String nombre, String apellido, String mail, LocalDate fechaNac, String password, String imagen) {
+		// TODO Auto-generated method stub
+		this.nickname = nickviejo;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = mail;
+		this.fechaNacimiento = fechaNac;
+		this.password = password;
+		this.imagen = imagen;
+		
+	}
 
 	@Override
 	public void updateArtista(String desc, String bio, String web) {
@@ -182,6 +196,17 @@ public class UsuarioController implements IUsuario{
 	public void confirmarUpdateUsuario() {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento);
+		if (esArtista) {
+			artista = new Artista(usuario, descrip, biografia, web);
+			hu.rempazar(nickname, artista);
+		} else {
+		hu.rempazar(nickname,usuario);
+		};
+	}
+	
+	public void confirmarUpdateUsuarioWeb() {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento, password, imagen);
 		if (esArtista) {
 			artista = new Artista(usuario, descrip, biografia, web);
 			hu.rempazar(nickname, artista);
