@@ -32,7 +32,7 @@
             <form action="modificarusuario" method="POST">
                 <div class="form-group">
                   <label>Nickname</label>
-                  <input type="text" class="form-control" name = "nickname" value="<%=usuariolog.getNickname()%>">
+                  <input type="text" class="form-control" name = "nickname" value="<%=usuariolog.getNickname()%>" readonly>
                 </div>
                 <div class="form-group">
                   <label>Nombre</label>
@@ -53,11 +53,11 @@
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
                   <label>Contraseña</label>
-                  <input type="password" class="form-control" name = "<%=usuariolog.getPassword()%>" value="123456">
+                  <input type="password" class="form-control" name = "password"  value="<%=usuariolog.getPassword()%>">
                 </div>
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
-                  <input type="password" class="form-control" name = "<%=usuariolog.getPassword()%>" value="123456">
+                  <input type="password" class="form-control" name = "confirmpassword"  value="<%=usuariolog.getPassword()%>">
                 </div>
                 <div class="form-group">
                   <label>Elegir imagen</label>
