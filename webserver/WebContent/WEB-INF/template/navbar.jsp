@@ -24,7 +24,7 @@
     </ul>
     
     <div class="navbar-collapse">
-	    <form id="busqueda-form" class="form-inline" action="login" method="POST">
+	    <form id="busqueda-form" class="form-inline my-2 my-lg-0" action="" method="POST">
     		<div class="input-group">
 		        <input class="form-control" type="text" name="busqueda" placeholder="Buscar..." aria-label="Usuario" aria-describedby="button-addon2">
 		        <div class="input-group-append">
