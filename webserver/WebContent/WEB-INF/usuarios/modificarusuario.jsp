@@ -67,7 +67,7 @@
                 <% if(usuariolog.esArtista()){%>
                 <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
-                <div id="camposArtista" name = "camposArtista" style="display: none;">
+                <div id="camposArtista" name = "camposArtista">
                   <div class="form-group">
                     <label>Descripción</label>
                     <!-- quizas haya que usar javascript para actualizar estos textarea
