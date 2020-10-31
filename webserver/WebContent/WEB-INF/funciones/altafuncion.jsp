@@ -23,38 +23,43 @@
         <h4> Alta de funcion de espectaculo </h4>
         <br>
                 
-        <form>
+        <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>
-              <select class="form-control">
-                <option>Village People World Tour</option>
-                <option>20 Años de los Village People</option>
-                <option>Concierto de caridad VP</option>
-                <option>Village People presentan nuevo disco</option>
+              <% 
+				List<String> espectaculos = request.getAttribute("espectaculos");
+
+				for(String esp: espectaculos){
+			  %>
+              <select class="form-control" name="espectaculo">
+                <option><%=esp%></option>
               </select>
+              <%}%>
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control"  placeholder="Ej. Los Rolling 50 años">
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Los Rolling 50 años">
             </div>
             <label>Fecha y hora</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input type="date" class="form-control">
+                <input type="date" name="fecha" class="form-control">
               </div>
               <div class="form-group col-md-6">
-                <input type="time" class="form-control">
+                <input type="time" name="hora" class="form-control">
               </div>
             </div>
             <div class="form-group">
                 <label>Artistas invitados</label>
-                <select class="form-control" multiple>
-                  <option>Jaime Roos</option>
-                  <option>Mick Jagger</option>
-                  <option>El enano de la vela</option>
-                  <option>Charly Garcia</option>
-                  <option>Lucas Sugo</option>
+                <% 
+				List<String> artistas = request.getAttribute("artistas");
+
+				for(String art: artistas){
+			  	%>
+                <select class="form-control" name="artistasinv" multiple>
+                  <option><%=art%></option>
                 </select>
+                <%}%>
             </div>
             <div class="form-group">
               <label>Elegir imagen</label>
@@ -62,7 +67,7 @@
               <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
             </div>
 
-            <button type="submit" class="btn btn-primary"> Dar de alta la función</button>
+            <button type="button" class="btn btn-primary"> Dar de alta la función</button>
         </form>
         </div>
         </div>
