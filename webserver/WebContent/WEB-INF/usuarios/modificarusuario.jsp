@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                   <label>Mail</label>
-                  <input type="email" class="form-control" name = "mail" value="<%=usuariolog.getEmail()%>" disabled>
+                  <input type="email" class="form-control" name="mail" value="<%=usuariolog.getEmail()%>" disabled>
                 </div>
                 <div class="form-group">
                   <label>Fecha de nacimiento</label>

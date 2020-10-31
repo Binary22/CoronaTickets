@@ -49,10 +49,13 @@ public class Modificarusuario extends HttpServlet {
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+        Usuario userlog = husers.getUsuario(nickname);
+		
 		
 		String nombre = req.getParameter("nombre");
 		String apellido = req.getParameter("apellido");
-		String mail = req.getParameter("mail");
+		String mail = userlog.getEmail();
 		String fechanac = req.getParameter("fechanac");
 		String password = req.getParameter("password");
 		String confipassword = req.getParameter("confirmpassword");
@@ -60,21 +63,18 @@ public class Modificarusuario extends HttpServlet {
 		
 		Fabrica fabrica = Fabrica.getInstance();
         IUsuario ctrlU = fabrica.getIUsuario();
-		
-		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-        Usuario userlog = husers.getUsuario(nickname);
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
         
-        ctrlU.updateUsuario(nickname, nombre, apellido, mail, date);
+        ctrlU.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
         if(userlog.esArtista()) {
         	String descripcion = req.getParameter("descripcion");
         	String biografia = req.getParameter("biografia");
         	String website = req.getParameter("website");    
         	ctrlU.updateArtista(descripcion, biografia, website);
         }
-    	ctrlU.confirmarUpdateUsuario();
+        ctrlU.confirmarUpdateUsuarioWeb();
         resp.sendRedirect("home");
 	}
     
