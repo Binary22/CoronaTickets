@@ -11,4 +11,7 @@ public class Compra {
 		this.fecha = fecha;
 	}
 	
+	public Paquete getPaquete() {
+		return paquete;
+	}
 }
