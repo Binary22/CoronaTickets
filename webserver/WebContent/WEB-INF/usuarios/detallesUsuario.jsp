@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="logica.Usuario" %>
+<%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -33,7 +33,7 @@
 	                        
 	                        <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
 	                        <div class="card-body">
-		                        <h4 class="mb-0 mt-0 card-title" style="text-align:center"><%=u.getNickname()%></h4> 
+		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
 		                            <div class="button mt-2 d-flex flex-row align-items-center"> 
 		                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
@@ -66,123 +66,59 @@
                             </div>
                         </div>
                         <br>
-                        <h3>Funciones a las que se registró</h3>
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 250px;">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                    <a href="#" class="btn btn-primary">Ver función</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 250px;">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                    <a href="#" class="btn btn-primary">Ver función</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 250px;">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                    <a href="#" class="btn btn-primary">Ver función</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 250px;">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                    <a href="#" class="btn btn-primary">Ver función</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 250px;">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                    <a href="#" class="btn btn-primary">Ver función</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 250px;">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                    <a href="#" class="btn btn-primary">Ver función</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <br>
+                        	<% if (!u.getRegistros().isEmpty()) { %>
+	                        
+		                        <h4>Funciones a las que se registro: </h4>
+		                        <% List<Registro> l = u.getRegistros();
+		                        for (Registro r : l) {  %>
+		                       
+			                        <div class="card mb-3" style="max-width: 540px;">
+									  <div class="row no-gutters">
+									    <div class="col-md-5">
+									      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+									    </div>
+									    <div class="col-md-7">
+									      <div class="card-body">
+									        <h5 class="card-title"><%=r.getFuncion().getNombre()%></h5>
+									        <p><%=r.getFuncion().getEspectaculo().getNombre()%></p>
+									        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-primary card-text">Ver espectaculo</a>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+								<% } %>
+							<% } %>
+						
+						<% if (!u.getCompraPaquete().isEmpty()) { %>
+                        
                         <h4>Paquetes comprados</h4>
-                        <div class="list-group">
-                            <div class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small>3 days ago</small>
-                              </div>
-                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                              <small><a href="#" class="btn btn-primary">Ver paquete</a></small>
-                            </div>
-                            <div class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">List group item heading</h5>
-                                  <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                <small><a href="#" class="btn btn-primary">Ver paquete</a></small>
-                              </div>
-                              
-                        </div>
                         
-                        
-                        
+	                        <% List<Compra> l = u.getCompraPaquete();
+			                        for (Compra c : l) {  %>
+	                        
+	                        <div class="card mb-3" style="max-width: 540px;">
+							  <div class="row no-gutters">
+							    <div class="col-md-5">
+							      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+							    </div>
+							    <div class="col-md-7">
+							      <div class="card-body">
+							        <h5 class="card-title"><%=c.getPaquete().getNombre()%></h5>
+							        <p><%=c.getPaquete().getDescripcion()%></p>
+							        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<% } %>
+						
+						<% } %>
+						
+						                     
                     </div>
                 </div>
             </div>
+            <br>
         </section>
          
         
