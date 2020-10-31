@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,7 +29,7 @@
             <div class="form-group">
               <label>Espectaculo</label>
               <% 
-				List<String> espectaculos = request.getAttribute("espectaculos");
+				List<String> espectaculos = (ArrayList) request.getAttribute("espectaculos");
 
 				for(String esp: espectaculos){
 			  %>
@@ -52,7 +54,7 @@
             <div class="form-group">
                 <label>Artistas invitados</label>
                 <% 
-				List<String> artistas = request.getAttribute("artistas");
+				List<String> artistas = (ArrayList) request.getAttribute("artistas");
 
 				for(String art: artistas){
 			  	%>

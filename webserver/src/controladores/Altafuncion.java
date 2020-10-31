@@ -58,8 +58,9 @@ public class Altafuncion extends HttpServlet {
 		String[] invitados = req.getParameterValues("artistas");
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
         LocalDate date = LocalDate.parse(fecha, formatter);
-        LocalTime duracion = LocalTime.parse(horaInicio);
+        LocalTime duracion = LocalTime.parse(horaInicio,dateTimeFormatter);
         
         Fabrica fabrica = Fabrica.getInstance();
         IEspectaculo ctrlesp = fabrica.getIEspectaculo();
