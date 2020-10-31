@@ -36,8 +36,13 @@ public class Modificarusuario extends HttpServlet {
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
         Usuario userlog = husers.getUsuario(nickname);
-        
-        objSesion.setAttribute("usuariolog", userlog);
+        if(userlog.esArtista())
+        	objSesion.setAttribute("usuariolog", userlog);
+        else {
+        	Artista userArtlog = (Artista) husers.getUsuario(nickname);
+        	objSesion.setAttribute("usuariolog", userArtlog);
+        }
+        	
 		req.getRequestDispatcher("/WEB-INF/usuarios/modificarusuario.jsp").forward(req, resp);
 	}
 	

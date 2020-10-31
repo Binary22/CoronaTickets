@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="logica.Usuario"%>
+<%@page import="logica.Artista"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -64,22 +65,22 @@
                   <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
                 <% if(usuariolog.esArtista()){%>
-                <%Artista usuariolog = (Artista)session.getAttribute("usuariolog");%>
+                <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
                 <div id="camposArtista" name = "camposArtista" style="display: none;">
                   <div class="form-group">
                     <label>Descripción</label>
                     <!-- quizas haya que usar javascript para actualizar estos textarea
                     parece que tienden a recordar los cambios que se les hizo antes-->
-                    <textarea class="form-control" name = "descripcion" ><%=usuariolog.getDescripcion()%></textarea>
+                    <textarea class="form-control" name = "descripcion" ><%=usuarioArtlog.getDescripcion()%></textarea>
                   </div>
                   <div class="form-group">
                     <label>Biografía</label>
-                    <textarea class="form-control" name = "biografia"><%=usuariolog.getBiografia()%></textarea>
+                    <textarea class="form-control" name = "biografia"><%=usuarioArtlog.getBiografia()%></textarea>
                   </div>
                   <div class="form-group">
                     <label>Website</label>
-                    <input type="url" class="form-control" name = "website" value="<%=usuariolog.getWebsite()%>">
+                    <input type="url" class="form-control" name = "website" value="<%=usuarioArtlog.getWebsite()%>">
                   </div>
                 </div>
                 <%}%>
