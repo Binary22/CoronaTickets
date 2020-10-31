@@ -53,7 +53,7 @@ public class Modificarusuario extends HttpServlet {
 		String nombre = req.getParameter("nombre");
 		String apellido = req.getParameter("apellido");
 		String mail = req.getParameter("mail");
-		String fechanac = req.getParameter("fechaNac");
+		String fechanac = req.getParameter("fechanac");
 		String password = req.getParameter("password");
 		String confipassword = req.getParameter("confirmpassword");
 		String imagen = req.getParameter("avatar");
@@ -67,13 +67,14 @@ public class Modificarusuario extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
         
-        ctrlU.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+        ctrlU.updateUsuario(nickname, nombre, apellido, mail, date);
         if(userlog.esArtista()) {
         	String descripcion = req.getParameter("descripcion");
         	String biografia = req.getParameter("biografia");
         	String website = req.getParameter("website");    
         	ctrlU.updateArtista(descripcion, biografia, website);
         }
+    	ctrlU.confirmarUpdateUsuario();
         resp.sendRedirect("home");
 	}
     

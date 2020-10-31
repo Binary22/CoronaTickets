@@ -32,7 +32,7 @@
             <form action="modificarusuario" method="POST">
                 <div class="form-group">
                   <label>Nickname</label>
-                  <input type="text" class="form-control disabled" name = "nickname" value="<%=usuariolog.getNickname()%>" readonly>
+                  <input type="text" class="form-control disabled" name = "nickname" value="<%=usuariolog.getNickname()%>" disabled>
                 </div>
                 <div class="form-group">
                   <label>Nombre</label>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                   <label>Mail</label>
-                  <input type="email" class="form-control" name = "mail" value="<%=usuariolog.getEmail()%>">
+                  <input type="email" class="form-control" name = "mail" value="<%=usuariolog.getEmail()%>" disabled>
                 </div>
                 <div class="form-group">
                   <label>Fecha de nacimiento</label>
@@ -84,7 +84,7 @@
                   </div>
                 </div>
                 <%}%>
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn btn-primary">Modificar Perfil</button>
             </form>
             </div>
             </div>
