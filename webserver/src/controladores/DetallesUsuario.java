@@ -27,11 +27,15 @@ public class DetallesUsuario extends HttpServlet {
     }
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
-		String nomu = (String) objSesion.getAttribute("usuario_logueado");
+		String nomu = req.getParameter("name");
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario u = hu.getUsuario(nomu);
 		objSesion.setAttribute("usuario", u);
-		req.getRequestDispatcher("/WEB-INF/usuarios/detallesUsuario.jsp").forward(req, resp);
+		if (u.esArtista()) {
+			req.getRequestDispatcher("/WEB-INF/usuarios/detallesArtista.jsp").forward(req, resp);
+		} else {
+			req.getRequestDispatcher("/WEB-INF/usuarios/detallesUsuario.jsp").forward(req, resp);
+		}
 	}
 
 	/**

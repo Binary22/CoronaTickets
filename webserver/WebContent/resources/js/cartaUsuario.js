@@ -1,7 +1,7 @@
 const templateUser = document.createElement('template');
 
 templateUser.innerHTML = `
-    <img class="card-img-top" style="object-fit: cover; height:18rem" alt="...">
+    <img class="card-img-top" style="object-fit: cover; height:18rem; height:18rem" alt="...">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"></h5>
         <p class="card-text">
@@ -17,12 +17,12 @@ class userCard extends HTMLElement {
         super();
         this.appendChild(templateUser.content.cloneNode(true));
         this.setAttribute('class',"card carta");
-        this.setAttribute('style',"width:18rem;");
+        this.setAttribute('style',"flex: 0 0 30%;");
     }
 
     connectedCallback() {
         this.querySelector('.card-title').innerHTML = this.getAttribute('titulo');
-		this.querySelector('a').href = 'detallesUsuario?' + this.getAttribute('titulo');
+		this.querySelector('a').href = 'detallesUsuario?name=' + this.getAttribute('titulo');
         this.querySelector('.card-text').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
     }
