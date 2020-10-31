@@ -6,6 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import logica.Artista;
+import logica.Fabrica;
+import logica.HandlerUsuarios;
+import logica.IUsuario;
+import logica.Usuario;
 
 /**
  * Servlet implementation class Modificarusuario
@@ -22,7 +29,18 @@ public class Modificarusuario extends HttpServlet {
     }
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		String nickname = (String)objSesion.getAttribute("usuario_logueado");
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		System.out.print(nickname);
+        Usuario userlog = husers.getUsuario(nickname);
+        
+        objSesion.setAttribute("usuariolog", userlog);
 		req.getRequestDispatcher("/WEB-INF/usuarios/modificarusuario.jsp").forward(req, resp);
+	}
+	
+	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 	}
     
 	/**
@@ -38,7 +56,7 @@ public class Modificarusuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		processResponse(request, response);
 	}
 
 }

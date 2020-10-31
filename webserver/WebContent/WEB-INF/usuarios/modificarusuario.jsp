@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="logica.Usuario"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,39 +25,38 @@
             <div class="d-flex justify-content-center">
             <div class="card input-group mt-3" style="width:40rem;"">
             <div class="card-body">
-    
+    		<%Usuario usuariolog = (Usuario)session.getAttribute("usuariolog");%>
             <h4> Modificar usuario </h4>
             <br>
-                    
-            <form>
+            <form action="modificarusuario" method="POST">
                 <div class="form-group">
                   <label>Nickname</label>
-                  <input type="text" class="form-control"  value="Rigo23" readonly>
+                  <input type="text" class="form-control" name = "nickname" value="<%=usuariolog.getNickname()%>">
                 </div>
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input type="text" class="form-control"  value="Rigoberto">
+                  <input type="text" class="form-control" name = "nombre" value="<%=usuariolog.getNombre()%>">
                 </div>
                 <div class="form-group">
                   <label>Apellido</label>
-                  <input type="text" class="form-control"  value="Ramirez">
+                  <input type="text" class="form-control" name = "apellido" value="<%=usuariolog.getApellido()%>">
                 </div>
                 <div class="form-group">
                   <label>Mail</label>
-                  <input type="email" class="form-control"  value="rigo23@gmail.com">
+                  <input type="email" class="form-control" name = "mail" value="<%=usuariolog.getEmail()%>">
                 </div>
                 <div class="form-group">
                   <label>Fecha de nacimiento</label>
-                  <input type="date" class="form-control"  value="2000-03-22">
+                  <input type="date" class="form-control" name = "fechanac" value="<%=usuariolog.getFechaNacimiento().toString()%>">
                 </div>
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
                   <label>Contraseña</label>
-                  <input type="password" class="form-control" value="123456">
+                  <input type="password" class="form-control" name = "password" value="123456">
                 </div>
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
-                  <input type="password" class="form-control" value="123456">
+                  <input type="password" class="form-control" name = "confirmpassword" value="123456">
                 </div>
                 <div class="form-group">
                   <label>Elegir imagen</label>
@@ -68,20 +68,20 @@
                   <label class="form-check-label"> Artista </label>
                 </div>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
-                <div id="camposArtista" style="display: none;">
+                <div id="camposArtista" name = "camposArtista" style="display: none;">
                   <div class="form-group">
                     <label>Descripción</label>
                     <!-- quizas haya que usar javascript para actualizar estos textarea
                     parece que tienden a recordar los cambios que se les hizo antes-->
-                    <textarea class="form-control">El proyecto solista de Rigoberto.</textarea>
+                    <textarea class="form-control" name = "descripcion" >El proyecto solista de Rigoberto.</textarea>
                   </div>
                   <div class="form-group">
                     <label>Biografía</label>
-                    <textarea class="form-control">Rigoberto Rock empezo como proyecto personal en 1995.</textarea>
+                    <textarea class="form-control" name = "biografia">Rigoberto Rock empezo como proyecto personal en 1995.</textarea>
                   </div>
                   <div class="form-group">
                     <label>Website</label>
-                    <input type="url" class="form-control" value="rigobertorock.com">
+                    <input type="url" class="form-control" name = "website" value="rigobertorock.com">
                   </div>
                 </div>
     
