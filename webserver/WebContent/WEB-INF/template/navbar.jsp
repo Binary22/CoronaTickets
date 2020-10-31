@@ -6,7 +6,7 @@
     <span class="navbar-toggler-icon"></span>
 </button>
 
-	<div class="navbar-collapse">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li id="home" class="nav-item">
             <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
@@ -21,7 +21,7 @@
             <a class="nav-link" href="usuarios">Usuarios</a>
         </li>
     </ul>
-    </div>
+    
     <div class="navbar-collapse">
 	    <form id="busqueda-form" class="form-inline my-2 my-lg-0" action="login" method="POST">
 	        <input class="form-control mr-sm-2" type="text" name="busqueda" placeholder="Buscar..." aria-label="Usuario">
@@ -72,4 +72,5 @@
     <% } %>
 
 
+</div>
 </nav>
