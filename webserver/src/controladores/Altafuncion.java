@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import excepciones.NombreFuncionexisteException;
 import logica.Espectaculo;
@@ -38,8 +39,15 @@ public class Altafuncion extends HttpServlet {
     }
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
 		List<String> artistas = husers.getNombresArtistas();
+		String art = nickname;
+		for(int i=0; i<= artistas.size();i++) {
+			if(art == nickname)
+				artistas.remove(i);
+		}
 		req.setAttribute("artistas", artistas);
 		
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
