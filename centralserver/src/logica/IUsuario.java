@@ -21,9 +21,13 @@ public interface IUsuario {
 		
 	public void updateUsuario(String nickviejo, String nombre,String apellido, String mail,LocalDate fechaNac);
 	
+	public void updateUsuarioWeb(String nickviejo, String nombre,String apellido, String mail,LocalDate fechaNac, String password, String imagen);
+	
 	public void updateArtista(String desc,String bio,String web);
 
 	public void confirmarUpdateUsuario();
+	
+	public void confirmarUpdateUsuarioWeb();
 	
 	public void altaUsuarioWeb(String nickname, String nombre, String apellido, String mail, LocalDate fechanac, String password, String imagen) throws UsuarioConMismoNickException, UsuarioConMismoMailException;
 	

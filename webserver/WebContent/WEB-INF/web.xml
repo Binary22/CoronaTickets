@@ -64,6 +64,15 @@
         <servlet-name>DetallesUsuario</servlet-name>
         <servlet-class>controladores.DetallesUsuario</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>CargarDatos</servlet-name>
+    	<servlet-class>controladores.CargarDatos</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>CargarDatos</servlet-name>
+    	<url-pattern>/cargardatos</url-pattern>
+    </servlet-mapping>
    
    
     <servlet-mapping>
