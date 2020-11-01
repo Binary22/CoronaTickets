@@ -37,15 +37,38 @@ public class Espectaculos extends HttpServlet {
     	HandlerPlataforma hp = HandlerPlataforma.getInstance();
     	Map<String,Plataforma> plataformas = hp.getColPlataforma();
     	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-    	Map<String,Espectaculo> espectaculos = (Map<String, Espectaculo>) he.listarEspectaculosAceptados();
-    	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculos.values());
     	
-    	objSesion.setAttribute("espectaculos", list);
+    	String nomPlat = (String) objSesion.getAttribute("nombrePlat");
+    	if(nomPlat != null) {
+    		Plataforma plat = hp.getPlataforma(nomPlat);
+    		Map<String,Espectaculo> espectaculosPlat = plat.getEspectaculos();
+	    	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculosPlat.values());
+	    	objSesion.setAttribute("espectaculosPlat", list);
+	    	objSesion.setAttribute("nombrePlat", null);
+    	}else {
+    		Map<String,Espectaculo> espectaculos = he.getEspectaculos();
+        	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculos.values());
+        	objSesion.setAttribute("espectaculosPlat", list);
+    	}
+    	
     	objSesion.setAttribute("plataformas", plataformas);
     	
         
 		req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculos.jsp").forward(req, resp);
 		
+	}
+    
+    private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HttpSession objSesion = req.getSession();
+    	HandlerPlataforma hp = HandlerPlataforma.getInstance();
+    	String nomPlat = req.getParameter("opcionesPlat");
+    	if(nomPlat != null) {
+	    	System.out.println(nomPlat);
+	    	objSesion.setAttribute("nombrePlat", nomPlat);
+	    
+    	}
+	    	resp.sendRedirect("espectaculos");
+    	
 	}
     
     
@@ -63,7 +86,7 @@ public class Espectaculos extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		processResponse(request, response);
 	}
 
 }

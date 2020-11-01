@@ -22,6 +22,10 @@ public class HandlerEspectaculos {
     	e2.setAceptado(true);
     	e2.setYaFueValuado(true);
     	e2.setPlataforma(hp.getPlataforma("Twitter"));
+    	Plataforma p1 = hp.getPlataforma("Twitter");
+    	p1.addEspectaculo(e1);
+    	p1.addEspectaculo(e2);
+    	///////////////////////////
     	Espectaculo e3 = new Espectaculo("Facebook1", LocalTime.now(), "la historia de una fabrica", 2,8, "xd", LocalDate.now(), 23 );
     	e3.setAceptado(true);
     	e3.setYaFueValuado(true);
@@ -34,6 +38,11 @@ public class HandlerEspectaculos {
     	e5.setAceptado(true);
     	e5.setYaFueValuado(true);
     	e5.setPlataforma(hp.getPlataforma("Facebook"));
+    	Plataforma p2 = hp.getPlataforma("Facebook");
+    	p2.addEspectaculo(e3);
+    	p2.addEspectaculo(e4);
+    	p2.addEspectaculo(e5);
+    	///////////////////////////////////////
     	Espectaculo e9 = new Espectaculo("twitch1", LocalTime.now(), "la historia de una fabrica", 2,8, "xd", LocalDate.now(), 23 );
     	e9.setAceptado(true);
     	e9.setYaFueValuado(true);
@@ -42,6 +51,10 @@ public class HandlerEspectaculos {
     	e6.setAceptado(true);
     	e6.setYaFueValuado(true);
     	e6.setPlataforma(hp.getPlataforma("Twitch"));
+    	Plataforma p3 = hp.getPlataforma("Twitch");
+    	p3.addEspectaculo(e9);
+    	p3.addEspectaculo(e6);
+    	///////////////////////////////////////
     	Espectaculo e7 = new Espectaculo("youtube1", LocalTime.now(), "la historia de una fabrica", 2,8, "xd", LocalDate.now(), 23 );
     	e7.setAceptado(true);
     	e7.setYaFueValuado(true);
@@ -50,6 +63,13 @@ public class HandlerEspectaculos {
     	e8.setAceptado(true);
     	e8.setYaFueValuado(true);
     	e8.setPlataforma(hp.getPlataforma("YouTube"));
+    	Plataforma p4 = hp.getPlataforma("YouTube");
+    	p4.addEspectaculo(e7);
+    	p4.addEspectaculo(e8);
+    	
+    	
+    	
+    	
     	mapEspectaculos.put(e1.getNombre(), e1);
     	mapEspectaculos.put(e2.getNombre(), e2);
     	mapEspectaculos.put(e3.getNombre(), e3);

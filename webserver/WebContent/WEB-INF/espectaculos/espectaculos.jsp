@@ -19,49 +19,43 @@
         
         <div class="container">
         
-            <fieldset class="mt-2">
+            <form class="mt-2" action = "espectaculos" method = "POST">
                 <h2>Plataforma:</h2>
-                    <select class="form-control" id="plataforma" onchange="plataformaSelected(value)">
-                    <option default disabled selected value="">--Elegir Plataforma--</option>
+                    <select class="form-control" id="plataforma" name = "opcionesPlat" >
+                    <option default disabled selected value="">--Elegir Plataforma--</option> 
                     <% Map<String, Plataforma> plataformas = (Map<String, Plataforma>)session.getAttribute("plataformas");
 			        	for(String key : plataformas.keySet()){
 						%>
 						<option value="<%= plataformas.get(key).getNombre() %>" id = "idPlat"><%= plataformas.get(key).getNombre() %></option>
                          <% } %>
                     </select>
-                
-            </fieldset>
+                    <br>
+                    <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px">Filtrar</button>
+
+                    <br>
+           </form>
            
         </div>
         <br>
-        <br>
-        <br>
+        
         
         
         <div class = "container">
-	        <%ArrayList<Espectaculo> espectaculos = (ArrayList<Espectaculo>)session.getAttribute("espectaculos");
+	        <%
+	       
+	      	ArrayList<Espectaculo> espectaculos = (ArrayList<Espectaculo>)session.getAttribute("espectaculosPlat");
+	       
 	        int size = espectaculos.size();
 	        int j = 0;
 	        int i = 0;
-	        while(i < size ){ %>
+	        while(i < size){ %>
 		        
 		       
-	        	<div class="row">
+	        	<div class="card-deck pt-3">
 			        <%for(j = i; j <= i + 2 && j < size; j++){%>
-						<div class="cartita col-md-4" id = "<%=espectaculos.get(j).getPlataforma().getNombre() %>"  style = "display:none">        
-					        <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
-						    <div class="card-body d-flex flex-column">
-						        <h5 class="card-title"><%=espectaculos.get(j).getNombre() %></h5>
-						        <h6 class="card-subtitle mb-2 text-muted"></h6>
-						        <p id="desc" class="card-text">
-						        <%=espectaculos.get(j).getDescripcion() %>
-						        </p>
-						        <ul class="list-group mt-auto list-group-horizontal">
-						            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
-						            <li id="precio" class="list-group-item">$<%=espectaculos.get(j).getCosto() %></li>
-					        	</ul>
-					    	</div>
-				    	</div>
+						
+				    	<carta-espectaculo  id = "<%=espectaculos.get(j).getPlataforma().getNombre() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
+				    	img = "resources/media/espectaculos/3.jpeg" precio = <%=espectaculos.get(j).getCosto() %>></carta-espectaculo>
 				  	<%} %>
 	     		</div>
 			     
