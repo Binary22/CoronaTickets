@@ -97,7 +97,7 @@ public class Artista extends Usuario {
 			if (e.isAceptado()) {
 				return true;
 			}
-		}
+		}	
 		return false;
 	}
 	
@@ -146,7 +146,7 @@ public class Artista extends Usuario {
 				lista.add(e);
 			}
 		}
-		return  lista;	
+		return lista;	
 	}
 
 }
