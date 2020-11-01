@@ -68,6 +68,10 @@
     	<servlet-name>CargarDatos</servlet-name>
     	<servlet-class>controladores.CargarDatos</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>Buscar</servlet-name>
+    	<servlet-class>controladores.Buscar</servlet-class>
+    </servlet>
     
     <servlet-mapping>
     	<servlet-name>CargarDatos</servlet-name>
@@ -158,6 +162,10 @@
     <servlet-mapping>
         <servlet-name>DetallesUsuario</servlet-name>
         <url-pattern>/detallesUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Buscar</servlet-name>
+        <url-pattern>/buscar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
