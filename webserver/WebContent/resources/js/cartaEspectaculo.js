@@ -8,7 +8,7 @@ template.innerHTML = `
         <p id="desc" class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+            <a class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
             <li id="precio" class="list-group-item">$</li>
         </ul>
     </div>
@@ -28,6 +28,9 @@ class espectaculoCard extends HTMLElement {
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
         this.querySelector('#precio').innerHTML += this.getAttribute('precio');
         this.querySelector('.card-subtitle').innerHTML += this.getAttribute('artista');
+		this.querySelector('a').href = 'detallesEspectaculo?name=' + this.getAttribute('titulo');
+
+
     }
 
     espectaculoDetails() {

@@ -4,7 +4,7 @@ templatefuncard.innerHTML = `
     <img class="card-img-top" style="width: 100%; object-fit: cover;" alt="...">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"></slot></h5>
-        <h6 class="card-subtitle mb-2 text-muted" hidden>Artistas Invitados:</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Artistas Invitados:</h6>
         <li id="artista1" hidden class="card-subtitle mb-2 text-muted"></li>
         <li id="artista2" hidden class="card-subtitle mb-2 text-muted"></li>
         <li id="artista3" hidden class="card-subtitle mb-2 text-muted"></li>
@@ -28,14 +28,16 @@ class funcionCard extends HTMLElement {
         this.querySelector('.card-title').innerHTML = this.getAttribute('titulo');
         this.querySelector('#desc').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
-        let artistas = ['artista1','artista2','artista3']
-        artistas.forEach( (el) => {
+        this.querySelector('.card-subtitle').innerHTML = this.getAttribute('artistas');
+
+        //let artistas = ['artista1','artista2','artista3']
+        /*artistas.forEach( (el) => {
             if (this.getAttribute(el) != null) {
                 this.querySelector('.card-subtitle').getAttribute('hidden') ? this.querySelector('.card-subtitle').toggleAttribute("hidden") : console.log('ok');
                 this.querySelector('#'+el).toggleAttribute('hidden');
                 this.querySelector('#'+el).innerHTML += this.getAttribute(el);
             }
-        })
+        })*/
     }
 
     espectaculoDetails() {

@@ -68,5 +68,16 @@ public class HandlerPaquetes {
 		return ret;
 	}
 	
+	public ArrayList<Paquete> getPaquetesDeEspectaculoWeb(String espec) {
+		ArrayList<Paquete> paquetes = new ArrayList<Paquete>();
+		
+		for (String key : this.colPaquete.keySet()) {
+			if (colPaquete.get(key).getEspectaculos().containsKey(espec)) {
+				paquetes.add(colPaquete.get(key));
+			}
+		}
+		return paquetes;
+	}
+	
 }
 	

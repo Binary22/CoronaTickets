@@ -13,7 +13,7 @@ public class HandlerEspectaculos {
 
     private HandlerEspectaculos() {
     	mapEspectaculos = new HashMap<String, Espectaculo>();
-    	HandlerPlataforma hp = HandlerPlataforma.getInstance();
+    	/*HandlerPlataforma hp = HandlerPlataforma.getInstance();
     	Espectaculo e1 = new Espectaculo("twitter1", LocalTime.now(), "la historia de harry", 2,8, "xd", LocalDate.now(), 23 );
     	e1.setAceptado(true);
     	e1.setYaFueValuado(true);
@@ -77,7 +77,7 @@ public class HandlerEspectaculos {
     	mapEspectaculos.put(e5.getNombre(), e5);
     	mapEspectaculos.put(e6.getNombre(), e6);
     	mapEspectaculos.put(e7.getNombre(), e7);
-    	mapEspectaculos.put(e8.getNombre(), e8);
+    	mapEspectaculos.put(e8.getNombre(), e8);*/
     	//mapEspectaculos.put(e9.getNombre(), e9);
     	
     };

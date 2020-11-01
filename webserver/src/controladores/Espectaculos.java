@@ -63,7 +63,7 @@ public class Espectaculos extends HttpServlet {
     	HandlerPlataforma hp = HandlerPlataforma.getInstance();
     	String nomPlat = req.getParameter("opcionesPlat");
     	if(nomPlat != null) {
-	    	System.out.println(nomPlat);
+	    	
 	    	objSesion.setAttribute("nombrePlat", nomPlat);
 	    
     	}
