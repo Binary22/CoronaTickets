@@ -80,6 +80,7 @@ public class Altafuncion extends HttpServlet {
 			ctrlesp.ConfirmarAltaFuncion();
 		} catch (NombreFuncionexisteException e) {
 			// TODO Auto-generated catch block
+			resp.sendRedirect("500");
 			e.printStackTrace();
 		}
         resp.sendRedirect("home");
