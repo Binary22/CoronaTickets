@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-3">
 	                	<div class="card">
-	                       <img class="card-img-top" src="resources/media/usuarios/Emma-Watson-1.jpg" class="rounded" width="155"> 
+	                       <img class="card-img-top" src="resources/media/usuarios/userdefault.jpg" class="rounded" width="155"> 
 	                        
 	                        <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
 	                        <div class="card-body">
