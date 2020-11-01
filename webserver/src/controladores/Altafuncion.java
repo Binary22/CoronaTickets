@@ -55,7 +55,7 @@ public class Altafuncion extends HttpServlet {
 		String fecha = req.getParameter("fecha");
 		String horaInicio = req.getParameter("hora");
 		String esp = req.getParameter("espectaculo");
-		String[] invitados = req.getParameterValues("artistas");
+		String[] invitados = req.getParameterValues("artistasinv");
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;

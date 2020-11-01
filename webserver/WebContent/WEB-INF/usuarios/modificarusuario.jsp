@@ -24,7 +24,7 @@
         <div class="container mt-6">
 
             <div class="d-flex justify-content-center">
-            <div class="card input-group mt-3" style="width:40rem;"">
+            <div class="card input-group mt-3" style="width:40rem">
             <div class="card-body">
     		<%Usuario usuariolog = (Usuario)session.getAttribute("usuariolog");%>
             <h4> Modificar usuario </h4>
@@ -58,7 +58,7 @@
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
                   <input type="password" class="form-control" name = "confirmpassword"  value="<%=usuariolog.getPassword()%>">
-                </div>
+                </div>              
                 <div class="form-group">
                   <label>Elegir imagen</label>
                   <br>
@@ -67,7 +67,7 @@
                 <% if(usuariolog.esArtista()){%>
                 <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
-                <div id="camposArtista" name = "camposArtista">
+                <div id="camposArtista">
                   <div class="form-group">
                     <label>Descripción</label>
                     <!-- quizas haya que usar javascript para actualizar estos textarea
