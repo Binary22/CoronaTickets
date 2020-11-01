@@ -16,17 +16,47 @@
     <body>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         <div class="container">
-               
-
-    		<div class="card-deck pt-3">
-    		
-   			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
-
-   			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
-   			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
-   	
-  		
-    		</div>
+        
+        <div class="row">
+		    <div class="col-2">
+		    </div>
+		    <div class="col-8">
+		    <br>
+		    <h3>Espectaculos</h3>
+		    <div class="card mb-3" style="max-width: 200em;">
+			  <div class="row no-gutters">
+			    <div class="col-md-5">
+			      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+			    </div>
+			    <div class="col-md-7">
+			      <div class="card-body">
+			        <h5 class="card-title">nombfun></h5>
+			        <p>nomesp</p>
+			        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-primary card-text">Ver espectaculo</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<h3>Paquetes</h3>
+		     <div class="card mb-3" style="max-width: 200em;">
+			  <div class="row no-gutters">
+			    <div class="col-md-5">
+			      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+			    </div>
+			    <div class="col-md-7">
+			      <div class="card-body">
+			        <h5 class="card-title">nomb</h5>
+			        <p>desc</p>
+			        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		    
+		    </div>
+		    <div class="col-2">
+		    </div>
+		</div>
       
         </div>
         <br>

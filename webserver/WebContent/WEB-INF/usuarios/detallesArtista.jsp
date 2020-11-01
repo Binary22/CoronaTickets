@@ -79,7 +79,7 @@
                         
 	                        <% for (Espectaculo e : a.espectaculosAceptados()) {  %>
 	                        
-		                    	<div class="card mb-3" style="max-width: 540px;">
+		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
 								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
@@ -101,7 +101,7 @@
                         <h4>Espectáculos ingresados</h4>
                         <% for (Espectaculo e : a.espectaculosIngresadosSinAceptar()) {  %>
 	                        
-		                    	<div class="card mb-3" style="max-width: 540px;">
+		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
 								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
@@ -123,7 +123,7 @@
                         <h4>Espectáculos rechazados</h4>
                         <% for (Espectaculo e : a.espectaculosRechazados()) {  %>
 	                        
-		                    	<div class="card mb-3" style="max-width: 540px;">
+		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
 								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
