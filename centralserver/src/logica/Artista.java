@@ -56,6 +56,7 @@ public class Artista extends Usuario {
 		this.descripcion = desc;
 		this.biografia = bio;
 		this.website = web;
+		this.espectaculos = new ArrayList<Espectaculo>();
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -64,6 +65,7 @@ public class Artista extends Usuario {
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.website = website;
+		this.espectaculos = new ArrayList<Espectaculo>();
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -72,6 +74,7 @@ public class Artista extends Usuario {
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.website = website;
+		this.espectaculos = new ArrayList<Espectaculo>();
 	}
 	
 	public boolean esArtista_() {
@@ -93,16 +96,18 @@ public class Artista extends Usuario {
 	}
 
 	public boolean tieneEspectaculosAceptados() {
-		for (Espectaculo e : espectaculos) {
-			if (e.isAceptado()) {
-				return true;
-			}
-		}	
+		if (espectaculos.isEmpty()) {
+			for (Espectaculo e : espectaculos) {
+				if (e.isAceptado()) {
+					return true;
+				}
+			}	
+		}
 		return false;
 	}
 	
 	public List<Espectaculo> espectaculosAceptados() {
-		List lista = new ArrayList();
+		List<Espectaculo> lista = new ArrayList<Espectaculo>();
 		for (Espectaculo e : espectaculos) {
 			if (e.isAceptado()) {
 				lista.add(e);
@@ -112,16 +117,18 @@ public class Artista extends Usuario {
 	}
 
 	public boolean tieneEspectaculosIngresadosSinAceptar() {
-		for (Espectaculo e : espectaculos) {
-			if (!e.isYaFueValuado()) {
-				return true;
+		if (espectaculos.isEmpty()) {
+			for (Espectaculo e : espectaculos) {
+				if (!e.isYaFueValuado()) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
 	public List<Espectaculo> espectaculosIngresadosSinAceptar() {
-		List lista = new ArrayList();
+		List<Espectaculo> lista = new ArrayList<Espectaculo>();
 		for (Espectaculo e : espectaculos) {
 			if (!e.isYaFueValuado()) {
 				lista.add(e);
@@ -131,16 +138,18 @@ public class Artista extends Usuario {
 	}
 	
 	public boolean tieneEspectaculosRechazados() {
-		for (Espectaculo e : espectaculos) {
-			if (!e.isAceptado()) {
-				return true;
+		if (espectaculos.isEmpty()) {
+			for (Espectaculo e : espectaculos) {
+				if (!e.isAceptado()) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
 	public List<Espectaculo> espectaculosRechazados() {
-		List lista = new ArrayList();
+		List<Espectaculo> lista = new ArrayList<Espectaculo>();
 		for (Espectaculo e : espectaculos) {
 			if (!e.isAceptado()) {
 				lista.add(e);
