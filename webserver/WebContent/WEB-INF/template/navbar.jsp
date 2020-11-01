@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <a class="navbar-brand" href="home" style="font-family: 'Lobster', cursive; font-size: x-large;"><img style="max-height: 1.7em;" src="resources/media/coronatickets.svg"></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +23,22 @@
         </li>
     </ul>
     
+    <div class="navbar-collapse">
+	    <form id="busqueda-form" class="form-inline my-2 my-lg-0" action="" method="POST">
+    		<div class="input-group">
+		        <input class="form-control" type="text" name="busqueda" placeholder="Buscar..." aria-label="Usuario" aria-describedby="button-addon2">
+		        <div class="input-group-append">
+	    			<button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+	    				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				  			<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+				  			<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+						</svg>
+					</button>
+	  			</div>
+	  		</div>		
+	    </form>
+	</div>
+    
     <% if (session.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {  
     	String nickname = (String)session.getAttribute("usuario_logueado"); %>
     <div id='miperfil' class="navbar-nav">
@@ -43,9 +60,13 @@
                 <%} %>
                 <h5 class="dropdown-header"> Menu de usuario </h5>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="detallesArtista"> Mi perfil </a>
+                <% String url = "detallesUsuario?name=" + nickname; %>
+                <a class="dropdown-item" href="<%=url%>"> Mi perfil </a>
                 <a class="dropdown-item" href="modificarusuario"> Modificar usuario</a>
                 <a class="dropdown-item" id="logout" href="logout">Salir de mi perfil</a>
+                
+                <div class="dropdown-divider"></div>
+        		<a class="dropdown-item" href="cargardatos">Cargar Datos</a>
         	</div>
         </li>
     </div>

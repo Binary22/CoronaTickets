@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="logica.Usuario"%>
+<%@page import="logica.Artista"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,7 +15,7 @@
 
     <title>CoronaTickets.uy</title>
   </head>
-  <body onload="uncheckArtista()">
+  <body>
 
     
     <jsp:include page="/WEB-INF/template/navbar.jsp"/>
@@ -24,68 +26,65 @@
             <div class="d-flex justify-content-center">
             <div class="card input-group mt-3" style="width:40rem;"">
             <div class="card-body">
-    
+    		<%Usuario usuariolog = (Usuario)session.getAttribute("usuariolog");%>
             <h4> Modificar usuario </h4>
             <br>
-                    
-            <form>
+            <form action="modificarusuario" method="POST">
                 <div class="form-group">
                   <label>Nickname</label>
-                  <input type="text" class="form-control"  value="Rigo23" readonly>
+                  <input type="text" class="form-control disabled" name = "nickname" value="<%=usuariolog.getNickname()%>" disabled>
                 </div>
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input type="text" class="form-control"  value="Rigoberto">
+                  <input type="text" class="form-control" name = "nombre" value="<%=usuariolog.getNombre()%>">
                 </div>
                 <div class="form-group">
                   <label>Apellido</label>
-                  <input type="text" class="form-control"  value="Ramirez">
+                  <input type="text" class="form-control" name = "apellido" value="<%=usuariolog.getApellido()%>">
                 </div>
                 <div class="form-group">
                   <label>Mail</label>
-                  <input type="email" class="form-control"  value="rigo23@gmail.com">
+                  <input type="email" class="form-control" name="mail" value="<%=usuariolog.getEmail()%>" disabled>
                 </div>
                 <div class="form-group">
                   <label>Fecha de nacimiento</label>
-                  <input type="date" class="form-control"  value="2000-03-22">
+                  <input type="date" class="form-control" name = "fechanac" value="<%=usuariolog.getFechaNacimiento().toString()%>">
                 </div>
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
                   <label>Contraseña</label>
-                  <input type="password" class="form-control" value="123456">
+                  <input type="password" class="form-control" name = "password"  value="<%=usuariolog.getPassword()%>">
                 </div>
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
-                  <input type="password" class="form-control" value="123456">
+                  <input type="password" class="form-control" name = "confirmpassword"  value="<%=usuariolog.getPassword()%>">
                 </div>
                 <div class="form-group">
                   <label>Elegir imagen</label>
                   <br>
                   <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="artista" onclick="mostrarCamposArtista(this)"> 
-                  <label class="form-check-label"> Artista </label>
-                </div>
+                <% if(usuariolog.esArtista()){%>
+                <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
-                <div id="camposArtista" style="display: none;">
+                <div id="camposArtista" name = "camposArtista">
                   <div class="form-group">
                     <label>Descripción</label>
                     <!-- quizas haya que usar javascript para actualizar estos textarea
                     parece que tienden a recordar los cambios que se les hizo antes-->
-                    <textarea class="form-control">El proyecto solista de Rigoberto.</textarea>
+                    <textarea class="form-control" name = "descripcion" ><%=usuarioArtlog.getDescripcion()%></textarea>
                   </div>
                   <div class="form-group">
                     <label>Biografía</label>
-                    <textarea class="form-control">Rigoberto Rock empezo como proyecto personal en 1995.</textarea>
+                    <textarea class="form-control" name = "biografia"><%=usuarioArtlog.getBiografia()%></textarea>
                   </div>
                   <div class="form-group">
                     <label>Website</label>
-                    <input type="url" class="form-control" value="rigobertorock.com">
+                    <input type="url" class="form-control" name = "website" value="<%=usuarioArtlog.getWebsite()%>">
                   </div>
                 </div>
-    
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <%}%>
+                <button type="submit" class="btn btn-primary">Modificar Perfil</button>
             </form>
             </div>
             </div>
