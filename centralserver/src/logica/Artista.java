@@ -2,6 +2,7 @@ package logica;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
@@ -90,4 +91,64 @@ public class Artista extends Usuario {
 		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
 		return dta;
 	}
+
+	public boolean tieneEspectaculosAceptados() {
+		for (Espectaculo e : espectaculos) {
+			if (e.isAceptado()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public List<Espectaculo> espectaculosAceptados() {
+		List lista = new ArrayList();
+		for (Espectaculo e : espectaculos) {
+			if (e.isAceptado()) {
+				lista.add(e);
+			}
+		}
+		return  lista;	
+	}
+
+	public boolean tieneEspectaculosIngresadosSinAceptar() {
+		for (Espectaculo e : espectaculos) {
+			if (!e.isYaFueValuado()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public List<Espectaculo> espectaculosIngresadosSinAceptar() {
+		List lista = new ArrayList();
+		for (Espectaculo e : espectaculos) {
+			if (!e.isYaFueValuado()) {
+				lista.add(e);
+			}
+		}
+		return  lista;	
+	}
+	
+	public boolean tieneEspectaculosRechazados() {
+		for (Espectaculo e : espectaculos) {
+			if (!e.isAceptado()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public List<Espectaculo> espectaculosRechazados() {
+		List lista = new ArrayList();
+		for (Espectaculo e : espectaculos) {
+			if (!e.isAceptado()) {
+				lista.add(e);
+			}
+		}
+		return  lista;	
+	}
+
 }
+
+
