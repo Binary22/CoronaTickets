@@ -3,6 +3,8 @@
 <%@page import="logica.Plataforma"%>
 <%@page import="logica.Espectaculo"%>
 <%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -24,7 +26,7 @@
                     <% Map<String, Plataforma> plataformas = (Map<String, Plataforma>)session.getAttribute("plataformas");
 			        	for(String key : plataformas.keySet()){
 						%>
-						<option value="" id = "<%= plataformas.get(key).getNombre() %>"><%= plataformas.get(key).getNombre() %></option>
+						<option value="<%= plataformas.get(key).getNombre() %>" id = "idPlat"><%= plataformas.get(key).getNombre() %></option>
                          <% } %>
                     </select>
                 
@@ -37,49 +39,37 @@
         
         
         <div class = "container">
-	        <%Map<String, Espectaculo> espectaculos = (Map<String, Espectaculo>)session.getAttribute("espectaculos");
-	        int i = 0;
+	        <%ArrayList<Espectaculo> espectaculos = (ArrayList<Espectaculo>)session.getAttribute("espectaculos");
 	        int size = espectaculos.size();
-	        for(String key : espectaculos.keySet()){ %>
+	        int j = 0;
+	        int i = 0;
+	        while(i < size ){ %>
 		        
-		       	<%if(i % 3 == 0){%>
-		        <div class="row">
-			        
-					<div class="col-md-4"  >        
-				        <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
-					    <div class="card-body d-flex flex-column">
-					        <h5 class="card-title"><%=espectaculos.get(key).getNombre() %></h5>
-					        <h6 class="card-subtitle mb-2 text-muted"></h6>
-					        <p id="desc" class="card-text">
-					        </p>
-					        <ul class="list-group mt-auto list-group-horizontal">
-					            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
-					            <li id="precio" class="list-group-item">$</li>
-					        </ul>
-					    </div>
-				    </div>
-					  	
-			     </div>
-			     <%}else{ %>
-			     		<div class="col-md-4" >        
-				        <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
-					    <div class="card-body d-flex flex-column">
-					        <h5 class="card-title"><%=espectaculos.get(key).getNombre() %></h5>
-					        <h6 class="card-subtitle mb-2 text-muted"></h6>
-					        <p id="desc" class="card-text">
-					        </p>
-					        <ul class="list-group mt-auto list-group-horizontal">
-					            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
-					            <li id="precio" class="list-group-item">$</li>
-					        </ul>
-					    </div>
-				    </div>
-				    <%} %>
+		       
+	        	<div class="row">
+			        <%for(j = i; j <= i + 2 && j < size; j++){%>
+						<div class="cartita col-md-4" id = "<%=espectaculos.get(j).getPlataforma().getNombre() %>"  style = "display:none">        
+					        <img class="card-img-top" alt="..." src="resources/media/espectaculos/3.jpeg">
+						    <div class="card-body d-flex flex-column">
+						        <h5 class="card-title"><%=espectaculos.get(j).getNombre() %></h5>
+						        <h6 class="card-subtitle mb-2 text-muted"></h6>
+						        <p id="desc" class="card-text">
+						        <%=espectaculos.get(j).getDescripcion() %>
+						        </p>
+						        <ul class="list-group mt-auto list-group-horizontal">
+						            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+						            <li id="precio" class="list-group-item">$<%=espectaculos.get(j).getCosto() %></li>
+					        	</ul>
+					    	</div>
+				    	</div>
+				  	<%} %>
+	     		</div>
+			     
 				    
-				 <%i++;} %>
+		 	<%i = j;} %>
 			     
 			
-	    </div>
+	    	</div>
 
         
 

@@ -1,6 +1,8 @@
 package controladores;
 import logica.HandlerPlataforma;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -36,8 +38,9 @@ public class Espectaculos extends HttpServlet {
     	Map<String,Plataforma> plataformas = hp.getColPlataforma();
     	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
     	Map<String,Espectaculo> espectaculos = (Map<String, Espectaculo>) he.listarEspectaculosAceptados();
+    	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculos.values());
     	
-    	objSesion.setAttribute("espectaculos", espectaculos);
+    	objSesion.setAttribute("espectaculos", list);
     	objSesion.setAttribute("plataformas", plataformas);
     	
         
