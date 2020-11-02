@@ -6,8 +6,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,25 +42,39 @@ public class Altafuncion extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("escero",false);
+		objSesion.setAttribute("nombreexiste",false);
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-		List<String> artistas = husers.getNombresArtistas();
-		String art = nickname;
-		for(int i=0; i<= artistas.size();i++) {
-			if(art == nickname)
-				artistas.remove(i);
-		}
-		req.setAttribute("artistas", artistas);
+		List<String> artistas = husers.getNombresArtista();
+		List<String> artistasinvi = new ArrayList<String>();
+		for (int i=0; i< artistas.size(); i++) {
+			if(!artistas.get(i).equals(nickname)){
+				artistasinvi.add(artistas.get(i));
+			}
+		}	
+		objSesion.setAttribute("artistas", artistasinvi);
 		
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
 		Map<String,Espectaculo> espectaculos = hesp.getEspectaculos();
-		List<String> keys = new ArrayList<>(espectaculos.keySet());
-		req.setAttribute("espectaculos", keys);
+		Map<String,Espectaculo> espectaculosorg = new HashMap<String,Espectaculo>();
+		for (String key : espectaculos.keySet()) {
+			if(espectaculos.get(key).getArtista().getNickname().equals(nickname)){
+				espectaculosorg.put(key,espectaculos.get(key));
+			}	
+				
+		}
+		List<String> espectaculosorgreal = new ArrayList<String>();
+		for(String key2 : espectaculosorg.keySet()) {
+			espectaculosorgreal.add(key2);
+		}
+		objSesion.setAttribute("espectaculos", espectaculosorgreal);
 		
 		req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
 	}
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String horaInicio = req.getParameter("hora");
@@ -69,21 +85,33 @@ public class Altafuncion extends HttpServlet {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
         LocalDate date = LocalDate.parse(fecha, formatter);
         LocalTime duracion = LocalTime.parse(horaInicio,dateTimeFormatter);
+        LocalTime cero = LocalTime.of(00,00);
         
-        Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlesp = fabrica.getIEspectaculo();
-        
-        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(invitados));
-        try {
-			ctrlesp.elegirEspectaculo(esp);
-        	ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-			ctrlesp.ConfirmarAltaFuncion();
-		} catch (NombreFuncionexisteException e) {
-			// TODO Auto-generated catch block
-			resp.sendRedirect("500");
-			e.printStackTrace();
-		}
-        resp.sendRedirect("home");
+        if(!duracion.equals(cero)) {
+	        Fabrica fabrica = Fabrica.getInstance();
+	        IEspectaculo ctrlesp = fabrica.getIEspectaculo();
+	        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(invitados));
+	        try {
+				ctrlesp.elegirEspectaculo(esp);
+				if(stringList.isEmpty()) {
+					stringList = new ArrayList<String>();
+					ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
+				}
+				else {
+					ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
+				}
+				ctrlesp.ConfirmarAltaFuncion();
+			} catch (NombreFuncionexisteException e) {
+				// TODO Auto-generated catch block
+				objSesion.setAttribute("nombreexiste",true);
+				resp.sendRedirect("altafuncion");
+			}
+	        resp.sendRedirect("home");
+        }
+        else {
+        	objSesion.setAttribute("escero",true);
+        	resp.sendRedirect("altafuncion");
+        }
 	}
     
 	/**
