@@ -80,6 +80,10 @@ public class Paquete {
 	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
+
+	public LocalDate getFechaAlta() {
+		return fechaAlta;
+	}
 	
 	
 

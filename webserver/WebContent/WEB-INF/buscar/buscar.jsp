@@ -87,17 +87,20 @@
 			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
 			<% } else { %>
 				<h3>Paquetes:</h3>
+				<div id="contenedorpaq">
 				<% for (Paquete p : lp) {  %>
-			     <div class="card mb-3" style="max-width: 200em;">
+			     <div class="card mb-3 divpaq" style="max-width: 200em;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
-				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:16rem;">
+				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:12rem;">
 				    </div>
 				    <div class="col-md-7">
 				      <div class="card-body">
-				        <h5 class="card-title"><%=p.getNombre()%></h5>
+				      	<div class="d-flex w-100 justify-content-between">
+                        	<h5><%=p.getNombre()%></h5>
+                            <small><%=p.getFechaAlta().toString()%></small>
+                        </div>
 				        <p><%=p.getDescripcion()%></p>
-				        <p>Fecha de publicacion:</p>
 				        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
 				      </div>
 				    </div>
