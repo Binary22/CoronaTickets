@@ -80,6 +80,7 @@ public class Altafuncion extends HttpServlet {
 		String horaInicio = req.getParameter("hora");
 		String esp = req.getParameter("espectaculo");
 		String[] invitados = req.getParameterValues("artistasinv");
+		boolean entro = false;
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
@@ -103,13 +104,15 @@ public class Altafuncion extends HttpServlet {
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
 				objSesion.setAttribute("nombreexiste",true);
-				resp.sendRedirect("altafuncion");
+				req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
+				entro = true;
 			}
-	        resp.sendRedirect("home");
+	        if(!entro)	
+	        	resp.sendRedirect("home");
         }
         else {
         	objSesion.setAttribute("escero",true);
-        	resp.sendRedirect("altafuncion");
+        	req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
         }
 	}
     

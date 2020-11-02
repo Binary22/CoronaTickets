@@ -17,7 +17,11 @@
       <div class="d-flex justify-content-center">
         <div class="card input-group mt-3" style="width:40rem;">
         <div class="card-body">
-          <!--esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal -->
+        
+        <h4> Alta de funcion de espectaculo </h4>
+        <br>
+        
+         <!--esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal -->
           <%if((Boolean)session.getAttribute("escero")){%> 
           <div class="alert alert-danger" role="alert">
             Ingrese una duración mayor a 0.
@@ -29,10 +33,7 @@
             El nombre que deséa utilizar ya se encuentra en uso.
           </div> 
 		<%}%>
-		
-        <h4> Alta de funcion de espectaculo </h4>
-        <br>
-                
+		       
         <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>

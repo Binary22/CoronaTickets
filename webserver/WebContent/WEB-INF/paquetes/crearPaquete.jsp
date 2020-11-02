@@ -20,33 +20,40 @@
 
         <h4> Crear Paquete de Espectáculos </h4>
         <br>
+        <%if((Boolean)session.getAttribute("nombreexiste")){%> 
+          <div class="alert alert-danger" role="alert">
+            El nombre del paquete ya se encuentra en uso.
+          </div>
+          <%}%>
                 
-        <form>
+        <form action="crearPaquete" method="POST">
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control"  placeholder="Ej. Paquete de Bandas">
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Paquete de Bandas">
             </div>
             <div class="form-group">
               <label>Descripción</label>
-              <textarea class="form-control" placeholder="Ej. Bandas de los 90's"></textarea>
+              <textarea class="form-control" name="descripcion" placeholder="Ej. Bandas de los 90's"></textarea>
             </div>
             <div class="form-group">
               <label>Fecha de inicio</label>
-              <input type="date" class="form-control">
+              <input type="date" name="fechaini" class="form-control">
             </div>
             <!-- aca hay que agregar fecha de nacimiento -->
             <div class="form-group">
               <label>Fecha de finalización</label>
-              <input type="date" class="form-control">
+              <input type="date" name="fechafin" class="form-control">
             </div>
-           
+            <div class="form-group">
+              <label>Descuento</label>
+              <input type="number" name="descuento" class="form-control" min="0" max="100">
+            </div>
             <div class="form-group">
               <label>Elegir imagen</label>
               <br>
               <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
             </div>
             <button type="submit" class="btn btn-primary">Confirmar</button>
-            <button style="margin-left:20px" type="submit" class="btn btn-primary">Cancelar</button>
         </form>
         </div>
         </div>
