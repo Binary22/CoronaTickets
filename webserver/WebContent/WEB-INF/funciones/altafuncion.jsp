@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,38 +25,37 @@
         <h4> Alta de funcion de espectaculo </h4>
         <br>
                 
-        <form>
+        <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>
-              <select class="form-control">
-                <option>Village People World Tour</option>
-                <option>20 Años de los Village People</option>
-                <option>Concierto de caridad VP</option>
-                <option>Village People presentan nuevo disco</option>
+              <select class="form-control" name="espectaculo">
+              <%List<String> espectaculos = (ArrayList) request.getAttribute("espectaculos");
+				for(String esp: espectaculos){%>
+                <option><%=esp%></option>
+              <%}%>
               </select>
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control"  placeholder="Ej. Los Rolling 50 años">
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Los Rolling 50 años">
             </div>
             <label>Fecha y hora</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input type="date" class="form-control">
+                <input type="date" name="fecha" class="form-control">
               </div>
               <div class="form-group col-md-6">
-                <input type="time" class="form-control">
+                <input type="time" name="hora" class="form-control">
               </div>
             </div>
             <div class="form-group">
                 <label>Artistas invitados</label>
-                <select class="form-control" multiple>
-                  <option>Jaime Roos</option>
-                  <option>Mick Jagger</option>
-                  <option>El enano de la vela</option>
-                  <option>Charly Garcia</option>
-                  <option>Lucas Sugo</option>
-                </select>
+                <select class="form-control" name="artistasinv" multiple>
+                <%List<String> artistas = (ArrayList) request.getAttribute("artistas");
+				for(String art: artistas){%>
+                  <option><%=art%></option>
+                <%}%>
+                </select> 
             </div>
             <div class="form-group">
               <label>Elegir imagen</label>

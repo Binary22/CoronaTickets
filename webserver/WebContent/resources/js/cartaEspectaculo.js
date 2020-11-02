@@ -19,7 +19,7 @@ class espectaculoCard extends HTMLElement {
         super();
         this.appendChild(template.content.cloneNode(true));
         this.setAttribute('class',"card carta");
-        this.setAttribute('style',"width:18rem");
+        this.setAttribute('style',"flex: 0 0 30%;");
     }
 
     connectedCallback() {
