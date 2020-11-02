@@ -29,7 +29,7 @@
         <form action="crearPaquete" method="POST">
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name="nombre" placeholder="Ej. Paquete de Bandas">
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Paquete de Bandas" required>
             </div>
             <div class="form-group">
               <label>Descripción</label>
@@ -37,16 +37,16 @@
             </div>
             <div class="form-group">
               <label>Fecha de inicio</label>
-              <input type="date" name="fechaini" class="form-control">
+              <input type="date" name="fechaini" class="form-control" required>
             </div>
             <!-- aca hay que agregar fecha de nacimiento -->
             <div class="form-group">
               <label>Fecha de finalización</label>
-              <input type="date" name="fechafin" class="form-control">
+              <input type="date" name="fechafin" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Descuento</label>
-              <input type="number" name="descuento" class="form-control" min="0" max="100">
+              <input type="number" name="descuento" class="form-control" min="0" max="100" required>
             </div>
             <div class="form-group">
               <label>Elegir imagen</label>
