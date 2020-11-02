@@ -2,6 +2,7 @@ package logica;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
@@ -55,6 +56,7 @@ public class Artista extends Usuario {
 		this.descripcion = desc;
 		this.biografia = bio;
 		this.website = web;
+		this.espectaculos = new ArrayList<Espectaculo>();
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -63,6 +65,7 @@ public class Artista extends Usuario {
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.website = website;
+		this.espectaculos = new ArrayList<Espectaculo>();
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -71,6 +74,7 @@ public class Artista extends Usuario {
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.website = website;
+		this.espectaculos = new ArrayList<Espectaculo>();
 	}
 	
 	public boolean esArtista_() {
@@ -90,4 +94,70 @@ public class Artista extends Usuario {
 		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
 		return dta;
 	}
+
+	public boolean tieneEspectaculosAceptados() {
+		if (espectaculos.isEmpty()) {
+			for (Espectaculo e : espectaculos) {
+				if (e.isAceptado()) {
+					return true;
+				}
+			}	
+		}
+		return false;
+	}
+	
+	public List<Espectaculo> espectaculosAceptados() {
+		List<Espectaculo> lista = new ArrayList<Espectaculo>();
+		for (Espectaculo e : espectaculos) {
+			if (e.isAceptado()) {
+				lista.add(e);
+			}
+		}
+		return  lista;	
+	}
+
+	public boolean tieneEspectaculosIngresadosSinAceptar() {
+		if (espectaculos.isEmpty()) {
+			for (Espectaculo e : espectaculos) {
+				if (!e.isYaFueValuado()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public List<Espectaculo> espectaculosIngresadosSinAceptar() {
+		List<Espectaculo> lista = new ArrayList<Espectaculo>();
+		for (Espectaculo e : espectaculos) {
+			if (!e.isYaFueValuado()) {
+				lista.add(e);
+			}
+		}
+		return  lista;	
+	}
+	
+	public boolean tieneEspectaculosRechazados() {
+		if (espectaculos.isEmpty()) {
+			for (Espectaculo e : espectaculos) {
+				if (!e.isAceptado()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public List<Espectaculo> espectaculosRechazados() {
+		List<Espectaculo> lista = new ArrayList<Espectaculo>();
+		for (Espectaculo e : espectaculos) {
+			if (!e.isAceptado()) {
+				lista.add(e);
+			}
+		}
+		return lista;	
+	}
+
 }
+
+

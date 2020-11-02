@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="logica.Artista, logica.Usuario" %>
+    <%@ page import="logica.Artista, logica.Usuario, logica.Espectaculo" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -21,7 +21,7 @@
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         <br>
         <center>
-        <h3>Datos del usuario</h3>
+        <h3>Datos del artista</h3>
         </center>
         <br>
         <section>
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-3">
                        <div class="card">
-	                       <img class="card-img-top" src="resources/media/usuarios/pimpinela.jpg" class="rounded" width="155"> 
+	                       <img class="card-img-top" src="resources/media/usuarios/artistadefault.jpg" class="rounded" width="155"> 
 	                        
 	                        <% Artista a = (Artista) session.getAttribute("usuario"); %>
 	                        <div class="card-body">
@@ -72,68 +72,73 @@
                             </div>
                         </div>
                         <br>
+                        
+                        <% if (a.tieneEspectaculosAceptados()) {%>
+                        
                         <h4>Espectáculos organizados</h4>
-                        <div class="list-group">
-                            <div class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small>3 days ago</small>
-                              </div>
-                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                              <small><a href="#" class="btn btn-success">Ver espectáculo</a></small>
-                            </div>
-                            <div class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">List group item heading</h5>
-                                  <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                <small><a href="#" class="btn btn-success">Ver espectáculo</a></small>
-                              </div>
-                              
-                        </div>
+                        
+	                        <% for (Espectaculo e : a.espectaculosAceptados()) {  %>
+	                        
+		                    	<div class="card mb-3" style="max-width: 200em;">
+								  <div class="row no-gutters">
+								    <div class="col-md-5">
+								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+								    </div>
+								    <div class="col-md-7">
+								      <div class="card-body">
+								        <h5 class="card-title"><%=e.getNombre()%></h5>
+								        <p><%=e.getDescripcion()%></p> 
+								        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-success card-text">Ver espectaculo</a>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							<% } %>
+						<% } %>					
+                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && a.tieneEspectaculosIngresadosSinAceptar()) {%>
+                        
                         <br>
                         <h4>Espectáculos ingresados</h4>
-                        <div class="list-group">
-                            <div class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small>3 days ago</small>
-                              </div>
-                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                              <small><a href="#" class="btn btn-primary">Ver espectáculo</a></small>
-                            </div>
-                            <div class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">List group item heading</h5>
-                                  <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                <small><a href="#" class="btn btn-primary">Ver espectáculo</a></small>
-                              </div>
-                              
-                        </div>
+                        <% for (Espectaculo e : a.espectaculosIngresadosSinAceptar()) {  %>
+	                        
+		                    	<div class="card mb-3" style="max-width: 200em;">
+								  <div class="row no-gutters">
+								    <div class="col-md-5">
+								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+								    </div>
+								    <div class="col-md-7">
+								      <div class="card-body">
+								        <h5 class="card-title"><%=e.getNombre()%></h5>
+								        <p><%=e.getDescripcion()%></p> 
+								        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-success card-text">Ver espectaculo</a>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							<% } %>
+						<% } %>					
+                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && a.tieneEspectaculosRechazados()){%>
+                        
                         <br>
                         <h4>Espectáculos rechazados</h4>
-                        <div class="list-group">
-                            <div class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                                <small>3 days ago</small>
-                              </div>
-                              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                              <small><a href="#" class="btn btn-danger"">Ver espectáculo</a></small>
-                            </div>
-                            <div class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">List group item heading</h5>
-                                  <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                <small><a href="#" class="btn btn-danger"">Ver espectáculo</a></small>
-                              </div>
-                              
-                        </div>
+                        <% for (Espectaculo e : a.espectaculosRechazados()) {  %>
+	                        
+		                    	<div class="card mb-3" style="max-width: 200em;">
+								  <div class="row no-gutters">
+								    <div class="col-md-5">
+								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+								    </div>
+								    <div class="col-md-7">
+								      <div class="card-body">
+								        <h5 class="card-title"><%=e.getNombre()%></h5>
+								        <p><%=e.getDescripcion()%></p> 
+								        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-success card-text">Ver espectaculo</a>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							<% } %>
+						<% } %>	
                         
                     </div>
                 </div>

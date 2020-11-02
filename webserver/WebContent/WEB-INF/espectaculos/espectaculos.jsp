@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="logica.Plataforma"%>
+<%@page import="logica.Espectaculo"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -13,21 +18,52 @@
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         
         <div class="container">
-            <fieldset class="mt-2">
+        
+            <form class="mt-2" action = "espectaculos" method = "POST">
                 <h2>Plataforma:</h2>
-                    <select class="form-control" id="plataforma" onchange="plataformaSelected(value)">
-                        <option default disabled selected value="">--Elegir Plataforma--</option>
-                        <option value="Twitter Live">Twitter Live</option>
-                        <option value="Facebook Watch">Facebook Watch</option>
-                        <option value="Instagram Live">Instagram Live</option>
-                        <option value="Youtube">Youtube</option>
+                    <select class="form-control" id="plataforma" name = "opcionesPlat" >
+                    <option default disabled selected value="">--Elegir Plataforma--</option> 
+                    <% Map<String, Plataforma> plataformas = (Map<String, Plataforma>)session.getAttribute("plataformas");
+			        	for(String key : plataformas.keySet()){
+						%>
+						<option value="<%= plataformas.get(key).getNombre() %>" id = "idPlat"><%= plataformas.get(key).getNombre() %></option>
+                         <% } %>
                     </select>
-                </select>
-            </fieldset>
+                    <br>
+                    <button id="registrarse" type="submit" class="btn btn-outline-success my-2 my-sm-0 " style="margin-right:5px">Filtrar</button>
+
+                    <br>
+           </form>
+           
         </div>
-        <div id="espectaculos-lista" class="container">
-            
-        </div>
+        <br>
+        
+        
+        
+        <div class = "container">
+	        <%
+	       
+	      	ArrayList<Espectaculo> espectaculos = (ArrayList<Espectaculo>)session.getAttribute("espectaculosPlat");
+	       
+	        int size = espectaculos.size();
+	        int j = 0;
+	        int i = 0;
+	        while(i < size){ %>
+		        
+		       
+	        	<div class="card-deck pt-3">
+			        <%for(j = i; j <= i + 2 && j < size; j++){%>
+						
+				    	<carta-espectaculo  id = "<%=espectaculos.get(j).getPlataforma().getNombre() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
+				    	img = "resources/media/espectaculos/3.jpeg" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista().getNombre() %>></carta-espectaculo>
+				  	<%} %>
+	     		</div>
+			     
+				    
+		 	<%i = j;} %>
+			     
+			
+	    	</div>
 
         
 

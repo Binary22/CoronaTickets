@@ -22,6 +22,10 @@ public class Espectaculo {
 	private boolean aceptado;
 	private String imagen;
 	
+	public String getImagen() {
+		return imagen;
+	}
+
 	public void setYaFueValuado(boolean yaFueValuado) {
 		this.yaFueValuado = yaFueValuado;
 	}
