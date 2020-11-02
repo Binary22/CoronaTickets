@@ -3,6 +3,8 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 import datatypes.DtPaquete;
 import excepciones.NoExistePaqueteException;
@@ -67,6 +69,17 @@ public class HandlerPaquetes {
 		}
 		return ret;
 	}
+	
+	public List<Paquete> buscarPaquetes(String search) {
+		List<Paquete> ret = new ArrayList<Paquete>();
+		for (Entry<String, Paquete> entry : colPaquete.entrySet()) {    
+			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
+				ret.add(entry.getValue());
+			}
+		}
+		return ret;
+	}
+	
 	
 }
 	

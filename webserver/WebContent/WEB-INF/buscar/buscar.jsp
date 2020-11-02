@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.Map, logica.Usuario" %>
+<%@ page import="java.util.List, logica.Espectaculo, logica.Paquete" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -22,36 +22,53 @@
 		    </div>
 		    <div class="col-8">
 		    <br>
-		    <h3>Espectaculos</h3>
-		    <div class="card mb-3" style="max-width: 200em;">
-			  <div class="row no-gutters">
-			    <div class="col-md-5">
-			      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
-			    </div>
-			    <div class="col-md-7">
-			      <div class="card-body">
-			        <h5 class="card-title">nombfun></h5>
-			        <p>nomesp</p>
-			        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-primary card-text">Ver espectaculo</a>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			<h3>Paquetes</h3>
-		     <div class="card mb-3" style="max-width: 200em;">
-			  <div class="row no-gutters">
-			    <div class="col-md-5">
-			      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
-			    </div>
-			    <div class="col-md-7">
-			      <div class="card-body">
-			        <h5 class="card-title">nomb</h5>
-			        <p>desc</p>
-			        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+		    <h2 style="text-align:center">Resultados de la busqueda de "<%=(String) session.getAttribute("search")%>":</h2>
+		    <br>
+		    <% List<Espectaculo> le =  (List<Espectaculo>) session.getAttribute("espectaculos"); 
+		    if (le.isEmpty()) { %>
+		    <h3 style="text-align:center">No hay espectaculos que coincidan con esa busqueda</h3>
+		    <br>
+		    <% } else { %>
+		    	<h3>Espectaculos:</h3>
+			    <% for (Espectaculo e : le) {  %>
+			    <div class="card mb-3" style="max-width: 200em;">
+				  <div class="row no-gutters">
+				    <div class="col-md-5">
+				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+				    </div>
+				    <div class="col-md-7">
+				      <div class="card-body">
+				        <h5 class="card-title"><%=e.getNombre()%></h5>
+				        <p><%=e.getDescripcion()%></p>
+				        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-primary card-text">Ver espectaculo</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<% } %>
+			<% } %>
+			<% List<Paquete> lp =  (List<Paquete>) session.getAttribute("paquetes");
+			if (lp.isEmpty()) { %>
+			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
+			<% } else { %>
+				<h3>Paquetes:</h3>
+				<% for (Paquete p : lp) {  %>
+			     <div class="card mb-3" style="max-width: 200em;">
+				  <div class="row no-gutters">
+				    <div class="col-md-5">
+				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+				    </div>
+				    <div class="col-md-7">
+				      <div class="card-body">
+				        <h5 class="card-title"><%=p.getNombre()%></h5>
+				        <p><%=p.getDescripcion()%></p>
+				        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<% } %>
+			<% } %>
 		    
 		    </div>
 		    <div class="col-2">
