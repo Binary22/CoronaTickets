@@ -53,7 +53,37 @@
             	</div>
             </div>
             <br>
-		    <% List<Espectaculo> le =  (List<Espectaculo>) session.getAttribute("espectaculos"); 
+		    
+			<% List<Paquete> lp =  (List<Paquete>) session.getAttribute("paquetes");
+			if (lp.isEmpty()) { %>
+			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
+			<% } else { %>
+				<h3>Paquetes:</h3>
+				<div id="contenedorpaq">
+				<% for (Paquete p : lp) {  %>
+			     <div class="card mb-3 divpaq" style="max-width: 200em;">
+				  <div class="row no-gutters">
+				    <div class="col-md-5">
+				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:12rem;">
+				    </div>
+				    <div class="col-md-7">
+				      <div class="card-body">
+				      	<div class="d-flex w-100 justify-content-between">
+                        	<h5><%=p.getNombre()%></h5>
+                            <small><%=p.getFechaAlta().toString()%></small>
+                        </div>
+				        <p><%=p.getDescripcion()%></p>
+				        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<% } %>
+				</div>
+			<% } %>
+			
+			
+			<% List<Espectaculo> le =  (List<Espectaculo>) session.getAttribute("espectaculos"); 
 		    if (le.isEmpty()) { %>
 		    <h3 style="text-align:center">No hay espectaculos que coincidan con esa busqueda</h3>
 		    <br>
@@ -75,33 +105,6 @@
 				      
 				        <p><%=e.getDescripcion()%></p>
 				        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				<% } %>
-				</div>
-			<% } %>
-			<% List<Paquete> lp =  (List<Paquete>) session.getAttribute("paquetes");
-			if (lp.isEmpty()) { %>
-			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
-			<% } else { %>
-				<h3>Paquetes:</h3>
-				<div id="contenedorpaq">
-				<% for (Paquete p : lp) {  %>
-			     <div class="card mb-3 divpaq" style="max-width: 200em;">
-				  <div class="row no-gutters">
-				    <div class="col-md-5">
-				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:12rem;">
-				    </div>
-				    <div class="col-md-7">
-				      <div class="card-body">
-				      	<div class="d-flex w-100 justify-content-between">
-                        	<h5><%=p.getNombre()%></h5>
-                            <small><%=p.getFechaAlta().toString()%></small>
-                        </div>
-				        <p><%=p.getDescripcion()%></p>
-				        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
 				      </div>
 				    </div>
 				  </div>
