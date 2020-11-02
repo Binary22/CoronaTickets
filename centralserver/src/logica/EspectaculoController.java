@@ -326,6 +326,15 @@ public class EspectaculoController implements IEspectaculo {
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
 		return espectador.getRegistrosPrevios();
 	}
+	
+	public ArrayList<Registro> obtenerRegistrosPreviosWeb(String nickname) {
+		// TODO Auto-generated method stub
+		this.nickUsuario = nickname;
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Usuario espectador = hu.getUsuario(this.nickUsuario);
+		return espectador.getRegistrosPreviosWeb();
+	}
+	
 	@Override
 	public void canjearRegistros(int[] regsId) throws noSeleccionoTres {
 		// TODO Auto-generated method stub
