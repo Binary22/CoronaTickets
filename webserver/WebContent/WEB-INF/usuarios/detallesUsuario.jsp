@@ -72,7 +72,7 @@
 		                        <% List<Registro> l = u.getRegistros();
 		                        for (Registro r : l) {  %>
 		                       
-			                        <div class="card mb-3" style="max-width: 540px;">
+			                        <div class="card mb-3" style="max-width: 200em;">
 									  <div class="row no-gutters">
 									    <div class="col-md-5">
 									      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
@@ -96,7 +96,7 @@
 	                        <% List<Compra> l = u.getCompraPaquete();
 			                        for (Compra c : l) {  %>
 	                        
-	                        <div class="card mb-3" style="max-width: 540px;">
+	                        <div class="card mb-3" style="max-width: 200em;">
 							  <div class="row no-gutters">
 							    <div class="col-md-5">
 							      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class HandlerEspectaculos {
 	private HashMap<String,Espectaculo> mapEspectaculos;
@@ -125,6 +126,16 @@ public class HandlerEspectaculos {
 			}
 		}
 		return aceptados;
+	}
+	
+	public List<Espectaculo> buscarEspectaculos(String search) {
+		List<Espectaculo> ret = new ArrayList<Espectaculo>();
+		for (Entry<String, Espectaculo> entry : mapEspectaculos.entrySet()) {   
+			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
+				ret.add(entry.getValue());
+			}
+		}
+		return ret;
 	}
 }
 
