@@ -28,15 +28,12 @@
         <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>
-              <% 
-				List<String> espectaculos = (ArrayList) request.getAttribute("espectaculos");
-
-				for(String esp: espectaculos){
-			  %>
               <select class="form-control" name="espectaculo">
+              <%List<String> espectaculos = (ArrayList) request.getAttribute("espectaculos");
+				for(String esp: espectaculos){%>
                 <option><%=esp%></option>
-              </select>
               <%}%>
+              </select>
             </div>
             <div class="form-group">
               <label>Nombre</label>
@@ -53,15 +50,12 @@
             </div>
             <div class="form-group">
                 <label>Artistas invitados</label>
-                <% 
-				List<String> artistas = (ArrayList) request.getAttribute("artistas");
-
-				for(String art: artistas){
-			  	%>
                 <select class="form-control" name="artistasinv" multiple>
+                <%List<String> artistas = (ArrayList) request.getAttribute("artistas");
+				for(String art: artistas){%>
                   <option><%=art%></option>
-                </select>
                 <%}%>
+                </select> 
             </div>
             <div class="form-group">
               <label>Elegir imagen</label>
@@ -69,7 +63,7 @@
               <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
             </div>
 
-            <button type="button" class="btn btn-primary"> Dar de alta la función</button>
+            <button type="submit" class="btn btn-primary"> Dar de alta la función</button>
         </form>
         </div>
         </div>

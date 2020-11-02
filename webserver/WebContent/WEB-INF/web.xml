@@ -159,6 +159,10 @@
         <servlet-name>DetallesUsuario</servlet-name>
         <url-pattern>/detallesUsuario</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/errorPages/500.jsp</location>
+    </error-page>
     <session-config>
         <session-timeout>
             30
