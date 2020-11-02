@@ -90,16 +90,15 @@ public class Altafuncion extends HttpServlet {
         if(!duracion.equals(cero)) {
 	        Fabrica fabrica = Fabrica.getInstance();
 	        IEspectaculo ctrlesp = fabrica.getIEspectaculo();
-	        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(invitados));
+	        ArrayList<String> stringList = new ArrayList<String>();
+	        if(invitados != null) {
+		        for (int i=0; i< invitados.length; i++) {
+		        	stringList.add(invitados[i]);
+		        }
+	        }
 	        try {
 				ctrlesp.elegirEspectaculo(esp);
-				if(stringList.isEmpty()) {
-					stringList = new ArrayList<String>();
-					ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-				}
-				else {
-					ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-				}
+			    ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
 				ctrlesp.ConfirmarAltaFuncion();
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
