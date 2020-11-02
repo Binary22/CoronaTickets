@@ -73,7 +73,7 @@
                   			}
                   			
                   		%>
-                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>"></carta-funcion>
+                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
                     <%} %>
                 </div>
                 
