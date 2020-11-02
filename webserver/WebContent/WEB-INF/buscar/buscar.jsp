@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, logica.Espectaculo, logica.Paquete" %>
+<%@ page import="java.util.List, logica.Espectaculo, logica.Paquete, logica.Plataforma" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -104,6 +104,7 @@
                         </div>
 				      
 				        <p><%=e.getDescripcion()%></p>
+				        <p><%=e.getPlataforma().getNombre()%></p>
 				        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 				      </div>
 				    </div>
