@@ -46,7 +46,7 @@ public class Registro extends HttpServlet {
 		String imagen = req.getParameter("imagen");
 		String esArtista = req.getParameter("esArtista");
 		
-		System.out.print(nickname + nombre + apellido + mail + password + imagen);
+		
 		
 		Fabrica fabrica = Fabrica.getInstance();
         IUsuario ctrlU = fabrica.getIUsuario();
@@ -64,7 +64,7 @@ public class Registro extends HttpServlet {
 			ctrlU.altaUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
 		}
 			ctrlU.confirmarAltaUsuario();
-			System.out.print(nickname + nombre + apellido + mail + date + password + imagen);
+			
 		
 			req.getSession().setAttribute("usuario_logueado", nickname);
 			

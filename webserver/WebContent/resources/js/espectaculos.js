@@ -2,6 +2,10 @@ var obj_csv = {
     size:0,
     dataFile:[]
 };
+
+
+
+
  
 document.querySelector('#plataforma').value="";
 
@@ -59,5 +63,16 @@ var espectaculo5 = ["Pimpinela Pimpinela","Twitter Live","Bien de Familia","El d
 var espectaculo6 = ["Violeta Alcides", "Twitter Live","30 años","Espectáculo conmemorandolos 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31/07/20,"resources/media/espectaculos/6.jpeg"]
 
 function plataformaSelected(value){
-   (value == "Twitter Live") ? cargarDatos([espectaculo3,espectaculo5,espectaculo6]) : espectaculosLista.innerHTML = "";
+   console.log(value);
+	var lista = document.querySelectorAll(".cartita");
+	lista.forEach((i) => filtrar(i, value));
 }
+
+function filtrar(i, value) {
+  if (i.id == value) {
+    i.style.display = "block";
+}else{
+	i.style.display = "none";
+}
+}
+

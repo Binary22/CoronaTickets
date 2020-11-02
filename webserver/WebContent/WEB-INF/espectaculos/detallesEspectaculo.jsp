@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="logica.Espectaculo"%>
+<%@page import="logica.Funcion"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="logica.Paquete"%>
+
 <!doctype = html>
 <html lang="en">
     <head>
@@ -17,6 +25,7 @@
     <body>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         
+        <%Espectaculo espect = (Espectaculo)session.getAttribute("espectaculo_selected");%>
         <div id="espectaculo" class="container">
             <div class="row">
                 <div class="col-sm-6 pt-5 pb-5">
@@ -24,36 +33,58 @@
                         <img class="card-img-top" src="resources/media/espectaculos/5.jpeg" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"></slot>Espectaculo:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Bien de Familia</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
                             <h5 class="card-title"></slot>Artista:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getArtista().getNombre() %></h6>
                             <h5 class="card-title">Descripcion:</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">El dúo estará presentandosus más sonados éxitos y también nuevas canciones.</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDescripcion() %></h6>
                             <h5 class="card-title">Duracion:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">150</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDuracion() %></h6>
                             <h5 class="card-title"></slot>Link:</h5>
-                            <h6 href="https://twitter.com/PimpinelaNet/" class="card-subtitle mb-2 text-muted">Twitter.com/PimpinelaNet</h6>
+                            <h6 href="https://twitter.com/PimpinelaNet/" class="card-subtitle mb-2 text-muted"><%=espect.getUrl() %></h6>
                             <h5 class="card-title"></slot>Precio:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">$500</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">$<%=espect.getCosto() %></h6>
                             <h5 class="card-title"></slot>Plataforma:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Twitter Live</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getPlataforma().getNombre() %></h6>
                             <h5 class="card-title"></slot>Espectadores:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">De 10 a 500</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">De <%=espect.getMinEspectadores() %> a <%=espect.getMaxEspectadores() %></h6>
                             <h5 class="card-title"></slot>Fecha de alta:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">08/07/2020</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getFechaReg() %></h6>
                         </div>  
                     </div>
                 </div>
+                
+                
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
+               
                     <h2 class="title">Funciones:</h2>
-                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo="Bien de Familia - A" artista1="Alcides Violeta"></carta-funcion>
-                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo="Bien de Familia - B" artista1="La Triple Nelson" ></carta-funcion>
-                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo="Bien de Familia - C" ></carta-funcion>
+                    <%Map<String,Funcion> funciones = espect.getAllFunciones();
+                    ArrayList<String> nombres = new ArrayList<String>(funciones.keySet());
+                    nombres.sort(String::compareToIgnoreCase);
+                  		for(String key : nombres){
+                  			String var = "";
+                  			ArrayList<String> artistas = funciones.get(key).getArtistasInvitadosWeb();
+                  			if(!artistas.isEmpty()){
+	                  			int fin = artistas.size()-1;
+	                  			for(int i = 0; i < fin; i++){
+	                  				var = var + artistas.get(i) + ",";
+	                  			}
+	                  			var = var + artistas.get(fin);
+                  			}
+                  			
+                  		%>
+                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>"></carta-funcion>
+                    <%} %>
                 </div>
+                
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
+                <%List<Paquete> paquetes = (List<Paquete>)session.getAttribute("paquetes");
+                  if(!paquetes.isEmpty()){%>
                     <h2 class="title">Paquetes:</h2>
-                    <carta-paquete img="resources/media/paquetes/1.jpeg" titulo="Paquete Solistas" descripcion="Paquete de solistas." precio="30" class="card carta"></carta-paquete>
-                    <carta-paquete img="resources/media/paquetes/2.jpg" titulo="Paquete Solistas" descripcion="Paquete de solistas." precio="30" class="card carta"></carta-paquete>
+                    <%for(int i = 0; i < paquetes.size(); i++){ %>
+                    <carta-paquete img="resources/media/paquetes/1.jpeg" titulo="<%=paquetes.get(i).getNombre() %>" descripcion="<%=paquetes.get(i).getDescripcion() %>" precio="<%=paquetes.get(i).getDescuento() %>" class="card carta"></carta-paquete>
+                    <%} %>
+                <%} %>
                 </div>
             </div>
         </div>

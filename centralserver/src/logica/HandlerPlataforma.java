@@ -10,6 +10,14 @@ public class HandlerPlataforma {
 
     private HandlerPlataforma() {
     	colPlataforma = new HashMap<String, Plataforma>();
+    	/*Plataforma p1 = new Plataforma("Twitter", "", "");
+    	Plataforma p2 = new Plataforma("Facebook", "", "");
+    	Plataforma p3 = new Plataforma("Twitch", "", "");
+    	Plataforma p4 = new Plataforma("YouTube", "", "");
+    	colPlataforma.put(p1.getNombre(), p1);
+    	colPlataforma.put(p2.getNombre(), p2);
+    	colPlataforma.put(p3.getNombre(), p3);
+    	colPlataforma.put(p4.getNombre(), p4);*/
     };
 	
     public static HandlerPlataforma getInstance() {

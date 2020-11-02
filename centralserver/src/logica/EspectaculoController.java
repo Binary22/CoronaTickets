@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
@@ -543,6 +545,8 @@ public class EspectaculoController implements IEspectaculo {
 		}
 		return ingresados;
 	}
+	
+	
 	
 	public void aceptarRechazar(String nombreEspect, boolean aceptado) {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
