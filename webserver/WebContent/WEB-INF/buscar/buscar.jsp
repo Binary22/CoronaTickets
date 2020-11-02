@@ -64,7 +64,7 @@
 			     <div class="card mb-3 divpaq" style="max-width: 200em;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
-				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:12rem;">
+				      <img src="resources/media/espectaculos/maracas.jpg" class="card-img" style="object-fit: cover; height:12rem;">
 				    </div>
 				    <div class="col-md-7">
 				      <div class="card-body">
@@ -94,7 +94,7 @@
 			    <div class="card mb-3 divesp" style="max-width: 200em;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
-				      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:12rem;">
+				      <img src="resources/media/espectaculos/rock.jpg" class="card-img" style="object-fit: cover; height:12rem;">
 				    </div>
 				    <div class="col-md-7">
 				      <div class="card-body">
