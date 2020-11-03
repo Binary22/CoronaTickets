@@ -126,14 +126,6 @@ public class CargarDatos extends HttpServlet {
 		ec.aceptarRechazar("Grandes Éxitos 2020", false);
 		
 		HandlerEspectaculos handlerE = HandlerEspectaculos.getInstance();
-		handlerE.agregarCategoriaAEspectaculo("Los Village Volvieron", "Rock en Inglés");
-		handlerE.agregarCategoriaAEspectaculo("Global Spirit", "Rock en Inglés");
-		handlerE.agregarCategoriaAEspectaculo("Springsteen on Broadway", "Rock en Inglés");
-		handlerE.agregarCategoriaAEspectaculo("Memphis Blues World", "Solistas");
-		handlerE.agregarCategoriaAEspectaculo("Grandes Éxitos 2020", "Solistas");
-		handlerE.agregarCategoriaAEspectaculo("30 años", "Música Tropical");
-		handlerE.agregarCategoriaAEspectaculo("Bien de Familia", "Bandas Latinas");
-		handlerE.agregarCategoriaAEspectaculo("Llega a Casa", "Bandas Latinas");
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(relPath + "data/funciones.csv"));
@@ -454,7 +446,7 @@ public class CargarDatos extends HttpServlet {
 		he.agregarCategoriaAEspectaculo("Springsteen on Broadway","Rock en Ingles");
 		he.agregarCategoriaAEspectaculo("Bien de Familia","Bandas Latinas");
 		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
-		he.agregarCategoriaAEspectaculo("Grandes Exitos 2020","Solistas");
+		he.agregarCategoriaAEspectaculo("Grandes Éxitos 2020","Solistas");
 		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
 		
     // aca termina el cargar datos
