@@ -42,34 +42,38 @@ public class Altafuncion extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
-		objSesion.setAttribute("escero",false);
-		objSesion.setAttribute("nombreexiste",false);
-		String nickname = (String)objSesion.getAttribute("usuario_logueado");
-		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-		List<String> artistas = husers.getNombresArtista();
-		List<String> artistasinvi = new ArrayList<String>();
-		for (int i=0; i< artistas.size(); i++) {
-			if(!artistas.get(i).equals(nickname)){
-				artistasinvi.add(artistas.get(i));
+		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
+			objSesion.setAttribute("escero",false);
+			objSesion.setAttribute("nombreexiste",false);
+			String nickname = (String)objSesion.getAttribute("usuario_logueado");
+			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+			List<String> artistas = husers.getNombresArtista();
+			List<String> artistasinvi = new ArrayList<String>();
+			for (int i=0; i< artistas.size(); i++) {
+				if(!artistas.get(i).equals(nickname)){
+					artistasinvi.add(artistas.get(i));
+				}
+			}	
+			objSesion.setAttribute("artistas", artistasinvi);
+			
+			HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+			Map<String,Espectaculo> espectaculos = hesp.getEspectaculos();
+			Map<String,Espectaculo> espectaculosorg = new HashMap<String,Espectaculo>();
+			for (String key : espectaculos.keySet()) {
+				if(espectaculos.get(key).getArtista().getNickname().equals(nickname)){
+					espectaculosorg.put(key,espectaculos.get(key));
+				}		
 			}
-		}	
-		objSesion.setAttribute("artistas", artistasinvi);
-		
-		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		Map<String,Espectaculo> espectaculos = hesp.getEspectaculos();
-		Map<String,Espectaculo> espectaculosorg = new HashMap<String,Espectaculo>();
-		for (String key : espectaculos.keySet()) {
-			if(espectaculos.get(key).getArtista().getNickname().equals(nickname)){
-				espectaculosorg.put(key,espectaculos.get(key));
-			}		
+			List<String> espectaculosorgreal = new ArrayList<String>();
+			for(String key2 : espectaculosorg.keySet()) {
+				espectaculosorgreal.add(key2);
+			}
+			objSesion.setAttribute("espectaculos", espectaculosorgreal);
+			
+			req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
 		}
-		List<String> espectaculosorgreal = new ArrayList<String>();
-		for(String key2 : espectaculosorg.keySet()) {
-			espectaculosorgreal.add(key2);
-		}
-		objSesion.setAttribute("espectaculos", espectaculosorgreal);
-		
-		req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
+		else
+			resp.sendRedirect("registro");
 	}
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

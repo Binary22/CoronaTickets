@@ -10,6 +10,7 @@ import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
 import datatypes.DtUsuario;
+import excepciones.UsuarioPaqueteComprado;
 
 public class Usuario {
 	private String nickname;
@@ -221,6 +222,12 @@ public class Usuario {
     		}
     	}
     	return valesCanjear;
+	}
+	public void agregarcompra(Compra comprado) throws UsuarioPaqueteComprado {
+		if(!this.compraPaquete.contains(comprado))
+			this.compraPaquete.add(comprado);
+		else
+			throw new UsuarioPaqueteComprado("La compra " + comprado.getPaquete().getNombre() + " ya fue realizada"); 
 	}
 	
 

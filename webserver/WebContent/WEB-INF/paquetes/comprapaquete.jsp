@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,15 +22,14 @@
             <h4>Compra de paquete de espectáculos </h4>
             <br>
                     
-            <form>
+            <form action="comprapaquete" method="POST">
                 <div class="form-group">
                     <label>Paquete</label>
-                    <select class="form-control">
-                      <option>Paquete 1</option>
-                      <option>Paquete 2</option>
-                      <option>Paquete 3</option>
-                      <option selected="selected">Paquete 4</option>
-                      <option>Paquete 5</option>
+                    <select class="form-control" name="paquetes">
+                    <%List<String> paquetes = (ArrayList) session.getAttribute("paquetes");
+					for(String paq: paquetes){%>
+                      <option><%=paq%></option>
+                    <%}%>
                     </select>
                 </div>
 
