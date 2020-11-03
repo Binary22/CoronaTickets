@@ -49,4 +49,6 @@ public interface IEspectaculo {
 	
 	public ArrayList<String> listarEspectaculosIngresados();
 	public void aceptarRechazar(String nombreEspect, boolean aceptado);
+	
+	public ArrayList<Registro> obtenerRegistrosPreviosWeb(String nickname);
 }
