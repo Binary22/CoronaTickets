@@ -68,4 +68,27 @@ $(document).ready(function() {
  
 });
 
+// esto es el codigo para filtrar espectaculos (y ocultar paquetes)
+
+// ocultar paquetes
+$('#filtro').change(function () {
+	if ($(this).val() === "todo") {	
+	    $("#contenedorpaq").css("display","block");
+	} else {
+		$("#contenedorpaq").css("display", "none");
+	}
+    
+});
+
+$(document).ready(function() {
+	if ($(this).val() === "todo") {	
+	    $("#contenedorpaq").css("display","block");
+	} else {
+		$("#contenedorpaq").css("display", "none");
+	}
+    
+});
+
+
+
 

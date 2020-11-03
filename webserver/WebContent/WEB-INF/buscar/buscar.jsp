@@ -40,16 +40,16 @@
 	            	<form>
 		                <div class="form-group">
 		                    <label>Filtrar por:</label>
-		                    <select class="form-control">
-		                      <option selected="selected">Todas las categorias y plataformas</option>
+		                    <select class="form-control" id="filtro">
+		                      <option value="todo" selected="selected">Todas las categorias y plataformas</option>
 		                      <optgroup label="Categorias">
 		                      	<% for (String s : (Set<String>) session.getAttribute("categorias")) { %>
-							  	<option><%=s%></option>
+							  	<option value="<%=s%>"><%=s%></option>
 							  	<% } %>
 							  </optgroup>
 							  <optgroup label="Plataformas">
 							  	<% for (String s : (Set<String>) session.getAttribute("plataformas")) { %>
-							  	<option><%=s%></option>
+							  	<option value="<%=s%>"><%=s%></option>
 							    <% } %>
 							  </optgroup>		            	                      
 		                    </select>
@@ -63,8 +63,8 @@
 			if (lp.isEmpty()) { %>
 			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
 			<% } else { %>
+				<div id="contenedorpaq" style="display:visible;">
 				<h3>Paquetes:</h3>
-				<div id="contenedorpaq">
 				<% for (Paquete p : lp) {  %>
 			     <div class="card mb-3 divpaq" style="max-width: 200em;">
 				  <div class="row no-gutters">
@@ -93,8 +93,8 @@
 		    <h3 style="text-align:center">No hay espectaculos que coincidan con esa busqueda</h3>
 		    <br>
 		    <% } else { %>
-		    	<h3>Espectaculos:</h3>
 		    	<div id="contenedoresp">
+		    	<h3>Espectaculos:</h3>
 			    <% for (Espectaculo e : le) {  %>
 			    <div class="card mb-3 divesp" style="max-width: 200em;">
 				  <div class="row no-gutters">
