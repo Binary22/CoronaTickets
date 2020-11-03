@@ -83,7 +83,7 @@
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
@@ -105,7 +105,7 @@
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
@@ -127,7 +127,7 @@
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
