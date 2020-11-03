@@ -11,7 +11,7 @@
         
         <div class="container">
         <br>
-            <h3>Próximos Espectáculos</h3>  
+            <h3>Espectáculos seleccionados</h3>  
         <br>
         <%
        	Collection<Espectaculo> espectaculos = (Collection<Espectaculo>) session.getAttribute("espectaculos");
