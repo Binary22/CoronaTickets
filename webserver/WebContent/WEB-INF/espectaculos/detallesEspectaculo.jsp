@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-sm-6 pt-5 pb-5">
                     <div class="card" style="width: 100%;">
-                        <img class="card-img-top" src="resources/media/espectaculos/5.jpeg" alt="...">
+                        <img class="card-img-top" src="<%=espect.getImagen() %>" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"></slot>Espectaculo:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
@@ -73,7 +73,7 @@
                   			}
                   			
                   		%>
-                    <carta-funcion img="resources/media/espectaculos/3.jpeg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
+                    <carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
                     <%} %>
                 </div>
                 
@@ -82,7 +82,7 @@
                   if(!paquetes.isEmpty()){%>
                     <h2 class="title">Paquetes:</h2>
                     <%for(int i = 0; i < paquetes.size(); i++){ %>
-                    <carta-paquete img="resources/media/paquetes/1.jpeg" titulo="<%=paquetes.get(i).getNombre() %>" descripcion="<%=paquetes.get(i).getDescripcion() %>" precio="<%=paquetes.get(i).getDescuento() %>" class="card carta"></carta-paquete>
+                    <carta-paquete img="<%=paquetes.get(i).getImagen()%>" titulo="<%=paquetes.get(i).getNombre() %>" descripcion="<%=paquetes.get(i).getDescripcion() %>" precio="<%=paquetes.get(i).getDescuento() %>" class="card carta"></carta-paquete>
                     <%} %>
                 <%} %>
                 </div>
