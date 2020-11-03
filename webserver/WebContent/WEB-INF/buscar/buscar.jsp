@@ -116,7 +116,7 @@
 			    <div class="card mb-3 divesp cardespectaculo <%=strclaves%>" style="max-width: 200em; display:block;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
-				      <img src="resources/media/espectaculos/rock.jpg" class="card-img" style="object-fit: cover; height:12rem;">
+				      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:12rem;">
 				    </div>
 				    <div class="col-md-7">
 				      <div class="card-body">

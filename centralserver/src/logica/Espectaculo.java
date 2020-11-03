@@ -62,6 +62,7 @@ public class Espectaculo {
 		this.yaFueValuado = false;
 		this.aceptado = false;
 		this.categorias = new ArrayList<String>();
+		this.imagen = "resources/media/espectaculos/rock.jpg";
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,

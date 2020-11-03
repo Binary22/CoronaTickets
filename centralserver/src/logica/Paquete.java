@@ -23,6 +23,7 @@ public class Paquete {
 		this.descripcion = descripcion;
 		this.fechaAlta = fechaalta;
 		this.espectaculos = new HashMap<String,Espectaculo>();
+		this.imagen = "resources/media/espectaculos/maracas.jpg";
 	}
 	
 	public void addEspectaculo(Espectaculo e) {
