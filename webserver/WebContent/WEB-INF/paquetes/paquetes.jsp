@@ -18,12 +18,13 @@
 	        	Paquete value = entry.getValue();
 
         		String descripcion = value.getDescripcion();
-        	
+        		String imagen = value.getImagen();
+        		
         		int descuento = value.getDescuento();
         		 if ((i % 3) == 0) { %>
         		<div class="card-deck pt-3">
         		<% } %>
-        		<carta-paquete img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="<%=descripcion%>" precio="<%= descuento %>" titulo="<%=key%>"></carta-paquete>
+        		<carta-paquete img="<%= imagen %>" descripcion="<%=descripcion%>" precio="<%= descuento %>" titulo="<%=key%>"></carta-paquete>
 				
         		<% i++; %>
         <% } %>

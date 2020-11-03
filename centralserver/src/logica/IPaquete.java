@@ -13,4 +13,5 @@ public interface IPaquete {
 	public void seleccionarPaquete(String nombre) throws NoExistePaqueteException;
 	public void elegirEspectaculo(String nomEspectaculo);
 	public void confirmarAgregarEspectAPaquete();
+	public void crearPaqueteWeb(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta, String imagen) throws PaqueteConMismoNombreException;
 }

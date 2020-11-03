@@ -26,8 +26,13 @@ public class HandlerPaquetes {
     }
     
 	public Paquete crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta) {
-		Paquete p= new Paquete(nombre, fechaini, fechafin, desc, descrip, fechaalta);
-		return p;
+		Paquete paqueteNuevo= new Paquete(nombre, fechaini, fechafin, desc, descrip, fechaalta);
+		return paqueteNuevo;
+	}
+	
+	public Paquete crearPaqueteWeb(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta, String imagen) {
+		Paquete paqueteNuevo= new Paquete(nombre, fechaini, fechafin, desc, descrip, fechaalta, imagen);
+		return paqueteNuevo;
 	}
 //	public ArrayList<DtPaquete> getPaquetesDt(){
 //		//TODO
