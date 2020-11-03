@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
               <label>URL*</label>
-              <input required name=url"" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
+              <input required name="url" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
             </div>
             <div class="form-group">
               <label>Categorias*</label>
