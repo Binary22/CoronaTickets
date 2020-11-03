@@ -42,7 +42,7 @@ public class Altafuncion extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
-		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 			objSesion.setAttribute("escero",false);
 			objSesion.setAttribute("nombreexiste",false);
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");

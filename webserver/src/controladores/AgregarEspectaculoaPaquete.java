@@ -38,7 +38,7 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
-    	if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+    	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 	    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
 	    	
 	        

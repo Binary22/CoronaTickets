@@ -36,7 +36,7 @@ public class EspectaculosDePlat extends HttpServlet {
     
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
-    	if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+    	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 	    	String platElegida = (String) objSesion.getAttribute("plataformaelegida");
 	    	
 	    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
