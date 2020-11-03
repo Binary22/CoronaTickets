@@ -86,6 +86,11 @@
                             <small><%=p.getFechaAlta().toString()%></small>
                         </div>
 				        <p><%=p.getDescripcion()%></p>
+				        <ul>
+				        <% for (Espectaculo e : p.getEspectaculos().values()) { %>
+				        	<li><%=e.getNombre()%> | <%=e.getArtista().getNickname()%></li>
+				        <% } %>
+				        </ul>
 				        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
 				      </div>
 				    </div>
