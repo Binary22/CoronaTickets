@@ -51,7 +51,10 @@
             <label>Fecha y hora</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input type="date" name="fecha" class="form-control" required>
+              	<script>
+              	fecha.min = new Date().toISOString().split("T")[0];
+              	</script>
+                <input type="date" id="fecha" name="fecha" class="form-control" required>
               </div>
               <div class="form-group col-md-6">
                 <input type="time" name="hora" class="form-control" required>

@@ -61,8 +61,7 @@ public class Altafuncion extends HttpServlet {
 		for (String key : espectaculos.keySet()) {
 			if(espectaculos.get(key).getArtista().getNickname().equals(nickname)){
 				espectaculosorg.put(key,espectaculos.get(key));
-			}	
-				
+			}		
 		}
 		List<String> espectaculosorgreal = new ArrayList<String>();
 		for(String key2 : espectaculosorg.keySet()) {

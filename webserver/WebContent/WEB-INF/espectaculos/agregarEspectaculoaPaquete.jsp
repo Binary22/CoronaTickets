@@ -34,31 +34,32 @@
             <form action="agregarEspectaculoaPaquete" method="POST">
                 <div class="form-group">
                     <label>Paquetes</label>
-                    <select class="form-control" id="paquete" name="paquetes">
+                    <select class="form-control" id="paquete" name="paquetes" required>
                         <%List<String> paquetes = (ArrayList) session.getAttribute("paquetes");
 						for(String paq: paquetes){%>
                   		<option><%=paq%></option>
                   		<%}%>
                     </select>
-                    <br>
-                    <button type="submit" class="btn btn-success" style="display: inline-block">Elegir</button>
                 </div>
-                <%if((Boolean)session.getAttribute("eligiopaquete")){%>
                 <div class="form-group">
                     <label>Plataformas</label>
-                    <select class="form-control" id="plataforma" onchange="mostrarEspectaculos(value)">
-                        <option default disabled selected value="">--Elegir plataforma--</option>
-                        <option value="Instagram Live">Instagram Live</option>
+                    <select class="form-control" id="plataforma" name="plataformas" required>
+                        <%List<String> plataformas = (ArrayList) session.getAttribute("plataformas");
+						for(String plat: plataformas){%>
+                  		<option><%=plat%></option>
+                  		<%}%>	
                     </select>
                     <br>
                     <button type="submit" class="btn btn-success" style="display: inline-block">Elegir</button>
                 </div>                
-                <%}%>
                 <%if((Boolean)session.getAttribute("eligioplataforma")){%>
 	            <div class="form-group">
 				    <label for="exampleFormControlSelect2">Espectáculos</label>
-				    <select multiple class="form-control" id="Espectaculos">
-				      <option>Los Village Volvieron</option>
+				    <select multiple class="form-control" id="Espectaculos" name="espectaculos" required>
+				      	<%List<String> espectaculos = (ArrayList) session.getAttribute("espectaculos");
+						for(String esp: espectaculos){%>
+                  		<option><%=esp%></option>
+                  		<%}%>	
 				    </select>
 				</div>				
 				<button type="submit" class="btn btn-primary" style="display: inline-block">Confirmar</button>

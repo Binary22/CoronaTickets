@@ -17,6 +17,7 @@ import logica.Espectaculo;
 import logica.Fabrica;
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
+import logica.HandlerPlataforma;
 import logica.HandlerUsuarios;
 import logica.IPaquete;
 
@@ -37,7 +38,6 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
-		objSesion.setAttribute("eligiopaquete",false);
 		objSesion.setAttribute("eligioplataforma",false);
     	HandlerPaquetes hp = HandlerPaquetes.getInstance();
     	
@@ -48,6 +48,25 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 			paqueteslist.add(paquetes.get(i));
 		}	
 		objSesion.setAttribute("paquetes",paqueteslist);	
+
+		HandlerPlataforma hplat = HandlerPlataforma.getInstance();
+		List<String> plataformas = hplat.getNombres();
+		List<String> plataformaslist = new ArrayList<String>();
+		for (int i=0; i< plataformas.size(); i++) {
+			plataformaslist.add(plataformas.get(i));
+		}
+		objSesion.setAttribute("plataformas",plataformaslist);
+		
+		if(req.getParameter("plataformas") != null) {
+			HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+			Map<String,Espectaculo> espectaculos = hesp.getEspectaculosPlataforma(req.getParameter("plataformas"));
+			List<String> espectaculosList = new ArrayList<String>();
+			for (String key : espectaculos.keySet()) {
+				espectaculosList.add(espectaculos.get(key).getNombre());
+			}
+			objSesion.setAttribute("espectaculos",espectaculosList);
+			objSesion.setAttribute("eligioplataforma",true);
+		}	
     	req.getRequestDispatcher("/WEB-INF/espectaculos/agregarEspectaculoaPaquete.jsp").forward(req, resp);
 	}
     
