@@ -33,7 +33,13 @@
             El nombre que deséa utilizar ya se encuentra en uso.
           </div> 
 		<%}%>
-		       
+		<%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha debe ser igual o posterior a la actual.
+          </div>
+        <%}%>
+		
+		<br>   
         <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>

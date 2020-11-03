@@ -25,7 +25,13 @@
             El nombre del paquete ya se encuentra en uso.
           </div>
           <%}%>
-                
+       	<%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha de inicio debe ser mayor o igual a la fecha actual y menor o igual a la fecha de finalización.
+          </div>
+        <%}%>
+         
+        <br>       
         <form action="crearPaquete" method="POST">
             <div class="form-group">
               <label>Nombre</label>

@@ -103,6 +103,16 @@ public class HandlerEspectaculos {
 		return mapEspectaculos;
 	}
 	
+	public HashMap<String,Espectaculo> getEspectaculosDePlataforma(String nomPlata) {
+		HashMap<String,Espectaculo> espPlat = new HashMap<String,Espectaculo>();
+		for (String key : mapEspectaculos.keySet()) {
+			if(mapEspectaculos.get(key).getPlataforma().getNombre().equals(nomPlata)) {
+				espPlat.put(key, mapEspectaculos.get(key));
+			}	
+		}
+		return espPlat;
+	}
+	
 	public boolean existeNombreFuncion(String f) {
 		for (String key : mapEspectaculos.keySet()) {
 			HashMap<String,Funcion> funciones = mapEspectaculos.get(key).getAllFunciones();
