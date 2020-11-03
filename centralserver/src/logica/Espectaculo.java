@@ -40,7 +40,7 @@ public class Espectaculo {
 		this.imagen = imagen;
 	}
 	
-	public ArrayList<String> listarEspectaculos() {
+	public ArrayList<String> listarCategorias() {
 		if (this.categorias == null) {
 			this.categorias = new ArrayList<String>();
 		}
