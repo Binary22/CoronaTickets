@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
+import logica.HandlerPlataforma;
 import logica.Espectaculo;
+import logica.HandlerCategorias;
 import logica.Paquete;
 
 /**
@@ -37,9 +40,15 @@ public class Buscar extends HttpServlet {
 		HttpSession objSesion = req.getSession();
 		String search = req.getParameter("busqueda");
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+		HandlerCategorias hc = HandlerCategorias.getInstance();
+		HandlerPlataforma hplat = HandlerPlataforma.getInstance();
 		List<Espectaculo> le = he.buscarEspectaculos(search);
-		List<Paquete> lp = hp.buscarPaquetes(search);
+		List<Paquete> lp = hpaq.buscarPaquetes(search);
+		Set<String> categorias = hc.getCategorias().keySet();
+		Set<String> plataformas = hplat.getColPlataforma().keySet();
+		objSesion.setAttribute("plataformas", plataformas);
+		objSesion.setAttribute("categorias", categorias);
 		objSesion.setAttribute("search", search);
 		objSesion.setAttribute("espectaculos", le);
 		objSesion.setAttribute("paquetes", lp);
