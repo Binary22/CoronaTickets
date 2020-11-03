@@ -34,7 +34,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">Cyndi Lauper</h6>
                         <p id="desc" class="card-text">Espectáculo promoviendo álbum Memphis Blues.</p>
                         <ul class="list-group mt-auto list-group-horizontal">
-                            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                            <a href="detallesEspectaculo?name=Memphis Blues World" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                             <li id="precio" class="list-group-item">$800</li>
                         </ul>
                     </div>
@@ -50,7 +50,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
                         <p id="desc" class="card-text">El dúo estará presentando sus más sonados éxitos y también nuevas canciones.</p>
                         <ul class="list-group mt-auto list-group-horizontal">
-                            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                            <a href="detallesEspectaculo?name=Bien de Familia" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                             <li id="precio" class="list-group-item">$500</li>
                         </ul>
                     </div>
@@ -65,7 +65,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">Violeta Alcides</h6>
                         <p id="desc" class="card-text">Espectáculo conmemorandolos 30 años de Violeta.</p>
                         <ul class="list-group mt-auto list-group-horizontal">
-                            <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                            <a href="detallesEspectaculo?name=30 años" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                             <li id="precio" class="list-group-item">$450</li>
                         </ul>
                     </div>
@@ -90,7 +90,7 @@
                           <h6 class="card-subtitle mb-2 text-muted">Cyndi Lauper</h6>
                           <p id="desc" class="card-text">Espectáculo promoviendo álbum Memphis Blues.</p>
                           <ul class="list-group mt-auto list-group-horizontal">
-                              <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                              <a href="detallesEspectaculo?name=Memphis Blues World" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                               <li id="precio" class="list-group-item">$800</li>
                           </ul>
                       </div>
@@ -106,7 +106,7 @@
                           <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
                           <p id="desc" class="card-text">El dúo estará presentando sus más sonados éxitos y también nuevas canciones.</p>
                           <ul class="list-group mt-auto list-group-horizontal">
-                              <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                              <a href="detallesEspectaculo?name=Bien de Familia" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                               <li id="precio" class="list-group-item">$500</li>
                           </ul>
                       </div>
@@ -121,7 +121,7 @@
                           <h6 class="card-subtitle mb-2 text-muted">Violeta Alcides</h6>
                           <p id="desc" class="card-text">Espectáculo conmemorandolos 30 años de Violeta.</p>
                           <ul class="list-group mt-auto list-group-horizontal">
-                              <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                              <a href="detallesEspectaculo?name=30 años" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                               <li id="precio" class="list-group-item">$450</li>
                           </ul>
                       </div>
@@ -145,7 +145,7 @@
                           <h6 class="card-subtitle mb-2 text-muted">Cyndi Lauper</h6>
                           <p id="desc" class="card-text">Espectáculo promoviendo álbum Memphis Blues.</p>
                           <ul class="list-group mt-auto list-group-horizontal">
-                              <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                              <a href="detallesEspectaculo?name=Memphis Blues World" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                               <li id="precio" class="list-group-item">$800</li>
                           </ul>
                       </div>
@@ -161,7 +161,7 @@
                           <h6 class="card-subtitle mb-2 text-muted">Pimpinela Pimpinela</h6>
                           <p id="desc" class="card-text">El dúo estará presentando sus más sonados éxitos y también nuevas canciones.</p>
                           <ul class="list-group mt-auto list-group-horizontal">
-                              <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                              <a href="detallesEspectaculo?name=Bien de Familia" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                               <li id="precio" class="list-group-item">$500</li>
                           </ul>
                       </div>
@@ -176,7 +176,7 @@
                           <h6 class="card-subtitle mb-2 text-muted">Violeta Alcides</h6>
                           <p id="desc" class="card-text">Espectáculo conmemorandolos 30 años de Violeta.</p>
                           <ul class="list-group mt-auto list-group-horizontal">
-                              <a href="detallesEspectaculo" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
+                              <a href="detallesEspectaculo?name=30 años" class="list-group-item card-link active flex-fill">Ver Espectaculo</a>
                               <li id="precio" class="list-group-item">$450</li>
                           </ul>
                       </div>
