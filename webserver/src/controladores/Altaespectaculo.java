@@ -2,6 +2,7 @@ package controladores;
 
 import logica.Fabrica;
 import logica.HandlerCategorias;
+import logica.HandlerEspectaculos;
 import logica.IEspectaculo;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -84,7 +85,18 @@ public class Altaespectaculo extends HttpServlet {
     							url, Float.parseFloat(costo), hoy, cats2, imagen);
     	
     	ctrlE.confirmarAltaEspectaculo();
-    	resp.sendRedirect("altafuncion");
+    	// aca NO se estan guardando las imagenes y categorias, porque el confirmarAltaEspec no guarda 
+    	// ni usuarios ni categorias, por eso es necesario esto 
+    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+    	if (imagen != "") {
+    		he.getEspectaculo(nombre).setImagen(imagen);
+    	}
+    	if (cats != null) {
+    		for (String c : cats ) {
+    			he.getEspectaculo(nombre).addCategoria(c);
+    		}
+    	}
+    	resp.sendRedirect("home");
 
     	} catch(NombreEspectaculoExisteException e) {
     		e.printStackTrace();

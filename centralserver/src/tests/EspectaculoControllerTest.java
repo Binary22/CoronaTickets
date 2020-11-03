@@ -81,15 +81,15 @@ class EspectaculoControllerTest {
 		artistas.add("vpeople");
 		artistas.add("lospimpi");
 		try {
-		ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(),artistas, LocalDate.now());
+		ie.altaFuncion("myfuncion322", LocalDate.of(2020, 10, 10), LocalTime.now(), artistas, LocalDate.now());
 		ie.ConfirmarAltaFuncion();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion"));
+		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion322"));
 		//Test que los artistas verdaderamente se agreguen a la funcion.
-		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion").listarArtistas().contains("vpeople"));
-		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion").getArtistasInvitados().contains(hu.getUsuario("vpeople")));
+		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion322").listarArtistas().contains("lospimpi"));
+		assertTrue(he.getEspectaculo("Los Village Volvieron").getFuncion("myfuncion322").getArtistasInvitados().contains(hu.getUsuario("lospimpi")));
 		
 	};
 	
@@ -369,7 +369,28 @@ class EspectaculoControllerTest {
 		ArrayList<String> ingresados = ie.listarEspectaculosIngresados();
 		assertFalse(ingresados.contains("Los Village Volvieron"));
 	}
-
+	
+	@Test
+	void testFechaInvalida() {
+		try {
+			ie.elegirEspectaculo("Memphis Blues World");
+			ie.elegirFuncion("Memphis Blues World - A");
+			ie.esFechaInvalida("Memphis Blues World", LocalDate.of(2020, 10, 10));
+		} catch (fechaPosterior e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		assertThrows(fechaPosterior.class, () -> ie.esFechaInvalida("Memphis Blues World", LocalDate.of(2020, 10, 10)));
+	
+	}
+	
+	@Test
+	void testListarCategorias() {
+		assertFalse(ie.listarCategorias().isEmpty());
+		
+		assertFalse(ie.listarCategoriasEspectaculo("Llega a Casa").isEmpty());
+	}
 	/*
 	
 

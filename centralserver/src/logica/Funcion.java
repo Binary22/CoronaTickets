@@ -72,7 +72,7 @@ public class Funcion {
 	}
 	public ArrayList<String> listarArtistas() {
 		ArrayList<String> lista = new ArrayList<String>();
-		for(Usuario a : artistasInvitados) {
+		for (Usuario a : artistasInvitados) {
 			lista.add(a.getNickname());
 		}
 		return lista;

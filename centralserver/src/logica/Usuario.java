@@ -187,6 +187,9 @@ public class Usuario {
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();
 		this.password = password;
+		if (imagen == "" || imagen == null) {
+			imagen = "resources/media/usuarios/userdefault.jpg";
+		}
 		this.imagen = imagen;
 		
 

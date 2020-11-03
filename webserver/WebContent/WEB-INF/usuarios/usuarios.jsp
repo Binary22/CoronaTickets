@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.Map, logica.Usuario" %>
+<%@ page import="java.util.Map, logica.Usuario, java.util.TreeMap" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -17,7 +17,11 @@
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         <div class="container">
                
-        <% Map<String, Usuario> m = (Map<String, Usuario>) session.getAttribute("usuarios");
+        <% Map<String, Usuario> mapadesordenado = (Map<String, Usuario>) session.getAttribute("usuarios");
+        Map<String, Usuario> m = new TreeMap();
+        for (Map.Entry<String, Usuario> entry : mapadesordenado.entrySet()) {   
+        	m.put(entry.getKey(), entry.getValue());
+        	}
         int i = 0;
         for (Map.Entry<String, Usuario> entry : m.entrySet()) {      	
 	        	String key = entry.getKey();

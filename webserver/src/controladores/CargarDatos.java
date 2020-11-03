@@ -116,6 +116,16 @@ public class CargarDatos extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		};
+		
+		ec.aceptarRechazar("Los Village Volvieron", true);
+		ec.aceptarRechazar("Global Spirit", true);
+		ec.aceptarRechazar("Memphis Blues World", true);
+		ec.aceptarRechazar("Springsteen on Broadway", true);
+		ec.aceptarRechazar("Bien de Familia", true);
+		ec.aceptarRechazar("30 años", true);
+		ec.aceptarRechazar("Grandes Éxitos 2020", false);
+		
+		HandlerEspectaculos handlerE = HandlerEspectaculos.getInstance();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(relPath + "data/funciones.csv"));
@@ -417,11 +427,18 @@ public class CargarDatos extends HttpServlet {
 		for (Usuario u : hu.getUsuarios().values()) {
 			u.setPassword("1234");
 		}
-		// cargar imagenes custom
+		// cargar imagenes custom a usuarios y artistas
 		hu.getUsuario("waston").setImagen("resources/media/usuarios/Emma-Watson-1.jpg");
 		hu.getUsuario("vpeople").setImagen("https://upload.wikimedia.org/wikipedia/commons/2/21/VillagePeople1978.jpg");
 		hu.getUsuario("dmode").setImagen("https://bit.ly/2GB7vME");
 		hu.getUsuario("house").setImagen("https://upload.wikimedia.org/wikipedia/en/1/14/HouseCastSeason1.jpg");
+		hu.getUsuario("chino").setImagen("resources/media/usuarios/userdefault2.jpg");
+		hu.getUsuario("lospimpi").setImagen("resources/media/usuarios/turbinela.jpg");
+		// cargar imagenes custom a espectaculos
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		he.getEspectaculo("Springsteen on Broadway").setImagen("resources/media/espectaculos/springsteen.jpg");
+		he.getEspectaculo("Los Village Volvieron").setImagen("resources/media/espectaculos/villagetour.jpg");
+		he.getEspectaculo("Bien de Familia").setImagen("resources/media/espectaculos/turbinela2.jpg");
 		// crear categorias
 		HandlerCategorias hc = HandlerCategorias.getInstance();
 		hc.agregarCategoria("Bandas Latinas");
@@ -429,14 +446,14 @@ public class CargarDatos extends HttpServlet {
 		hc.agregarCategoria("Rock en Ingles");
 		hc.agregarCategoria("Musica Tropical");
 		// setear categorias a espectaculos
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		
 		he.agregarCategoriaAEspectaculo("Los Village Volvieron","Rock en Ingles");
 		he.agregarCategoriaAEspectaculo("Global Spirit","Rock en Ingles");
 		he.agregarCategoriaAEspectaculo("Memphis Blues World","Solistas");
 		he.agregarCategoriaAEspectaculo("Springsteen on Broadway","Rock en Ingles");
 		he.agregarCategoriaAEspectaculo("Bien de Familia","Bandas Latinas");
 		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
-		he.agregarCategoriaAEspectaculo("Grandes Exitos 2020","Solistas");
+		he.agregarCategoriaAEspectaculo("Grandes Éxitos 2020","Solistas");
 		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
 		
     // aca termina el cargar datos
