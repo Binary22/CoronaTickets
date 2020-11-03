@@ -113,7 +113,7 @@
 			    	strcat = strcat + " " + s;
 			    }
 			    %>
-			    <div class="card mb-3 divesp" id="cardespectaculo <%=strclaves%>" style="max-width: 200em; display:block;">
+			    <div class="card mb-3 divesp cardespectaculo <%=strclaves%>" style="max-width: 200em; display:block;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
 				      <img src="resources/media/espectaculos/rock.jpg" class="card-img" style="object-fit: cover; height:12rem;">

@@ -75,8 +75,8 @@ $('#filtro').change(function () {
 	    $("#contenedorpaq").css("display","block");
 	} else {
 		$("#contenedorpaq").css("display", "none");
-		$("#cardespectaculo").css("display", "none");
-		$($(this).val()).css("display", "block");
+		$(".cardespectaculo").css("display", "none");
+		$("." + $(this).val()).css("display", "block");
 	}
     
 });
