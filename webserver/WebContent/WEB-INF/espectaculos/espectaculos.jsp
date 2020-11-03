@@ -55,7 +55,7 @@
 			        <%for(j = i; j <= i + 2 && j < size; j++){%>
 						
 				    	<carta-espectaculo  id = "<%=espectaculos.get(j).getPlataforma().getNombre() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
-				    	img = "resources/media/espectaculos/3.jpeg" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista().getNombre() %>></carta-espectaculo>
+				    	img = "<%=espectaculos.get(j).getImagen() %>" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista().getNombre() %>></carta-espectaculo>
 				  	<%} %>
 	     		</div>
 			     
