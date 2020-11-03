@@ -21,10 +21,12 @@ import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
 import logica.Fabrica;
+import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
+import logica.Usuario;
 
 /**
  * Servlet implementation class CargarDatos
@@ -407,6 +409,11 @@ public class CargarDatos extends HttpServlet {
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	// setear contraseñas a 1234
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		for (Usuario u : hu.getUsuarios().values()) {
+			u.setPassword("1234");
 		}
     
     
