@@ -33,17 +33,21 @@ public class Modificarusuario extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
-		String nickname = (String)objSesion.getAttribute("usuario_logueado");
-		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-        Usuario userlog = husers.getUsuario(nickname);
-        if(!userlog.esArtista())
-        	objSesion.setAttribute("usuariolog", userlog);
-        else {
-        	Artista userArtlog = (Artista) husers.getUsuario(nickname);
-        	objSesion.setAttribute("usuariolog", userArtlog);
-        }
-        	
-		req.getRequestDispatcher("/WEB-INF/usuarios/modificarusuario.jsp").forward(req, resp);
+		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+			String nickname = (String)objSesion.getAttribute("usuario_logueado");
+			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+	        Usuario userlog = husers.getUsuario(nickname);
+	        if(!userlog.esArtista())
+	        	objSesion.setAttribute("usuariolog", userlog);
+	        else {
+	        	Artista userArtlog = (Artista) husers.getUsuario(nickname);
+	        	objSesion.setAttribute("usuariolog", userArtlog);
+	        }
+	        	
+			req.getRequestDispatcher("/WEB-INF/usuarios/modificarusuario.jsp").forward(req, resp);
+		}
+		else
+			 resp.sendRedirect("registro");
 	}
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

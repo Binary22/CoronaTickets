@@ -6,9 +6,10 @@ public class Compra {
 	private LocalDate fecha;
 	private Paquete paquete;
 
-	public Compra(LocalDate fecha) {
+	public Compra(LocalDate fecha, Paquete paq) {
 		super();
 		this.fecha = fecha;
+		this.paquete = paq;
 	}
 	
 	public Paquete getPaquete() {

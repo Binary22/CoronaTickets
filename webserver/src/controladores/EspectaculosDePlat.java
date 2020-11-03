@@ -36,16 +36,20 @@ public class EspectaculosDePlat extends HttpServlet {
     
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
-    	String platElegida = (String) objSesion.getAttribute("plataformaelegida");
-    	
-    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		Map<String,Espectaculo> espectaculos = hesp.getEspectaculosPlataforma(platElegida);
-		List<String> espectaculosList = new ArrayList<String>();
-		for (String key : espectaculos.keySet()) {
-			espectaculosList.add(espectaculos.get(key).getNombre());
-		}
-		objSesion.setAttribute("espectaculos",espectaculosList);
-		req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
+    	if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+	    	String platElegida = (String) objSesion.getAttribute("plataformaelegida");
+	    	
+	    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+			Map<String,Espectaculo> espectaculos = hesp.getEspectaculosPlataforma(platElegida);
+			List<String> espectaculosList = new ArrayList<String>();
+			for (String key : espectaculos.keySet()) {
+				espectaculosList.add(espectaculos.get(key).getNombre());
+			}
+			objSesion.setAttribute("espectaculos",espectaculosList);
+			req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
+    	}
+    	else
+    		resp.sendRedirect("registro");
     }
     
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
