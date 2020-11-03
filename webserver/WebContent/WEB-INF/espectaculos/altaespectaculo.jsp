@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.Set"%>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -52,16 +54,16 @@
            	
            	<% } else { %>
            	
-          		<label>Nombre</label>
+          		<label>Nombre*</label>
             	<input required name="nombre" type="text" class="form-control"  placeholder="Ej. Los Rolling 50 años">
             	<% } %>
               
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea required name="descripcion" class="form-control" placeholder="Ej. Tour en conememoración de los 50 años de los Rolling Stones"></textarea>
+                <textarea name="descripcion" class="form-control" placeholder="Ej. Tour en conememoración de los 50 años de los Rolling Stones"></textarea>
             </div>
-            <label>Duración</label>
+            <label>Duración*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <input required name="horas" type="number" class="form-control"  placeholder="Horas">
@@ -70,7 +72,7 @@
                 <input required name="minutos" type="number" class="form-control"  placeholder="Minutos">
               </div>
             </div>
-            <label>Máximo y mínimo de espectadores</label>
+            <label>Máximo y mínimo de espectadores*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <input required name="max" type="number" class="form-control"  placeholder="Máximo">
@@ -80,22 +82,25 @@
               </div>
             </div>
             <div class="form-group">
-              <label>URL</label>
+              <label>URL*</label>
               <input required name=url"" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
             </div>
             <div class="form-group">
-              <label>Categorias</label>
-              <select required name ="categoria" class="form-control" multiple>
-                <option>Rock</option>
-                <option>Pop</option>
-                <option>Duos</option>
-                <option>Murga</option>
-                <option>Solistas</option>
-                <option>Cumbia</option>
+              <label>Categorias*</label>
+              <select name ="categoria" class="form-control" multiple>
+              <%
+              	
+              	Set<String> categorias = (Set<String>) session.getAttribute("categorias");
+              	for (String cat : categorias) {
+              	%>
+              	
+              	<option> <%=cat %></option>
+              	
+              	<%} %>
               </select>
             </div>
             <div class="form-group">
-              <label>Costo</label>
+              <label>Costo*</label>
               <input required name="costo" type="number" class="form-control"  placeholder="Ej. 300">
             </div>
             <div class="form-group">

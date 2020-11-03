@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.HashMap;
 
 public class Espectaculo {
@@ -17,10 +18,11 @@ public class Espectaculo {
 	private LocalDate fechaReg;
 	private Plataforma plataforma;
 	private Artista artista;
-	private HashMap<String,Funcion> setFunciones;
+	private HashMap<String, Funcion> setFunciones;
 	private boolean yaFueValuado;
 	private boolean aceptado;
 	private String imagen;
+	private ArrayList<String> categorias;
 	
 	public String getImagen() {
 		return imagen;
@@ -38,6 +40,14 @@ public class Espectaculo {
 		this.imagen = imagen;
 	}
 	
+	public ArrayList<String> listarEspectaculos() {
+		if (this.categorias == null) {
+			this.categorias = new ArrayList<String>();
+		}
+		
+		return this.categorias;
+	}
+	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
 			String url, LocalDate fechaReg, float costo) {
 		this.nombre = nombre;
@@ -51,6 +61,23 @@ public class Espectaculo {
 		this.setFunciones = new HashMap<String,Funcion>();
 		this.yaFueValuado = false;
 		this.aceptado = false;
+	}
+	
+	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
+			String url, LocalDate fechaReg, float costo, String imagen, ArrayList<String> categs) {
+		this.nombre = nombre;
+		this.duracion = duracion;
+		this.descripcion = descripcion;
+		this.minEspectadores = minEspectadores;
+		this.maxEspectadores = maxEspectadores;
+		this.url = url;
+		this.fechaReg = fechaReg;
+		this.costo = costo;
+		this.setFunciones = new HashMap<String,Funcion>();
+		this.yaFueValuado = false;
+		this.aceptado = false;
+		this.imagen = imagen;
+		this.categorias = categs;
 	}
 	
 	public String getNombre() {
