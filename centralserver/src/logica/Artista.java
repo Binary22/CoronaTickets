@@ -95,9 +95,16 @@ public class Artista extends Usuario {
 		DtArtista dta = new DtArtista(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getDescripcion(), getBiografia(), getWebsite());
 		return dta;
 	}
+	
+	public void agregarEspectaculo(Espectaculo Esp) {
+		if (espectaculos == null) {
+			espectaculos = new ArrayList<Espectaculo>();
+		}
+		espectaculos.add(Esp);
+	}
 
 	public boolean tieneEspectaculosAceptados() {
-		if (espectaculos.isEmpty()) {
+		if (!espectaculos.isEmpty()) {
 			for (Espectaculo e : espectaculos) {
 				if (e.isAceptado()) {
 					return true;
@@ -118,7 +125,7 @@ public class Artista extends Usuario {
 	}
 
 	public boolean tieneEspectaculosIngresadosSinAceptar() {
-		if (espectaculos.isEmpty()) {
+		if (!espectaculos.isEmpty()) {
 			for (Espectaculo e : espectaculos) {
 				if (!e.isYaFueValuado()) {
 					return true;
@@ -139,7 +146,7 @@ public class Artista extends Usuario {
 	}
 	
 	public boolean tieneEspectaculosRechazados() {
-		if (espectaculos.isEmpty()) {
+		if (!espectaculos.isEmpty()) {
 			for (Espectaculo e : espectaculos) {
 				if (!e.isAceptado()) {
 					return true;

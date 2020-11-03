@@ -116,6 +116,24 @@ public class CargarDatos extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		};
+		
+		ec.aceptarRechazar("Los Village Volvieron", true);
+		ec.aceptarRechazar("Global Spirit", true);
+		ec.aceptarRechazar("Memphis Blues World", true);
+		ec.aceptarRechazar("Springsteen on Broadway", true);
+		ec.aceptarRechazar("Bien de Familia", true);
+		ec.aceptarRechazar("30 años", true);
+		ec.aceptarRechazar("Grandes Éxitos 2020", false);
+		
+		HandlerEspectaculos handlerE = HandlerEspectaculos.getInstance();
+		handlerE.agregarCategoriaAEspectaculo("Los Village Volvieron", "Rock en Inglés");
+		handlerE.agregarCategoriaAEspectaculo("Global Spirit", "Rock en Inglés");
+		handlerE.agregarCategoriaAEspectaculo("Springsteen on Broadway", "Rock en Inglés");
+		handlerE.agregarCategoriaAEspectaculo("Memphis Blues World", "Solistas");
+		handlerE.agregarCategoriaAEspectaculo("Grandes Éxitos 2020", "Solistas");
+		handlerE.agregarCategoriaAEspectaculo("30 años", "Música Tropical");
+		handlerE.agregarCategoriaAEspectaculo("Bien de Familia", "Bandas Latinas");
+		handlerE.agregarCategoriaAEspectaculo("Llega a Casa", "Bandas Latinas");
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(relPath + "data/funciones.csv"));

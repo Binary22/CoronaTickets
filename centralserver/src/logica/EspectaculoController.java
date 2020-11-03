@@ -487,13 +487,13 @@ public class EspectaculoController implements IEspectaculo {
 	
 	//CONFIRMAR REGISTRO PARA INTERFAZ
 	
-	public void esFechaInvalida(String nomespect, LocalDate fecha) throws fechaPosterior{
+	public void esFechaInvalida(String nomespect, LocalDate fecha) throws fechaPosterior {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		Espectaculo e = he.getEspectaculo(nomespect);
 		Funcion fun = e.getFuncion(this.nomfuncion);
 		LocalTime hora = LocalTime.now();
 		LocalDate fechaHoy = LocalDate.now();
-		if((fecha.equals(fun.getFecha()) && !hora.isBefore(fun.getHoraInicio())) || fecha.isAfter(fun.getFecha()) || fecha.isBefore(fechaHoy)) {
+		if ((fecha.equals(fun.getFecha()) && !hora.isBefore(fun.getHoraInicio())) || fecha.isAfter(fun.getFecha()) || fecha.isBefore(fechaHoy)) {
 				throw new fechaPosterior("Lo sentimos, la fecha introducida es invalida");
 		}
 	}
@@ -557,12 +557,12 @@ public class EspectaculoController implements IEspectaculo {
 
 	@Override
 	public void confirmarAltaEspectaculo() {
-		HandlerUsuarios huser= HandlerUsuarios.getInstancia();
-		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
-		HandlerEspectaculos hesp= HandlerEspectaculos.getInstance();
-		Artista art= (Artista) huser.getUsuario(nickUsuario);
-		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);		
+		HandlerUsuarios huser = HandlerUsuarios.getInstancia();
+		HandlerPlataforma hplat = HandlerPlataforma.getInstance();
+		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+		Artista art = (Artista) huser.getUsuario(nickUsuario);
+		Plataforma plat = hplat.getPlataforma(nomPlataforma);
+		Espectaculo esp = new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);		
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
 		esp.setPlataforma(plat);

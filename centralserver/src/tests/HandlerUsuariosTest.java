@@ -21,7 +21,9 @@ import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
+import logica.Artista;
 import logica.Fabrica;
+import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
@@ -60,6 +62,20 @@ class HandlerUsuariosTest {
 		hu.listarFuncionesDtQueSeRegistro("waston");
 	}
 	
+	
+	@Test
+	void testArtistaEspectaculosAceptados() {
+		Artista test = (Artista) hu.getUsuario("vpeople");
+		assertTrue(test.tieneEspectaculosAceptados());
+		assertFalse(test.espectaculosAceptados().isEmpty());
+		test = (Artista) hu.getUsuario("tripleNelson");
+		assertTrue(test.tieneEspectaculosIngresadosSinAceptar());
+		assertFalse(test.espectaculosIngresadosSinAceptar().isEmpty());
+		test = (Artista) hu.getUsuario("dyangounchained");
+		assertTrue(test.tieneEspectaculosRechazados());
+		assertFalse(test.espectaculosRechazados().isEmpty());
+
+	}
 	
 	/*
 	@Test
@@ -153,6 +169,28 @@ class HandlerUsuariosTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		};
+		
+		
+		ec.aceptarRechazar("Los Village Volvieron", true);
+		ec.aceptarRechazar("Global Spirit", true);
+		ec.aceptarRechazar("Memphis Blues World", true);
+		ec.aceptarRechazar("Springsteen on Broadway", true);
+		ec.aceptarRechazar("Bien de Familia", true);
+		ec.aceptarRechazar("30 años", true);
+		ec.aceptarRechazar("Grandes Éxitos 2020", false);
+		
+		HandlerEspectaculos handlerE = HandlerEspectaculos.getInstance();
+		handlerE.agregarCategoriaAEspectaculo("Los Village Volvieron", "Rock en Inglés");
+		handlerE.agregarCategoriaAEspectaculo("Global Spirit", "Rock en Inglés");
+		handlerE.agregarCategoriaAEspectaculo("Springsteen on Broadway", "Rock en Inglés");
+		handlerE.agregarCategoriaAEspectaculo("Memphis Blues World", "Solistas");
+		handlerE.agregarCategoriaAEspectaculo("Grandes Éxitos 2020", "Solistas");
+		handlerE.agregarCategoriaAEspectaculo("30 años", "Música Tropical");
+		handlerE.agregarCategoriaAEspectaculo("Bien de Familia", "Bandas Latinas");
+		handlerE.agregarCategoriaAEspectaculo("Llega a Casa", "Bandas Latinas");
+
+		
+
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("data/funciones.csv"));
