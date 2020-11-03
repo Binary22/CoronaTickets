@@ -88,7 +88,9 @@ public class Altaespectaculo extends HttpServlet {
     	// aca NO se estan guardando las imagenes y categorias, porque el confirmarAltaEspec no guarda 
     	// ni usuarios ni categorias, por eso es necesario esto 
     	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-    	he.getEspectaculo(nombre).setImagen(imagen);
+    	if (imagen != "") {
+    		he.getEspectaculo(nombre).setImagen(imagen);
+    	}
     	if (cats != null) {
     		for (String c : cats ) {
     			he.getEspectaculo(nombre).addCategoria(c);

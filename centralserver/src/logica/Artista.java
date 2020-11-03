@@ -76,6 +76,11 @@ public class Artista extends Usuario {
 		this.biografia = biografia;
 		this.website = website;
 		this.espectaculos = new ArrayList<Espectaculo>();
+		if (imagen == "" || imagen==null) {
+			imagen = "resources/media/usuarios/artistadefault.jpg";
+		}
+		this.setImagen(imagen);
+		this.setPassword(password);
 	}
 	
 	public boolean esArtista_() {
