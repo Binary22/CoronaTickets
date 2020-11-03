@@ -472,7 +472,7 @@ public class CargarDatos extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);
+		resp.sendRedirect("home");
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
