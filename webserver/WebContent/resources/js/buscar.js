@@ -73,6 +73,8 @@ $(document).ready(function() {
 $('#filtro').change(function () {
 	if ($(this).val() === "todo") {	
 	    $("#contenedorpaq").css("display","block");
+		$(".cardespectaculo").css("display", "block");
+		$("#contenedoresp").childer.css("display", "block");
 	} else {
 		$("#contenedorpaq").css("display", "none");
 		$(".cardespectaculo").css("display", "none");
