@@ -146,7 +146,7 @@ public class CargarDatos extends HttpServlet {
 			{
 				String[] paquete = line.split(splitBy);
 				try{
-				pqc.crearPaquete(paquete[0], paquete[1], LocalDate.parse(paquete[3],formatter), LocalDate.parse(paquete[4],formatter), Integer.parseInt(paquete[2]), LocalDate.parse(paquete[5], formatter));
+				pqc.crearPaqueteWeb(paquete[0], paquete[1], LocalDate.parse(paquete[3],formatter), LocalDate.parse(paquete[4],formatter), Integer.parseInt(paquete[2]), LocalDate.parse(paquete[5], formatter), paquete[6]);
 				} catch(Exception e) {
 					System.out.print(e.getMessage());
 					e.printStackTrace();
