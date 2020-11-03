@@ -64,7 +64,7 @@ public class Altaespectaculo extends HttpServlet {
     	String url = req.getParameter("url");
     	String costo = req.getParameter("costo");
     	String imagen = req.getParameter("imagen");
-    	String[] cats = req.getParameterValues("");
+    	String[] cats = req.getParameterValues("categoria");
     	
     	System.out.print(nomPlataforma);
     	
@@ -75,17 +75,19 @@ public class Altaespectaculo extends HttpServlet {
     	Fabrica fabrica = Fabrica.getInstance();
     	IEspectaculo ctrlE = fabrica.getIEspectaculo();
     	
-    	List<String> cats2;
+    	ArrayList<String> cats2 = new ArrayList<String>();
     	
-    	for (String c : cats ) {
-    		cats2.add(c);
+    	if (cats != null) {
+    		for (String c : cats ) {
+    			cats2.add(c);
+    		}
     	}
-    	
     	try {
     		    		
     	ctrlE.altaEspectaculoWeb(nomPlataforma, nick, nombre, descripcion, duracion, 
     							Integer.parseInt(minEspectadores), Integer.parseInt(maxEspectadores),
-    							url, Integer.parseUnsignedInt(costo), hoy, (ArrayList<String>) cats2, imagen);
+    							url, Float.parseFloat(costo), hoy, cats2, imagen);
+    	
     	ctrlE.confirmarAltaEspectaculo();
     	resp.sendRedirect("altafuncion");
 
@@ -94,8 +96,7 @@ public class Altaespectaculo extends HttpServlet {
     		session.setAttribute("error", e.getMessage());
     		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
     		//devolver algo al usuario de la web !!
-    	}
-    	    	
+    	}    	    	
         
 
     }
