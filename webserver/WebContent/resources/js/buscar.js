@@ -70,23 +70,19 @@ $(document).ready(function() {
 
 // esto es el codigo para filtrar espectaculos (y ocultar paquetes)
 
-// ocultar paquetes
 $('#filtro').change(function () {
 	if ($(this).val() === "todo") {	
 	    $("#contenedorpaq").css("display","block");
 	} else {
 		$("#contenedorpaq").css("display", "none");
+		$("#cardespectaculo").css("display", "none");
+		$($(this).val()).css("display", "block");
 	}
     
 });
 
 $(document).ready(function() {
-	if ($(this).val() === "todo") {	
-	    $("#contenedorpaq").css("display","block");
-	} else {
-		$("#contenedorpaq").css("display", "none");
-	}
-    
+	$("#contenedorpaq").css("display","block"); 
 });
 
 

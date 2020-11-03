@@ -22,6 +22,7 @@ import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
 import logica.Fabrica;
 import logica.HandlerCategorias;
+import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
@@ -425,9 +426,19 @@ public class CargarDatos extends HttpServlet {
 		HandlerCategorias hc = HandlerCategorias.getInstance();
 		hc.agregarCategoria("Bandas Latinas");
 		hc.agregarCategoria("Solistas");
-		hc.agregarCategoria("Rock en ingles");
+		hc.agregarCategoria("Rock en Ingles");
 		hc.agregarCategoria("Musica Tropical");
-    
+		// setear categorias a espectaculos
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		he.agregarCategoriaAEspectaculo("Los Village Volvieron","Rock en Ingles");
+		he.agregarCategoriaAEspectaculo("Global Spirit","Rock en Ingles");
+		he.agregarCategoriaAEspectaculo("Memphis Blues World","Solistas");
+		he.agregarCategoriaAEspectaculo("Springsteen on Broadway","Rock en Ingles");
+		he.agregarCategoriaAEspectaculo("Bien de Familia","Bandas Latinas");
+		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
+		he.agregarCategoriaAEspectaculo("Grandes Exitos 2020","Solistas");
+		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
+		
     // aca termina el cargar datos
     }
 	

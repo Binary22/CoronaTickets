@@ -584,7 +584,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 	public ArrayList<String> listarCategoriasEspectaculo(String nomEspec) {
 		HandlerEspectaculos handler = HandlerEspectaculos.getInstance();
-		return handler.getEspectaculo(nomEspec).listarEspectaculos();
+		return handler.getEspectaculo(nomEspec).listarCategorias();
 	}
 	
 	public void confirmarCategoria(String nombre)throws NombreCategoriaExistente {
