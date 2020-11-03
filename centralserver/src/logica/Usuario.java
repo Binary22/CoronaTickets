@@ -170,6 +170,7 @@ public class Usuario {
 		this.compraPaquete = new ArrayList<Compra>();
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();	
+		this.imagen = "resources/media/usuarios/userdefault.jpg";
 		
 
 	}
