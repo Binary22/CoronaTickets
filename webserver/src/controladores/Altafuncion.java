@@ -48,7 +48,7 @@ public class Altafuncion extends HttpServlet {
 			objSesion.setAttribute("fechaInvalida",false);
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
 			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-			List<String> artistas = husers.getNombresArtista();
+			List<String> artistas = husers.getNombresArtistas();
 			List<String> artistasinvi = new ArrayList<String>();
 			for (int i=0; i< artistas.size(); i++) {
 				if(!artistas.get(i).equals(nickname)){
