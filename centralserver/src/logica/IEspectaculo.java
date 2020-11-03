@@ -3,6 +3,8 @@ package logica;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Set;
+
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
@@ -40,13 +42,22 @@ public interface IEspectaculo {
 	public ArrayList<String> listarFuncionesEspectaculo(String nomespec);
 	public void elegirFuncion(String selectedItem);
 	public void setRegistroFueCanjeado(boolean canj);
+		
+	public ArrayList<String> listarCategoriasEspectaculo(String nomEspec);
+
 	
 	public DtUsuario[] listarUsuarios() throws usuarioNoExiste;
 	public DtFuncion mostarFuncion(String nomFuncion);
 	
 	public ArrayList<String> listarCategorias();
-	public void ConfirmarCategoria(String nombre)throws NombreCategoriaExistente;
+	public void confirmarCategoria(String nombre)throws NombreCategoriaExistente;
+	
+	public void altaEspectaculoWeb(String nomPlataforma, String nickArtista, String nombre, String descripcion,
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, ArrayList<String> cat, String imagen) throws NombreEspectaculoExisteException;
+	
 	
 	public ArrayList<String> listarEspectaculosIngresados();
 	public void aceptarRechazar(String nombreEspect, boolean aceptado);
+	
+	public ArrayList<Registro> obtenerRegistrosPreviosWeb(String nickname);
 }

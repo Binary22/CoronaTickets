@@ -112,7 +112,7 @@ public class AltaCategoria extends JInternalFrame {
 				String nombreCat = textField.getText();
 				if(!textField.getText().equals("")) {
 					try {
-						ctrlEspect.ConfirmarCategoria(nombreCat);
+						ctrlEspect.confirmarCategoria(nombreCat);
 						textField.setText(null);
 						JOptionPane.showMessageDialog(null, "Categoria creada con exito");
 						dispose();

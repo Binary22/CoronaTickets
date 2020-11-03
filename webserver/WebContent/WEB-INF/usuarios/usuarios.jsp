@@ -28,14 +28,14 @@
         		 if ((i % 3) == 0) { %>
         		<div class="card-deck pt-3">
         		<% } %>
-        		<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="<%=descripcion%>" titulo="<%=key%>" style="width:18rem;"></carta-usuario>
+        		<carta-usuario class="card carta" img="<%=value.getImagen()%>" descripcion="<%=descripcion%>" titulo="<%=key%>" style="width:18rem;"></carta-usuario>
         		<% if ((i % 3) == 2 || i == m.size()) { %>
 	        		<% if (i == m.size() && (i % 3 == 0)) { %>
-	        			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
+	        			<carta-usuario class="card carta" img="<%=value.getImagen()%>" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
 	        		<% } %>
 	        		<% if (i == m.size() && (i % 3 == 1)) { %>
-	        			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
-	        			<carta-usuario class="card carta" img="resources/media/usuarios/Emma-Watson-1.jpg" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
+	        			<carta-usuario class="card carta" img="<%=value.getImagen()%>" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
+	        			<carta-usuario class="card carta" img="<%=value.getImagen()%>" descripcion="" titulo="" style="width:18rem;visibility:hidden"></carta-usuario>
 	        		<% } %>
         		
         		</div>

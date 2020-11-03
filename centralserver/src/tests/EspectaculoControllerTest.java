@@ -44,6 +44,36 @@ class EspectaculoControllerTest {
 		assertTrue(ie.getEspectaculo().getNombre().equals("Los Village Volvieron"));
 	}
 
+	
+	@Test
+	void testAltaEspectaculoWeb() {
+		ArrayList<String> cats = new ArrayList<String>();
+		cats.add("testeo");
+		try {
+		ie.altaEspectaculoWeb("Facebook Watch", "lospimpi", "lospimpitestfest",
+				"los pimpi testean los instrumentos", LocalTime.of(5, 30), 0, 100, "https://www.lospimpitestean.test",
+				(float) 150, LocalDate.of(2020, 10, 28), cats , "test");
+		} catch (NombreEspectaculoExisteException e) {
+			e.printStackTrace();
+		}
+		
+		assert he.getEspectaculo("lospimpitestfest").isAceptado() == false;
+		
+		try {
+			ie.altaEspectaculoWeb("Facebook Watch", "lospimpi", "lospimpitestfest",
+					"los pimpi testean los instrumentos", LocalTime.of(5, 30), 0, 100, "https://www.lospimpitestean.test",
+					(float) 150, LocalDate.of(2020, 10, 25), cats , "test");
+			} catch (NombreEspectaculoExisteException e) {
+				e.printStackTrace();
+			}
+		
+		assertThrows( NombreEspectaculoExisteException.class, () ->  ie.altaEspectaculoWeb("Facebook Watch", "lospimpi", "lospimpitestfest",
+					"los pimpi testean los instrumentos", LocalTime.of(5, 30), 0, 100, "https://www.lospimpitestean.test",
+					(float) 150, LocalDate.of(2020, 10, 25), cats , "test"));
+	}
+	
+	
+	
 	@Test
 	void testConfirmarAltaFuncion() {
 		ie.elegirEspectaculo("Los Village Volvieron");
@@ -313,7 +343,7 @@ class EspectaculoControllerTest {
 	@Test
 	void testConfirmarCategoria() {
 		try {
-			ie.ConfirmarCategoria("Electronica");
+			ie.confirmarCategoria("Electronica");
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -324,11 +354,11 @@ class EspectaculoControllerTest {
 	@Test
 	void testConfirmarCategoriaExcept() {
 		try {
-			ie.ConfirmarCategoria("Electronica");
+			ie.confirmarCategoria("Electronica");
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		assertThrows(NombreCategoriaExistente.class, () -> ie.ConfirmarCategoria("Electronica"));
+		assertThrows(NombreCategoriaExistente.class, () -> ie.confirmarCategoria("Electronica"));
 	}
 	
 	@Test

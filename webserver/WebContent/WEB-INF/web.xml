@@ -68,6 +68,22 @@
     	<servlet-name>CargarDatos</servlet-name>
     	<servlet-class>controladores.CargarDatos</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>Buscar</servlet-name>
+    	<servlet-class>controladores.Buscar</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>EspectaculosDePlat</servlet-name>
+    	<servlet-class>controladores.EspectaculosDePlat</servlet-class>
+    </servlet>
+    
+    
+    
+    <servlet-mapping>
+    	<servlet-name>EspectaculosDePlat</servlet-name>
+    	<url-pattern>/espectaculosdeplat</url-pattern>
+    </servlet-mapping>
+    
     
     <servlet-mapping>
     	<servlet-name>CargarDatos</servlet-name>
@@ -159,6 +175,15 @@
         <servlet-name>DetallesUsuario</servlet-name>
         <url-pattern>/detallesUsuario</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Buscar</servlet-name>
+        <url-pattern>/buscar</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/errorPages/500.jsp</location>
+    </error-page>
+
     <session-config>
         <session-timeout>
             30

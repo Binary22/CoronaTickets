@@ -24,7 +24,7 @@
         <div class="container mt-6">
 
             <div class="d-flex justify-content-center">
-            <div class="card input-group mt-3" style="width:40rem;"">
+            <div class="card input-group mt-3" style="width:40rem">
             <div class="card-body">
     		<%Usuario usuariolog = (Usuario)session.getAttribute("usuariolog");%>
             <h4> Modificar usuario </h4>
@@ -52,22 +52,31 @@
                 </div>
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
+                <script>
+                 function check(){
+  					if (document.getElementById('password').value != document.getElementById('confirmpassword').value) {
+    					document.getElementById('confirmpassword').class = 'form-control is-invalid';
+ 					 } else {
+    						 document.getElementById('confirmpassword').class = 'form-control';
+  							}
+				}
+                </script>
                   <label>Contraseña</label>
-                  <input type="password" class="form-control" name = "password"  value="<%=usuariolog.getPassword()%>">
+                  <input type="password" class="form-control" id="password" name = "password"  value="<%=usuariolog.getPassword()%>" onkeyup='check();'>
                 </div>
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
-                  <input type="password" class="form-control" name = "confirmpassword"  value="<%=usuariolog.getPassword()%>">
-                </div>
+                  <input type="password" class="form-control" id="confirmpassword" name= "confirmpassword"  value="<%=usuariolog.getPassword()%>"  onkeyup='check();'>
+                </div>              
                 <div class="form-group">
                   <label>Elegir imagen</label>
                   <br>
-                  <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+                  <input type="url" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
                 <% if(usuariolog.esArtista()){%>
                 <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
-                <div id="camposArtista" name = "camposArtista">
+                <div id="camposArtista">
                   <div class="form-group">
                     <label>Descripción</label>
                     <!-- quizas haya que usar javascript para actualizar estos textarea

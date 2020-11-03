@@ -25,10 +25,7 @@
                     <label>Función</label>
                     <select class="form-control">
                       <option>Village People World Tour</option>
-                      <option>20 Años de los Village People</option>
-                      <option>Concierto de caridad VP</option>
-                      <option selected="selected">Bien de Familia - B</option>
-                      <option>Village People presentan nuevo disco</option>
+                      
                     </select>
                 </div>
                 <div class="form-group">
@@ -47,10 +44,7 @@
                         <label>Elegir registros a canjear</label>
                         <select class="form-control" multiple>
                           <option>R1</option>
-                          <option>R2</option>
-                          <option>R5</option>
-                          <option>R8</option>
-                          <option>R9</option>
+                          
                         </select>
                     </div>
                 </div>
@@ -61,13 +55,20 @@
                         <label>Elegir vales a canjear</label>
                         <select class="form-control" multiple>
                           <option>V1</option>
-                          <option>V2</option>
-                          <option>V5</option>
-                          <option>V8</option>
-                          <option>V9</option>
+                          
                         </select>
+                        <h6>Precio a abonar:</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
                     </div>
+                </div>
+                
+                <div id="campotradicional" style="display: none;">
+                    
+                        <h6>Precio a abonar: </h6>
+                        <h6 class="card-subtitle mb-2 text-muted">$</h6>
+                   
                 </div>    
+                    
                 <button type="submit" class="btn btn-primary">Registrar</button>
             </form>
             </div>

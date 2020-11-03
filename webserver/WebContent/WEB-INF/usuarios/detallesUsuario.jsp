@@ -29,9 +29,10 @@
                 <div class="row">
                     <div class="col-md-3">
 	                	<div class="card">
-	                       <img class="card-img-top" src="resources/media/usuarios/Emma-Watson-1.jpg" class="rounded" width="155"> 
+	                	<% Usuario u = (Usuario) session.getAttribute("usuario"); %>
+	                       <img class="card-img-top" src="<%=u.getImagen()%>" class="rounded" width="155"> 
 	                        
-	                        <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
+	                        
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
@@ -72,7 +73,7 @@
 		                        <% List<Registro> l = u.getRegistros();
 		                        for (Registro r : l) {  %>
 		                       
-			                        <div class="card mb-3" style="max-width: 540px;">
+			                        <div class="card mb-3" style="max-width: 200em;">
 									  <div class="row no-gutters">
 									    <div class="col-md-5">
 									      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">
@@ -96,7 +97,7 @@
 	                        <% List<Compra> l = u.getCompraPaquete();
 			                        for (Compra c : l) {  %>
 	                        
-	                        <div class="card mb-3" style="max-width: 540px;">
+	                        <div class="card mb-3" style="max-width: 200em;">
 							  <div class="row no-gutters">
 							    <div class="col-md-5">
 							      <img src="resources/media/usuarios/Emma-Watson-1.jpg" class="card-img" style="object-fit: cover; height:10rem;">

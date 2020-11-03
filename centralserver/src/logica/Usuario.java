@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
@@ -116,9 +117,19 @@ public class Usuario {
 				regsPrevios.add(reg);
 			}
 		}
+		return regsPrevios;
 		
-			
-		
+	}
+	
+	ArrayList<Registro> getRegistrosPreviosWeb(){
+		ArrayList<Registro> regsPrevios = new ArrayList<Registro>();
+		ArrayList<Registro> regs = this.registros;
+		//Iterator<Registro> it = regs.iterator();
+		for (int i = 0; i < regs.size(); i++) {
+			if(!regs.get(i).isCanjeado()) {
+				regsPrevios.add(regs.get(i));
+			}
+		}
 		return regsPrevios;
 		
 	}
@@ -159,6 +170,7 @@ public class Usuario {
 		this.compraPaquete = new ArrayList<Compra>();
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();	
+		this.imagen = "resources/media/usuarios/userdefault.jpg";
 		
 
 	}
@@ -195,6 +207,20 @@ public class Usuario {
 	//esta funcion es para saber si un usuario es artista o no
 	public boolean esArtista() {
 		return false;
+	}
+	
+	public List<Vale> valesACanjear(String nombreEspect){
+		List<Vale> vales = this.vales;
+		List<Vale> valesCanjear = new ArrayList<Vale>();
+    	for(int i = 0; i < vales.size(); i++) {
+    		if(vales.get(i).getEspectaculo().getNombre() == nombreEspect) {
+    			Paquete paq = vales.get(i).getPaquete();
+    			if(LocalDate.now().isBefore(paq.getFechaF())) {
+    				valesCanjear.add(vales.get(i));
+    			}
+    		}
+    	}
+    	return valesCanjear;
 	}
 	
 
