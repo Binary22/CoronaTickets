@@ -74,7 +74,7 @@
 				<div id="contenedorpaq" style="display:block;">
 				<h3>Paquetes:</h3>
 				<% for (Paquete p : lp) {  %>
-			     <div class="card mb-3 divpaq" style="max-width: 200em;">
+			     <div class="card mb-3 divpaq" style="max-width: 170em;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
 				      <img src="resources/media/espectaculos/maracas.jpg" class="card-img" style="object-fit: cover; height:12rem;">
@@ -113,7 +113,7 @@
 			    	strcat = strcat + " " + s;
 			    }
 			    %>
-			    <div class="card mb-3 divesp cardespectaculo <%=strclaves%>" style="max-width: 200em; display:block;">
+			    <div class="card mb-3 divesp cardespectaculo <%=strclaves%>" style="max-width: 240em; display:block;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
 				      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:12rem;">
@@ -124,7 +124,7 @@
                         	<h5><%=e.getNombre()%></h5>
                             <small><%=e.getFechaReg().toString()%></small>
                         </div>
-				      
+				        <p><%=e.getArtista().getNickname()%> | <%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%></p>  
 				        <p><%=e.getDescripcion()%></p>
 				        <p><%=e.getPlataforma().getNombre()%> | <%=strcat%></p>
 				        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
