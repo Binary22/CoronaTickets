@@ -71,7 +71,7 @@
                 <div class="form-group">
                   <label>Elegir imagen</label>
                   <br>
-                  <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+                  <input type="url" id="avatar" name="avatar" accept="image/png, image/jpeg">
                 </div>
                 <% if(usuariolog.esArtista()){%>
                 <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>

@@ -23,8 +23,26 @@ public class Paquete {
 		this.descripcion = descripcion;
 		this.fechaAlta = fechaalta;
 		this.espectaculos = new HashMap<String,Espectaculo>();
+		this.imagen = "resources/media/espectaculos/maracas.jpg";
 	}
 	
+	public Paquete(String nombre2, LocalDate fechaini, LocalDate fechafin, int desc, String descrip,
+			LocalDate fechaalta2, String imagen2) {
+		super();
+		this.nombre = nombre2;
+		this.fechaI = fechaini;
+		this.fechaF = fechafin;
+		this.descuento = desc;
+		this.descripcion = descrip;
+		this.fechaAlta = fechaalta2;
+		this.espectaculos = new HashMap<String, Espectaculo>();
+		this.imagen = imagen2;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
 	public void addEspectaculo(Espectaculo e) {
 		espectaculos.put(e.getNombre(), e);
 	}
@@ -79,6 +97,10 @@ public class Paquete {
 
 	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
+	}
+
+	public LocalDate getFechaAlta() {
+		return fechaAlta;
 	}
 	
 	

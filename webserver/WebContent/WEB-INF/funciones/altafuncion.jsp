@@ -15,21 +15,30 @@
 
     <div class="container">
       <div class="d-flex justify-content-center">
-        <div class="card input-group mt-3" style="width:40rem;"">
+        <div class="card input-group mt-3" style="width:40rem;">
         <div class="card-body">
-          <!-- esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal
-          <div class="alert alert-danger" role="alert">
-            Ingrese una duración mayor a 0.
-          </div> -->
-
+        
         <h4> Alta de funcion de espectaculo </h4>
         <br>
-                
+        
+         <!--esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal -->
+          <%if((Boolean)session.getAttribute("escero")){%> 
+          <div class="alert alert-danger" role="alert">
+            Ingrese una duración mayor a 0.
+          </div>
+          <%}%>
+          <!-- esto es un ejemplo de los carteles que tienen que salir si se ingresa un campo mal-->
+        <%if((Boolean)session.getAttribute("nombreexiste")){%> 
+          <div class="alert alert-danger" role="alert">
+            El nombre que deséa utilizar ya se encuentra en uso.
+          </div> 
+		<%}%>
+		       
         <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>
-              <select class="form-control" name="espectaculo">
-              <%List<String> espectaculos = (ArrayList) request.getAttribute("espectaculos");
+              <select class="form-control" name="espectaculo" required>
+              <%List<String> espectaculos = (ArrayList) session.getAttribute("espectaculos");
 				for(String esp: espectaculos){%>
                 <option><%=esp%></option>
               <%}%>
@@ -37,21 +46,24 @@
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name="nombre" placeholder="Ej. Los Rolling 50 años">
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Los Rolling 50 años" required>
             </div>
             <label>Fecha y hora</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input type="date" name="fecha" class="form-control">
+              	<script>
+              	fecha.min = new Date().toISOString().split("T")[0];
+              	</script>
+                <input type="date" id="fecha" name="fecha" class="form-control" required>
               </div>
               <div class="form-group col-md-6">
-                <input type="time" name="hora" class="form-control">
+                <input type="time" name="hora" class="form-control" required>
               </div>
             </div>
             <div class="form-group">
                 <label>Artistas invitados</label>
                 <select class="form-control" name="artistasinv" multiple>
-                <%List<String> artistas = (ArrayList) request.getAttribute("artistas");
+                <%List<String> artistas = (ArrayList) session.getAttribute("artistas");
 				for(String art: artistas){%>
                   <option><%=art%></option>
                 <%}%>

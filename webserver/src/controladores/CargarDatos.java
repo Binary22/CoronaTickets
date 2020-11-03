@@ -21,10 +21,14 @@ import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
 import logica.Fabrica;
+import logica.HandlerCategorias;
+import logica.HandlerEspectaculos;
+import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
+import logica.Usuario;
 
 /**
  * Servlet implementation class CargarDatos
@@ -142,7 +146,7 @@ public class CargarDatos extends HttpServlet {
 			{
 				String[] paquete = line.split(splitBy);
 				try{
-				pqc.crearPaquete(paquete[0], paquete[1], LocalDate.parse(paquete[3],formatter), LocalDate.parse(paquete[4],formatter), Integer.parseInt(paquete[2]), LocalDate.parse(paquete[5], formatter));
+				pqc.crearPaqueteWeb(paquete[0], paquete[1], LocalDate.parse(paquete[3],formatter), LocalDate.parse(paquete[4],formatter), Integer.parseInt(paquete[2]), LocalDate.parse(paquete[5], formatter), paquete[6]);
 				} catch(Exception e) {
 					System.out.print(e.getMessage());
 					e.printStackTrace();
@@ -408,6 +412,34 @@ public class CargarDatos extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		// setear contraseñas a 1234
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		for (Usuario u : hu.getUsuarios().values()) {
+			u.setPassword("1234");
+		}
+		// cargar imagenes custom
+		hu.getUsuario("waston").setImagen("resources/media/usuarios/Emma-Watson-1.jpg");
+		hu.getUsuario("vpeople").setImagen("https://upload.wikimedia.org/wikipedia/commons/2/21/VillagePeople1978.jpg");
+		hu.getUsuario("dmode").setImagen("https://bit.ly/2GB7vME");
+		hu.getUsuario("house").setImagen("https://upload.wikimedia.org/wikipedia/en/1/14/HouseCastSeason1.jpg");
+		// crear categorias
+		HandlerCategorias hc = HandlerCategorias.getInstance();
+		hc.agregarCategoria("Bandas Latinas");
+		hc.agregarCategoria("Solistas");
+		hc.agregarCategoria("Rock en Ingles");
+		hc.agregarCategoria("Musica Tropical");
+		// setear categorias a espectaculos
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		he.agregarCategoriaAEspectaculo("Los Village Volvieron","Rock en Ingles");
+		he.agregarCategoriaAEspectaculo("Global Spirit","Rock en Ingles");
+		he.agregarCategoriaAEspectaculo("Memphis Blues World","Solistas");
+		he.agregarCategoriaAEspectaculo("Springsteen on Broadway","Rock en Ingles");
+		he.agregarCategoriaAEspectaculo("Bien de Familia","Bandas Latinas");
+		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
+		he.agregarCategoriaAEspectaculo("Grandes Exitos 2020","Solistas");
+		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
+		
+    // aca termina el cargar datos
     }
 	
     

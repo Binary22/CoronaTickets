@@ -137,5 +137,9 @@ public class HandlerEspectaculos {
 		}
 		return ret;
 	}
+	
+	public void agregarCategoriaAEspectaculo(String esp, String cat) {
+		mapEspectaculos.get(esp).addCategoria(cat);
+	}
 }
 
