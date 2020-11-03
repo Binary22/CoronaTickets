@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 
 template.innerHTML = `
-    <img class="card-img-top" style="object-fit: cover; height:10rem;  alt="...">
+    <img class="card-img-top" style="object-fit: cover; height:15rem;  alt="...">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"></slot></h5>
         <h6 class="card-subtitle mb-2 text-muted"></h6>
