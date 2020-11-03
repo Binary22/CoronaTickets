@@ -21,6 +21,7 @@ import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
 import logica.Fabrica;
+import logica.HandlerCategorias;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
@@ -410,16 +411,22 @@ public class CargarDatos extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	// setear contraseñas a 1234
+		// setear contraseñas a 1234
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		for (Usuario u : hu.getUsuarios().values()) {
 			u.setPassword("1234");
 		}
-		
+		// cargar imagenes custom
 		hu.getUsuario("waston").setImagen("resources/media/usuarios/Emma-Watson-1.jpg");
 		hu.getUsuario("vpeople").setImagen("https://upload.wikimedia.org/wikipedia/commons/2/21/VillagePeople1978.jpg");
 		hu.getUsuario("dmode").setImagen("https://bit.ly/2GB7vME");
 		hu.getUsuario("house").setImagen("https://upload.wikimedia.org/wikipedia/en/1/14/HouseCastSeason1.jpg");
+		// crear categorias
+		HandlerCategorias hc = HandlerCategorias.getInstance();
+		hc.agregarCategoria("Bandas Latinas");
+		hc.agregarCategoria("Solistas");
+		hc.agregarCategoria("Rock en ingles");
+		hc.agregarCategoria("Musica Tropical");
     
     // aca termina el cargar datos
     }
