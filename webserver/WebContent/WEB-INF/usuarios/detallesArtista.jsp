@@ -89,14 +89,14 @@
 								      <div class="card-body">
 								        <h5 class="card-title"><%=e.getNombre()%></h5>
 								        <p><%=e.getDescripcion()%></p> 
-								        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-success card-text">Ver espectaculo</a>
+								        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-success card-text">Ver espectaculo</a>
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							<% } %>
 						<% } %>					
-                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && a.tieneEspectaculosIngresadosSinAceptar()) {%>
+                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && a.tieneEspectaculosIngresadosSinAceptar()) {%>
                         
                         <br>
                         <h4>Espectáculos ingresados</h4>
@@ -111,14 +111,14 @@
 								      <div class="card-body">
 								        <h5 class="card-title"><%=e.getNombre()%></h5>
 								        <p><%=e.getDescripcion()%></p> 
-								        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-success card-text">Ver espectaculo</a>
+								        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							<% } %>
 						<% } %>					
-                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && a.tieneEspectaculosRechazados()){%>
+                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && a.tieneEspectaculosRechazados()){%>
                         
                         <br>
                         <h4>Espectáculos rechazados</h4>
@@ -133,7 +133,7 @@
 								      <div class="card-body">
 								        <h5 class="card-title"><%=e.getNombre()%></h5>
 								        <p><%=e.getDescripcion()%></p> 
-								        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-success card-text">Ver espectaculo</a>
+								        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-danger card-text">Ver espectaculo</a>
 								      </div>
 								    </div>
 								  </div>
