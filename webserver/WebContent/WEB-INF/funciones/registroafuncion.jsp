@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="logica.Funcion"%>
+<%@page import="logica.Vale"%>
+<%@page import="logica.Registro"%>
+<%@page import="logica.Espectaculo"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,58 +23,107 @@
             <div class="card-body">
     
             <h4> Registro a función </h4>
+            <%if((boolean)session.getAttribute("noEligioTres")){ %>
+            <div class="alert alert-danger" role="alert">
+            
+  				Debe seleccionar 3 registros previos!
+			</div>
+			<%} %>
+			
+			<%if((boolean)session.getAttribute("errorExisteRegFun")){ %>
+            <div class="alert alert-danger" role="alert">
+            
+  				Ya existe un registro a esa función, seleccione otra!
+			</div>
+			<%} %>
+			
+			<%if((boolean)session.getAttribute("errorFunAlcanzoLimite")){ %>
+            <div class="alert alert-danger" role="alert">
+            
+  				Lo sentimos, la función seleccionada alcanzó el máximo de espectadores, eliga otra
+			</div>
+			<%} %>
+			
+			<%if((boolean)session.getAttribute("funciones_vacias")){ %>
+            <div class="alert alert-danger" role="alert">
+            
+  				No se seleccionó ningún registro previo, por favor vuelva a intentarlo
+			</div>
+			<%} %>
+			
             <br>
                     
-            <form>
+             <form class="mt-2" action = "registroafuncion" method = "POST">
                 <div class="form-group">
                     <label>Función</label>
-                    <select class="form-control">
-                      <option>Village People World Tour</option>
-                      
+                    <%List<Funcion> funciones = (List<Funcion>)session.getAttribute("funcionesEspectaculo"); %>
+                    <select class="form-control" name = "funcion_seleccionada">
+                    <%for(int i = 0; i < funciones.size(); i++){ %>
+                      <option><%= funciones.get(i).getNombre() %></option>
+                     <%  }%>
                     </select>
                 </div>
                 <div class="form-group">
                     <label> Forma de registro</label><br>
-                    <input type="radio" name="forma" id="registro" value="canjeregistros" onclick="mostrarCampos(this)">
-                    <label for="canjeregistros">Canje de registros previos</label><br>
-                    <input type="radio" name="forma" id="vale" value="canjevale" onclick="mostrarCampos(this)">
-                    <label for="canjevale">Canje de vales (paquetes)</label><br>
-                    <input type="radio" name="forma" id="tradicional" value="tradicional" checked onclick="mostrarCampos(this)">
-                    <label for="tradicional">Registro tradicional (abonando)</label>
+                    
+	                    <input type="radio" name="forma" id="registro" value="canjeregistros" onclick="mostrarCampos(this)">
+	                    <label for="canjeregistros">Canje de registros previos</label><br>
+	                    <input type="radio" name="forma" id="vale" value="canjevale" onclick="mostrarCampos(this)">
+	                    <label for="canjevale">Canje de vales (paquetes)</label><br>
+	                    <input type="radio" name="forma" id="tradicional" value="tradicional" checked onclick="mostrarCampos(this)">
+	                    <label for="tradicional">Registro tradicional (abonando)</label>
+                    
                 </div>
 
                 <!-- Esto solo es visible si se desea canjear registros previos -->
+                
                 <div id="camposregistro" style="display: none;">
                     <div class="form-group">
+                    <%List<Registro> registros = (List<Registro>)session.getAttribute("registros_canjear"); 
+                      if(!registros.isEmpty()){%>
                         <label>Elegir registros a canjear</label>
-                        <select class="form-control" multiple>
-                          <option>R1</option>
-                          
+                        <select class="form-control"  name = "registros_previos" multiple>
+                        <%for(int i = 0; i < registros.size(); i++){ %>
+                          <option><%=registros.get(i).getFuncion().getNombre() %></option>
+                          <%} %>
                         </select>
+                        <h6>Precio a abonar:</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
+                        <%}else{ %>
+                        	 <h6 class="card-subtitle mb-2 text-muted">No posee registros previos</h6>
+                        	 <%} %>
                     </div>
                 </div>
+                
+                
 
                 <!-- Esto solo es visible si se desea canjear un vale de un paquete -->
                 <div id="campospaquete" style="display: none;">
                     <div class="form-group">
                         <label>Elegir vales a canjear</label>
+                       
                         <select class="form-control" multiple>
-                          <option>V1</option>
-                          
+                       
+                          <option>g</option>
+                       
                         </select>
                         <h6>Precio a abonar:</h6>
                         <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
                     </div>
                 </div>
                 
+                
+                
                 <div id="campotradicional" style="display: none;">
-                    
+                    	<%Espectaculo espect = (Espectaculo)session.getAttribute("espectaculo_fun"); %>
                         <h6>Precio a abonar: </h6>
-                        <h6 class="card-subtitle mb-2 text-muted">$</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">$<%=espect.getCosto() %></h6>
                    
                 </div>    
-                    
-                <button type="submit" class="btn btn-primary">Registrar</button>
+               
+                	
+                	<button type="submit" class="btn btn-primary">Registrar</button>
+                
             </form>
             </div>
             </div>

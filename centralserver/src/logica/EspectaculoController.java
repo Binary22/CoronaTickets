@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
@@ -41,6 +42,9 @@ public class EspectaculoController implements IEspectaculo {
 	private Registro[] regsCanjeados;
 	private boolean registroFueCanjeado = false;
 	private String nomCategoria;
+	private ArrayList<String> categorias;
+	private String imagen;
+	
 	
 	public void setRegistroFueCanjeado(boolean canj) {
 		this.registroFueCanjeado = canj;
@@ -191,6 +195,8 @@ public class EspectaculoController implements IEspectaculo {
 			throw new NombreFuncionexisteException("El nombre " + nombre + " ya esta en uso");
 
 	}
+	
+	
 
 	@Override
 	public void ConfirmarAltaFuncion() {
@@ -259,6 +265,46 @@ public class EspectaculoController implements IEspectaculo {
 		}
 		return dtespect;
 	}
+	
+	
+	
+	@Override
+	public void altaEspectaculoWeb(String nomPlataforma, String nickArtista, String nombre, String descripcion,
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, ArrayList<String> cat, String imagen)
+			throws NombreEspectaculoExisteException {
+		// TODO Auto-generated method stub
+		
+		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+		if( hesp.getEspectaculo(nombre) == null) {
+			this.nomespec= nombre;
+			this.nomPlataforma= nomPlataforma;
+			this.nickUsuario = nickArtista;
+			this.descripcion= descripcion;
+			this.duracion= duracion;
+			this.minEspect= minEspec;
+			this.maxEspect= maxEspec;
+			this.url= url;
+			this.costo= costo;
+			this.fechaAlta= fechaAlta;
+			this.categorias= cat;
+			this.imagen = imagen;
+		}
+		else throw new NombreEspectaculoExisteException("El nombre de espectaculo " + nombre + " ya esta en uso");
+		
+		HandlerUsuarios huser= HandlerUsuarios.getInstancia();
+		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
+		Artista art= (Artista) huser.getUsuario(nickUsuario);
+		Plataforma plat= hplat.getPlataforma(nomPlataforma);
+		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias);		
+		Fabrica f = Fabrica.getInstance();
+		IPlataforma pc = f.getIPlataforma();
+		esp.setPlataforma(plat);
+		esp.setArtista(art);
+		pc.agregarEspectaculoPlataforma(plat, esp);
+		hesp.addEspectaculo(esp);
+	}
+	
+	
 	@Override
 	public ArrayList<DtFuncion> mostrarFuncionesEspectaculo(String nomespec) {
 		// TODO Auto-generated method stub
@@ -375,6 +421,8 @@ public class EspectaculoController implements IEspectaculo {
 		return espectador.tieneRegistroAFuncion(this.nomfuncion);
 		
 	}
+	
+	
 	@Override
 	public boolean funcionAlcanzoLimiteReg(String nomespect) {
 		// TODO Auto-generated method stub
@@ -490,7 +538,7 @@ public class EspectaculoController implements IEspectaculo {
 			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) throws NombreEspectaculoExisteException {
 		
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		if( hesp.getEspectaculo(nombre) == null) {
+		if (hesp.getEspectaculo(nombre) == null) {
 			this.nomespec= nombre;
 			this.nomPlataforma= nomPlataforma;
 			this.nickUsuario = nickArtista;
@@ -506,6 +554,7 @@ public class EspectaculoController implements IEspectaculo {
 			throw new NombreEspectaculoExisteException("El nombre de espectaculo " + nombre + " ya esta en uso");	
 	}
 	
+
 	@Override
 	public void confirmarAltaEspectaculo() {
 		HandlerUsuarios huser= HandlerUsuarios.getInstancia();
@@ -533,7 +582,12 @@ public class EspectaculoController implements IEspectaculo {
 		return nomCategorias;
 	}
 	
-	public void ConfirmarCategoria(String nombre)throws NombreCategoriaExistente {
+	public ArrayList<String> listarCategoriasEspectaculo(String nomEspec) {
+		HandlerEspectaculos handler = HandlerEspectaculos.getInstance();
+		return handler.getEspectaculo(nomEspec).listarCategorias();
+	}
+	
+	public void confirmarCategoria(String nombre)throws NombreCategoriaExistente {
 		HandlerCategorias hc = HandlerCategorias.getInstance();
 		if(!hc.existeCategoria(nombre)) {
 			Categoria cat = new Categoria(nombre);
@@ -548,7 +602,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		ArrayList<String> ingresados = new ArrayList<String>();
 		for (String key : he.getEspectaculos().keySet()) {
-			if(!he.getEspectaculos().get(key).isYaFueValuado()) {
+			if (!he.getEspectaculos().get(key).isYaFueValuado()) {
 				ingresados.add(key);
 			}
 		}
@@ -564,10 +618,6 @@ public class EspectaculoController implements IEspectaculo {
 		if(aceptado)
 			e.setAceptado(aceptado);
 	}
-	
-	
-	
-	
-	
+
 
 }

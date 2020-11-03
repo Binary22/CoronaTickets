@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.noSeleccionoTres;
 import logica.Espectaculo;
 import logica.Fabrica;
 import logica.Funcion;
@@ -38,12 +40,21 @@ public class Registroafuncion extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("noEligioTres", false);
+		objSesion.setAttribute("errorExisteRegFun", false);
+		objSesion.setAttribute("errorFunAlcanzoLimite", false);
+		objSesion.setAttribute("funciones_vacias", false);
+		
 		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
 			String userNickname = (String) objSesion.getAttribute("usuario_logueado");
 			String nomEspect = req.getParameter("name");
+			objSesion.setAttribute("espectaculo_recordar", nomEspect);
+			
+			
 	    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 	    	Espectaculo e = he.getEspectaculo(nomEspect);
 	    	List<Funcion> funcionesEspect = new ArrayList<Funcion>(e.getAllFunciones().values());
+	    	objSesion.setAttribute("espectaculo_fun", e);
 	    	objSesion.setAttribute("funcionesEspectaculo", funcionesEspect);
 			
 	    	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
@@ -67,8 +78,98 @@ public class Registroafuncion extends HttpServlet {
 		
 	}
 	
+	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
 		
+		String userNickname = (String) objSesion.getAttribute("usuario_logueado");
+		String espectaculo = (String) objSesion.getAttribute("espectaculo_recordar");
+		String nomFuncion = req.getParameter("funcion_seleccionada");
+		Fabrica fabrica = Fabrica.getInstance();
+        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+       
+        ctrlE.ingresarNombreEspectador(userNickname);
+        ctrlE.ingresarNombreFuncion(nomFuncion);
+        
+		if(req.getParameter("forma").compareTo("canjeregistros") == 0) {
+			String[] regsSelected = req.getParameterValues("registros_previos");
+			if(regsSelected != null) {
+			
+				int[] ids = new int[3];
+				
+			        List<Registro> registrosCanjear = ctrlE.obtenerRegistrosPreviosWeb(userNickname);
+			        int j = 0;
+			        for(int i = 0; i < registrosCanjear.size(); i++) {
+			        	String nombre = registrosCanjear.get(i).getFuncion().getNombre();
+			        	for(int t = 0; t < regsSelected.length; t++) {
+				        	if(nombre.compareTo(regsSelected[t]) == 0){
+				        		ids[j] = registrosCanjear.get(i).getId();
+				        		System.out.println(j+"numeros for");
+				        		j = j+1;
+				        	}
+			        	
+			        	}
+			        	
+			        }
+			        for(int i = 0; i < ids.length; i++) {
+			        	System.out.print(ids[i]);
+			        	System.out.println("prueba numeros");
+			        }
+			       
+			        try {
+						ctrlE.canjearRegistros(ids);
+					} catch (noSeleccionoTres e) {
+						// TODO Auto-generated catch block
+						ctrlE.ingresarNombreFuncion(null);
+						objSesion.setAttribute("noEligioTres", true);
+						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+					}
+			        
+			        if(ctrlE.existeRegistroEspecAFun()){
+			        	ctrlE.ingresarNombreFuncion(null);
+						objSesion.setAttribute("errorExisteRegFun", true);
+						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+						
+					}
+			        if(ctrlE.funcionAlcanzoLimiteReg(espectaculo)){
+			        	ctrlE.ingresarNombreFuncion(null);
+						objSesion.setAttribute("errorFunAlcanzoLimite", true);
+						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+					}
+			        
+			      if(!ctrlE.existeRegistroEspecAFun() && !ctrlE.funcionAlcanzoLimiteReg(espectaculo)) {
+					ctrlE.confirmarRegistro(espectaculo, LocalDate.now());
+					ctrlE.ingresarNombreFuncion(null);
+			      }
+					
+			        
+			}else {
+				objSesion.setAttribute("funciones_vacias", true);
+				req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+			}
+		        
+	        }else if(req.getParameter("forma").compareTo("tradicional")==0){
+	        	if(ctrlE.existeRegistroEspecAFun()){
+	        		ctrlE.ingresarNombreFuncion(null);
+					objSesion.setAttribute("errorExisteRegFun", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				}
+		        if(ctrlE.funcionAlcanzoLimiteReg(espectaculo)){
+		        	ctrlE.ingresarNombreFuncion(null);
+					objSesion.setAttribute("errorFunAlcanzoLimite", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				}
+		        if(!ctrlE.existeRegistroEspecAFun() && !ctrlE.funcionAlcanzoLimiteReg(espectaculo)) {
+	    			ctrlE.confirmarRegistro(espectaculo, LocalDate.now());
+	    			ctrlE.ingresarNombreFuncion(null);
+		        }
+	    		
+	        	
+	        	
+	        }
+		ctrlE.ingresarNombreFuncion(null);
+		
+		resp.sendRedirect("home");
 	}
     
 	/**
@@ -84,7 +185,9 @@ public class Registroafuncion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processResponse(request, response);
+		
+			processResponse(request, response);
+		
 	}
 
 }

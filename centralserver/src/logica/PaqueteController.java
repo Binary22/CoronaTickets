@@ -48,5 +48,15 @@ public class PaqueteController implements IPaquete {
 	public void confirmarAgregarEspectAPaquete() {
 		p.addEspectaculo(e);
 	}
+	
+	@Override
+	public void crearPaqueteWeb(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta, String imagen) throws PaqueteConMismoNombreException {
+		HandlerPaquetes hq= HandlerPaquetes.getInstance();
+		if(!hq.getNombresPaquete().contains(nombre))
+			this.p = hq.crearPaqueteWeb(nombre, descrip, fechaini, fechafin, desc, fechaalta, imagen);
+		else
+			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
+	}
+
 
 }
