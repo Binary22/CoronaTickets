@@ -77,7 +77,7 @@
 			     <div class="card mb-3 divpaq" style="max-width: 170em;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
-				      <img src="resources/media/espectaculos/maracas.jpg" class="card-img" style="object-fit: cover; height:12rem;">
+				      <img src=" <%= p.getImagen() %>" class="card-img" style="object-fit: cover; height:12rem;">
 				    </div>
 				    <div class="col-md-7">
 				      <div class="card-body">
