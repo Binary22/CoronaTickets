@@ -46,24 +46,11 @@
                     <select class="form-control" id="plataforma" name="plataformas" required>
                         <%List<String> plataformas = (ArrayList) session.getAttribute("plataformas");
 						for(String plat: plataformas){%>
-                  		<option><%=plat%></option>
+                  		<option> <%=plat%> </option>
                   		<%}%>	
                     </select>
-                    <br>
-                    <button type="submit" class="btn btn-success" style="display: inline-block">Elegir</button>
                 </div>                
-                <%if((Boolean)session.getAttribute("eligioplataforma")){%>
-	            <div class="form-group">
-				    <label for="exampleFormControlSelect2">Espectáculos</label>
-				    <select multiple class="form-control" id="Espectaculos" name="espectaculos" required>
-				      	<%List<String> espectaculos = (ArrayList) session.getAttribute("espectaculos");
-						for(String esp: espectaculos){%>
-                  		<option><%=esp%></option>
-                  		<%}%>	
-				    </select>
-				</div>				
-				<button type="submit" class="btn btn-primary" style="display: inline-block">Confirmar</button>
-				<%}%>
+				<button type="submit" class="btn btn-success" style="display: inline-block">Elegir</button>
            </form>
         </div>
         </div>

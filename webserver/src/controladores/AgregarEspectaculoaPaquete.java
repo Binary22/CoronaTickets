@@ -57,18 +57,14 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 		}
 		objSesion.setAttribute("plataformas",plataformaslist);
 		
-		if(req.getParameter("plataformas") != null) {
-			HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-			Map<String,Espectaculo> espectaculos = hesp.getEspectaculosPlataforma(req.getParameter("plataformas"));
-			List<String> espectaculosList = new ArrayList<String>();
-			for (String key : espectaculos.keySet()) {
-				espectaculosList.add(espectaculos.get(key).getNombre());
-			}
-			objSesion.setAttribute("espectaculos",espectaculosList);
-			objSesion.setAttribute("eligioplataforma",true);
-		}	
-    	req.getRequestDispatcher("/WEB-INF/espectaculos/agregarEspectaculoaPaquete.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/espectaculos/agregarEspectaculoaPaquete.jsp").forward(req, resp);
 	}
+    private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HttpSession objSesion = req.getSession();
+    	objSesion.setAttribute("paqueteelegido",req.getParameter("paquetes"));
+		objSesion.setAttribute("plataformaelegida",req.getParameter("plataformas"));
+		resp.sendRedirect("espectaculosdeplat");
+    }
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -83,7 +79,7 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		processResponse(request, response);
 	}
 
 }

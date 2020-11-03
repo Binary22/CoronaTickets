@@ -72,6 +72,18 @@
     	<servlet-name>Buscar</servlet-name>
     	<servlet-class>controladores.Buscar</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>EspectaculosDePlat</servlet-name>
+    	<servlet-class>controladores.EspectaculosDePlat</servlet-class>
+    </servlet>
+    
+    
+    
+    <servlet-mapping>
+    	<servlet-name>EspectaculosDePlat</servlet-name>
+    	<url-pattern>/espectaculosdeplat</url-pattern>
+    </servlet-mapping>
+    
     
     <servlet-mapping>
     	<servlet-name>CargarDatos</servlet-name>
