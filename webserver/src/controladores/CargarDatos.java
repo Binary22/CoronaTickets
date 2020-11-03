@@ -432,6 +432,7 @@ public class CargarDatos extends HttpServlet {
 		hu.getUsuario("vpeople").setImagen("https://upload.wikimedia.org/wikipedia/commons/2/21/VillagePeople1978.jpg");
 		hu.getUsuario("dmode").setImagen("https://bit.ly/2GB7vME");
 		hu.getUsuario("house").setImagen("https://upload.wikimedia.org/wikipedia/en/1/14/HouseCastSeason1.jpg");
+		hu.getUsuario("chino").setImagen("resources/media/usuarios/userdefault2.jpg");
 		// crear categorias
 		HandlerCategorias hc = HandlerCategorias.getInstance();
 		hc.agregarCategoria("Bandas Latinas");
