@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, logica.Espectaculo, logica.Paquete, logica.Plataforma, logica.Categoria, logica.Plataforma, java.util.Set" %>
+<%@ page import="java.util.List, java.util.HashMap, java.util.Map, logica.Espectaculo, logica.Paquete, logica.Plataforma, logica.Categoria, logica.Plataforma, java.util.Set" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -40,17 +40,25 @@
 	            	<form>
 		                <div class="form-group">
 		                    <label>Filtrar por:</label>
-		                    <select class="form-control">
-		                      <option selected="selected">Todas las categorias y plataformas</option>
+		                    <select class="form-control" id="filtro">
+		                      <option value="todo" selected="selected">Todas las categorias y plataformas</option>
 		                      <optgroup label="Categorias">
-		                      	<% for (String s : (Set<String>) session.getAttribute("categorias")) { %>
-							  	<option><%=s%></option>
+		                      	<% Set<String> setcats = (Set<String>) session.getAttribute("categorias");
+		                      	Set<String> setplats = (Set<String>) session.getAttribute("plataformas");
+		                      	Map mapeoclave = new HashMap(); 
+		                      	int indice = 0;
+		                      	for (String s : (Set<String>) session.getAttribute("categorias")) { %>
+							  	<option value="c<%=indice%>"><%=s%></option>
+							  	<% mapeoclave.put(s, "c" + indice); 
+							  	indice++; %>
 							  	<% } %>
 							  </optgroup>
 							  <optgroup label="Plataformas">
 							  	<% for (String s : (Set<String>) session.getAttribute("plataformas")) { %>
-							  	<option><%=s%></option>
-							    <% } %>
+							  	<option value="c<%=indice%>"><%=s%></option>
+							    <% mapeoclave.put(s, "c" + indice);
+							    indice++;
+							    } %>
 							  </optgroup>		            	                      
 		                    </select>
 		                </div>
@@ -63,8 +71,8 @@
 			if (lp.isEmpty()) { %>
 			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
 			<% } else { %>
+				<div id="contenedorpaq" style="display:block;">
 				<h3>Paquetes:</h3>
-				<div id="contenedorpaq">
 				<% for (Paquete p : lp) {  %>
 			     <div class="card mb-3 divpaq" style="max-width: 200em;">
 				  <div class="row no-gutters">
@@ -93,10 +101,19 @@
 		    <h3 style="text-align:center">No hay espectaculos que coincidan con esa busqueda</h3>
 		    <br>
 		    <% } else { %>
-		    	<h3>Espectaculos:</h3>
 		    	<div id="contenedoresp">
+		    	<h3>Espectaculos:</h3>
 			    <% for (Espectaculo e : le) {  %>
-			    <div class="card mb-3 divesp" style="max-width: 200em;">
+			    <% List<String> categorias = e.listarCategorias();
+			    String strclaves = "";
+			    String strcat = "";
+			    for (String s : categorias) {
+			    	strclaves = strclaves + " " + mapeoclave.get(s);
+			    	strclaves = strclaves + " " + mapeoclave.get(e.getPlataforma().getNombre());
+			    	strcat = strcat + " " + s;
+			    }
+			    %>
+			    <div class="card mb-3 divesp cardespectaculo <%=strclaves%>" style="max-width: 200em; display:block;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
 				      <img src="resources/media/espectaculos/rock.jpg" class="card-img" style="object-fit: cover; height:12rem;">
@@ -109,7 +126,7 @@
                         </div>
 				      
 				        <p><%=e.getDescripcion()%></p>
-				        <p><%=e.getPlataforma().getNombre()%></p>
+				        <p><%=e.getPlataforma().getNombre()%> | <%=strcat%></p>
 				        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 				      </div>
 				    </div>

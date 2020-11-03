@@ -61,6 +61,7 @@ public class Espectaculo {
 		this.setFunciones = new HashMap<String,Funcion>();
 		this.yaFueValuado = false;
 		this.aceptado = false;
+		this.categorias = new ArrayList<String>();
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
@@ -157,5 +158,9 @@ public class Espectaculo {
 
 	public boolean isAceptado() {
 		return aceptado;
+	}
+	
+	public void addCategoria(String cat) {
+		categorias.add(cat);
 	}
 }
