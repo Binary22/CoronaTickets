@@ -1,7 +1,7 @@
 const templatePaquete = document.createElement('template');
 
 templatePaquete.innerHTML = `
-    <img class="card-img-top" style="object-fit: cover; height:10rem;  alt="...">
+    <img class="card-img-top" style="object-fit: cover; height:15rem;  alt="...">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title"><slot name="titulo"></slot></h5>
         <p class="card-text">
