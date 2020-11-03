@@ -33,8 +33,12 @@ public class CrearPaquete extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
-    	objSesion.setAttribute("nombreexiste",false);
-		req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);
+    	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
+	    	objSesion.setAttribute("nombreexiste",false);
+			req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);
+    	}
+    	else
+    		resp.sendRedirect("registro");
 	}
     
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

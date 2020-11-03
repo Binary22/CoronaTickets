@@ -62,9 +62,8 @@
               <input type="password" class="form-control" name = "confPassword" placeholder="Ej. 123456">
             </div>
             <div class="form-group">
-              <label>Elegir imagen</label>
-              <br>
-              <input type="file" id="avatar" name="imagen" accept="image/png, image/jpeg">
+               <label>Elegir imagen</label>
+               <input type="url" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr">
             </div>
             <div class="form-group form-check">
               <input type="checkbox" name = "esArtista" class="form-check-input" id="artista" onclick="mostrarCamposArtista(this)"> 
@@ -82,7 +81,7 @@
               </div>
               <div class="form-group">
                 <label>Website</label>
-                <input type="url" class="form-control" name = "website" placeholder="Ej. rigobertorock.com">
+                <input type="url" class="form-control" name = "website" placeholder="Ej. https://rigobertorock.com">
               </div>
             </div>
 
