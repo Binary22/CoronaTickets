@@ -31,11 +31,14 @@ public class Altaespectaculo extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HttpSession session = req.getSession();
+    	session.setAttribute("error", "no");
 		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
 	}
     
     private void processSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		session.setAttribute("error", "no");
 		String nick = (String) session.getAttribute("usuario_logueado");
     	String nomPlataforma = req.getParameter("nomPlataforma");
     	String nombre = req.getParameter("nombre");
@@ -63,14 +66,17 @@ public class Altaespectaculo extends HttpServlet {
     							Integer.parseInt(minEspectadores), Integer.parseInt(maxEspectadores),
     							url, Integer.parseInt(costo), hoy);
     	ctrlE.confirmarAltaEspectaculo();
+    	resp.sendRedirect("altafuncion");
 
     	} catch(NombreEspectaculoExisteException e) {
     		e.printStackTrace();
+    		session.setAttribute("error", e.getMessage());
+    		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
     		//devolver algo al usuario de la web !!
     	}
-    	
-    	
-    	System.out.print(ctrlE.listarEspectaculosPlataforma("Facebook Live"));
+    	    	
+        
+
     }
     
 	/**

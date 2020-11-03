@@ -33,7 +33,7 @@
         <form action="altaespectaculo" method="POST">
             <div class="form-group">
               <label>Plataforma</label>
-              <select name="nomPlataforma" class="form-control">
+              <select required name="nomPlataforma" class="form-control">
                 <option value = 'Facebook Watch'>Facebook Watch</option>
                 <option>Instagram Live</option>
                 <option>Twitter Live</option>
@@ -41,38 +41,51 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Nombre</label>
-              <input name="nombre" type="text" class="form-control"  placeholder="Ej. Los Rolling 50 años">
+          	<% 
+          		if (session.getAttribute("error") != "no"){
+          			
+          	%> 
+            	
+           		<div class="alert alert-danger">
+           			<%= session.getAttribute("error") %>
+           		</div>
+           	
+           	<% } else { %>
+           	
+          		<label>Nombre</label>
+            	<input required name="nombre" type="text" class="form-control"  placeholder="Ej. Los Rolling 50 años">
+            	<% } %>
+              
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" class="form-control" placeholder="Ej. Tour en conememoración de los 50 años de los Rolling Stones"></textarea>
+                <textarea required name="descripcion" class="form-control" placeholder="Ej. Tour en conememoración de los 50 años de los Rolling Stones"></textarea>
             </div>
             <label>Duración</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input name="horas" type="number" class="form-control"  placeholder="Horas">
+                <input required name="horas" type="number" class="form-control"  placeholder="Horas">
               </div>
               <div class="form-group col-md-6">
-                <input name="minutos" type="number" class="form-control"  placeholder="Minutos">
+                <input required name="minutos" type="number" class="form-control"  placeholder="Minutos">
               </div>
             </div>
             <label>Máximo y mínimo de espectadores</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input name="max" type="number" class="form-control"  placeholder="Máximo">
+                <input required name="max" type="number" class="form-control"  placeholder="Máximo">
               </div>
               <div class="form-group col-md-6">
-                <input name="min" type="number" class="form-control"  placeholder="Mínimo">
+                <input required name="min" type="number" class="form-control"  placeholder="Mínimo">
               </div>
             </div>
             <div class="form-group">
               <label>URL</label>
-              <input name=url"" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
+              <input required name=url"" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
             </div>
             <div class="form-group">
               <label>Categorias</label>
-              <select name ="categoria" class="form-control" multiple>
+              <select required name ="categoria" class="form-control" multiple>
                 <option>Rock</option>
                 <option>Pop</option>
                 <option>Duos</option>
@@ -83,12 +96,12 @@
             </div>
             <div class="form-group">
               <label>Costo</label>
-              <input name="costo" type="number" class="form-control"  placeholder="Ej. 300">
+              <input required name="costo" type="number" class="form-control"  placeholder="Ej. 300">
             </div>
             <div class="form-group">
               <label>Elegir imagen</label>
               <br>
-              <input name="imagen" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+              <input name="imagen" type="text" id="avatar" name="avatar">
             </div>
 
             <button type="submit" class="btn btn-primary"> Dar de alta el espectaculo</button>
