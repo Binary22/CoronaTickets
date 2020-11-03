@@ -63,6 +63,7 @@ public class Espectaculo {
 		this.aceptado = false;
 		this.categorias = new ArrayList<String>();
 		this.imagen = "resources/media/espectaculos/rock.jpg";
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
@@ -128,7 +129,9 @@ public class Espectaculo {
 		return artista;
 	}
 	public void setArtista(Artista artista) {
+		artista.agregarEspectaculo(this);
 		this.artista = artista;
+
 	}
 	public float getCosto() {
 		return costo;

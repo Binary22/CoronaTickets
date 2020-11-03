@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
               <label>URL*</label>
-              <input required name=url"" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
+              <input required name="url" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
             </div>
             <div class="form-group">
               <label>Categorias*</label>
@@ -104,11 +104,10 @@
               <input required name="costo" type="number" class="form-control"  placeholder="Ej. 300">
             </div>
             <div class="form-group">
-              <label>Elegir imagen</label>
-              <br>
-              <input name="imagen" type="text" id="avatar" name="avatar">
+               <label>Elegir imagen</label>
+               <input type="url" class="form-control" name="imagen" placeholder="Ej. https://bit.ly/ijgjr">
             </div>
-
+ 
             <button type="submit" class="btn btn-primary"> Dar de alta el espectaculo</button>
         </form>
         </div>
