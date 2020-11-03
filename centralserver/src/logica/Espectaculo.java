@@ -79,7 +79,11 @@ public class Espectaculo {
 		this.setFunciones = new HashMap<String,Funcion>();
 		this.yaFueValuado = false;
 		this.aceptado = false;
-		this.imagen = imagen;
+		if (imagen == "" || imagen == null) {
+			this.imagen = "resources/media/espectaculos/rock.jpg";
+		} else {
+			this.imagen = imagen;
+		}
 		this.categorias = categs;
 	}
 	
