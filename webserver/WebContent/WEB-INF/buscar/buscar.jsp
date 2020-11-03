@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, logica.Espectaculo, logica.Paquete, logica.Plataforma" %>
+<%@ page import="java.util.List, logica.Espectaculo, logica.Paquete, logica.Plataforma, logica.Categoria, logica.Plataforma, java.util.Set" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -42,11 +42,16 @@
 		                    <label>Filtrar por:</label>
 		                    <select class="form-control">
 		                      <option selected="selected">Todas las categorias y plataformas</option>
-		                      <option>Categoria 1</option>
-		                      <option>Categoria 2</option>
-		                      <option>Categoria 3</option>
-		                      <option>Plataforma 1</option>
-		                      <option>Plataforma 2</option>		                      
+		                      <optgroup label="Categorias">
+		                      	<% for (String s : (Set<String>) session.getAttribute("categorias")) { %>
+							  	<option><%=s%></option>
+							  	<% } %>
+							  </optgroup>
+							  <optgroup label="Plataformas">
+							  	<% for (String s : (Set<String>) session.getAttribute("plataformas")) { %>
+							  	<option><%=s%></option>
+							    <% } %>
+							  </optgroup>		            	                      
 		                    </select>
 		                </div>
 	            	</form>

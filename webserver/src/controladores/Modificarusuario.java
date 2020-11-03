@@ -36,7 +36,7 @@ public class Modificarusuario extends HttpServlet {
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
         Usuario userlog = husers.getUsuario(nickname);
-        if(userlog.esArtista())
+        if(!userlog.esArtista())
         	objSesion.setAttribute("usuariolog", userlog);
         else {
         	Artista userArtlog = (Artista) husers.getUsuario(nickname);

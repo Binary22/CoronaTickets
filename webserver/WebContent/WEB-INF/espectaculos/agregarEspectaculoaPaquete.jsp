@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,41 +30,27 @@
             </div> -->
 
             <h4> Agregar espectaculo a paquete </h4>
-            <br>
-                    
-            <form>
+            <br>  
+            <form action="agregarEspectaculoaPaquete" method="POST">
                 <div class="form-group">
                     <label>Paquetes</label>
-                    <select class="form-control" id="paquete">
-                        <option default disabled selected value="">--Elegir paquete--</option>
-                        <option value="Bandas">Bandas</option>
-                        <option value="Solistas">Solistas</option>
-                        <option value="Latino">Latino</option>
+                    <select class="form-control" id="paquete" name="paquetes" required>
+                        <%List<String> paquetes = (ArrayList) session.getAttribute("paquetes");
+						for(String paq: paquetes){%>
+                  		<option><%=paq%></option>
+                  		<%}%>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Plataformas</label>
-                    <select class="form-control" id="plataforma" onchange="mostrarEspectaculos(value)">
-                        <option default disabled selected value="">--Elegir plataforma--</option>
-                        <option value="Instagram Live">Instagram Live</option>
-                        <option value="Facebook Watch">Facebook Watch</option>
-                        <option value="Twitter Live">Twitter Live</option>
-                        <option value="Youtube">Youtube</option>
+                    <select class="form-control" id="plataforma" name="plataformas" required>
+                        <%List<String> plataformas = (ArrayList) session.getAttribute("plataformas");
+						for(String plat: plataformas){%>
+                  		<option> <%=plat%> </option>
+                  		<%}%>	
                     </select>
-                </div>
-	            <div class="form-group">
-				    <label for="exampleFormControlSelect2">Espectáculos</label>
-				    <select multiple class="form-control" id="Espectaculos">
-				      <option>Los Village Volvieron</option>
-				      <option>Global Spirit</option>
-				      <option>Memphis Blues World</option>
-				      <option>Springsteen on Broadway</option>
-				      <option>Bien de Familia</option>
-				      <option>30 años</option>
-				    </select>
-				</div>
-				<button type="submit" class="btn btn-primary" style="display: inline-block">Confirmar</button>
-      			<button type="submit" class="btn btn-primary"  style="display: inline-block">Cancelar</button>
+                </div>                
+				<button type="submit" class="btn btn-success" style="display: inline-block">Elegir</button>
            </form>
         </div>
         </div>

@@ -1,11 +1,25 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import logica.Espectaculo;
+import logica.Fabrica;
+import logica.HandlerEspectaculos;
+import logica.HandlerPaquetes;
+import logica.HandlerPlataforma;
+import logica.HandlerUsuarios;
+import logica.IPaquete;
 
 /**
  * Servlet implementation class AgregarEspectaculoaPaquete
@@ -23,8 +37,34 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("eligioplataforma",false);
+    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
+    	
+        
+		List<String> paquetes = hp.getNombresPaquete();
+		List<String> paqueteslist = new ArrayList<String>();
+		for (int i=0; i< paquetes.size(); i++) {
+			paqueteslist.add(paquetes.get(i));
+		}	
+		objSesion.setAttribute("paquetes",paqueteslist);	
+
+		HandlerPlataforma hplat = HandlerPlataforma.getInstance();
+		List<String> plataformas = hplat.getNombres();
+		List<String> plataformaslist = new ArrayList<String>();
+		for (int i=0; i< plataformas.size(); i++) {
+			plataformaslist.add(plataformas.get(i));
+		}
+		objSesion.setAttribute("plataformas",plataformaslist);
+		
 		req.getRequestDispatcher("/WEB-INF/espectaculos/agregarEspectaculoaPaquete.jsp").forward(req, resp);
 	}
+    private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HttpSession objSesion = req.getSession();
+    	objSesion.setAttribute("paqueteelegido",req.getParameter("paquetes"));
+		objSesion.setAttribute("plataformaelegida",req.getParameter("plataformas"));
+		resp.sendRedirect("espectaculosdeplat");
+    }
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +79,7 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		processResponse(request, response);
 	}
 
 }

@@ -30,5 +30,10 @@ public class HandlerCategorias {
 			return true;
 		return false;
 	}
+	
+	public void agregarCategoria(String nombre) {
+		Categoria nuevacat = new Categoria(nombre);
+		categorias.put(nombre, nuevacat);
+	}
 
 }

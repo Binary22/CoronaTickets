@@ -57,6 +57,7 @@ public class Artista extends Usuario {
 		this.biografia = bio;
 		this.website = web;
 		this.espectaculos = new ArrayList<Espectaculo>();
+		this.setImagen("resources/media/usuarios/artistadefault.jpg");
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
