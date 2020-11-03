@@ -29,9 +29,10 @@
                 <div class="row">
                     <div class="col-md-3">
 	                	<div class="card">
-	                       <img class="card-img-top" src="resources/media/usuarios/userdefault.jpg" class="rounded" width="155"> 
+	                	<% Usuario u = (Usuario) session.getAttribute("usuario"); %>
+	                       <img class="card-img-top" src="<%=u.getImagen()%>" class="rounded" width="155"> 
 	                        
-	                        <% Usuario u = (Usuario) session.getAttribute("usuario"); %>
+	                        
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
