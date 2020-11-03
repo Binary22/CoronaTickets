@@ -75,11 +75,6 @@
                 <%}%>
                 </select> 
             </div>
-            <div class="form-group">
-              <label>Elegir imagen</label>
-              <br>
-              <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-            </div>
 
             <button type="submit" class="btn btn-primary"> Dar de alta la función</button>
         </form>
