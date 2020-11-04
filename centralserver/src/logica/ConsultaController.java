@@ -24,6 +24,10 @@ public class ConsultaController implements IConsulta {
 	private Paquete paquete;
 	private Usuario usuario;
 	
+	public Paquete getPaquete() {
+		return this.paquete;
+	}
+	
 	public ConsultaController(Funcion f, Espectaculo e, Paquete p, Usuario u) {
 		funcion = null;
 		espectaculo = null;

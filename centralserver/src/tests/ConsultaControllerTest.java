@@ -8,13 +8,17 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import excepciones.NoExistePaqueteException;
+import excepciones.NoHayPaquetesException;
 import logica.Artista;
 import logica.ConsultaController;
 import logica.Espectaculo;
 import logica.Funcion;
 import logica.HandlerEspectaculos;
+import logica.HandlerPaquetes;
 import logica.HandlerPlataforma;
 import logica.HandlerUsuarios;
+import logica.Paquete;
 import logica.Plataforma;
 import logica.PlataformaController;
 import logica.Usuario;
@@ -25,6 +29,7 @@ class ConsultaControllerTest {
 	private static HandlerUsuarios hu;
 	private static HandlerEspectaculos he;
 	private static HandlerPlataforma hp;
+	private static HandlerPaquetes hpaq;
 	
 	@BeforeAll
 	static void iniciar() {
@@ -33,6 +38,8 @@ class ConsultaControllerTest {
 		hu = HandlerUsuarios.getInstancia();
 		he = HandlerEspectaculos.getInstance();
 		hp = HandlerPlataforma.getInstance();
+		hpaq = HandlerPaquetes.getInstance();
+		
 	}
 
 
@@ -177,5 +184,49 @@ class ConsultaControllerTest {
 		icontroller.elegirFuncion("q", "z");
 		assertEquals(icontroller.getFuncion().getNombre(),"z");
 	}
+	
+	@Test
+	void testlistarPaquetesMal() {
+		try {
+			icontroller.listarPaquetes();
+		} catch (NoHayPaquetesException e) {
+			// TODO Auto-generated catch block
+			fail(e.getMessage());
+			e.printStackTrace();
+		}
+		assertThrows(NoHayPaquetesException.class, () -> icontroller.listarPaquetes());
+		}
+	@Test
+	void testlistarPaquetesBien() {
+
+		try {
+			Paquete paq = new Paquete("Espectaculos", LocalDate.now(), LocalDate.of(2020, 11, 17), 15, "", LocalDate.now());
+			hpaq.agregarPaquete(paq);
+			assertTrue(icontroller.listarPaquetes().contains("Espectaculos"));
+		} catch (NoHayPaquetesException e) {
+			// TODO Auto-generated catch block
+			fail(e.getMessage());
+			e.printStackTrace();
+		}
+		assertThrows(NoHayPaquetesException.class, () -> icontroller.listarPaquetes());
+		}
+	
+	@Test
+	void testseleccionarPaquete() {
+		
+		
+			Paquete paq = new Paquete("Bandas", LocalDate.now(), LocalDate.of(2020, 11, 17), 15, "", LocalDate.now());
+			hpaq.agregarPaquete(paq);
+			try {
+				icontroller.seleccionarPaquete("Bandas");
+			} catch (NoExistePaqueteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			assertEquals(icontroller.getPaquete(), paq);
+		
+
+	}
+
 
 }

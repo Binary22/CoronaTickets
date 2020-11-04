@@ -11,7 +11,7 @@ public class PlataformaController implements IPlataforma {
 	public PlataformaController(String nombre, String descrip, String url) {
 		this.setNombre(nombre);
 		this.setDescrip(descrip);
-		this.setUrl(descrip);
+		this.setUrl(url);
 	}
 	
 	public PlataformaController() {

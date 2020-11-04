@@ -337,6 +337,17 @@ class EspectaculoControllerTest {
 		ie.setFechaAlta(LocalDate.of(2020, 10, 10));
 		assertTrue(ie.getFechaAlta().equals(LocalDate.of(2020, 10, 10)));
 		
+		ie.setDuracion(LocalTime.MIDNIGHT);
+		assertTrue(ie.getDuracion().equals(LocalTime.MIDNIGHT));
+		
+		ie.setFecha(LocalDate.of(2020, 10, 7));
+		assertTrue(ie.getFecha().equals(LocalDate.of(2020, 10, 7)));
+
+		Espectaculo e = new Espectaculo("harry", LocalTime.now(), "", 1, 2,"", LocalDate.now(), 2);
+		ie.setEspectaculo(e);
+		assertEquals(ie.getEspectaculo(), e);
+		
+		
 	}
 	
 	

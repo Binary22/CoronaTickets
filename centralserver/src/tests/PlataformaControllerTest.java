@@ -48,5 +48,24 @@ class PlataformaControllerTest {
 		Plataforma p = new Plataforma("yt", "sitio de videos", "yt.com");
 		icontroller.agregarEspectaculoPlataforma(p, e);
 	}
-
+	
+	@Test
+	void testGetSetPlataformaController() {
+		icontroller.setDescrip("hola");
+		assertEquals(icontroller.getDescrip(), "hola");
+		
+		icontroller.setNombre("jose");
+		assertEquals(icontroller.getNombre(), "jose");
+		
+		icontroller.setUrl("www");
+		assertEquals(icontroller.getUrl(), "www");
+	}
+	
+	@Test
+	void testConstructor() {
+		PlataformaController plat = new PlataformaController("h1", "h2", "h3");
+		assertEquals(plat.getNombre(),"h1");
+		assertEquals(plat.getDescrip(),"h2");
+		assertEquals(plat.getUrl(),"h3");
+	}
 }

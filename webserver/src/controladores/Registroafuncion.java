@@ -47,19 +47,36 @@ public class Registroafuncion extends HttpServlet {
 		
 		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
 			String userNickname = (String) objSesion.getAttribute("usuario_logueado");
-			String nomEspect = req.getParameter("name");
-			objSesion.setAttribute("espectaculo_recordar", nomEspect);
+			String nombre = req.getParameter("name");
+			int iend = nombre.indexOf(",");
+			String nomEspect = null;
+			String nomFun = null;
+			if (iend != -1) 
+			{
+			    nomEspect = nombre.substring(0 , iend); 
+			    nomFun = nombre.substring(iend + 1,  nombre.length());
+			}
+			System.out.println("esto es una prueba de substring");
+			System.out.println("espectaculo " + nomEspect);
+			System.out.println("funcion " + nomFun);
 			
+			objSesion.setAttribute("espectaculo_recordar", nomEspect);
 			
 	    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 	    	Espectaculo e = he.getEspectaculo(nomEspect);
+	    	Funcion funPrimera = e.getAllFunciones().get(nomFun);
 	    	List<Funcion> funcionesEspect = new ArrayList<Funcion>(e.getAllFunciones().values());
+	    	int itemPos = funcionesEspect.indexOf(funPrimera);
+	    	funcionesEspect.remove(itemPos);
+	    	funcionesEspect.add(0, funPrimera);
 	    	objSesion.setAttribute("espectaculo_fun", e);
 	    	objSesion.setAttribute("funcionesEspectaculo", funcionesEspect);
 			
 	    	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 	    	Usuario user = hu.getUsuario(userNickname);
 	    	List<Vale> vales = user.valesACanjear(nomEspect);
+	    	List<Registro> allRegs = user.getRegistros();
+	    	objSesion.setAttribute("registros_usuario", allRegs);
 	    	objSesion.setAttribute("vales_canjear", vales);
 	    	
 	    	Fabrica fabrica = Fabrica.getInstance();
@@ -87,6 +104,8 @@ public class Registroafuncion extends HttpServlet {
 		String nomFuncion = req.getParameter("funcion_seleccionada");
 		Fabrica fabrica = Fabrica.getInstance();
         IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        System.out.println("esto es el nombre del espectaculo " + espectaculo);
+        System.out.println("esto es el nombre de la funcion " + nomFuncion);
        
         ctrlE.ingresarNombreEspectador(userNickname);
         ctrlE.ingresarNombreFuncion(nomFuncion);

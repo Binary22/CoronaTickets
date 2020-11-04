@@ -17,6 +17,10 @@ public class HandlerPaquetes {
 	private HandlerPaquetes() {
     	colPaquete = new HashMap<String,Paquete>();
     };
+    
+    public HashMap<String,Paquete> getPaquetes(){
+    	return this.colPaquete;
+    }
 	
     public static HandlerPaquetes getInstance() {
         if (instancia == null) {
