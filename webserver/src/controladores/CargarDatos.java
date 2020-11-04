@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datatypes.DtRegistro;
+import excepciones.NoExistePaqueteException;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
@@ -23,6 +24,7 @@ import excepciones.noSeleccionoTres;
 import logica.Fabrica;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
+import logica.HandlerPaquetes;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
@@ -141,7 +143,7 @@ public class CargarDatos extends HttpServlet {
 				}
 				ec.elegirEspectaculo(funcion[4]);
 				ec.altaFuncion(funcion[0], LocalDate.parse(funcion[1], formatter), LocalTime.parse(funcion[2]),artistas, LocalDate.parse(funcion[3], formatter));		
-				ec.ConfirmarAltaFuncion();
+				ec.confirmarAltaFuncion();
 			}
 			br.close();
 		} catch (IOException e) {
@@ -439,6 +441,26 @@ public class CargarDatos extends HttpServlet {
 		he.getEspectaculo("Springsteen on Broadway").setImagen("resources/media/espectaculos/springsteen.jpg");
 		he.getEspectaculo("Los Village Volvieron").setImagen("resources/media/espectaculos/villagetour.jpg");
 		he.getEspectaculo("Bien de Familia").setImagen("resources/media/espectaculos/turbinela2.jpg");
+		// cargar imagenes a paquetes
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		try {
+			hp.getPaquete("Paquete de Bandas").setImagen("resources/media/paquetes/bandas.png");
+		} catch (NoExistePaqueteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			hp.getPaquete("Paquete Solistas").setImagen("resources/media/paquetes/solistas.jpg");
+		} catch (NoExistePaqueteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			hp.getPaquete("Paquete Latino").setImagen("resources/media/paquetes/latino.jpeg");
+		} catch (NoExistePaqueteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// crear categorias
 		HandlerCategorias hc = HandlerCategorias.getInstance();
 		hc.agregarCategoria("Bandas Latinas");
@@ -455,6 +477,7 @@ public class CargarDatos extends HttpServlet {
 		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
 		he.agregarCategoriaAEspectaculo("Grandes Éxitos 2020","Solistas");
 		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
+		
 		
     // aca termina el cargar datos
     }

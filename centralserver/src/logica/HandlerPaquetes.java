@@ -6,16 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import datatypes.DtPaquete;
 import excepciones.NoExistePaqueteException;
 
 public class HandlerPaquetes {
-	private HashMap<String,Paquete> colPaquete;
+	private HashMap<String, Paquete> colPaquete;
 	
 	private static HandlerPaquetes instancia = null;
 
 	private HandlerPaquetes() {
-    	colPaquete = new HashMap<String,Paquete>();
+    	colPaquete = new HashMap<String, Paquete>();
     };
 	
     public static HandlerPaquetes getInstance() {

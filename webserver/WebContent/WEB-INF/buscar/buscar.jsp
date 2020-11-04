@@ -91,7 +91,7 @@
 				        	<li><%=e.getNombre()%> | <%=e.getArtista().getNickname()%></li>
 				        <% } %>
 				        </ul>
-				        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+				        <a href="detallesPaquete?name=<%=p.getNombre()%>" class="btn btn-success card-text">Ver paquete</a>
 				      </div>
 				    </div>
 				  </div>

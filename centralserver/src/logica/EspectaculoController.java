@@ -5,21 +5,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtRegistro;
+import datatypes.DtUsuario;
 import excepciones.NombreCategoriaExistente;
 //import jdk.nashorn.internal.objects.IteratorResult;
 //import sun.security.jca.GetInstance;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
-import excepciones.UsuarioConMismoMailException;
+import excepciones.UsuarioNoExisteException;
 import excepciones.fechaPosterior;
-import datatypes.DtUsuario;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
 
@@ -199,7 +196,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 
 	@Override
-	public void ConfirmarAltaFuncion() {
+	public void confirmarAltaFuncion() {
 		// TODO Auto-generated method stub
 
 		// chequeo que existan los artistas invitados
@@ -210,8 +207,8 @@ public class EspectaculoController implements IEspectaculo {
 				Usuario nuevo = hu.getUsuarios().get(el);
 				if (nuevo == null)
 					try {
-						throw new Exception("el usuario " + el + " no existe.");
-					} catch (Exception e) {
+						throw new UsuarioNoExisteException("el usuario " + el + " no existe.");
+					} catch (UsuarioNoExisteException e) {
 						System.out.print(e.getMessage() + "\n");
 						e.printStackTrace();
 					}
@@ -275,7 +272,7 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		if( hesp.getEspectaculo(nombre) == null) {
+		if ( hesp.getEspectaculo(nombre) == null) {
 			this.nomespec= nombre;
 			this.nomPlataforma= nomPlataforma;
 			this.nickUsuario = nickArtista;
@@ -295,7 +292,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
 		Artista art= (Artista) huser.getUsuario(nickUsuario);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias);		
+		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias);		
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
 		esp.setPlataforma(plat);
@@ -311,11 +308,11 @@ public class EspectaculoController implements IEspectaculo {
 		this.nomespec = nomespec;
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		Espectaculo e = he.getEspectaculo(nomespec);
-		HashMap<String,Funcion> mpFunciones = e.getAllFunciones();
+		HashMap<String, Funcion> mpFunciones = e.getAllFunciones();
 		ArrayList<String> funciones = new ArrayList<String>(mpFunciones.keySet());
 		ArrayList<DtFuncion> dtFunciones = new ArrayList<DtFuncion>();
 		
-		for(int i = 0; i < funciones.size(); i++) {
+		for (int i = 0; i < funciones.size(); i++) {
 			Funcion fun = mpFunciones.get(funciones.get(i));
 			String nombre = fun.getNombre();
 			LocalDate fecha = fun.getFecha();
@@ -396,14 +393,14 @@ public class EspectaculoController implements IEspectaculo {
 		int j = 0;
 		for (int i = 0; i < regs.size(); i++) {
 			int idTemp = regs.get(i).getId();
-			if(idTemp == id1 || idTemp == id2 || idTemp == id3) {
+			if (idTemp == id1 || idTemp == id2 || idTemp == id3) {
 				regsTempo[j] = regs.get(i);
 				j++;
 				cantSelected++;
 				}
 			}
 		
-		if(cantSelected != 3) {
+		if (cantSelected != 3) {
 			throw new noSeleccionoTres("Se deben seleccionar 3 registros");
 		}
 			
@@ -433,10 +430,10 @@ public class EspectaculoController implements IEspectaculo {
 		//System.out.println(fun.getNombre());
 		ArrayList<Registro> regs = fun.getRegistros();
 		int cant = 0;
-		for(int i = 0; i < regs.size(); i++) {
+		for (int i = 0; i < regs.size(); i++) {
 			cant++;
 		}
-		if(cant == e.getMaxEspectadores()) {
+		if (cant == e.getMaxEspectadores()) {
 			return true;
 		}
 			
@@ -463,10 +460,10 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario espectador = hu.getUsuario(this.nickUsuario);
 		Registro nuevo;
-		if(!(fun == null) && !(espectador == null)) {
+		if (!(fun == null) && !(espectador == null)) {
 					
-			if(this.registroFueCanjeado) {
-				for(int i = 0; i < this.regsCanjeados.length; i++) {
+			if (this.registroFueCanjeado) {
+				for (int i = 0; i < this.regsCanjeados.length; i++) {
 					this.regsCanjeados[i].setCanjeado(true);
 				}
 				nuevo = new Registro(fecha, true, espectador, fun, 0);
@@ -535,7 +532,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 	@Override
 	public void altaEspectaculo(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			LocalTime duracion,int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) throws NombreEspectaculoExisteException {
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta) throws NombreEspectaculoExisteException {
 		
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
 		if (hesp.getEspectaculo(nombre) == null) {
@@ -562,7 +559,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
 		Artista art = (Artista) huser.getUsuario(nickUsuario);
 		Plataforma plat = hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp = new Espectaculo(nomespec,duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);		
+		Espectaculo esp = new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo);		
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
 		esp.setPlataforma(plat);
@@ -589,7 +586,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 	public void confirmarCategoria(String nombre)throws NombreCategoriaExistente {
 		HandlerCategorias hc = HandlerCategorias.getInstance();
-		if(!hc.existeCategoria(nombre)) {
+		if (!hc.existeCategoria(nombre)) {
 			Categoria cat = new Categoria(nombre);
 			hc.getCategorias().put(nombre, cat);
 		}else {
@@ -615,7 +612,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		Espectaculo e = he.getEspectaculo(nombreEspect);
 		e.setYaFueValuado(true);
-		if(aceptado)
+		if (aceptado)
 			e.setAceptado(aceptado);
 	}
 

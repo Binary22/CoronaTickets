@@ -47,12 +47,12 @@ public class Artista extends Usuario {
 		return null;
 		
 	}
-	public void confirmarUpdateArtista(String nombre,String apellido,LocalDate fechaNac,String desc,String bio,String web) {
+	public void confirmarUpdateArtista(String nombre, String apellido, LocalDate fechaNac, String desc, String bio, String web) {
 		
 	}
 
 	public Artista(Usuario usuario, String desc, String bio, String web) {
-		super(usuario.getNickname(),usuario.getNombre(),usuario.getApellido(),usuario.getEmail(), usuario.getFechaNacimiento());
+		super(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNacimiento());
 		this.descripcion = desc;
 		this.biografia = bio;
 		this.website = web;
@@ -83,7 +83,7 @@ public class Artista extends Usuario {
 		this.setPassword(password);
 	}
 	
-	public boolean esArtista_() {
+	public boolean esArtistaA() {
 		return true;
 	}
 	public boolean esArtista() {

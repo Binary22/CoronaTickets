@@ -104,7 +104,7 @@ public class Altafuncion extends HttpServlet {
 	        try {
 				ctrlesp.elegirEspectaculo(esp);
 			    ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-				ctrlesp.ConfirmarAltaFuncion();
+				ctrlesp.confirmarAltaFuncion();
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
 				objSesion.setAttribute("nombreexiste",true);
