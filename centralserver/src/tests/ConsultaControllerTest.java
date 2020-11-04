@@ -3,6 +3,8 @@ package tests;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -191,17 +193,6 @@ class ConsultaControllerTest {
 	}
 	
 	@Test
-	void testlistarPaquetesMal() {
-		try {
-			icontroller.listarPaquetes();
-		} catch (NoHayPaquetesException e) {
-			// TODO Auto-generated catch block
-			fail(e.getMessage());
-			e.printStackTrace();
-		}
-		assertThrows(NoHayPaquetesException.class, () -> icontroller.listarPaquetes());
-		}
-	@Test
 	void testlistarPaquetesBien() {
 
 		try {
@@ -213,7 +204,6 @@ class ConsultaControllerTest {
 			fail(e.getMessage());
 			e.printStackTrace();
 		}
-		assertThrows(NoHayPaquetesException.class, () -> icontroller.listarPaquetes());
 		}
 	
 	@Test

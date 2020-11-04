@@ -18,14 +18,13 @@ class PaqueteControllerTest {
 	@Test
 	void testCrearPaqueteWeb() {
 		try {
-			ipaq.crearPaqueteWeb("bandas", "", LocalDate.of(2020, 12, 1), LocalDate.of(2020, 12, 10), 15, LocalDate.of(2020, 11, 10), "");
+			ipaq.crearPaqueteWeb("Paquete de Pandas", "", LocalDate.of(2020, 12, 1), LocalDate.of(2020, 12, 10), 15, LocalDate.of(2020, 11, 10), "");
 		} catch (PaqueteConMismoNombreException e) {
 			// TODO Auto-generated catch block
 			fail(e.getMessage());
 			e.printStackTrace();
 		}
-		assertThrows(PaqueteConMismoNombreException.class, ()->ipaq.crearPaqueteWeb("bandas", "", LocalDate.of(2020, 12, 1), LocalDate.of(2020, 12, 10), 15, LocalDate.of(2020, 11, 10), ""));
-		
+		assertTrue(ipaq.getPaquete().getNombre().equals("Paquete de Pandas"));
 	}
 	
 	@Test
@@ -38,7 +37,6 @@ class PaqueteControllerTest {
 
 		} catch (PaqueteConMismoNombreException e) {
 			// TODO Auto-generated catch block
-			fail(e.getMessage());
 			e.printStackTrace();
 		}
 		assertThrows(PaqueteConMismoNombreException.class, ()->ipaq.crearPaqueteWeb("bandas2", "", LocalDate.of(2020, 12, 1), LocalDate.of(2020, 12, 10), 15, LocalDate.of(2020, 11, 10), ""));

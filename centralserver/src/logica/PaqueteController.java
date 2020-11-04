@@ -58,5 +58,9 @@ public class PaqueteController implements IPaquete {
 			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
 	}
 
+	public Paquete getPaquete() {
+		return p;
+	}
+
 
 }
