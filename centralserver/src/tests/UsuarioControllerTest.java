@@ -1,6 +1,9 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import java.time.LocalDate;
 
@@ -86,7 +89,7 @@ class UsuarioControllerTest {
 	void testAltaArtistaWeb() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
 		try {
-			icontroller.altaArtistaWeb("santiacq9", "santiago", "acquarone", "santiacquarone9@gmail.com", fechanac,"el number 1", "...", "acqua.com", "passw0rd", "4.jpeg");
+			icontroller.altaArtistaWeb("santiacq9", "santiago", "acquarone", "santiacquarone9@gmail.com", fechanac, "el number 1", "...", "acqua.com", "passw0rd", "4.jpeg");
 		} catch (UsuarioConMismoNickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -103,7 +106,7 @@ class UsuarioControllerTest {
 	void testAltaArtistaWebMismoNick() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
 		try {
-			icontroller.altaArtistaWeb("santiacq", "santiago", "acquarone", "santiacquarone356@gmail.com", fechanac,"el number 1", "...", "acqua.com", "passw0rd", "4.jpeg");
+			icontroller.altaArtistaWeb("santiacq", "santiago", "acquarone", "santiacquarone356@gmail.com", fechanac, "el number 1", "...", "acqua.com", "passw0rd", "4.jpeg");
 		} catch (UsuarioConMismoNickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -111,14 +114,14 @@ class UsuarioControllerTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		assertThrows(UsuarioConMismoNickException.class, () -> icontroller.altaArtistaWeb("santiacq", "santiago", "acquarone", "santiacquarone356@gmail.com", fechanac,"el number 1", "...", "acqua.com", "passw0rd", "4.jpeg"));
+		assertThrows(UsuarioConMismoNickException.class, () -> icontroller.altaArtistaWeb("santiacq", "santiago", "acquarone", "santiacquarone356@gmail.com", fechanac, "el number 1", "...", "acqua.com", "passw0rd", "4.jpeg"));
 	}
 	
 	@Test
 	void testAltaArtistaWebMismoMail() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
 		try {
-			icontroller.altaArtistaWeb("santiacq9", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac,"el number 1", "...", "acqua.com", "passw0rd", "4.jpeg");
+			icontroller.altaArtistaWeb("santiacq9", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac, "el number 1", "...", "acqua.com", "passw0rd", "4.jpeg");
 		} catch (UsuarioConMismoNickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -209,7 +212,7 @@ class UsuarioControllerTest {
 	@Test
 	void testUpdateUsuario() {
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
-		icontroller.updateUsuario("santiacq","Santiaguito", "Acquarone", "santiacquarone@gmail.com", fechanac);
+		icontroller.updateUsuario("santiacq", "Santiaguito", "Acquarone", "santiacquarone@gmail.com", fechanac);
 	
 		assertEquals(icontroller.getNickname(), "santiacq");
 		assertEquals(icontroller.getNombre(), "Santiaguito");

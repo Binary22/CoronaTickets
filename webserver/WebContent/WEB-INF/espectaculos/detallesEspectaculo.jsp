@@ -32,12 +32,29 @@
                     <div class="card" style="width: 100%;">
                         <img class="card-img-top" src="<%=espect.getImagen() %>" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"></slot>Espectaculo:</h5>
+                            <h5 class="card-title"></slot>Espectáculo:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
                             <h5 class="card-title"></slot>Artista:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getArtista().getNombre() %></h6>
                             <h5 class="card-title">Descripcion:</h6>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDescripcion() %></h6>
+                            <h5 class="card-title">Categorias:</h6>
+                            <%
+                            String PrettyCategorias = "";
+                            if (!espect.listarCategorias().isEmpty()){
+                            	String catPrimera = espect.listarCategorias().get(0);
+                                 PrettyCategorias = catPrimera;
+                                for (String cat : espect.listarCategorias()){
+                                	if (cat != catPrimera) {
+                                		PrettyCategorias += ", " + cat;
+                                	}
+                                }
+                            } else {
+                            	 PrettyCategorias = "El Artista no ha definido una categoria para el Espectáculo.";
+                            }
+                            
+                            %>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= PrettyCategorias %></h6>
                             <h5 class="card-title">Duracion:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDuracion() %></h6>
                             <h5 class="card-title"></slot>Link:</h5>

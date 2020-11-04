@@ -66,19 +66,19 @@
             <label>Duración*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input required name="horas" type="number" class="form-control"  placeholder="Horas">
+                <input required name="horas" type="number" min="0" class="form-control"  placeholder="Horas">
               </div>
               <div class="form-group col-md-6">
-                <input required name="minutos" type="number" class="form-control"  placeholder="Minutos">
+                <input required name="minutos" type="number" min="0" class="form-control"  placeholder="Minutos">
               </div>
             </div>
             <label>Máximo y mínimo de espectadores*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input required name="max" type="number" class="form-control"  placeholder="Máximo">
+                <input required name="max" type="number" min="0" class="form-control"  placeholder="Máximo">
               </div>
               <div class="form-group col-md-6">
-                <input required name="min" type="number" class="form-control"  placeholder="Mínimo">
+                <input required name="min" type="number" min="0" class="form-control"  placeholder="Mínimo">
               </div>
             </div>
             <div class="form-group">
@@ -101,7 +101,7 @@
             </div>
             <div class="form-group">
               <label>Costo*</label>
-              <input required name="costo" type="number" class="form-control"  placeholder="Ej. 300">
+              <input required name="costo" type="number" min="0" class="form-control"  placeholder="Ej. 300">
             </div>
             <div class="form-group">
                <label>Elegir imagen</label>

@@ -11,7 +11,7 @@ public class Paquete {
 	private LocalDate fechaAlta;
 	private int descuento;
 	private String descripcion;
-	private HashMap<String,Espectaculo> espectaculos;
+	private HashMap<String, Espectaculo> espectaculos;
 	private String imagen;
 	
 	public Paquete(String nombre, LocalDate fechaI, LocalDate fechaF, int descuento, String descripcion, LocalDate fechaalta) {
@@ -22,7 +22,7 @@ public class Paquete {
 		this.descuento = descuento;
 		this.descripcion = descripcion;
 		this.fechaAlta = fechaalta;
-		this.espectaculos = new HashMap<String,Espectaculo>();
+		this.espectaculos = new HashMap<String, Espectaculo>();
 		this.imagen = "resources/media/espectaculos/maracas.jpg";
 	}
 	
