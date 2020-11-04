@@ -84,7 +84,7 @@
 									      <div class="card-body">
 									        <h5 class="card-title"><%=r.getFuncion().getNombre()%></h5>
 									        <p><%=r.getFuncion().getEspectaculo().getNombre()%></p>
-									        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-primary card-text">Ver espectaculo</a>
+									        <a href="detallesEspectaculo?name=<%=r.getFuncion().getEspectaculo().getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 									      </div>
 									    </div>
 									  </div>
@@ -108,7 +108,7 @@
 							      <div class="card-body">
 							        <h5 class="card-title"><%=c.getPaquete().getNombre()%></h5>
 							        <p><%=c.getPaquete().getDescripcion()%></p>
-							        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+							        <a href="detallesPaquete?name=<%=c.getPaquete().getNombre()%>" class="btn btn-success card-text">Ver paquete</a>
 							      </div>
 							    </div>
 							  </div>
