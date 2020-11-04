@@ -7,7 +7,7 @@ templatePaquete.innerHTML = `
         <p class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
-            <a href="detallesPaquete" class="list-group-item card-link active flex-fill">Ver Paquete</a>
+            <a class="list-group-item card-link active flex-fill">Ver Paquete</a>
             <li id="precio" class="list-group-item flex-fill"></li>
         </ul>
     </div>
@@ -23,6 +23,7 @@ class paqueteCard extends HTMLElement {
 
     connectedCallback() {
         this.querySelector('.card-title').innerHTML = this.getAttribute('titulo');
+		this.querySelector('a').href = 'detallesPaquete?name=' + this.getAttribute('titulo');
         this.querySelector('.card-text').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
         this.querySelector('#precio').innerHTML += this.getAttribute('precio') + '% OFF';
