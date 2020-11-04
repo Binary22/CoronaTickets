@@ -137,7 +137,7 @@ class ConsultaControllerTest {
 		Espectaculo e = new Espectaculo("fff", LocalTime.now(), "b", 10, 200, "c", LocalDate.now(), 5);
 		he.addEspectaculo(e);
 		icontroller.elegirEspectaculo("fff");
-		assertEquals(icontroller.mostrarEspectaculo().getNombre(),"fff");
+		assertEquals(icontroller.mostrarEspectaculo().getNombre(),  "fff");
 		
 	}
 
@@ -148,7 +148,7 @@ class ConsultaControllerTest {
 		Funcion f = new Funcion("z", LocalDate.now(), LocalTime.now(), LocalDate.now(), null, e);
 		e.agregarFuncion(f);
 		icontroller.elegirFuncion("q", "z");
-		assertEquals(icontroller.mostrarFuncion().getNombre(),"z");
+		assertEquals(icontroller.mostrarFuncion().getNombre(), "z");
 	}
 
 	@Test
@@ -165,7 +165,7 @@ class ConsultaControllerTest {
 	void testMostrarDatosArtista() {
 		Usuario u2 = new Artista("w", "b", "c", "d", LocalDate.now(), "a", "a", "a");
 		hu.agregarUsuario(u2);
-		assertEquals(icontroller.mostrarDatosArtista("w").getDescripcion(),"a");
+		assertEquals(icontroller.mostrarDatosArtista("w").getDescripcion(), "a");
 	}
 
 	@Test
@@ -175,7 +175,7 @@ class ConsultaControllerTest {
 		Funcion f = new Funcion("z", LocalDate.now(), LocalTime.now(), LocalDate.now(), null, e);
 		e.agregarFuncion(f);
 		icontroller.elegirFuncion("q", "z");
-		assertEquals(icontroller.getFuncion().getNombre(),"z");
+		assertEquals(icontroller.getFuncion().getNombre(), "z");
 	}
 
 }

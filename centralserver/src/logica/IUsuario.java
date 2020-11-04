@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public interface IUsuario {
 	
-	public void altaUsuario(String nickname,String nombre,String apellido,String mail, LocalDate fechanac) throws UsuarioConMismoNickException, UsuarioConMismoMailException;
+	public void altaUsuario(String nickname, String nombre, String apellido, String mail, LocalDate fechanac) throws UsuarioConMismoNickException, UsuarioConMismoMailException;
 	
-	public void altaArtista(String desc,String bio, String web) throws UsuarioConMismoNickException, UsuarioConMismoMailException;
+	public void altaArtista(String desc, String bio, String web) throws UsuarioConMismoNickException, UsuarioConMismoMailException;
 	
 	public void confirmarAltaUsuario();
 	
@@ -19,11 +19,11 @@ public interface IUsuario {
 	
 	public DtUsuario mostrarUsuario(String nomUsuario);
 		
-	public void updateUsuario(String nickviejo, String nombre,String apellido, String mail,LocalDate fechaNac);
+	public void updateUsuario(String nickviejo, String nombre, String apellido, String mail, LocalDate fechaNac);
 	
-	public void updateUsuarioWeb(String nickviejo, String nombre,String apellido, String mail,LocalDate fechaNac, String password, String imagen);
+	public void updateUsuarioWeb(String nickviejo, String nombre, String apellido, String mail, LocalDate fechaNac, String password, String imagen);
 	
-	public void updateArtista(String desc,String bio,String web);
+	public void updateArtista(String desc, String bio, String web);
 
 	public void confirmarUpdateUsuario();
 	

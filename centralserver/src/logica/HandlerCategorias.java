@@ -26,7 +26,7 @@ public class HandlerCategorias {
 	}
 	
 	public boolean existeCategoria(String nombre) {
-		if(this.categorias.containsKey(nombre))
+		if (this.categorias.containsKey(nombre))
 			return true;
 		return false;
 	}

@@ -95,9 +95,9 @@ public class Funcion {
 	
 	public ArrayList<String> getArtistasInvitadosWeb() {
 		ArrayList<Usuario> artistas = this.artistasInvitados;
-		if(artistas != null) {
+		if (artistas != null) {
 			ArrayList<String> nombres = new ArrayList<String>();
-			for(int i = 0; i < artistas.size(); i++) {
+			for (int i = 0; i < artistas.size(); i++) {
 				nombres.add(artistas.get(i).getNickname());
 			}
 		return nombres;
