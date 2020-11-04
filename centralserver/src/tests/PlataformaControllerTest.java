@@ -1,6 +1,8 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,7 +14,6 @@ import logica.Espectaculo;
 import logica.HandlerPlataforma;
 import logica.Plataforma;
 import logica.PlataformaController;
-import logica.UsuarioController;
 
 class PlataformaControllerTest {
 	

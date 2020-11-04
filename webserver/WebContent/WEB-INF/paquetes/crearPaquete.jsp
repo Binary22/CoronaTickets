@@ -25,7 +25,13 @@
             El nombre del paquete ya se encuentra en uso.
           </div>
           <%}%>
-                
+       	<%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha de inicio debe ser mayor o igual a la fecha actual y menor o igual a la fecha de finalización.
+          </div>
+        <%}%>
+         
+        <br>       
         <form action="crearPaquete" method="POST">
             <div class="form-group">
               <label>Nombre</label>
@@ -49,9 +55,8 @@
               <input type="number" name="descuento" class="form-control" min="0" max="100" required>
             </div>
             <div class="form-group">
-              <label>Elegir imagen</label>
-              <br>
-              <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+               <label>Elegir imagen</label>
+               <input type="imagen" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr">
             </div>
             <button type="submit" class="btn btn-primary">Confirmar</button>
         </form>

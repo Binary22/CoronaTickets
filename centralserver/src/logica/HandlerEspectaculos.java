@@ -1,7 +1,5 @@
 package logica;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class HandlerEspectaculos {
-	private HashMap<String,Espectaculo> mapEspectaculos;
+	private HashMap<String, Espectaculo> mapEspectaculos;
 	private static HandlerEspectaculos instancia = null;
 
     private HandlerEspectaculos() {
@@ -99,14 +97,24 @@ public class HandlerEspectaculos {
 		mapEspectaculos.put(espectaculo.getNombre(), espectaculo);
 	}
 	
-	public HashMap<String,Espectaculo> getEspectaculosPlataforma(String nomPlata) {
+	public HashMap<String, Espectaculo> getEspectaculosPlataforma(String nomPlata) {
 		return mapEspectaculos;
+	}
+	
+	public HashMap<String, Espectaculo> getEspectaculosDePlataforma(String nomPlata) {
+		HashMap<String, Espectaculo> espPlat = new HashMap<String, Espectaculo>();
+		for (String key : mapEspectaculos.keySet()) {
+			if (mapEspectaculos.get(key).getPlataforma().getNombre().equals(nomPlata)) {
+				espPlat.put(key, mapEspectaculos.get(key));
+			}	
+		}
+		return espPlat;
 	}
 	
 	public boolean existeNombreFuncion(String f) {
 		for (String key : mapEspectaculos.keySet()) {
-			HashMap<String,Funcion> funciones = mapEspectaculos.get(key).getAllFunciones();
-			if(funciones.containsKey(f)) {
+			HashMap<String, Funcion> funciones = mapEspectaculos.get(key).getAllFunciones();
+			if (funciones.containsKey(f)) {
 				return true;
 			}	
 		}
@@ -118,10 +126,10 @@ public class HandlerEspectaculos {
 		return this.mapEspectaculos;
 	}
 	
-	public Map<String,Espectaculo> listarEspectaculosAceptados(){
+	public Map<String, Espectaculo> listarEspectaculosAceptados(){
 		Map<String, Espectaculo> aceptados = new HashMap<String, Espectaculo>();
 		for (String key : this.mapEspectaculos.keySet()) {
-			if(this.mapEspectaculos.get(key).isAceptado()) {
+			if (this.mapEspectaculos.get(key).isAceptado()) {
 				aceptados.put(key, this.mapEspectaculos.get(key));
 			}
 		}

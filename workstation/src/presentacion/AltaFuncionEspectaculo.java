@@ -290,7 +290,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 				nombreEspectaculo = (String) comboBoxEspectaculos.getSelectedItem();
 				ctrlEspect.elegirEspectaculo(nombreEspectaculo);
 				cmdAltaFuncion();
-				ctrlEspect.ConfirmarAltaFuncion();
+				ctrlEspect.confirmarAltaFuncion();
 			}
 		});
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();

@@ -45,9 +45,10 @@ public class Altafuncion extends HttpServlet {
 		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 			objSesion.setAttribute("escero",false);
 			objSesion.setAttribute("nombreexiste",false);
+			objSesion.setAttribute("fechaInvalida",false);
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
 			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-			List<String> artistas = husers.getNombresArtista();
+			List<String> artistas = husers.getNombresArtistas();
 			List<String> artistasinvi = new ArrayList<String>();
 			for (int i=0; i< artistas.size(); i++) {
 				if(!artistas.get(i).equals(nickname)){
@@ -91,7 +92,7 @@ public class Altafuncion extends HttpServlet {
         LocalTime duracion = LocalTime.parse(horaInicio,dateTimeFormatter);
         LocalTime cero = LocalTime.of(00,00);
         
-        if(!duracion.equals(cero)) {
+        if( ( !duracion.equals(cero) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isAfter(LocalDate.now()) ) ) ) {
 	        Fabrica fabrica = Fabrica.getInstance();
 	        IEspectaculo ctrlesp = fabrica.getIEspectaculo();
 	        ArrayList<String> stringList = new ArrayList<String>();
@@ -103,7 +104,7 @@ public class Altafuncion extends HttpServlet {
 	        try {
 				ctrlesp.elegirEspectaculo(esp);
 			    ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-				ctrlesp.ConfirmarAltaFuncion();
+				ctrlesp.confirmarAltaFuncion();
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
 				objSesion.setAttribute("nombreexiste",true);
@@ -114,7 +115,10 @@ public class Altafuncion extends HttpServlet {
 	        	resp.sendRedirect("home");
         }
         else {
-        	objSesion.setAttribute("escero",true);
+        	if(duracion.equals(cero))
+        		objSesion.setAttribute("escero",true);
+        	else
+        		objSesion.setAttribute("fechaInvalida",true);
         	req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
         }
 	}

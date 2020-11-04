@@ -84,11 +84,13 @@ public class Altaespectaculo extends HttpServlet {
     							Integer.parseInt(minEspectadores), Integer.parseInt(maxEspectadores),
     							url, Float.parseFloat(costo), hoy, cats2, imagen);
     	
-    	ctrlE.confirmarAltaEspectaculo();
+    	//ctrlE.confirmarAltaEspectaculo(); esto lo saque porque altaespectaculoweb contiene todo lo que hace esta, entonces quedaban datos repetidos
     	// aca NO se estan guardando las imagenes y categorias, porque el confirmarAltaEspec no guarda 
     	// ni usuarios ni categorias, por eso es necesario esto 
     	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-    	he.getEspectaculo(nombre).setImagen(imagen);
+    	if (imagen != "") {
+    		he.getEspectaculo(nombre).setImagen(imagen);
+    	}
     	if (cats != null) {
     		for (String c : cats ) {
     			he.getEspectaculo(nombre).addCategoria(c);

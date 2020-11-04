@@ -6,7 +6,7 @@ public class Plataforma {
 	private String nombre;
 	private String descrip;
 	private String url;
-	private HashMap<String,Espectaculo> espectaculos;
+	private HashMap<String, Espectaculo> espectaculos;
 	
 	
 	public Plataforma(String nombre, String descrip, String url) {
@@ -14,7 +14,7 @@ public class Plataforma {
 		this.nombre = nombre;
 		this.descrip = descrip;
 		this.url = url;
-		espectaculos = new HashMap<String,Espectaculo>();
+		espectaculos = new HashMap<String, Espectaculo>();
 	}
 
 	public HashMap<String, Espectaculo> getEspectaculos(){

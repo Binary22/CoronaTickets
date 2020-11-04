@@ -111,7 +111,7 @@ public class Usuario {
 		ArrayList<Registro> regs = this.registros;
 		//Iterator<Registro> it = regs.iterator();
 		for (int i = 0; i < regs.size(); i++) {
-			if(!regs.get(i).isCanjeado()) {
+			if (!regs.get(i).isCanjeado()) {
 				LocalDate fecha = regs.get(i).getFecha();
 				int id = regs.get(i).getId();
 				DtRegistro reg = new DtRegistro(fecha, id);
@@ -127,23 +127,23 @@ public class Usuario {
 		ArrayList<Registro> regs = this.registros;
 		//Iterator<Registro> it = regs.iterator();
 		for (int i = 0; i < regs.size(); i++) {
-			if(!regs.get(i).isCanjeado()) {
+			if (!regs.get(i).isCanjeado()) {
 				regsPrevios.add(regs.get(i));
 			}
 		}
 		return regsPrevios;
 		
 	}
-	public void canjearRegistros(int id1,int id2,int id3) {
+	public void canjearRegistros(int id1, int id2, int id3) {
 		
 	}
 	
 	public boolean tieneRegistroAFuncion(String nomfuncion) {
 		ArrayList<Registro> regs = this.registros;
 		Iterator<Registro> it = regs.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			String nombreFuncion = it.next().getFuncion().getNombre();
-			if(nombreFuncion.compareTo(nomfuncion)== 0)
+			if (nombreFuncion.compareTo(nomfuncion)== 0)
 				return true;
 		}
 		return false;
@@ -158,7 +158,7 @@ public class Usuario {
 		this.registros.add(reg);
 	}
 	
-	public void confirmarUpdateUsuario(String nombre,String apellido,LocalDate fechaNac) {
+	public void confirmarUpdateUsuario(String nombre, String apellido, LocalDate fechaNac) {
 		
 	}
 	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento) {
@@ -187,6 +187,9 @@ public class Usuario {
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();
 		this.password = password;
+		if (imagen == "" || imagen == null) {
+			imagen = "resources/media/usuarios/userdefault.jpg";
+		}
 		this.imagen = imagen;
 		
 
@@ -196,7 +199,7 @@ public class Usuario {
 		ret = new DtUsuario(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento());
 		return ret;
 	}
-	public boolean esArtista_() {
+	public boolean esArtistaA() {
 		return false;
 		
 	}
@@ -213,10 +216,10 @@ public class Usuario {
 	public List<Vale> valesACanjear(String nombreEspect){
 		List<Vale> vales = this.vales;
 		List<Vale> valesCanjear = new ArrayList<Vale>();
-    	for(int i = 0; i < vales.size(); i++) {
-    		if(vales.get(i).getEspectaculo().getNombre() == nombreEspect) {
+    	for (int i = 0; i < vales.size(); i++) {
+    		if (vales.get(i).getEspectaculo().getNombre() == nombreEspect) {
     			Paquete paq = vales.get(i).getPaquete();
-    			if(LocalDate.now().isBefore(paq.getFechaF())) {
+    			if (LocalDate.now().isBefore(paq.getFechaF())) {
     				valesCanjear.add(vales.get(i));
     			}
     		}
@@ -224,7 +227,7 @@ public class Usuario {
     	return valesCanjear;
 	}
 	public void agregarcompra(Compra comprado) throws UsuarioPaqueteComprado {
-		if(!this.compraPaquete.contains(comprado))
+		if (!this.compraPaquete.contains(comprado))
 			this.compraPaquete.add(comprado);
 		else
 			throw new UsuarioPaqueteComprado("La compra " + comprado.getPaquete().getNombre() + " ya fue realizada"); 

@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import datatypes.DtFuncion;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -22,7 +21,7 @@ public class HandlerUsuarios {
 	}
 	
 	public static HandlerUsuarios getInstancia() {
-		if(instancia == null)
+		if (instancia == null)
 			instancia = new HandlerUsuarios();
 		return instancia;
 	}
@@ -42,7 +41,7 @@ public class HandlerUsuarios {
 	public ArrayList<String> getNombresArtistas(){
 		ArrayList<String> list= new ArrayList<String>(usuarios.size());
 		for (String key : usuarios.keySet()) {
-			if(usuarios.get(key).esArtista()) {
+			if (usuarios.get(key).esArtista()) {
 				list.add(usuarios.get(key).getNickname());
 			}
 		}
@@ -67,9 +66,9 @@ public class HandlerUsuarios {
 		this.usuarios = usuarios;
 	}
 
-	public boolean esArtista_(String nickname) {
+	public boolean esArtistaA(String nickname) {
 		Usuario u = usuarios.get(nickname);
-		return u.esArtista_();
+		return u.esArtistaA();
 	}
 
 	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname) {
@@ -94,7 +93,7 @@ public class HandlerUsuarios {
 	
 	public boolean existeMail(String mail){
 		for (String key : usuarios.keySet()) {
-			if(usuarios.get(key).getEmail().compareTo(mail) == 0) {
+			if (usuarios.get(key).getEmail().compareTo(mail) == 0) {
 				return true;
 			}
 		}

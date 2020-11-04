@@ -36,6 +36,7 @@
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
+		                        <!-- 
 		                            <div class="button mt-2 d-flex flex-row align-items-center"> 
 		                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
 		                                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">56,4mill</span> </div>
@@ -44,6 +45,7 @@
 		                                    <div class="d-flex flex-column"> <span class="followers">Following</span> <span class="number2">2546</span> </div>
 		                                </button> 
 		                            </div>
+		                         -->
 		                        </div>
 	                        </div>
                           </div>

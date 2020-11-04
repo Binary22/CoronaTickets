@@ -22,7 +22,7 @@ public class DtPaquete {
 		if (paquete.getEspectaculos().isEmpty()){
 			espectaculos = new ArrayList<String>();
 		}
-		else{
+		else {
 			espectaculos = new ArrayList<String>(paquete.getEspectaculos().keySet());
 		}
 
