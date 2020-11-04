@@ -6,6 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import excepciones.NoExistePaqueteException;
+import logica.HandlerPaquetes;
+import logica.HandlerUsuarios;
+import logica.Paquete;
+import logica.Usuario;
 
 /**
  * Servlet implementation class DetallesPaquete
@@ -23,7 +30,19 @@ public class DetallesPaquete extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HttpSession objSesion = req.getSession();
+		String nomp = req.getParameter("name");
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		try {
+			Paquete p = hp.getPaquete(nomp);
+			objSesion.setAttribute("paquete", p);
+		} catch (NoExistePaqueteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		req.getRequestDispatcher("/WEB-INF/paquetes/detallesPaquete.jsp").forward(req, resp);
+
 	}
     
 	/**

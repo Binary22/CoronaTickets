@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="logica.Artista, logica.Usuario, logica.Paquete, logica.Espectaculo, java.util.Map, java.util.Collection" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -8,33 +9,46 @@
 
     <body>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
+        
+        <% Paquete p = (Paquete) session.getAttribute("paquete"); %>
+        
         <div id="espectaculo" class="container">
             <div class="row">
                 <div class="col-sm pt-5 pb-5">
                     <div class="card" style="width: 100%;">
-                        <img class="card-img-top" src="https://bit.ly/3ndBhIw" alt="...">
+                        <img class="card-img-top" src="<%=p.getImagen()%>" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"></slot>Paquete:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Paquete Latino</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=p.getNombre()%></h6>
                             <h5 class="card-title">Descripcion:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Paquete de espectaculos latinos.</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=p.getDescripcion()%></h6>
                             <h5 class="card-title"></slot>Descuento:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">15%</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=p.getDescuento()%>%</h6>
                             <h5 class="card-title"></slot>Fecha de alta:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">01/08/2020</h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=p.getFechaAlta().toString()%></h6>
                             <ul class="list-group list-group-horizontal">
                                 <a href="comprapaquete" class="list-group-item card-link active flex-fill">Comprar</a>
-                                <li id="precio" class="list-group-item"><i class="text-muted"style="text-decoration: line-through;">$1300</i><i>   $1149</i></li>
-                                <li class="list-group-item flex-fill">15% OFF</li>
+                                <% float totalsindesc = 0;
+                                for (Espectaculo e : p.getEspectaculos().values()) {
+                                	totalsindesc += e.getCosto();
+                                }
+                                float totalcondesc = totalsindesc - (totalsindesc * p.getDescuento() / 100);
+                                
+                                %>
+                                <li id="precio" class="list-group-item"><i class="text-muted"style="text-decoration: line-through;">$<%=totalsindesc %></i><i>   $<%=totalcondesc %></i></li>
+                                <li class="list-group-item flex-fill"><%=p.getDescuento()%>% OFF</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm pt-5 pb-5">
                     <h2>Espectaculos del Paquete:</h2>
-                    <carta-espectaculo img="resources/media/espectaculos/5.jpeg" titulo="Bien de Familia" artista="Pimpinela Pimpinela" precio="500"></carta-espectaculo>
+                    <% for (Espectaculo e :  p.getEspectaculos().values()) { %>
+                    
+                    <carta-espectaculo img="<%=e.getImagen()%>" titulo="<%=e.getNombre()%>" artista="<%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%>" precio="<%= e.getCosto() %>"></carta-espectaculo>
                     <div class="mb-4"></div>
-                    <carta-espectaculo img="resources/media/espectaculos/6.jpeg" titulo="30 años" artista="Alcides Violeta" precio="450"></carta-espectaculo>
+                    
+                    <% }%>
                 </div>
             </div>
         </div>
