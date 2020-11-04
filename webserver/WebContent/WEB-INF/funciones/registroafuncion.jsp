@@ -16,120 +16,167 @@
     <jsp:include page="/WEB-INF/template/navbar.jsp"/>
 
     <div class="container">
-        <div class="container mt-6">
-
-            <div class="d-flex justify-content-center">
-            <div class="card input-group mt-3" style="width:40rem;"">
-            <div class="card-body">
-    
-            <h4> Registro a función </h4>
-            <%if((boolean)session.getAttribute("noEligioTres")){ %>
-            <div class="alert alert-danger" role="alert">
-            
-  				Debe seleccionar 3 registros previos!
-			</div>
-			<%} %>
+    	<div class="row">
+        	<div class="col-sm-6 pt-5 pb-5">
+			        <div class="container mt-6">
 			
-			<%if((boolean)session.getAttribute("errorExisteRegFun")){ %>
-            <div class="alert alert-danger" role="alert">
-            
-  				Ya existe un registro a esa función, seleccione otra!
-			</div>
-			<%} %>
-			
-			<%if((boolean)session.getAttribute("errorFunAlcanzoLimite")){ %>
-            <div class="alert alert-danger" role="alert">
-            
-  				Lo sentimos, la función seleccionada alcanzó el máximo de espectadores, eliga otra
-			</div>
-			<%} %>
-			
-			<%if((boolean)session.getAttribute("funciones_vacias")){ %>
-            <div class="alert alert-danger" role="alert">
-            
-  				No se seleccionó ningún registro previo, por favor vuelva a intentarlo
-			</div>
-			<%} %>
-			
-            <br>
-                    
-             <form class="mt-2" action = "registroafuncion" method = "POST">
-                <div class="form-group">
-                    <label>Función</label>
-                    <%List<Funcion> funciones = (List<Funcion>)session.getAttribute("funcionesEspectaculo"); %>
-                    <select class="form-control" name = "funcion_seleccionada">
-                    <%for(int i = 0; i < funciones.size(); i++){ %>
-                      <option><%= funciones.get(i).getNombre() %></option>
-                     <%  }%>
-                    </select>
+			            <div class="d-flex justify-content-center">
+				            <div class="card input-group mt-3" style="width:40rem;"">
+					            <div class="card-body">
+					    
+						            <h4> Registro a función </h4>
+						            <%if((boolean)session.getAttribute("noEligioTres")){ %>
+						            <div class="alert alert-danger" role="alert">
+						            
+						  				Debe seleccionar 3 registros previos!
+									</div>
+									<%} %>
+									
+									<%if((boolean)session.getAttribute("errorExisteRegFun")){ %>
+						            <div class="alert alert-danger" role="alert">
+						            
+						  				Ya existe un registro a esa función, seleccione otra!
+									</div>
+									<%} %>
+									
+									<%if((boolean)session.getAttribute("errorFunAlcanzoLimite")){ %>
+						            <div class="alert alert-danger" role="alert">
+						            
+						  				Lo sentimos, la función seleccionada alcanzó el máximo de espectadores, eliga otra
+									</div>
+									<%} %>
+									
+									<%if((boolean)session.getAttribute("funciones_vacias")){ %>
+						            <div class="alert alert-danger" role="alert">
+						            
+						  				No se seleccionó ningún registro previo, por favor vuelva a intentarlo
+									</div>
+									<%} %>
+									
+						            <br>
+						                    
+						             <form class="mt-2" action = "registroafuncion" method = "POST">
+						                <div class="form-group">
+						                    <h6>Función</h6>
+						                    <%List<Funcion> funciones = (List<Funcion>)session.getAttribute("funcionesEspectaculo");
+						                       %>
+						                    <select class="form-control" name = "funcion_seleccionada" id = "funcionesList">
+						                    <%for(int i = 0; i < funciones.size(); i++){ %>
+						                      <option value = "<%= funciones.get(i).getNombre() %>"><%= funciones.get(i).getNombre() %></option>
+						                     <%  }%>
+						                    </select>
+						                </div>
+						                <br>
+						               	<div >
+						               		<%for(int i = 0; i < funciones.size(); i++){ %>
+								                <div class = "borrar" id="<%= funciones.get(i).getNombre() %>" style="display: none;">
+								                		<h5>Información de la función</h5>
+								                		
+								                		<%String var = "";
+							                  			List<String> artistas = funciones.get(i).getArtistasInvitadosWeb();
+							                  			if(!artistas.isEmpty()){
+								                  			int fin = artistas.size()-1;
+								                  			for(int j = 0; j < fin; j++){
+								                  				var = var + artistas.get(j) + " - ";
+								                  			}
+								                  			var = var + artistas.get(fin);
+							                  			} %>
+								                        <h6>Fecha: </h6>
+								                      	<h6 class="card-subtitle mb-2 text-muted" id = "fecha"><%= funciones.get(i).getFecha() %></h6>
+								                      	<h6>Hora de inicio: </h6>
+								                      	<h6 class="card-subtitle mb-2 text-muted" id = "fecha"><%= funciones.get(i).getHoraInicio() %></h6>
+								                      	<h6>Artistas Invitados: </h6>
+								                      	<h6 class="card-subtitle mb-2 text-muted" id = "fecha"><%= var %></h6>
+								                </div> 
+								                <%} %>
+						               	</div>
+						                
+						                
+						                <br>
+						                <div class="form-group">
+						                    <h6> Forma de registro</h6>
+						                    
+							                    <input type="radio" name="forma" id="registro" value="canjeregistros" onclick="mostrarCampos(this)">
+							                    <label for="canjeregistros">Canje de registros previos</label><br>
+							                    <!--<input type="radio" name="forma" id="vale" value="canjevale" onclick="mostrarCampos(this)">
+							                    <label for="canjevale">Canje de vales (paquetes)</label><br> -->
+							                    <input type="radio" name="forma" id="tradicional" value="tradicional" checked onclick="mostrarCampos(this)">
+							                    <label for="tradicional">Registro tradicional (abonando)</label>
+						                    
+						                </div>
+						
+						                <!-- Esto solo es visible si se desea canjear registros previos -->
+						                
+						                <div id="camposregistro" style="display: none;">
+						                    <div class="form-group">
+						                    <%List<Registro> registros = (List<Registro>)session.getAttribute("registros_canjear"); 
+						                      if(!registros.isEmpty()){%>
+						                        <label>Elegir registros a canjear</label>
+						                        <select class="form-control"  name = "registros_previos" multiple>
+						                        <%for(int i = 0; i < registros.size(); i++){ %>
+						                          <option><%=registros.get(i).getFuncion().getNombre() %></option>
+						                          <%} %>
+						                        </select>
+						                        <h6>Precio a abonar:</h6>
+						                        <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
+						                        <%}else{ %>
+						                        	 <h6 class="card-subtitle mb-2 text-muted">No posee registros previos</h6>
+						                        	 <%} %>
+						                    </div>
+						                </div>
+						                
+						                
+						
+						                <!-- Esto solo es visible si se desea canjear un vale de un paquete -->
+						                <div id="campospaquete" style="display: none;">
+						                    <div class="form-group">
+						                        <label>Elegir vales a canjear</label>
+						                       
+						                        <select class="form-control" multiple>
+						                       
+						                          <option>g</option>
+						                       
+						                        </select>
+						                        <h6>Precio a abonar:</h6>
+						                        <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
+						                    </div>
+						                </div>
+						                
+						                
+						                
+						                <div id="campotradicional" style="display: none;">
+						                    	<%Espectaculo espect = (Espectaculo)session.getAttribute("espectaculo_fun"); %>
+						                        <h6>Precio a abonar: </h6>
+						                        <h6 class="card-subtitle mb-2 text-muted">$<%=espect.getCosto() %></h6>
+						                   
+						                </div>    
+						               
+						                	
+						                	<button type="submit" class="btn btn-primary">Registrar</button>
+						                
+						            </form>
+					            </div>
+				            </div>
+			            </div>
+			    
+			        </div>
+		        </div>
+		        
+		        <div class="col-sm-3 pt-5 pb-5 .px-2">
+		        	<h4> Funciones a la que se registró: </h4>
+                    <%List<Registro> regs = (List<Registro>)session.getAttribute("registros_usuario");
+                    for(int i = 0; i < regs.size(); i++){
+                    	String var = " ";
+                    	if(regs.get(i).isCanjeado()){
+                    		var = "Canjeado";
+                    	}else{
+                    		var = "Abonado";
+                    	}
+		                  		%>
+                    	<carta-funcion-chica img="resources/media/espectaculos/maracas.jpg" titulo= "<%=regs.get(i).getFuncion().getNombre() %>" precioreg = "<%= regs.get(i).getCosto() %>" canjeadoreg = <%=var %> ></carta-funcion-chica>
+                    <%}%>
                 </div>
-                <div class="form-group">
-                    <label> Forma de registro</label><br>
-                    
-	                    <input type="radio" name="forma" id="registro" value="canjeregistros" onclick="mostrarCampos(this)">
-	                    <label for="canjeregistros">Canje de registros previos</label><br>
-	                    <input type="radio" name="forma" id="vale" value="canjevale" onclick="mostrarCampos(this)">
-	                    <label for="canjevale">Canje de vales (paquetes)</label><br>
-	                    <input type="radio" name="forma" id="tradicional" value="tradicional" checked onclick="mostrarCampos(this)">
-	                    <label for="tradicional">Registro tradicional (abonando)</label>
-                    
-                </div>
-
-                <!-- Esto solo es visible si se desea canjear registros previos -->
-                
-                <div id="camposregistro" style="display: none;">
-                    <div class="form-group">
-                    <%List<Registro> registros = (List<Registro>)session.getAttribute("registros_canjear"); 
-                      if(!registros.isEmpty()){%>
-                        <label>Elegir registros a canjear</label>
-                        <select class="form-control"  name = "registros_previos" multiple>
-                        <%for(int i = 0; i < registros.size(); i++){ %>
-                          <option><%=registros.get(i).getFuncion().getNombre() %></option>
-                          <%} %>
-                        </select>
-                        <h6>Precio a abonar:</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
-                        <%}else{ %>
-                        	 <h6 class="card-subtitle mb-2 text-muted">No posee registros previos</h6>
-                        	 <%} %>
-                    </div>
-                </div>
-                
-                
-
-                <!-- Esto solo es visible si se desea canjear un vale de un paquete -->
-                <div id="campospaquete" style="display: none;">
-                    <div class="form-group">
-                        <label>Elegir vales a canjear</label>
-                       
-                        <select class="form-control" multiple>
-                       
-                          <option>g</option>
-                       
-                        </select>
-                        <h6>Precio a abonar:</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">$0.00</h6>
-                    </div>
-                </div>
-                
-                
-                
-                <div id="campotradicional" style="display: none;">
-                    	<%Espectaculo espect = (Espectaculo)session.getAttribute("espectaculo_fun"); %>
-                        <h6>Precio a abonar: </h6>
-                        <h6 class="card-subtitle mb-2 text-muted">$<%=espect.getCosto() %></h6>
-                   
-                </div>    
-               
-                	
-                	<button type="submit" class="btn btn-primary">Registrar</button>
-                
-            </form>
-            </div>
-            </div>
-            </div>
-    
-        </div>
+	        </div>
         <br>
 
     </div>
@@ -142,6 +189,7 @@
     <script src="resources/js/login.js"></script>
     <script src="resources/js/navbar.js"></script>
     <script src="resources/js/registroafuncion.js"></script>
+    <script src="resources/js/cartaFuncionChica.js"></script>
 
 </body>
 </html>

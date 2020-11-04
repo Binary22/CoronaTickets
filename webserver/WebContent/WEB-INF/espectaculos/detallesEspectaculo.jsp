@@ -74,24 +74,28 @@
                 
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
                
-                    <h2 class="title">Funciones:</h2>
+                    
                     <%Map<String,Funcion> funciones = espect.getAllFunciones();
-                    ArrayList<String> nombres = new ArrayList<String>(funciones.keySet());
-                    nombres.sort(String::compareToIgnoreCase);
-                  		for(String key : nombres){
-                  			String var = "";
-                  			ArrayList<String> artistas = funciones.get(key).getArtistasInvitadosWeb();
-                  			if(!artistas.isEmpty()){
-	                  			int fin = artistas.size()-1;
-	                  			for(int i = 0; i < fin; i++){
-	                  				var = var + artistas.get(i) + ",";
-	                  			}
-	                  			var = var + artistas.get(fin);
-                  			}
+	                    if(!funciones.isEmpty()){%>
+	                    	<h2 class="title">Funciones:</h2>
+		                    <%ArrayList<String> nombres = new ArrayList<String>(funciones.keySet());
+		                    nombres.sort(String::compareToIgnoreCase);
+		                  		for(String key : nombres){
+		                  			String var = "";
+		                  			ArrayList<String> artistas = funciones.get(key).getArtistasInvitadosWeb();
+		                  			if(!artistas.isEmpty()){
+			                  			int fin = artistas.size()-1;
+			                  			for(int i = 0; i < fin; i++){
+			                  				var = var + artistas.get(i) + ",";
+			                  			}
+			                  			var = var + artistas.get(fin);
+		                  			}
                   			
                   		%>
-                    <carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
-                    <%} %>
+                    	<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
+                    <%}
+		                  		
+                    }%>
                 </div>
                 
                 <div class="col-sm-3 pt-5 pb-5 .px-2">

@@ -122,7 +122,7 @@ public class Usuario {
 		
 	}
 	
-	ArrayList<Registro> getRegistrosPreviosWeb(){
+	public ArrayList<Registro> getRegistrosPreviosWeb(){
 		ArrayList<Registro> regsPrevios = new ArrayList<Registro>();
 		ArrayList<Registro> regs = this.registros;
 		//Iterator<Registro> it = regs.iterator();
