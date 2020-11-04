@@ -53,7 +53,6 @@ public class Paquetes extends HttpServlet {
 		}
 		
 		
-		
 		objSesion.setAttribute("paquetes", mapPaq);
 		
 		req.getRequestDispatcher("/WEB-INF/paquetes/paquetes.jsp").forward(req, resp);

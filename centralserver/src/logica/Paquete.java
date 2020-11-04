@@ -36,9 +36,19 @@ public class Paquete {
 		this.descripcion = descrip;
 		this.fechaAlta = fechaalta2;
 		this.espectaculos = new HashMap<String, Espectaculo>();
-		this.imagen = imagen2;
+		if (imagen != "" && imagen != null) {
+			this.imagen = imagen2;
+		} else {
+			this.imagen = "resources/media/espectaculos/maracas.jpg";
+		}
+		
 	}
 	
+	
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	public String getImagen() {
 		return imagen;
 	}

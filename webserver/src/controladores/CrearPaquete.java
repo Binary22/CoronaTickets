@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.NoExistePaqueteException;
 import excepciones.PaqueteConMismoNombreException;
 import logica.Fabrica;
+import logica.HandlerPaquetes;
 import logica.IEspectaculo;
 import logica.IPaquete;
 
@@ -50,6 +52,7 @@ public class CrearPaquete extends HttpServlet {
 		String fechafin = req.getParameter("fechafin");
 		String desc = req.getParameter("descripcion");
 		String descuento = req.getParameter("descuento");
+		String imagen = req.getParameter("imagen");
 		boolean entro = false;
 		
 		int discount = Integer.parseInt(descuento); 
@@ -63,6 +66,17 @@ public class CrearPaquete extends HttpServlet {
 	        try {
 				ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
 				ctrlpaq.confirmarCrearPaquete();
+				
+				HandlerPaquetes hp = HandlerPaquetes.getInstance();
+				if (imagen != null && imagen != "") {
+					try {
+						hp.getPaquete(nombre).setImagen(imagen);
+					} catch (NoExistePaqueteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
 			} catch (PaqueteConMismoNombreException e) {
 				objSesion.setAttribute("nombreexiste",true);
 				entro = true;
@@ -75,6 +89,8 @@ public class CrearPaquete extends HttpServlet {
 			objSesion.setAttribute("fechaInvalida",true);
 			req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);
 		}
+		
+		
 	}
     
 	/**

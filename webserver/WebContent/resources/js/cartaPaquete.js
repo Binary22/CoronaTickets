@@ -1,9 +1,9 @@
 const templatePaquete = document.createElement('template');
 
 templatePaquete.innerHTML = `
-    <img class="card-img-top" style="object-fit: cover; height:15rem;  alt="...">
-    <div class="card-body d-flex flex-column">
-        <h5 class="card-title"><slot name="titulo"></slot></h5>
+    <img class="card-img-top" style="object-fit: cover; height:15rem; height:15rem" style="flex: 0 0 30%;">
+    <div class="card-body d-flex flex-column" style="flex: 0 0 30%;">
+        <h5 class="card-title"></h5>
         <p class="card-text">
         </p>
         <ul class="list-group mt-auto list-group-horizontal">
@@ -17,8 +17,8 @@ class paqueteCard extends HTMLElement {
     constructor() {
         super();
         this.appendChild(templatePaquete.content.cloneNode(true));
-        this.setAttribute('class',"card carta mb-3");
-        //this.setAttribute('style',"width:18rem");
+        this.setAttribute('class',"card carta");
+        this.setAttribute('style',"flex: 0 0 30%;");
     }
 
     connectedCallback() {
