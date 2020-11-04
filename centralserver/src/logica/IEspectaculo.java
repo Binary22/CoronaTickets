@@ -3,7 +3,6 @@ package logica;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Set;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;

@@ -1,6 +1,11 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,15 +25,23 @@ import logica.Funcion;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
-import logica.IEspectaculo;
-import excepciones.*;
+import excepciones.NombreCategoriaExistente;
+import excepciones.NombreFuncionexisteException;
+import excepciones.fechaPosterior;
+import excepciones.noSeleccionoTres;
+import excepciones.usuarioNoExiste;
+import excepciones.NombreEspectaculoExisteException;
+
 
 class EspectaculoControllerTest {
 	
-	EspectaculoController ie = new EspectaculoController();
-	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+	private EspectaculoController ie = new EspectaculoController();
+	private HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+	private HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 
+	
+	
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		//presentacion.Principal.cargarDatos();

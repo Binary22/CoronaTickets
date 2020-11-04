@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 
 import excepciones.NoExistePaqueteException;
 
-
 public class HandlerPaquetes {
 	private HashMap<String, Paquete> colPaquete;
 	

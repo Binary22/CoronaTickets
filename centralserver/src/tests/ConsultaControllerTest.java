@@ -1,6 +1,12 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,7 +22,6 @@ import logica.HandlerEspectaculos;
 import logica.HandlerPlataforma;
 import logica.HandlerUsuarios;
 import logica.Plataforma;
-import logica.PlataformaController;
 import logica.Usuario;
 
 class ConsultaControllerTest {
