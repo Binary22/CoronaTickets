@@ -47,7 +47,7 @@ public class Altaespectaculo extends HttpServlet {
     
     private void processSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		
+		req.setCharacterEncoding("UTF-8");
 		session.setAttribute("error", "no");
 		String nick = (String) session.getAttribute("usuario_logueado");
     	String nomPlataforma = req.getParameter("nomPlataforma");

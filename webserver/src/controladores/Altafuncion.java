@@ -79,6 +79,7 @@ public class Altafuncion extends HttpServlet {
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String horaInicio = req.getParameter("hora");

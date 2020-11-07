@@ -55,6 +55,7 @@ public class Modificarusuario extends HttpServlet {
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
         Usuario userlog = husers.getUsuario(nickname);

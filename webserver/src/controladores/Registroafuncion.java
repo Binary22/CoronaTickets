@@ -98,6 +98,7 @@ public class Registroafuncion extends HttpServlet {
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
 		
 		String userNickname = (String) objSesion.getAttribute("usuario_logueado");
 		String espectaculo = (String) objSesion.getAttribute("espectaculo_recordar");

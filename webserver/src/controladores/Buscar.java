@@ -38,6 +38,7 @@ public class Buscar extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
 		String search = req.getParameter("busqueda");
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
 		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
