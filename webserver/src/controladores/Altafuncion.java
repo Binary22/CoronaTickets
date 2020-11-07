@@ -109,6 +109,8 @@ public class Altafuncion extends HttpServlet {
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
 				objSesion.setAttribute("nombreexiste",true);
+				objSesion.setAttribute("escero",false);
+				objSesion.setAttribute("fechaInvalida",false);
 				req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
 				entro = true;
 			}
@@ -116,10 +118,13 @@ public class Altafuncion extends HttpServlet {
 	        	resp.sendRedirect("home");
         }
         else {
-        	if(duracion.equals(cero))
+        	if(duracion.equals(cero)) {
         		objSesion.setAttribute("escero",true);
-        	else
+        		objSesion.setAttribute("fechaInvalida",false);
+        	}else {
         		objSesion.setAttribute("fechaInvalida",true);
+        		objSesion.setAttribute("escero",false);
+        	}
         	req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
         }
 	}

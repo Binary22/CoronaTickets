@@ -30,7 +30,27 @@
 
         <h4> Registro </h4>
         <br>
-                
+        <%if((Boolean)session.getAttribute("contraNoCoincide")){%> 
+          <div class="alert alert-danger" role="alert">
+            Las contraseñas deben coincidir.
+          </div>
+        <%}%>
+        <%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha de nacimiento debe ser menor o igual a la actual.
+          </div>
+        <%}%>
+        <%if((Boolean)session.getAttribute("mismoNick")){%> 
+          <div class="alert alert-danger" role="alert">
+            El nick que desea utilizar ya esta en uso.
+          </div>
+        <%}%>
+        <%if((Boolean)session.getAttribute("mismoMail")){%> 
+          <div class="alert alert-danger" role="alert">
+            El mail que desea utilizar ya esta en uso.
+          </div>
+        <%}%>
+        <br>
         <form action="registro" method="POST">
             <div class="form-group" >
               <label>Nickname</label>

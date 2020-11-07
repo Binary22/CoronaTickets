@@ -31,12 +31,18 @@ public class Registro extends HttpServlet {
     }
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("contraNoCoincide", false);
+		objSesion.setAttribute("fechaInvalida", false);
+		objSesion.setAttribute("mismoMail", false);
+		objSesion.setAttribute("mismoNick", false);
 		req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
 	}
 	
-	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, UsuarioConMismoNickException, UsuarioConMismoMailException{
+	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession objSesion = req.getSession();
+		boolean entro = false;
 		String nickname = req.getParameter("nickname");
 		String nombre = req.getParameter("nombre");
 		String apellido = req.getParameter("apellido");
@@ -55,34 +61,76 @@ public class Registro extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
 		//si es artista
-		if(esArtista != null) {
-			String descrip = req.getParameter("descripcion");
-			String bio = req.getParameter("biografia");
-			String website = req.getParameter("website");
-			ctrlU.altaArtistaWeb(nickname, nombre, apellido, mail, date, descrip, bio, website, password, imagen);
-			
-		}else {
-			ctrlU.altaUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
-		}
-			ctrlU.confirmarAltaUsuario();
-			
-		
-			req.getSession().setAttribute("usuario_logueado", nickname);
-			
+        if( (password.equals(confipassword) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isBefore(LocalDate.now()) ) ) ) {
 			if(esArtista != null) {
-				objSesion.setAttribute("esArtista", true);
+				String descrip = req.getParameter("descripcion");
+				String bio = req.getParameter("biografia");
+				String website = req.getParameter("website");
+				try {
+					ctrlU.altaArtistaWeb(nickname, nombre, apellido, mail, date, descrip, bio, website, password, imagen);
+				} catch (UsuarioConMismoNickException e) {
+					objSesion.setAttribute("mismoNick", true);
+					objSesion.setAttribute("contraNoCoincide", false);
+		    		objSesion.setAttribute("fechaInvalida", false);
+		    		objSesion.setAttribute("mismoMail", false);
+					entro = true;
+				} catch (UsuarioConMismoMailException e) {
+					objSesion.setAttribute("mismoMail", true);
+					objSesion.setAttribute("contraNoCoincide", false);
+		    		objSesion.setAttribute("fechaInvalida", false);
+		    		objSesion.setAttribute("mismoNick", false);
+					entro = true;
+				}
+				if(entro) {
+					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
+				}
+				
 			}else {
-				objSesion.setAttribute("esArtista", false);
+				try {
+					ctrlU.altaUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+				} catch (UsuarioConMismoNickException e) {
+					objSesion.setAttribute("mismoNick", true);
+					objSesion.setAttribute("contraNoCoincide", false);
+		    		objSesion.setAttribute("fechaInvalida", false);
+		    		objSesion.setAttribute("mismoMail", false);
+		    		entro = true;
+				} catch (UsuarioConMismoMailException e) {
+					objSesion.setAttribute("mismoMail", true);
+					objSesion.setAttribute("contraNoCoincide", false);
+		    		objSesion.setAttribute("fechaInvalida", false);
+		    		objSesion.setAttribute("mismoNick", false);
+		    		entro = true;
+				}
+				if(entro) {
+					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
+				}
+					
 			}
+			if(!entro) {
+					ctrlU.confirmarAltaUsuario();
 		
-		
-	
-	
-    objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");
-		
-		resp.sendRedirect("home"); 
-		
-		
+					req.getSession().setAttribute("usuario_logueado", nickname);
+					
+					if(esArtista != null) {
+						objSesion.setAttribute("esArtista", true);
+					}else {
+						objSesion.setAttribute("esArtista", false);
+					}	
+				objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
+				resp.sendRedirect("home"); 	
+			}
+			
+        }else {
+	        	if(!password.equals(confipassword)) {
+		    		objSesion.setAttribute("contraNoCoincide", true);
+		    		objSesion.setAttribute("fechaInvalida", false);
+		    
+	        	}else {
+		    		objSesion.setAttribute("fechaInvalida", true);
+		    		objSesion.setAttribute("contraNoCoincide", false);
+	        	}
+	        	req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
+        }
 	}
     
 	/**
@@ -97,13 +145,8 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		try {
-			processResponse(request, response);
-		} catch (ServletException | IOException | UsuarioConMismoNickException | UsuarioConMismoMailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		processResponse(request, response);
+
 	}
 
 }
