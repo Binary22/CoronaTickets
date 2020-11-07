@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

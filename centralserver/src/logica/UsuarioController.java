@@ -91,9 +91,9 @@ public class UsuarioController implements IUsuario{
 			this.esArtista = false;
 			this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac);
 		}
-		else if(huser.getUsuario(nickname) != null)
+		else if (huser.getUsuario(nickname) != null)
 			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
-		else if(existemail)
+		else if (existemail)
 			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
 	}
 	
@@ -105,9 +105,9 @@ public class UsuarioController implements IUsuario{
 			this.esArtista = false;
 			this.usuario = new Usuario(nickname, nombre, apellido, mail, fechanac, password, imagen);
 		}
-		else if(huser.getUsuario(nickname) != null)
+		else if (huser.getUsuario(nickname) != null)
 			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
-		else if(existemail)
+		else if (existemail)
 			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
 	}
 	
@@ -117,11 +117,11 @@ public class UsuarioController implements IUsuario{
 		boolean existemail= huser.existeMail(mail);
 		if ((huser.getUsuario(nickname) == null) && (!existemail)) {
 			this.esArtista = true;
-			this.artista = new Artista(nickname,nombre, apellido, mail, fechanac, desc, bio, web, password, imagen);
+			this.artista = new Artista(nickname, nombre, apellido, mail, fechanac, desc, bio, web, password, imagen);
 		}
-		else if(huser.getUsuario(nickname) != null)
+		else if (huser.getUsuario(nickname) != null)
 			throw new UsuarioConMismoNickException("El nick del usuario " + nickname + " ya esta en uso");
-		else if(existemail)
+		else if (existemail)
 			throw new UsuarioConMismoMailException("El mail " + mail + " ya esta en uso");
 	}
 	
@@ -201,7 +201,7 @@ public class UsuarioController implements IUsuario{
 			artista = new Artista(usuario, descrip, biografia, web);
 			hu.rempazar(nickname, artista);
 		} else {
-		hu.rempazar(nickname,usuario);
+		hu.rempazar(nickname, usuario);
 		};
 	}
 	
@@ -212,7 +212,7 @@ public class UsuarioController implements IUsuario{
 			artista = new Artista(usuario, descrip, biografia, web);
 			hu.rempazar(nickname, artista);
 		} else {
-		hu.rempazar(nickname,usuario);
+		hu.rempazar(nickname, usuario);
 		};
 	}
 

@@ -16,8 +16,12 @@ import excepciones.NoExistePaqueteException;
 import logica.Espectaculo;
 import logica.Fabrica;
 import logica.HandlerEspectaculos;
+import logica.HandlerPaquetes;
+import logica.HandlerPlataforma;
 import logica.IEspectaculo;
 import logica.IPaquete;
+import logica.Paquete;
+import logica.Plataforma;
 
 /**
  * Servlet implementation class EspectaculosDePlat
@@ -34,16 +38,24 @@ public class EspectaculosDePlat extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NoExistePaqueteException {
     	HttpSession objSesion = req.getSession();
     	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
-	    	String platElegida = (String) objSesion.getAttribute("plataformaelegida");
+	    	String nombPlatElegida = (String) objSesion.getAttribute("plataformaelegida");
+	    	String nombPaqElegido = (String) objSesion.getAttribute("paqueteelegido");
 	    	
 	    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-			Map<String,Espectaculo> espectaculos = hesp.getEspectaculosPlataforma(platElegida);
+			Map<String,Espectaculo> espectaculos = hesp.getEspectaculosDePlataforma(nombPlatElegida);
 			List<String> espectaculosList = new ArrayList<String>();
+			
+			
+			HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+	    	Paquete paqElegido = hpaq.getPaquete(nombPaqElegido);
+	    	Map<String,Espectaculo> espdelPaqElegido = (Map<String, Espectaculo>) paqElegido.getEspectaculos();
+			
 			for (String key : espectaculos.keySet()) {
-				espectaculosList.add(espectaculos.get(key).getNombre());
+				if( ( !espdelPaqElegido.containsKey(espectaculos.get(key).getNombre()) ) )
+					espectaculosList.add(espectaculos.get(key).getNombre());
 			}
 			objSesion.setAttribute("espectaculos",espectaculosList);
 			req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
@@ -52,24 +64,22 @@ public class EspectaculosDePlat extends HttpServlet {
     		resp.sendRedirect("registro");
     }
     
-    private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NoExistePaqueteException {
     	HttpSession objSesion = req.getSession();
-    	String paqElegido =  (String) objSesion.getAttribute("paqueteelegido");
+    	req.setCharacterEncoding("UTF-8");
+    	String nombPaqElegido =  (String) objSesion.getAttribute("paqueteelegido");
     	String[] espectaculos = req.getParameterValues("espectaculos");
-    	
+
     	Fabrica fabrica = Fabrica.getInstance();
         IPaquete ctrlpaq = fabrica.getIPaquete();
-        try {
-			ctrlpaq.seleccionarPaquete(paqElegido);
-	        if(espectaculos != null) {
-		        for (int i=0; i< espectaculos.length; i++) {
-		        	ctrlpaq.elegirEspectaculo(espectaculos[i]);
-		        }
-	        }	
-		} catch (NoExistePaqueteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        
+		ctrlpaq.seleccionarPaquete(nombPaqElegido);
+	    if(espectaculos != null) {
+	    	for (int i=0; i< espectaculos.length; i++) {
+			   ctrlpaq.elegirEspectaculo(espectaculos[i]);
+			   ctrlpaq.confirmarAgregarEspectAPaquete();
+	    	}
+	    }
         resp.sendRedirect("home");
     }
 
@@ -78,7 +88,12 @@ public class EspectaculosDePlat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		try {
+			processRequest(request, response);
+		} catch (ServletException | IOException | NoExistePaqueteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -86,7 +101,12 @@ public class EspectaculosDePlat extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processResponse(request, response);
+			try {
+				processResponse(request, response);
+			} catch (ServletException | IOException | NoExistePaqueteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 }

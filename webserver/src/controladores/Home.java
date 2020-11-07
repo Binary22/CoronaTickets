@@ -1,11 +1,23 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import excepciones.NoExistePaqueteException;
+import logica.Espectaculo;
+import logica.HandlerEspectaculos;
+import logica.HandlerPaquetes;
+import logica.Paquete;
 
 /**
  * Servlet implementation class Home
@@ -22,6 +34,24 @@ public class Home extends HttpServlet {
     }
      
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		objSesion.setAttribute("espectaculos", he.getEspectaculos().values());
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		List<String> paquetes = hp.getNombresPaquete();
+		
+		Map<String, Paquete> mapPaq = new HashMap<String, Paquete>();
+		
+		for(String p : paquetes ) {
+			try {
+			Paquete paq = hp.getPaquete(p);
+			mapPaq.put(p, paq);
+			} catch (NoExistePaqueteException e) {
+				e.printStackTrace();
+			}
+		}
+		objSesion.setAttribute("paquetes", mapPaq.values());
+		
 		req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);
 	}
     

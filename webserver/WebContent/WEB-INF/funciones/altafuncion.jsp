@@ -33,7 +33,13 @@
             El nombre que deséa utilizar ya se encuentra en uso.
           </div> 
 		<%}%>
-		       
+		<%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha debe ser igual o posterior a la actual.
+          </div>
+        <%}%>
+		
+		<br>   
         <form action="altafuncion" method="POST">
             <div class="form-group">
               <label>Espectaculo</label>
@@ -68,11 +74,6 @@
                   <option><%=art%></option>
                 <%}%>
                 </select> 
-            </div>
-            <div class="form-group">
-              <label>Elegir imagen</label>
-              <br>
-              <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
             </div>
 
             <button type="submit" class="btn btn-primary"> Dar de alta la función</button>

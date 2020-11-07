@@ -29,6 +29,7 @@ public class Login extends HttpServlet {
  
 void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	HttpSession objSesion = request.getSession();
+	request.setCharacterEncoding("UTF-8");
 	String nickname = request.getParameter("nickname");
 	String password = request.getParameter("password");
 	String nuevoEstado;

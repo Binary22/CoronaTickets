@@ -40,7 +40,7 @@ public class PlataformaController implements IPlataforma {
 
 	@Override
 	public void confirmarAltaPlataforma() {
-		Plataforma p= new Plataforma(nombre,descrip,url);
+		Plataforma p= new Plataforma(nombre, descrip, url);
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
 		hplat.agregarPlataforma(p);
 	}

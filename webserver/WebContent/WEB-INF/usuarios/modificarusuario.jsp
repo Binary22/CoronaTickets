@@ -29,6 +29,17 @@
     		<%Usuario usuariolog = (Usuario)session.getAttribute("usuariolog");%>
             <h4> Modificar usuario </h4>
             <br>
+            <%if((Boolean)session.getAttribute("contraNoCoincide")){%> 
+          <div class="alert alert-danger" role="alert">
+            Las contraseñas deben coincidir.
+          </div>
+          <%}%>
+          <%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha de nacimiento debe ser menor o igual a la actual.
+          </div>
+          <%}%>
+          <br>
             <form action="modificarusuario" method="POST">
                 <div class="form-group">
                   <label>Nickname</label>
@@ -52,26 +63,17 @@
                 </div>
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
-                <script>
-                 function check(){
-  					if (document.getElementById('password').value != document.getElementById('confirmpassword').value) {
-    					document.getElementById('confirmpassword').class = 'form-control is-invalid';
- 					 } else {
-    						 document.getElementById('confirmpassword').class = 'form-control';
-  							}
-				}
-                </script>
                   <label>Contraseña</label>
-                  <input type="password" class="form-control" id="password" name = "password"  value="<%=usuariolog.getPassword()%>" onkeyup='check();'>
+                  <input type="password" class="form-control" id="password" name = "password"  value="<%=usuariolog.getPassword()%>">
                 </div>
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
-                  <input type="password" class="form-control" id="confirmpassword" name= "confirmpassword"  value="<%=usuariolog.getPassword()%>"  onkeyup='check();'>
+                  <input type="password" class="form-control" id="confirmpassword" name= "confirmpassword"  value="<%=usuariolog.getPassword()%>">
                 </div>              
                 <div class="form-group">
                   <label>Elegir imagen</label>
                   <br>
-                  <input type="url" class="form-control" id="avatar" name="avatar" placeholder="Ej. https://bit.ly/ijgjr">
+                  <input type="url" class="form-control" id="avatar" name="avatar" value="<%=usuariolog.getImagen()%>">
                 </div>
                 <% if(usuariolog.esArtista()){%>
                 <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>

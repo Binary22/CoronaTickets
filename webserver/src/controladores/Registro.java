@@ -35,6 +35,7 @@ public class Registro extends HttpServlet {
 	}
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, UsuarioConMismoNickException, UsuarioConMismoMailException{
+		req.setCharacterEncoding("UTF-8");
 		HttpSession objSesion = req.getSession();
 		String nickname = req.getParameter("nickname");
 		String nombre = req.getParameter("nombre");

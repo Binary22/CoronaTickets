@@ -3,7 +3,6 @@ package logica;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Set;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
@@ -19,7 +18,7 @@ import excepciones.usuarioNoExiste;
 public interface IEspectaculo {
 	public void elegirEspectaculo(String nomEspectaculo);
 	public void altaFuncion(String nombre, LocalDate fecha, LocalTime horaInicio, ArrayList<String> invitados, LocalDate fechaAlta) throws NombreFuncionexisteException;
-	public void ConfirmarAltaFuncion();
+	public void confirmarAltaFuncion();
 	public ArrayList<String> listarPlataformas();
 	public ArrayList<DtEspectaculo> mostrarEspectaculosPlataforma(String nomplat);
 	public ArrayList<DtFuncion> mostrarFuncionesEspectaculo(String nomespec);

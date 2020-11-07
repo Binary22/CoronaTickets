@@ -38,30 +38,35 @@ public class Comprapaquete extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
-    	String nickname = (String) objSesion.getAttribute("usuario_logueado");
-    	
-    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
-    	HandlerUsuarios hs = HandlerUsuarios.getInstancia();
-    	Usuario user = hs.getUsuario(nickname);
-    	
-    	List<Compra> comprados = user.getCompraPaquete();
-    	List<String> compradospaq = new ArrayList<String>();
-    	for(int i=0; i< comprados.size(); i++) {
-    		compradospaq.add(comprados.get(i).getPaquete().getNombre());
+    	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO")){
+	    	String nickname = (String) objSesion.getAttribute("usuario_logueado");
+	    	
+	    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
+	    	HandlerUsuarios hs = HandlerUsuarios.getInstancia();
+	    	Usuario user = hs.getUsuario(nickname);
+	    	
+	    	List<Compra> comprados = user.getCompraPaquete();
+	    	List<String> compradospaq = new ArrayList<String>();
+	    	for(int i=0; i< comprados.size(); i++) {
+	    		compradospaq.add(comprados.get(i).getPaquete().getNombre());
+	    	}
+	    	
+	    	List<String> paquetes = hp.getNombresPaquete();
+			List<String> paqueteslist = new ArrayList<String>();
+			for (int i=0; i< paquetes.size(); i++) {
+				if(!compradospaq.contains(paquetes.get(i)))	
+					paqueteslist.add(paquetes.get(i));
+			}	
+			objSesion.setAttribute("paquetes",paqueteslist);
+	    	req.getRequestDispatcher("/WEB-INF/paquetes/comprapaquete.jsp").forward(req, resp);
     	}
-    	
-    	List<String> paquetes = hp.getNombresPaquete();
-		List<String> paqueteslist = new ArrayList<String>();
-		for (int i=0; i< paquetes.size(); i++) {
-			if(!compradospaq.contains(paquetes.get(i)))	
-				paqueteslist.add(paquetes.get(i));
-		}	
-		objSesion.setAttribute("paquetes",paqueteslist);
-    	req.getRequestDispatcher("/WEB-INF/paquetes/comprapaquete.jsp").forward(req, resp);
+    	else
+    		resp.sendRedirect("registro");
 	}
     
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
     	String nickname = (String) objSesion.getAttribute("usuario_logueado");
     	String nombrepaqcomp = (String) req.getParameter("paquetes");
     	

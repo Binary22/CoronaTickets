@@ -3,8 +3,6 @@ package logica;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.HashMap;
 
 public class Espectaculo {
@@ -58,7 +56,7 @@ public class Espectaculo {
 		this.url = url;
 		this.fechaReg = fechaReg;
 		this.costo = costo;
-		this.setFunciones = new HashMap<String,Funcion>();
+		this.setFunciones = new HashMap<String, Funcion>();
 		this.yaFueValuado = false;
 		this.aceptado = false;
 		this.categorias = new ArrayList<String>();
@@ -76,10 +74,14 @@ public class Espectaculo {
 		this.url = url;
 		this.fechaReg = fechaReg;
 		this.costo = costo;
-		this.setFunciones = new HashMap<String,Funcion>();
+		this.setFunciones = new HashMap<String, Funcion>();
 		this.yaFueValuado = false;
 		this.aceptado = false;
-		this.imagen = imagen;
+		if (imagen == "" || imagen == null) {
+			this.imagen = "resources/media/espectaculos/rock.jpg";
+		} else {
+			this.imagen = imagen;
+		}
 		this.categorias = categs;
 	}
 	
@@ -143,7 +145,7 @@ public class Espectaculo {
 		this.maxEspectadores = maxEspectadores;
 	}
 	
-	public HashMap<String,Funcion> getAllFunciones() {
+	public HashMap<String, Funcion> getAllFunciones() {
 		return setFunciones;
 	}
 	public Funcion getFuncion(String nomfuncion) {

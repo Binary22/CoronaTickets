@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.NoExistePaqueteException;
 import excepciones.PaqueteConMismoNombreException;
 import logica.Fabrica;
+import logica.HandlerPaquetes;
 import logica.IEspectaculo;
 import logica.IPaquete;
 
@@ -34,6 +36,7 @@ public class CrearPaquete extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
     	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
+    		objSesion.setAttribute("fechaInvalida",false);
 	    	objSesion.setAttribute("nombreexiste",false);
 			req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);
     	}
@@ -43,11 +46,14 @@ public class CrearPaquete extends HttpServlet {
     
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
+    	
 		String nombre = req.getParameter("nombre");
 		String fechaini = req.getParameter("fechaini");
 		String fechafin = req.getParameter("fechafin");
 		String desc = req.getParameter("descripcion");
 		String descuento = req.getParameter("descuento");
+		String imagen = req.getParameter("imagen");
 		boolean entro = false;
 		
 		int discount = Integer.parseInt(descuento); 
@@ -55,18 +61,37 @@ public class CrearPaquete extends HttpServlet {
 		LocalDate dateini = LocalDate.parse(fechaini, formatter);
 		LocalDate datefin = LocalDate.parse(fechafin, formatter);
 		
-		Fabrica fabrica = Fabrica.getInstance();
-        IPaquete ctrlpaq = fabrica.getIPaquete();
-        try {
-			ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
-			ctrlpaq.confirmarCrearPaquete();
-		} catch (PaqueteConMismoNombreException e) {
-			objSesion.setAttribute("nombreexiste",true);
-			entro = true;
-			req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);		
+		if( ( ( datefin.isAfter(dateini) ) || ( datefin.isEqual(dateini) ) ) && ( ( dateini.isAfter(LocalDate.now()) ) || ( dateini.isEqual(LocalDate.now()) ) ) ) {
+			Fabrica fabrica = Fabrica.getInstance();
+	        IPaquete ctrlpaq = fabrica.getIPaquete();
+	        try {
+				ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
+				ctrlpaq.confirmarCrearPaquete();
+				
+				HandlerPaquetes hp = HandlerPaquetes.getInstance();
+				if (imagen != null && imagen != "") {
+					try {
+						hp.getPaquete(nombre).setImagen(imagen);
+					} catch (NoExistePaqueteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			} catch (PaqueteConMismoNombreException e) {
+				objSesion.setAttribute("nombreexiste",true);
+				entro = true;
+				req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);		
+			}
+	        if(!entro)
+	        	resp.sendRedirect("home");
 		}
-        if(!entro)
-        	resp.sendRedirect("home");
+		else {
+			objSesion.setAttribute("fechaInvalida",true);
+			req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);
+		}
+		
+		
 	}
     
 	/**

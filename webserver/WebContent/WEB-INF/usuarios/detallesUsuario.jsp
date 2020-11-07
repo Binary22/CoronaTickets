@@ -36,6 +36,7 @@
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
+		                        <!-- 
 		                            <div class="button mt-2 d-flex flex-row align-items-center"> 
 		                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
 		                                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">56,4mill</span> </div>
@@ -44,6 +45,7 @@
 		                                    <div class="d-flex flex-column"> <span class="followers">Following</span> <span class="number2">2546</span> </div>
 		                                </button> 
 		                            </div>
+		                         -->
 		                        </div>
 	                        </div>
                           </div>
@@ -82,7 +84,7 @@
 									      <div class="card-body">
 									        <h5 class="card-title"><%=r.getFuncion().getNombre()%></h5>
 									        <p><%=r.getFuncion().getEspectaculo().getNombre()%></p>
-									        <a href="#acahayqueponerellinkdelespectaculo" class="btn btn-primary card-text">Ver espectaculo</a>
+									        <a href="detallesEspectaculo?name=<%=r.getFuncion().getEspectaculo().getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 									      </div>
 									    </div>
 									  </div>
@@ -106,7 +108,7 @@
 							      <div class="card-body">
 							        <h5 class="card-title"><%=c.getPaquete().getNombre()%></h5>
 							        <p><%=c.getPaquete().getDescripcion()%></p>
-							        <a href="#acahayqueponerellinkalpaquete" class="btn btn-success card-text">Ver paquete</a>
+							        <a href="detallesPaquete?name=<%=c.getPaquete().getNombre()%>" class="btn btn-success card-text">Ver paquete</a>
 							      </div>
 							    </div>
 							  </div>

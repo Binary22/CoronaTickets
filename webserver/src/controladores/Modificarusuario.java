@@ -33,6 +33,9 @@ public class Modificarusuario extends HttpServlet {
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("contraNoCoincide", false);
+		objSesion.setAttribute("fechaInvalida", false);
+		
 		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO")){
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
 			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
@@ -52,6 +55,7 @@ public class Modificarusuario extends HttpServlet {
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
         Usuario userlog = husers.getUsuario(nickname);
@@ -70,16 +74,25 @@ public class Modificarusuario extends HttpServlet {
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
-        
-        ctrlU.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
-        if(userlog.esArtista()) {
-        	String descripcion = req.getParameter("descripcion");
-        	String biografia = req.getParameter("biografia");
-        	String website = req.getParameter("website");    
-        	ctrlU.updateArtista(descripcion, biografia, website);
-        }
-        ctrlU.confirmarUpdateUsuarioWeb();
-        resp.sendRedirect("home");
+	    if( (password.equals(confipassword) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isBefore(LocalDate.now()) ) ) ) {    
+	        ctrlU.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+	        if(userlog.esArtista()) {
+	        	String descripcion = req.getParameter("descripcion");
+	        	String biografia = req.getParameter("biografia");
+	        	String website = req.getParameter("website");    
+	        	ctrlU.updateArtista(descripcion, biografia, website);
+	        }
+	        ctrlU.confirmarUpdateUsuarioWeb();
+	        resp.sendRedirect("home");
+	    }
+	    else {
+	    	if(!password.equals(confipassword))
+	    		objSesion.setAttribute("contraNoCoincide", true);
+	    	else
+	    		objSesion.setAttribute("fechaInvalida", true);
+	    	req.getRequestDispatcher("/WEB-INF/usuarios/modificarusuario.jsp").forward(req, resp);
+	    }
+	    	
 	}
     
 	/**

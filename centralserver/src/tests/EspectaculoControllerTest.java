@@ -1,6 +1,12 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,15 +26,23 @@ import logica.Funcion;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
-import logica.IEspectaculo;
-import excepciones.*;
+import excepciones.NombreCategoriaExistente;
+import excepciones.NombreFuncionexisteException;
+import excepciones.fechaPosterior;
+import excepciones.noSeleccionoTres;
+import excepciones.usuarioNoExiste;
+import excepciones.NombreEspectaculoExisteException;
+
 
 class EspectaculoControllerTest {
 	
-	EspectaculoController ie = new EspectaculoController();
-	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+	private EspectaculoController ie = new EspectaculoController();
+	private HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+	private HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 
+	
+	
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		//presentacion.Principal.cargarDatos();
@@ -82,8 +96,8 @@ class EspectaculoControllerTest {
 		artistas.add("lospimpi");
 		try {
 		ie.altaFuncion("myfuncion322", LocalDate.of(2020, 10, 10), LocalTime.now(), artistas, LocalDate.now());
-		ie.ConfirmarAltaFuncion();
-		} catch(Exception e) {
+		ie.confirmarAltaFuncion();
+		} catch(NombreFuncionexisteException e) {
 			e.printStackTrace();
 		}
 		assertTrue(ie.listarFuncionesEspectaculo("Los Village Volvieron").contains("myfuncion322"));
@@ -100,12 +114,14 @@ class EspectaculoControllerTest {
 		artistas.add("vpeople");
 		artistas.add("lospimpi");
 		try {
-		ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(),artistas, LocalDate.now());
-		ie.ConfirmarAltaFuncion();
-		} catch(Exception e) {
+		ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(), artistas, LocalDate.now());
+		ie.confirmarAltaFuncion();
+		} catch(NombreFuncionexisteException e) {
 			e.printStackTrace();
 		}
-		assertThrows(NombreFuncionexisteException.class, () -> {ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(),artistas, LocalDate.now());});
+		assertThrows(NombreFuncionexisteException.class, () -> {
+			ie.altaFuncion("myfuncion", LocalDate.of(2020, 10, 10), LocalTime.now(), artistas, LocalDate.now());
+			});
 
 	}
 	
@@ -182,14 +198,17 @@ class EspectaculoControllerTest {
 	@Test
 	void testListarUsuarios() {
 		boolean succ = false;
+		DtUsuario[] dtus;
 		try {
-		DtUsuario[] dtus = ie.listarUsuarios();
-		for (DtUsuario dt : dtus) {
-			if (dt.getNickname().equals("waston")) succ = true;
-		}
-		} catch(Exception e) {
+			dtus = ie.listarUsuarios();
+			for (DtUsuario dt : dtus) {
+				if (dt.getNickname().equals("waston")) succ = true;
+			}
+		} catch (usuarioNoExiste e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		assertTrue(succ);
 	}
 	
@@ -225,7 +244,7 @@ class EspectaculoControllerTest {
 	void testConfirmarRegistro() {
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
 		ie.ingresarNombreEspectador("waston");
-		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Los Village Volvieron", LocalDate.of(2020, 10, 10));
 	};
 	
 	@Test
@@ -255,10 +274,10 @@ class EspectaculoControllerTest {
 	void testCanjearRegistrosNoSonTres() {
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
-		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Los Village Volvieron", LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
-		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Los Village Volvieron", LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		int[] dtr = new int[3];
 		dtr[0] = 1;
@@ -281,13 +300,13 @@ class EspectaculoControllerTest {
 	void testConfirmarCanje() {
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
-		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Los Village Volvieron", LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 2");
-		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Los Village Volvieron", LocalDate.of(2020, 10, 10));
 		ie.ingresarNombreEspectador("waston");
 		ie.ingresarNombreFuncion("Los Village Volvieron - 3");
-		ie.confirmarRegistro("Los Village Volvieron",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Los Village Volvieron", LocalDate.of(2020, 10, 10));
 		int[] dtr = new int[3];
 		for (int i = 0; i<3; i++) {
 			dtr[i] = 1;
@@ -299,7 +318,7 @@ class EspectaculoControllerTest {
 		}
 		ie.ingresarNombreFuncion("Memphis Blues World - A");
 		ie.ingresarNombreEspectador("waston");
-		ie.confirmarRegistro("Memphis Blues World",LocalDate.of(2020, 10, 10));
+		ie.confirmarRegistro("Memphis Blues World", LocalDate.of(2020, 10, 10));
 	}
 	
 	@Test
@@ -355,7 +374,7 @@ class EspectaculoControllerTest {
 	void testConfirmarCategoria() {
 		try {
 			ie.confirmarCategoria("Electronica");
-		} catch(Exception e){
+		} catch(NombreCategoriaExistente e){
 			e.printStackTrace();
 		}
 		HandlerCategorias hc = HandlerCategorias.getInstance();
@@ -366,7 +385,7 @@ class EspectaculoControllerTest {
 	void testConfirmarCategoriaExcept() {
 		try {
 			ie.confirmarCategoria("Electronica");
-		} catch(Exception e){
+		} catch(NombreCategoriaExistente e){
 			e.printStackTrace();
 		}
 		assertThrows(NombreCategoriaExistente.class, () -> ie.confirmarCategoria("Electronica"));
@@ -374,7 +393,7 @@ class EspectaculoControllerTest {
 	
 	@Test
 	void testListarEspectaculosIngresados() {
-		ie.aceptarRechazar("Los Village Volvieron",true);
+		ie.aceptarRechazar("Los Village Volvieron", true);
 		assertTrue(he.getEspectaculo("Los Village Volvieron").isAceptado());
 		assertTrue(he.getEspectaculo("Los Village Volvieron").isYaFueValuado());
 		ArrayList<String> ingresados = ie.listarEspectaculosIngresados();

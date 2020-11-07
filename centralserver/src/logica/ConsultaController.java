@@ -144,7 +144,7 @@ public class ConsultaController implements IConsulta {
 	
 	public boolean esArtista(String nickname) {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-		return hu.esArtista_(nickname);
+		return hu.esArtistaA(nickname);
 	}
 	public DtArtista mostrarDatosArtista(String nickname) {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
