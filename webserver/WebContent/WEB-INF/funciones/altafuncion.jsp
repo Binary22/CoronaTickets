@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,6 +18,10 @@
       <div class="d-flex justify-content-center">
         <div class="card input-group mt-3" style="width:40rem;">
         <div class="card-body">
+        
+        <%
+        HashMap<String, String> form = (HashMap<String, String> ) session.getAttribute("form");
+        %>
         
         <h4> Alta de funcion de espectaculo </h4>
         <br>
@@ -46,21 +51,21 @@
               <select class="form-control" name="espectaculo" required>
               <%List<String> espectaculos = (ArrayList) session.getAttribute("espectaculos");
 				for(String esp: espectaculos){%>
-                <option><%=esp%></option>
+              		<option><%=esp%></option>
               <%}%>
               </select>
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name="nombre" placeholder="Ej. Los Rolling 50 años" required>
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Los Rolling 50 años" value="<%= form.get("nombre") %>" required>
             </div>
             <label>Fecha y hora</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input type="date" id="fecha" name="fecha" class="form-control" required>
+                <input type="date" id="fecha" name="fecha" class="form-control" value="<%= form.get("fecha") %>" required>
               </div>
               <div class="form-group col-md-6">
-                <input type="time" name="hora" class="form-control" required>
+                <input type="time" name="hora" class="form-control" value="<%= form.get("horaInicio") %>" required>
               </div>
             </div>
             <div class="form-group">
