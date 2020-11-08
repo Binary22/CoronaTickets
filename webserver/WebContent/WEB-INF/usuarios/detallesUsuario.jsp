@@ -36,12 +36,38 @@
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
-		                        	<div style="text-align:center;"><%=u.getSiguiendo().size()%> seguidores</div>
-		                         	<div style="text-align:center;"><%=u.getSeguidos().size()%> seguidos</div>
+		                        	<div style="text-align:center;"><%=u.getSiguiendo().size() %> seguidores</div>
+		                         	<div style="text-align:center;"><%=u.getSeguidos().size() %> seguidos</div>
 		                         	<br>
 		                        </div>
-		                        <button type="button" class="btn btn-outline-primary btn-block">Seguir</button>
-	                        </div>
+		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
+				                        Usuario userlogged = (Usuario) session.getAttribute("userlogged");
+				                        if (u != userlogged) {
+				                        	if (userlogged.getSeguidos().contains(u)) { %>
+				                        		<form action="detallesUsuario" method="POST">
+				                        			<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
+				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=u.getNickname()%>"/>
+				                        		 	<input type="hidden" name="accion" value="dejardeseguir"/>
+				                        			<button type="submit" class="btn btn-outline-primary btn-block active">Siguiendo</button>
+				                        		</form>
+				                        <% 	} else { %>
+				                        		<form action="detallesUsuario" method="POST">
+				                        		 	<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
+				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=u.getNickname()%>"/>
+				                        		 	<input type="hidden" name="accion" value="seguir"/>
+													<button type="submit" class="btn btn-outline-primary btn-block">Seguir</button>
+				                        		</form>
+				                        <%	}
+				                        }
+			                        
+		                        } else { %>
+		                        	<a href="registro"  class="btn btn-outline-primary btn-block">Seguir</a>
+		                      <%  }
+			                      %>
+		                       
+		                    </div>
+		                    
+		                    
                           </div>
                        
                     </div>
