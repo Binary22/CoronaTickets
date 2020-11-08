@@ -31,11 +31,25 @@ public class DetallesUsuario extends HttpServlet {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario u = hu.getUsuario(nomu);
 		objSesion.setAttribute("usuario", u);
+		if (objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+			Usuario userlogged = hu.getUsuario((String) objSesion.getAttribute("usuario_logueado"));
+			objSesion.setAttribute("userlogged", userlogged);
+		}
+	
 		if (u.esArtista()) {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesArtista.jsp").forward(req, resp);
 		} else {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesUsuario.jsp").forward(req, resp);
 		}
+	}
+	
+	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		String accion = req.getParameter("accion");
+		if (accion == "dejardeseguir") {
+			
+		}
+
 	}
 
 	/**
@@ -51,7 +65,7 @@ public class DetallesUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		processResponse(request, response);
 	}
 
 }

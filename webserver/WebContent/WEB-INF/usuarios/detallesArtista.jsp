@@ -27,7 +27,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                        <div class="card">
                        	   <% Artista a = (Artista) session.getAttribute("usuario"); %>
 	                       <img class="card-img-top" src="<%=a.getImagen()%>" class="rounded" width="155"> 
@@ -36,23 +36,38 @@
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=a.getNickname()%></h4> 
 		                        <div class=" w-100">
-		                        <!--  
-		                            <div class="button mt-2 d-flex flex-row align-items-center"> 
-		                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
-		                                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">56,4mill</span> </div>
-		                                </button> 
-		                                <button class="btn btn-sm btn-primary w-100 ml-2">                                    
-		                                    <div class="d-flex flex-column"> <span class="followers">Following</span> <span class="number2">2546</span> </div>
-		                                </button> 
-		                            </div>
-		                        -->
+		                        	<div style="text-align:center;"><%=a.getSiguiendo().size() %> seguidores</div>
+		                         	<div style="text-align:center;"><%=a.getSeguidos().size() %> seguidos</div>
+		                         	<br>
 		                        </div>
-	                        </div>
+		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
+				                        Usuario userlogged = (Usuario) session.getAttribute("userlogged");
+				                        if (a != userlogged) {
+				                        	if (userlogged.getSeguidos().contains(a)) { %>
+				                        		<form action="detallesUsuario?=<%=session.getAttribute("usuario_logueado")%>" method="post">
+				                        		 	<input type="hidden" name="searchType" value="all" />
+				                        		 	<input type="hidden" name="searchType" value="all" />
+				                        			<input name="accion" value="Siguiendo" type="button" class="btn btn-outline-primary btn-block active"></input>
+				                        		</form>
+				                        <% 	} else { %>
+				                        		<form action="detallesUsuario?=<%=session.getAttribute("usuario_logueado")%>" method="post">
+				                        			<input name="accion" value="Seguir" type="button" class="btn btn-outline-primary btn-block"></input>
+				                        		</form>
+				                        <%	}
+				                        }
+			                        
+		                        } else { %>
+		                        	<a href="registro"  class="btn btn-outline-primary btn-block">Seguir</a>
+		                      <%  }
+			                      %>
+		                       
+		                    </div>
+	                        
                           </div>
                             
                     </div>
                 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></slot>Nickname:</h5>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List" %>
+<%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List, java.util.ArrayList" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -27,7 +27,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
 	                	<div class="card">
 	                	<% Usuario u = (Usuario) session.getAttribute("usuario"); %>
 	                       <img class="card-img-top" src="<%=u.getImagen()%>" class="rounded" width="155"> 
@@ -36,23 +36,17 @@
 	                        <div class="card-body">
 		                        <h4 class="card-title" style="text-align:center"><%=u.getNickname()%></h4> 
 		                        <div class=" w-100">
-		                        <!-- 
-		                            <div class="button mt-2 d-flex flex-row align-items-center"> 
-		                                <button class="btn btn-sm btn-primary w-100 ml-2"> 
-		                                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">56,4mill</span> </div>
-		                                </button> 
-		                                <button class="btn btn-sm btn-primary w-100 ml-2">                                    
-		                                    <div class="d-flex flex-column"> <span class="followers">Following</span> <span class="number2">2546</span> </div>
-		                                </button> 
-		                            </div>
-		                         -->
+		                        	<div style="text-align:center;"><%=u.getSiguiendo().size()%> seguidores</div>
+		                         	<div style="text-align:center;"><%=u.getSeguidos().size()%> seguidos</div>
+		                         	<br>
 		                        </div>
+		                        <button type="button" class="btn btn-outline-primary btn-block">Seguir</button>
 	                        </div>
                           </div>
                        
                     </div>
                 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"></slot>Nickname:</h5>
