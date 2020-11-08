@@ -33,6 +33,14 @@ public class Usuario {
 	public void agregarSiguiendo(Usuario usuario) {
 		siguiendo.add(usuario);
 	}
+	
+	public void quitarSeguido(Usuario usuario) {
+		seguidos.remove(usuario);
+	}
+	
+	public void quitarSiguiendo(Usuario usuario) {
+		siguiendo.remove(usuario);
+	}
 		
 	public List<Usuario> getSeguidos() {
 		return seguidos;

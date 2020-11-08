@@ -44,14 +44,18 @@
 				                        Usuario userlogged = (Usuario) session.getAttribute("userlogged");
 				                        if (a != userlogged) {
 				                        	if (userlogged.getSeguidos().contains(a)) { %>
-				                        		<form action="detallesUsuario?=<%=session.getAttribute("usuario_logueado")%>" method="post">
-				                        		 	<input type="hidden" name="searchType" value="all" />
-				                        		 	<input type="hidden" name="searchType" value="all" />
-				                        			<input name="accion" value="Siguiendo" type="button" class="btn btn-outline-primary btn-block active"></input>
+				                        		<form action="detallesUsuario" method="POST">
+				                        			<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
+				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=a.getNickname()%>"/>
+				                        		 	<input type="hidden" name="accion" value="dejardeseguir"/>
+				                        			<button type="submit" class="btn btn-outline-primary btn-block active">Siguiendo</button>
 				                        		</form>
 				                        <% 	} else { %>
-				                        		<form action="detallesUsuario?=<%=session.getAttribute("usuario_logueado")%>" method="post">
-				                        			<input name="accion" value="Seguir" type="button" class="btn btn-outline-primary btn-block"></input>
+				                        		<form action="detallesUsuario" method="POST">
+				                        		 	<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
+				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=a.getNickname()%>"/>
+				                        		 	<input type="hidden" name="accion" value="seguir"/>
+													<button type="submit" class="btn btn-outline-primary btn-block">Seguir</button>
 				                        		</form>
 				                        <%	}
 				                        }
