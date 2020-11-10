@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,7 +60,6 @@ public class Registro extends HttpServlet {
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession objSesion = req.getSession();
-		boolean entro = false;
 		String nickname = req.getParameter("nickname");
 		String nombre = req.getParameter("nombre");
 		String apellido = req.getParameter("apellido");
@@ -70,7 +70,7 @@ public class Registro extends HttpServlet {
 		String imagen = req.getParameter("imagen");
 		String esArtista = req.getParameter("esArtista");
 		
-		HashMap<String, String> form = new HashMap<String, String>();
+		Map<String, String> form = new HashMap<String, String>();
 		form.put("nickname", nickname);
 		form.put("nombre", nombre);
 		form.put("apellido", apellido);
@@ -79,6 +79,9 @@ public class Registro extends HttpServlet {
 		form.put("password", password);
 		form.put("confipassword", confipassword);
 		form.put("imagen", imagen);
+		form.put("descrip", "");
+		form.put("bio", "");
+		form.put("website", "");
 		
 		
 		Fabrica fabrica = Fabrica.getInstance();
@@ -99,68 +102,62 @@ public class Registro extends HttpServlet {
 				
 				try {
 					ctrlU.altaArtistaWeb(nickname, nombre, apellido, mail, date, descrip, bio, website, password, imagen);
+					ctrlU.confirmarAltaUsuario();
+					req.getSession().setAttribute("usuario_logueado", nickname);
+					objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
+					objSesion.setAttribute("esArtista", true);
+					resp.sendRedirect("home");
 				} catch (UsuarioConMismoNickException e) {
 					objSesion.setAttribute("mismoNick", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
 		    		objSesion.setAttribute("mismoMail", false);
-					entro = true;
+		    		objSesion.setAttribute("form", form);
+					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
 				} catch (UsuarioConMismoMailException e) {
 					objSesion.setAttribute("mismoMail", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
 		    		objSesion.setAttribute("mismoNick", false);
-					entro = true;
-				}
-				if(entro) {
-					objSesion.setAttribute("form", form);
+		    		objSesion.setAttribute("form", form);
 					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
-				}
-				
-			}else {
+				}	
+			}else{
 				try {
 					ctrlU.altaUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+					ctrlU.confirmarAltaUsuario();
+					req.getSession().setAttribute("usuario_logueado", nickname);
+					objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
+					objSesion.setAttribute("esArtista", false);
+					resp.sendRedirect("home");
 				} catch (UsuarioConMismoNickException e) {
 					objSesion.setAttribute("mismoNick", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
 		    		objSesion.setAttribute("mismoMail", false);
-		    		entro = true;
+		    		objSesion.setAttribute("form", form);
+					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
 				} catch (UsuarioConMismoMailException e) {
 					objSesion.setAttribute("mismoMail", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
 		    		objSesion.setAttribute("mismoNick", false);
-		    		entro = true;
-				}
-				if(entro) {
-					objSesion.setAttribute("form", form);
+		    		objSesion.setAttribute("form", form);
 					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
-				}
-					
+				}	
 			}
-			if(!entro) {
-					ctrlU.confirmarAltaUsuario();
-		
-					req.getSession().setAttribute("usuario_logueado", nickname);
-					
-					if(esArtista != null) {
-						objSesion.setAttribute("esArtista", true);
-					}else {
-						objSesion.setAttribute("esArtista", false);
-					}	
-				objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
-				resp.sendRedirect("home"); 	
-			}
-			
-        }else {
+        }else{
 	        	if(!password.equals(confipassword)) {
 		    		objSesion.setAttribute("contraNoCoincide", true);
 		    		objSesion.setAttribute("fechaInvalida", false);
+		    		objSesion.setAttribute("mismoMail", false);
+		    		objSesion.setAttribute("mismoNick", false);
 		    
 	        	}else {
 		    		objSesion.setAttribute("fechaInvalida", true);
 		    		objSesion.setAttribute("contraNoCoincide", false);
+		    		objSesion.setAttribute("mismoMail", false);
+		    		objSesion.setAttribute("mismoNick", false);
 	        	}
 	        	objSesion.setAttribute("form", form);
 	        	req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
