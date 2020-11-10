@@ -15,6 +15,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JComboBox;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
@@ -51,11 +53,11 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	private JSpinner spinnerHora;
 	private JSpinner spinnerMinuto;
 	private JComboBox<String> comboBoxArtistas;
-	private ArrayList<String> artistas;
+	//private List<String> artistas;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
 	private JFormattedTextField formattedTextField;
-	private ArrayList<String> ArtistasElegidos;
+	private List<String> ArtistasElegidos;
 	private JButton btnVerEspectaculos;
 	/**
 	 * Launch the application.
@@ -82,7 +84,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
         
         ArtistasElegidos = new ArrayList<String>();
         
-        artistas = new ArrayList<String>();
+        //artistas = new ArrayList<String>();
 	
 		setTitle("Alta Funcion de Espectaculo");
 		setIconifiable(true);
@@ -109,7 +111,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		comboBoxPlataformas = new JComboBox<String>();
 		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
 			@Override
-			public void focusGained(FocusEvent e) {
+			public void focusGained(FocusEvent evento) {
 				cargarPlataformas();
 			}
 		});
@@ -128,7 +130,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 		
 		btnVerEspectaculos = new JButton("Ver espectaculos");
 		btnVerEspectaculos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				nombrePlataforma = (String) comboBoxPlataformas.getSelectedItem();
 				cargarEspectaculos(nombrePlataforma);
 				cargarArtistas();
@@ -319,7 +321,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	public void cargarPlataformas() {
 		comboBoxPlataformas.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarPlataformas();
+		List<String> nombres = ctrlEspect.listarPlataformas();
 		nombres.sort(String::compareToIgnoreCase); 
         for(int i = 0; i < nombres.size(); i++) {
         	comboBoxPlataformas.addItem(nombres.get(i));	
@@ -328,7 +330,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	
 	public void cargarArtistas() {
 		comboBoxArtistas.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarArtistas();
+		List<String> nombres = ctrlEspect.listarArtistas();
 		nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
         		comboBoxArtistas.addItem(nombres.get(i));
@@ -336,9 +338,9 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
     }
 
 	
-	public void cargarArtistasSinInvitar(ArrayList<String> ArtistasElegidos) {
+	public void cargarArtistasSinInvitar(List<String> ArtistasElegidos) {
 		comboBoxArtistas.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarArtistas();
+		List<String> nombres = ctrlEspect.listarArtistas();
 		nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
         	if (!ArtistasElegidos.contains(nombres.get(i)))
@@ -349,7 +351,7 @@ public class AltaFuncionEspectaculo extends JInternalFrame {
 	public void cargarEspectaculos(String nomplat) {
 		comboBoxEspectaculos.removeAllItems();
 		if (ctrlEspect.listarEspectaculosPlataforma(nomplat) != null) {
-			ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
+			List<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
 			nombres.sort(String::compareToIgnoreCase);
 			for(int i = 0; i < nombres.size(); i++) {
 				comboBoxEspectaculos.addItem(nombres.get(i));

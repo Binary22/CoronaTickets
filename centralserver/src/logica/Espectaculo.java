@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Espectaculo {
 	private String nombre;
@@ -16,11 +18,11 @@ public class Espectaculo {
 	private LocalDate fechaReg;
 	private Plataforma plataforma;
 	private Artista artista;
-	private HashMap<String, Funcion> setFunciones;
+	private Map<String, Funcion> setFunciones;
 	private boolean yaFueValuado;
 	private boolean aceptado;
 	private String imagen;
-	private ArrayList<String> categorias;
+	private List<String> categorias;
 	
 	public String getImagen() {
 		return imagen;
@@ -38,7 +40,7 @@ public class Espectaculo {
 		this.imagen = imagen;
 	}
 	
-	public ArrayList<String> listarCategorias() {
+	public List<String> listarCategorias() {
 		if (this.categorias == null) {
 			this.categorias = new ArrayList<String>();
 		}
@@ -61,11 +63,11 @@ public class Espectaculo {
 		this.aceptado = false;
 		this.categorias = new ArrayList<String>();
 		this.imagen = "resources/media/espectaculos/rock.jpg";
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
-			String url, LocalDate fechaReg, float costo, String imagen, ArrayList<String> categs) {
+			String url, LocalDate fechaReg, float costo, String imagen, List<String> categs) {
 		this.nombre = nombre;
 		this.duracion = duracion;
 		this.descripcion = descripcion;
@@ -145,14 +147,14 @@ public class Espectaculo {
 		this.maxEspectadores = maxEspectadores;
 	}
 	
-	public HashMap<String, Funcion> getAllFunciones() {
+	public Map<String, Funcion> getAllFunciones() {
 		return setFunciones;
 	}
 	public Funcion getFuncion(String nomfuncion) {
 		return setFunciones.get(nomfuncion);
 	}
-	public void agregarFuncion(Funcion f) {
-		this.setFunciones.put(f.getNombre(), f);
+	public void agregarFuncion(Funcion fun) {
+		this.setFunciones.put(fun.getNombre(), fun);
 	}
 	public int getMaxEspectadores() {
 		return this.maxEspectadores;

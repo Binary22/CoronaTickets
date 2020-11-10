@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -45,8 +46,8 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 	public ConsultaFuncionEspectaculo() {
 		setTitle("Consulta Funcion Espectaculo");
 		setClosable(true);
-		Fabrica f = Fabrica.getInstance();
-		IConsulta icontrolador= f.getIConsulta();
+		Fabrica fab = Fabrica.getInstance();
+		IConsulta icontrolador= fab.getIConsulta();
 		
 		setBounds(100, 100, 450, 300);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -78,7 +79,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				comboBox.removeAllItems();
-				ArrayList<String > listap = icontrolador.listarPlataformas();
+				List<String > listap = icontrolador.listarPlataformas();
 				listap.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < listap.size(); i++) {
 					comboBox.addItem(listap.get(i));
@@ -96,7 +97,7 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 		btnVerEspectaculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String plat = (String)comboBox.getSelectedItem();
-				ArrayList<String> especs = icontrolador.listarEspectaculosPlataforma(plat);
+				List<String> especs = icontrolador.listarEspectaculosPlataforma(plat);
 				comboBox_1.removeAllItems();
 				especs.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < especs.size(); i++) {
@@ -129,9 +130,9 @@ public class ConsultaFuncionEspectaculo extends JInternalFrame {
 
 		JButton btnVerFunciones = new JButton("Ver funciones");
 		btnVerFunciones.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				espec = (String)comboBox_1.getSelectedItem();
-				ArrayList<String> funcs = icontrolador.listarFuncionesEspect(espec);
+				List<String> funcs = icontrolador.listarFuncionesEspect(espec);
 				funcs.sort(String::compareToIgnoreCase);
 				//System.out.print("DEBUG" + funcs.size());
 				comboBox_2.removeAllItems();

@@ -6,6 +6,7 @@ import excepciones.UsuarioConMismoNickException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IUsuario {
 	
@@ -15,7 +16,7 @@ public interface IUsuario {
 	
 	public void confirmarAltaUsuario();
 	
-	public ArrayList<String> mostrarUsuarios();
+	public List<String> mostrarUsuarios();
 	
 	public DtUsuario mostrarUsuario(String nomUsuario);
 		

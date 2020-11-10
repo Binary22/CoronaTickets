@@ -11,6 +11,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JComboBox;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -151,7 +152,7 @@ public class AceptarRechazarEspect extends JInternalFrame {
 	
 	public void cargarEspectaculosIngresados() {
 		comboBoxEspectaculos.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarEspectaculosIngresados();
+		List<String> nombres = ctrlEspect.listarEspectaculosIngresados();
 		nombres.sort(String::compareToIgnoreCase);
 		for(int i = 0; i < nombres.size(); i++) {
         	comboBoxEspectaculos.addItem(nombres.get(i));

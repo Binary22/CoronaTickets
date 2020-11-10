@@ -2,6 +2,7 @@ package logica;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import datatypes.DtFuncion;
 
@@ -13,8 +14,8 @@ public class Funcion {
 	private LocalTime horaInicio;
 	private LocalDate fechaReg;
 	
-	private ArrayList<Usuario> artistasInvitados;
-	private ArrayList<Registro> registros;
+	private List<Usuario> artistasInvitados;
+	private List<Registro> registros;
 	private Espectaculo espectaculo;
 	private String imagen;
 	
@@ -49,16 +50,16 @@ public class Funcion {
 	public void setFechaReg(LocalDate fechaReg) {
 		this.fechaReg = fechaReg;
 	}
-	public ArrayList<Usuario> getArtistasInvitados() {
+	public List<Usuario> getArtistasInvitados() {
 		return artistasInvitados;
 	}
-	public void setArtistasInvitados(ArrayList<Usuario> artistasInvitados) {
+	public void setArtistasInvitados(List<Usuario> artistasInvitados) {
 		this.artistasInvitados = artistasInvitados;
 	}
-	public ArrayList<Registro> getRegistros() {
+	public List<Registro> getRegistros() {
 		return this.registros;
 	}
-	public void setRegistros(ArrayList<Registro> registros) {
+	public void setRegistros(List<Registro> registros) {
 		this.registros = registros;
 	}
 	public Espectaculo getEspectaculo() {
@@ -74,8 +75,8 @@ public class Funcion {
 		return 0;
 		
 	}
-	public ArrayList<String> listarArtistas() {
-		ArrayList<String> lista = new ArrayList<String>();
+	public List<String> listarArtistas() {
+		List<String> lista = new ArrayList<String>();
 		for (Usuario a : artistasInvitados) {
 			lista.add(a.getNickname());
 		}
@@ -85,7 +86,7 @@ public class Funcion {
 	public void addEspectador(Registro reg) {
 		this.registros.add(reg);
 	}
-	public Funcion(String nombre, LocalDate fecha, LocalTime horaInicio, LocalDate fechaReg, ArrayList<Usuario> artistasInvitados, Espectaculo espectaculo) {
+	public Funcion(String nombre, LocalDate fecha, LocalTime horaInicio, LocalDate fechaReg, List<Usuario> artistasInvitados, Espectaculo espectaculo) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -97,10 +98,10 @@ public class Funcion {
 	
 	}
 	
-	public ArrayList<String> getArtistasInvitadosWeb() {
-		ArrayList<Usuario> artistas = this.artistasInvitados;
+	public List<String> getArtistasInvitadosWeb() {
+		List<Usuario> artistas = this.artistasInvitados;
 		if (artistas != null) {
-			ArrayList<String> nombres = new ArrayList<String>();
+			List<String> nombres = new ArrayList<String>();
 			for (int i = 0; i < artistas.size(); i++) {
 				nombres.add(artistas.get(i).getNickname());
 			}

@@ -1,6 +1,8 @@
 package logica;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import datatypes.DtFuncion;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 
 public class HandlerUsuarios {
 	//SINGLETON
-	private HashMap<String, Usuario> usuarios;
+	private Map<String, Usuario> usuarios;
 	private static HandlerUsuarios instancia = null;
 	
 	private HandlerUsuarios() {
@@ -26,20 +28,20 @@ public class HandlerUsuarios {
 		return instancia;
 	}
 	
-	public ArrayList<String> getNombres(){
+	public List<String> getNombres(){
 		return new ArrayList<String>(usuarios.keySet());
 	}
 	
-	public ArrayList<String> getNombresArtista(){
-		ArrayList<String> list= new ArrayList<String>(usuarios.size());
+	public List<String> getNombresArtista(){
+		List<String> list= new ArrayList<String>(usuarios.size());
 		for (String key : usuarios.keySet()) {
 			list.add(usuarios.get(key).getNickname());
 			}
 		return list;
 	}
 	
-	public ArrayList<String> getNombresArtistas(){
-		ArrayList<String> list= new ArrayList<String>(usuarios.size());
+	public List<String> getNombresArtistas(){
+		List<String> list= new ArrayList<String>(usuarios.size());
 		for (String key : usuarios.keySet()) {
 			if (usuarios.get(key).esArtista()) {
 				list.add(usuarios.get(key).getNickname());
@@ -51,40 +53,40 @@ public class HandlerUsuarios {
 	public Usuario getUsuario(String nickname) {
 		return usuarios.get(nickname);
 	}
-	public ArrayList<Artista> getArtistasInvitados(ArrayList<String> invitados){
+	public List<Artista> getArtistasInvitados(List<String> invitados){
 		return null;
 	}
-	public void agregarUsuario(Usuario u) {
-		usuarios.put(u.getNickname(), u);
+	public void agregarUsuario(Usuario user) {
+		usuarios.put(user.getNickname(), user);
 	}
 
-	public HashMap<String, Usuario> getUsuarios() {
+	public Map<String, Usuario> getUsuarios() {
 		return this.usuarios;
 	}
 
-	public void setUsuarios(HashMap<String, Usuario> usuarios) {
+	public void setUsuarios(Map<String, Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 
 	public boolean esArtistaA(String nickname) {
-		Usuario u = usuarios.get(nickname);
-		return u.esArtistaA();
+		Usuario user = usuarios.get(nickname);
+		return user.esArtistaA();
 	}
 
-	public ArrayList<String> listarFuncionesQueSeRegistro(String nickname) {
-		Usuario u = usuarios.get(nickname);
-		ArrayList<Registro>  listareg = u.getRegistros();
-		ArrayList<String> ret = new ArrayList<String>();
+	public List<String> listarFuncionesQueSeRegistro(String nickname) {
+		Usuario user = usuarios.get(nickname);
+		List<Registro>  listareg = user.getRegistros();
+		List<String> ret = new ArrayList<String>();
 		for (int i = 0; i < listareg.size(); i++) {
 			ret.add(listareg.get(i).getFuncion().getNombre());
 		}
 		return ret;
 	}
 
-	public ArrayList<DtFuncion> listarFuncionesDtQueSeRegistro(String nickname) {
-		Usuario u = usuarios.get(nickname);
-		ArrayList<Registro>  listareg = u.getRegistros();
-		ArrayList<DtFuncion> ret = new ArrayList<DtFuncion>();
+	public List<DtFuncion> listarFuncionesDtQueSeRegistro(String nickname) {
+		Usuario user = usuarios.get(nickname);
+		List<Registro>  listareg = user.getRegistros();
+		List<DtFuncion> ret = new ArrayList<DtFuncion>();
 		for (int i = 0; i < listareg.size(); i++) {
 			ret.add(listareg.get(i).getFuncion().getDt());
 		}
@@ -100,8 +102,8 @@ public class HandlerUsuarios {
 		return false;
 	}
 
-	public void rempazar(String nick, Usuario u) {
-		this.usuarios.put(nick, u);
+	public void rempazar(String nick, Usuario user) {
+		this.usuarios.put(nick, user);
 	}
 	
 	

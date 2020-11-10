@@ -13,13 +13,13 @@ public class Artista extends Usuario {
 	private String biografia;
 	private String website;
 	
-	private ArrayList<Espectaculo> espectaculos;
+	private List<Espectaculo> espectaculos;
 	
 	
-	public ArrayList<Espectaculo> getEspectaculos() {
+	public List<Espectaculo> getEspectaculos() {
 		return espectaculos;
 	}
-	public void setEspectaculos(ArrayList<Espectaculo> espectaculos) {
+	public void setEspectaculos(List<Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 	public String getDescripcion() {
@@ -43,7 +43,7 @@ public class Artista extends Usuario {
 	
 	//operaciones de la clase
 	
-	public ArrayList<DtEspectaculo> obtenerEspectaculosOrganizados(){
+	public List<DtEspectaculo> obtenerEspectaculosOrganizados(){
 		return null;
 		
 	}

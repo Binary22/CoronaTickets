@@ -17,6 +17,8 @@ import java.awt.event.ItemListener;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -47,7 +49,7 @@ public class ConsultaUsuarioFix extends JInternalFrame {
 	private JComboBox<String> comboFuncionesReg;
 	private JButton btnConsultarFun;
 	private JButton btnConsultarEspectaculo;
-	HashMap<String, DtFuncion> funciones;
+	Map<String, DtFuncion> funciones;
 	/**
 	 * Launch the application.
 	 */
@@ -99,7 +101,7 @@ public class ConsultaUsuarioFix extends JInternalFrame {
 			public void focusGained(FocusEvent arg0) {
 				// esto es para que se actualize el combobox cuando se agregan usuarios, capaz es al pedo
 				comboUsuario.removeAllItems();
-				ArrayList<String > listanicknames = icontrolador.listarUsuarios();
+				List<String > listanicknames = icontrolador.listarUsuarios();
 				listanicknames.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < listanicknames.size(); i++) {
 					comboUsuario.addItem(listanicknames.get(i));
@@ -147,7 +149,7 @@ public class ConsultaUsuarioFix extends JInternalFrame {
 					textWebsite.setText("");
 				}
 				
-				ArrayList<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
+				List<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
 				if (listafun != null) {
 					funciones.clear();
 					comboFuncionesReg.removeAllItems();

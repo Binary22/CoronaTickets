@@ -14,15 +14,16 @@ import logica.IPaquete;
 
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AgregarEspectaculo extends JInternalFrame {
-	private ArrayList<String> paquetes;
-	private ArrayList<String> plataformas;
-	private ArrayList<String> espectaculos;
+	private List<String> paquetes;
+	private List<String> plataformas;
+	private List<String> espectaculos;
 	private JComboBox<String> comboBox_1;
 	private JComboBox<String> comboBox;
 	private JComboBox<String> comboBox_2;
@@ -51,12 +52,12 @@ public class AgregarEspectaculo extends JInternalFrame {
 		gbc_comboBox.gridy = 1;
 		getContentPane().add(comboBox, gbc_comboBox);
 
-		Fabrica f = Fabrica.getInstance();
-		IConsulta ic = f.getIConsulta();
-		plataformas = ic.listarPlataformas();
+		Fabrica fab = Fabrica.getInstance();
+		IConsulta iconsult = fab.getIConsulta();
+		plataformas = iconsult.listarPlataformas();
 		espectaculos = new ArrayList<String>();
 		try {
-			paquetes = ic.listarPaquetes();
+			paquetes = iconsult.listarPaquetes();
 		} catch (NoHayPaquetesException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -81,19 +82,19 @@ public class AgregarEspectaculo extends JInternalFrame {
 		getContentPane().add(comboBox_1, gbc_comboBox_1);
 		ConsultaEspectaculo.updateComboBox(plataformas, comboBox_1);
 		
-		IPaquete ip = f.getIPaquete();
+		IPaquete ipaq = fab.getIPaquete();
 
 
 		JButton btnSeleccionar = new JButton("Seleccionar");
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				espectaculos = ic.listarEspectaculosPlataforma((String)comboBox_1.getSelectedItem());
+				espectaculos = iconsult.listarEspectaculosPlataforma((String)comboBox_1.getSelectedItem());
 				try {
-					ic.seleccionarPaquete((String)comboBox.getSelectedItem());
+					iconsult.seleccionarPaquete((String)comboBox.getSelectedItem());
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
-				espectaculos.removeAll(ic.mostrarPaquete().getEspectaculos());
+				espectaculos.removeAll(iconsult.mostrarPaquete().getEspectaculos());
 				ConsultaEspectaculo.updateComboBox(espectaculos, comboBox_2);
 			}
 		});
@@ -122,22 +123,22 @@ public class AgregarEspectaculo extends JInternalFrame {
 		
 		JButton btnAgregarEspectaculo = new JButton("Agregar Espectaculo");
 		btnAgregarEspectaculo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				if (espectaculos.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "No hay espectaculos para ese paquete");
 					return;
 				}
 				String espec = (String)comboBox_2.getSelectedItem();
-				ip.elegirEspectaculo(espec);
+				ipaq.elegirEspectaculo(espec);
 				String paq = (String)comboBox.getSelectedItem();
 				try {
-					ip.seleccionarPaquete(paq);
+					ipaq.seleccionarPaquete(paq);
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				int input = JOptionPane.showConfirmDialog(null, "Desea confirmar la operación?");
 					if (input == 0) {
-						ip.confirmarAgregarEspectAPaquete();
+						ipaq.confirmarAgregarEspectAPaquete();
 						dispose();
 					}
 					if (input == 2) {
@@ -156,7 +157,7 @@ public class AgregarEspectaculo extends JInternalFrame {
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 			}
 		});
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();

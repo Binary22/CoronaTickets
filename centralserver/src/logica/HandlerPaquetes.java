@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import excepciones.NoExistePaqueteException;
 
 public class HandlerPaquetes {
-	private HashMap<String, Paquete> colPaquete;
+	private Map<String, Paquete> colPaquete;
 	
 	private static HandlerPaquetes instancia = null;
 
@@ -17,7 +18,7 @@ public class HandlerPaquetes {
     	colPaquete = new HashMap<String, Paquete>();
     };
     
-    public HashMap<String,Paquete> getPaquetes(){
+    public Map<String,Paquete> getPaquetes(){
     	return this.colPaquete;
     }
 	
@@ -58,18 +59,18 @@ public class HandlerPaquetes {
 //			return list;
 //	}
 //	
-	public ArrayList<String> getNombresPaquete() {
-		ArrayList<String> list = new ArrayList<String>(colPaquete.keySet());;
+	public List<String> getNombresPaquete() {
+		List<String> list = new ArrayList<String>(colPaquete.keySet());;
 		return list;
 	}
 
-	public void agregarPaquete(Paquete p) {
-		colPaquete.put(p.getNombre(), p);
+	public void agregarPaquete(Paquete paq) {
+		colPaquete.put(paq.getNombre(), paq);
 	}
 	
-	public ArrayList<String> getPaquetesDeEspectaculo(String espec) {
-		ArrayList<String> ret = new ArrayList<String>();
-		ArrayList<Paquete> listapaq = new ArrayList<Paquete>(colPaquete.values());
+	public List<String> getPaquetesDeEspectaculo(String espec) {
+		List<String> ret = new ArrayList<String>();
+		List<Paquete> listapaq = new ArrayList<Paquete>(colPaquete.values());
 		for (int i = 0; i < colPaquete.size(); i++) {
 			if (listapaq.get(i).getEspectaculos().containsKey(espec)) {
 				ret.add(listapaq.get(i).getNombre());
@@ -78,8 +79,8 @@ public class HandlerPaquetes {
 		return ret;
 	}
 	
-	public ArrayList<Paquete> getPaquetesDeEspectaculoWeb(String espec) {
-		ArrayList<Paquete> paquetes = new ArrayList<Paquete>();
+	public List<Paquete> getPaquetesDeEspectaculoWeb(String espec) {
+		List<Paquete> paquetes = new ArrayList<Paquete>();
 		
 		for (String key : this.colPaquete.keySet()) {
 			if (colPaquete.get(key).getEspectaculos().containsKey(espec)) {

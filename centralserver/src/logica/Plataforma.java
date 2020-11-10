@@ -1,12 +1,13 @@
 package logica;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Plataforma {
 	private String nombre;
 	private String descrip;
 	private String url;
-	private HashMap<String, Espectaculo> espectaculos;
+	private Map<String, Espectaculo> espectaculos;
 	
 	
 	public Plataforma(String nombre, String descrip, String url) {
@@ -17,7 +18,7 @@ public class Plataforma {
 		espectaculos = new HashMap<String, Espectaculo>();
 	}
 
-	public HashMap<String, Espectaculo> getEspectaculos(){
+	public Map<String, Espectaculo> getEspectaculos(){
 		return this.espectaculos;
 	}
 
@@ -45,7 +46,7 @@ public class Plataforma {
 		this.url = url;
 	}
 
-	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
+	public void setEspectaculos(Map<String, Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 	

@@ -1,6 +1,7 @@
 package logica;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 import datatypes.DtPaquete;
 
@@ -11,7 +12,7 @@ public class Paquete {
 	private LocalDate fechaAlta;
 	private int descuento;
 	private String descripcion;
-	private HashMap<String, Espectaculo> espectaculos;
+	private Map<String, Espectaculo> espectaculos;
 	private String imagen;
 	
 	public Paquete(String nombre, LocalDate fechaI, LocalDate fechaF, int descuento, String descripcion, LocalDate fechaalta) {
@@ -53,8 +54,8 @@ public class Paquete {
 		return imagen;
 	}
 
-	public void addEspectaculo(Espectaculo e) {
-		espectaculos.put(e.getNombre(), e);
+	public void addEspectaculo(Espectaculo espect) {
+		espectaculos.put(espect.getNombre(), espect);
 	}
 	
 	public DtPaquete getDt() {
@@ -101,11 +102,11 @@ public class Paquete {
 		this.descripcion = descripcion;
 	}
 
-	public HashMap<String, Espectaculo> getEspectaculos() {
+	public Map<String, Espectaculo> getEspectaculos() {
 		return espectaculos;
 	}
 
-	public void setEspectaculos(HashMap<String, Espectaculo> espectaculos) {
+	public void setEspectaculos(Map<String, Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 

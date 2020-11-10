@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
@@ -18,9 +19,9 @@ public class Usuario {
 	private String apellido;
 	private String email;
 	private LocalDate fechaNacimiento;
-	private ArrayList<Compra> compraPaquete;
-	private ArrayList<Vale> vales;
-	private ArrayList<Registro> registros;
+	private List<Compra> compraPaquete;
+	private List<Vale> vales;
+	private List<Registro> registros;
 	private String password;
 	private String imagen;
 	
@@ -38,22 +39,22 @@ public class Usuario {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public ArrayList<Compra> getCompraPaquete() {
+	public List<Compra> getCompraPaquete() {
 		return compraPaquete;
 	}
-	public void setCompraPaquete(ArrayList<Compra> compraPaquete) {
+	public void setCompraPaquete(List<Compra> compraPaquete) {
 		this.compraPaquete = compraPaquete;
 	}
-	public ArrayList<Vale> getVales() {
+	public List<Vale> getVales() {
 		return vales;
 	}
-	public void setVales(ArrayList<Vale> vales) {
+	public void setVales(List<Vale> vales) {
 		this.vales = vales;
 	}
-	public ArrayList<Registro> getRegistros() {
+	public List<Registro> getRegistros() {
 		return registros;
 	}
-	public void setRegistros(ArrayList<Registro> registros) {
+	public void setRegistros(List<Registro> registros) {
 		this.registros = registros;
 	}
 	public String getNickname() {
@@ -89,11 +90,11 @@ public class Usuario {
 	
 	//operaciones de la clase
 	
-	public ArrayList<DtEspectaculo> obtenerEspectaculosOrganizados(){
+	public List<DtEspectaculo> obtenerEspectaculosOrganizados(){
 		return null;
 		
 	}
-	public ArrayList<DtFuncion> obtenerFuncionesRegistradas(){
+	public List<DtFuncion> obtenerFuncionesRegistradas(){
 		return null;
 		
 	}
@@ -106,15 +107,15 @@ public class Usuario {
 		
 	}
 	
-	ArrayList<DtRegistro> getRegistrosPrevios(){
-		ArrayList<DtRegistro> regsPrevios = new ArrayList<DtRegistro>();
-		ArrayList<Registro> regs = this.registros;
+	List<DtRegistro> getRegistrosPrevios(){
+		List<DtRegistro> regsPrevios = new ArrayList<DtRegistro>();
+		List<Registro> regs = this.registros;
 		//Iterator<Registro> it = regs.iterator();
 		for (int i = 0; i < regs.size(); i++) {
 			if (!regs.get(i).isCanjeado()) {
 				LocalDate fecha = regs.get(i).getFecha();
-				int id = regs.get(i).getId();
-				DtRegistro reg = new DtRegistro(fecha, id);
+				int ident = regs.get(i).getId();
+				DtRegistro reg = new DtRegistro(fecha, ident);
 				regsPrevios.add(reg);
 			}
 		}
@@ -122,9 +123,9 @@ public class Usuario {
 		
 	}
 	
-	public ArrayList<Registro> getRegistrosPreviosWeb(){
-		ArrayList<Registro> regsPrevios = new ArrayList<Registro>();
-		ArrayList<Registro> regs = this.registros;
+	public List<Registro> getRegistrosPreviosWeb(){
+		List<Registro> regsPrevios = new ArrayList<Registro>();
+		List<Registro> regs = this.registros;
 		//Iterator<Registro> it = regs.iterator();
 		for (int i = 0; i < regs.size(); i++) {
 			if (!regs.get(i).isCanjeado()) {
@@ -139,10 +140,10 @@ public class Usuario {
 	}
 	
 	public boolean tieneRegistroAFuncion(String nomfuncion) {
-		ArrayList<Registro> regs = this.registros;
-		Iterator<Registro> it = regs.iterator();
-		while (it.hasNext()) {
-			String nombreFuncion = it.next().getFuncion().getNombre();
+		List<Registro> regs = this.registros;
+		Iterator<Registro> iter = regs.iterator();
+		while (iter.hasNext()) {
+			String nombreFuncion = iter.next().getFuncion().getNombre();
 			if (nombreFuncion.compareTo(nomfuncion)== 0)
 				return true;
 		}
@@ -217,18 +218,28 @@ public class Usuario {
 		List<Vale> vales = this.vales;
 		List<Vale> valesCanjear = new ArrayList<Vale>();
     	for (int i = 0; i < vales.size(); i++) {
-    		if (vales.get(i).getEspectaculo().getNombre() == nombreEspect) {
+    		if (vales.get(i).getEspectaculo().getNombre().compareTo(nombreEspect) == 0 && !vales.get(i).isUsado()) {
     			Paquete paq = vales.get(i).getPaquete();
     			if (LocalDate.now().isBefore(paq.getFechaF())) {
     				valesCanjear.add(vales.get(i));
+    					
     			}
     		}
     	}
     	return valesCanjear;
 	}
 	public void agregarcompra(Compra comprado) throws UsuarioPaqueteComprado {
-		if (!this.compraPaquete.contains(comprado))
+		if (!this.compraPaquete.contains(comprado)) {
 			this.compraPaquete.add(comprado);
+			Paquete nuevoPaq = comprado.getPaquete();
+			Map<String, Espectaculo> espectPaq = nuevoPaq.getEspectaculos();
+			for(String key : espectPaq.keySet()) {
+				Vale nuevoVale = new Vale();
+				nuevoVale.setEspectaculo(espectPaq.get(key));
+				nuevoVale.setPaquete(nuevoPaq);
+				this.vales.add(nuevoVale);
+			}
+		}
 		else
 			throw new UsuarioPaqueteComprado("La compra " + comprado.getPaquete().getNombre() + " ya fue realizada"); 
 	}

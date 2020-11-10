@@ -32,6 +32,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -50,15 +51,15 @@ public class AltaUsuario extends JInternalFrame {
 	private JTextArea textArea_1;
 	private JFormattedTextField textField_4;
 	private JLabel lblNewLabel;
-	private JTextField textField_5;
+	//private JTextField textField_5;
 	private JLabel lblDescripcion;
-	private JTextField textField_6;
+	//private JTextField textField_6;
 	private JLabel lblWebsite;
 	private JTextField textField_7;
 	private JCheckBox checkEsArtista;
 	private JButton btnNewButton;
 	private JButton btnCancelar;
-	private ArrayList<JTextField> textfieldSet;
+	private List<JTextField> textfieldSet;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
 
@@ -188,10 +189,10 @@ public class AltaUsuario extends JInternalFrame {
 		
 		checkEsArtista = new JCheckBox("Es Artista");
 		checkEsArtista.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent ie) {
-				textArea_1.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
-				textArea.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
-				textField_7.setEnabled(ie.getStateChange() == ItemEvent.SELECTED);
+			public void itemStateChanged(ItemEvent ievento) {
+				textArea_1.setEnabled(ievento.getStateChange() == ItemEvent.SELECTED);
+				textArea.setEnabled(ievento.getStateChange() == ItemEvent.SELECTED);
+				textField_7.setEnabled(ievento.getStateChange() == ItemEvent.SELECTED);
 			}
 		});
 		GridBagConstraints gbc_rdbtnEsArtista = new GridBagConstraints();
@@ -280,7 +281,7 @@ public class AltaUsuario extends JInternalFrame {
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				textfieldSet.forEach(textfield -> textfield.setText(""));
 				textArea.setText("");
 				textArea.setEnabled(false);
@@ -294,7 +295,7 @@ public class AltaUsuario extends JInternalFrame {
 		
 		btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				if (!checkEsArtista.isSelected()) {
 					for(int i = 1; i < 5; i++) {
 						if (textfieldSet.get(i).getText().trim().length() == 0) {
@@ -331,8 +332,8 @@ public class AltaUsuario extends JInternalFrame {
 					return;
 				}
 				
-				Fabrica f = Fabrica.getInstance();
-				IUsuario UC = f.getIUsuario();
+				Fabrica fab = Fabrica.getInstance();
+				IUsuario iUser = fab.getIUsuario();
 				
 				System.out.print("nickname: " + nickname + "\n");
 				System.out.print("nombre: " + nombre + "\n");
@@ -348,17 +349,17 @@ public class AltaUsuario extends JInternalFrame {
 				//JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese Nickname");
 				try{
 					if (!esArtista) {
-						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
+						iUser.altaUsuario(nickname, nombre, apellido, mail, fechanac);
 					} else {
 						String descripcion = textArea_1.getText();
 						String bio = textArea.getText();
 						String website = textField_7.getText();
-						UC.altaUsuario(nickname, nombre, apellido, mail, fechanac);
-						UC.altaArtista(descripcion, bio, website);
+						iUser.altaUsuario(nickname, nombre, apellido, mail, fechanac);
+						iUser.altaArtista(descripcion, bio, website);
 					}
 					int input = JOptionPane.showConfirmDialog(null, "Desea confirmar el usuario?");
 					if (input == 0) {
-						UC.confirmarAltaUsuario();
+						iUser.confirmarAltaUsuario();
 						textfieldSet.forEach(textfield -> textfield.setText(""));
 						textArea.setText("");
 						textArea.setEnabled(false);

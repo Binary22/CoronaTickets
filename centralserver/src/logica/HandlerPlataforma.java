@@ -2,9 +2,11 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HandlerPlataforma {
-	private HashMap<String, Plataforma> colPlataforma;
+	private Map<String, Plataforma> colPlataforma;
 	
 	private static HandlerPlataforma instancia = null;
 
@@ -27,22 +29,22 @@ public class HandlerPlataforma {
         return instancia;
     }
 	
-	public ArrayList<String> getNombres() {
-		ArrayList<String> list = new ArrayList<String>(colPlataforma.keySet());
+	public List<String> getNombres() {
+		List<String> list = new ArrayList<String>(colPlataforma.keySet());
 		return list;
 	}
 	public  Plataforma getPlataforma(String nomPlataforma) {
 		return colPlataforma.get(nomPlataforma);
 	}
-	public void agregarPlataforma(Plataforma p) {
-		this.colPlataforma.put(p.getNombre(), p);
+	public void agregarPlataforma(Plataforma plat) {
+		this.colPlataforma.put(plat.getNombre(), plat);
 	}
 
-	public HashMap<String, Plataforma> getColPlataforma() {
+	public Map<String, Plataforma> getColPlataforma() {
 		return colPlataforma;
 	}
 
-	public void setColPlataforma(HashMap<String, Plataforma> colPlataforma) {
+	public void setColPlataforma(Map<String, Plataforma> colPlataforma) {
 		this.colPlataforma = colPlataforma;
 	}
 	

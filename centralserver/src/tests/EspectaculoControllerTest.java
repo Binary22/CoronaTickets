@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -142,7 +143,7 @@ class EspectaculoControllerTest {
 	void testMostrarEspectaculosPlataforma() {
 		Espectaculo e = he.getEspectaculo("Los Village Volvieron");
 		DtEspectaculo dte = new DtEspectaculo(e);
-		ArrayList<DtEspectaculo> dtes = ie.mostrarEspectaculosPlataforma("Instagram Live");
+		List<DtEspectaculo> dtes = ie.mostrarEspectaculosPlataforma("Instagram Live");
 		boolean exito = false;
 		for (DtEspectaculo dt : dtes) {
 			if (dt.getNombre().equals(dte.getNombre())) {
@@ -157,7 +158,7 @@ class EspectaculoControllerTest {
 		Espectaculo e = he.getEspectaculo("Los Village Volvieron");
 		Funcion f = e.getFuncion("Los Village Volvieron - 1");
 		DtFuncion dtf = new DtFuncion(f);
-		ArrayList<DtFuncion> dtfs = ie.mostrarFuncionesEspectaculo("Los Village Volvieron");
+		List<DtFuncion> dtfs = ie.mostrarFuncionesEspectaculo("Los Village Volvieron");
 		boolean succ = false;
 		for (DtFuncion dt : dtfs) {
 			if (dt.getNombre().equals(dtf.getNombre())) {
@@ -184,13 +185,13 @@ class EspectaculoControllerTest {
 
 	@Test
 	void testMostrarEspectadores() {
-		ArrayList<String> espec = ie.mostrarEspectadores();
+		List<String> espec = ie.mostrarEspectadores();
 		assertTrue(espec.contains("vpeople"));
 	}
 	
 	@Test
 	void testListarArtistas() {
-		ArrayList<String> megustaelarte = ie.listarArtistas();
+		List<String> megustaelarte = ie.listarArtistas();
 		assertTrue(megustaelarte.contains("vpeople"));
 		assertFalse(megustaelarte.contains("waston"));
 	}
@@ -236,7 +237,7 @@ class EspectaculoControllerTest {
 	void testObtenerRegistrosPrevios() {
 		ie.ingresarNombreFuncion("Los Village Volvieron - 1");
 		ie.ingresarNombreEspectador("waston");
-		ArrayList<DtRegistro> dtrs = ie.obtenerRegistrosPrevios();
+		List<DtRegistro> dtrs = ie.obtenerRegistrosPrevios();
 	}
 	
 	
@@ -396,7 +397,7 @@ class EspectaculoControllerTest {
 		ie.aceptarRechazar("Los Village Volvieron", true);
 		assertTrue(he.getEspectaculo("Los Village Volvieron").isAceptado());
 		assertTrue(he.getEspectaculo("Los Village Volvieron").isYaFueValuado());
-		ArrayList<String> ingresados = ie.listarEspectaculosIngresados();
+		List<String> ingresados = ie.listarEspectaculosIngresados();
 		assertFalse(ingresados.contains("Los Village Volvieron"));
 	}
 	

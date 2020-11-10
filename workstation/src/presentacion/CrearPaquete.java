@@ -248,11 +248,11 @@ public class CrearPaquete extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Por favor rellene todos los campos de texto.");
 				
 					else {
-						Fabrica f = Fabrica.getInstance();
-						IPaquete cp = f.getIPaquete();
+						Fabrica fab = Fabrica.getInstance();
+						IPaquete iPaq = fab.getIPaquete();
 						try {
-							cp.crearPaquete(Nombre, Descripcion, fechaIni, fechaFin, Descuento, fechaAlta);
-							cp.confirmarCrearPaquete();
+							iPaq.crearPaquete(Nombre, Descripcion, fechaIni, fechaFin, Descuento, fechaAlta);
+							iPaq.confirmarCrearPaquete();
 							JOptionPane.showMessageDialog(null, "Paquete: " + Nombre + " creado con exito!");
 						} catch (PaqueteConMismoNombreException ex) {
 							JOptionPane.showMessageDialog(null, ex.getMessage(), "Crear Paquete", JOptionPane.ERROR_MESSAGE);

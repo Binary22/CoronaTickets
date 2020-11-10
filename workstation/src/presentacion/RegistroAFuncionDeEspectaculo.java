@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
@@ -111,7 +112,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		comboBoxPlataformas = new JComboBox<String>();
 		comboBoxPlataformas.addFocusListener(new FocusAdapter() {
 			@Override
-			public void focusGained(FocusEvent e) {
+			public void focusGained(FocusEvent evento) {
 				cargarPlataformas();
 			}
 		});
@@ -499,7 +500,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.setForeground(Color.RED);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				//limpiarVentana();
 				setVisible(false);
 			}
@@ -518,7 +519,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	
 	public void cargarPlataformas() {
 		comboBoxPlataformas.removeAllItems();
-        ArrayList<String> nombres = ctrlEspect.listarPlataformas(); 
+        List<String> nombres = ctrlEspect.listarPlataformas(); 
         nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
         	comboBoxPlataformas.addItem(nombres.get(i));
@@ -528,7 +529,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	
 	public void cargarEspectaculos(String nomplat) {
 		comboBoxEspectPlat.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
+		List<String> nombres = ctrlEspect.listarEspectaculosPlataforma(nomplat);
 		nombres.sort(String::compareToIgnoreCase);
 		for(int i = 0; i < nombres.size(); i++) {
         	comboBoxEspectPlat.addItem(nombres.get(i));
@@ -538,7 +539,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	public void cargarEspectadores() {
 		
 		comboBoxEspectadores.removeAllItems();
-		ArrayList<String> nombres = ctrlEspect.mostrarEspectadores();
+		List<String> nombres = ctrlEspect.mostrarEspectadores();
 		nombres.sort(String::compareToIgnoreCase);
 		for(int i = 0; i < nombres.size(); i++) {
         	comboBoxEspectadores.addItem(nombres.get(i));
@@ -559,7 +560,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 	
 	public void cargarFuncionesEspectaculo(String nombreEspect) {
 		comboBoxFuncionesEspect.removeAllItems();
-		ArrayList<DtFuncion> funciones = ctrlEspect.mostrarFuncionesEspectaculo(nombreEspect);
+		List<DtFuncion> funciones = ctrlEspect.mostrarFuncionesEspectaculo(nombreEspect);
 		funciones.sort((DtFuncion f, DtFuncion g) -> {
 			return f.getNombre().compareToIgnoreCase(g.getNombre());
 		});
@@ -572,7 +573,7 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		//elimino lo anterior
 		listRegistros.removeAll();
 	
-		ArrayList<DtRegistro> regs = ctrlEspect.obtenerRegistrosPrevios();
+		List<DtRegistro> regs = ctrlEspect.obtenerRegistrosPrevios();
 		
 		if(!regs.isEmpty()) {
 			
@@ -595,11 +596,11 @@ public class RegistroAFuncionDeEspectaculo extends JInternalFrame {
 		int[] selectedIx = listRegistros.getSelectedIndices();
 
 	    // Get all the selected items using the indices
-		int i;
+		int ivar;
 		int[] regSelect = new int[3];
-	    for (i = 0; i < selectedIx.length; i++) {
-	      String sel = listRegistros.getModel().getElementAt(selectedIx[i]);
-	      regSelect[i] = Integer.parseInt(sel);
+	    for (ivar = 0; ivar < selectedIx.length; ivar++) {
+	      String sel = listRegistros.getModel().getElementAt(selectedIx[ivar]);
+	      regSelect[ivar] = Integer.parseInt(sel);
 	    }
 	    
             try {

@@ -2,6 +2,7 @@ package logica;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import excepciones.NoExistePaqueteException;
 import excepciones.PaqueteConMismoNombreException;
@@ -9,7 +10,7 @@ import excepciones.PaqueteConMismoNombreException;
 public interface IPaquete {
 	public void crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta) throws PaqueteConMismoNombreException;
 	public void confirmarCrearPaquete();
-	public ArrayList<String> listarPaquetes();
+	public List<String> listarPaquetes();
 	public void seleccionarPaquete(String nombre) throws NoExistePaqueteException;
 	public void elegirEspectaculo(String nomEspectaculo);
 	public void confirmarAgregarEspectAPaquete();

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Registro {
 	private LocalDate fecha;
 	private boolean yaFueCanjeado;
-	private int id;
+	private int ident;
 	private Registro[] regsCanjeados;
 	private float costo;
 	private static int seed = 0;
@@ -25,10 +25,10 @@ public class Registro {
 		this.yaFueCanjeado = canjeado;
 	}
 	public int getId() {
-		return id;
+		return ident;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int ident) {
+		this.ident = ident;
 	}
 	public Usuario getUsuario() {
 		return usuario;
@@ -46,7 +46,7 @@ public class Registro {
 		super();
 		this.fecha = fecha;
 		this.yaFueCanjeado = canjeado;
-		this.id = ++seed;
+		this.ident = ++seed;
 		this.usuario = usuario;
 		this.funcion = funcion;
 		this.regsCanjeados = new Registro[3];

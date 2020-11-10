@@ -186,6 +186,23 @@ public class Registroafuncion extends HttpServlet {
 	    		
 	        	
 	        	
+	        }else {//caso de vales
+	        	String nomPaquete = req.getParameter("vale_seleccionado");
+	        	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+	        	Usuario user = hu.getUsuario(userNickname);
+	        	List<Vale> vales = user.getVales();
+	        	int i = 0;
+	        	boolean actualizo = false;
+	        	while(i < vales.size() && !actualizo){
+	        		if(vales.get(i).getPaquete().getNombre().compareTo(nomPaquete) == 0) {
+	        			if(vales.get(i).getEspectaculo().getNombre().compareTo(espectaculo) == 0) {
+	        				vales.get(i).setUsado(true);
+	        				actualizo = true;
+	        			}
+	        		}
+	        		i++;
+	        	}
+	        	
 	        }
 		ctrlE.ingresarNombreFuncion(null);
 		
