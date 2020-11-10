@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -254,7 +255,7 @@ public class CargarDatos extends HttpServlet {
 		//R21
 		ec.ingresarNombreFuncion("Memphis Blues World - A");
 		ec.ingresarNombreEspectador("lachiqui");
-		ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
+		List<DtRegistro> registros = ec.obtenerRegistrosPrevios();
 		int[] registrosFiltrados = new int[3];
 		for (int i = 0; i < registros.size(); i++) {
 			if(registros.get(i).getId() == 7)

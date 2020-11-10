@@ -82,7 +82,7 @@
 		                    nombres.sort(String::compareToIgnoreCase);
 		                  		for(String key : nombres){
 		                  			String var = "";
-		                  			ArrayList<String> artistas = funciones.get(key).getArtistasInvitadosWeb();
+		                  			List<String> artistas = funciones.get(key).getArtistasInvitadosWeb();
 		                  			if(!artistas.isEmpty()){
 			                  			int fin = artistas.size()-1;
 			                  			for(int i = 0; i < fin; i++){
