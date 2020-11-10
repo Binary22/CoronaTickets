@@ -58,6 +58,10 @@ public class Artista extends Usuario {
 		this.website = web;
 		this.espectaculos = new ArrayList<Espectaculo>();
 		this.setImagen("resources/media/usuarios/artistadefault.jpg");
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -67,6 +71,10 @@ public class Artista extends Usuario {
 		this.biografia = biografia;
 		this.website = website;
 		this.espectaculos = new ArrayList<Espectaculo>();
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -81,6 +89,10 @@ public class Artista extends Usuario {
 		}
 		this.setImagen(imagen);
 		this.setPassword(password);
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
 	}
 	
 	public boolean esArtistaA() {

@@ -41,7 +41,15 @@ public class Altafuncion extends HttpServlet {
     }
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HashMap<String, String> form = new HashMap<String, String>();
+		form.put("nombre", "");
+		form.put("fecha", "");
+		form.put("horaInicio", "");
+		form.put("esp", "");
+		form.put("invitados", "");
+		
 		HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("form", form);
 		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 			objSesion.setAttribute("escero",false);
 			objSesion.setAttribute("nombreexiste",false);
@@ -87,6 +95,13 @@ public class Altafuncion extends HttpServlet {
 		String[] invitados = req.getParameterValues("artistasinv");
 		boolean entro = false;
 		
+		HashMap<String, String> form = new HashMap<String, String>();
+		form.put("nombre", nombre);
+		form.put("fecha", fecha);
+		form.put("horaInicio", horaInicio);
+		form.put("esp", esp);
+		form.put("invitados", "");
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
         LocalDate date = LocalDate.parse(fecha, formatter);
@@ -109,6 +124,9 @@ public class Altafuncion extends HttpServlet {
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
 				objSesion.setAttribute("nombreexiste",true);
+				objSesion.setAttribute("escero",false);
+				objSesion.setAttribute("fechaInvalida",false);
+				objSesion.setAttribute("form", form);
 				req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
 				entro = true;
 			}
@@ -116,10 +134,16 @@ public class Altafuncion extends HttpServlet {
 	        	resp.sendRedirect("home");
         }
         else {
-        	if(duracion.equals(cero))
+        	if(duracion.equals(cero)) {
         		objSesion.setAttribute("escero",true);
-        	else
+        		objSesion.setAttribute("fechaInvalida",false);
+        		objSesion.setAttribute("nombreexiste",false);
+        	}else {
         		objSesion.setAttribute("fechaInvalida",true);
+        		objSesion.setAttribute("escero",false);
+        		objSesion.setAttribute("nombreexiste",false);
+        	}
+        	objSesion.setAttribute("form", form);
         	req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
         }
 	}

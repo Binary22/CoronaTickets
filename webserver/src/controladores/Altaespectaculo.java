@@ -3,11 +3,14 @@ package controladores;
 import logica.Fabrica;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
+import logica.HandlerPlataforma;
 import logica.IEspectaculo;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +34,18 @@ public class Altaespectaculo extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	HashMap<String, String> form = new HashMap<String, String>();
+		form.put("descripcion", "");
+		form.put("duracion", "");
+		form.put("minutos", "");
+		form.put("maximo", "");
+		form.put("minimo", "");
+		form.put("url", "");
+		form.put("categorias", "");
+		form.put("costo", "");
+		form.put("imagen", "");
     	HttpSession session = req.getSession();
+    	session.setAttribute("form", form);
     	session.setAttribute("error", "no");
     	if (session.getAttribute("estado_sesion") == "LOGIN_INCORRECTO") {
 			resp.sendRedirect("home");
@@ -41,6 +55,8 @@ public class Altaespectaculo extends HttpServlet {
 		};
     	
     	HandlerCategorias hc = HandlerCategorias.getInstance();
+    	HandlerPlataforma hp = HandlerPlataforma.getInstance();
+    	session.setAttribute("plataformas", hp.getNombres());
     	session.setAttribute("categorias", hc.getCategorias().keySet());
 		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
 	}
@@ -78,8 +94,22 @@ public class Altaespectaculo extends HttpServlet {
     			cats2.add(c);
     		}
     	}
+    	
+    	HashMap<String, String> form = new HashMap<String, String>();
+		form.put("descripcion", descripcion);
+		form.put("duracion", horas);
+		form.put("minutos", minutos);
+		form.put("maximo", maxEspectadores);
+		form.put("minimo", minEspectadores);
+		form.put("url", url);
+		form.put("costo", costo);
+		form.put("imagen", imagen);
+    	
     	try {
-    		    		
+    	
+    	if (Integer.parseInt(minEspectadores) > Integer.parseInt(maxEspectadores) ) {
+    		throw(new NombreEspectaculoExisteException("El mínimo debe ser menor al máximo de espectadores"));
+    	}
     	ctrlE.altaEspectaculoWeb(nomPlataforma, nick, nombre, descripcion, duracion, 
     							Integer.parseInt(minEspectadores), Integer.parseInt(maxEspectadores),
     							url, Float.parseFloat(costo), hoy, cats2, imagen);
@@ -101,10 +131,12 @@ public class Altaespectaculo extends HttpServlet {
     	} catch(NombreEspectaculoExisteException e) {
     		e.printStackTrace();
     		session.setAttribute("error", e.getMessage());
+
+    		
+    		session.setAttribute("form", form);
     		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
     		//devolver algo al usuario de la web !!
-    	}    	    	
-        
+    	}
 
     }
     

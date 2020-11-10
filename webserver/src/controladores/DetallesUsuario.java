@@ -31,11 +31,36 @@ public class DetallesUsuario extends HttpServlet {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Usuario u = hu.getUsuario(nomu);
 		objSesion.setAttribute("usuario", u);
+		if (objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+			Usuario userlogged = hu.getUsuario((String) objSesion.getAttribute("usuario_logueado"));
+			objSesion.setAttribute("userlogged", userlogged);
+		}
+	
 		if (u.esArtista()) {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesArtista.jsp").forward(req, resp);
 		} else {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesUsuario.jsp").forward(req, resp);
 		}
+	}
+	
+	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		String accion = req.getParameter("accion");
+		String usuariologueado = req.getParameter("usuariologueado");
+		String usuarioaseguir = req.getParameter("usuarioaseguir");
+		Usuario uloggueado = hu.getUsuario(usuariologueado);
+		Usuario uaseguir = hu.getUsuario(usuarioaseguir);
+		if (accion.compareTo("seguir") == 0) {
+			uloggueado.agregarSeguido(uaseguir);
+			uaseguir.agregarSiguiendo(uloggueado);
+		} else if (accion.compareTo("dejardeseguir") == 0) {
+			uloggueado.quitarSeguido(uaseguir);
+			uaseguir.quitarSiguiendo(uloggueado);
+		}
+		
+		resp.sendRedirect("detallesUsuario?name=" + req.getParameter("usuarioaseguir"));
 	}
 
 	/**
@@ -51,7 +76,7 @@ public class DetallesUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processRequest(request, response);
+		processResponse(request, response);
 	}
 
 }

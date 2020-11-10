@@ -86,10 +86,14 @@ public class Modificarusuario extends HttpServlet {
 	        resp.sendRedirect("home");
 	    }
 	    else {
-	    	if(!password.equals(confipassword))
+	    	if(!password.equals(confipassword)) {
 	    		objSesion.setAttribute("contraNoCoincide", true);
-	    	else
+	    		objSesion.setAttribute("fechaInvalida", false);
+	    
+        	}else {
 	    		objSesion.setAttribute("fechaInvalida", true);
+	    		objSesion.setAttribute("contraNoCoincide", false);
+        	}
 	    	req.getRequestDispatcher("/WEB-INF/usuarios/modificarusuario.jsp").forward(req, resp);
 	    }
 	    	

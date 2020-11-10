@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,43 +28,66 @@
         <div class="d-flex justify-content-center">
         <div class="card input-group mt-3" style="width:40rem;"">
         <div class="card-body">
+        <% 
+          HashMap<String, String> form = (HashMap<String, String> ) session.getAttribute("form");	
+        %>
 
         <h4> Registro </h4>
         <br>
-                
+        <%if((Boolean)session.getAttribute("contraNoCoincide")){%> 
+          <div class="alert alert-danger" role="alert">
+            Las contraseñas deben coincidir.
+          </div>
+        <%}%>
+        <%if((Boolean)session.getAttribute("fechaInvalida")){%> 
+          <div class="alert alert-danger" role="alert">
+            La fecha de nacimiento debe ser menor o igual a la actual.
+          </div>
+        <%}%>
+        <%if((Boolean)session.getAttribute("mismoNick")){%> 
+          <div class="alert alert-danger" role="alert">
+            El nick que desea utilizar ya esta en uso.
+          </div>
+        <%}%>
+        <%if((Boolean)session.getAttribute("mismoMail")){%> 
+          <div class="alert alert-danger" role="alert">
+            El mail que desea utilizar ya esta en uso.
+          </div>
+        <%}%>
+        <br>
         <form action="registro" method="POST">
             <div class="form-group" >
               <label>Nickname</label>
-              <input type="text" class="form-control" name = "nickname" placeholder="Ej. Rigo23">
+              <input type="text" class="form-control" name = "nickname" placeholder="Ej. Rigo23" value="<%= form.get("nickname") %>" required>
             </div>
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name = "nombre" placeholder="Ej. Rigoberto">
+              <input type="text" class="form-control" name = "nombre" placeholder="Ej. Rigoberto" value="<%= form.get("nombre") %>" required>
             </div>
             <div class="form-group">
               <label>Apellido</label>
-              <input type="text" class="form-control" name = "apellido"  placeholder="Ej. Ramirez">
+              <input type="text" class="form-control" name = "apellido"  placeholder="Ej. Ramirez" value="<%= form.get("apellido") %>" required>
             </div>
             <div class="form-group">
               <label>Mail</label>
-              <input type="email" class="form-control" name = "mail" placeholder="Ej. rigo23@gmail.com">
+              <input type="email" class="form-control" name = "mail" placeholder="Ej. rigo23@gmail.com" value="<%= form.get("mail") %>" required>
             </div>
             <div class="form-group">
               <label>Fecha de nacimiento</label>
-              <input type="date" class="form-control" name = "fechaNac"  placeholder="Ej. rigo23@gmail.com">
+              <input type="date" class="form-control" name = "fechaNac"  placeholder="Ej. rigo23@gmail.com" value="<%= form.get("fechanac") %>" required>
             </div>
             <!-- aca hay que agregar fecha de nacimiento -->
             <div class="form-group">
               <label>Contraseña</label>
-              <input type="password" class="form-control" name = "password" placeholder="Ej. 123456">
+              <input type="password" class="form-control" name = "password" placeholder="Ej. 123456" value="<%= form.get("password") %>" required>
             </div>
             <div class="form-group">
               <label>Confirmar contraseña</label>
-              <input type="password" class="form-control" name = "confPassword" placeholder="Ej. 123456">
+              <input type="password" class="form-control" name = "confPassword" placeholder="Ej. 123456" value="<%= form.get("confipassword") %>" required>
             </div>
             <div class="form-group">
                <label>Elegir imagen</label>
-               <input type="url" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr">
+               <input type="url" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr" value="<%= form.get("imagen") %>">
             </div>
             <div class="form-group form-check">
               <input type="checkbox" name = "esArtista" class="form-check-input" id="artista" onclick="mostrarCamposArtista(this)"> 
@@ -73,15 +97,15 @@
             <div id="camposArtista" style="display: none;">
               <div class="form-group">
                 <label>Descripción</label>
-                <textarea class="form-control" name = "descripcion" placeholder="Ej. El proyecto solista de Rigoberto"></textarea>
+                <textarea class="form-control" name = "descripcion" placeholder="Ej. El proyecto solista de Rigoberto" value="<%= form.get("descrip") %>"></textarea>
               </div>
               <div class="form-group">
                 <label>Biografía</label>
-                <textarea class="form-control" name = "biografia" placeholder="Ej. Rigoberto Rock empezo como proyecto personal en 1995."></textarea>
+                <textarea class="form-control" name = "biografia" placeholder="Ej. Rigoberto Rock empezo como proyecto personal en 1995." value="<%= form.get("bio") %>"></textarea>
               </div>
               <div class="form-group">
                 <label>Website</label>
-                <input type="url" class="form-control" name = "website" placeholder="Ej. https://rigobertorock.com">
+                <input type="url" class="form-control" name = "website" placeholder="Ej. https://rigobertorock.com" value="<%= form.get("website") %>">
               </div>
             </div>
 

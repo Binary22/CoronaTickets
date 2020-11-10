@@ -24,9 +24,41 @@ public class Usuario {
 	private List<Registro> registros;
 	private String password;
 	private String imagen;
+	private List<Usuario> seguidos; // usuarios a los que este usuario sigue
+	private List<Usuario> siguiendo; // usuarios que siguen a este usuario
 	
+	public void agregarSeguido(Usuario usuario) {
+		seguidos.add(usuario);
+	}
 	
+	public void agregarSiguiendo(Usuario usuario) {
+		siguiendo.add(usuario);
+	}
 	
+	public void quitarSeguido(Usuario usuario) {
+		seguidos.remove(usuario);
+	}
+	
+	public void quitarSiguiendo(Usuario usuario) {
+		siguiendo.remove(usuario);
+	}
+		
+	public List<Usuario> getSeguidos() {
+		return seguidos;
+	}
+
+	public List<Usuario> getSiguiendo() {
+		return siguiendo;
+	}
+	
+	public void setSeguidos(List<Usuario> seguidos) {
+		this.seguidos = seguidos;
+	}
+
+	public void setSiguiendo(List<Usuario> siguiendo) {
+		this.siguiendo = siguiendo;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -173,6 +205,8 @@ public class Usuario {
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();	
 		this.imagen = "resources/media/usuarios/userdefault.jpg";
+		this.seguidos = new ArrayList<Usuario>();
+		this.siguiendo = new ArrayList<Usuario>();
 		
 
 	}
@@ -192,6 +226,8 @@ public class Usuario {
 			imagen = "resources/media/usuarios/userdefault.jpg";
 		}
 		this.imagen = imagen;
+		this.seguidos = new ArrayList<Usuario>();
+		this.siguiendo = new ArrayList<Usuario>();
 		
 
 	}

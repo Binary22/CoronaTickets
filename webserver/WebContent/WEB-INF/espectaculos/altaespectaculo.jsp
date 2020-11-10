@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.Set"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Set" %>
+
 
 <!doctype html>
 <html lang="en">
@@ -31,19 +34,21 @@
 
         <h4> Alta de espectaculo </h4>
         <br>
-                
+        
+              
         <form action="altaespectaculo" method="POST">
             <div class="form-group">
               <label>Plataforma</label>
               <select required name="nomPlataforma" class="form-control">
-                <option value = 'Facebook Watch'>Facebook Watch</option>
-                <option>Instagram Live</option>
-                <option>Twitter Live</option>
-                <option>Youtube</option>
+              <% List<String> plataformas = (List<String>) session.getAttribute("plataformas"); 
+              	for(String plat: plataformas) { %>
+              		<option> <%= plat %> </option>
+              <% } %>
               </select>
             </div>
             <div class="form-group">
           	<% 
+          		HashMap<String, String> form = (HashMap<String, String> ) session.getAttribute("form");
           		if (session.getAttribute("error") != "no"){
           			
           	%> 
@@ -52,41 +57,40 @@
            			<%= session.getAttribute("error") %>
            		</div>
            	
-           	<% } else { %>
+           	<% } %>
            	
           		<label>Nombre*</label>
             	<input required name="nombre" type="text" class="form-control"  placeholder="Ej. Los Rolling 50 años">
-            	<% } %>
               
             </div>
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea name="descripcion" class="form-control" placeholder="Ej. Tour en conememoración de los 50 años de los Rolling Stones"></textarea>
+                <textarea name="descripcion" class="form-control" placeholder="Ej. Tour en conememoración de los 50 años de los Rolling Stones"><%= form.get("descripcion") %></textarea>
             </div>
             <label>Duración*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input required name="horas" type="number" min="0" class="form-control"  placeholder="Horas">
+                <input required value="<%= form.get("duracion") %>" name="horas" type="number" min="0" max="23" class="form-control"  placeholder="Horas">
               </div>
               <div class="form-group col-md-6">
-                <input required name="minutos" type="number" min="0" class="form-control"  placeholder="Minutos">
+                <input required value="<%= form.get("minutos") %>" name="minutos" type="number" min="0" max="60" class="form-control"  placeholder="Minutos">
               </div>
             </div>
             <label>Máximo y mínimo de espectadores*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input required name="max" type="number" min="0" class="form-control"  placeholder="Máximo">
+                <input required value="<%= form.get("maximo") %>" name="max" type="number" min="0" class="form-control"  placeholder="Máximo">
               </div>
               <div class="form-group col-md-6">
-                <input required name="min" type="number" min="0" class="form-control"  placeholder="Mínimo">
+                <input required value="<%= form.get("minimo") %>" name="min" type="number" min="0" class="form-control"  placeholder="Mínimo">
               </div>
             </div>
             <div class="form-group">
               <label>URL*</label>
-              <input required name="url" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
+              <input required value="<%= form.get("url") %>" name="url" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
             </div>
             <div class="form-group">
-              <label>Categorias*</label>
+              <label>Categorias</label>
               <select name ="categoria" class="form-control" multiple>
               <%
               	
@@ -101,11 +105,11 @@
             </div>
             <div class="form-group">
               <label>Costo*</label>
-              <input required name="costo" type="number" min="0" class="form-control"  placeholder="Ej. 300">
+              <input required value="<%= form.get("costo") %>" name="costo" type="number" min="0" class="form-control"  placeholder="Ej. 300">
             </div>
             <div class="form-group">
                <label>Elegir imagen</label>
-               <input type="url" class="form-control" name="imagen" placeholder="Ej. https://bit.ly/ijgjr">
+               <input type="url" value="<%= form.get("imagen") %>" class="form-control" name="imagen" placeholder="Ej. https://bit.ly/ijgjr">
             </div>
  
             <button type="submit" class="btn btn-primary"> Dar de alta el espectaculo</button>
