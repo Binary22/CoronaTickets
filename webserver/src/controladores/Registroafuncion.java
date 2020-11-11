@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.fechaPosterior;
 import excepciones.noSeleccionoTres;
 import logica.Espectaculo;
 import logica.Fabrica;
@@ -44,11 +45,12 @@ public class Registroafuncion extends HttpServlet {
 		objSesion.setAttribute("errorExisteRegFun", false);
 		objSesion.setAttribute("errorFunAlcanzoLimite", false);
 		objSesion.setAttribute("funciones_vacias", false);
+		objSesion.setAttribute("fecha_invalida", false);
 		
 		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
 			String userNickname = (String) objSesion.getAttribute("usuario_logueado");
 			String nombre = req.getParameter("name");
-			int iend = nombre.indexOf(",");
+			int iend = nombre.indexOf(";");
 			String nomEspect = null;
 			String nomFun = null;
 			if (iend != -1) 
@@ -110,6 +112,15 @@ public class Registroafuncion extends HttpServlet {
        
         ctrlE.ingresarNombreEspectador(userNickname);
         ctrlE.ingresarNombreFuncion(nomFuncion);
+        
+        try {
+			ctrlE.esFechaInvalida(espectaculo, LocalDate.now());
+		} catch (fechaPosterior e1) {
+			// TODO Auto-generated catch block
+			ctrlE.ingresarNombreFuncion(null);
+			objSesion.setAttribute("fecha_invalida", true);
+			req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+		}
         
 		if(req.getParameter("forma").compareTo("canjeregistros") == 0) {
 			String[] regsSelected = req.getParameterValues("registros_previos");

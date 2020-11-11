@@ -47,6 +47,13 @@
 									</div>
 									<%} %>
 									
+									<%if((boolean)session.getAttribute("fecha_invalida")){ %>
+						            <div class="alert alert-danger" role="alert">
+						            
+						  				La función ya fue realizada, por favor seleccione otra!
+									</div>
+									<%} %>
+									
 									<%if((boolean)session.getAttribute("funciones_vacias")){ %>
 						            <div class="alert alert-danger" role="alert">
 						            
@@ -113,6 +120,7 @@
 						                    <%List<Registro> registros = (List<Registro>)session.getAttribute("registros_canjear"); 
 						                      if(!registros.isEmpty()){%>
 						                        <label>Elegir registros a canjear</label>
+						                        <h6 class="card-subtitle mb-2 text-muted">Para realizar un canje con registros previos debe seleccionar 3</h6>
 						                        <select class="form-control"  name = "registros_previos" multiple>
 						                        <%for(int i = 0; i < registros.size(); i++){ %>
 						                          <option><%=registros.get(i).getFuncion().getNombre() %></option>
