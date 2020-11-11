@@ -97,11 +97,11 @@
             <div id="camposArtista" style="display: none;">
               <div class="form-group">
                 <label>Descripción</label>
-                <textarea class="form-control" name = "descripcion" placeholder="Ej. El proyecto solista de Rigoberto" value="<%= form.get("descrip") %>"></textarea>
+                <textarea class="form-control" name = "descripcion" placeholder="Ej. El proyecto solista de Rigoberto" ><%= form.get("descrip") %></textarea>
               </div>
               <div class="form-group">
                 <label>Biografía</label>
-                <textarea class="form-control" name = "biografia" placeholder="Ej. Rigoberto Rock empezo como proyecto personal en 1995." value="<%= form.get("bio") %>"></textarea>
+                <textarea class="form-control" name = "biografia" placeholder="Ej. Rigoberto Rock empezo como proyecto personal en 1995." ><%= form.get("bio") %></textarea>
               </div>
               <div class="form-group">
                 <label>Website</label>
