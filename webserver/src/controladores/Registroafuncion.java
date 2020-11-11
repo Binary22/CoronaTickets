@@ -200,6 +200,9 @@ public class Registroafuncion extends HttpServlet {
 	        }else {//caso de vales
 	        	String nomPaquete = req.getParameter("vale_seleccionado");
 	        	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+	        	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+	        	Espectaculo espect = hesp.getEspectaculo(espectaculo);
+	        	Funcion fun = espect.getFuncion(nomFuncion);
 	        	Usuario user = hu.getUsuario(userNickname);
 	        	List<Vale> vales = user.getVales();
 	        	int i = 0;
@@ -213,6 +216,9 @@ public class Registroafuncion extends HttpServlet {
 	        		}
 	        		i++;
 	        	}
+	        	Registro nuevo = new Registro(LocalDate.now(), false, user, fun, espect.getCosto());
+	        	user.addFuncion(nuevo);
+	        	fun.addEspectador(nuevo);
 	        	
 	        }
 		ctrlE.ingresarNombreFuncion(null);
