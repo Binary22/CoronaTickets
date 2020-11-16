@@ -1,6 +1,8 @@
 package controladores;
 
 import logica.HandlerUsuarios;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
 
 import java.io.IOException;
@@ -33,10 +35,15 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	String nickname = request.getParameter("nickname");
 	String password = request.getParameter("password");
 	String nuevoEstado;
+	
+	PublicadorService service = new PublicadorService();
+    Publicador port = service.getPublicadorPort();
         
 	// chequea contraseña
 	try {
-		Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
+		//Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
+		Usuario u = port.getUsuario(nickname);
+		
 		if(u.getPassword().equals(password)) {
 			request.getSession().setAttribute("usuario_logueado", u.getNickname());
 			nuevoEstado = "LOGIN_CORRECTO";

@@ -33,6 +33,8 @@ import logica.IEspectaculo;
 import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
+import logica.Publicador;
+
 
 public class Principal extends JFrame {
 
@@ -74,6 +76,8 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		Publicador p = new Publicador();
+        p.publicar();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
