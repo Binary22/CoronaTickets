@@ -32,7 +32,12 @@ public class Publicador {
     	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
     	return hUsers.getUsuario(nickname);
     }
-    
+    @WebMethod
+    public boolean esArtista(String nickname) {
+    	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
+    	Usuario user = hUsers.getUsuario(nickname);
+    	return user.esArtista();
+    }
     
 
 }

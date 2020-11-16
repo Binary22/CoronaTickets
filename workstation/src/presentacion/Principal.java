@@ -29,11 +29,13 @@ import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.noSeleccionoTres;
 import logica.Fabrica;
+import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
 import logica.Publicador;
+import logica.Usuario;
 
 
 public class Principal extends JFrame {
@@ -690,6 +692,10 @@ public class Principal extends JFrame {
 			bRead.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		for (Usuario u : hu.getUsuarios().values()) {
+			u.setPassword("1234");
 		}
 
 		        JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");

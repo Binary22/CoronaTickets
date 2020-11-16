@@ -47,7 +47,7 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 		if(u.getPassword().equals(password)) {
 			request.getSession().setAttribute("usuario_logueado", u.getNickname());
 			nuevoEstado = "LOGIN_CORRECTO";
-			if(u.esArtista()) {
+			if(port.esArtista(nickname)) {
 				objSesion.setAttribute("esArtista", true);
 			}else {
 				objSesion.setAttribute("esArtista", false);

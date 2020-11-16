@@ -37,4 +37,17 @@ public interface Publicador {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
+    public boolean esArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
 }
