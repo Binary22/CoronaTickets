@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class modificarDatosUsuario extends JInternalFrame {
@@ -39,10 +40,10 @@ public class modificarDatosUsuario extends JInternalFrame {
 	private JTextPane textField_5;
 	private JTextPane textField_6;
 	private JTextField textField_7;
-	private ArrayList<String> usuarios;
+	private List<String> usuarios;
 	private JComboBox<String> comboBox;
 	protected DtUsuario dtu;
-	private ArrayList<JTextField> textfields;
+	private List<JTextField> textfields;
 
 	/**
 	 * Launch the application.
@@ -102,7 +103,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		
 		JButton btnVerDatos = new JButton("Ver datos");
 		btnVerDatos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				String nick = (String)comboBox.getSelectedItem();
 				dtu = icontrolador.mostrarDatos(nick);
 				updateData();
@@ -265,7 +266,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		getContentPane().add(textField_7, gbc_textField_7);
 		textField_7.setColumns(10);
 
-		IUsuario uc = fabrica.getIUsuario();
+		IUsuario iUser = fabrica.getIUsuario();
 		
 		JButton btnAceptar = new JButton("Aceptar");
 
@@ -277,16 +278,16 @@ public class modificarDatosUsuario extends JInternalFrame {
 				String apellido = textField_2.getText();
 				String mail = textField_3.getText();
 				LocalDate fechanac = LocalDate.parse(textField_4.getText(),formatter);
-				uc.updateUsuario(nick, nombre, apellido,mail, fechanac);
+				iUser.updateUsuario(nick, nombre, apellido,mail, fechanac);
 				if (icontrolador.esArtista(nick)) {
 					String desc = textField_5.getText();
 					String bio = textField_6.getText();
 					String web = textField_7.getText();
-					uc.updateArtista(desc, bio, web);
+					iUser.updateArtista(desc, bio, web);
 				}
 				int input = JOptionPane.showConfirmDialog(null, "Desea actualizar el usuario?");
 					if (input == 0) {
-						uc.confirmarUpdateUsuario();
+						iUser.confirmarUpdateUsuario();
 						clearData();
 						dispose();
 					}
@@ -304,7 +305,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				clearData();
 				dispose();
 			}
@@ -332,15 +333,15 @@ public class modificarDatosUsuario extends JInternalFrame {
 	protected void updateData() {
 		clearData();
 		textfields.forEach((t) -> t.setEnabled(true));
-		Fabrica f = Fabrica.getInstance();
-		IConsulta icontrolador = f.getIConsulta();
+		Fabrica fab = Fabrica.getInstance();
+		IConsulta icontrolador = fab.getIConsulta();
 		textField.setText(dtu.getNickname());
 		textField_1.setText(dtu.getNombre());
 		textField_2.setText(dtu.getApellido());
 		textField_3.setText(dtu.getEmail());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String s = dtu.getFechaNacimiento().format(formatter);
-		textField_4.setText(s);
+		String str = dtu.getFechaNacimiento().format(formatter);
+		textField_4.setText(str);
 		textField_5.setEnabled(false);
 		textField_6.setEnabled(false);
 		textField_7.setEnabled(false);

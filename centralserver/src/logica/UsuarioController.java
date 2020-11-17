@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 
 import datatypes.DtUsuario;
@@ -138,26 +139,26 @@ public class UsuarioController implements IUsuario{
 
 	@Override
 	public void confirmarAltaUsuario() {
-		HandlerUsuarios up = HandlerUsuarios.getInstancia();
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
 		if (esArtista) {
 			//up.agregarArtista(artista);
-			up.agregarUsuario(artista);
+			husers.agregarUsuario(artista);
 		} else {
-			up.agregarUsuario(usuario);
+			husers.agregarUsuario(usuario);
 		}
 	}
 
 	@Override
-	public ArrayList<String> mostrarUsuarios() {
+	public List<String> mostrarUsuarios() {
 		// TODO Auto-generated method stub
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-		return hu.getNombres();
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		return husers.getNombres();
 	}
 
 	public DtUsuario mostrarUsuario(String nomUsuario) {
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-		Usuario u = hu.getUsuario(nomUsuario);
-		return u.getDt();
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		Usuario user = husers.getUsuario(nomUsuario);
+		return user.getDt();
 	}
 	
 	@Override
@@ -195,24 +196,24 @@ public class UsuarioController implements IUsuario{
 
 	@Override
 	public void confirmarUpdateUsuario() {
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
 		usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento);
 		if (esArtista) {
 			artista = new Artista(usuario, descrip, biografia, web);
-			hu.rempazar(nickname, artista);
+			husers.rempazar(nickname, artista);
 		} else {
-		hu.rempazar(nickname, usuario);
+		husers.rempazar(nickname, usuario);
 		};
 	}
 	
 	public void confirmarUpdateUsuarioWeb() {
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
 		usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento, password, imagen);
 		if (esArtista) {
 			artista = new Artista(usuario, descrip, biografia, web);
-			hu.rempazar(nickname, artista);
+			husers.rempazar(nickname, artista);
 		} else {
-		hu.rempazar(nickname, usuario);
+		husers.rempazar(nickname, usuario);
 		};
 	}
 

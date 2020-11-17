@@ -66,6 +66,7 @@ public class Comprapaquete extends HttpServlet {
     
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
     	String nickname = (String) objSesion.getAttribute("usuario_logueado");
     	String nombrepaqcomp = (String) req.getParameter("paquetes");
     	

@@ -188,5 +188,7 @@
         <session-timeout>
             30
         </session-timeout>
-    </session-config>
+    </session-config>   
+
+ 
 </web-app>

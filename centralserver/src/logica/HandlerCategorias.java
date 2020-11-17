@@ -1,9 +1,10 @@
 package logica;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class HandlerCategorias {
-	private HashMap<String, Categoria> categorias;
+	private Map<String, Categoria> categorias;
 	private static HandlerCategorias instancia = null;
 	
 	private HandlerCategorias() {
@@ -17,11 +18,11 @@ public class HandlerCategorias {
         return instancia;
     }
 
-	public HashMap<String, Categoria> getCategorias() {
+	public Map<String, Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(HashMap<String, Categoria> categorias) {
+	public void setCategorias(Map<String, Categoria> categorias) {
 		this.categorias = categorias;
 	}
 	

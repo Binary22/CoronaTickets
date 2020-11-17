@@ -13,6 +13,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -149,7 +150,7 @@ public class AltaCategoria extends JInternalFrame {
 	
 	public void cargarCategorias() {
 		comboBoxCategorias.removeAll();
-		ArrayList<String> nombres = ctrlEspect.listarCategorias();
+		List<String> nombres = ctrlEspect.listarCategorias();
 		nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
         	comboBoxCategorias.addItem(nombres.get(i));

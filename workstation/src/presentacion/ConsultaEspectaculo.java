@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class ConsultaEspectaculo extends JInternalFrame {
@@ -34,8 +35,8 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	 * Launch the application.
 	 */
 	
-	private ArrayList<String> plataformas;
-	private ArrayList<String> espectaculos;
+	private List<String> plataformas;
+	private List<String> espectaculos;
 	private JComboBox<String> comboBox_1;
 	
 	public static void main(String[] args) {
@@ -57,9 +58,9 @@ public class ConsultaEspectaculo extends JInternalFrame {
 	public ConsultaEspectaculo() {
 		setTitle("Consulta de Espectaculo");
 		
-		Fabrica f = Fabrica.getInstance();
-		IConsulta ic = f.getIConsulta();
-		plataformas = ic.listarPlataformas();
+		Fabrica fab = Fabrica.getInstance();
+		IConsulta iconsult = fab.getIConsulta();
+		plataformas = iconsult.listarPlataformas();
 		
 		setBounds(300, 300, 900, 350);
 		SpringLayout springLayout = new SpringLayout();
@@ -73,9 +74,9 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		JComboBox<String> comboBox = new JComboBox<String>();
 		updateComboBox(plataformas, comboBox);
 		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				String plataforma = (String) comboBox.getSelectedItem();
-				espectaculos = ic.listarEspectaculosPlataforma(plataforma);
+				espectaculos = iconsult.listarEspectaculosPlataforma(plataforma);
 				if (espectaculos != null) {
 					updateComboBox(espectaculos, comboBox_1);
 				}
@@ -94,7 +95,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 		comboBox_1 = new JComboBox<String>();
 		comboBox_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				//TODO
 			}
 		});
@@ -106,8 +107,8 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ic.elegirEspectaculo((String)comboBox_1.getSelectedItem());
-				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(ic);
+				iconsult.elegirEspectaculo((String)comboBox_1.getSelectedItem());
+				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(iconsult);
 				getParent().add(cea);
 				cea.setVisible(true);
 				cea.setClosable(true);
@@ -120,7 +121,7 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				dispose();
 			}
 		});
@@ -130,9 +131,9 @@ public class ConsultaEspectaculo extends JInternalFrame {
 		
 	}
 	
-	static void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
-		cb.removeAllItems();
+	static void updateComboBox(List<String> lista, JComboBox<String> cbvar) {
+		cbvar.removeAllItems();
 		lista.sort(String::compareToIgnoreCase);
-		lista.forEach(el -> cb.addItem(el));
+		lista.forEach(el -> cbvar.addItem(el));
 	}
 }

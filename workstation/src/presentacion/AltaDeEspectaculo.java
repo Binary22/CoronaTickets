@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -67,8 +68,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
     private JSpinner spnCosto;
     private JLabel lblFecha;
     private JCalendar calFecha;
-    private ArrayList<String> plataformas;
-    private ArrayList<String> artistas;
+    private List<String> plataformas;
+    private List<String> artistas;
     private JTextArea txtaDescripcion;
     private JScrollPane scrollPane;
 
@@ -102,8 +103,8 @@ public class AltaDeEspectaculo extends JInternalFrame {
         setClosable(true);
 		setTitle("Alta de espectaculo");
 		setBounds(100, 100, 543, 495);
-		Fabrica f = Fabrica.getInstance();
-		IEspectaculo iesp= f.getIEspectaculo();
+		Fabrica fab = Fabrica.getInstance();
+		IEspectaculo iesp= fab.getIEspectaculo();
 		
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -151,7 +152,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		comboBoxArtistas = new JComboBox<String>();
 		comboBoxArtistas.addFocusListener(new FocusAdapter() {
 			@Override
-			public void focusGained(FocusEvent e) {
+			public void focusGained(FocusEvent evento) {
 				artistas= iesp.listarArtistas();
 				updateComboBox(artistas, comboBoxArtistas);
 			}
@@ -324,7 +325,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		
 		JButton btnNewButton_1 = new JButton("Aceptar");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				String plataforma= (String) comboBoxPlataformas.getSelectedItem();
 				String artista= (String) comboBoxArtistas.getSelectedItem();
 				String nombre= textFieldNombre.getText();
@@ -378,7 +379,7 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setForeground(Color.RED);
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				//limpiarFormulario(); creo que esto no es necesario, ademas me genera problemas
 				dispose();
 			}
@@ -390,10 +391,10 @@ public class AltaDeEspectaculo extends JInternalFrame {
 		getContentPane().add(btnNewButton, gbc_btnNewButton);
 
 	}
-	private void updateComboBox(ArrayList<String> lista, JComboBox<String> cb) {
-		cb.removeAllItems();
+	private void updateComboBox(List<String> lista, JComboBox<String> cbvar) {
+		cbvar.removeAllItems();
 		lista.sort(String::compareToIgnoreCase);
-	    lista.forEach(el -> cb.addItem(el));
+	    lista.forEach(el -> cbvar.addItem(el));
 	}
 }
 

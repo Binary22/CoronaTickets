@@ -21,6 +21,8 @@ import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -35,7 +37,7 @@ import java.awt.event.FocusEvent;
 
 public class ConsultaUsuario extends JInternalFrame {
 	
-	HashMap<String, DtFuncion> funciones;
+	Map<String, DtFuncion> funciones;
 
 	/**
 	 * Launch the application.
@@ -99,7 +101,7 @@ public class ConsultaUsuario extends JInternalFrame {
 			public void focusGained(FocusEvent arg0) {
 				// esto es para que se actualize el combobox cuando se agregan usuarios, capaz es al pedo
 				comboBox.removeAllItems();
-				ArrayList<String > listanicknames = icontrolador.listarUsuarios();
+				List<String > listanicknames = icontrolador.listarUsuarios();
 				listanicknames.sort(String::compareToIgnoreCase);
 				for (int i = 0; i < listanicknames.size(); i++) {
 					comboBox.addItem(listanicknames.get(i));
@@ -217,7 +219,7 @@ public class ConsultaUsuario extends JInternalFrame {
 					lblWebsite.setText("");
 				}
 				
-				ArrayList<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
+				List<DtFuncion> listafun = icontrolador.listarFuncionesDtQueSeRegistro(dtu.getNickname());
 				if (listafun != null) {
 					comboBoxFun.removeAllItems();
 					for (int i = 0; i < listafun.size(); i++) {

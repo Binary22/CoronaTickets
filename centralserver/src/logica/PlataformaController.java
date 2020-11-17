@@ -40,9 +40,9 @@ public class PlataformaController implements IPlataforma {
 
 	@Override
 	public void confirmarAltaPlataforma() {
-		Plataforma p= new Plataforma(nombre, descrip, url);
+		Plataforma plat= new Plataforma(nombre, descrip, url);
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
-		hplat.agregarPlataforma(p);
+		hplat.agregarPlataforma(plat);
 	}
 
 	public String getUrl() {
@@ -69,8 +69,8 @@ public class PlataformaController implements IPlataforma {
 		this.nombre = nombre;
 	}
 	
-	public void agregarEspectaculoPlataforma(Plataforma p, Espectaculo e) {	
-		p.addEspectaculo(e);
+	public void agregarEspectaculoPlataforma(Plataforma paq, Espectaculo espect) {	
+		paq.addEspectaculo(espect);
 	}
 
 }

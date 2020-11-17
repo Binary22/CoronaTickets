@@ -15,4 +15,8 @@ public class Compra {
 	public Paquete getPaquete() {
 		return paquete;
 	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
 }

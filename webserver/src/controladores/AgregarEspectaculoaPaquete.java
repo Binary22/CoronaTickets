@@ -38,6 +38,7 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
     	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 	    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
 	    	
@@ -64,6 +65,7 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 	}
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
     	objSesion.setAttribute("paqueteelegido",req.getParameter("paquetes"));
 		objSesion.setAttribute("plataformaelegida",req.getParameter("plataformas"));
 		resp.sendRedirect("espectaculosdeplat");

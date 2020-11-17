@@ -20,9 +20,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
-	private IConsulta icontrolador;
+	//private IConsulta icontrolador;
 	private DtFuncion dtf;
 
 	/**
@@ -123,10 +124,10 @@ public class ConsultaFuncionEspectaculoAnidado extends JInternalFrame {
 		getContentPane().add(lblDatereg, gbc_lblDatereg);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		HandlerEspectaculos hEspect = HandlerEspectaculos.getInstance();
 		//String espec = icontrolador.mostrarEspectaculo().getNombre();
 		String espec = dtf.getEspectaculo();
-		ArrayList<String> arte = he.getEspectaculo(espec).getFuncion(dtf.getNombre()).listarArtistas();
+		List<String> arte = hEspect.getEspectaculo(espec).getFuncion(dtf.getNombre()).listarArtistas();
 		System.out.print(espec);
 		System.out.print("\n" + dtf.getNombre());
 		for(String s: arte) {

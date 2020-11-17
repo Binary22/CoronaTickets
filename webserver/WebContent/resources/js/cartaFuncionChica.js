@@ -14,10 +14,12 @@ templatefuncard.innerHTML = `
 		<h6>Precio:</h6>
 		<p id="precioregistro" class="card-text">
         </p>
-		<p id="canjeadoregistro" class="card-text">
-        </p>
+		<h6>Fecha:</h6>
 		<p id="fecharegistro" class="card-text">
         </p>
+		<p id="canjeadoregistro" class="card-text">
+        </p>
+		
         
     </div>
     `

@@ -7,22 +7,22 @@ import excepciones.NoExistePaqueteException;
 import excepciones.PaqueteConMismoNombreException;
 
 public class PaqueteController implements IPaquete {
-	private Paquete p;
-	private Espectaculo e;
+	private Paquete paq;
+	private Espectaculo espect;
 
 	@Override
 	public void crearPaquete(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta) throws PaqueteConMismoNombreException {
-		HandlerPaquetes hq= HandlerPaquetes.getInstance();
-		if (!hq.getNombresPaquete().contains(nombre))
-			this.p = hq.crearPaquete(nombre, descrip, fechaini, fechafin, desc, fechaalta);
+		HandlerPaquetes hpaq= HandlerPaquetes.getInstance();
+		if (!hpaq.getNombresPaquete().contains(nombre))
+			this.paq = hpaq.crearPaquete(nombre, descrip, fechaini, fechafin, desc, fechaalta);
 		else
 			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
 	}
 
 	@Override
 	public void confirmarCrearPaquete() {
-		HandlerPaquetes hq= HandlerPaquetes.getInstance();
-		hq.agregarPaquete(p);
+		HandlerPaquetes hpaq= HandlerPaquetes.getInstance();
+		hpaq.agregarPaquete(paq);
 	}
 
 	@Override
@@ -33,29 +33,33 @@ public class PaqueteController implements IPaquete {
 
 	@Override
 	public void seleccionarPaquete(String nombre) throws NoExistePaqueteException {
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
-		this.p = hp.getPaquete(nombre);
+		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+		this.paq = hpaq.getPaquete(nombre);
 
 	}
 
 	@Override
 	public void elegirEspectaculo(String nomEspectaculo) {
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		this.e = he.getEspectaculo(nomEspectaculo);
+		HandlerEspectaculos hEspectaculos = HandlerEspectaculos.getInstance();
+		this.espect = hEspectaculos.getEspectaculo(nomEspectaculo);
 	}
 
 	@Override
 	public void confirmarAgregarEspectAPaquete() {
-		p.addEspectaculo(e);
+		paq.addEspectaculo(espect);
 	}
 	
 	@Override
 	public void crearPaqueteWeb(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta, String imagen) throws PaqueteConMismoNombreException {
-		HandlerPaquetes hq= HandlerPaquetes.getInstance();
-		if (!hq.getNombresPaquete().contains(nombre))
-			this.p = hq.crearPaqueteWeb(nombre, descrip, fechaini, fechafin, desc, fechaalta, imagen);
+		HandlerPaquetes hpaq= HandlerPaquetes.getInstance();
+		if (!hpaq.getNombresPaquete().contains(nombre))
+			this.paq = hpaq.crearPaqueteWeb(nombre, descrip, fechaini, fechafin, desc, fechaalta, imagen);
 		else
 			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
+	}
+
+	public Paquete getPaquete() {
+		return paq;
 	}
 
 

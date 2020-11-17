@@ -31,7 +31,7 @@ class funcionCard extends HTMLElement {
         this.querySelector('#desc').innerHTML = this.getAttribute('descripcion');
         this.querySelector('.card-img-top').setAttribute('src',this.getAttribute('img'));
         this.querySelector('.card-subtitle').innerHTML = this.getAttribute('artistas');
-		this.querySelector('a').href = 'registroafuncion?name=' + this.getAttribute('nombreEspectaculo') + "," + this.getAttribute('titulo');
+		this.querySelector('a').href = 'registroafuncion?name=' + this.getAttribute('nombreEspectaculo') + ";" + this.getAttribute('titulo');
 		
 
         //let artistas = ['artista1','artista2','artista3']

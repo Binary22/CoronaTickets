@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,18 +32,18 @@ public class ConsultaPaquete extends JInternalFrame {
 	private JLabel lblOff;
 	private JLabel lblFechaf;
 	private JLabel lblFechai;
-	private ArrayList<String> paquetes;
+	private List<String> paquetes;
 	private JComboBox<String> comboBox_1;
-	private IConsulta cc;
+	private IConsulta iConsult;
 	private JTextPane textpDescripcion;
 
 
 	public ConsultaPaquete() {
-		Fabrica f = Fabrica.getInstance();
-		cc = f.getIConsulta();
+		Fabrica fab = Fabrica.getInstance();
+		iConsult = fab.getIConsulta();
 		paquetes = new ArrayList<String>();
 		try {
-			paquetes = cc.listarPaquetes();
+			paquetes = iConsult.listarPaquetes();
 		} catch (NoHayPaquetesException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -75,8 +76,8 @@ public class ConsultaPaquete extends JInternalFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-				cc.seleccionarPaquete((String)comboBox.getSelectedItem());
-				updateDatos(cc.mostrarPaquete());
+				iConsult.seleccionarPaquete((String)comboBox.getSelectedItem());
+				updateDatos(iConsult.mostrarPaquete());
 				} catch (NoExistePaqueteException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 					return;
@@ -194,8 +195,8 @@ public class ConsultaPaquete extends JInternalFrame {
 
 		btnConsultar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cc.elegirEspectaculo((String)comboBox_1.getSelectedItem());
-				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(cc);
+				iConsult.elegirEspectaculo((String)comboBox_1.getSelectedItem());
+				ConsultaEspectaculoAnidado cea = new ConsultaEspectaculoAnidado(iConsult);
 				getParent().add(cea);
 				cea.setVisible(true);
 				cea.setClosable(true);
@@ -204,13 +205,13 @@ public class ConsultaPaquete extends JInternalFrame {
 		});
 	}
 
-	protected void updateDatos(DtPaquete p) {
-		lblNompaquete.setText(p.getNombre());
-		lblFechai.setText(p.getFechaI().toString());
-		lblFechaf.setText(p.getFechaF().toString());
-		lblOff.setText(String.valueOf(p.getDescuento()));
-		textpDescripcion.setText(p.getDescripcion());
-		ConsultaEspectaculo.updateComboBox(p.getEspectaculos(), comboBox_1);
+	protected void updateDatos(DtPaquete dpaq) {
+		lblNompaquete.setText(dpaq.getNombre());
+		lblFechai.setText(dpaq.getFechaI().toString());
+		lblFechaf.setText(dpaq.getFechaF().toString());
+		lblOff.setText(String.valueOf(dpaq.getDescuento()));
+		textpDescripcion.setText(dpaq.getDescripcion());
+		ConsultaEspectaculo.updateComboBox(dpaq.getEspectaculos(), comboBox_1);
 	}
 
 	public static void main(String[] args) {
@@ -219,8 +220,8 @@ public class ConsultaPaquete extends JInternalFrame {
 	}
 	
 	public void PasarPaquete(String paq) throws NoExistePaqueteException {
-		cc.seleccionarPaquete(paq);
-		updateDatos(cc.mostrarPaquete());
+		iConsult.seleccionarPaquete(paq);
+		updateDatos(iConsult.mostrarPaquete());
 	}
 		
 }

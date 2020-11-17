@@ -1,13 +1,14 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 
 public interface IPlataforma {
-	public ArrayList<String> listarPlataformas();
-	public ArrayList<String> listarEspectaculosPlataforma(String nomPlataforma);
+	public List<String> listarPlataformas();
+	public List<String> listarEspectaculosPlataforma(String nomPlataforma);
 	public void altaPlataforma(String nombre, String descrip, String url);
 	public void confirmarAltaPlataforma();
-	public void agregarEspectaculoPlataforma(Plataforma p, Espectaculo e);
+	public void agregarEspectaculoPlataforma(Plataforma paq, Espectaculo espect);
 	}

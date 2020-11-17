@@ -24,7 +24,7 @@
         			}
         			%>
         			<carta-espectaculo  id = "<%=e.getPlataforma().getNombre() %>" titulo = "<%=e.getNombre() %>" descripcion = "<%=e.getDescripcion() %>"
-				    	img = "<%=e.getImagen() %>" precio = <%=e.getCosto() %> artista = <%=e.getArtista().getNombre() %>></carta-espectaculo>
+				    	img = "<%=e.getImagen() %>" precio = <%=e.getCosto() %> artista = "<%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%>"></carta-espectaculo>
         			<% 
         			i++;
         		} %>

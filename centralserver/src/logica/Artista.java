@@ -13,13 +13,13 @@ public class Artista extends Usuario {
 	private String biografia;
 	private String website;
 	
-	private ArrayList<Espectaculo> espectaculos;
+	private List<Espectaculo> espectaculos;
 	
 	
-	public ArrayList<Espectaculo> getEspectaculos() {
+	public List<Espectaculo> getEspectaculos() {
 		return espectaculos;
 	}
-	public void setEspectaculos(ArrayList<Espectaculo> espectaculos) {
+	public void setEspectaculos(List<Espectaculo> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 	public String getDescripcion() {
@@ -43,7 +43,7 @@ public class Artista extends Usuario {
 	
 	//operaciones de la clase
 	
-	public ArrayList<DtEspectaculo> obtenerEspectaculosOrganizados(){
+	public List<DtEspectaculo> obtenerEspectaculosOrganizados(){
 		return null;
 		
 	}
@@ -58,6 +58,10 @@ public class Artista extends Usuario {
 		this.website = web;
 		this.espectaculos = new ArrayList<Espectaculo>();
 		this.setImagen("resources/media/usuarios/artistadefault.jpg");
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -67,6 +71,10 @@ public class Artista extends Usuario {
 		this.biografia = biografia;
 		this.website = website;
 		this.espectaculos = new ArrayList<Espectaculo>();
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
 	}
 	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
@@ -81,6 +89,10 @@ public class Artista extends Usuario {
 		}
 		this.setImagen(imagen);
 		this.setPassword(password);
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
 	}
 	
 	public boolean esArtistaA() {

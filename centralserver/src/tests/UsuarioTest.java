@@ -35,7 +35,7 @@ class UsuarioTest {
 	void testValesACanjear() {
 		Usuario user = new Usuario("maifol", "a", "b", "c", LocalDate.of(1999, 12, 14), "g","");
 		Espectaculo espect = new Espectaculo("ja", LocalTime.MIDNIGHT, "", 2, 10,"", LocalDate.of(2020, 11, 17), 3);
-		Vale val = new Vale(0);
+		Vale val = new Vale();
 		Paquete paq = new Paquete("bands", LocalDate.of(2020, 9, 16), LocalDate.of(2020, 12, 6), 15, "", LocalDate.of(2020, 9, 16));
 		val.setUsado(false);
 		val.setEspectaculo(espect);
@@ -47,7 +47,9 @@ class UsuarioTest {
 	@Test
 	void testAgregarcompra() {
 		Usuario user = new Usuario("harry", "a", "b", "c", LocalDate.of(1999, 12, 14), "g","");
+		Espectaculo espect = new Espectaculo("jaja", LocalTime.MIDNIGHT, "", 2, 10,"", LocalDate.of(2020, 11, 17), 3);		
 		Paquete paq = new Paquete("bands", LocalDate.of(2020, 9, 16), LocalDate.of(2020, 12, 6), 15, "", LocalDate.of(2020, 9, 16));
+		paq.getEspectaculos().put(espect.getNombre(), espect);
 		Compra comp = new Compra(LocalDate.of(2020, 10, 2), paq);
 		try {
 			user.agregarcompra(comp);

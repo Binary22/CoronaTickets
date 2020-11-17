@@ -1,6 +1,8 @@
 package controladores;
 
 import logica.HandlerUsuarios;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
 
 import java.io.IOException;
@@ -29,17 +31,23 @@ public class Login extends HttpServlet {
  
 void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	HttpSession objSesion = request.getSession();
+	request.setCharacterEncoding("UTF-8");
 	String nickname = request.getParameter("nickname");
 	String password = request.getParameter("password");
 	String nuevoEstado;
+	
+	PublicadorService service = new PublicadorService();
+    Publicador port = service.getPublicadorPort();
         
 	// chequea contraseña
 	try {
-		Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
-		if(u.getPassword().equals(password)) {
-			request.getSession().setAttribute("usuario_logueado", u.getNickname());
+		//Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
+		
+		
+		if(port.loginCorrecto(nickname, password)) {
+			request.getSession().setAttribute("usuario_logueado", nickname);
 			nuevoEstado = "LOGIN_CORRECTO";
-			if(u.esArtista()) {
+			if(port.esArtista(nickname)) {
 				objSesion.setAttribute("esArtista", true);
 			}else {
 				objSesion.setAttribute("esArtista", false);

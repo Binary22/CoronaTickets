@@ -18,13 +18,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class ConsultaEspectaculoAnidado extends JInternalFrame {
 	
-	private IConsulta ic;
-	private ArrayList<String> funciones;
-	private ArrayList<String> paquetes;
+	private IConsulta iconsult;
+	private List<String> funciones;
+	private List<String> paquetes;
 	private DtEspectaculo espectaculo;
 
 	/**
@@ -46,9 +47,9 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaEspectaculoAnidado(IConsulta ic) {
-		this.ic = ic;
-		DtEspectaculo dte = ic.mostrarEspectaculo();
+	public ConsultaEspectaculoAnidado(IConsulta  iconsult) {
+		this.iconsult =  iconsult;
+		DtEspectaculo dte =  iconsult.mostrarEspectaculo();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -163,15 +164,15 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_comboBox.gridy = 7;
 		getContentPane().add(comboBox, gbc_comboBox);
 		
-		funciones = ic.listarFuncionesEspect(dte.getNombre());
+		funciones =  iconsult.listarFuncionesEspect(dte.getNombre());
 		ConsultaEspectaculo.updateComboBox(funciones, comboBox);
 		
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String func = (String) comboBox.getSelectedItem();
-				ic.elegirFuncion(dte.getNombre(), func);
-				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(ic);
+				 iconsult.elegirFuncion(dte.getNombre(), func);
+				ConsultaFuncionEspectaculoAnidado cdea = new ConsultaFuncionEspectaculoAnidado(iconsult);
 				getParent().add(cdea);
 				cdea.setVisible(true);
 				cdea.setClosable(true);
@@ -199,22 +200,22 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		gbc_comboBox_1.gridy = 8;
 		getContentPane().add(comboBox_1, gbc_comboBox_1);
 		
-		paquetes = ic.listarPaquetesDeEspectaculo(dte.getNombre());
+		paquetes =  iconsult.listarPaquetesDeEspectaculo(dte.getNombre());
 		ConsultaEspectaculo.updateComboBox(paquetes, comboBox_1);
 		
 		
 		JButton btnConsultar_1 = new JButton("Consultar");
 		btnConsultar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				// aca se deberia llamar al caso de uso anidado
-				ConsultaPaquete cp = new ConsultaPaquete();
-				getParent().add(cp);
-				cp.setVisible(true);
-				cp.setClosable(true);
+				ConsultaPaquete cpaq = new ConsultaPaquete();
+				getParent().add(cpaq);
+				cpaq.setVisible(true);
+				cpaq.setClosable(true);
 				setVisible(false);
 				
 				try {
-					cp.PasarPaquete((String)comboBox_1.getSelectedItem());
+					cpaq.PasarPaquete((String)comboBox_1.getSelectedItem());
 				} catch (NoExistePaqueteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -231,7 +232,7 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 		
 		JButton btnTerminar = new JButton("Terminar");
 		btnTerminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent evento) {
 				dispose();
 			}
 		});
@@ -246,6 +247,14 @@ public class ConsultaEspectaculoAnidado extends JInternalFrame {
 	public ConsultaEspectaculoAnidado() {
 		setBounds(300, 300, 900, 350);
 
+	}
+
+	public IConsulta getIconsult() {
+		return iconsult;
+	}
+
+	public DtEspectaculo getEspectaculo() {
+		return espectaculo;
 	}
 
 }

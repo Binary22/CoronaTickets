@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -46,13 +47,13 @@ class HandlerUsuariosTest {
 
 	@Test
 	void testGetNombresArtista() {
-		ArrayList<String> l = hu.getNombresArtista();
+		List<String> l = hu.getNombresArtista();
 		assertTrue(l.contains("lachiqui"));
 	}
 	
 	@Test
 	void testGetNombresArtistas() {
-		ArrayList<String> l = hu.getNombresArtistas();
+		List<String> l = hu.getNombresArtistas();
 		assertTrue(l.contains("vpeople"));
 	}
 	@Test
@@ -315,7 +316,7 @@ class HandlerUsuariosTest {
 		//R21
 		ec.ingresarNombreFuncion("Memphis Blues World - A");
 		ec.ingresarNombreEspectador("lachiqui");
-		ArrayList<DtRegistro> registros = ec.obtenerRegistrosPrevios();
+		List<DtRegistro> registros = ec.obtenerRegistrosPrevios();
 		int[] registrosFiltrados = new int[3];
 		for (int i = 0; i < registros.size(); i++) {
 			if (registros.get(i).getId() == 7)

@@ -1,22 +1,24 @@
 package logica;
 
 public class Vale {
-	private int id;
+	private int ident;
 	private Paquete paquete;
 	private Espectaculo espectaculo;
 	private boolean usado;
+	private static int seed = 0;
 
-	public Vale(int id) {
+	public Vale() {
 		super();
-		this.id = id;
+		this.ident = ++seed;
+		this.usado = false;
 	}
 
 	public int getId() {
-		return id;
+		return ident;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int ident) {
+		this.ident = ident;
 	}
 
 	public Paquete getPaquete() {

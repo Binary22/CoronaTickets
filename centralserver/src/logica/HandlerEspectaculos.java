@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class HandlerEspectaculos {
-	private HashMap<String, Espectaculo> mapEspectaculos;
+	private Map<String, Espectaculo> mapEspectaculos;
 	private static HandlerEspectaculos instancia = null;
 
     private HandlerEspectaculos() {
@@ -97,11 +97,11 @@ public class HandlerEspectaculos {
 		mapEspectaculos.put(espectaculo.getNombre(), espectaculo);
 	}
 	
-	public HashMap<String, Espectaculo> getEspectaculosPlataforma(String nomPlata) {
+	public Map<String, Espectaculo> getEspectaculosPlataforma(String nomPlata) {
 		return mapEspectaculos;
 	}
 	
-	public HashMap<String, Espectaculo> getEspectaculosDePlataforma(String nomPlata) {
+	public Map<String, Espectaculo> getEspectaculosDePlataforma(String nomPlata) {
 		HashMap<String, Espectaculo> espPlat = new HashMap<String, Espectaculo>();
 		for (String key : mapEspectaculos.keySet()) {
 			if (mapEspectaculos.get(key).getPlataforma().getNombre().equals(nomPlata)) {
@@ -111,10 +111,10 @@ public class HandlerEspectaculos {
 		return espPlat;
 	}
 	
-	public boolean existeNombreFuncion(String f) {
+	public boolean existeNombreFuncion(String fun) {
 		for (String key : mapEspectaculos.keySet()) {
-			HashMap<String, Funcion> funciones = mapEspectaculos.get(key).getAllFunciones();
-			if (funciones.containsKey(f)) {
+			Map<String, Funcion> funciones = mapEspectaculos.get(key).getAllFunciones();
+			if (funciones.containsKey(fun)) {
 				return true;
 			}	
 		}
@@ -122,7 +122,7 @@ public class HandlerEspectaculos {
 		
 	}
 	
-	public HashMap<String, Espectaculo> getEspectaculos(){
+	public Map<String, Espectaculo> getEspectaculos(){
 		return this.mapEspectaculos;
 	}
 	

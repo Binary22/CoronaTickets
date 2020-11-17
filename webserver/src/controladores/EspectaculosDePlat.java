@@ -66,6 +66,7 @@ public class EspectaculosDePlat extends HttpServlet {
     
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NoExistePaqueteException {
     	HttpSession objSesion = req.getSession();
+    	req.setCharacterEncoding("UTF-8");
     	String nombPaqElegido =  (String) objSesion.getAttribute("paqueteelegido");
     	String[] espectaculos = req.getParameterValues("espectaculos");
 

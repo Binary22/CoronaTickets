@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import excepciones.fechaPosterior;
 import excepciones.noSeleccionoTres;
 import logica.Espectaculo;
 import logica.Fabrica;
@@ -44,11 +45,12 @@ public class Registroafuncion extends HttpServlet {
 		objSesion.setAttribute("errorExisteRegFun", false);
 		objSesion.setAttribute("errorFunAlcanzoLimite", false);
 		objSesion.setAttribute("funciones_vacias", false);
+		objSesion.setAttribute("fecha_invalida", false);
 		
 		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
 			String userNickname = (String) objSesion.getAttribute("usuario_logueado");
 			String nombre = req.getParameter("name");
-			int iend = nombre.indexOf(",");
+			int iend = nombre.indexOf(";");
 			String nomEspect = null;
 			String nomFun = null;
 			if (iend != -1) 
@@ -98,6 +100,7 @@ public class Registroafuncion extends HttpServlet {
 	
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
+		req.setCharacterEncoding("UTF-8");
 		
 		String userNickname = (String) objSesion.getAttribute("usuario_logueado");
 		String espectaculo = (String) objSesion.getAttribute("espectaculo_recordar");
@@ -109,6 +112,15 @@ public class Registroafuncion extends HttpServlet {
        
         ctrlE.ingresarNombreEspectador(userNickname);
         ctrlE.ingresarNombreFuncion(nomFuncion);
+        
+        try {
+			ctrlE.esFechaInvalida(espectaculo, LocalDate.now());
+		} catch (fechaPosterior e1) {
+			// TODO Auto-generated catch block
+			ctrlE.ingresarNombreFuncion(null);
+			objSesion.setAttribute("fecha_invalida", true);
+			req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+		}
         
 		if(req.getParameter("forma").compareTo("canjeregistros") == 0) {
 			String[] regsSelected = req.getParameterValues("registros_previos");
@@ -184,6 +196,29 @@ public class Registroafuncion extends HttpServlet {
 		        }
 	    		
 	        	
+	        	
+	        }else {//caso de vales
+	        	String nomPaquete = req.getParameter("vale_seleccionado");
+	        	HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+	        	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+	        	Espectaculo espect = hesp.getEspectaculo(espectaculo);
+	        	Funcion fun = espect.getFuncion(nomFuncion);
+	        	Usuario user = hu.getUsuario(userNickname);
+	        	List<Vale> vales = user.getVales();
+	        	int i = 0;
+	        	boolean actualizo = false;
+	        	while(i < vales.size() && !actualizo){
+	        		if(vales.get(i).getPaquete().getNombre().compareTo(nomPaquete) == 0) {
+	        			if(vales.get(i).getEspectaculo().getNombre().compareTo(espectaculo) == 0) {
+	        				vales.get(i).setUsado(true);
+	        				actualizo = true;
+	        			}
+	        		}
+	        		i++;
+	        	}
+	        	Registro nuevo = new Registro(LocalDate.now(), false, user, fun, espect.getCosto());
+	        	user.addFuncion(nuevo);
+	        	fun.addEspectador(nuevo);
 	        	
 	        }
 		ctrlE.ingresarNombreFuncion(null);
