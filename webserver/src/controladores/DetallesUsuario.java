@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logica.DataUsuario;
 import logica.HandlerUsuarios;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
 
 /**
@@ -28,15 +31,16 @@ public class DetallesUsuario extends HttpServlet {
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
 		String nomu = req.getParameter("name");
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-		Usuario u = hu.getUsuario(nomu);
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+		DataUsuario u = port.getUsuario(nomu);
 		objSesion.setAttribute("usuario", u);
 		if (objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
-			Usuario userlogged = hu.getUsuario((String) objSesion.getAttribute("usuario_logueado"));
+			DataUsuario userlogged = port.getUsuario((String) objSesion.getAttribute("usuario_logueado"));
 			objSesion.setAttribute("userlogged", userlogged);
 		}
 	
-		if (u.esArtista()) {
+		if (port.esArtista(nomu)) {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesArtista.jsp").forward(req, resp);
 		} else {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesUsuario.jsp").forward(req, resp);
@@ -52,13 +56,13 @@ public class DetallesUsuario extends HttpServlet {
 		String usuarioaseguir = req.getParameter("usuarioaseguir");
 		Usuario uloggueado = hu.getUsuario(usuariologueado);
 		Usuario uaseguir = hu.getUsuario(usuarioaseguir);
-		if (accion.compareTo("seguir") == 0) {
+		/*if (accion.compareTo("seguir") == 0) {
 			uloggueado.agregarSeguido(uaseguir);
 			uaseguir.agregarSiguiendo(uloggueado);
 		} else if (accion.compareTo("dejardeseguir") == 0) {
 			uloggueado.quitarSeguido(uaseguir);
 			uaseguir.quitarSiguiendo(uloggueado);
-		}
+		}*/
 		
 		resp.sendRedirect("detallesUsuario?name=" + req.getParameter("usuarioaseguir"));
 	}
