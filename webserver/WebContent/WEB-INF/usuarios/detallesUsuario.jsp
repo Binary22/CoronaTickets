@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List, java.util.ArrayList" %>
+<%@page import="logica.DataUsuario"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -29,7 +30,7 @@
                 <div class="row">
                     <div class="col-md-4">
 	                	<div class="card">
-	                	<% Usuario u = (Usuario) session.getAttribute("usuario"); %>
+	                	<% DataUsuario u = (DataUsuario) session.getAttribute("usuario"); %>
 	                       <img class="card-img-top" src="<%=u.getImagen()%>" class="rounded" width="155"> 
 	                        
 	                        
@@ -41,7 +42,7 @@
 		                         	<br>
 		                        </div>
 		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
-				                        Usuario userlogged = (Usuario) session.getAttribute("userlogged");
+				                        DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
 				                        if (u != userlogged) {
 				                        	if (userlogged.getSeguidos().contains(u)) { %>
 				                        		<form action="detallesUsuario" method="POST">
@@ -89,7 +90,7 @@
                             </div>
                         </div>
                         <br>
-                        	<% if (!u.getRegistros().isEmpty()) { %>
+                        	<%-- <% if (!u.getRegistros().isEmpty()) { %>
 	                        
 		                        <h4>Funciones a las que se registro: </h4>
 		                        <% List<Registro> l = u.getRegistros();
@@ -137,7 +138,7 @@
 						
 						<% } %>
 						
-						                     
+						         --%>         
                     </div>
                 </div>
             </div>

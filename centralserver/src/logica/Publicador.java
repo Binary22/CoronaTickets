@@ -7,6 +7,8 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
+import datatypesweb.dataUsuario;
+
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 public class Publicador {
@@ -39,5 +41,10 @@ public class Publicador {
     	return user.esArtista();
     }
     
-
+    public dataUsuario getUsuario(String nickname) {
+    	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+    	Usuario user = husers.getUsuario(nickname);
+    	dataUsuario dataU = new dataUsuario(user);
+    	return dataU;
+    }
 }
