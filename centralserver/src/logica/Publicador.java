@@ -28,9 +28,9 @@ public class Publicador {
     }
     
     @WebMethod
-    public Usuario getUsuario(String nickname) {
+    public boolean loginCorrecto(String nickname, String password) {
     	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
-    	return hUsers.getUsuario(nickname);
+    	return hUsers.getUsuario(nickname).getPassword().equals(password);
     }
     @WebMethod
     public boolean esArtista(String nickname) {

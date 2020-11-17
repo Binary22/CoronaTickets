@@ -6,7 +6,6 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
 
 
@@ -18,24 +17,24 @@ import javax.xml.ws.Action;
  */
 @WebService(name = "Publicador", targetNamespace = "http://logica/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-@XmlSeeAlso({
-    ObjectFactory.class
-})
 public interface Publicador {
 
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
-     *     returns logica.Usuario
+     *     returns boolean
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
-    public Usuario getUsuario(
+    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
+    public boolean loginCorrecto(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 

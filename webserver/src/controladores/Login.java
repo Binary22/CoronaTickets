@@ -42,10 +42,10 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	// chequea contraseña
 	try {
 		//Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
-		Usuario u = port.getUsuario(nickname);
 		
-		if(u.getPassword().equals(password)) {
-			request.getSession().setAttribute("usuario_logueado", u.getNickname());
+		
+		if(port.loginCorrecto(nickname, password)) {
+			request.getSession().setAttribute("usuario_logueado", nickname);
 			nuevoEstado = "LOGIN_CORRECTO";
 			if(port.esArtista(nickname)) {
 				objSesion.setAttribute("esArtista", true);
