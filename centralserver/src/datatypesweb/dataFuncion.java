@@ -2,9 +2,13 @@ package datatypesweb;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import logica.Espectaculo;
+import logica.Funcion;
+import logica.Registro;
+import logica.Usuario;
 
 
 public class dataFuncion {
@@ -12,9 +16,34 @@ public class dataFuncion {
 	private LocalDate fecha;
 	private LocalTime horaInicio;
 	private LocalDate fechaReg;
-	
-	private List<dataUsuario> artistasInvitados;
+	private List<String> artistasInvitados;
 	private List<dataRegistro> registros;
+	private String espectaculo;
+	private String imagen;
+	
+	public dataFuncion(Funcion fun) {
+		this.nombre = fun.getNombre();
+		this.fecha = fun.getFecha();
+		this.horaInicio = fun.getHoraInicio();
+		this.fechaReg = fun.getFechaReg();
+		this.artistasInvitados = new ArrayList<String>();
+		List<Usuario> invitados = fun.getArtistasInvitados();
+		for(int i = 0; i < invitados.size(); i++) {
+			this.artistasInvitados.add(invitados.get(i).getNickname());
+		}
+		this.registros = new ArrayList<dataRegistro>();
+    	List<Registro> regs = fun.getRegistros();
+    	for(int i = 0; i < regs.size(); i++) {
+    		this.registros.add(new dataRegistro(regs.get(i)));
+    	}
+    	
+    	this.espectaculo = fun.getEspectaculo().getNombre();
+    	this.imagen = fun.getImagen();
+		
+	}
+	
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -47,11 +76,11 @@ public class dataFuncion {
 		this.fechaReg = fechaReg;
 	}
 
-	public List<dataUsuario> getArtistasInvitados() {
+	public List<String> getArtistasInvitados() {
 		return artistasInvitados;
 	}
 
-	public void setArtistasInvitados(List<dataUsuario> artistasInvitados) {
+	public void setArtistasInvitados(List<String> artistasInvitados) {
 		this.artistasInvitados = artistasInvitados;
 	}
 
@@ -63,11 +92,11 @@ public class dataFuncion {
 		this.registros = registros;
 	}
 
-	public Espectaculo getEspectaculo() {
+	public String getEspectaculo() {
 		return espectaculo;
 	}
 
-	public void setEspectaculo(Espectaculo espectaculo) {
+	public void setEspectaculo(String espectaculo) {
 		this.espectaculo = espectaculo;
 	}
 
@@ -79,8 +108,6 @@ public class dataFuncion {
 		this.imagen = imagen;
 	}
 
-	private Espectaculo espectaculo;
-	private String imagen;
 	
 	public dataFuncion(){
 		

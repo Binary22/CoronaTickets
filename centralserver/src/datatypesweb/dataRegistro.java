@@ -28,7 +28,7 @@ public class dataRegistro {
 			this.regsCanjeados[2] = reg.getRegsCanjeados()[2].getId();
 		}
 		
-		this.usuario = reg.getUsuario().getNombre();
+		this.usuario = reg.getUsuario().getNickname();
 		this.funcion = reg.getFuncion().getNombre();
 		this.espectFuncion = reg.getFuncion().getEspectaculo().getNombre();
 	}

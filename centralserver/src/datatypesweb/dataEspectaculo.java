@@ -2,10 +2,14 @@ package datatypesweb;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import logica.Artista;
+import logica.Espectaculo;
+import logica.Funcion;
 import logica.Plataforma;
 
 public class dataEspectaculo {
@@ -17,13 +21,38 @@ public class dataEspectaculo {
 	private float costo;
 	private LocalTime duracion;
 	private LocalDate fechaReg;
-	private Plataforma plataforma;
-	private Artista artista;
+	private String plataforma;
+	private String artista;
 	private Map<String, dataFuncion> setFunciones;
 	private boolean yaFueValuado;
 	private boolean aceptado;
 	private String imagen;
 	private List<String> categorias;
+	
+	public dataEspectaculo(Espectaculo espect) {
+		this.nombre = espect.getNombre();
+		this.descripcion = espect.getDescripcion();
+		this.url = espect.getUrl();
+		this.minEspectadores = espect.getMinEspectadores();
+		this.maxEspectadores = espect.getMaxEspectadores();
+		this.costo = espect.getCosto();
+		this.duracion = espect.getDuracion();
+		this.fechaReg = espect.getFechaReg();
+		this.plataforma = espect.getPlataforma().getNombre();
+		this.artista = espect.getArtista().getNickname();
+		
+		this.setFunciones = new HashMap<String, dataFuncion>();
+		Map<String,Funcion> funs = espect.getAllFunciones();
+		for(String key : funs.keySet()) {
+			this.setFunciones.put(key, new dataFuncion(funs.get(key)));
+		}
+		this.yaFueValuado = espect.isYaFueValuado();
+		this.aceptado = espect.isAceptado();
+		this.imagen = espect.getImagen();
+		this.categorias = new ArrayList<String>(espect.listarCategorias());
+		
+		
+	}
 	
 	
 	public String getNombre() {
@@ -90,19 +119,19 @@ public class dataEspectaculo {
 		this.fechaReg = fechaReg;
 	}
 
-	public Plataforma getPlataforma() {
+	public String getPlataforma() {
 		return plataforma;
 	}
 
-	public void setPlataforma(Plataforma plataforma) {
+	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
 
-	public Artista getArtista() {
+	public String getArtista() {
 		return artista;
 	}
 
-	public void setArtista(Artista artista) {
+	public void setArtista(String artista) {
 		this.artista = artista;
 	}
 

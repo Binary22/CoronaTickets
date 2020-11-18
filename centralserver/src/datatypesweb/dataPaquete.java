@@ -1,7 +1,10 @@
 package datatypesweb;
 
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
+import logica.Paquete;
 
 
 public class dataPaquete {
@@ -11,8 +14,20 @@ public class dataPaquete {
 	private LocalDate fechaAlta;
 	private int descuento;
 	private String descripcion;
-	private Map<String, dataEspectaculo> espectaculos;
+	private List<String> espectaculos;
 	private String imagen;
+	
+	public dataPaquete(Paquete paq) {
+		this.nombre = paq.getNombre();
+		this.fechaI = paq.getFechaI();
+		this.fechaF = paq.getFechaF();
+		this.fechaAlta = paq.getFechaAlta();
+		this.descuento = paq.getDescuento();
+		this.descripcion = paq.getDescripcion();
+		this.espectaculos = new ArrayList<String>(paq.getEspectaculos().keySet());
+		this.imagen = paq.getImagen();
+		
+	}
 	
 	public dataPaquete() {
 		
@@ -66,11 +81,11 @@ public class dataPaquete {
 		this.descripcion = descripcion;
 	}
 
-	public Map<String, dataEspectaculo> getEspectaculos() {
+	public List<String> getEspectaculos() {
 		return espectaculos;
 	}
 
-	public void setEspectaculos(Map<String, dataEspectaculo> espectaculos) {
+	public void setEspectaculos(List<String> espectaculos) {
 		this.espectaculos = espectaculos;
 	}
 

@@ -54,7 +54,7 @@ public class dataUsuario {
     	this.seguidos = new ArrayList<String>();
     	List<Usuario> segs = user.getSeguidos();
     	for(int i = 0; i < segs.size(); i++) {
-    		this.seguidos.add(segs.get(i).getNombre());
+    		this.seguidos.add(segs.get(i).getNickname());
     	}
     	
 		

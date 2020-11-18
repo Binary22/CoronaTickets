@@ -26,19 +26,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns logica.DataUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
-    public DataUsuario getUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
      * @param arg1
      * @param arg0
      * @return
@@ -63,6 +50,19 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
     public boolean esArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
+    public DataUsuario getUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
