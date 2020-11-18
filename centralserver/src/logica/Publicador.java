@@ -40,7 +40,7 @@ public class Publicador {
     	Usuario user = hUsers.getUsuario(nickname);
     	return user.esArtista();
     }
-    
+    @WebMethod
     public dataUsuario getUsuario(String nickname) {
     	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
     	Usuario user = husers.getUsuario(nickname);
