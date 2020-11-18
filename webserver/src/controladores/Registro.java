@@ -1,7 +1,12 @@
-package controladores;
+	package controladores;
 import logica.UsuarioController;
 import logica.Fabrica;
 import logica.IUsuario;
+import logica.Publicador;
+import logica.PublicadorService;
+import logica.UsuarioConMismoMailException_Exception;
+import logica.UsuarioConMismoNickException_Exception;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -83,12 +88,11 @@ public class Registro extends HttpServlet {
 		form.put("bio", "");
 		form.put("website", "");
 		
-		
-		Fabrica fabrica = Fabrica.getInstance();
-        IUsuario ctrlU = fabrica.getIUsuario();
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(fechanac, formatter);
+        LocalDate date =  LocalDate.parse(fechanac, formatter);
 		//si es artista
         if( (password.equals(confipassword) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isBefore(LocalDate.now()) ) ) ) {
 			if(esArtista != null) {
@@ -101,20 +105,19 @@ public class Registro extends HttpServlet {
 				form.put("website", website);
 				
 				try {
-					ctrlU.altaArtistaWeb(nickname, nombre, apellido, mail, date, descrip, bio, website, password, imagen);
-					ctrlU.confirmarAltaUsuario();
+					port.altaArtistaWeb(nickname, nombre, apellido, mail, fechanac, descrip, bio, website, password, imagen);
 					req.getSession().setAttribute("usuario_logueado", nickname);
 					objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
 					objSesion.setAttribute("esArtista", true);
 					resp.sendRedirect("home");
-				} catch (UsuarioConMismoNickException e) {
+				} catch (UsuarioConMismoNickException_Exception e) {
 					objSesion.setAttribute("mismoNick", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
 		    		objSesion.setAttribute("mismoMail", false);
 		    		objSesion.setAttribute("form", form);
 					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
-				} catch (UsuarioConMismoMailException e) {
+				} catch (UsuarioConMismoMailException_Exception e) {
 					objSesion.setAttribute("mismoMail", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
@@ -124,20 +127,19 @@ public class Registro extends HttpServlet {
 				}	
 			}else{
 				try {
-					ctrlU.altaUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
-					ctrlU.confirmarAltaUsuario();
+					port.altaUsuarioWeb(nickname, nombre, apellido, mail, fechanac, password, imagen);
 					req.getSession().setAttribute("usuario_logueado", nickname);
 					objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
 					objSesion.setAttribute("esArtista", false);
 					resp.sendRedirect("home");
-				} catch (UsuarioConMismoNickException e) {
+				} catch (UsuarioConMismoNickException_Exception e) {
 					objSesion.setAttribute("mismoNick", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
 		    		objSesion.setAttribute("mismoMail", false);
 		    		objSesion.setAttribute("form", form);
 					req.getRequestDispatcher("/WEB-INF/usuarios/registro.jsp").forward(req, resp);
-				} catch (UsuarioConMismoMailException e) {
+				} catch (UsuarioConMismoMailException_Exception e) {
 					objSesion.setAttribute("mismoMail", true);
 					objSesion.setAttribute("contraNoCoincide", false);
 		    		objSesion.setAttribute("fechaInvalida", false);
