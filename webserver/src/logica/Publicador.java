@@ -34,6 +34,21 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
+    public boolean loginCorrecto(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
     public boolean esArtista(
         @WebParam(name = "arg0", partName = "arg0")
@@ -117,19 +132,6 @@ public interface Publicador {
         String arg9)
         throws UsuarioConMismoMailException_Exception, UsuarioConMismoNickException_Exception
     ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.DataUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
-    public DataUsuario getUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
 
     /**
      * 
