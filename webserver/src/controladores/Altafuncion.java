@@ -25,6 +25,8 @@ import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
 import logica.IUsuario;
+import logica.Publicador;
+import logica.PublicadorService;
 
 /**
  * Servlet implementation class Altafuncion
@@ -50,19 +52,16 @@ public class Altafuncion extends HttpServlet {
 		
 		HttpSession objSesion = req.getSession();
 		objSesion.setAttribute("form", form);
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
 		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 			objSesion.setAttribute("escero",false);
 			objSesion.setAttribute("nombreexiste",false);
 			objSesion.setAttribute("fechaInvalida",false);
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
-			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-			List<String> artistas = husers.getNombresArtistas();
-			List<String> artistasinvi = new ArrayList<String>();
-			for (int i=0; i< artistas.size(); i++) {
-				if(!artistas.get(i).equals(nickname)){
-					artistasinvi.add(artistas.get(i));
-				}
-			}	
+			
+			List<String> artistasinvi = port.getArtistas(nickname);
 			objSesion.setAttribute("artistas", artistasinvi);
 			
 			HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
@@ -88,6 +87,9 @@ public class Altafuncion extends HttpServlet {
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
 		req.setCharacterEncoding("UTF-8");
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String horaInicio = req.getParameter("hora");
@@ -109,8 +111,7 @@ public class Altafuncion extends HttpServlet {
         LocalTime cero = LocalTime.of(00,00);
         
         if( ( !duracion.equals(cero) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isAfter(LocalDate.now()) ) ) ) {
-	        Fabrica fabrica = Fabrica.getInstance();
-	        IEspectaculo ctrlesp = fabrica.getIEspectaculo();
+	        
 	        ArrayList<String> stringList = new ArrayList<String>();
 	        if(invitados != null) {
 		        for (int i=0; i< invitados.length; i++) {
@@ -118,9 +119,7 @@ public class Altafuncion extends HttpServlet {
 		        }
 	        }
 	        try {
-				ctrlesp.elegirEspectaculo(esp);
-			    ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-				ctrlesp.confirmarAltaFuncion();
+				port.altaFuncion(esp, nombre, date, duracion, stringList);
 			} catch (NombreFuncionexisteException e) {
 				// TODO Auto-generated catch block
 				objSesion.setAttribute("nombreexiste",true);

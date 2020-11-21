@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -11,10 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import datatypesweb.dataArtista;
+import datatypesweb.dataUsuario;
 import logica.Artista;
+import logica.DataUsuario;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
 import logica.IUsuario;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
 
 /**
@@ -35,15 +41,16 @@ public class Modificarusuario extends HttpServlet {
 		HttpSession objSesion = req.getSession();
 		objSesion.setAttribute("contraNoCoincide", false);
 		objSesion.setAttribute("fechaInvalida", false);
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
 		
 		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO")){
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
-			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-	        Usuario userlog = husers.getUsuario(nickname);
-	        if(!userlog.esArtista())
+	        if(!port.esArtista(nickname)) {
+	        	DataUsuario userlog = port.getUsuario(nickname);
 	        	objSesion.setAttribute("usuariolog", userlog);
-	        else {
-	        	Artista userArtlog = (Artista) husers.getUsuario(nickname);
+	        }else {
+	        	DataArtista userArtlog = port.getArtista(nickname);
 	        	objSesion.setAttribute("usuariolog", userArtlog);
 	        }
 	        	
@@ -56,33 +63,30 @@ public class Modificarusuario extends HttpServlet {
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
 		req.setCharacterEncoding("UTF-8");
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+        
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");
-		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-        Usuario userlog = husers.getUsuario(nickname);
-		
-		
 		String nombre = req.getParameter("nombre");
 		String apellido = req.getParameter("apellido");
-		String mail = userlog.getEmail();
+		String mail = port.getMailUsuario(nickname);
 		String fechanac = req.getParameter("fechanac");
 		String password = req.getParameter("password");
 		String confipassword = req.getParameter("confirmpassword");
 		String imagen = req.getParameter("avatar");
 		
-		Fabrica fabrica = Fabrica.getInstance();
-        IUsuario ctrlU = fabrica.getIUsuario();
-        
+		
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
+        
 	    if( (password.equals(confipassword) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isBefore(LocalDate.now()) ) ) ) {    
-	        ctrlU.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
-	        if(userlog.esArtista()) {
+	    	port.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+	        if(port.esArtista(nickname)) {
 	        	String descripcion = req.getParameter("descripcion");
 	        	String biografia = req.getParameter("biografia");
 	        	String website = req.getParameter("website");    
-	        	ctrlU.updateArtista(descripcion, biografia, website);
+	        	port.updateArtista(descripcion, biografia, website);
 	        }
-	        ctrlU.confirmarUpdateUsuarioWeb();
 	        resp.sendRedirect("home");
 	    }
 	    else {
