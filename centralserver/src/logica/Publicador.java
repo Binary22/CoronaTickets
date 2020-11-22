@@ -1,16 +1,22 @@
 package logica;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
+import datatypesweb.dataEspectaculo;
 import datatypesweb.dataUsuario;
+import excepciones.NombreEspectaculoExisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 
@@ -74,5 +80,53 @@ public class Publicador {
     	
     	UController.altaArtistaWeb(nickname, nombre, apellido, mail, date, desc, bio, web, password, imagen);
     	UController.confirmarAltaUsuario();
+    }
+        
+    @WebMethod
+    public void altaEspectaculoWeb(dataEspectaculo dataEsp) throws NombreEspectaculoExisteException {
+    	
+    	String nomArtista = dataEsp.getArtista();
+        String nomEspectaculo = dataEsp.getNombre();
+        String nomPlataforma = dataEsp.getPlataforma();
+        String descripcion = dataEsp.getDescripcion();
+    	String duracion = dataEsp.getDuracion();
+    	String minutos = dataEsp.getMinutos();
+    	Integer maximo = dataEsp.getMaxEspectadores();
+    	Integer minimo = dataEsp.getMinEspectadores();
+    	String url = dataEsp.getUrl();
+    	List<String> categorias = new ArrayList<String>();
+    			
+    	for(String cat : dataEsp.getCategorias()) {
+    		categorias.add(cat);
+    	}
+    	
+    	Float costo = dataEsp.getCosto();
+    	String imagen = dataEsp.getImagen();
+    	
+    	IEspectaculo ctrlE = Fabrica.getInstance().getIEspectaculo();
+    	
+    	LocalDate hoy = LocalDate.now();
+    	
+    	LocalTime dur = LocalTime.of(Integer.parseInt(duracion), Integer.parseInt(minutos));
+    	
+    	ctrlE.altaEspectaculoWeb(nomPlataforma, nomArtista, nomEspectaculo, descripcion, dur,
+				minimo, maximo,
+				url, costo, hoy , categorias, imagen);
+    }
+    
+    @WebMethod(operationName = "listarPlataformas")
+    public String[] listarPlataformas() {
+    	HandlerPlataforma handlerPlat = HandlerPlataforma.getInstance();
+    	String[] arr = new String[handlerPlat.getNombres().size()];
+    	arr = handlerPlat.getNombres().toArray(arr);
+    	return arr;
+    }
+    
+    @WebMethod
+    public String[] listarCategorias() {
+    	IEspectaculo IE = Fabrica.getInstance().getIEspectaculo();
+    	String[] arr = new String[IE.listarCategorias().size()];
+    	arr = IE.listarCategorias().toArray(arr);
+    	return arr;
     }
 }

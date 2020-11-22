@@ -1,15 +1,22 @@
 package controladores;
 
+import logica.DataEspectaculo;
 import logica.Fabrica;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
 import logica.HandlerPlataforma;
 import logica.IEspectaculo;
+import logica.NombreEspectaculoExisteException_Exception;
+import logica.Publicador;
+import logica.PublicadorService;
+import net.java.dev.jaxb.array.StringArray;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import datatypesweb.dataEspectaculo;
 import excepciones.NombreEspectaculoExisteException;
 
 /**
@@ -54,10 +62,11 @@ public class Altaespectaculo extends HttpServlet {
 			resp.sendRedirect("home");
 		};
     	
-    	HandlerCategorias hc = HandlerCategorias.getInstance();
-    	HandlerPlataforma hp = HandlerPlataforma.getInstance();
-    	session.setAttribute("plataformas", hp.getNombres());
-    	session.setAttribute("categorias", hc.getCategorias().keySet());
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+		;
+    	session.setAttribute("plataformas", port.listarPlataformas().getItem());
+    	session.setAttribute("categorias", port.listarCategorias().getItem());
 		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
 	}
     
@@ -78,22 +87,7 @@ public class Altaespectaculo extends HttpServlet {
     	String imagen = req.getParameter("imagen");
     	String[] cats = req.getParameterValues("categoria");
     	
-    	System.out.print(nomPlataforma);
-    	
-    	LocalTime duracion = LocalTime.of(Integer.parseInt(horas), Integer.parseInt(minutos));
-    	
-    	LocalDate hoy = LocalDate.now();
-    	
-    	Fabrica fabrica = Fabrica.getInstance();
-    	IEspectaculo ctrlE = fabrica.getIEspectaculo();
-    	
-    	ArrayList<String> cats2 = new ArrayList<String>();
-    	
-    	if (cats != null) {
-    		for (String c : cats ) {
-    			cats2.add(c);
-    		}
-    	}
+   	
     	
     	HashMap<String, String> form = new HashMap<String, String>();
 		form.put("descripcion", descripcion);
@@ -110,25 +104,48 @@ public class Altaespectaculo extends HttpServlet {
     	if (Integer.parseInt(minEspectadores) > Integer.parseInt(maxEspectadores) ) {
     		throw(new NombreEspectaculoExisteException("El mínimo debe ser menor al máximo de espectadores"));
     	}
-    	ctrlE.altaEspectaculoWeb(nomPlataforma, nick, nombre, descripcion, duracion, 
-    							Integer.parseInt(minEspectadores), Integer.parseInt(maxEspectadores),
-    							url, Float.parseFloat(costo), hoy, cats2, imagen);
     	
-    	//ctrlE.confirmarAltaEspectaculo(); esto lo saque porque altaespectaculoweb contiene todo lo que hace esta, entonces quedaban datos repetidos
-    	// aca NO se estan guardando las imagenes y categorias, porque el confirmarAltaEspec no guarda 
-    	// ni usuarios ni categorias, por eso es necesario esto 
-    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-    	if (imagen != "") {
-    		he.getEspectaculo(nombre).setImagen(imagen);
-    	}
-    	if (cats != null) {
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+    	
+	    ArrayList<String> cats2 = new ArrayList<String>();
+	    if (cats != null) {
     		for (String c : cats ) {
-    			he.getEspectaculo(nombre).addCategoria(c);
+    			cats2.add(c);
     		}
     	}
+	    
+	    DataEspectaculo dataEsp = new DataEspectaculo();
+	    
+	    dataEsp.setArtista(nick);
+	    dataEsp.setPlataforma(nomPlataforma);
+	    dataEsp.setNombre(nombre);
+	    dataEsp.setDuracion(horas);
+	    dataEsp.setMinutos(minutos);
+	    dataEsp.setMaxEspectadores(Integer.parseInt(maxEspectadores));
+	    dataEsp.setMinEspectadores(Integer.parseInt(minEspectadores));
+	    dataEsp.setUrl(url);
+	    dataEsp.setCosto(Float.parseFloat(costo));
+	    dataEsp.setImagen(imagen);	    
+	    if (cats != null) {
+    		for (String c : cats ) {
+    			dataEsp.getCategorias().add(c);
+    		}
+    	};
+	    
+	    
+	    
+	    
+    	try {
+			port.altaEspectaculoWeb(dataEsp);
+			} catch (NumberFormatException  e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
     	resp.sendRedirect("home");
 
-    	} catch(NombreEspectaculoExisteException e) {
+    	} catch(NombreEspectaculoExisteException | NombreEspectaculoExisteException_Exception e) {
     		e.printStackTrace();
     		session.setAttribute("error", e.getMessage());
 

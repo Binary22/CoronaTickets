@@ -9,6 +9,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
 import javax.xml.ws.FaultAction;
+import net.java.dev.jaxb.array.StringArray;
 
 
 /**
@@ -20,7 +21,8 @@ import javax.xml.ws.FaultAction;
 @WebService(name = "Publicador", targetNamespace = "http://logica/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    ObjectFactory.class
+    logica.ObjectFactory.class,
+    net.java.dev.jaxb.array.ObjectFactory.class
 })
 public interface Publicador {
 
@@ -63,8 +65,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -101,8 +103,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -136,6 +138,31 @@ public interface Publicador {
     /**
      * 
      * @param arg0
+     * @throws NombreEspectaculoExisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/altaEspectaculoWebRequest", output = "http://logica/Publicador/altaEspectaculoWebResponse", fault = {
+        @FaultAction(className = NombreEspectaculoExisteException_Exception.class, value = "http://logica/Publicador/altaEspectaculoWeb/Fault/NombreEspectaculoExisteException")
+    })
+    public void altaEspectaculoWeb(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataEspectaculo arg0)
+        throws NombreEspectaculoExisteException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarCategoriasRequest", output = "http://logica/Publicador/listarCategoriasResponse")
+    public StringArray listarCategorias();
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns logica.DataUsuario
      */
@@ -145,5 +172,15 @@ public interface Publicador {
     public DataUsuario getUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarPlataformasRequest", output = "http://logica/Publicador/listarPlataformasResponse")
+    public StringArray listarPlataformas();
 
 }
