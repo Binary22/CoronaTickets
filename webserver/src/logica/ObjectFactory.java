@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
     private final static QName _NombreFuncionexisteException_QNAME = new QName("http://logica/", "NombreFuncionexisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
@@ -44,6 +45,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NoExistePaqueteException }
+     * 
+     */
+    public NoExistePaqueteException createNoExistePaqueteException() {
+        return new NoExistePaqueteException();
+    }
+
+    /**
      * Create an instance of {@link UsuarioConMismoMailException }
      * 
      */
@@ -60,11 +69,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataRegistro }
+     * Create an instance of {@link DataListPaquetes }
      * 
      */
-    public DataRegistro createDataRegistro() {
-        return new DataRegistro();
+    public DataListPaquetes createDataListPaquetes() {
+        return new DataListPaquetes();
     }
 
     /**
@@ -76,6 +85,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataRegistro }
+     * 
+     */
+    public DataRegistro createDataRegistro() {
+        return new DataRegistro();
+    }
+
+    /**
      * Create an instance of {@link DataListArtInvi }
      * 
      */
@@ -84,19 +101,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
-     * 
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
      * Create an instance of {@link DataVale }
      * 
      */
     public DataVale createDataVale() {
         return new DataVale();
+    }
+
+    /**
+     * Create an instance of {@link DataListPlataformas }
+     * 
+     */
+    public DataListPlataformas createDataListPlataformas() {
+        return new DataListPlataformas();
     }
 
     /**
@@ -116,11 +133,36 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataPaquete }
+     * 
+     */
+    public DataPaquete createDataPaquete() {
+        return new DataPaquete();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
+    }
+
+    /**
      * Create an instance of {@link DataArtista }
      * 
      */
     public DataArtista createDataArtista() {
         return new DataArtista();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoExistePaqueteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NoExistePaqueteException")
+    public JAXBElement<NoExistePaqueteException> createNoExistePaqueteException(NoExistePaqueteException value) {
+        return new JAXBElement<NoExistePaqueteException>(_NoExistePaqueteException_QNAME, NoExistePaqueteException.class, null, value);
     }
 
     /**

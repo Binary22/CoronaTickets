@@ -18,7 +18,11 @@ import javax.xml.ws.Endpoint;
 import datatypesweb.dataArtista;
 import datatypesweb.dataListArtInvi;
 import datatypesweb.dataListEspOrg;
+import datatypesweb.dataListPaquetes;
+import datatypesweb.dataListPlataformas;
+import datatypesweb.dataPaquete;
 import datatypesweb.dataUsuario;
+import excepciones.NoExistePaqueteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
@@ -65,9 +69,38 @@ public class Publicador {
     public dataArtista getArtista(String nickname) {
     	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
     	Artista user = (Artista) husers.getUsuario(nickname);
-    	dataArtista dataA = new dataArtista(user);
-    	return dataA;
+    	dataArtista dataArt = new dataArtista(user);
+    	return dataArt;
     }
+    
+    @WebMethod
+    public dataListEspOrg getEspectaculosDePlataforma(String nombrePlataforma) {
+    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+		Map<String,Espectaculo> espectaculos = hesp.getEspectaculosDePlataforma(nombrePlataforma);
+    	
+		HashMap<String,Espectaculo> espectaculosPlat = new HashMap<String,Espectaculo>();
+		for (String key : espectaculos.keySet()) {
+			if(espectaculos.get(key).getPlataforma().getNombre().equals(nombrePlataforma)){
+				espectaculosPlat.put(key,espectaculos.get(key));
+			}		
+		}
+		
+		dataListEspOrg espectaculosPlatReal = new dataListEspOrg();
+		for(String key2 : espectaculosPlat.keySet()) {
+			espectaculosPlatReal.getEspectaculosOrg().add(key2);
+		}
+		
+		return espectaculosPlatReal;
+    }
+    
+    @WebMethod
+    public dataPaquete getPaquete(String nombrePaquete) throws NoExistePaqueteException {
+    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+    	Paquete paqElegido = hpaq.getPaquete(nombrePaquete);
+    	dataPaquete dataPack = new dataPaquete(paqElegido);
+    	return dataPack;
+    }
+    
     
     @WebMethod
     public String getMailUsuario(String nickname) {
@@ -137,6 +170,21 @@ public class Publicador {
 		ctrlesp.confirmarAltaFuncion();
     }
     
+    public void agregarEspAPaquete(String nombPaqElegido, dataListEspOrg espectaculosElegidos) throws NoExistePaqueteException {
+    	Fabrica fabrica = Fabrica.getInstance();
+        IPaquete ctrlpaq = fabrica.getIPaquete();
+        
+        ArrayList<String> espectaculos = (ArrayList<String>) espectaculosElegidos.getEspectaculosOrg();
+        
+        ctrlpaq.seleccionarPaquete(nombPaqElegido);
+        if(espectaculos != null) {
+	    	for (int i=0; i< espectaculos.size(); i++) {
+			   ctrlpaq.elegirEspectaculo(espectaculos.get(i));
+			   ctrlpaq.confirmarAgregarEspectAPaquete();
+	    	}
+	    }
+    }
+    
     @WebMethod
     public dataListArtInvi getArtistas(String artistaLog) {
     	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
@@ -165,5 +213,39 @@ public class Publicador {
 			espectaculosorgreal.getEspectaculosOrg().add(key2);
 		}
 		return espectaculosorgreal;
+    }
+    
+    @WebMethod
+    public dataListPaquetes getPaquetes() {
+    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
+    	List<String> paquetes = hp.getNombresPaquete();
+		List<String> paquetesList = new ArrayList<String>();
+		for (int i=0; i< paquetes.size(); i++) {
+			paquetesList.add(paquetes.get(i));
+		}
+		
+		dataListPaquetes paquetesListReal = new dataListPaquetes();
+		for (int i=0; i< paquetesList.size(); i++) {
+			paquetesListReal.getPaquetes().add(paquetesList.get(i));
+		}
+			
+		return paquetesListReal;
+    }
+    
+    @WebMethod
+    public dataListPlataformas getPlataformas() {
+    	HandlerPlataforma hplat = HandlerPlataforma.getInstance();
+    	List<String> plataformas = hplat.getNombres();
+    	List<String> plataformasList = new ArrayList<String>();
+    	for (int i=0; i< plataformas.size(); i++) {
+    		plataformasList.add(plataformas.get(i));
+		}
+		
+    	dataListPlataformas plataformasListReal = new dataListPlataformas();
+		for (int i=0; i< plataformasList.size(); i++) {
+			plataformasListReal.getPlataformas().add(plataformasList.get(i));
+		}
+			
+		return plataformasListReal;
     }
 }

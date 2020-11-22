@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import excepciones.NoExistePaqueteException;
+import logica.DataListEspOrg;
+import logica.DataPaquete;
 import logica.Espectaculo;
 import logica.Fabrica;
 import logica.HandlerEspectaculos;
@@ -20,8 +22,11 @@ import logica.HandlerPaquetes;
 import logica.HandlerPlataforma;
 import logica.IEspectaculo;
 import logica.IPaquete;
+import logica.NoExistePaqueteException_Exception;
 import logica.Paquete;
 import logica.Plataforma;
+import logica.Publicador;
+import logica.PublicadorService;
 
 /**
  * Servlet implementation class EspectaculosDePlat
@@ -40,23 +45,27 @@ public class EspectaculosDePlat extends HttpServlet {
     
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NoExistePaqueteException {
     	HttpSession objSesion = req.getSession();
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
     	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 	    	String nombPlatElegida = (String) objSesion.getAttribute("plataformaelegida");
 	    	String nombPaqElegido = (String) objSesion.getAttribute("paqueteelegido");
 	    	
-	    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-			Map<String,Espectaculo> espectaculos = hesp.getEspectaculosDePlataforma(nombPlatElegida);
+	    	List<String> espectaculosPlatElegida = port.getEspectaculosDePlataforma(nombPlatElegida).getEspectaculosOrg();
 			List<String> espectaculosList = new ArrayList<String>();
 			
 			
-			HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
-	    	Paquete paqElegido = hpaq.getPaquete(nombPaqElegido);
-	    	Map<String,Espectaculo> espdelPaqElegido = (Map<String, Espectaculo>) paqElegido.getEspectaculos();
-			
-			for (String key : espectaculos.keySet()) {
-				if( ( !espdelPaqElegido.containsKey(espectaculos.get(key).getNombre()) ) )
-					espectaculosList.add(espectaculos.get(key).getNombre());
+			DataPaquete paqElegido = port.getPaquete(nombPaqElegido);
+	    	List<String> espdelPaqElegido = paqElegido.getEspectaculos();
+
+	    	
+	    	
+	    	for (int i=0; i< espectaculosPlatElegida.size(); i++) {
+				if(!espdelPaqElegido.contains(espectaculosPlatElegida.get(i)))
+					espectaculosList.add(espectaculosPlatElegida.get(i));
 			}
+			
 			objSesion.setAttribute("espectaculos",espectaculosList);
 			req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
     	}
@@ -67,19 +76,25 @@ public class EspectaculosDePlat extends HttpServlet {
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NoExistePaqueteException {
     	HttpSession objSesion = req.getSession();
     	req.setCharacterEncoding("UTF-8");
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
     	String nombPaqElegido =  (String) objSesion.getAttribute("paqueteelegido");
     	String[] espectaculos = req.getParameterValues("espectaculos");
 
-    	Fabrica fabrica = Fabrica.getInstance();
-        IPaquete ctrlpaq = fabrica.getIPaquete();
-        
-		ctrlpaq.seleccionarPaquete(nombPaqElegido);
+		DataListEspOrg esp = new DataListEspOrg();
 	    if(espectaculos != null) {
 	    	for (int i=0; i< espectaculos.length; i++) {
-			   ctrlpaq.elegirEspectaculo(espectaculos[i]);
-			   ctrlpaq.confirmarAgregarEspectAPaquete();
+			   esp.getEspectaculosOrg().add(espectaculos[i]);
 	    	}
 	    }
+	    
+	    try {
+			port.agregarEspAPaquete(nombPaqElegido,esp);
+		} catch (NoExistePaqueteException_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         resp.sendRedirect("home");
     }
 
