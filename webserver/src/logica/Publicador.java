@@ -27,6 +27,33 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @throws NombreFuncionexisteException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/altaFuncionRequest", output = "http://logica/Publicador/altaFuncionResponse", fault = {
+        @FaultAction(className = NombreFuncionexisteException_Exception.class, value = "http://logica/Publicador/altaFuncion/Fault/NombreFuncionexisteException")
+    })
+    public void altaFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        DataListArtInvi arg4)
+        throws NombreFuncionexisteException_Exception
+    ;
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns logica.DataUsuario
@@ -35,6 +62,19 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
     public DataUsuario getUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
+    public boolean esArtista(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -75,30 +115,14 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg1
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
-    public boolean loginCorrecto(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
-    public boolean esArtista(
+    @Action(input = "http://logica/Publicador/getMailUsuarioRequest", output = "http://logica/Publicador/getMailUsuarioResponse")
+    public String getMailUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -148,22 +172,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/updateArtistaRequest", output = "http://logica/Publicador/updateArtistaResponse")
-    public void updateArtista(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
      * @param arg3
      * @param arg2
      * @param arg5
@@ -184,9 +192,81 @@ public interface Publicador {
         @WebParam(name = "arg3", partName = "arg3")
         String arg3,
         @WebParam(name = "arg4", partName = "arg4")
-        LocalDate arg4,
+        String arg4,
         @WebParam(name = "arg5", partName = "arg5")
         String arg5,
         @WebParam(name = "arg6", partName = "arg6")
         String arg6);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
+    public boolean loginCorrecto(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/updateArtistaRequest", output = "http://logica/Publicador/updateArtistaResponse")
+    public void updateArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListArtInvi
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getArtistasRequest", output = "http://logica/Publicador/getArtistasResponse")
+    public DataListArtInvi getArtistas(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListEspOrg
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
+    public DataListEspOrg getEspectaculos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataArtista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getArtistaRequest", output = "http://logica/Publicador/getArtistaResponse")
+    public DataArtista getArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
 }

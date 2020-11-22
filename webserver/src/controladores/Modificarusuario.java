@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import datatypesweb.dataArtista;
 import datatypesweb.dataUsuario;
 import logica.Artista;
+import logica.DataArtista;
 import logica.DataUsuario;
 import logica.Fabrica;
 import logica.HandlerUsuarios;
@@ -48,9 +49,11 @@ public class Modificarusuario extends HttpServlet {
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
 	        if(!port.esArtista(nickname)) {
 	        	DataUsuario userlog = port.getUsuario(nickname);
+	        	objSesion.setAttribute("esArtista", false);
 	        	objSesion.setAttribute("usuariolog", userlog);
 	        }else {
 	        	DataArtista userArtlog = port.getArtista(nickname);
+	        	objSesion.setAttribute("esArtista", true);
 	        	objSesion.setAttribute("usuariolog", userArtlog);
 	        }
 	        	
@@ -80,7 +83,7 @@ public class Modificarusuario extends HttpServlet {
         LocalDate date = LocalDate.parse(fechanac, formatter);
         
 	    if( (password.equals(confipassword) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isBefore(LocalDate.now()) ) ) ) {    
-	    	port.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
+	    	port.updateUsuarioWeb(nickname, nombre, apellido, mail, fechanac, password, imagen);
 	        if(port.esArtista(nickname)) {
 	        	String descripcion = req.getParameter("descripcion");
 	        	String biografia = req.getParameter("biografia");

@@ -18,7 +18,7 @@ public class dataArtista extends dataUsuario {
 	public dataArtista(Artista user) {
 		super(user);
 		this.setDescripcion(user.getDescripcion());
-		this.setDescripcion(user.getBiografia());
+		this.setBiografia(user.getBiografia());
 		this.setWebsite(user.getWebsite());
 	}
 	public String getDescripcion() {

@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NombreFuncionexisteException_QNAME = new QName("http://logica/", "NombreFuncionexisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
 
@@ -32,6 +33,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link NombreFuncionexisteException }
+     * 
+     */
+    public NombreFuncionexisteException createNombreFuncionexisteException() {
+        return new NombreFuncionexisteException();
     }
 
     /**
@@ -56,6 +65,22 @@ public class ObjectFactory {
      */
     public DataRegistro createDataRegistro() {
         return new DataRegistro();
+    }
+
+    /**
+     * Create an instance of {@link DataListEspOrg }
+     * 
+     */
+    public DataListEspOrg createDataListEspOrg() {
+        return new DataListEspOrg();
+    }
+
+    /**
+     * Create an instance of {@link DataListArtInvi }
+     * 
+     */
+    public DataListArtInvi createDataListArtInvi() {
+        return new DataListArtInvi();
     }
 
     /**
@@ -88,6 +113,23 @@ public class ObjectFactory {
      */
     public DataCompra createDataCompra() {
         return new DataCompra();
+    }
+
+    /**
+     * Create an instance of {@link DataArtista }
+     * 
+     */
+    public DataArtista createDataArtista() {
+        return new DataArtista();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NombreFuncionexisteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NombreFuncionexisteException")
+    public JAXBElement<NombreFuncionexisteException> createNombreFuncionexisteException(NombreFuncionexisteException value) {
+        return new JAXBElement<NombreFuncionexisteException>(_NombreFuncionexisteException_QNAME, NombreFuncionexisteException.class, null, value);
     }
 
     /**
