@@ -94,7 +94,7 @@
               <select name ="categoria" class="form-control" multiple>
               <%
               	
-              	Set<String> categorias = (Set<String>) session.getAttribute("categorias");
+              	List<String> categorias = (List<String>) session.getAttribute("categorias");
               	for (String cat : categorias) {
               	%>
               	

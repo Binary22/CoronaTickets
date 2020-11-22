@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NombreEspectaculoExisteException_QNAME = new QName("http://logica/", "NombreEspectaculoExisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
 
@@ -32,6 +33,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo }
+     * 
+     */
+    public DataEspectaculo createDataEspectaculo() {
+        return new DataEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo.SetFunciones }
+     * 
+     */
+    public DataEspectaculo.SetFunciones createDataEspectaculoSetFunciones() {
+        return new DataEspectaculo.SetFunciones();
     }
 
     /**
@@ -48,6 +65,22 @@ public class ObjectFactory {
      */
     public UsuarioConMismoNickException createUsuarioConMismoNickException() {
         return new UsuarioConMismoNickException();
+    }
+
+    /**
+     * Create an instance of {@link NombreEspectaculoExisteException }
+     * 
+     */
+    public NombreEspectaculoExisteException createNombreEspectaculoExisteException() {
+        return new NombreEspectaculoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link LocalTime }
+     * 
+     */
+    public LocalTime createLocalTime() {
+        return new LocalTime();
     }
 
     /**
@@ -75,6 +108,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataFuncion }
+     * 
+     */
+    public DataFuncion createDataFuncion() {
+        return new DataFuncion();
+    }
+
+    /**
      * Create an instance of {@link DataUsuario }
      * 
      */
@@ -88,6 +129,23 @@ public class ObjectFactory {
      */
     public DataCompra createDataCompra() {
         return new DataCompra();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo.SetFunciones.Entry }
+     * 
+     */
+    public DataEspectaculo.SetFunciones.Entry createDataEspectaculoSetFuncionesEntry() {
+        return new DataEspectaculo.SetFunciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NombreEspectaculoExisteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NombreEspectaculoExisteException")
+    public JAXBElement<NombreEspectaculoExisteException> createNombreEspectaculoExisteException(NombreEspectaculoExisteException value) {
+        return new JAXBElement<NombreEspectaculoExisteException>(_NombreEspectaculoExisteException_QNAME, NombreEspectaculoExisteException.class, null, value);
     }
 
     /**

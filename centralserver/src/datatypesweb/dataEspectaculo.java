@@ -19,7 +19,8 @@ public class dataEspectaculo {
 	private int minEspectadores;
 	private int maxEspectadores;
 	private float costo;
-	private LocalTime duracion;
+	private String duracion;
+	private String minutos;
 	private LocalDate fechaReg;
 	private String plataforma;
 	private String artista;
@@ -36,7 +37,7 @@ public class dataEspectaculo {
 		this.minEspectadores = espect.getMinEspectadores();
 		this.maxEspectadores = espect.getMaxEspectadores();
 		this.costo = espect.getCosto();
-		this.duracion = espect.getDuracion();
+		this.duracion = espect.getDuracion().toString();
 		this.fechaReg = espect.getFechaReg();
 		this.plataforma = espect.getPlataforma().getNombre();
 		this.artista = espect.getArtista().getNickname();
@@ -103,11 +104,11 @@ public class dataEspectaculo {
 		this.costo = costo;
 	}
 
-	public LocalTime getDuracion() {
+	public String getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(LocalTime duracion) {
+	public void setDuracion(String duracion) {
 		this.duracion = duracion;
 	}
 
@@ -179,5 +180,15 @@ public class dataEspectaculo {
 	
 	public dataEspectaculo() {
 		
+	}
+
+
+	public String getMinutos() {
+		return minutos;
+	}
+
+
+	public void setMinutos(String minutos) {
+		this.minutos = minutos;
 	}
 }
