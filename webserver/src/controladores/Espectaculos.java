@@ -12,11 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import datatypesweb.ListaEspectaculo;
+import datatypesweb.dataEspectaculo;
 import logica.Espectaculo;
 import logica.Fabrica;
 import logica.HandlerEspectaculos;
 import logica.IUsuario;
+import logica.ListaEspectaculo.Espectaculos.Entry;
 import logica.Plataforma;
+import logica.Publicador;
+import logica.PublicadorService;
 
 /**
  * Servlet implementation class Espectaculos
@@ -37,12 +42,18 @@ public class Espectaculos extends HttpServlet {
     	HandlerPlataforma hp = HandlerPlataforma.getInstance();
     	Map<String,Plataforma> plataformas = hp.getColPlataforma();
     	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+    	
     	
     	String nomPlat = (String) objSesion.getAttribute("nombrePlat");
     	if(nomPlat != null) {
     		Plataforma plat = hp.getPlataforma(nomPlat);
-    		Map<String,Espectaculo> espectaculosPlat = plat.getEspectaculos();
-	    	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculosPlat.values());
+    		logica.ListaEspectaculo lista = port.listarEspectaculos();
+    		List<dataEspectaculo> list = new ArrayList<dataEspectaculo>();
+	    	for(Entry e : lista.getEspectaculos().getEntry()) {
+	    		
+	    	}
 	    	objSesion.setAttribute("espectaculosPlat", list);
 	    	objSesion.setAttribute("nombrePlat", null);
     	}else {

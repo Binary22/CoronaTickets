@@ -58,6 +58,16 @@ public interface Publicador {
 
     /**
      * 
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarEspectaculosRequest", output = "http://logica/Publicador/listarEspectaculosResponse")
+    public ListaEspectaculo listarEspectaculos();
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg5
@@ -103,8 +113,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoNickException_Exception
      * @throws UsuarioConMismoMailException_Exception
+     * @throws UsuarioConMismoNickException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -170,6 +180,19 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
     public DataUsuario getUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
+    public DataEspectaculo getEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
