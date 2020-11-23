@@ -83,6 +83,19 @@ public class Publicador {
     }
     
     @WebMethod
+    public ListaEspectaculo listarEspectaculosPlataforma(String nomPlata) {
+    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+    	HashMap<String, dataEspectaculo> res = new HashMap<String, dataEspectaculo>();
+    	for(Map.Entry<String, Espectaculo> entry : hesp.getEspectaculosDePlataforma(nomPlata).entrySet()) {
+    		res.put(entry.getKey(), new dataEspectaculo(entry.getValue()));
+    	}
+    	ListaEspectaculo lista = new ListaEspectaculo();
+		lista.setEspectaculos(res);
+    	return lista;
+    }
+    
+    
+    @WebMethod
 	public void altaUsuarioWeb(String nickname, String nombre, String apellido, String mail, String fechanac, String password, String imagen) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
     	IUsuario UController = Fabrica.getInstance().getIUsuario();
     	
