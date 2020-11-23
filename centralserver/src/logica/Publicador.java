@@ -21,6 +21,7 @@ import datatypesweb.ListaPaquete;
 import datatypesweb.dataEspectaculo;
 import datatypesweb.dataPaquete;
 import datatypesweb.dataUsuario;
+import excepciones.NoExistePaqueteException;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
@@ -94,6 +95,24 @@ public class Publicador {
     	ListaEspectaculo lista = new ListaEspectaculo();
 		lista.setEspectaculos(res);
     	return lista;
+    }
+    
+    public dataPaquete getPaquete(String nomPaquete) throws NoExistePaqueteException {
+    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+    	return new dataPaquete(hpaq.getPaquete(nomPaquete));
+    }
+    
+    @WebMethod
+    public ListaPaquete listarPaquetes() {
+    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+    	Map<String, Paquete> lista = hpaq.getPaquetes();
+    	ListaPaquete res = new ListaPaquete();
+    	List<dataPaquete> resLista = new ArrayList<dataPaquete>();
+    	for (Map.Entry<String, Paquete> paq : lista.entrySet()) {
+    		resLista.add(new dataPaquete(paq.getValue()));
+    	}
+    	res.setPaquetes(resLista);
+    	return res;
     }
     
     @WebMethod

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.Map, logica.Paquete" %>
+    <%@ page import="java.util.Map, logica.DataPaquete" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -11,11 +11,11 @@
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         <div class="container">
               
-         <% Map<String, Paquete> m = (Map<String, Paquete>) session.getAttribute("paquetes");
+         <% Map<String, DataPaquete> m = (Map<String, DataPaquete>) session.getAttribute("paquetes");
         int i = 0;
-        for (Map.Entry<String, Paquete> entry : m.entrySet()) {      	
+        for (Map.Entry<String, DataPaquete> entry : m.entrySet()) {      	
 	        	String key = entry.getKey();
-	        	Paquete value = entry.getValue();
+	        	DataPaquete value = entry.getValue();
 	
 	    		String descripcion = value.getDescripcion();
 	    		String imagen = value.getImagen();

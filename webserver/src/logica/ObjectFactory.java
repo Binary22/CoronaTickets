@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
     private final static QName _NombreEspectaculoExisteException_QNAME = new QName("http://logica/", "NombreEspectaculoExisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
@@ -65,6 +66,14 @@ public class ObjectFactory {
      */
     public DataEspectaculo.SetFunciones createDataEspectaculoSetFunciones() {
         return new DataEspectaculo.SetFunciones();
+    }
+
+    /**
+     * Create an instance of {@link NoExistePaqueteException }
+     * 
+     */
+    public NoExistePaqueteException createNoExistePaqueteException() {
+        return new NoExistePaqueteException();
     }
 
     /**
@@ -177,6 +186,15 @@ public class ObjectFactory {
      */
     public DataEspectaculo.SetFunciones.Entry createDataEspectaculoSetFuncionesEntry() {
         return new DataEspectaculo.SetFunciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoExistePaqueteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NoExistePaqueteException")
+    public JAXBElement<NoExistePaqueteException> createNoExistePaqueteException(NoExistePaqueteException value) {
+        return new JAXBElement<NoExistePaqueteException>(_NoExistePaqueteException_QNAME, NoExistePaqueteException.class, null, value);
     }
 
     /**
