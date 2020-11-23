@@ -54,20 +54,21 @@ public class EspectaculosDePlat extends HttpServlet {
 	    	
 	    	List<String> espectaculosPlatElegida = port.getEspectaculosDePlataforma(nombPlatElegida).getEspectaculosOrg();
 			List<String> espectaculosList = new ArrayList<String>();
-			
-			
-			DataPaquete paqElegido = port.getPaquete(nombPaqElegido);
-	    	List<String> espdelPaqElegido = paqElegido.getEspectaculos();
-
-	    	
-	    	
-	    	for (int i=0; i< espectaculosPlatElegida.size(); i++) {
-				if(!espdelPaqElegido.contains(espectaculosPlatElegida.get(i)))
-					espectaculosList.add(espectaculosPlatElegida.get(i));
-			}
-			
-			objSesion.setAttribute("espectaculos",espectaculosList);
-			req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
+			try {
+				DataPaquete paqElegido;
+				paqElegido = port.getPaquete(nombPaqElegido);
+				List<String> espdelPaqElegido = paqElegido.getEspectaculos();
+				for (int i=0; i< espectaculosPlatElegida.size(); i++) {
+					if(!espdelPaqElegido.contains(espectaculosPlatElegida.get(i)))
+						espectaculosList.add(espectaculosPlatElegida.get(i));
+				}
+				
+				objSesion.setAttribute("espectaculos",espectaculosList);
+				req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
+			} catch (NoExistePaqueteException_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}    	
     	}
     	else
     		resp.sendRedirect("registro");

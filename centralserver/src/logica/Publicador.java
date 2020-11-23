@@ -16,6 +16,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import datatypesweb.dataArtista;
+import datatypesweb.dataCompra;
 import datatypesweb.dataListArtInvi;
 import datatypesweb.dataListEspOrg;
 import datatypesweb.dataListPaquetes;
@@ -24,8 +25,10 @@ import datatypesweb.dataPaquete;
 import datatypesweb.dataUsuario;
 import excepciones.NoExistePaqueteException;
 import excepciones.NombreFuncionexisteException;
+import excepciones.PaqueteConMismoNombreException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
+import excepciones.UsuarioPaqueteComprado;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -248,4 +251,45 @@ public class Publicador {
 			
 		return plataformasListReal;
     }
+    
+    @WebMethod
+    public void crearPaquete(String nombre, String desc, String fechaini, String fechafin, int discount, String imagen) throws PaqueteConMismoNombreException {
+    	Fabrica fabrica = Fabrica.getInstance();
+        IPaquete ctrlpaq = fabrica.getIPaquete();
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dateini = LocalDate.parse(fechaini, formatter);
+		LocalDate datefin = LocalDate.parse(fechafin, formatter);
+        
+        ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
+		ctrlpaq.confirmarCrearPaquete();
+		
+		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		if (imagen != null && imagen != "") {
+			try {
+				hp.getPaquete(nombre).setImagen(imagen);
+			} catch (NoExistePaqueteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+    }
+    
+    @WebMethod
+    public void agregarCompra(dataUsuario user, dataCompra compra) throws NoExistePaqueteException, UsuarioPaqueteComprado {
+    	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+    	
+    	Paquete paqueteReal = hpaq.getPaquete(compra.getPaquete());
+    	Usuario userReal = husers.getUsuario(user.getNombre());
+    	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate fechaCompra = LocalDate.parse(compra.getFecha(), formatter);
+		
+    	Compra paqueteComprado = new Compra(fechaCompra,paqueteReal);
+    	userReal.agregarcompra(paqueteComprado);
+        
+        
+    }
+    
 }

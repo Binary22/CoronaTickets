@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _PaqueteConMismoNombreException_QNAME = new QName("http://logica/", "PaqueteConMismoNombreException");
+    private final static QName _UsuarioPaqueteComprado_QNAME = new QName("http://logica/", "UsuarioPaqueteComprado");
     private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
     private final static QName _NombreFuncionexisteException_QNAME = new QName("http://logica/", "NombreFuncionexisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
@@ -34,6 +36,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link PaqueteConMismoNombreException }
+     * 
+     */
+    public PaqueteConMismoNombreException createPaqueteConMismoNombreException() {
+        return new PaqueteConMismoNombreException();
+    }
+
+    /**
+     * Create an instance of {@link UsuarioPaqueteComprado }
+     * 
+     */
+    public UsuarioPaqueteComprado createUsuarioPaqueteComprado() {
+        return new UsuarioPaqueteComprado();
     }
 
     /**
@@ -77,19 +95,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListEspOrg }
-     * 
-     */
-    public DataListEspOrg createDataListEspOrg() {
-        return new DataListEspOrg();
-    }
-
-    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
     public DataRegistro createDataRegistro() {
         return new DataRegistro();
+    }
+
+    /**
+     * Create an instance of {@link DataListEspOrg }
+     * 
+     */
+    public DataListEspOrg createDataListEspOrg() {
+        return new DataListEspOrg();
     }
 
     /**
@@ -109,14 +127,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListPlataformas }
-     * 
-     */
-    public DataListPlataformas createDataListPlataformas() {
-        return new DataListPlataformas();
-    }
-
-    /**
      * Create an instance of {@link DataUsuario }
      * 
      */
@@ -130,6 +140,14 @@ public class ObjectFactory {
      */
     public DataCompra createDataCompra() {
         return new DataCompra();
+    }
+
+    /**
+     * Create an instance of {@link DataListPlataformas }
+     * 
+     */
+    public DataListPlataformas createDataListPlataformas() {
+        return new DataListPlataformas();
     }
 
     /**
@@ -154,6 +172,24 @@ public class ObjectFactory {
      */
     public DataArtista createDataArtista() {
         return new DataArtista();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaqueteConMismoNombreException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "PaqueteConMismoNombreException")
+    public JAXBElement<PaqueteConMismoNombreException> createPaqueteConMismoNombreException(PaqueteConMismoNombreException value) {
+        return new JAXBElement<PaqueteConMismoNombreException>(_PaqueteConMismoNombreException_QNAME, PaqueteConMismoNombreException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioPaqueteComprado }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "UsuarioPaqueteComprado")
+    public JAXBElement<UsuarioPaqueteComprado> createUsuarioPaqueteComprado(UsuarioPaqueteComprado value) {
+        return new JAXBElement<UsuarioPaqueteComprado>(_UsuarioPaqueteComprado_QNAME, UsuarioPaqueteComprado.class, null, value);
     }
 
     /**
