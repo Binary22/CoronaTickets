@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
@@ -17,6 +19,8 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import datatypesweb.ListaEspectaculo;
+import datatypesweb.ListaUsuario;
+import datatypesweb.dataArtistaDetalles;
 import datatypesweb.dataEspectaculo;
 import datatypesweb.dataUsuario;
 import excepciones.NombreEspectaculoExisteException;
@@ -164,6 +168,25 @@ public class Publicador {
     	String[] arr = new String[IE.listarCategorias().size()];
     	arr = IE.listarCategorias().toArray(arr);
     	return arr;
+    }
+    
+    @WebMethod
+    public ListaUsuario listarUsuarios() {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Map<String, Usuario> mapausuarios =  husuarios.getUsuarios();
+
+
+    	List res = new ArrayList<dataUsuario>();
+    	for(Usuario entry : mapausuarios.values()) {
+    		if (entry.esArtista()) {
+    			res.add(new dataArtistaDetalles((Artista) entry));
+    		} else {
+    			res.add(new dataUsuario(entry));
+    		}
+    	}
+    	ListaUsuario lista = new ListaUsuario();
+		lista.setUsuarios(res);
+    	return lista;
     }
     
 }

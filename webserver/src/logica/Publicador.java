@@ -75,8 +75,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoNickException_Exception
      * @throws UsuarioConMismoMailException_Exception
+     * @throws UsuarioConMismoNickException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -113,8 +113,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoNickException_Exception
      * @throws UsuarioConMismoMailException_Exception
+     * @throws UsuarioConMismoNickException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -169,6 +169,16 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/listarCategoriasRequest", output = "http://logica/Publicador/listarCategoriasResponse")
     public StringArray listarCategorias();
+
+    /**
+     * 
+     * @return
+     *     returns logica.ListaUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarUsuariosRequest", output = "http://logica/Publicador/listarUsuariosResponse")
+    public ListaUsuario listarUsuarios();
 
     /**
      * 

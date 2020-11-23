@@ -36,22 +36,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataEspectaculo }
-     * 
-     */
-    public DataEspectaculo createDataEspectaculo() {
-        return new DataEspectaculo();
-    }
-
-    /**
-     * Create an instance of {@link DataEspectaculo.SetFunciones }
-     * 
-     */
-    public DataEspectaculo.SetFunciones createDataEspectaculoSetFunciones() {
-        return new DataEspectaculo.SetFunciones();
-    }
-
-    /**
      * Create an instance of {@link ListaEspectaculo }
      * 
      */
@@ -65,6 +49,22 @@ public class ObjectFactory {
      */
     public ListaEspectaculo.Espectaculos createListaEspectaculoEspectaculos() {
         return new ListaEspectaculo.Espectaculos();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo }
+     * 
+     */
+    public DataEspectaculo createDataEspectaculo() {
+        return new DataEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo.SetFunciones }
+     * 
+     */
+    public DataEspectaculo.SetFunciones createDataEspectaculoSetFunciones() {
+        return new DataEspectaculo.SetFunciones();
     }
 
     /**
@@ -92,27 +92,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalTime }
-     * 
-     */
-    public LocalTime createLocalTime() {
-        return new LocalTime();
-    }
-
-    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
     public DataRegistro createDataRegistro() {
         return new DataRegistro();
-    }
-
-    /**
-     * Create an instance of {@link LocalDate }
-     * 
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
     }
 
     /**
@@ -148,11 +132,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataEspectaculo.SetFunciones.Entry }
+     * Create an instance of {@link LocalTime }
      * 
      */
-    public DataEspectaculo.SetFunciones.Entry createDataEspectaculoSetFuncionesEntry() {
-        return new DataEspectaculo.SetFunciones.Entry();
+    public LocalTime createLocalTime() {
+        return new LocalTime();
+    }
+
+    /**
+     * Create an instance of {@link ListaUsuario }
+     * 
+     */
+    public ListaUsuario createListaUsuario() {
+        return new ListaUsuario();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
@@ -161,6 +161,14 @@ public class ObjectFactory {
      */
     public ListaEspectaculo.Espectaculos.Entry createListaEspectaculoEspectaculosEntry() {
         return new ListaEspectaculo.Espectaculos.Entry();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo.SetFunciones.Entry }
+     * 
+     */
+    public DataEspectaculo.SetFunciones.Entry createDataEspectaculoSetFuncionesEntry() {
+        return new DataEspectaculo.SetFunciones.Entry();
     }
 
     /**
