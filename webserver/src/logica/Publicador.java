@@ -58,6 +58,29 @@ public interface Publicador {
 
     /**
      * 
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarEspectaculosRequest", output = "http://logica/Publicador/listarEspectaculosResponse")
+    public ListaEspectaculo listarEspectaculos();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.ListaPaquete
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarPaquetesEspectaculoRequest", output = "http://logica/Publicador/listarPaquetesEspectaculoResponse")
+    public ListaPaquete listarPaquetesEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg5
@@ -175,6 +198,19 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns logica.DataEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
+    public DataEspectaculo getEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @return
      *     returns net.java.dev.jaxb.array.StringArray
      */
@@ -182,5 +218,18 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/listarPlataformasRequest", output = "http://logica/Publicador/listarPlataformasResponse")
     public StringArray listarPlataformas();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarEspectaculosPlataformaRequest", output = "http://logica/Publicador/listarEspectaculosPlataformaResponse")
+    public ListaEspectaculo listarEspectaculosPlataforma(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
 }

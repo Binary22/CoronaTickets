@@ -12,11 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import datatypesweb.ListaEspectaculo;
+import datatypesweb.dataEspectaculo;
+import logica.DataEspectaculo;
 import logica.Espectaculo;
 import logica.Fabrica;
 import logica.HandlerEspectaculos;
 import logica.IUsuario;
+import logica.ListaEspectaculo.Espectaculos.Entry;
 import logica.Plataforma;
+import logica.Publicador;
+import logica.PublicadorService;
 
 /**
  * Servlet implementation class Espectaculos
@@ -35,23 +41,31 @@ public class Espectaculos extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
     	HandlerPlataforma hp = HandlerPlataforma.getInstance();
-    	Map<String,Plataforma> plataformas = hp.getColPlataforma();
     	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+    	
     	
     	String nomPlat = (String) objSesion.getAttribute("nombrePlat");
     	if(nomPlat != null) {
     		Plataforma plat = hp.getPlataforma(nomPlat);
-    		Map<String,Espectaculo> espectaculosPlat = plat.getEspectaculos();
-	    	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculosPlat.values());
+    		logica.ListaEspectaculo lista = port.listarEspectaculosPlataforma(nomPlat);
+    		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
+	    	for(Entry e : lista.getEspectaculos().getEntry()) {
+	    		list.add(e.getValue());
+	    	}
 	    	objSesion.setAttribute("espectaculosPlat", list);
 	    	objSesion.setAttribute("nombrePlat", null);
     	}else {
-    		Map<String,Espectaculo> espectaculos = he.getEspectaculos();
-        	List<Espectaculo> list = new ArrayList<Espectaculo>(espectaculos.values());
-        	objSesion.setAttribute("espectaculosPlat", list);
+    		logica.ListaEspectaculo lista = port.listarEspectaculos();
+    		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
+	    	for(Entry e : lista.getEspectaculos().getEntry()) {
+	    		list.add(e.getValue());
+	    	}
+	    	objSesion.setAttribute("espectaculosPlat", list);
     	}
     	
-    	objSesion.setAttribute("plataformas", plataformas);
+    	objSesion.setAttribute("plataformas", port.listarPlataformas().getItem());
     	
         
 		req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculos.jsp").forward(req, resp);

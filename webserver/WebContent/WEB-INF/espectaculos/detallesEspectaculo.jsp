@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="logica.Espectaculo"%>
+<%@page import="logica.DataEspectaculo"%>
+<%@page import="logica.DataEspectaculo.SetFunciones"%>
+<%@page import="logica.DataPaquete"%>
+<%@page import="logica.DataFuncion"%>
 <%@page import="logica.Funcion"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="logica.Paquete"%>
+<%@page import="java.util.HashMap"%>
 
 <!doctype = html>
 <html lang="en">
@@ -25,7 +29,7 @@
     <body>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         
-        <%Espectaculo espect = (Espectaculo)session.getAttribute("espectaculo_selected");%>
+        <% DataEspectaculo espect = (DataEspectaculo)session.getAttribute("espectaculo_selected");%>
         <div id="espectaculo" class="container">
             <div class="row">
                 <div class="col-sm-6 pt-5 pb-5">
@@ -35,16 +39,16 @@
                             <h5 class="card-title"></slot>Espectáculo:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
                             <h5 class="card-title"></slot>Artista:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getArtista().getNombre() %></h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getArtista() %></h6>
                             <h5 class="card-title">Descripcion:</h6>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDescripcion() %></h6>
                             <h5 class="card-title">Categorias:</h6>
                             <%
                             String PrettyCategorias = "";
-                            if (!espect.listarCategorias().isEmpty()){
-                            	String catPrimera = espect.listarCategorias().get(0);
+                            if (!espect.getCategorias().isEmpty()){
+                            	String catPrimera = espect.getCategorias().get(0);
                                  PrettyCategorias = catPrimera;
-                                for (String cat : espect.listarCategorias()){
+                                for (String cat : espect.getCategorias()){
                                 	if (cat != catPrimera) {
                                 		PrettyCategorias += ", " + cat;
                                 	}
@@ -62,7 +66,7 @@
                             <h5 class="card-title"></slot>Precio:</h5>
                             <h6 class="card-subtitle mb-2 text-muted">$<%=espect.getCosto() %></h6>
                             <h5 class="card-title"></slot>Plataforma:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getPlataforma().getNombre() %></h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getPlataforma() %></h6>
                             <h5 class="card-title"></slot>Espectadores:</h5>
                             <h6 class="card-subtitle mb-2 text-muted">De <%=espect.getMinEspectadores() %> a <%=espect.getMaxEspectadores() %></h6>
                             <h5 class="card-title"></slot>Fecha de alta:</h5>
@@ -75,14 +79,17 @@
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
                
                     
-                    <%Map<String,Funcion> funciones = espect.getAllFunciones();
+                    <%Map<String, DataFuncion> funciones = new HashMap<String, DataFuncion>();
+                    for(DataEspectaculo.SetFunciones.Entry e : espect.getSetFunciones().getEntry()) {
+                        funciones.put(e.getKey(), e.getValue());
+                    }
 	                    if(!funciones.isEmpty()){%>
 	                    	<h2 class="title">Funciones:</h2>
 		                    <%ArrayList<String> nombres = new ArrayList<String>(funciones.keySet());
 		                    nombres.sort(String::compareToIgnoreCase);
 		                  		for(String key : nombres){
 		                  			String var = "";
-		                  			List<String> artistas = funciones.get(key).getArtistasInvitadosWeb();
+		                  			List<String> artistas = funciones.get(key).getArtistasInvitados();
 		                  			if(!artistas.isEmpty()){
 			                  			int fin = artistas.size()-1;
 			                  			for(int i = 0; i < fin; i++){
@@ -99,7 +106,7 @@
                 </div>
                 
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
-                <%List<Paquete> paquetes = (List<Paquete>)session.getAttribute("paquetes");
+                <%List<DataPaquete> paquetes = (List<DataPaquete>) session.getAttribute("paquetes");
                   if(!paquetes.isEmpty()){%>
                     <h2 class="title">Paquetes:</h2>
                     <%for(int i = 0; i < paquetes.size(); i++){ %>

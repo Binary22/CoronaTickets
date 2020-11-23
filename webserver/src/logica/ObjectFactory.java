@@ -36,6 +36,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListaEspectaculo }
+     * 
+     */
+    public ListaEspectaculo createListaEspectaculo() {
+        return new ListaEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo.Espectaculos }
+     * 
+     */
+    public ListaEspectaculo.Espectaculos createListaEspectaculoEspectaculos() {
+        return new ListaEspectaculo.Espectaculos();
+    }
+
+    /**
      * Create an instance of {@link DataEspectaculo }
      * 
      */
@@ -76,14 +92,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalTime }
-     * 
-     */
-    public LocalTime createLocalTime() {
-        return new LocalTime();
-    }
-
-    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
@@ -92,11 +100,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
+     * Create an instance of {@link ListaPaquete }
      * 
      */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
+    public ListaPaquete createListaPaquete() {
+        return new ListaPaquete();
     }
 
     /**
@@ -129,6 +137,38 @@ public class ObjectFactory {
      */
     public DataCompra createDataCompra() {
         return new DataCompra();
+    }
+
+    /**
+     * Create an instance of {@link LocalTime }
+     * 
+     */
+    public LocalTime createLocalTime() {
+        return new LocalTime();
+    }
+
+    /**
+     * Create an instance of {@link DataPaquete }
+     * 
+     */
+    public DataPaquete createDataPaquete() {
+        return new DataPaquete();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo.Espectaculos.Entry }
+     * 
+     */
+    public ListaEspectaculo.Espectaculos.Entry createListaEspectaculoEspectaculosEntry() {
+        return new ListaEspectaculo.Espectaculos.Entry();
     }
 
     /**

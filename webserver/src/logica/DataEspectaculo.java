@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fechaReg" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="maxEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="minEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -92,7 +92,7 @@ public class DataEspectaculo {
     protected float costo;
     protected String descripcion;
     protected String duracion;
-    protected LocalDate fechaReg;
+    protected String fechaReg;
     protected String imagen;
     protected int maxEspectadores;
     protected int minEspectadores;
@@ -242,10 +242,10 @@ public class DataEspectaculo {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaReg() {
+    public String getFechaReg() {
         return fechaReg;
     }
 
@@ -254,10 +254,10 @@ public class DataEspectaculo {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaReg(LocalDate value) {
+    public void setFechaReg(String value) {
         this.fechaReg = value;
     }
 
