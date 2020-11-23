@@ -5,11 +5,7 @@
   <head>
         <jsp:include page="/WEB-INF/template/head.jsp"/>
   </head>
-  <style>
-  button{
-  	margin-top: 20px; 
-  }
-  </style>
+
   <body onload="uncheckArtista()">
     <jsp:include page="/WEB-INF/template/navbar.jsp"/>
 
