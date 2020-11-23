@@ -17,6 +17,9 @@ import logica.Fabrica;
 import logica.HandlerPaquetes;
 import logica.IEspectaculo;
 import logica.IPaquete;
+import logica.PaqueteConMismoNombreException_Exception;
+import logica.Publicador;
+import logica.PublicadorService;
 
 /**
  * Servlet implementation class CrearPaquete
@@ -47,6 +50,8 @@ public class CrearPaquete extends HttpServlet {
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
     	req.setCharacterEncoding("UTF-8");
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
     	
 		String nombre = req.getParameter("nombre");
 		String fechaini = req.getParameter("fechaini");
@@ -62,27 +67,13 @@ public class CrearPaquete extends HttpServlet {
 		LocalDate datefin = LocalDate.parse(fechafin, formatter);
 		
 		if( ( ( datefin.isAfter(dateini) ) || ( datefin.isEqual(dateini) ) ) && ( ( dateini.isAfter(LocalDate.now()) ) || ( dateini.isEqual(LocalDate.now()) ) ) ) {
-			Fabrica fabrica = Fabrica.getInstance();
-	        IPaquete ctrlpaq = fabrica.getIPaquete();
 	        try {
-				ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
-				ctrlpaq.confirmarCrearPaquete();
-				
-				HandlerPaquetes hp = HandlerPaquetes.getInstance();
-				if (imagen != null && imagen != "") {
-					try {
-						hp.getPaquete(nombre).setImagen(imagen);
-					} catch (NoExistePaqueteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					port.crearPaquete(nombre,desc,fechaini,fechafin,discount,imagen);
+				} catch (PaqueteConMismoNombreException_Exception e) {
+					objSesion.setAttribute("nombreexiste",true);
+					entro = true;
+					req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);	
 				}
-				
-			} catch (PaqueteConMismoNombreException e) {
-				objSesion.setAttribute("nombreexiste",true);
-				entro = true;
-				req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);		
-			}
 	        if(!entro)
 	        	resp.sendRedirect("home");
 		}

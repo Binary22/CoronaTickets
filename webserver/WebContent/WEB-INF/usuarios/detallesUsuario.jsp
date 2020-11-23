@@ -85,7 +85,7 @@
                                 <h5 class="card-title">e-mail:</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><%=u.getEmail()%></h6>
                                 <h5 class="card-title"></slot>Fecha de Nacimiento:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getFechaNacimiento().toString()%></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=u.getFechaNacimiento()%></h6>
                                 
                             </div>
                         </div>

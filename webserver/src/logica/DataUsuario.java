@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fechaNacimiento" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="compraPaquete" type="{http://logica/}dataCompra" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="vales" type="{http://logica/}dataVale" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="registros" type="{http://logica/}dataRegistro" maxOccurs="unbounded" minOccurs="0"/>
@@ -54,13 +55,16 @@ import javax.xml.bind.annotation.XmlType;
     "seguidos",
     "siguiendo"
 })
+@XmlSeeAlso({
+    DataArtista.class
+})
 public class DataUsuario {
 
     protected String nickname;
     protected String nombre;
     protected String apellido;
     protected String email;
-    protected LocalDate fechaNacimiento;
+    protected String fechaNacimiento;
     @XmlElement(nillable = true)
     protected List<DataCompra> compraPaquete;
     @XmlElement(nillable = true)
@@ -175,10 +179,10 @@ public class DataUsuario {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -187,10 +191,10 @@ public class DataUsuario {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaNacimiento(LocalDate value) {
+    public void setFechaNacimiento(String value) {
         this.fechaNacimiento = value;
     }
 

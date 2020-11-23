@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="logica.Usuario"%>
-<%@page import="logica.Artista"%>
+<%@page import="logica.DataUsuario"%>
+<%@page import="logica.DataArtista"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,7 +26,7 @@
             <div class="d-flex justify-content-center">
             <div class="card input-group mt-3" style="width:40rem">
             <div class="card-body">
-    		<%Usuario usuariolog = (Usuario)session.getAttribute("usuariolog");%>
+    		<%DataUsuario usuariolog = (DataUsuario)session.getAttribute("usuariolog");%>
             <h4> Modificar usuario </h4>
             <br>
             <%if((Boolean)session.getAttribute("contraNoCoincide")){%> 
@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                   <label>Fecha de nacimiento</label>
-                  <input type="date" class="form-control" name = "fechanac" value="<%=usuariolog.getFechaNacimiento().toString()%>">
+                  <input type="date" class="form-control" name = "fechanac" value="<%=usuariolog.getFechaNacimiento()%>">
                 </div>
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
@@ -75,8 +75,8 @@
                   <br>
                   <input type="text" class="form-control" id="avatar" name="avatar" value="<%=usuariolog.getImagen()%>">
                 </div>
-                <% if(usuariolog.esArtista()){%>
-                <%Artista usuarioArtlog = (Artista)session.getAttribute("usuariolog");%>
+                <% if ((Boolean) session.getAttribute("esArtista")){%>
+                <%DataArtista usuarioArtlog = (DataArtista)session.getAttribute("usuariolog");%>
                 <!-- Esto solo es visible si se desea agregar a un artista -->
                 <div id="camposArtista">
                   <div class="form-group">
