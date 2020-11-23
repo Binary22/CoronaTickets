@@ -29,30 +29,41 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg4
      * @param arg1
      * @param arg0
-     * @return
-     *     returns boolean
+     * @throws NombreFuncionexisteException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
-    public boolean loginCorrecto(
+    @Action(input = "http://logica/Publicador/altaFuncionRequest", output = "http://logica/Publicador/altaFuncionResponse", fault = {
+        @FaultAction(className = NombreFuncionexisteException_Exception.class, value = "http://logica/Publicador/altaFuncion/Fault/NombreFuncionexisteException")
+    })
+    public void altaFuncion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        DataListArtInvi arg4)
+        throws NombreFuncionexisteException_Exception
+    ;
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns logica.DataUsuario
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
-    public boolean esArtista(
+    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
+    public DataUsuario getUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -97,47 +108,12 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @param arg6
-     * @throws UsuarioConMismoMailException_Exception
-     * @throws UsuarioConMismoNickException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
-        @FaultAction(className = UsuarioConMismoNickException_Exception.class, value = "http://logica/Publicador/altaUsuarioWeb/Fault/UsuarioConMismoNickException"),
-        @FaultAction(className = UsuarioConMismoMailException_Exception.class, value = "http://logica/Publicador/altaUsuarioWeb/Fault/UsuarioConMismoMailException")
-    })
-    public void altaUsuarioWeb(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6)
-        throws UsuarioConMismoMailException_Exception, UsuarioConMismoNickException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
      * @param arg7
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -170,6 +146,71 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg6
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/updateUsuarioWebRequest", output = "http://logica/Publicador/updateUsuarioWebResponse")
+    public void updateUsuarioWeb(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg6
+     * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
+        @FaultAction(className = UsuarioConMismoNickException_Exception.class, value = "http://logica/Publicador/altaUsuarioWeb/Fault/UsuarioConMismoNickException"),
+        @FaultAction(className = UsuarioConMismoMailException_Exception.class, value = "http://logica/Publicador/altaUsuarioWeb/Fault/UsuarioConMismoMailException")
+    })
+    public void altaUsuarioWeb(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6)
+        throws UsuarioConMismoMailException_Exception, UsuarioConMismoNickException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
      * @param arg0
      * @throws NombreEspectaculoExisteException_Exception
      */
@@ -201,8 +242,8 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
-    public DataUsuario getUsuario(
+    @Action(input = "http://logica/Publicador/getMailUsuarioRequest", output = "http://logica/Publicador/getMailUsuarioResponse")
+    public String getMailUsuario(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

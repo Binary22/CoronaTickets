@@ -117,6 +117,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataListArtInvi }
+     * 
+     */
+    public DataListArtInvi createDataListArtInvi() {
+        return new DataListArtInvi();
+    }
+
+    /**
      * Create an instance of {@link DataVale }
      * 
      */
