@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="logica.Artista, logica.Usuario, logica.Paquete, logica.Espectaculo, java.util.Map, java.util.Collection" %>
+<%@ page import="logica.Artista, logica.Usuario, logica.DataPaquete, logica.DataEspectaculo, java.util.Map, java.util.List, java.util.Collection" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -10,7 +10,7 @@
     <body>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
         
-        <% Paquete p = (Paquete) session.getAttribute("paquete"); %>
+        <% DataPaquete p = (DataPaquete) session.getAttribute("paquete"); %>
         
         <div id="espectaculo" class="container">
             <div class="row">
@@ -30,7 +30,7 @@
                             <%session.setAttribute("paqueteComprar",p.getNombre()); %>
                                 <a href="comprapaquete" class="list-group-item card-link active flex-fill">Comprar</a>
                                 <% float totalsindesc = 0;
-                                for (Espectaculo e : p.getEspectaculos().values()) {
+                                for (DataEspectaculo e : (List<DataEspectaculo>) session.getAttribute("espectaculos")) {
                                 	totalsindesc += e.getCosto();
                                 }
                                 float totalcondesc = totalsindesc - (totalsindesc * p.getDescuento() / 100);
@@ -44,9 +44,9 @@
                 </div>
                 <div class="col-sm pt-5 pb-5">
                     <h2>Espectaculos del Paquete:</h2>
-                    <% for (Espectaculo e :  p.getEspectaculos().values()) { %>
+                    <% for (DataEspectaculo e : (List<DataEspectaculo>) session.getAttribute("espectaculos")) { %>
                     
-                    <carta-espectaculo img="<%=e.getImagen()%>" titulo="<%=e.getNombre()%>" artista="<%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%>" precio="<%= e.getCosto() %>"></carta-espectaculo>
+                    <carta-espectaculo img="<%=e.getImagen()%>" titulo="<%=e.getNombre()%>" artista="<%=e.getArtista()%>" precio="<%= e.getCosto() %>"></carta-espectaculo>
                     <div class="mb-4"></div>
                     
                     <% }%>
