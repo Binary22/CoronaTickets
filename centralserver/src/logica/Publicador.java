@@ -204,11 +204,11 @@ public class Publicador {
     	UController.confirmarAltaUsuario();
     }
     
-    @WebMethod
+   /* @WebMethod
     public dataEspectaculo getEspectaculo(String espect) {
     	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
     	return new dataEspectaculo(hEsp.getEspectaculo(espect));
-    }
+    }*/
     
     @WebMethod
     public dataRegsPrevios obtenerRegistrosPreviosWeb(String nickname){

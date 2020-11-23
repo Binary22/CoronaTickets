@@ -24,8 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NoSeleccionoTres_QNAME = new QName("http://logica/", "noSeleccionoTres");
     private final static QName _PaqueteConMismoNombreException_QNAME = new QName("http://logica/", "PaqueteConMismoNombreException");
     private final static QName _UsuarioPaqueteComprado_QNAME = new QName("http://logica/", "UsuarioPaqueteComprado");
+    private final static QName _FechaPosterior_QNAME = new QName("http://logica/", "fechaPosterior");
     private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
     private final static QName _NombreFuncionexisteException_QNAME = new QName("http://logica/", "NombreFuncionexisteException");
     private final static QName _NombreEspectaculoExisteException_QNAME = new QName("http://logica/", "NombreEspectaculoExisteException");
@@ -69,6 +71,22 @@ public class ObjectFactory {
      */
     public DataEspectaculo.SetFunciones createDataEspectaculoSetFunciones() {
         return new DataEspectaculo.SetFunciones();
+    }
+
+    /**
+     * Create an instance of {@link NoSeleccionoTres }
+     * 
+     */
+    public NoSeleccionoTres createNoSeleccionoTres() {
+        return new NoSeleccionoTres();
+    }
+
+    /**
+     * Create an instance of {@link FechaPosterior }
+     * 
+     */
+    public FechaPosterior createFechaPosterior() {
+        return new FechaPosterior();
     }
 
     /**
@@ -128,14 +146,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListPaquetes }
-     * 
-     */
-    public DataListPaquetes createDataListPaquetes() {
-        return new DataListPaquetes();
-    }
-
-    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
@@ -149,6 +159,54 @@ public class ObjectFactory {
      */
     public DataListEspOrg createDataListEspOrg() {
         return new DataListEspOrg();
+    }
+
+    /**
+     * Create an instance of {@link DataRegsPrevios }
+     * 
+     */
+    public DataRegsPrevios createDataRegsPrevios() {
+        return new DataRegsPrevios();
+    }
+
+    /**
+     * Create an instance of {@link DataVale }
+     * 
+     */
+    public DataVale createDataVale() {
+        return new DataVale();
+    }
+
+    /**
+     * Create an instance of {@link DataCompra }
+     * 
+     */
+    public DataCompra createDataCompra() {
+        return new DataCompra();
+    }
+
+    /**
+     * Create an instance of {@link DataListPlataformas }
+     * 
+     */
+    public DataListPlataformas createDataListPlataformas() {
+        return new DataListPlataformas();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
+    }
+
+    /**
+     * Create an instance of {@link DataListPaquetes }
+     * 
+     */
+    public DataListPaquetes createDataListPaquetes() {
+        return new DataListPaquetes();
     }
 
     /**
@@ -168,14 +226,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataVale }
-     * 
-     */
-    public DataVale createDataVale() {
-        return new DataVale();
-    }
-
-    /**
      * Create an instance of {@link DataUsuario }
      * 
      */
@@ -184,27 +234,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataCompra }
-     * 
-     */
-    public DataCompra createDataCompra() {
-        return new DataCompra();
-    }
-
-    /**
      * Create an instance of {@link DataFuncion }
      * 
      */
     public DataFuncion createDataFuncion() {
         return new DataFuncion();
-    }
-
-    /**
-     * Create an instance of {@link DataListPlataformas }
-     * 
-     */
-    public DataListPlataformas createDataListPlataformas() {
-        return new DataListPlataformas();
     }
 
     /**
@@ -224,11 +258,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
+     * Create an instance of {@link DataValesCanje }
      * 
      */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
+    public DataValesCanje createDataValesCanje() {
+        return new DataValesCanje();
     }
 
     /**
@@ -256,6 +290,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoSeleccionoTres }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "noSeleccionoTres")
+    public JAXBElement<NoSeleccionoTres> createNoSeleccionoTres(NoSeleccionoTres value) {
+        return new JAXBElement<NoSeleccionoTres>(_NoSeleccionoTres_QNAME, NoSeleccionoTres.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link PaqueteConMismoNombreException }{@code >}}
      * 
      */
@@ -271,6 +314,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://logica/", name = "UsuarioPaqueteComprado")
     public JAXBElement<UsuarioPaqueteComprado> createUsuarioPaqueteComprado(UsuarioPaqueteComprado value) {
         return new JAXBElement<UsuarioPaqueteComprado>(_UsuarioPaqueteComprado_QNAME, UsuarioPaqueteComprado.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FechaPosterior }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "fechaPosterior")
+    public JAXBElement<FechaPosterior> createFechaPosterior(FechaPosterior value) {
+        return new JAXBElement<FechaPosterior>(_FechaPosterior_QNAME, FechaPosterior.class, null, value);
     }
 
     /**
