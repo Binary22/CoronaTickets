@@ -52,6 +52,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListaEspectaculo }
+     * 
+     */
+    public ListaEspectaculo createListaEspectaculo() {
+        return new ListaEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo.Espectaculos }
+     * 
+     */
+    public ListaEspectaculo.Espectaculos createListaEspectaculoEspectaculos() {
+        return new ListaEspectaculo.Espectaculos();
+    }
+
+    /**
      * Create an instance of {@link UsuarioConMismoMailException }
      * 
      */
@@ -137,6 +153,14 @@ public class ObjectFactory {
      */
     public DataEspectaculo.SetFunciones.Entry createDataEspectaculoSetFuncionesEntry() {
         return new DataEspectaculo.SetFunciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo.Espectaculos.Entry }
+     * 
+     */
+    public ListaEspectaculo.Espectaculos.Entry createListaEspectaculoEspectaculosEntry() {
+        return new ListaEspectaculo.Espectaculos.Entry();
     }
 
     /**

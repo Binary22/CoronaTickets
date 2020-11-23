@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
@@ -14,6 +16,7 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
+import datatypesweb.ListaEspectaculo;
 import datatypesweb.dataEspectaculo;
 import datatypesweb.dataUsuario;
 import excepciones.NombreEspectaculoExisteException;
@@ -58,6 +61,39 @@ public class Publicador {
     	dataUsuario dataU = new dataUsuario(user);
     	return dataU;
     }
+    
+    @WebMethod
+    public dataEspectaculo getEspectaculo(String nomEspectaculo) {
+    	HandlerEspectaculos hespectaculos = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hespectaculos.getEspectaculo(nomEspectaculo);
+    	dataEspectaculo dataE = new dataEspectaculo(esp);
+    	return dataE;
+    }
+    
+    @WebMethod
+    public ListaEspectaculo listarEspectaculos() {
+    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+    	HashMap<String, dataEspectaculo> res = new HashMap<String, dataEspectaculo>();
+    	for(Map.Entry<String, Espectaculo> entry : hesp.getEspectaculos().entrySet()) {
+    		res.put(entry.getKey(), new dataEspectaculo(entry.getValue()));
+    	}
+    	ListaEspectaculo lista = new ListaEspectaculo();
+		lista.setEspectaculos(res);
+    	return lista;
+    }
+    
+    @WebMethod
+    public ListaEspectaculo listarEspectaculosPlataforma(String nomPlata) {
+    	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
+    	HashMap<String, dataEspectaculo> res = new HashMap<String, dataEspectaculo>();
+    	for(Map.Entry<String, Espectaculo> entry : hesp.getEspectaculosDePlataforma(nomPlata).entrySet()) {
+    		res.put(entry.getKey(), new dataEspectaculo(entry.getValue()));
+    	}
+    	ListaEspectaculo lista = new ListaEspectaculo();
+		lista.setEspectaculos(res);
+    	return lista;
+    }
+    
     
     @WebMethod
 	public void altaUsuarioWeb(String nickname, String nombre, String apellido, String mail, String fechanac, String password, String imagen) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
