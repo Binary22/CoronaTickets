@@ -1,7 +1,6 @@
 package datatypesweb;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +15,9 @@ import logica.Usuario;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class dataFuncion {
 	private String nombre;
-	private LocalDate fecha;
-	private LocalTime horaInicio;
-	private LocalDate fechaReg;
+	private String fecha;
+	private String horaInicio;
+	private String fechaReg;
 	private List<String> artistasInvitados;
 	private List<dataRegistro> registros;
 	private String espectaculo;
@@ -26,9 +25,9 @@ public class dataFuncion {
 	
 	public dataFuncion(Funcion fun) {
 		this.nombre = fun.getNombre();
-		this.fecha = fun.getFecha();
-		this.horaInicio = fun.getHoraInicio();
-		this.fechaReg = fun.getFechaReg();
+		this.fecha = fun.getFecha().toString();
+		this.horaInicio = fun.getHoraInicio().toString();
+		this.fechaReg = fun.getFechaReg().toString();
 		this.artistasInvitados = new ArrayList<String>();
 		List<Usuario> invitados = fun.getArtistasInvitados();
 		for(int i = 0; i < invitados.size(); i++) {
@@ -55,27 +54,27 @@ public class dataFuncion {
 		this.nombre = nombre;
 	}
 
-	public LocalDate getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
-	public LocalTime getHoraInicio() {
+	public String getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(LocalTime horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public LocalDate getFechaReg() {
+	public String getFechaReg() {
 		return fechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
+	public void setFechaReg(String fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 

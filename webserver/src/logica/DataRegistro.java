@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="fecha" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="yaFueCanjeado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="ident" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="regsCanjeados" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DataRegistro {
 
-    protected LocalDate fecha;
+    protected String fecha;
     protected boolean yaFueCanjeado;
     protected int ident;
     @XmlElement(nillable = true)
@@ -63,10 +63,10 @@ public class DataRegistro {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -75,10 +75,10 @@ public class DataRegistro {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFecha(LocalDate value) {
+    public void setFecha(String value) {
         this.fecha = value;
     }
 

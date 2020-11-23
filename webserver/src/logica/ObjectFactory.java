@@ -242,14 +242,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalTime }
-     * 
-     */
-    public LocalTime createLocalTime() {
-        return new LocalTime();
-    }
-
-    /**
      * Create an instance of {@link DataPaquete }
      * 
      */

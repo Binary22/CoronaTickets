@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fecha" type="{http://logica/}localDate" minOccurs="0"/>
- *         &lt;element name="horaInicio" type="{http://logica/}localTime" minOccurs="0"/>
- *         &lt;element name="fechaReg" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="horaInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="artistasInvitados" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="registros" type="{http://logica/}dataRegistro" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="espectaculo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -49,9 +49,9 @@ import javax.xml.bind.annotation.XmlType;
 public class DataFuncion {
 
     protected String nombre;
-    protected LocalDate fecha;
-    protected LocalTime horaInicio;
-    protected LocalDate fechaReg;
+    protected String fecha;
+    protected String horaInicio;
+    protected String fechaReg;
     @XmlElement(nillable = true)
     protected List<String> artistasInvitados;
     @XmlElement(nillable = true)
@@ -88,10 +88,10 @@ public class DataFuncion {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -100,10 +100,10 @@ public class DataFuncion {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFecha(LocalDate value) {
+    public void setFecha(String value) {
         this.fecha = value;
     }
 
@@ -112,10 +112,10 @@ public class DataFuncion {
      * 
      * @return
      *     possible object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public LocalTime getHoraInicio() {
+    public String getHoraInicio() {
         return horaInicio;
     }
 
@@ -124,10 +124,10 @@ public class DataFuncion {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public void setHoraInicio(LocalTime value) {
+    public void setHoraInicio(String value) {
         this.horaInicio = value;
     }
 
@@ -136,10 +136,10 @@ public class DataFuncion {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaReg() {
+    public String getFechaReg() {
         return fechaReg;
     }
 
@@ -148,10 +148,10 @@ public class DataFuncion {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaReg(LocalDate value) {
+    public void setFechaReg(String value) {
         this.fechaReg = value;
     }
 
