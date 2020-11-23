@@ -84,7 +84,7 @@
                                 <h5 class="card-title">e-mail:</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><%=a.getEmail()%></h6>
                                 <h5 class="card-title"></slot>Fecha de Nacimiento:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><%=a.getFechaNacimiento().toString()%></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%=a.getFechaNacimiento()%></h6>
                                 <h5 class="card-title">Descripción:</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><%=a.getDescripcion()%></h6>
                                 <h5 class="card-title">Biografía:</h5>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <br>
-                        
+                        <%-- 
                         <% if (a.tieneEspectaculosAceptados()) {%>
                         
                         <h4>Espectáculos organizados</h4>
@@ -161,7 +161,7 @@
 								  </div>
 								</div>
 							<% } %>
-						<% } %>	
+						<% } %>	      --%>
                         
                     </div>
                 </div>

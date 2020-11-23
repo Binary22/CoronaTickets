@@ -181,7 +181,7 @@ public class Publicador {
     	List res = new ArrayList<dataUsuario>();
     	for(Usuario entry : mapausuarios.values()) {
     		if (entry.esArtista()) {
-    			res.add(new dataArtistaDetalles((Artista) entry));
+    			res.add(new dataUsuario(entry));
     		} else {
     			res.add(new dataUsuario(entry));
     		}

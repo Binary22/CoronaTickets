@@ -44,7 +44,16 @@ public class dataUsuario {
     	this.setNickname(user.getNickname());
     	this.setNombre(user.getNombre());
     	this.setPassword(user.getPassword());
-    	this.esArtista = false;
+    	
+    	if (user.esArtista()) {
+    		this.esArtista = true;
+    		this.setDescripcion(((Artista) user).getDescripcion());
+    		this.setBiografia(((Artista) user).getBiografia());
+    		this.setWebsite(((Artista) user).getWebsite());
+    	} else {
+    		this.esArtista = false;
+    	}
+    	
     	this.compraPaquete = new ArrayList<dataCompra>();
     	for(int i = 0; i < user.getCompraPaquete().size(); i++) {
     		this.compraPaquete.add(new dataCompra(user.getCompraPaquete().get(i)));
@@ -68,28 +77,7 @@ public class dataUsuario {
     	}
     	
 		
-	}
-	
-	public dataUsuario(Artista artista) {
-		this.setApellido(artista.getApellido());
-    	this.setEmail(artista.getEmail());
-    	this.setFechaNacimiento(artista.getFechaNacimiento().toString());
-    	this.setImagen(artista.getImagen());
-    	this.setNickname(artista.getNickname());
-    	this.setNombre(artista.getNombre());
-    	this.setPassword(artista.getPassword());
-    	this.esArtista = true;
-    	descripcion = artista.getDescripcion();
-		biografia = artista.getBiografia();
-		website = artista.getWebsite();
-		List<String> lista = new ArrayList<String>();
-		for (Espectaculo e : artista.getEspectaculos()) {
-			lista.add(e.getNombre());
-		}
-		espectaculos = lista;
-	}
-	
-	
+	}	
 	
 	public boolean esArtista() {
 		return esArtista;

@@ -281,5 +281,18 @@ public class Usuario {
 			throw new UsuarioPaqueteComprado("La compra " + comprado.getPaquete().getNombre() + " ya fue realizada"); 
 	}
 	
+	// esta turbiada la estoy haciendo porque no funcionaba otra cosa
+	// no me maten -Att Acqua
+	public String getDescripcion() {
+		return "estonoesunartista ney";
+	}
+
+	public String getBiografia() {
+		return "estonoesunartista ney";
+	}
+	
+	public String getWebsite() {
+		return "estonoesunartista ney";
+	}
 
 }
