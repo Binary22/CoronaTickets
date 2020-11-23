@@ -6,6 +6,7 @@
   <head>
         <jsp:include page="/WEB-INF/template/head.jsp"/>
   </head>
+
   <body onload="uncheckArtista()">
     <jsp:include page="/WEB-INF/template/navbar.jsp"/>
 
