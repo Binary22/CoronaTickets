@@ -19,7 +19,7 @@ public class dataUsuario {
 	private String nombre;
 	private String apellido;
 	private String email;
-	private LocalDate fechaNacimiento;
+	private String fechaNacimiento;
 	private List<dataCompra> compraPaquete;
 	private List<dataVale> vales;
 	private List<dataRegistro> registros;
@@ -30,7 +30,7 @@ public class dataUsuario {
 	public dataUsuario(Usuario user) {
 		this.setApellido(user.getApellido());
     	this.setEmail(user.getEmail());
-    	this.setFechaNacimiento(user.getFechaNacimiento());
+    	this.setFechaNacimiento(user.getFechaNacimiento().toString());
     	this.setImagen(user.getImagen());
     	this.setNickname(user.getNickname());
     	this.setNombre(user.getNombre());
@@ -101,13 +101,13 @@ public class dataUsuario {
 	}
 
 
-	public LocalDate getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
 
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaNacimiento(String string) {
+		this.fechaNacimiento = string;
 	}
 
 

@@ -129,4 +129,5 @@ public class Publicador {
     	arr = IE.listarCategorias().toArray(arr);
     	return arr;
     }
+    
 }
