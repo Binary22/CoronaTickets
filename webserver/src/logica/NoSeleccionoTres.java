@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para UsuarioConMismoNickException complex type.
+ * <p>Clase Java para noSeleccionoTres complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="UsuarioConMismoNickException">
+ * &lt;complexType name="noSeleccionoTres">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UsuarioConMismoNickException", propOrder = {
+@XmlType(name = "noSeleccionoTres", propOrder = {
     "message"
 })
-public class UsuarioConMismoNickException {
+public class NoSeleccionoTres {
 
     protected String message;
 

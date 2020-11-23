@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import logica.Paquete;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class dataPaquete {
 	private String nombre;
 	private LocalDate fechaI;

@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _NoSeleccionoTres_QNAME = new QName("http://logica/", "noSeleccionoTres");
+    private final static QName _FechaPosterior_QNAME = new QName("http://logica/", "fechaPosterior");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
 
@@ -32,6 +34,38 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo }
+     * 
+     */
+    public DataEspectaculo createDataEspectaculo() {
+        return new DataEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo.SetFunciones }
+     * 
+     */
+    public DataEspectaculo.SetFunciones createDataEspectaculoSetFunciones() {
+        return new DataEspectaculo.SetFunciones();
+    }
+
+    /**
+     * Create an instance of {@link NoSeleccionoTres }
+     * 
+     */
+    public NoSeleccionoTres createNoSeleccionoTres() {
+        return new NoSeleccionoTres();
+    }
+
+    /**
+     * Create an instance of {@link FechaPosterior }
+     * 
+     */
+    public FechaPosterior createFechaPosterior() {
+        return new FechaPosterior();
     }
 
     /**
@@ -59,11 +93,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
+     * Create an instance of {@link DataRegsPrevios }
      * 
      */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
+    public DataRegsPrevios createDataRegsPrevios() {
+        return new DataRegsPrevios();
     }
 
     /**
@@ -88,6 +122,64 @@ public class ObjectFactory {
      */
     public DataCompra createDataCompra() {
         return new DataCompra();
+    }
+
+    /**
+     * Create an instance of {@link DataFuncion }
+     * 
+     */
+    public DataFuncion createDataFuncion() {
+        return new DataFuncion();
+    }
+
+    /**
+     * Create an instance of {@link LocalTime }
+     * 
+     */
+    public LocalTime createLocalTime() {
+        return new LocalTime();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
+    }
+
+    /**
+     * Create an instance of {@link DataValesCanje }
+     * 
+     */
+    public DataValesCanje createDataValesCanje() {
+        return new DataValesCanje();
+    }
+
+    /**
+     * Create an instance of {@link DataEspectaculo.SetFunciones.Entry }
+     * 
+     */
+    public DataEspectaculo.SetFunciones.Entry createDataEspectaculoSetFuncionesEntry() {
+        return new DataEspectaculo.SetFunciones.Entry();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoSeleccionoTres }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "noSeleccionoTres")
+    public JAXBElement<NoSeleccionoTres> createNoSeleccionoTres(NoSeleccionoTres value) {
+        return new JAXBElement<NoSeleccionoTres>(_NoSeleccionoTres_QNAME, NoSeleccionoTres.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FechaPosterior }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "fechaPosterior")
+    public JAXBElement<FechaPosterior> createFechaPosterior(FechaPosterior value) {
+        return new JAXBElement<FechaPosterior>(_FechaPosterior_QNAME, FechaPosterior.class, null, value);
     }
 
     /**

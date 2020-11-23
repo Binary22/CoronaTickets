@@ -34,6 +34,21 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
+    public boolean loginCorrecto(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
     public boolean esArtista(
         @WebParam(name = "arg0", partName = "arg0")
@@ -122,6 +137,134 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
+     *     returns logica.DataRegsPrevios
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/obtenerRegistrosPreviosWebRequest", output = "http://logica/Publicador/obtenerRegistrosPreviosWebResponse")
+    public DataRegsPrevios obtenerRegistrosPreviosWeb(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns logica.DataValesCanje
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/valesACanjearRequest", output = "http://logica/Publicador/valesACanjearResponse")
+    public DataValesCanje valesACanjear(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @throws FechaPosterior_Exception
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/esFechaInvalidaRequest", output = "http://logica/Publicador/esFechaInvalidaResponse", fault = {
+        @FaultAction(className = FechaPosterior_Exception.class, value = "http://logica/Publicador/esFechaInvalida/Fault/fechaPosterior")
+    })
+    public void esFechaInvalida(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1)
+        throws FechaPosterior_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/existeRegistroEspecFuncionRequest", output = "http://logica/Publicador/existeRegistroEspecFuncionResponse")
+    public boolean existeRegistroEspecFuncion();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/funcionAlcanzoLimiteRegRequest", output = "http://logica/Publicador/funcionAlcanzoLimiteRegResponse")
+    public boolean funcionAlcanzoLimiteReg(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/ingresarNombrePaqueteRequest", output = "http://logica/Publicador/ingresarNombrePaqueteResponse")
+    public void ingresarNombrePaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/ingresarNombreFuncionRequest", output = "http://logica/Publicador/ingresarNombreFuncionResponse")
+    public void ingresarNombreFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/ingresarNombreEspectadorRequest", output = "http://logica/Publicador/ingresarNombreEspectadorResponse")
+    public void ingresarNombreEspectador(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/confirmarRegistroRequest", output = "http://logica/Publicador/confirmarRegistroResponse")
+    public void confirmarRegistro(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @throws NoSeleccionoTres_Exception
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/canjearRegistrosRequest", output = "http://logica/Publicador/canjearRegistrosResponse", fault = {
+        @FaultAction(className = NoSeleccionoTres_Exception.class, value = "http://logica/Publicador/canjearRegistros/Fault/noSeleccionoTres")
+    })
+    public void canjearRegistros(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataRegsPrevios arg0)
+        throws NoSeleccionoTres_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns logica.DataUsuario
      */
     @WebMethod
@@ -135,12 +278,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns logica.DataUsuario
+     *     returns logica.DataEspectaculo
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
-    public DataUsuario getUsuario(
+    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
+    public DataEspectaculo getEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

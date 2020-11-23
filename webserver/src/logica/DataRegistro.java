@@ -10,23 +10,23 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataRegistro complex type.
+ * <p>Clase Java para dataRegistro complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataRegistro">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         &lt;element name="espectFuncion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://logica/}localDate" minOccurs="0"/>
- *         &lt;element name="funcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="yaFueCanjeado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="ident" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="regsCanjeados" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="usuario" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="yaFueCanjeado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="funcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="espectFuncion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,69 +37,29 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dataRegistro", propOrder = {
-    "costo",
-    "espectFuncion",
     "fecha",
-    "funcion",
+    "yaFueCanjeado",
     "ident",
     "regsCanjeados",
+    "costo",
     "usuario",
-    "yaFueCanjeado"
+    "funcion",
+    "espectFuncion"
 })
 public class DataRegistro {
 
-    protected float costo;
-    protected String espectFuncion;
     protected LocalDate fecha;
-    protected String funcion;
+    protected boolean yaFueCanjeado;
     protected int ident;
     @XmlElement(nillable = true)
     protected List<Integer> regsCanjeados;
+    protected float costo;
     protected String usuario;
-    protected boolean yaFueCanjeado;
+    protected String funcion;
+    protected String espectFuncion;
 
     /**
-     * Gets the value of the costo property.
-     * 
-     */
-    public float getCosto() {
-        return costo;
-    }
-
-    /**
-     * Sets the value of the costo property.
-     * 
-     */
-    public void setCosto(float value) {
-        this.costo = value;
-    }
-
-    /**
-     * Gets the value of the espectFuncion property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEspectFuncion() {
-        return espectFuncion;
-    }
-
-    /**
-     * Sets the value of the espectFuncion property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEspectFuncion(String value) {
-        this.espectFuncion = value;
-    }
-
-    /**
-     * Gets the value of the fecha property.
+     * Obtiene el valor de la propiedad fecha.
      * 
      * @return
      *     possible object is
@@ -111,7 +71,7 @@ public class DataRegistro {
     }
 
     /**
-     * Sets the value of the fecha property.
+     * Define el valor de la propiedad fecha.
      * 
      * @param value
      *     allowed object is
@@ -123,31 +83,23 @@ public class DataRegistro {
     }
 
     /**
-     * Gets the value of the funcion property.
+     * Obtiene el valor de la propiedad yaFueCanjeado.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getFuncion() {
-        return funcion;
+    public boolean isYaFueCanjeado() {
+        return yaFueCanjeado;
     }
 
     /**
-     * Sets the value of the funcion property.
+     * Define el valor de la propiedad yaFueCanjeado.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setFuncion(String value) {
-        this.funcion = value;
+    public void setYaFueCanjeado(boolean value) {
+        this.yaFueCanjeado = value;
     }
 
     /**
-     * Gets the value of the ident property.
+     * Obtiene el valor de la propiedad ident.
      * 
      */
     public int getIdent() {
@@ -155,7 +107,7 @@ public class DataRegistro {
     }
 
     /**
-     * Sets the value of the ident property.
+     * Define el valor de la propiedad ident.
      * 
      */
     public void setIdent(int value) {
@@ -192,7 +144,23 @@ public class DataRegistro {
     }
 
     /**
-     * Gets the value of the usuario property.
+     * Obtiene el valor de la propiedad costo.
+     * 
+     */
+    public float getCosto() {
+        return costo;
+    }
+
+    /**
+     * Define el valor de la propiedad costo.
+     * 
+     */
+    public void setCosto(float value) {
+        this.costo = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad usuario.
      * 
      * @return
      *     possible object is
@@ -204,7 +172,7 @@ public class DataRegistro {
     }
 
     /**
-     * Sets the value of the usuario property.
+     * Define el valor de la propiedad usuario.
      * 
      * @param value
      *     allowed object is
@@ -216,19 +184,51 @@ public class DataRegistro {
     }
 
     /**
-     * Gets the value of the yaFueCanjeado property.
+     * Obtiene el valor de la propiedad funcion.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public boolean isYaFueCanjeado() {
-        return yaFueCanjeado;
+    public String getFuncion() {
+        return funcion;
     }
 
     /**
-     * Sets the value of the yaFueCanjeado property.
+     * Define el valor de la propiedad funcion.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setYaFueCanjeado(boolean value) {
-        this.yaFueCanjeado = value;
+    public void setFuncion(String value) {
+        this.funcion = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad espectFuncion.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEspectFuncion() {
+        return espectFuncion;
+    }
+
+    /**
+     * Define el valor de la propiedad espectFuncion.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEspectFuncion(String value) {
+        this.espectFuncion = value;
     }
 
 }

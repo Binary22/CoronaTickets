@@ -60,4 +60,7 @@ public interface IEspectaculo {
 	public void aceptarRechazar(String nombreEspect, boolean aceptado);
 	
 	public List<Registro> obtenerRegistrosPreviosWeb(String nickname);
+	
+	public void canjePorVale();
+	public void ingresarNombrePaquete(String nomPaquete);
 }

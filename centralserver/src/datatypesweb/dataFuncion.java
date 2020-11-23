@@ -5,12 +5,15 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import logica.Espectaculo;
 import logica.Funcion;
 import logica.Registro;
 import logica.Usuario;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class dataFuncion {
 	private String nombre;
 	private LocalDate fecha;

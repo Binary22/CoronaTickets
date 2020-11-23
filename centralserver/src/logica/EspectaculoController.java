@@ -43,8 +43,18 @@ public class EspectaculoController implements IEspectaculo {
 	private String nomCategoria;
 	private List<String> categorias;
 	private String imagen;
+	private boolean canjeVale = false;
+	private String nomPaquete;
 	
 	
+	public String getNomPaquete() {
+		return nomPaquete;
+	}
+
+	public void setNomPaquete(String nomPaquete) {
+		this.nomPaquete = nomPaquete;
+	}
+
 	public void setRegistroFueCanjeado(boolean canj) {
 		this.registroFueCanjeado = canj;
 	}
@@ -451,6 +461,15 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void canjePorVale() {
+		this.canjeVale = true;
+	}
+	
+	public void ingresarNombrePaquete(String nomPaquete) {
+		this.nomPaquete = nomPaquete;
+	}
+	
 	@Override
 	public void confirmarRegistro(String nomespect, LocalDate fecha){
 		// TODO Auto-generated method stub
@@ -471,7 +490,24 @@ public class EspectaculoController implements IEspectaculo {
 				nuevo = new Registro(fecha, true, espectador, fun, 0);
 				nuevo.setRegsCanjeados(this.regsCanjeados);
 				
-			}else {
+			}else if(this.canjeVale) {
+				//Funcion fun = espect.getFuncion(nomFuncion);
+	        	//Usuario user = hu.getUsuario(userNickname);
+	        	List<Vale> vales = espectador.getVales();
+	        	int i = 0;
+	        	boolean actualizo = false;
+	        	while(i < vales.size() && !actualizo){
+	        		if(vales.get(i).getPaquete().getNombre().compareTo(this.nomPaquete) == 0) {
+	        			if(vales.get(i).getEspectaculo().getNombre().compareTo(nomespect) == 0) {
+	        				vales.get(i).setUsado(true);
+	        				actualizo = true;
+	        			}
+	        		}
+	        		i++;
+	        	}
+	        	nuevo = new Registro(fecha, false, espectador, fun, espect.getCosto());
+			}
+			else {
 				nuevo = new Registro(fecha, false, espectador, fun, espect.getCosto());
 			}
 				
@@ -480,6 +516,7 @@ public class EspectaculoController implements IEspectaculo {
 			
 		}
 		this.registroFueCanjeado = false;
+		this.canjeVale = false;
 		
 	}
 	
@@ -624,6 +661,14 @@ public class EspectaculoController implements IEspectaculo {
 
 	public String getImagen() {
 		return imagen;
+	}
+
+	public boolean isCanjeVale() {
+		return canjeVale;
+	}
+
+	public void setCanjeVale(boolean canjeVale) {
+		this.canjeVale = canjeVale;
 	}
 
 

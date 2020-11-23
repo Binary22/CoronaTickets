@@ -2,10 +2,12 @@ package datatypesweb;
 
 import java.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 import logica.Registro;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class dataRegistro {
 	private LocalDate fecha;
 	private boolean yaFueCanjeado;

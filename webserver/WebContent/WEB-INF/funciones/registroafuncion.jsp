@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="logica.Funcion"%>
-<%@page import="logica.Vale"%>
-<%@page import="logica.Registro"%>
-<%@page import="logica.Espectaculo"%>
+<%@page import="logica.DataFuncion"%>
+<%@page import="logica.DataVale"%>
+<%@page import="logica.DataRegistro"%>
+<%@page import="logica.DataEspectaculo"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -66,7 +66,7 @@
 						             <form class="mt-2" action = "registroafuncion" method = "POST">
 						                <div class="form-group">
 						                    <h6>Función</h6>
-						                    <%List<Funcion> funciones = (List<Funcion>)session.getAttribute("funcionesEspectaculo");
+						                    <%List<DataFuncion> funciones = (List<DataFuncion>)session.getAttribute("funcionesEspectaculo");
 						                       %>
 						                    <select class="form-control" name = "funcion_seleccionada" id = "funcionesList">
 						                    <%for(int i = 0; i < funciones.size(); i++){ %>
@@ -81,7 +81,7 @@
 								                		<h5>Información de la función</h5>
 								                		
 								                		<%String var = "";
-							                  			List<String> artistas = funciones.get(i).getArtistasInvitadosWeb();
+							                  			List<String> artistas = funciones.get(i).getArtistasInvitados();
 							                  			if(!artistas.isEmpty()){
 								                  			int fin = artistas.size()-1;
 								                  			for(int j = 0; j < fin; j++){
@@ -117,13 +117,13 @@
 						                
 						                <div id="camposregistro" style="display: none;">
 						                    <div class="form-group">
-						                    <%List<Registro> registros = (List<Registro>)session.getAttribute("registros_canjear"); 
+						                    <%List<DataRegistro> registros = (List<DataRegistro>)session.getAttribute("registros_canjear"); 
 						                      if(!registros.isEmpty()){%>
 						                        <label>Elegir registros a canjear</label>
 						                        <h6 class="card-subtitle mb-2 text-muted">Para realizar un canje con registros previos debe seleccionar 3</h6>
 						                        <select class="form-control"  name = "registros_previos" multiple>
 						                        <%for(int i = 0; i < registros.size(); i++){ %>
-						                          <option><%=registros.get(i).getFuncion().getNombre() %></option>
+						                          <option><%=registros.get(i).getFuncion() %></option>
 						                          <%} %>
 						                        </select>
 						                        <h6>Precio a abonar:</h6>
@@ -139,14 +139,14 @@
 						                <!-- Esto solo es visible si se desea canjear un vale de un paquete -->
 						                <div id="campospaquete" style="display: none;">
 						                    <div class="form-group">
-						                    <%List<Vale> vales = (List<Vale>)session.getAttribute("vales_canjear");
-						                      Espectaculo espect = (Espectaculo)session.getAttribute("espectaculo_fun");
+						                    <%List<DataVale> vales = (List<DataVale>)session.getAttribute("vales_canjear");
+						                      DataEspectaculo espect = (DataEspectaculo)session.getAttribute("espectaculo_fun");
 						                      if(!vales.isEmpty()){%>
 						                    
 						                        <label>Elegir vales a canjear</label>
 						                        <select class="form-control" multiple name = "vale_seleccionado" id = "valesList">
 						                        <%for(int i = 0; i < vales.size(); i++){ %>
-						                          <option value = "<%=vales.get(i).getPaquete().getNombre()%>"><%=vales.get(i).getPaquete().getNombre() %></option>
+						                          <option value = "<%=vales.get(i).getPaquete()%>"><%=vales.get(i).getPaquete() %></option>
 						                       <%} %>
 						                        </select>
 						                        
@@ -154,9 +154,9 @@
 						                        <%
 						                          float precio = espect.getCosto();
 						                          for(int j = 0; j < vales.size(); j++){				                        	  	
-						                        	  float dto = vales.get(j).getPaquete().getDescuento();
+						                        	  float dto = vales.get(j).getDtoPaquete();
 						                          %>
-						                        <div class = "vales_borrar" id="<%= vales.get(j).getPaquete().getNombre() %>" style="display: none;" >
+						                        <div class = "vales_borrar" id="<%= vales.get(j).getPaquete() %>" style="display: none;" >
 						                        	<h6 class="card-subtitle mb-2 text-muted">$<%=precio - precio*(dto/100) %></h6>
 						                        </div>
 						                        <%} %>
@@ -189,16 +189,16 @@
 		        
 		        <div class="col-sm-3 pt-5 pb-5 .px-2">
 		        	<h4> Funciones a la que se registró: </h4>
-                    <%List<Registro> regs = (List<Registro>)session.getAttribute("registros_usuario");
+                    <%List<DataRegistro> regs = (List<DataRegistro>)session.getAttribute("registros_usuario");
                     for(int i = 0; i < regs.size(); i++){
                     	String var = " ";
-                    	if(regs.get(i).isCanjeado() && regs.get(i).getCosto() == 0){
+                    	if(regs.get(i).isYaFueCanjeado() && regs.get(i).getCosto() == 0){
                     		var = "Canjeado";
                     	}else{
                     		var = "Abonado";
                     	}
 		                  		%>
-                    	<carta-funcion-chica img="resources/media/espectaculos/maracas.jpg" titulo= "<%=regs.get(i).getFuncion().getNombre() %>" precioreg = "<%= regs.get(i).getCosto() %>" fechareg = "<%=regs.get(i).getFecha() %>" canjeadoreg = <%=var %> ></carta-funcion-chica>
+                    	<carta-funcion-chica img="resources/media/espectaculos/maracas.jpg" titulo= "<%=regs.get(i).getFuncion() %>" precioreg = "<%= regs.get(i).getCosto() %>" fechareg = "<%=regs.get(i).getFecha() %>" canjeadoreg = <%=var %> ></carta-funcion-chica>
                     <%}%>
                 </div>
 	        </div>
