@@ -17,7 +17,9 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import datatypesweb.ListaEspectaculo;
+import datatypesweb.ListaPaquete;
 import datatypesweb.dataEspectaculo;
+import datatypesweb.dataPaquete;
 import datatypesweb.dataUsuario;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.UsuarioConMismoMailException;
@@ -94,6 +96,18 @@ public class Publicador {
     	return lista;
     }
     
+    @WebMethod
+    public ListaPaquete listarPaquetesEspectaculo(String nomEspec) {
+    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+    	List<Paquete> lista = hpaq.getPaquetesDeEspectaculoWeb(nomEspec);
+    	ListaPaquete res = new ListaPaquete();
+    	ArrayList<dataPaquete> resLista = new ArrayList<dataPaquete>();
+    	for (Paquete paq : lista) {
+    		resLista.add(new dataPaquete(paq));
+    	}
+    	res.setPaquetes(resLista);
+    	return res;
+    }
     
     @WebMethod
 	public void altaUsuarioWeb(String nickname, String nombre, String apellido, String mail, String fechanac, String password, String imagen) throws UsuarioConMismoNickException, UsuarioConMismoMailException {
