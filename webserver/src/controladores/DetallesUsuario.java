@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logica.DataEspectaculo;
+import logica.DataPaquete;
 import logica.DataUsuario;
 import logica.HandlerUsuarios;
 import logica.Publicador;
@@ -51,6 +52,12 @@ public class DetallesUsuario extends HttpServlet {
     		mapaespec.put(e.getKey(), e.getValue());
     	}
 		objSesion.setAttribute("mapaespec", mapaespec);
+		logica.ListaPaquete listapaq = port.listarPaquetes();
+		Map<String, DataPaquete> mapapaquetes = new HashMap<String, DataPaquete>();
+		for(DataPaquete e : listapaq.getPaquete()) {
+    		mapapaquetes.put(e.getNombre(), e);
+    	}
+		objSesion.setAttribute("mapapaquetes", mapapaquetes);
 	
 		if (port.esArtista(nomu)) {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesArtista.jsp").forward(req, resp);

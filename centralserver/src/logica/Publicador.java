@@ -19,9 +19,11 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import datatypesweb.ListaEspectaculo;
+import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
 import datatypesweb.dataArtistaDetalles;
 import datatypesweb.dataEspectaculo;
+import datatypesweb.dataPaquete;
 import datatypesweb.dataUsuario;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.UsuarioConMismoMailException;
@@ -186,6 +188,20 @@ public class Publicador {
     	}
     	ListaUsuario lista = new ListaUsuario();
 		lista.setUsuarios(res);
+    	return lista;
+    }
+    
+    @WebMethod
+    public ListaPaquete listarPaquetes() {
+    	HandlerPaquetes hpaquetes = HandlerPaquetes.getInstance();
+    	Map<String, Paquete> mapapaquetes =  hpaquetes.getPaquetes();
+
+    	List<dataPaquete> res = new ArrayList<dataPaquete>();
+    	for(Paquete entry : mapapaquetes.values()) {
+    		res.add(new dataPaquete(entry));
+    	}
+    	ListaPaquete lista = new ListaPaquete();
+		lista.setPaquete(res);
     	return lista;
     }
     

@@ -182,6 +182,16 @@ public interface Publicador {
 
     /**
      * 
+     * @return
+     *     returns logica.ListaPaquete
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarPaquetesRequest", output = "http://logica/Publicador/listarPaquetesResponse")
+    public ListaPaquete listarPaquetes();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns logica.DataUsuario

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="logica.Artista, logica.Usuario, logica.Espectaculo" %>
+    <%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map, logica.DataPaquete, logica.DataCompra"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -29,7 +30,7 @@
                 <div class="row">
                     <div class="col-md-4">
                        <div class="card">
-                       	   <% Artista a = (Artista) session.getAttribute("usuario"); %>
+                       	   <% DataUsuario a = (DataUsuario) session.getAttribute("usuario"); %>
 	                       <img class="card-img-top" src="<%=a.getImagen()%>" class="rounded" width="155"> 
 	                        
 	                        
@@ -41,7 +42,7 @@
 		                         	<br>
 		                        </div>
 		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
-				                        Usuario userlogged = (Usuario) session.getAttribute("userlogged");
+				                        DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
 				                        if (a != userlogged) {
 				                        	if (userlogged.getSeguidos().contains(a)) { %>
 				                        		<form action="detallesUsuario" method="POST">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List, java.util.ArrayList" %>
-<%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map"%>
+<%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map, logica.DataPaquete, logica.DataCompra"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -114,23 +114,26 @@
 								<% } %>
 							<% } %>
 						
-				<%-- 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { %>
+				 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { 
+				 	%>
                         
                         <h4>Paquetes comprados</h4>
                         
-	                        <% List<Compra> l = u.getCompraPaquete();
-			                        for (Compra c : l) {  %>
+	                        <% List<DataCompra> l = u.getCompraPaquete();
+	                        Map<String, DataPaquete> mapapaquetes = (Map<String, DataPaquete>) session.getAttribute("mapapaquetes");
+			                for (DataCompra c : l) {  %>
 	                        
 	                        <div class="card mb-3" style="max-width: 200em;">
 							  <div class="row no-gutters">
 							    <div class="col-md-5">
-							      <img src="<%=c.getPaquete().getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
+							    
+							      <img src="<%=mapapaquetes.get(c.getPaquete()).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 							    </div>
 							    <div class="col-md-7">
 							      <div class="card-body">
-							        <h5 class="card-title"><%=c.getPaquete().getNombre()%></h5>
-							        <p><%=c.getPaquete().getDescripcion()%></p>
-							        <a href="detallesPaquete?name=<%=c.getPaquete().getNombre()%>" class="btn btn-success card-text">Ver paquete</a>
+							        <h5 class="card-title"><%=c.getPaquete()%></h5>
+							        <p><%=mapapaquetes.get(c.getPaquete()).getDescripcion()%></p>
+							        <a href="detallesPaquete?name=<%=c.getPaquete()%>" class="btn btn-success card-text">Ver paquete</a>
 							      </div>
 							    </div>
 							  </div>
@@ -139,7 +142,7 @@
 						
 						<% } %>
 						
-						         --%>         
+						                 
                     </div>
                 </div>
             </div>

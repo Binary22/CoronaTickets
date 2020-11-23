@@ -100,6 +100,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListaPaquete }
+     * 
+     */
+    public ListaPaquete createListaPaquete() {
+        return new ListaPaquete();
+    }
+
+    /**
      * Create an instance of {@link DataVale }
      * 
      */
@@ -137,6 +145,14 @@ public class ObjectFactory {
      */
     public LocalTime createLocalTime() {
         return new LocalTime();
+    }
+
+    /**
+     * Create an instance of {@link DataPaquete }
+     * 
+     */
+    public DataPaquete createDataPaquete() {
+        return new DataPaquete();
     }
 
     /**
