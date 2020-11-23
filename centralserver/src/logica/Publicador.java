@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.jws.WebMethod;
 import javax.jws.WebResult;
@@ -80,8 +81,9 @@ public class Publicador {
     	dataArtista dataArt = new dataArtista(user);
     	return dataArt;
     }
-    public dataListEspOrg getEspectaculosDePlataforma(String nombrePlataforma) {
+    
     @WebMethod
+    public dataListEspOrg getEspectaculosDePlataforma(String nombrePlataforma) {
     
     	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
 		Map<String,Espectaculo> espectaculos = hesp.getEspectaculosDePlataforma(nombrePlataforma);
@@ -109,17 +111,18 @@ public class Publicador {
     	return mail;
     }
     
+    @WebMethod
     public ListaPaquete listarPaquetesEspectaculo(String nomEspec) {
     	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
     	List<Paquete> lista = hpaq.getPaquetesDeEspectaculoWeb(nomEspec);
-    }
-    	return res;
-    	}
-    	res.setPaquetes(resLista);
-    		resLista.add(new dataPaquete(paq));
-    	for (Paquete paq : lista) {
     	ListaPaquete res = new ListaPaquete();
-    	ArrayList<dataPaquete> resLista = new ArrayList<dataPaquete>();
+		List<dataPaquete> resLista = new ArrayList<dataPaquete>();
+		for (Paquete paq : lista) {
+			res.setPaquetes(resLista);
+	    	resLista.add(new dataPaquete(paq));
+		}
+		return res;
+    }
     
     @WebMethod
     public ListaPaquete listarPaquetes() {

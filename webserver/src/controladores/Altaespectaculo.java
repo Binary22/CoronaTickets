@@ -120,13 +120,18 @@ public class Altaespectaculo extends HttpServlet {
 	    dataEsp.setArtista(nick);
 	    dataEsp.setPlataforma(nomPlataforma);
 	    dataEsp.setNombre(nombre);
+	    dataEsp.setDescripcion(descripcion);
 	    dataEsp.setDuracion(horas);
 	    dataEsp.setMinutos(minutos);
 	    dataEsp.setMaxEspectadores(Integer.parseInt(maxEspectadores));
 	    dataEsp.setMinEspectadores(Integer.parseInt(minEspectadores));
 	    dataEsp.setUrl(url);
 	    dataEsp.setCosto(Float.parseFloat(costo));
+	    if (imagen != "" && imagen != null) {
 	    dataEsp.setImagen(imagen);	    
+	    } else {
+	    	dataEsp.setImagen("resources/media/espectaculos/rock.jpg");
+	    }
 	    if (cats != null) {
     		for (String c : cats ) {
     			dataEsp.getCategorias().add(c);
