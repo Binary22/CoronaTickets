@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="logica.Plataforma"%>
-<%@page import="logica.Espectaculo"%>
+<%@page import="logica.DataEspectaculo"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,10 +23,10 @@
                 <h2>Plataforma:</h2>
                     <select class="form-control" id="plataforma" name = "opcionesPlat" >
                     <option default disabled selected value="">--Elegir Plataforma--</option> 
-                    <% Map<String, Plataforma> plataformas = (Map<String, Plataforma>)session.getAttribute("plataformas");
-			        	for(String key : plataformas.keySet()){
+                    <% List<String> plataformas = (List<String>) session.getAttribute("plataformas");
+			        	for(String key : plataformas){
 						%>
-						<option value="<%= plataformas.get(key).getNombre() %>" id = "idPlat"><%= plataformas.get(key).getNombre() %></option>
+						<option value="<%= key %>" id = "idPlat"><%= key %></option>
                          <% } %>
                     </select>
                     <br>
@@ -43,7 +43,7 @@
         <div class = "container">
 	        <%
 	       
-	      	ArrayList<Espectaculo> espectaculos = (ArrayList<Espectaculo>)session.getAttribute("espectaculosPlat");
+	      	ArrayList<DataEspectaculo> espectaculos = (ArrayList<DataEspectaculo>)session.getAttribute("espectaculosPlat");
 	       
 	        int size = espectaculos.size();
 	        int j = 0;
@@ -54,8 +54,8 @@
 	        	<div class="card-deck pt-3">
 			        <%for(j = i; j <= i + 2 && j < size; j++){%>
 						
-				    	<carta-espectaculo  id = "<%=espectaculos.get(j).getPlataforma().getNombre() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
-				    	img = "<%=espectaculos.get(j).getImagen() %>" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista().getNombre() %>></carta-espectaculo>
+				    	<carta-espectaculo  id = "<%=espectaculos.get(j).getPlataforma() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
+				    	img = "<%=espectaculos.get(j).getImagen() %>" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista() %>></carta-espectaculo>
 				  	<%} %>
 	     		</div>
 			     

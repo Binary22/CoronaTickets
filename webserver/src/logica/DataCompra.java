@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="fecha" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="paquete" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DataCompra {
 
-    protected LocalDate fecha;
+    protected String fecha;
     protected String paquete;
 
     /**
@@ -41,10 +41,10 @@ public class DataCompra {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -53,10 +53,10 @@ public class DataCompra {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFecha(LocalDate value) {
+    public void setFecha(String value) {
         this.fecha = value;
     }
 

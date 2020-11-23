@@ -24,8 +24,11 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _NoSeleccionoTres_QNAME = new QName("http://logica/", "noSeleccionoTres");
-    private final static QName _FechaPosterior_QNAME = new QName("http://logica/", "fechaPosterior");
+    private final static QName _PaqueteConMismoNombreException_QNAME = new QName("http://logica/", "PaqueteConMismoNombreException");
+    private final static QName _UsuarioPaqueteComprado_QNAME = new QName("http://logica/", "UsuarioPaqueteComprado");
+    private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
+    private final static QName _NombreFuncionexisteException_QNAME = new QName("http://logica/", "NombreFuncionexisteException");
+    private final static QName _NombreEspectaculoExisteException_QNAME = new QName("http://logica/", "NombreEspectaculoExisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
 
@@ -34,6 +37,22 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo }
+     * 
+     */
+    public ListaEspectaculo createListaEspectaculo() {
+        return new ListaEspectaculo();
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo.Espectaculos }
+     * 
+     */
+    public ListaEspectaculo.Espectaculos createListaEspectaculoEspectaculos() {
+        return new ListaEspectaculo.Espectaculos();
     }
 
     /**
@@ -53,19 +72,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link NoSeleccionoTres }
+     * Create an instance of {@link PaqueteConMismoNombreException }
      * 
      */
-    public NoSeleccionoTres createNoSeleccionoTres() {
-        return new NoSeleccionoTres();
+    public PaqueteConMismoNombreException createPaqueteConMismoNombreException() {
+        return new PaqueteConMismoNombreException();
     }
 
     /**
-     * Create an instance of {@link FechaPosterior }
+     * Create an instance of {@link UsuarioPaqueteComprado }
      * 
      */
-    public FechaPosterior createFechaPosterior() {
-        return new FechaPosterior();
+    public UsuarioPaqueteComprado createUsuarioPaqueteComprado() {
+        return new UsuarioPaqueteComprado();
+    }
+
+    /**
+     * Create an instance of {@link NombreFuncionexisteException }
+     * 
+     */
+    public NombreFuncionexisteException createNombreFuncionexisteException() {
+        return new NombreFuncionexisteException();
+    }
+
+    /**
+     * Create an instance of {@link NoExistePaqueteException }
+     * 
+     */
+    public NoExistePaqueteException createNoExistePaqueteException() {
+        return new NoExistePaqueteException();
     }
 
     /**
@@ -85,6 +120,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link NombreEspectaculoExisteException }
+     * 
+     */
+    public NombreEspectaculoExisteException createNombreEspectaculoExisteException() {
+        return new NombreEspectaculoExisteException();
+    }
+
+    /**
+     * Create an instance of {@link DataListPaquetes }
+     * 
+     */
+    public DataListPaquetes createDataListPaquetes() {
+        return new DataListPaquetes();
+    }
+
+    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
@@ -93,11 +144,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataRegsPrevios }
+     * Create an instance of {@link DataListEspOrg }
      * 
      */
-    public DataRegsPrevios createDataRegsPrevios() {
-        return new DataRegsPrevios();
+    public DataListEspOrg createDataListEspOrg() {
+        return new DataListEspOrg();
+    }
+
+    /**
+     * Create an instance of {@link ListaPaquete }
+     * 
+     */
+    public ListaPaquete createListaPaquete() {
+        return new ListaPaquete();
+    }
+
+    /**
+     * Create an instance of {@link DataListArtInvi }
+     * 
+     */
+    public DataListArtInvi createDataListArtInvi() {
+        return new DataListArtInvi();
     }
 
     /**
@@ -133,11 +200,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataListPlataformas }
+     * 
+     */
+    public DataListPlataformas createDataListPlataformas() {
+        return new DataListPlataformas();
+    }
+
+    /**
      * Create an instance of {@link LocalTime }
      * 
      */
     public LocalTime createLocalTime() {
         return new LocalTime();
+    }
+
+    /**
+     * Create an instance of {@link DataPaquete }
+     * 
+     */
+    public DataPaquete createDataPaquete() {
+        return new DataPaquete();
     }
 
     /**
@@ -149,11 +232,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataValesCanje }
+     * Create an instance of {@link DataArtista }
      * 
      */
-    public DataValesCanje createDataValesCanje() {
-        return new DataValesCanje();
+    public DataArtista createDataArtista() {
+        return new DataArtista();
+    }
+
+    /**
+     * Create an instance of {@link ListaEspectaculo.Espectaculos.Entry }
+     * 
+     */
+    public ListaEspectaculo.Espectaculos.Entry createListaEspectaculoEspectaculosEntry() {
+        return new ListaEspectaculo.Espectaculos.Entry();
     }
 
     /**
@@ -165,21 +256,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link NoSeleccionoTres }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaqueteConMismoNombreException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://logica/", name = "noSeleccionoTres")
-    public JAXBElement<NoSeleccionoTres> createNoSeleccionoTres(NoSeleccionoTres value) {
-        return new JAXBElement<NoSeleccionoTres>(_NoSeleccionoTres_QNAME, NoSeleccionoTres.class, null, value);
+    @XmlElementDecl(namespace = "http://logica/", name = "PaqueteConMismoNombreException")
+    public JAXBElement<PaqueteConMismoNombreException> createPaqueteConMismoNombreException(PaqueteConMismoNombreException value) {
+        return new JAXBElement<PaqueteConMismoNombreException>(_PaqueteConMismoNombreException_QNAME, PaqueteConMismoNombreException.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FechaPosterior }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link UsuarioPaqueteComprado }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://logica/", name = "fechaPosterior")
-    public JAXBElement<FechaPosterior> createFechaPosterior(FechaPosterior value) {
-        return new JAXBElement<FechaPosterior>(_FechaPosterior_QNAME, FechaPosterior.class, null, value);
+    @XmlElementDecl(namespace = "http://logica/", name = "UsuarioPaqueteComprado")
+    public JAXBElement<UsuarioPaqueteComprado> createUsuarioPaqueteComprado(UsuarioPaqueteComprado value) {
+        return new JAXBElement<UsuarioPaqueteComprado>(_UsuarioPaqueteComprado_QNAME, UsuarioPaqueteComprado.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NoExistePaqueteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NoExistePaqueteException")
+    public JAXBElement<NoExistePaqueteException> createNoExistePaqueteException(NoExistePaqueteException value) {
+        return new JAXBElement<NoExistePaqueteException>(_NoExistePaqueteException_QNAME, NoExistePaqueteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NombreFuncionexisteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NombreFuncionexisteException")
+    public JAXBElement<NombreFuncionexisteException> createNombreFuncionexisteException(NombreFuncionexisteException value) {
+        return new JAXBElement<NombreFuncionexisteException>(_NombreFuncionexisteException_QNAME, NombreFuncionexisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NombreEspectaculoExisteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "NombreEspectaculoExisteException")
+    public JAXBElement<NombreEspectaculoExisteException> createNombreEspectaculoExisteException(NombreEspectaculoExisteException value) {
+        return new JAXBElement<NombreEspectaculoExisteException>(_NombreEspectaculoExisteException_QNAME, NombreEspectaculoExisteException.class, null, value);
     }
 
     /**

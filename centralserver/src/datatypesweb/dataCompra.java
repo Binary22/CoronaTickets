@@ -10,11 +10,11 @@ import logica.Compra;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class dataCompra {
-	private LocalDate fecha;
+	private String fecha;
 	private String paquete;
 	
 	public dataCompra(Compra comp) {
-		this.fecha = comp.getFecha();
+		this.fecha = comp.getFecha().toString();
 		this.paquete = comp.getPaquete().getNombre();
 	}
 	
@@ -22,11 +22,11 @@ public class dataCompra {
 		
 	}
 
-	public LocalDate getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

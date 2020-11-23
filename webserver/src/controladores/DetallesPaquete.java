@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import excepciones.NoExistePaqueteException;
+import logica.DataEspectaculo;
+import logica.DataPaquete;
 import logica.HandlerPaquetes;
 import logica.HandlerUsuarios;
+import logica.NoExistePaqueteException_Exception;
 import logica.Paquete;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
 
 /**
@@ -32,15 +40,24 @@ public class DetallesPaquete extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
 		String nomp = req.getParameter("name");
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
+		DataPaquete p;
 		try {
-			Paquete p = hp.getPaquete(nomp);
+			p = port.getPaquete(nomp);
 			objSesion.setAttribute("paquete", p);
-		} catch (NoExistePaqueteException e) {
+			List<DataEspectaculo> especs = new ArrayList<DataEspectaculo>();
+			for (String esp : p.getEspectaculos()) {
+				especs.add(port.getEspectaculo(esp));
+			}
+			objSesion.setAttribute("espectaculos", especs);
+		} catch (NoExistePaqueteException_Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			objSesion.setAttribute("error", e.getMessage());
 		}
-	
+		
+		
 		req.getRequestDispatcher("/WEB-INF/paquetes/detallesPaquete.jsp").forward(req, resp);
 
 	}

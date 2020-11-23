@@ -30,11 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IntArray }
+     * Create an instance of {@link StringArray }
      * 
      */
-    public IntArray createIntArray() {
-        return new IntArray();
+    public StringArray createStringArray() {
+        return new StringArray();
     }
 
 }

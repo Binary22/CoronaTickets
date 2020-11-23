@@ -13,13 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import excepciones.NoExistePaqueteException;
+import logica.DataPaquete;
 import logica.Fabrica;
 import logica.HandlerPaquetes;
 import logica.HandlerUsuarios;
 import logica.IConsulta;
 import logica.IEspectaculo;
 import logica.IPaquete;
+import logica.ListaPaquete;
 import logica.Paquete;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
 
 /**
@@ -38,18 +42,15 @@ public class Paquetes extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
-		List<String> paquetes = hp.getNombresPaquete();
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();		
+		ListaPaquete paquetes = port.listarPaquetes();
 		
-		Map<String, Paquete> mapPaq = new HashMap<String, Paquete>();
 		
-		for(String p : paquetes ) {
-			try {
-			Paquete paq = hp.getPaquete(p);
-			mapPaq.put(p, paq);
-			} catch (NoExistePaqueteException e) {
-				e.printStackTrace();
-			}
+		Map<String, DataPaquete> mapPaq = new HashMap<String, DataPaquete>();
+		
+		for(DataPaquete p : paquetes.getPaquetes() ) {
+			mapPaq.put(p.getNombre(), p);
 		}
 		
 		

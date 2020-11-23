@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataEspectaculo complex type.
+ * <p>Java class for dataEspectaculo complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataEspectaculo">
@@ -24,11 +24,12 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="duracion" type="{http://logica/}localTime" minOccurs="0"/>
- *         &lt;element name="fechaReg" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="maxEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="minEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="minutos" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="plataforma" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="setFunciones">
@@ -75,6 +76,7 @@ import javax.xml.bind.annotation.XmlType;
     "imagen",
     "maxEspectadores",
     "minEspectadores",
+    "minutos",
     "nombre",
     "plataforma",
     "setFunciones",
@@ -89,11 +91,12 @@ public class DataEspectaculo {
     protected List<String> categorias;
     protected float costo;
     protected String descripcion;
-    protected LocalTime duracion;
-    protected LocalDate fechaReg;
+    protected String duracion;
+    protected String fechaReg;
     protected String imagen;
     protected int maxEspectadores;
     protected int minEspectadores;
+    protected String minutos;
     protected String nombre;
     protected String plataforma;
     @XmlElement(required = true)
@@ -102,7 +105,7 @@ public class DataEspectaculo {
     protected boolean yaFueValuado;
 
     /**
-     * Obtiene el valor de la propiedad aceptado.
+     * Gets the value of the aceptado property.
      * 
      */
     public boolean isAceptado() {
@@ -110,7 +113,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad aceptado.
+     * Sets the value of the aceptado property.
      * 
      */
     public void setAceptado(boolean value) {
@@ -118,7 +121,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad artista.
+     * Gets the value of the artista property.
      * 
      * @return
      *     possible object is
@@ -130,7 +133,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad artista.
+     * Sets the value of the artista property.
      * 
      * @param value
      *     allowed object is
@@ -171,7 +174,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad costo.
+     * Gets the value of the costo property.
      * 
      */
     public float getCosto() {
@@ -179,7 +182,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad costo.
+     * Sets the value of the costo property.
      * 
      */
     public void setCosto(float value) {
@@ -187,7 +190,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad descripcion.
+     * Gets the value of the descripcion property.
      * 
      * @return
      *     possible object is
@@ -199,7 +202,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad descripcion.
+     * Sets the value of the descripcion property.
      * 
      * @param value
      *     allowed object is
@@ -211,55 +214,55 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad duracion.
+     * Gets the value of the duracion property.
      * 
      * @return
      *     possible object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public LocalTime getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
     /**
-     * Define el valor de la propiedad duracion.
+     * Sets the value of the duracion property.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public void setDuracion(LocalTime value) {
+    public void setDuracion(String value) {
         this.duracion = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaReg.
+     * Gets the value of the fechaReg property.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaReg() {
+    public String getFechaReg() {
         return fechaReg;
     }
 
     /**
-     * Define el valor de la propiedad fechaReg.
+     * Sets the value of the fechaReg property.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaReg(LocalDate value) {
+    public void setFechaReg(String value) {
         this.fechaReg = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
+     * Gets the value of the imagen property.
      * 
      * @return
      *     possible object is
@@ -271,7 +274,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad imagen.
+     * Sets the value of the imagen property.
      * 
      * @param value
      *     allowed object is
@@ -283,7 +286,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad maxEspectadores.
+     * Gets the value of the maxEspectadores property.
      * 
      */
     public int getMaxEspectadores() {
@@ -291,7 +294,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad maxEspectadores.
+     * Sets the value of the maxEspectadores property.
      * 
      */
     public void setMaxEspectadores(int value) {
@@ -299,7 +302,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad minEspectadores.
+     * Gets the value of the minEspectadores property.
      * 
      */
     public int getMinEspectadores() {
@@ -307,7 +310,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad minEspectadores.
+     * Sets the value of the minEspectadores property.
      * 
      */
     public void setMinEspectadores(int value) {
@@ -315,7 +318,31 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the minutos property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMinutos() {
+        return minutos;
+    }
+
+    /**
+     * Sets the value of the minutos property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMinutos(String value) {
+        this.minutos = value;
+    }
+
+    /**
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -327,7 +354,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -339,7 +366,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad plataforma.
+     * Gets the value of the plataforma property.
      * 
      * @return
      *     possible object is
@@ -351,7 +378,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad plataforma.
+     * Sets the value of the plataforma property.
      * 
      * @param value
      *     allowed object is
@@ -363,7 +390,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad setFunciones.
+     * Gets the value of the setFunciones property.
      * 
      * @return
      *     possible object is
@@ -375,7 +402,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad setFunciones.
+     * Sets the value of the setFunciones property.
      * 
      * @param value
      *     allowed object is
@@ -387,7 +414,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad url.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
@@ -399,7 +426,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad url.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is
@@ -411,7 +438,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad yaFueValuado.
+     * Gets the value of the yaFueValuado property.
      * 
      */
     public boolean isYaFueValuado() {
@@ -419,7 +446,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad yaFueValuado.
+     * Sets the value of the yaFueValuado property.
      * 
      */
     public void setYaFueValuado(boolean value) {
@@ -428,9 +455,9 @@ public class DataEspectaculo {
 
 
     /**
-     * <p>Clase Java para anonymous complex type.
+     * <p>Java class for anonymous complex type.
      * 
-     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+     * <p>The following schema fragment specifies the expected content contained within this class.
      * 
      * <pre>
      * &lt;complexType>
@@ -496,9 +523,9 @@ public class DataEspectaculo {
 
 
         /**
-         * <p>Clase Java para anonymous complex type.
+         * <p>Java class for anonymous complex type.
          * 
-         * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+         * <p>The following schema fragment specifies the expected content contained within this class.
          * 
          * <pre>
          * &lt;complexType>
@@ -526,7 +553,7 @@ public class DataEspectaculo {
             protected DataFuncion value;
 
             /**
-             * Obtiene el valor de la propiedad key.
+             * Gets the value of the key property.
              * 
              * @return
              *     possible object is
@@ -538,7 +565,7 @@ public class DataEspectaculo {
             }
 
             /**
-             * Define el valor de la propiedad key.
+             * Sets the value of the key property.
              * 
              * @param value
              *     allowed object is
@@ -550,7 +577,7 @@ public class DataEspectaculo {
             }
 
             /**
-             * Obtiene el valor de la propiedad value.
+             * Gets the value of the value property.
              * 
              * @return
              *     possible object is
@@ -562,7 +589,7 @@ public class DataEspectaculo {
             }
 
             /**
-             * Define el valor de la propiedad value.
+             * Sets the value of the value property.
              * 
              * @param value
              *     allowed object is

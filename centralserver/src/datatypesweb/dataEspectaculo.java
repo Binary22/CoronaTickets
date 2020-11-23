@@ -19,8 +19,9 @@ public class dataEspectaculo {
 	private int minEspectadores;
 	private int maxEspectadores;
 	private float costo;
-	private LocalTime duracion;
-	private LocalDate fechaReg;
+	private String duracion;
+	private String minutos;
+	private String fechaReg;
 	private String plataforma;
 	private String artista;
 	private Map<String, dataFuncion> setFunciones;
@@ -36,8 +37,8 @@ public class dataEspectaculo {
 		this.minEspectadores = espect.getMinEspectadores();
 		this.maxEspectadores = espect.getMaxEspectadores();
 		this.costo = espect.getCosto();
-		this.duracion = espect.getDuracion();
-		this.fechaReg = espect.getFechaReg();
+		this.duracion = espect.getDuracion().toString();
+		this.fechaReg = espect.getFechaReg().toString();
 		this.plataforma = espect.getPlataforma().getNombre();
 		this.artista = espect.getArtista().getNickname();
 		
@@ -103,20 +104,24 @@ public class dataEspectaculo {
 		this.costo = costo;
 	}
 
-	public LocalTime getDuracion() {
+	public String getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(LocalTime duracion) {
+	public void setDuracion(String duracion) {
 		this.duracion = duracion;
 	}
 
-	public LocalDate getFechaReg() {
+	public String getFechaReg() {
 		return fechaReg;
 	}
 
-	public void setFechaReg(LocalDate fechaReg) {
+	public void setFechaReg(String fechaReg) {
 		this.fechaReg = fechaReg;
+	}
+	
+	public void setFechaReg(LocalDate fechaReg) {
+		this.fechaReg = fechaReg.toString();
 	}
 
 	public String getPlataforma() {
@@ -179,5 +184,15 @@ public class dataEspectaculo {
 	
 	public dataEspectaculo() {
 		
+	}
+
+
+	public String getMinutos() {
+		return minutos;
+	}
+
+
+	public void setMinutos(String minutos) {
+		this.minutos = minutos;
 	}
 }

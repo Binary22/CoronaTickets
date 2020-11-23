@@ -5,26 +5,22 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.NombreFuncionexisteException;
-import logica.Espectaculo;
-import logica.Fabrica;
-import logica.HandlerEspectaculos;
-import logica.HandlerUsuarios;
-import logica.IEspectaculo;
-import logica.IUsuario;
+import datatypesweb.dataListEspOrg;
+import logica.DataListArtInvi;
+import logica.DataListEspOrg;
+import logica.NombreFuncionexisteException_Exception;
+import logica.Publicador;
+import logica.PublicadorService;
 
 /**
  * Servlet implementation class Altafuncion
@@ -50,34 +46,22 @@ public class Altafuncion extends HttpServlet {
 		
 		HttpSession objSesion = req.getSession();
 		objSesion.setAttribute("form", form);
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
 		if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
 			objSesion.setAttribute("escero",false);
 			objSesion.setAttribute("nombreexiste",false);
 			objSesion.setAttribute("fechaInvalida",false);
 			String nickname = (String)objSesion.getAttribute("usuario_logueado");
-			HandlerUsuarios husers = HandlerUsuarios.getInstancia();
-			List<String> artistas = husers.getNombresArtistas();
-			List<String> artistasinvi = new ArrayList<String>();
-			for (int i=0; i< artistas.size(); i++) {
-				if(!artistas.get(i).equals(nickname)){
-					artistasinvi.add(artistas.get(i));
-				}
-			}	
-			objSesion.setAttribute("artistas", artistasinvi);
 			
-			HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-			Map<String,Espectaculo> espectaculos = hesp.getEspectaculos();
-			Map<String,Espectaculo> espectaculosorg = new HashMap<String,Espectaculo>();
-			for (String key : espectaculos.keySet()) {
-				if(espectaculos.get(key).getArtista().getNickname().equals(nickname)){
-					espectaculosorg.put(key,espectaculos.get(key));
-				}		
-			}
-			List<String> espectaculosorgreal = new ArrayList<String>();
-			for(String key2 : espectaculosorg.keySet()) {
-				espectaculosorgreal.add(key2);
-			}
-			objSesion.setAttribute("espectaculos", espectaculosorgreal);
+			DataListArtInvi artistasInvi = port.getArtistas(nickname);
+			List<String> artistasInviReal = artistasInvi.getArtistasInvi();
+			objSesion.setAttribute("artistas", artistasInviReal);
+			
+			DataListEspOrg espectaculosOrg = port.getEspectaculos(nickname);
+			List<String> espectaculosOrgReal = espectaculosOrg.getEspectaculosOrg();
+			objSesion.setAttribute("espectaculos", espectaculosOrgReal);
 			
 			req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
 		}
@@ -88,6 +72,9 @@ public class Altafuncion extends HttpServlet {
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
 		req.setCharacterEncoding("UTF-8");
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String horaInicio = req.getParameter("hora");
@@ -108,30 +95,26 @@ public class Altafuncion extends HttpServlet {
         LocalTime duracion = LocalTime.parse(horaInicio,dateTimeFormatter);
         LocalTime cero = LocalTime.of(00,00);
         
-        if( ( !duracion.equals(cero) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isAfter(LocalDate.now()) ) ) ) {
-	        Fabrica fabrica = Fabrica.getInstance();
-	        IEspectaculo ctrlesp = fabrica.getIEspectaculo();
-	        ArrayList<String> stringList = new ArrayList<String>();
-	        if(invitados != null) {
-		        for (int i=0; i< invitados.length; i++) {
-		        	stringList.add(invitados[i]);
-		        }
+        DataListArtInvi invis = new DataListArtInvi();
+        if(invitados != null) {
+	        for (int i=0; i< invitados.length; i++) {
+	        	invis.getArtistasInvi().add(invitados[i]);
 	        }
-	        try {
-				ctrlesp.elegirEspectaculo(esp);
-			    ctrlesp.altaFuncion(nombre, date, duracion, stringList, LocalDate.now());
-				ctrlesp.confirmarAltaFuncion();
-			} catch (NombreFuncionexisteException e) {
-				// TODO Auto-generated catch block
-				objSesion.setAttribute("nombreexiste",true);
-				objSesion.setAttribute("escero",false);
-				objSesion.setAttribute("fechaInvalida",false);
-				objSesion.setAttribute("form", form);
-				req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
-				entro = true;
-			}
-	        if(!entro)	
-	        	resp.sendRedirect("home");
+        }        
+        if( ( !duracion.equals(cero) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isAfter(LocalDate.now()) ) ) ) {
+				try {
+					port.altaFuncion(esp, nombre, fecha, horaInicio, invis);
+				} catch (NombreFuncionexisteException_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("nombreexiste",true);
+					objSesion.setAttribute("escero",false);
+					objSesion.setAttribute("fechaInvalida",false);
+					objSesion.setAttribute("form", form);
+					req.getRequestDispatcher("/WEB-INF/funciones/altafuncion.jsp").forward(req, resp);
+					entro = true;
+				}
+				if(!entro)	
+					resp.sendRedirect("home");
         }
         else {
         	if(duracion.equals(cero)) {
