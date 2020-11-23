@@ -3,6 +3,7 @@ package controladores;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +38,16 @@ public class CrearPaquete extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	HttpSession objSesion = req.getSession();
+    	HashMap<String, String> form = new HashMap<String, String>();
+		form.put("nombre", "");
+		form.put("fechaIni", "");
+		form.put("horaFin", "");
+		form.put("descripcion", "");
+		form.put("descuento", "");
+		form.put("imagen", "");
+		
+		HttpSession objSesion = req.getSession();
+		objSesion.setAttribute("form", form);
     	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") && ((boolean) objSesion.getAttribute("esArtista"))) {
     		objSesion.setAttribute("fechaInvalida",false);
 	    	objSesion.setAttribute("nombreexiste",false);
@@ -61,6 +71,14 @@ public class CrearPaquete extends HttpServlet {
 		String imagen = req.getParameter("imagen");
 		boolean entro = false;
 		
+		HashMap<String, String> form = new HashMap<String, String>();
+		form.put("nombre", nombre);
+		form.put("fechaIni", fechaini);
+		form.put("fechaFin", fechafin);
+		form.put("descripcion", desc);
+		form.put("descuento", descuento);
+		form.put("imagen", imagen);
+		
 		int discount = Integer.parseInt(descuento); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateini = LocalDate.parse(fechaini, formatter);
@@ -71,6 +89,8 @@ public class CrearPaquete extends HttpServlet {
 					port.crearPaquete(nombre,desc,fechaini,fechafin,discount,imagen);
 				} catch (PaqueteConMismoNombreException_Exception e) {
 					objSesion.setAttribute("nombreexiste",true);
+					objSesion.setAttribute("fechaInvalida",false);
+					objSesion.setAttribute("form", form);
 					entro = true;
 					req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);	
 				}
@@ -79,6 +99,8 @@ public class CrearPaquete extends HttpServlet {
 		}
 		else {
 			objSesion.setAttribute("fechaInvalida",true);
+			objSesion.setAttribute("nombreexiste",false);
+			objSesion.setAttribute("form", form);
 			req.getRequestDispatcher("/WEB-INF/paquetes/crearPaquete.jsp").forward(req, resp);
 		}
 		

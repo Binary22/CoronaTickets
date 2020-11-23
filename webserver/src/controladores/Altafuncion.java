@@ -121,7 +121,9 @@ public class Altafuncion extends HttpServlet {
         		objSesion.setAttribute("escero",true);
         		objSesion.setAttribute("fechaInvalida",false);
         		objSesion.setAttribute("nombreexiste",false);
+        		objSesion.setAttribute("form", form);
         	}else {
+        		objSesion.setAttribute("form", form);
         		objSesion.setAttribute("fechaInvalida",true);
         		objSesion.setAttribute("escero",false);
         		objSesion.setAttribute("nombreexiste",false);
