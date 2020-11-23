@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List, java.util.ArrayList" %>
-<%@page import="logica.DataUsuario"%>
+<%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -90,22 +90,23 @@
                             </div>
                         </div>
                         <br>
-                        	<%-- <% if (!u.getRegistros().isEmpty()) { %>
+                        	 <% if (!u.getRegistros().isEmpty()) { %>
 	                        
 		                        <h4>Funciones a las que se registro: </h4>
-		                        <% List<Registro> l = u.getRegistros();
-		                        for (Registro r : l) {  %>
+		                        <% List<DataRegistro> l = u.getRegistros();
+		                        Map<String, DataEspectaculo> mapaespec = (Map<String, DataEspectaculo>) session.getAttribute("mapaespec");
+		                        for (DataRegistro r : l) {  %>
 		                       
 			                        <div class="card mb-3" style="max-width: 200em;">
 									  <div class="row no-gutters">
 									    <div class="col-md-5">
-									      <img src="<%=r.getFuncion().getEspectaculo().getImagen() %>" class="card-img" style="object-fit: cover; height:10rem;">
+									      <img src="<%=mapaespec.get(r.getEspectFuncion()).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 									    </div>
 									    <div class="col-md-7">
 									      <div class="card-body">
-									        <h5 class="card-title"><%=r.getFuncion().getNombre()%></h5>
-									        <p><%=r.getFuncion().getEspectaculo().getNombre()%></p>
-									        <a href="detallesEspectaculo?name=<%=r.getFuncion().getEspectaculo().getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
+									        <h5 class="card-title"><%=r.getFuncion()%></h5>
+									        <p><%=mapaespec.get(r.getEspectFuncion()).getNombre()%></p>
+									        <a href="detallesEspectaculo?name=<%=mapaespec.get(r.getEspectFuncion()).getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 									      </div>
 									    </div>
 									  </div>
@@ -113,7 +114,7 @@
 								<% } %>
 							<% } %>
 						
-						<% if (!u.getCompraPaquete().isEmpty() && u.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { %>
+				<%-- 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { %>
                         
                         <h4>Paquetes comprados</h4>
                         
