@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import excepciones.NoExistePaqueteException;
 import logica.HandlerPaquetes;
 import logica.Paquete;
+import logica.Artista;
+import logica.Espectaculo;
 import logica.Registro;
 import logica.Usuario;
 import logica.Vale;
@@ -30,6 +32,13 @@ public class dataUsuario {
 	private String imagen;
 	private List<String> seguidos;
 	
+	private boolean esArtista;
+	private String descripcion;
+	private String biografia;
+	private String website;
+	
+	private List<String> espectaculos;
+	
 	public dataUsuario(Usuario user) {
 		this.setApellido(user.getApellido());
     	this.setEmail(user.getEmail());
@@ -38,6 +47,21 @@ public class dataUsuario {
     	this.setNickname(user.getNickname());
     	this.setNombre(user.getNombre());
     	this.setPassword(user.getPassword());
+    	
+    	if (user.esArtista()) {
+    		this.esArtista = true;
+    		this.setDescripcion(((Artista) user).getDescripcion());
+    		this.setBiografia(((Artista) user).getBiografia());
+    		this.setWebsite(((Artista) user).getWebsite());
+    		Artista artista = (Artista) user;
+    		this.espectaculos = new ArrayList<String>();
+    		for (Espectaculo e : artista.getEspectaculos()) {
+    			this.espectaculos.add(e.getNombre());
+    		}
+    	} else {
+    		this.esArtista = false;
+    	}
+    	
     	this.compraPaquete = new ArrayList<dataCompra>();
     	for(int i = 0; i < user.getCompraPaquete().size(); i++) {
     		this.compraPaquete.add(new dataCompra(user.getCompraPaquete().get(i)));
@@ -61,9 +85,48 @@ public class dataUsuario {
     	}
     	
 		
+	}	
+	
+	public boolean esArtista() {
+		return esArtista;
 	}
-	
-	
+
+	public void setEsArtista(boolean esArtista) {
+		this.esArtista = esArtista;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getBiografia() {
+		return biografia;
+	}
+
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public List<String> getEspectaculos() {
+		return espectaculos;
+	}
+
+	public void setEspectaculos(List<String> espectaculos) {
+		this.espectaculos = espectaculos;
+	}
+
 	public String getNickname() {
 		return nickname;
 	}

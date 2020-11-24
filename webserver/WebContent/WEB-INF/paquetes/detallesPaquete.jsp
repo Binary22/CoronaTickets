@@ -25,7 +25,7 @@
                             <h5 class="card-title"></slot>Descuento:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=p.getDescuento()%>%</h6>
                             <h5 class="card-title"></slot>Fecha de alta:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=p.getFechaAlta().toString()%></h6>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=p.getFechaAlta()%></h6>
                             <ul class="list-group list-group-horizontal">
                             <%session.setAttribute("paqueteComprar",p.getNombre()); %>
                                 <a href="comprapaquete" class="list-group-item card-link active flex-fill">Comprar</a>

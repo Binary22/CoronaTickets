@@ -1,8 +1,13 @@
 
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -29,88 +34,58 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dataArtista", propOrder = {
-    "descripcion",
-    "biografia",
-    "website"
+    "rest"
 })
 public class DataArtista
     extends DataUsuario
 {
 
-    protected String descripcion;
-    protected String biografia;
-    protected String website;
+    @XmlElementRefs({
+        @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false)
+    })
+    protected List<JAXBElement<String>> rest;
 
     /**
-     * Obtiene el valor de la propiedad descripcion.
+     * Gets the rest of the content model. 
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    /**
-     * Define el valor de la propiedad descripcion.
+     * <p>
+     * You are getting this "catch-all" property because of the following reason: 
+     * The field name "Descripcion" is used by two different parts of a schema. See: 
+     * line 232 of http://localhost:9129/publicador?xsd=1
+     * line 154 of http://localhost:9129/publicador?xsd=1
+     * <p>
+     * To get rid of this property, apply a property customization to one 
+     * of both of the following declarations to change their names: 
+     * Gets the value of the rest property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescripcion(String value) {
-        this.descripcion = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad biografia.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the rest property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBiografia() {
-        return biografia;
-    }
-
-    /**
-     * Define el valor de la propiedad biografia.
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getRest().add(newItem);
+     * </pre>
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBiografia(String value) {
-        this.biografia = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad website.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWebsite() {
-        return website;
-    }
-
-    /**
-     * Define el valor de la propiedad website.
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * 
      */
-    public void setWebsite(String value) {
-        this.website = value;
+    public List<JAXBElement<String>> getRest() {
+        if (rest == null) {
+            rest = new ArrayList<JAXBElement<String>>();
+        }
+        return this.rest;
     }
 
 }

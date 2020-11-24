@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.Set;
 
 import javax.jws.WebMethod;
@@ -22,7 +24,10 @@ import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
 import datatypesweb.ListaPaquete;
+import datatypesweb.ListaPaquete;
+import datatypesweb.ListaUsuario;
 import datatypesweb.dataEspectaculo;
+import datatypesweb.dataPaquete;
 import datatypesweb.dataPaquete;
 import datatypesweb.dataArtista;
 import datatypesweb.dataCompra;
@@ -143,6 +148,18 @@ public class Publicador {
     		resLista.add(new dataPaquete(paq.getValue()));
     	}
     	res.setPaquetes(resLista);
+    	
+    	// esta turrada la hice porque implementamos la clase dos veces pero usamos metodos diferentes en diferentes lugares, y asi funciona todo 
+    	HandlerPaquetes hpaquetes = HandlerPaquetes.getInstance();
+    	Map<String, Paquete> mapapaquetes =  hpaquetes.getPaquetes();
+
+    	List<dataPaquete> result = new ArrayList<dataPaquete>();
+    	for(Paquete entry : mapapaquetes.values()) {
+    		result.add(new dataPaquete(entry));
+    	}
+    	
+		res.setPaquete(result);
+        	
     	return res;
     }
     
@@ -457,15 +474,15 @@ public class Publicador {
     }
     
     @WebMethod
-    public void agregarCompra(dataUsuario user, dataCompra compra) throws NoExistePaqueteException, UsuarioPaqueteComprado {
+    public void agregarCompra(String user, String paqComprado, String fechaActual) throws NoExistePaqueteException, UsuarioPaqueteComprado {
     	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
     	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
     	
-    	Paquete paqueteReal = hpaq.getPaquete(compra.getPaquete());
-    	Usuario userReal = husers.getUsuario(user.getNombre());
+    	Paquete paqueteReal = hpaq.getPaquete(paqComprado);
+    	Usuario userReal = husers.getUsuario(user);
     	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate fechaCompra = LocalDate.parse(compra.getFecha(), formatter);
+		LocalDate fechaCompra = LocalDate.parse(fechaActual, formatter);
 		
     	Compra paqueteComprado = new Compra(fechaCompra,paqueteReal);
     	userReal.agregarcompra(paqueteComprado);
@@ -521,4 +538,25 @@ public class Publicador {
     	arr = IE.listarCategorias().toArray(arr);
     	return arr;
     }
+    
+    @WebMethod
+    public ListaUsuario listarUsuarios() {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Map<String, Usuario> mapausuarios =  husuarios.getUsuarios();
+
+
+    	List res = new ArrayList<dataUsuario>();
+    	for(Usuario entry : mapausuarios.values()) {
+    		if (entry.esArtista()) {
+    			res.add(new dataUsuario(entry));
+    		} else {
+    			res.add(new dataUsuario(entry));
+    		}
+    	}
+    	ListaUsuario lista = new ListaUsuario();
+		lista.setUsuarios(res);
+    	return lista;
+    }
+    
+    
 }

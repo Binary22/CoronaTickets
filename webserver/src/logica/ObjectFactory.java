@@ -35,6 +35,9 @@ public class ObjectFactory {
     private final static QName _NombreEspectaculoExisteException_QNAME = new QName("http://logica/", "NombreEspectaculoExisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
+    private final static QName _DataArtistaDescripcion_QNAME = new QName("", "descripcion");
+    private final static QName _DataArtistaWebsite_QNAME = new QName("", "website");
+    private final static QName _DataArtistaBiografia_QNAME = new QName("", "biografia");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: logica
@@ -164,11 +167,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataRegistro }
+     * Create an instance of {@link DataListPaquetes }
      * 
      */
-    public DataRegistro createDataRegistro() {
-        return new DataRegistro();
+    public DataListPaquetes createDataListPaquetes() {
+        return new DataListPaquetes();
     }
 
     /**
@@ -177,6 +180,14 @@ public class ObjectFactory {
      */
     public DataListEspOrg createDataListEspOrg() {
         return new DataListEspOrg();
+    }
+
+    /**
+     * Create an instance of {@link DataRegistro }
+     * 
+     */
+    public DataRegistro createDataRegistro() {
+        return new DataRegistro();
     }
 
     /**
@@ -204,7 +215,15 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListPlataformas }
+     * Create an instance of {@link DataFuncion }
+     * 
+     */
+    public DataFuncion createDataFuncion() {
+        return new DataFuncion();
+    }
+
+    /**
+     * Create an instance of {@link DataUsuario }
      * 
      */
     public DataListPlataformas createDataListPlataformas() {
@@ -220,15 +239,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListPaquetes }
-     * 
-     */
-    public DataListPaquetes createDataListPaquetes() {
-        return new DataListPaquetes();
-    }
-
-    /**
-     * Create an instance of {@link ListaPaquete }
+     * Create an instance of {@link DataListPlataformas }
      * 
      */
     public ListaPaquete createListaPaquete() {
@@ -268,7 +279,15 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataValesCanje }
+     * Create an instance of {@link ListaUsuario }
+     * 
+     */
+    public ListaUsuario createListaUsuario() {
+        return new ListaUsuario();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
      * 
      */
     public DataValesCanje createDataValesCanje() {
@@ -396,6 +415,33 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://logica/", name = "UsuarioConMismoNickException")
     public JAXBElement<UsuarioConMismoNickException> createUsuarioConMismoNickException(UsuarioConMismoNickException value) {
         return new JAXBElement<UsuarioConMismoNickException>(_UsuarioConMismoNickException_QNAME, UsuarioConMismoNickException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "descripcion", scope = DataArtista.class)
+    public JAXBElement<String> createDataArtistaDescripcion(String value) {
+        return new JAXBElement<String>(_DataArtistaDescripcion_QNAME, String.class, DataArtista.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "website", scope = DataArtista.class)
+    public JAXBElement<String> createDataArtistaWebsite(String value) {
+        return new JAXBElement<String>(_DataArtistaWebsite_QNAME, String.class, DataArtista.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "biografia", scope = DataArtista.class)
+    public JAXBElement<String> createDataArtistaBiografia(String value) {
+        return new JAXBElement<String>(_DataArtistaBiografia_QNAME, String.class, DataArtista.class, value);
     }
 
 }

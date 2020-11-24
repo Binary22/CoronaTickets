@@ -82,15 +82,10 @@ public class Comprapaquete extends HttpServlet {
 	    
     	String nickname = (String) objSesion.getAttribute("usuario_logueado");
     	String nombrepaqcomp = (String) req.getParameter("paquetes");
-    	DataPaquete paqcomp;
 			try {
-				paqcomp = port.getPaquete(nombrepaqcomp);
-				DataUsuario user = port.getUsuario(nickname);
-		    	DataCompra comprado = new DataCompra();
-		    	comprado.setFecha(LocalDate.now().toString());
-		    	comprado.setPaquete(paqcomp.getNombre());
+		    	String fechaActual = LocalDate.now().toString();
 					try {
-						port.agregarCompra(user,comprado);
+						port.agregarCompra(nickname,nombrepaqcomp,fechaActual);
 					} catch (UsuarioPaqueteComprado_Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

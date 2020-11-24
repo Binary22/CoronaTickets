@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fechaI" type="{http://logica/}localDate" minOccurs="0"/>
- *         &lt;element name="fechaF" type="{http://logica/}localDate" minOccurs="0"/>
- *         &lt;element name="fechaAlta" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fechaI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaAlta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="descuento" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="espectaculos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
@@ -49,9 +49,9 @@ import javax.xml.bind.annotation.XmlType;
 public class DataPaquete {
 
     protected String nombre;
-    protected LocalDate fechaI;
-    protected LocalDate fechaF;
-    protected LocalDate fechaAlta;
+    protected String fechaI;
+    protected String fechaF;
+    protected String fechaAlta;
     protected int descuento;
     protected String descripcion;
     @XmlElement(nillable = true)
@@ -87,10 +87,10 @@ public class DataPaquete {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaI() {
+    public String getFechaI() {
         return fechaI;
     }
 
@@ -99,10 +99,10 @@ public class DataPaquete {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaI(LocalDate value) {
+    public void setFechaI(String value) {
         this.fechaI = value;
     }
 
@@ -111,10 +111,10 @@ public class DataPaquete {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaF() {
+    public String getFechaF() {
         return fechaF;
     }
 
@@ -123,10 +123,10 @@ public class DataPaquete {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaF(LocalDate value) {
+    public void setFechaF(String value) {
         this.fechaF = value;
     }
 
@@ -135,10 +135,10 @@ public class DataPaquete {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
@@ -147,10 +147,10 @@ public class DataPaquete {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaAlta(LocalDate value) {
+    public void setFechaAlta(String value) {
         this.fechaAlta = value;
     }
 

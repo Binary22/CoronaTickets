@@ -222,10 +222,11 @@ public class Usuario {
 		this.vales = new ArrayList<Vale>();
 		this.registros = new ArrayList<Registro>();
 		this.password = password;
-		if (imagen == "" || imagen == null) {
-			imagen = "resources/media/usuarios/userdefault.jpg";
+		if (imagen == "" || imagen == null || imagen.isEmpty()) {
+			this.imagen = "resources/media/usuarios/userdefault.jpg";
+		} else {
+			this.imagen = imagen;
 		}
-		this.imagen = imagen;
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
 		
@@ -280,5 +281,18 @@ public class Usuario {
 			throw new UsuarioPaqueteComprado("La compra " + comprado.getPaquete().getNombre() + " ya fue realizada"); 
 	}
 	
+	// esta turbiada la estoy haciendo porque no funcionaba otra cosa
+	// no me maten -Att Acqua
+	public String getDescripcion() {
+		return "estonoesunartista ney";
+	}
+
+	public String getBiografia() {
+		return "estonoesunartista ney";
+	}
+	
+	public String getWebsite() {
+		return "estonoesunartista ney";
+	}
 
 }
