@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="logica.Artista, logica.Usuario, logica.Espectaculo" %>
-    <%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map, logica.DataPaquete, logica.DataCompra"%>
+    <%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map,java.util.List,java.util.ArrayList,  logica.DataPaquete, logica.DataCompra"%>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -95,73 +95,111 @@
                             </div>
                         </div>
                         <br>
-                        <%-- 
-                        <% if (a.tieneEspectaculosAceptados()) {%>
+                                   
+                        
+                        <% 
+                        Map<String, DataEspectaculo> mapaespec = (Map<String, DataEspectaculo>) session.getAttribute("mapaespec");
+                        List<String> especsart = a.getEspectaculos();
+                        
+                        boolean res = false;
+                        List<String> espectaculosAceptados = new ArrayList<String>();
+                        for (String s : especsart) {
+                        	if (mapaespec.get(s).isAceptado()) {
+                        		res = true;
+                        		espectaculosAceptados.add(s);
+                        	}	
+                        }
+                        
+                        if (res) {%>
                         
                         <h4>Espectáculos organizados</h4>
                         
-	                        <% for (Espectaculo e : a.espectaculosAceptados()) {  %>
+	                        <% for (String e : espectaculosAceptados) {  %>
 	                        
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
-								        <h5 class="card-title"><%=e.getNombre()%></h5>
-								        <p><%=e.getDescripcion()%></p> 
-								        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-success card-text">Ver espectaculo</a>
+								        <h5 class="card-title"><%=e%></h5>
+								        <p><%=mapaespec.get(e).getDescripcion()%></p> 
+								        <a href="detallesEspectaculo?name=<%=e%>" class="btn btn-success card-text">Ver espectaculo</a>
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							<% } %>
-						<% } %>					
-                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && a.tieneEspectaculosIngresadosSinAceptar()) {%>
+						<% } 
+						
+                        res = false;
+                        List<String> espectaculosSinAceptar = new ArrayList<String>();
+                        for (String s : especsart) {
+                        	if (!mapaespec.get(s).isYaFueValuado()) {
+                        		res = true;
+                        		espectaculosSinAceptar.add(s);
+                        	}	
+                        }
+						
+						
+						%>					
+                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && res) {%>
                         
                         <br>
                         <h4>Espectáculos ingresados</h4>
-                        <% for (Espectaculo e : a.espectaculosIngresadosSinAceptar()) {  %>
+                        <% for (String e : espectaculosSinAceptar) {  %>
 	                        
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
-								        <h5 class="card-title"><%=e.getNombre()%></h5>
-								        <p><%=e.getDescripcion()%></p> 
-								        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
+								        <h5 class="card-title"><%=e%></h5>
+								        <p><%=mapaespec.get(e).getDescripcion()%></p> 
+								        <a href="detallesEspectaculo?name=<%=e%>" class="btn btn-primary card-text">Ver espectaculo</a>
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							<% } %>
-						<% } %>					
-                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && a.tieneEspectaculosRechazados()){%>
+						<% }
+                        
+                        res = false;
+                        List<String> espectaculosRechazados = new ArrayList<String>();
+                        for (String s : especsart) {
+                        	if (mapaespec.get(s).isYaFueValuado() && !(mapaespec.get(s).isAceptado())) {
+                        		res = true;
+                        		espectaculosRechazados.add(s);
+                        	}	
+                        }
+                        
+                        
+                        %>					
+                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && res){%>
                         
                         <br>
                         <h4>Espectáculos rechazados</h4>
-                        <% for (Espectaculo e : a.espectaculosRechazados()) {  %>
+                        <% for (String e : espectaculosRechazados) {  %>
 	                        
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="<%=e.getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
-								        <h5 class="card-title"><%=e.getNombre()%></h5>
-								        <p><%=e.getDescripcion()%></p> 
-								        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-danger card-text">Ver espectaculo</a>
+								        <h5 class="card-title"><%=e%></h5>
+								        <p><%=mapaespec.get(e).getDescripcion()%></p> 
+								        <a href="detallesEspectaculo?name=<%=e%>" class="btn btn-danger card-text">Ver espectaculo</a>
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							<% } %>
-						<% } %>	      --%>
+						<% } %>	    
                         
                     </div>
                 </div>

@@ -50,6 +50,11 @@ public class dataUsuario {
     		this.setDescripcion(((Artista) user).getDescripcion());
     		this.setBiografia(((Artista) user).getBiografia());
     		this.setWebsite(((Artista) user).getWebsite());
+    		Artista artista = (Artista) user;
+    		this.espectaculos = new ArrayList<String>();
+    		for (Espectaculo e : artista.getEspectaculos()) {
+    			this.espectaculos.add(e.getNombre());
+    		}
     	} else {
     		this.esArtista = false;
     	}
