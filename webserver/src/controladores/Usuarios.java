@@ -1,8 +1,11 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logica.DataEspectaculo;
+import logica.DataUsuario;
 import logica.HandlerUsuarios;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
+import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class Usuarios
@@ -29,10 +37,23 @@ public class Usuarios extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+		
 		HttpSession objSesion = req.getSession();
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
-		Map<String, Usuario> hm = hu.getUsuarios();
-		objSesion.setAttribute("usuarios", hm);
+		//HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		//Map<String, Usuario> hm = hu.getUsuarios();
+		
+		
+		logica.ListaUsuario lista = port.listarUsuarios();
+		List<DataUsuario> list = lista.getUsuarios();
+        Map<String, DataUsuario> m = new TreeMap<String, DataUsuario>();
+        for (DataUsuario datau : list) {   
+        	m.put(datau.getNickname(), datau);
+        	}
+    	//objSesion.setAttribute("espectaculosPlat", list);
+		
+		objSesion.setAttribute("usuarios", m);
 		
 		req.getRequestDispatcher("/WEB-INF/usuarios/usuarios.jsp").forward(req, resp);
 	}

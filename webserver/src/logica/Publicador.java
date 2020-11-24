@@ -130,6 +130,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
+     * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/updateUsuarioWebRequest", output = "http://logica/Publicador/updateUsuarioWebResponse")
@@ -267,8 +269,8 @@ public interface Publicador {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns logica.DataListEspOrg
+     * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -304,57 +306,13 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg1
-     * @param arg0
-     * @throws NoExistePaqueteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/agregarEspAPaqueteRequest", output = "http://logica/Publicador/agregarEspAPaqueteResponse", fault = {
-        @FaultAction(className = NoExistePaqueteException_Exception.class, value = "http://logica/Publicador/agregarEspAPaquete/Fault/NoExistePaqueteException")
-    })
-    public void agregarEspAPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        DataListEspOrg arg1)
-        throws NoExistePaqueteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
      * @return
-     *     returns java.lang.String
+     *     returns logica.ListaUsuario
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getMailUsuarioRequest", output = "http://logica/Publicador/getMailUsuarioResponse")
-    public String getMailUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
-    public boolean esArtista(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns logica.ListaPaquete
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarPaquetesRequest", output = "http://logica/Publicador/listarPaquetesResponse")
-    public ListaPaquete listarPaquetes();
+    @Action(input = "http://logica/Publicador/listarUsuariosRequest", output = "http://logica/Publicador/listarUsuariosResponse")
+    public ListaUsuario listarUsuarios();
 
     /**
      * 
