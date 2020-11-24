@@ -15,12 +15,20 @@ import javax.servlet.http.HttpSession;
 import excepciones.NoExistePaqueteException;
 import excepciones.UsuarioPaqueteComprado;
 import logica.Compra;
+import logica.DataCompra;
+import logica.DataListPaquetes;
+import logica.DataPaquete;
+import logica.DataUsuario;
 import logica.Fabrica;
 import logica.HandlerPaquetes;
 import logica.HandlerUsuarios;
 import logica.IUsuario;
+import logica.NoExistePaqueteException_Exception;
 import logica.Paquete;
+import logica.Publicador;
+import logica.PublicadorService;
 import logica.Usuario;
+import logica.UsuarioPaqueteComprado_Exception;
 
 /**
  * Servlet implementation class Comprapaquete
@@ -38,26 +46,28 @@ public class Comprapaquete extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
     	if((objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO")){
 	    	String nickname = (String) objSesion.getAttribute("usuario_logueado");
 	    	
-	    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
-	    	HandlerUsuarios hs = HandlerUsuarios.getInstancia();
-	    	Usuario user = hs.getUsuario(nickname);
+	    	DataUsuario user = port.getUsuario(nickname);
+	    	List<String> paquetes = port.getPaquetes().getPaquetes();
 	    	
-	    	List<Compra> comprados = user.getCompraPaquete();
-	    	List<String> compradospaq = new ArrayList<String>();
+	    	
+	    	List<DataCompra> comprados = user.getCompraPaquete();
+	    	List<String> compradosPack = new ArrayList<String>();
 	    	for(int i=0; i< comprados.size(); i++) {
-	    		compradospaq.add(comprados.get(i).getPaquete().getNombre());
+	    		compradosPack.add(comprados.get(i).getPaquete());
 	    	}
 	    	
-	    	List<String> paquetes = hp.getNombresPaquete();
-			List<String> paqueteslist = new ArrayList<String>();
+			List<String> paquetesList = new ArrayList<String>();
 			for (int i=0; i< paquetes.size(); i++) {
-				if(!compradospaq.contains(paquetes.get(i)))	
-					paqueteslist.add(paquetes.get(i));
+				if(!compradosPack.contains(paquetes.get(i)))	
+					paquetesList.add(paquetes.get(i));
 			}	
-			objSesion.setAttribute("paquetes",paqueteslist);
+			objSesion.setAttribute("paquetes",paquetesList);
 	    	req.getRequestDispatcher("/WEB-INF/paquetes/comprapaquete.jsp").forward(req, resp);
     	}
     	else
@@ -67,26 +77,29 @@ public class Comprapaquete extends HttpServlet {
     private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
     	req.setCharacterEncoding("UTF-8");
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    
     	String nickname = (String) objSesion.getAttribute("usuario_logueado");
     	String nombrepaqcomp = (String) req.getParameter("paquetes");
-    	
-    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
-    	Paquete paqcomp;
-		try {
-			paqcomp = hp.getPaquete(nombrepaqcomp);
-	    	HandlerUsuarios hs = HandlerUsuarios.getInstancia();
-	    	Usuario user = hs.getUsuario(nickname);
-	    	Compra comprado = new Compra(LocalDate.now(),paqcomp);
-	    	try {
-				user.agregarcompra(comprado);
-			} catch (UsuarioPaqueteComprado e) {
+    	DataPaquete paqcomp;
+			try {
+				paqcomp = port.getPaquete(nombrepaqcomp);
+				DataUsuario user = port.getUsuario(nickname);
+		    	DataCompra comprado = new DataCompra();
+		    	comprado.setFecha(LocalDate.now().toString());
+		    	comprado.setPaquete(paqcomp.getNombre());
+					try {
+						port.agregarCompra(user,comprado);
+					} catch (UsuarioPaqueteComprado_Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			} catch (NoExistePaqueteException_Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} catch (NoExistePaqueteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	    	
 		resp.sendRedirect("home");
     }
     

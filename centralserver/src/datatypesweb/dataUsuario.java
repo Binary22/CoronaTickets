@@ -169,8 +169,8 @@ public class dataUsuario {
 	}
 
 
-	public void setFechaNacimiento(String string) {
-		this.fechaNacimiento = string;
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 

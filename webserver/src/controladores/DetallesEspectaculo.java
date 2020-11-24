@@ -11,10 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import datatypesweb.dataEspectaculo;
+import logica.DataEspectaculo;
+import logica.DataPaquete;
 import logica.Espectaculo;
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
 import logica.Paquete;
+import logica.Publicador;
+import logica.PublicadorService;
+import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class DetallesEspectaculo
@@ -34,13 +40,14 @@ public class DetallesEspectaculo extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	HttpSession objSesion = req.getSession();
     	String nomEspect = req.getParameter("name");
-    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-    	Espectaculo espect = he.getEspectaculo(nomEspect);
+    	PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+    	DataEspectaculo espect = port.getEspectaculo(nomEspect);
     	
-    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
-    	List<Paquete> paquetes = hpaq.getPaquetesDeEspectaculoWeb(nomEspect);
+    	logica.ListaPaquete lista = port.listarPaquetesEspectaculo(nomEspect);
+		List<DataPaquete> paquetes = new ArrayList<DataPaquete>(lista.getPaquetes());
     	
-    	objSesion.setAttribute("paquetes", paquetes);
+		objSesion.setAttribute("paquetes", paquetes);
     	objSesion.setAttribute("espectaculo_selected", espect);
     	
 		req.getRequestDispatcher("/WEB-INF/espectaculos/detallesEspectaculo.jsp").forward(req, resp);
