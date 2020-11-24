@@ -54,7 +54,7 @@ public class DetallesUsuario extends HttpServlet {
 		objSesion.setAttribute("mapaespec", mapaespec);
 		logica.ListaPaquete listapaq = port.listarPaquetes();
 		Map<String, DataPaquete> mapapaquetes = new HashMap<String, DataPaquete>();
-		for(DataPaquete e : listapaq.getPaquete()) {
+		for(DataPaquete e : listapaq.getPaquetes()) {
     		mapapaquetes.put(e.getNombre(), e);
     	}
 		objSesion.setAttribute("mapapaquetes", mapapaquetes);

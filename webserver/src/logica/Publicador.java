@@ -160,8 +160,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -349,8 +349,8 @@ public interface Publicador {
      * 
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {
@@ -389,6 +389,16 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/listarCategoriasRequest", output = "http://logica/Publicador/listarCategoriasResponse")
     public StringArray listarCategorias();
+
+    /**
+     * 
+     * @return
+     *     returns logica.ListaUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarUsuariosRequest", output = "http://logica/Publicador/listarUsuariosResponse")
+    public ListaUsuario listarUsuarios();
 
     /**
      * 
