@@ -12,9 +12,9 @@ import logica.Paquete;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class dataPaquete {
 	private String nombre;
-	private LocalDate fechaI;
-	private LocalDate fechaF;
-	private LocalDate fechaAlta;
+	private String fechaI;
+	private String fechaF;
+	private String fechaAlta;
 	private int descuento;
 	private String descripcion;
 	private List<String> espectaculos;
@@ -22,9 +22,9 @@ public class dataPaquete {
 	
 	public dataPaquete(Paquete paq) {
 		this.nombre = paq.getNombre();
-		this.fechaI = paq.getFechaI();
-		this.fechaF = paq.getFechaF();
-		this.fechaAlta = paq.getFechaAlta();
+		this.fechaI = paq.getFechaI().toString();
+		this.fechaF = paq.getFechaF().toString();
+		this.fechaAlta = paq.getFechaAlta().toString();
 		this.descuento = paq.getDescuento();
 		this.descripcion = paq.getDescripcion();
 		this.espectaculos = new ArrayList<String>(paq.getEspectaculos().keySet());
@@ -44,27 +44,27 @@ public class dataPaquete {
 		this.nombre = nombre;
 	}
 
-	public LocalDate getFechaI() {
+	public String getFechaI() {
 		return fechaI;
 	}
 
-	public void setFechaI(LocalDate fechaI) {
+	public void setFechaI(String fechaI) {
 		this.fechaI = fechaI;
 	}
 
-	public LocalDate getFechaF() {
+	public String getFechaF() {
 		return fechaF;
 	}
 
-	public void setFechaF(LocalDate fechaF) {
+	public void setFechaF(String fechaF) {
 		this.fechaF = fechaF;
 	}
 
-	public LocalDate getFechaAlta() {
+	public String getFechaAlta() {
 		return fechaAlta;
 	}
 
-	public void setFechaAlta(LocalDate fechaAlta) {
+	public void setFechaAlta(String fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
