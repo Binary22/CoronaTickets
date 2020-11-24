@@ -136,19 +136,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataRegistro }
-     * 
-     */
-    public DataRegistro createDataRegistro() {
-        return new DataRegistro();
-    }
-
-    /**
      * Create an instance of {@link DataListEspOrg }
      * 
      */
     public DataListEspOrg createDataListEspOrg() {
         return new DataListEspOrg();
+    }
+
+    /**
+     * Create an instance of {@link DataRegistro }
+     * 
+     */
+    public DataRegistro createDataRegistro() {
+        return new DataRegistro();
     }
 
     /**
@@ -176,6 +176,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataFuncion }
+     * 
+     */
+    public DataFuncion createDataFuncion() {
+        return new DataFuncion();
+    }
+
+    /**
      * Create an instance of {@link DataUsuario }
      * 
      */
@@ -189,14 +197,6 @@ public class ObjectFactory {
      */
     public DataCompra createDataCompra() {
         return new DataCompra();
-    }
-
-    /**
-     * Create an instance of {@link DataFuncion }
-     * 
-     */
-    public DataFuncion createDataFuncion() {
-        return new DataFuncion();
     }
 
     /**

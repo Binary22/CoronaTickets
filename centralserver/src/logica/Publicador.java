@@ -337,15 +337,15 @@ public class Publicador {
     }
     
     @WebMethod
-    public void agregarCompra(dataUsuario user, dataCompra compra) throws NoExistePaqueteException, UsuarioPaqueteComprado {
+    public void agregarCompra(String user, String paqComprado, String fechaActual) throws NoExistePaqueteException, UsuarioPaqueteComprado {
     	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
     	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
     	
-    	Paquete paqueteReal = hpaq.getPaquete(compra.getPaquete());
-    	Usuario userReal = husers.getUsuario(user.getNombre());
+    	Paquete paqueteReal = hpaq.getPaquete(paqComprado);
+    	Usuario userReal = husers.getUsuario(user);
     	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate fechaCompra = LocalDate.parse(compra.getFecha(), formatter);
+		LocalDate fechaCompra = LocalDate.parse(fechaActual, formatter);
 		
     	Compra paqueteComprado = new Compra(fechaCompra,paqueteReal);
     	userReal.agregarcompra(paqueteComprado);
