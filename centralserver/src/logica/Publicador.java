@@ -23,7 +23,6 @@ import datatypesweb.ListaEspectaculo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
-import datatypesweb.dataArtistaDetalles;
 import datatypesweb.dataEspectaculo;
 import datatypesweb.dataPaquete;
 import datatypesweb.dataPaquete;
@@ -140,6 +139,18 @@ public class Publicador {
     		resLista.add(new dataPaquete(paq.getValue()));
     	}
     	res.setPaquetes(resLista);
+    	
+    	// esta turrada la hice porque implementamos la clase dos veces pero usamos metodos diferentes en diferentes lugares, y asi funciona todo 
+    	HandlerPaquetes hpaquetes = HandlerPaquetes.getInstance();
+    	Map<String, Paquete> mapapaquetes =  hpaquetes.getPaquetes();
+
+    	List<dataPaquete> result = new ArrayList<dataPaquete>();
+    	for(Paquete entry : mapapaquetes.values()) {
+    		result.add(new dataPaquete(entry));
+    	}
+    	
+		res.setPaquete(result);
+        	
     	return res;
     }
     
@@ -427,18 +438,5 @@ public class Publicador {
     	return lista;
     }
     
-    @WebMethod
-    public ListaPaquete listarPaquetes() {
-    	HandlerPaquetes hpaquetes = HandlerPaquetes.getInstance();
-    	Map<String, Paquete> mapapaquetes =  hpaquetes.getPaquetes();
-
-    	List<dataPaquete> res = new ArrayList<dataPaquete>();
-    	for(Paquete entry : mapapaquetes.values()) {
-    		res.add(new dataPaquete(entry));
-    	}
-    	ListaPaquete lista = new ListaPaquete();
-		lista.setPaquete(res);
-    	return lista;
-    }
     
 }
