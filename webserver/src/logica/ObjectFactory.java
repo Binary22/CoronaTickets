@@ -27,9 +27,11 @@ public class ObjectFactory {
     private final static QName _NoSeleccionoTres_QNAME = new QName("http://logica/", "noSeleccionoTres");
     private final static QName _PaqueteConMismoNombreException_QNAME = new QName("http://logica/", "PaqueteConMismoNombreException");
     private final static QName _UsuarioPaqueteComprado_QNAME = new QName("http://logica/", "UsuarioPaqueteComprado");
+    private final static QName _FuncionAlcanzoLimiteException_QNAME = new QName("http://logica/", "funcionAlcanzoLimiteException");
     private final static QName _FechaPosterior_QNAME = new QName("http://logica/", "fechaPosterior");
     private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
     private final static QName _NombreFuncionexisteException_QNAME = new QName("http://logica/", "NombreFuncionexisteException");
+    private final static QName _ExisteRegistroEspecException_QNAME = new QName("http://logica/", "existeRegistroEspecException");
     private final static QName _NombreEspectaculoExisteException_QNAME = new QName("http://logica/", "NombreEspectaculoExisteException");
     private final static QName _UsuarioConMismoMailException_QNAME = new QName("http://logica/", "UsuarioConMismoMailException");
     private final static QName _UsuarioConMismoNickException_QNAME = new QName("http://logica/", "UsuarioConMismoNickException");
@@ -82,6 +84,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link FuncionAlcanzoLimiteException }
+     * 
+     */
+    public FuncionAlcanzoLimiteException createFuncionAlcanzoLimiteException() {
+        return new FuncionAlcanzoLimiteException();
+    }
+
+    /**
      * Create an instance of {@link FechaPosterior }
      * 
      */
@@ -111,6 +121,14 @@ public class ObjectFactory {
      */
     public NombreFuncionexisteException createNombreFuncionexisteException() {
         return new NombreFuncionexisteException();
+    }
+
+    /**
+     * Create an instance of {@link ExisteRegistroEspecException }
+     * 
+     */
+    public ExisteRegistroEspecException createExisteRegistroEspecException() {
+        return new ExisteRegistroEspecException();
     }
 
     /**
@@ -309,6 +327,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FuncionAlcanzoLimiteException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "funcionAlcanzoLimiteException")
+    public JAXBElement<FuncionAlcanzoLimiteException> createFuncionAlcanzoLimiteException(FuncionAlcanzoLimiteException value) {
+        return new JAXBElement<FuncionAlcanzoLimiteException>(_FuncionAlcanzoLimiteException_QNAME, FuncionAlcanzoLimiteException.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FechaPosterior }{@code >}}
      * 
      */
@@ -333,6 +360,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://logica/", name = "NombreFuncionexisteException")
     public JAXBElement<NombreFuncionexisteException> createNombreFuncionexisteException(NombreFuncionexisteException value) {
         return new JAXBElement<NombreFuncionexisteException>(_NombreFuncionexisteException_QNAME, NombreFuncionexisteException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExisteRegistroEspecException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "existeRegistroEspecException")
+    public JAXBElement<ExisteRegistroEspecException> createExisteRegistroEspecException(ExisteRegistroEspecException value) {
+        return new JAXBElement<ExisteRegistroEspecException>(_ExisteRegistroEspecException_QNAME, ExisteRegistroEspecException.class, null, value);
     }
 
     /**

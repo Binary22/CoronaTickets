@@ -18,7 +18,9 @@ import excepciones.NombreCategoriaExistente;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.existeRegistroEspecException;
 import excepciones.fechaPosterior;
+import excepciones.funcionAlcanzoLimiteException;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
 
@@ -360,10 +362,11 @@ public class EspectaculoController implements IEspectaculo {
 		return husers.getNombres();
 	}
 	@Override
-	public void ingresarNombreFuncion(String nomfuncion) {
+	public void ingresarNombreFuncion(String nomFuncion) {
 		// TODO Auto-generated method stub
 		//this.nickUsuario = nickname;
-		this.nomfuncion = nomfuncion;
+		this.nomfuncion = nomFuncion;
+		
 		
 	}
 	
@@ -450,6 +453,39 @@ public class EspectaculoController implements IEspectaculo {
 		}
 			
 		return false;
+	}
+	
+	@Override
+	public void existeRegistroEspecAFunWeb() throws existeRegistroEspecException {
+		// TODO Auto-generated method stub
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		Usuario espectador = husers.getUsuario(this.nickUsuario);
+		System.out.println(this.nomfuncion);
+		if(espectador.tieneRegistroAFuncion(this.nomfuncion)) {
+			throw new existeRegistroEspecException("Ya posee un registro a la función");
+		}
+		
+	}
+	
+	
+	@Override
+	public void funcionAlcanzoLimiteRegWeb(String nomespect) throws funcionAlcanzoLimiteException {
+		// TODO Auto-generated method stub
+		this.nomespec = nomespect;
+		HandlerEspectaculos hEspectaculos = HandlerEspectaculos.getInstance();
+		Espectaculo espect = hEspectaculos.getEspectaculo(nomespect);
+		Funcion fun = espect.getFuncion(this.nomfuncion);
+		//System.out.println(fun.getNombre());
+		List<Registro> regs = fun.getRegistros();
+		int cant = 0;
+		for (int i = 0; i < regs.size(); i++) {
+			cant++;
+		}
+		if (cant == espect.getMaxEspectadores()) {
+			throw new funcionAlcanzoLimiteException("La función alcanzó el limite de registros");
+		}
+			
+		
 	}
 	@Override
 	public void elegirNuevaFuncion(String nomfuncion) {

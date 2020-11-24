@@ -29,22 +29,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
-    public boolean loginCorrecto(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns boolean
@@ -127,6 +111,22 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
     public DataListPaquetes getPaquetes();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
+    public boolean loginCorrecto(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 
@@ -261,54 +261,95 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg4
      * @param arg1
      * @param arg0
+     * @throws NoSeleccionoTres_Exception
      * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
-    @Action(input = "http://logica/Publicador/esFechaInvalidaRequest", output = "http://logica/Publicador/esFechaInvalidaResponse", fault = {
-        @FaultAction(className = FechaPosterior_Exception.class, value = "http://logica/Publicador/esFechaInvalida/Fault/fechaPosterior")
+    @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
+        @FaultAction(className = FechaPosterior_Exception.class, value = "http://logica/Publicador/confirmarRegistroPrevios/Fault/fechaPosterior"),
+        @FaultAction(className = NoSeleccionoTres_Exception.class, value = "http://logica/Publicador/confirmarRegistroPrevios/Fault/noSeleccionoTres"),
+        @FaultAction(className = ExisteRegistroEspecException_Exception.class, value = "http://logica/Publicador/confirmarRegistroPrevios/Fault/existeRegistroEspecException"),
+        @FaultAction(className = FuncionAlcanzoLimiteException_Exception.class, value = "http://logica/Publicador/confirmarRegistroPrevios/Fault/funcionAlcanzoLimiteException")
     })
-    public void esFechaInvalida(
+    public void confirmarRegistroPrevios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
-        String arg1)
-        throws FechaPosterior_Exception
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        DataRegsPrevios arg4)
+        throws ExisteRegistroEspecException_Exception, FechaPosterior_Exception, FuncionAlcanzoLimiteException_Exception, NoSeleccionoTres_Exception
     ;
 
     /**
      * 
-     * @return
-     *     returns boolean
+     * @param arg3
+     * @param arg2
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/existeRegistroEspecFuncionRequest", output = "http://logica/Publicador/existeRegistroEspecFuncionResponse")
-    public boolean existeRegistroEspecFuncion();
+    @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
+        @FaultAction(className = FechaPosterior_Exception.class, value = "http://logica/Publicador/confirmarRegistroVales/Fault/fechaPosterior"),
+        @FaultAction(className = ExisteRegistroEspecException_Exception.class, value = "http://logica/Publicador/confirmarRegistroVales/Fault/existeRegistroEspecException"),
+        @FaultAction(className = FuncionAlcanzoLimiteException_Exception.class, value = "http://logica/Publicador/confirmarRegistroVales/Fault/funcionAlcanzoLimiteException")
+    })
+    public void confirmarRegistroVales(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4)
+        throws ExisteRegistroEspecException_Exception, FechaPosterior_Exception, FuncionAlcanzoLimiteException_Exception
+    ;
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
      * @param arg0
-     * @return
-     *     returns boolean
+     * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/funcionAlcanzoLimiteRegRequest", output = "http://logica/Publicador/funcionAlcanzoLimiteRegResponse")
-    public boolean funcionAlcanzoLimiteReg(
+    @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
+        @FaultAction(className = FechaPosterior_Exception.class, value = "http://logica/Publicador/confirmarRegistroTradicional/Fault/fechaPosterior"),
+        @FaultAction(className = ExisteRegistroEspecException_Exception.class, value = "http://logica/Publicador/confirmarRegistroTradicional/Fault/existeRegistroEspecException"),
+        @FaultAction(className = FuncionAlcanzoLimiteException_Exception.class, value = "http://logica/Publicador/confirmarRegistroTradicional/Fault/funcionAlcanzoLimiteException")
+    })
+    public void confirmarRegistroTradicional(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/ingresarNombrePaqueteRequest", output = "http://logica/Publicador/ingresarNombrePaqueteResponse")
-    public void ingresarNombrePaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3)
+        throws ExisteRegistroEspecException_Exception, FechaPosterior_Exception, FuncionAlcanzoLimiteException_Exception
+    ;
 
     /**
      * 
@@ -495,54 +536,6 @@ public interface Publicador {
         @WebParam(name = "arg4", partName = "arg4")
         DataListArtInvi arg4)
         throws NombreFuncionexisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/ingresarNombreFuncionRequest", output = "http://logica/Publicador/ingresarNombreFuncionResponse")
-    public void ingresarNombreFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/ingresarNombreEspectadorRequest", output = "http://logica/Publicador/ingresarNombreEspectadorResponse")
-    public void ingresarNombreEspectador(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/confirmarRegistroRequest", output = "http://logica/Publicador/confirmarRegistroResponse")
-    public void confirmarRegistro(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @throws NoSeleccionoTres_Exception
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/canjearRegistrosRequest", output = "http://logica/Publicador/canjearRegistrosResponse", fault = {
-        @FaultAction(className = NoSeleccionoTres_Exception.class, value = "http://logica/Publicador/canjearRegistros/Fault/noSeleccionoTres")
-    })
-    public void canjearRegistros(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataRegsPrevios arg0)
-        throws NoSeleccionoTres_Exception
     ;
 
     /**

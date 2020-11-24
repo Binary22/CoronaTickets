@@ -24,9 +24,11 @@ import logica.DataRegsPrevios;
 import logica.DataUsuario;
 import logica.DataVale;
 import logica.Espectaculo;
+import logica.ExisteRegistroEspecException_Exception;
 import logica.Fabrica;
 import logica.FechaPosterior_Exception;
 import logica.Funcion;
+import logica.FuncionAlcanzoLimiteException_Exception;
 import logica.HandlerEspectaculos;
 import logica.HandlerUsuarios;
 import logica.IEspectaculo;
@@ -128,23 +130,7 @@ public class Registroafuncion extends HttpServlet {
        
         PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
-	    
-	    port.ingresarNombreEspectador(userNickname);
-	    port.ingresarNombreFuncion(nomFuncion);
-	    
-       
-        
-        
-       
-		try {
-			port.esFechaInvalida(espectaculo, LocalDate.now().toString());
-		} catch (FechaPosterior_Exception e1) {
-			// TODO Auto-generated catch block
-			port.ingresarNombreFuncion(null);
-			objSesion.setAttribute("fecha_invalida", true);
-			req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-		}
-		
+	 
         
 		if(req.getParameter("forma").compareTo("canjeregistros") == 0) {
 			String[] regsSelected = req.getParameterValues("registros_previos");
@@ -161,38 +147,34 @@ public class Registroafuncion extends HttpServlet {
 			        		ids.add(registrosCanjear.get(i));
 			        		j = j+1;
 			        	}
-		        	
-		        	}
-		        	
+		        	}	
 		        }
-		        registrosCanjeados.getRegsPrevios().addAll(ids);    
-				try {
-					port.canjearRegistros(registrosCanjeados);
+		        for(int i = 0; i < ids.size(); i++) {
+		        	registrosCanjeados.getRegsPrevios().add(ids.get(i));
+		        }
+		        
+		        
+		        try {
+					port.confirmarRegistroPrevios(nomFuncion, userNickname, espectaculo, LocalDate.now().toString(), registrosCanjeados);
+				} catch (ExisteRegistroEspecException_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("errorExisteRegFun", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				} catch (FechaPosterior_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("fecha_invalida", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				} catch (FuncionAlcanzoLimiteException_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("errorFunAlcanzoLimite", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				
 				} catch (NoSeleccionoTres_Exception e) {
 					// TODO Auto-generated catch block
-					port.ingresarNombreFuncion(null);
 					objSesion.setAttribute("noEligioTres", true);
 					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				
 				}
-					
-			        
-			        if(port.existeRegistroEspecFuncion()){
-			        	port.ingresarNombreFuncion(null);
-						objSesion.setAttribute("errorExisteRegFun", true);
-						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-						
-					}
-			        if(port.funcionAlcanzoLimiteReg(espectaculo)){
-			        	port.ingresarNombreFuncion(null);
-						objSesion.setAttribute("errorFunAlcanzoLimite", true);
-						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-					}
-			        
-			      if(!port.existeRegistroEspecFuncion() && !port.funcionAlcanzoLimiteReg(espectaculo)) {
-					port.confirmarRegistro(espectaculo, LocalDate.now().toString());
-					port.ingresarNombreFuncion(null);
-			      }
-					
 			        
 			}else {
 				objSesion.setAttribute("funciones_vacias", true);
@@ -200,31 +182,43 @@ public class Registroafuncion extends HttpServlet {
 			}
 		        
 	        }else if(req.getParameter("forma").compareTo("tradicional")==0){
-	        	if(port.existeRegistroEspecFuncion()){
-	        		port.ingresarNombreFuncion(null);
+	        	
+	        	try {
+					port.confirmarRegistroTradicional(nomFuncion, userNickname,espectaculo , LocalDate.now().toString());
+				} catch (ExisteRegistroEspecException_Exception e) {
+					// TODO Auto-generated catch block
 					objSesion.setAttribute("errorExisteRegFun", true);
 					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-				}
-		        if(port.funcionAlcanzoLimiteReg(espectaculo)){
-		        	port.ingresarNombreFuncion(null);
+				} catch (FechaPosterior_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("fecha_invalida", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				} catch (FuncionAlcanzoLimiteException_Exception e) {
+					// TODO Auto-generated catch block
 					objSesion.setAttribute("errorFunAlcanzoLimite", true);
 					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
 				}
-		        if(!port.existeRegistroEspecFuncion() && !port.funcionAlcanzoLimiteReg(espectaculo)) {
-	    			port.confirmarRegistro(espectaculo, LocalDate.now().toString());
-	    			port.ingresarNombreFuncion(null);
-		        }
-	    		
-	        	
 	        	
 	        }else {//caso de vales
 	        	String nomPaquete = req.getParameter("vale_seleccionado");
-	        	port.ingresarNombrePaquete(nomPaquete);
-	        	port.confirmarRegistro(espectaculo, LocalDate.now().toString());
+	        	try {
+					port.confirmarRegistroVales(nomFuncion, userNickname, espectaculo, LocalDate.now().toString(), nomPaquete);
+				} catch (ExisteRegistroEspecException_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("errorExisteRegFun", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				} catch (FechaPosterior_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("fecha_invalida", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				} catch (FuncionAlcanzoLimiteException_Exception e) {
+					// TODO Auto-generated catch block
+					objSesion.setAttribute("errorFunAlcanzoLimite", true);
+					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+				}
 	        	
 	        }
-		port.ingresarNombreFuncion(null);
-		
+
 		resp.sendRedirect("home");
 	}
     

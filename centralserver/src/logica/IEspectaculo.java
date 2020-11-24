@@ -11,7 +11,9 @@ import datatypes.DtRegistro;
 import excepciones.NombreCategoriaExistente;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
+import excepciones.existeRegistroEspecException;
 import excepciones.fechaPosterior;
+import excepciones.funcionAlcanzoLimiteException;
 import datatypes.DtUsuario;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
@@ -63,4 +65,7 @@ public interface IEspectaculo {
 	
 	public void canjePorVale();
 	public void ingresarNombrePaquete(String nomPaquete);
+	
+	public void existeRegistroEspecAFunWeb() throws existeRegistroEspecException;
+	public void funcionAlcanzoLimiteRegWeb(String nomespect) throws funcionAlcanzoLimiteException;
 }

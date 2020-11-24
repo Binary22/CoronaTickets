@@ -40,8 +40,10 @@ import excepciones.NombreEspectaculoExisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
 import excepciones.fechaPosterior;
+import excepciones.funcionAlcanzoLimiteException;
 import excepciones.noSeleccionoTres;
 import excepciones.UsuarioPaqueteComprado;
+import excepciones.existeRegistroEspecException;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -247,71 +249,68 @@ public class Publicador {
     }
     
     @WebMethod
-    public void ingresarNombreFuncion(String nomFuncion){
+    public void confirmarRegistroPrevios(String nomFuncion, String nickname, String nomEspect, String fecha, dataRegsPrevios registros) throws fechaPosterior, noSeleccionoTres, existeRegistroEspecException, funcionAlcanzoLimiteException{
     	Fabrica fabrica = Fabrica.getInstance();
         IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
         ctrlE.ingresarNombreFuncion(nomFuncion);
-    }
-    
-    @WebMethod
-    public void ingresarNombreEspectador(String nickname){
-    	Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlE = fabrica.getIEspectaculo();
         ctrlE.ingresarNombreEspectador(nickname);
-    }
-    
-    @WebMethod
-    public void esFechaInvalida(String nomEspect, String fecha) throws fechaPosterior{
-    	Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fecha, formatter);
         ctrlE.esFechaInvalida(nomEspect, date);
-    }
-    
-    @WebMethod
-    public void canjearRegistros(dataRegsPrevios registros) throws noSeleccionoTres{
-    	Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
         int[] regsCanj = new int[3];
         List<dataRegistro> regs = registros.getRegsPrevios();
         int i = 0;
-        while(i < 3) {
+        while(i < 3 && i < regs.size()) {
         	regsCanj[i] = regs.get(i).getIdent();
         	i++;
         }
-        
         ctrlE.canjearRegistros(regsCanj);
+        
+        ctrlE.existeRegistroEspecAFunWeb();
+        ctrlE.funcionAlcanzoLimiteRegWeb(nomEspect);
+        
+    	ctrlE.confirmarRegistro(nomEspect, date);
+       
     }
     
-    @WebMethod
-    public boolean existeRegistroEspecFuncion() {
+    public void confirmarRegistroVales(String nomFuncion, String nickname, String nomEspect, String fecha, String nomPaquete) throws fechaPosterior, existeRegistroEspecException, funcionAlcanzoLimiteException {
     	Fabrica fabrica = Fabrica.getInstance();
         IEspectaculo ctrlE = fabrica.getIEspectaculo();
-    	return ctrlE.existeRegistroEspecAFun();
-    }
-    
-    @WebMethod
-    public boolean funcionAlcanzoLimiteReg(String nomEspect) {
-    	Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlE = fabrica.getIEspectaculo();
-    	return ctrlE.funcionAlcanzoLimiteReg(nomEspect);
-    }
-    
-    @WebMethod
-    public void ingresarNombrePaquete(String nomPaquete) {
-    	Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlE = fabrica.getIEspectaculo();
-    	ctrlE.ingresarNombrePaquete(nomPaquete);
-    	ctrlE.canjePorVale();
-    }
-    
-    @WebMethod
-    public void confirmarRegistro(String nomEspect, String fecha) {
-    	Fabrica fabrica = Fabrica.getInstance();
-        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
+        ctrlE.ingresarNombreFuncion(nomFuncion);
+        ctrlE.ingresarNombreEspectador(nickname);
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fecha, formatter);
+        ctrlE.esFechaInvalida(nomEspect, date);
+        ctrlE.existeRegistroEspecAFunWeb();
+        ctrlE.funcionAlcanzoLimiteRegWeb(nomEspect);
+        
+        ctrlE.ingresarNombrePaquete(nomPaquete);
+    	ctrlE.canjePorVale();
+    	
+    	ctrlE.confirmarRegistro(nomEspect, date);
+    }
+    
+    
+    
+    
+    @WebMethod
+    public void confirmarRegistroTradicional(String nomFuncion, String nickname, String nomEspect, String fecha) throws fechaPosterior, existeRegistroEspecException, funcionAlcanzoLimiteException {
+    	Fabrica fabrica = Fabrica.getInstance();
+        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
+        ctrlE.ingresarNombreFuncion(nomFuncion);
+        ctrlE.ingresarNombreEspectador(nickname);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fecha, formatter);
+        ctrlE.esFechaInvalida(nomEspect, date);
+        ctrlE.existeRegistroEspecAFunWeb();
+        ctrlE.funcionAlcanzoLimiteRegWeb(nomEspect);
         
     	ctrlE.confirmarRegistro(nomEspect, date);
     }
