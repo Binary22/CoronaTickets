@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logica.DataEspectaculo;
+import logica.DataPaquete;
 import logica.DataUsuario;
 import logica.HandlerUsuarios;
 import logica.Publicador;
 import logica.PublicadorService;
 import logica.Usuario;
+import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class DetallesUsuario
@@ -39,6 +45,19 @@ public class DetallesUsuario extends HttpServlet {
 			DataUsuario userlogged = port.getUsuario((String) objSesion.getAttribute("usuario_logueado"));
 			objSesion.setAttribute("userlogged", userlogged);
 		}
+		
+		logica.ListaEspectaculo lista = port.listarEspectaculos();
+		Map<String, DataEspectaculo> mapaespec = new HashMap<String, DataEspectaculo>();
+		for(Entry e : lista.getEspectaculos().getEntry()) {
+    		mapaespec.put(e.getKey(), e.getValue());
+    	}
+		objSesion.setAttribute("mapaespec", mapaespec);
+		logica.ListaPaquete listapaq = port.listarPaquetes();
+		Map<String, DataPaquete> mapapaquetes = new HashMap<String, DataPaquete>();
+		for(DataPaquete e : listapaq.getPaquetes()) {
+    		mapapaquetes.put(e.getNombre(), e);
+    	}
+		objSesion.setAttribute("mapapaquetes", mapapaquetes);
 	
 		if (port.esArtista(nomu)) {
 			req.getRequestDispatcher("/WEB-INF/usuarios/detallesArtista.jsp").forward(req, resp);

@@ -31,6 +31,11 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="seguidos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="esArtista" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="biografia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="website" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="espectaculos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="siguiendo" type="{http://logica/}dataUsuario" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -53,6 +58,11 @@ import javax.xml.bind.annotation.XmlType;
     "password",
     "imagen",
     "seguidos",
+    "esArtista",
+    "descripcion",
+    "biografia",
+    "website",
+    "espectaculos",
     "siguiendo"
 })
 @XmlSeeAlso({
@@ -75,6 +85,12 @@ public class DataUsuario {
     protected String imagen;
     @XmlElement(nillable = true)
     protected List<String> seguidos;
+    protected boolean esArtista;
+    protected String descripcion;
+    protected String biografia;
+    protected String website;
+    @XmlElement(nillable = true)
+    protected List<String> espectaculos;
     @XmlElement(nillable = true)
     protected List<DataUsuario> siguiendo;
 
@@ -360,6 +376,123 @@ public class DataUsuario {
             seguidos = new ArrayList<String>();
         }
         return this.seguidos;
+    }
+
+    /**
+     * Gets the value of the esArtista property.
+     * 
+     */
+    public boolean isEsArtista() {
+        return esArtista;
+    }
+
+    /**
+     * Sets the value of the esArtista property.
+     * 
+     */
+    public void setEsArtista(boolean value) {
+        this.esArtista = value;
+    }
+
+    /**
+     * Gets the value of the descripcion property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Sets the value of the descripcion property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescripcion(String value) {
+        this.descripcion = value;
+    }
+
+    /**
+     * Gets the value of the biografia property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBiografia() {
+        return biografia;
+    }
+
+    /**
+     * Sets the value of the biografia property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBiografia(String value) {
+        this.biografia = value;
+    }
+
+    /**
+     * Gets the value of the website property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getWebsite() {
+        return website;
+    }
+
+    /**
+     * Sets the value of the website property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setWebsite(String value) {
+        this.website = value;
+    }
+
+    /**
+     * Gets the value of the espectaculos property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the espectaculos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getEspectaculos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getEspectaculos() {
+        if (espectaculos == null) {
+            espectaculos = new ArrayList<String>();
+        }
+        return this.espectaculos;
     }
 
     /**
