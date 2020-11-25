@@ -69,19 +69,19 @@ public class DetallesUsuario extends HttpServlet {
 	private void processResponse(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession objSesion = req.getSession();
 		req.setCharacterEncoding("UTF-8");
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+		
 		String accion = req.getParameter("accion");
 		String usuariologueado = req.getParameter("usuariologueado");
 		String usuarioaseguir = req.getParameter("usuarioaseguir");
-		Usuario uloggueado = hu.getUsuario(usuariologueado);
-		Usuario uaseguir = hu.getUsuario(usuarioaseguir);
-		/*if (accion.compareTo("seguir") == 0) {
-			uloggueado.agregarSeguido(uaseguir);
-			uaseguir.agregarSiguiendo(uloggueado);
+		
+		
+		if (accion.compareTo("seguir") == 0) {
+			port.seguir(usuarioaseguir,usuariologueado);
 		} else if (accion.compareTo("dejardeseguir") == 0) {
-			uloggueado.quitarSeguido(uaseguir);
-			uaseguir.quitarSiguiendo(uloggueado);
-		}*/
+			port.dejardeseguir(usuarioaseguir,usuariologueado);
+		} 
 		
 		resp.sendRedirect("detallesUsuario?name=" + req.getParameter("usuarioaseguir"));
 	}

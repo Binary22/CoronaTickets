@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataRegistro complex type.
+ * <p>Java class for dataRegistro complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataRegistro">
@@ -59,7 +59,7 @@ public class DataRegistro {
     protected String espectFuncion;
 
     /**
-     * Obtiene el valor de la propiedad fecha.
+     * Gets the value of the fecha property.
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad fecha.
+     * Sets the value of the fecha property.
      * 
      * @param value
      *     allowed object is
@@ -83,7 +83,7 @@ public class DataRegistro {
     }
 
     /**
-     * Obtiene el valor de la propiedad yaFueCanjeado.
+     * Gets the value of the yaFueCanjeado property.
      * 
      */
     public boolean isYaFueCanjeado() {
@@ -91,7 +91,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad yaFueCanjeado.
+     * Sets the value of the yaFueCanjeado property.
      * 
      */
     public void setYaFueCanjeado(boolean value) {
@@ -99,7 +99,7 @@ public class DataRegistro {
     }
 
     /**
-     * Obtiene el valor de la propiedad ident.
+     * Gets the value of the ident property.
      * 
      */
     public int getIdent() {
@@ -107,7 +107,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad ident.
+     * Sets the value of the ident property.
      * 
      */
     public void setIdent(int value) {
@@ -144,7 +144,7 @@ public class DataRegistro {
     }
 
     /**
-     * Obtiene el valor de la propiedad costo.
+     * Gets the value of the costo property.
      * 
      */
     public float getCosto() {
@@ -152,7 +152,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad costo.
+     * Sets the value of the costo property.
      * 
      */
     public void setCosto(float value) {
@@ -160,7 +160,7 @@ public class DataRegistro {
     }
 
     /**
-     * Obtiene el valor de la propiedad usuario.
+     * Gets the value of the usuario property.
      * 
      * @return
      *     possible object is
@@ -172,7 +172,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad usuario.
+     * Sets the value of the usuario property.
      * 
      * @param value
      *     allowed object is
@@ -184,7 +184,7 @@ public class DataRegistro {
     }
 
     /**
-     * Obtiene el valor de la propiedad funcion.
+     * Gets the value of the funcion property.
      * 
      * @return
      *     possible object is
@@ -196,7 +196,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad funcion.
+     * Sets the value of the funcion property.
      * 
      * @param value
      *     allowed object is
@@ -208,7 +208,7 @@ public class DataRegistro {
     }
 
     /**
-     * Obtiene el valor de la propiedad espectFuncion.
+     * Gets the value of the espectFuncion property.
      * 
      * @return
      *     possible object is
@@ -220,7 +220,7 @@ public class DataRegistro {
     }
 
     /**
-     * Define el valor de la propiedad espectFuncion.
+     * Sets the value of the espectFuncion property.
      * 
      * @param value
      *     allowed object is

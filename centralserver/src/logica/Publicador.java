@@ -451,18 +451,22 @@ public class Publicador {
     }
     
     @WebMethod
-    public void crearPaquete(String nombre, String desc, String fechaini, String fechafin, int discount, String imagen) throws PaqueteConMismoNombreException {
+    public void crearPaquete(String nombre, String desc, String fechaini, String fechafin, int discount, String imagen) throws PaqueteConMismoNombreException, NoExistePaqueteException {
     	Fabrica fabrica = Fabrica.getInstance();
         IPaquete ctrlpaq = fabrica.getIPaquete();
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateini = LocalDate.parse(fechaini, formatter);
 		LocalDate datefin = LocalDate.parse(fechafin, formatter);
+		
+		HandlerPaquetes hp = HandlerPaquetes.getInstance(); 
+		hp.agregarPaquete(new Paquete(nombre, dateini, datefin, discount, desc, LocalDate.now(), imagen));
         
-        ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
+        /*
+		ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
 		ctrlpaq.confirmarCrearPaquete();
 		
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
+		HandlerPaquetes hp = HandlerPaquetes.getInstance(); // el que hizo esto encajo, tendrian que haber llamado al creador de la clase directo ._.
 		if (imagen != null && imagen != "") {
 			try {
 				hp.getPaquete(nombre).setImagen(imagen);
@@ -470,7 +474,9 @@ public class Publicador {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		} else {
+			hp.getPaquete(nombre).setImagen("resources/media/espectaculos/maracas.jpg"); // esta es la imagen por defecto, no deberia estar asi pero esto esta mal hecho \rant
+		} */
     }
     
     @WebMethod
@@ -559,11 +565,27 @@ public class Publicador {
     }
     
     @WebMethod
+    public void seguir(String uaseguir, String uloggueado) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
+    	Usuario Usuariologgueado = husuarios.getUsuario(uloggueado);
+    	Usuariologgueado.agregarSeguido(Usuarioaseguir);
+    	Usuarioaseguir.agregarSiguiendo(Usuariologgueado);
+    	
+    }
+    @WebMethod
     public void finalizarEspectaculo(String nombreEspectaculo) {
     	HandlerEspectaculos hespectaculos = HandlerEspectaculos.getInstance();
     	Espectaculo espFinalizar = hespectaculos.getEspectaculo(nombreEspectaculo);
     	espFinalizar.setFinalizado(true);
     }
     
-    
+    public void dejardeseguir(String uaseguir, String uloggueado) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
+    	Usuario Usuariologgueado = husuarios.getUsuario(uloggueado);
+    	Usuariologgueado.quitarSeguido(Usuarioaseguir);
+    	Usuarioaseguir.quitarSiguiendo(Usuariologgueado);	
+
+    }
 }
