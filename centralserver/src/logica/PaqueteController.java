@@ -18,7 +18,7 @@ public class PaqueteController implements IPaquete {
 		else
 			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
 	}
-
+   
 	@Override
 	public void confirmarCrearPaquete() {
 		HandlerPaquetes hpaq= HandlerPaquetes.getInstance();
@@ -53,7 +53,10 @@ public class PaqueteController implements IPaquete {
 	public void crearPaqueteWeb(String nombre, String descrip, LocalDate fechaini, LocalDate fechafin, int desc, LocalDate fechaalta, String imagen) throws PaqueteConMismoNombreException {
 		HandlerPaquetes hpaq= HandlerPaquetes.getInstance();
 		if (!hpaq.getNombresPaquete().contains(nombre))
-			this.paq = hpaq.crearPaqueteWeb(nombre, descrip, fechaini, fechafin, desc, fechaalta, imagen);
+			if(imagen != "" && imagen != null)	
+				this.paq = hpaq.crearPaqueteWeb(nombre, descrip, fechaini, fechafin, desc, fechaalta, imagen);
+			else
+				this.paq = hpaq.crearPaqueteWeb(nombre, descrip, fechaini, fechafin, desc, fechaalta, "resources/media/espectaculos/maracas.jpg");
 		else
 			throw new PaqueteConMismoNombreException("El paquete de nombre: " + nombre + " ya esta en uso");
 	}
