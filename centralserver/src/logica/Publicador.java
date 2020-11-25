@@ -438,5 +438,12 @@ public class Publicador {
     	return lista;
     }
     
+    @WebMethod
+    public void finalizarEspectaculo(String nombreEspectaculo) {
+    	HandlerEspectaculos hespectaculos = HandlerEspectaculos.getInstance();
+    	Espectaculo espFinalizar = hespectaculos.getEspectaculo(nombreEspectaculo);
+    	espFinalizar.setFinalizado(true);
+    }
+    
     
 }

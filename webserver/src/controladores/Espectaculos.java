@@ -59,8 +59,11 @@ public class Espectaculos extends HttpServlet {
     	}else {
     		logica.ListaEspectaculo lista = port.listarEspectaculos();
     		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
+    		
 	    	for(Entry e : lista.getEspectaculos().getEntry()) {
-	    		list.add(e.getValue());
+	    		
+	    		if(e.getValue().isYaFueValuado() && !e.getValue().isFinalizado() && e.getValue().isAceptado())
+	    			list.add(e.getValue());
 	    	}
 	    	objSesion.setAttribute("espectaculosPlat", list);
     	}

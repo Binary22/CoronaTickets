@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="finalizado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="maxEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="minEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -73,6 +74,7 @@ import javax.xml.bind.annotation.XmlType;
     "descripcion",
     "duracion",
     "fechaReg",
+    "finalizado",
     "imagen",
     "maxEspectadores",
     "minEspectadores",
@@ -93,6 +95,7 @@ public class DataEspectaculo {
     protected String descripcion;
     protected String duracion;
     protected String fechaReg;
+    protected boolean finalizado;
     protected String imagen;
     protected int maxEspectadores;
     protected int minEspectadores;
@@ -259,6 +262,22 @@ public class DataEspectaculo {
      */
     public void setFechaReg(String value) {
         this.fechaReg = value;
+    }
+
+    /**
+     * Gets the value of the finalizado property.
+     * 
+     */
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    /**
+     * Sets the value of the finalizado property.
+     * 
+     */
+    public void setFinalizado(boolean value) {
+        this.finalizado = value;
     }
 
     /**

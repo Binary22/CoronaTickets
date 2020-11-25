@@ -29,6 +29,19 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarEspectaculosPlataformaRequest", output = "http://logica/Publicador/listarEspectaculosPlataformaResponse")
+    public ListaEspectaculo listarEspectaculosPlataforma(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @return
      *     returns net.java.dev.jaxb.array.StringArray
      */
@@ -41,12 +54,12 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns logica.ListaEspectaculo
+     *     returns logica.DataEspectaculo
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarEspectaculosPlataformaRequest", output = "http://logica/Publicador/listarEspectaculosPlataformaResponse")
-    public ListaEspectaculo listarEspectaculosPlataforma(
+    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
+    public DataEspectaculo getEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -67,32 +80,6 @@ public interface Publicador {
         String arg0)
         throws NoExistePaqueteException_Exception
     ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.DataEspectaculo
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
-    public DataEspectaculo getEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.DataUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
-    public DataUsuario getUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
 
     /**
      * 
@@ -123,13 +110,65 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
      * @return
-     *     returns logica.ListaPaquete
+     *     returns logica.DataUsuario
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarPaquetesRequest", output = "http://logica/Publicador/listarPaquetesResponse")
-    public ListaPaquete listarPaquetes();
+    @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
+    public DataUsuario getUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataArtista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getArtistaRequest", output = "http://logica/Publicador/getArtistaResponse")
+    public DataArtista getArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListEspOrg
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
+    public DataListEspOrg getEspectaculos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getMailUsuarioRequest", output = "http://logica/Publicador/getMailUsuarioResponse")
+    public String getMailUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns logica.DataListPaquetes
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
+    public DataListPaquetes getPaquetes();
 
     /**
      * 
@@ -146,16 +185,29 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
-     *     returns logica.DataArtista
+     *     returns boolean
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getArtistaRequest", output = "http://logica/Publicador/getArtistaResponse")
-    public DataArtista getArtista(
+    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
+    public boolean loginCorrecto(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @return
+     *     returns logica.ListaPaquete
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarPaquetesRequest", output = "http://logica/Publicador/listarPaquetesResponse")
+    public ListaPaquete listarPaquetes();
 
     /**
      * 
@@ -194,68 +246,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns logica.DataListEspOrg
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
-    public DataListEspOrg getEspectaculos(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/loginCorrectoRequest", output = "http://logica/Publicador/loginCorrectoResponse")
-    public boolean loginCorrecto(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getMailUsuarioRequest", output = "http://logica/Publicador/getMailUsuarioResponse")
-    public String getMailUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns logica.DataListPaquetes
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
-    public DataListPaquetes getPaquetes();
-
-    /**
-     * 
-     * @return
-     *     returns logica.DataListPlataformas
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getPlataformasRequest", output = "http://logica/Publicador/getPlataformasResponse")
-    public DataListPlataformas getPlataformas();
-
-    /**
-     * 
      * @param arg2
      * @param arg1
      * @param arg0
@@ -276,6 +266,103 @@ public interface Publicador {
         String arg2)
         throws NoExistePaqueteException_Exception, UsuarioPaqueteComprado_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListArtInvi
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getArtistasRequest", output = "http://logica/Publicador/getArtistasResponse")
+    public DataListArtInvi getArtistas(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns logica.DataListPlataformas
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getPlataformasRequest", output = "http://logica/Publicador/getPlataformasResponse")
+    public DataListPlataformas getPlataformas();
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @throws PaqueteConMismoNombreException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/crearPaqueteRequest", output = "http://logica/Publicador/crearPaqueteResponse", fault = {
+        @FaultAction(className = PaqueteConMismoNombreException_Exception.class, value = "http://logica/Publicador/crearPaquete/Fault/PaqueteConMismoNombreException")
+    })
+    public void crearPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        int arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5)
+        throws PaqueteConMismoNombreException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg6
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/updateUsuarioWebRequest", output = "http://logica/Publicador/updateUsuarioWebResponse")
+    public void updateUsuarioWeb(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        String arg6);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/updateArtistaRequest", output = "http://logica/Publicador/updateArtistaResponse")
+    public void updateArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
 
     /**
      * 
@@ -325,98 +412,27 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
-     *     returns logica.DataListArtInvi
+     *     returns logica.ListaPaquete
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getArtistasRequest", output = "http://logica/Publicador/getArtistasResponse")
-    public DataListArtInvi getArtistas(
+    @Action(input = "http://logica/Publicador/listarPaquetesEspectaculoRequest", output = "http://logica/Publicador/listarPaquetesEspectaculoResponse")
+    public ListaPaquete listarPaquetesEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
     /**
      * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
      * @param arg0
-     * @throws PaqueteConMismoNombreException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/crearPaqueteRequest", output = "http://logica/Publicador/crearPaqueteResponse", fault = {
-        @FaultAction(className = PaqueteConMismoNombreException_Exception.class, value = "http://logica/Publicador/crearPaquete/Fault/PaqueteConMismoNombreException")
-    })
-    public void crearPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        int arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5)
-        throws PaqueteConMismoNombreException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/updateArtistaRequest", output = "http://logica/Publicador/updateArtistaResponse")
-    public void updateArtista(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
-     * @param arg6
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/updateUsuarioWebRequest", output = "http://logica/Publicador/updateUsuarioWebResponse")
-    public void updateUsuarioWeb(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        String arg6);
-
-    /**
-     * 
      * @return
-     *     returns logica.ListaEspectaculo
+     *     returns logica.DataListEspOrg
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarEspectaculosRequest", output = "http://logica/Publicador/listarEspectaculosResponse")
-    public ListaEspectaculo listarEspectaculos();
+    @Action(input = "http://logica/Publicador/getEspectaculosDePlataformaRequest", output = "http://logica/Publicador/getEspectaculosDePlataformaResponse")
+    public DataListEspOrg getEspectaculosDePlataforma(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 
@@ -438,6 +454,26 @@ public interface Publicador {
 
     /**
      * 
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarEspectaculosRequest", output = "http://logica/Publicador/listarEspectaculosResponse")
+    public ListaEspectaculo listarEspectaculos();
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/finalizarEspectaculoRequest", output = "http://logica/Publicador/finalizarEspectaculoResponse")
+    public void finalizarEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @param arg0
      * @throws NombreEspectaculoExisteException_Exception
      */
@@ -453,29 +489,13 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
      * @return
-     *     returns logica.DataListEspOrg
+     *     returns net.java.dev.jaxb.array.StringArray
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getEspectaculosDePlataformaRequest", output = "http://logica/Publicador/getEspectaculosDePlataformaResponse")
-    public DataListEspOrg getEspectaculosDePlataforma(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.ListaPaquete
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarPaquetesEspectaculoRequest", output = "http://logica/Publicador/listarPaquetesEspectaculoResponse")
-    public ListaPaquete listarPaquetesEspectaculo(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+    @Action(input = "http://logica/Publicador/listarCategoriasRequest", output = "http://logica/Publicador/listarCategoriasResponse")
+    public StringArray listarCategorias();
 
     /**
      * 
@@ -486,15 +506,5 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/listarUsuariosRequest", output = "http://logica/Publicador/listarUsuariosResponse")
     public ListaUsuario listarUsuarios();
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarCategoriasRequest", output = "http://logica/Publicador/listarCategoriasResponse")
-    public StringArray listarCategorias();
 
 }

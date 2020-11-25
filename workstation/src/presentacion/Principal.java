@@ -230,7 +230,7 @@ public class Principal extends JFrame {
 			}
 		});
 		
-		JMenuItem mntmAcpetarrechazarEspectaculo = new JMenuItem("Acpetar/Rechazar espectaculo");
+		JMenuItem mntmAcpetarrechazarEspectaculo = new JMenuItem("Aceptar/Rechazar espectaculo");
 		mntmAcpetarrechazarEspectaculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AceptarRechazarEspectFrame = new AceptarRechazarEspect();
