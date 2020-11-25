@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataUsuario complex type.
+ * <p>Clase Java para dataUsuario complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataUsuario">
@@ -95,7 +95,7 @@ public class DataUsuario {
     protected List<DataUsuario> siguiendo;
 
     /**
-     * Gets the value of the nickname property.
+     * Obtiene el valor de la propiedad nickname.
      * 
      * @return
      *     possible object is
@@ -107,7 +107,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the nickname property.
+     * Define el valor de la propiedad nickname.
      * 
      * @param value
      *     allowed object is
@@ -119,7 +119,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -131,7 +131,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -143,7 +143,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the apellido property.
+     * Obtiene el valor de la propiedad apellido.
      * 
      * @return
      *     possible object is
@@ -155,7 +155,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the apellido property.
+     * Define el valor de la propiedad apellido.
      * 
      * @param value
      *     allowed object is
@@ -167,7 +167,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the email property.
+     * Obtiene el valor de la propiedad email.
      * 
      * @return
      *     possible object is
@@ -179,7 +179,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the email property.
+     * Define el valor de la propiedad email.
      * 
      * @param value
      *     allowed object is
@@ -191,7 +191,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the fechaNacimiento property.
+     * Obtiene el valor de la propiedad fechaNacimiento.
      * 
      * @return
      *     possible object is
@@ -203,7 +203,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the fechaNacimiento property.
+     * Define el valor de la propiedad fechaNacimiento.
      * 
      * @param value
      *     allowed object is
@@ -302,7 +302,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the password property.
+     * Obtiene el valor de la propiedad password.
      * 
      * @return
      *     possible object is
@@ -314,7 +314,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the password property.
+     * Define el valor de la propiedad password.
      * 
      * @param value
      *     allowed object is
@@ -326,7 +326,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the imagen property.
+     * Obtiene el valor de la propiedad imagen.
      * 
      * @return
      *     possible object is
@@ -338,7 +338,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the imagen property.
+     * Define el valor de la propiedad imagen.
      * 
      * @param value
      *     allowed object is
@@ -379,7 +379,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the esArtista property.
+     * Obtiene el valor de la propiedad esArtista.
      * 
      */
     public boolean isEsArtista() {
@@ -387,7 +387,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the esArtista property.
+     * Define el valor de la propiedad esArtista.
      * 
      */
     public void setEsArtista(boolean value) {
@@ -395,7 +395,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -407,7 +407,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -419,7 +419,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the biografia property.
+     * Obtiene el valor de la propiedad biografia.
      * 
      * @return
      *     possible object is
@@ -431,7 +431,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the biografia property.
+     * Define el valor de la propiedad biografia.
      * 
      * @param value
      *     allowed object is
@@ -443,7 +443,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the website property.
+     * Obtiene el valor de la propiedad website.
      * 
      * @return
      *     possible object is
@@ -455,7 +455,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the website property.
+     * Define el valor de la propiedad website.
      * 
      * @param value
      *     allowed object is

@@ -19,6 +19,9 @@ import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
+import datatypesweb.dataEspectaculo;
+import datatypesweb.dataRegistro;
+import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaPaquete;
@@ -33,13 +36,19 @@ import datatypesweb.dataListEspOrg;
 import datatypesweb.dataListPaquetes;
 import datatypesweb.dataListPlataformas;
 import datatypesweb.dataUsuario;
+import datatypesweb.dataVale;
+import datatypesweb.dataValesCanje;
 import excepciones.NoExistePaqueteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.PaqueteConMismoNombreException;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
+import excepciones.fechaPosterior;
+import excepciones.funcionAlcanzoLimiteException;
+import excepciones.noSeleccionoTres;
 import excepciones.UsuarioPaqueteComprado;
+import excepciones.existeRegistroEspecException;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -213,6 +222,117 @@ public class Publicador {
     	UController.altaArtistaWeb(nickname, nombre, apellido, mail, date, desc, bio, web, password, imagen);
     	UController.confirmarAltaUsuario();
     }
+    
+   /* @WebMethod
+    public dataEspectaculo getEspectaculo(String espect) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	return new dataEspectaculo(hEsp.getEspectaculo(espect));
+    }*/
+    
+    @WebMethod
+    public dataRegsPrevios obtenerRegistrosPreviosWeb(String nickname){
+    	Fabrica fabrica = Fabrica.getInstance();
+        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        List<dataRegistro> registrosCanjear = new ArrayList<dataRegistro>();
+        List<Registro> regs = ctrlE.obtenerRegistrosPreviosWeb(nickname);
+        for(int i = 0; i < regs.size(); i++) {
+        	registrosCanjear.add(new dataRegistro(regs.get(i)));
+        }
+        dataRegsPrevios regsPrevios = new dataRegsPrevios();
+        regsPrevios.setRegsPrevios(registrosCanjear);
+        return regsPrevios;
+    }
+    
+    @WebMethod
+    public dataValesCanje valesACanjear(String nombreEspect, String nickname) {
+    	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+    	Usuario user = husers.getUsuario(nickname);
+    	List<Vale> vales = user.getVales();
+    	List<dataVale> valesCanjear = new ArrayList<dataVale>();
+    	HandlerPaquetes hPaq = HandlerPaquetes.getInstance();
+    	for (int i = 0; i < vales.size(); i++) {
+    		if (vales.get(i).getEspectaculo().getNombre().compareTo(nombreEspect) == 0 && !vales.get(i).isUsado()) {
+    			Paquete paq = vales.get(i).getPaquete();
+    			if (LocalDate.now().isBefore(paq.getFechaF())) {
+    				valesCanjear.add(new dataVale(vales.get(i)));
+    					
+    			}
+    		}
+    	}
+    	dataValesCanje canjes = new dataValesCanje();
+    	canjes.setVales(valesCanjear);
+    	return canjes;
+    	
+    }
+    
+    @WebMethod
+    public void confirmarRegistroPrevios(String nomFuncion, String nickname, String nomEspect, String fecha, dataRegsPrevios registros) throws fechaPosterior, noSeleccionoTres, existeRegistroEspecException, funcionAlcanzoLimiteException{
+    	Fabrica fabrica = Fabrica.getInstance();
+        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
+        ctrlE.ingresarNombreFuncion(nomFuncion);
+        ctrlE.ingresarNombreEspectador(nickname);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fecha, formatter);
+        ctrlE.esFechaInvalida(nomEspect, date);
+        
+        int[] regsCanj = new int[3];
+        List<dataRegistro> regs = registros.getRegsPrevios();
+        int i = 0;
+        while(i < 3 && i < regs.size()) {
+        	regsCanj[i] = regs.get(i).getIdent();
+        	i++;
+        }
+        ctrlE.canjearRegistros(regsCanj);
+        
+        ctrlE.existeRegistroEspecAFunWeb();
+        ctrlE.funcionAlcanzoLimiteRegWeb(nomEspect);
+        
+    	ctrlE.confirmarRegistro(nomEspect, date);
+       
+    }
+    
+    public void confirmarRegistroVales(String nomFuncion, String nickname, String nomEspect, String fecha, String nomPaquete) throws fechaPosterior, existeRegistroEspecException, funcionAlcanzoLimiteException {
+    	Fabrica fabrica = Fabrica.getInstance();
+        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
+        ctrlE.ingresarNombreFuncion(nomFuncion);
+        ctrlE.ingresarNombreEspectador(nickname);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fecha, formatter);
+        ctrlE.esFechaInvalida(nomEspect, date);
+        ctrlE.existeRegistroEspecAFunWeb();
+        ctrlE.funcionAlcanzoLimiteRegWeb(nomEspect);
+        
+        ctrlE.ingresarNombrePaquete(nomPaquete);
+    	ctrlE.canjePorVale();
+    	
+    	ctrlE.confirmarRegistro(nomEspect, date);
+    }
+    
+    
+    
+    
+    @WebMethod
+    public void confirmarRegistroTradicional(String nomFuncion, String nickname, String nomEspect, String fecha) throws fechaPosterior, existeRegistroEspecException, funcionAlcanzoLimiteException {
+    	Fabrica fabrica = Fabrica.getInstance();
+        IEspectaculo ctrlE = fabrica.getIEspectaculo();
+        
+        ctrlE.ingresarNombreFuncion(nomFuncion);
+        ctrlE.ingresarNombreEspectador(nickname);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fecha, formatter);
+        ctrlE.esFechaInvalida(nomEspect, date);
+        ctrlE.existeRegistroEspecAFunWeb();
+        ctrlE.funcionAlcanzoLimiteRegWeb(nomEspect);
+        
+    	ctrlE.confirmarRegistro(nomEspect, date);
+    }
+    
+  
     
     @WebMethod
     public void updateUsuarioWeb(String nickname, String nombre, String apellido, String mail, String fechanac, String password, String imagen) {

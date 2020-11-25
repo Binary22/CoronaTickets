@@ -18,7 +18,9 @@ import excepciones.NombreCategoriaExistente;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.existeRegistroEspecException;
 import excepciones.fechaPosterior;
+import excepciones.funcionAlcanzoLimiteException;
 import excepciones.noSeleccionoTres;
 import excepciones.usuarioNoExiste;
 
@@ -43,8 +45,18 @@ public class EspectaculoController implements IEspectaculo {
 	private String nomCategoria;
 	private List<String> categorias;
 	private String imagen;
+	private boolean canjeVale = false;
+	private String nomPaquete;
 	
 	
+	public String getNomPaquete() {
+		return nomPaquete;
+	}
+
+	public void setNomPaquete(String nomPaquete) {
+		this.nomPaquete = nomPaquete;
+	}
+
 	public void setRegistroFueCanjeado(boolean canj) {
 		this.registroFueCanjeado = canj;
 	}
@@ -350,10 +362,11 @@ public class EspectaculoController implements IEspectaculo {
 		return husers.getNombres();
 	}
 	@Override
-	public void ingresarNombreFuncion(String nomfuncion) {
+	public void ingresarNombreFuncion(String nomFuncion) {
 		// TODO Auto-generated method stub
 		//this.nickUsuario = nickname;
-		this.nomfuncion = nomfuncion;
+		this.nomfuncion = nomFuncion;
+		
 		
 	}
 	
@@ -441,6 +454,39 @@ public class EspectaculoController implements IEspectaculo {
 			
 		return false;
 	}
+	
+	@Override
+	public void existeRegistroEspecAFunWeb() throws existeRegistroEspecException {
+		// TODO Auto-generated method stub
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		Usuario espectador = husers.getUsuario(this.nickUsuario);
+		System.out.println(this.nomfuncion);
+		if(espectador.tieneRegistroAFuncion(this.nomfuncion)) {
+			throw new existeRegistroEspecException("Ya posee un registro a la función");
+		}
+		
+	}
+	
+	
+	@Override
+	public void funcionAlcanzoLimiteRegWeb(String nomespect) throws funcionAlcanzoLimiteException {
+		// TODO Auto-generated method stub
+		this.nomespec = nomespect;
+		HandlerEspectaculos hEspectaculos = HandlerEspectaculos.getInstance();
+		Espectaculo espect = hEspectaculos.getEspectaculo(nomespect);
+		Funcion fun = espect.getFuncion(this.nomfuncion);
+		//System.out.println(fun.getNombre());
+		List<Registro> regs = fun.getRegistros();
+		int cant = 0;
+		for (int i = 0; i < regs.size(); i++) {
+			cant++;
+		}
+		if (cant == espect.getMaxEspectadores()) {
+			throw new funcionAlcanzoLimiteException("La función alcanzó el limite de registros");
+		}
+			
+		
+	}
 	@Override
 	public void elegirNuevaFuncion(String nomfuncion) {
 		// TODO Auto-generated method stub
@@ -451,6 +497,15 @@ public class EspectaculoController implements IEspectaculo {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void canjePorVale() {
+		this.canjeVale = true;
+	}
+	
+	public void ingresarNombrePaquete(String nomPaquete) {
+		this.nomPaquete = nomPaquete;
+	}
+	
 	@Override
 	public void confirmarRegistro(String nomespect, LocalDate fecha){
 		// TODO Auto-generated method stub
@@ -471,7 +526,24 @@ public class EspectaculoController implements IEspectaculo {
 				nuevo = new Registro(fecha, true, espectador, fun, 0);
 				nuevo.setRegsCanjeados(this.regsCanjeados);
 				
-			}else {
+			}else if(this.canjeVale) {
+				//Funcion fun = espect.getFuncion(nomFuncion);
+	        	//Usuario user = hu.getUsuario(userNickname);
+	        	List<Vale> vales = espectador.getVales();
+	        	int i = 0;
+	        	boolean actualizo = false;
+	        	while(i < vales.size() && !actualizo){
+	        		if(vales.get(i).getPaquete().getNombre().compareTo(this.nomPaquete) == 0) {
+	        			if(vales.get(i).getEspectaculo().getNombre().compareTo(nomespect) == 0) {
+	        				vales.get(i).setUsado(true);
+	        				actualizo = true;
+	        			}
+	        		}
+	        		i++;
+	        	}
+	        	nuevo = new Registro(fecha, false, espectador, fun, espect.getCosto());
+			}
+			else {
 				nuevo = new Registro(fecha, false, espectador, fun, espect.getCosto());
 			}
 				
@@ -480,6 +552,7 @@ public class EspectaculoController implements IEspectaculo {
 			
 		}
 		this.registroFueCanjeado = false;
+		this.canjeVale = false;
 		
 	}
 	
@@ -624,6 +697,14 @@ public class EspectaculoController implements IEspectaculo {
 
 	public String getImagen() {
 		return imagen;
+	}
+
+	public boolean isCanjeVale() {
+		return canjeVale;
+	}
+
+	public void setCanjeVale(boolean canjeVale) {
+		this.canjeVale = canjeVale;
 	}
 
 

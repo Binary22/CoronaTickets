@@ -7,6 +7,9 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
+import excepciones.NoExistePaqueteException;
+import logica.HandlerPaquetes;
+import logica.Paquete;
 import logica.Artista;
 import logica.Espectaculo;
 import logica.Registro;
@@ -250,6 +253,8 @@ public class dataUsuario {
 	public dataUsuario() {
 		
 	}
+	
+	
 	
 	
 }
