@@ -18,6 +18,7 @@ import logica.Fabrica;
 import logica.HandlerPaquetes;
 import logica.IEspectaculo;
 import logica.IPaquete;
+import logica.NoExistePaqueteException_Exception;
 import logica.PaqueteConMismoNombreException_Exception;
 import logica.Publicador;
 import logica.PublicadorService;
@@ -87,7 +88,7 @@ public class CrearPaquete extends HttpServlet {
 		if( ( ( datefin.isAfter(dateini) ) || ( datefin.isEqual(dateini) ) ) && ( ( dateini.isAfter(LocalDate.now()) ) || ( dateini.isEqual(LocalDate.now()) ) ) ) {
 	        try {
 					port.crearPaquete(nombre,desc,fechaini,fechafin,discount,imagen);
-				} catch (PaqueteConMismoNombreException_Exception e) {
+				} catch (PaqueteConMismoNombreException_Exception | NoExistePaqueteException_Exception e) {
 					objSesion.setAttribute("nombreexiste",true);
 					objSesion.setAttribute("fechaInvalida",false);
 					objSesion.setAttribute("form", form);
