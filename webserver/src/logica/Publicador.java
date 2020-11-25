@@ -160,8 +160,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoNickException_Exception
      * @throws UsuarioConMismoMailException_Exception
+     * @throws UsuarioConMismoNickException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -349,8 +349,8 @@ public interface Publicador {
      * 
      * @param arg1
      * @param arg0
-     * @throws UsuarioPaqueteComprado_Exception
      * @throws NoExistePaqueteException_Exception
+     * @throws UsuarioPaqueteComprado_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {
@@ -399,6 +399,32 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/listarUsuariosRequest", output = "http://logica/Publicador/listarUsuariosResponse")
     public ListaUsuario listarUsuarios();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/seguirRequest", output = "http://logica/Publicador/seguirResponse")
+    public void seguir(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/dejardeseguirRequest", output = "http://logica/Publicador/dejardeseguirResponse")
+    public void dejardeseguir(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 

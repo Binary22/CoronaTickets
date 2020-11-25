@@ -43,8 +43,8 @@
 		                        </div>
 		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
 				                        DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
-				                        if (a != userlogged) {
-				                        	if (userlogged.getSeguidos().contains(a)) { %>
+				                        if (!a.getNickname().equals(userlogged.getNickname())) {
+				                        	if (userlogged.getSeguidos().contains(a.getNickname())) { %>
 				                        		<form action="detallesUsuario" method="POST">
 				                        			<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
 				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=a.getNickname()%>"/>

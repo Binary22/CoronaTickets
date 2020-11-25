@@ -438,5 +438,22 @@ public class Publicador {
     	return lista;
     }
     
+    @WebMethod
+    public void seguir(String uaseguir, String uloggueado) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
+    	Usuario Usuariologgueado = husuarios.getUsuario(uloggueado);
+    	Usuariologgueado.agregarSeguido(Usuarioaseguir);
+    	Usuarioaseguir.agregarSiguiendo(Usuariologgueado);
+    	
+    }
     
+    public void dejardeseguir(String uaseguir, String uloggueado) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
+    	Usuario Usuariologgueado = husuarios.getUsuario(uloggueado);
+    	Usuariologgueado.quitarSeguido(Usuarioaseguir);
+    	Usuarioaseguir.quitarSiguiendo(Usuariologgueado);	
+
+    }
 }
