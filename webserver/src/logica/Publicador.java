@@ -29,19 +29,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns logica.DataArtista
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getArtistaRequest", output = "http://logica/Publicador/getArtistaResponse")
-    public DataArtista getArtista(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
      * @param arg1
      * @param arg0
      * @return
@@ -58,6 +45,7 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
      * @return
      *     returns boolean
      */
@@ -65,6 +53,19 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/esArtistaRequest", output = "http://logica/Publicador/esArtistaResponse")
     public boolean esArtista(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataArtista
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getArtistaRequest", output = "http://logica/Publicador/getArtistaResponse")
+    public DataArtista getArtista(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -92,9 +93,7 @@ public interface Publicador {
     @Action(input = "http://logica/Publicador/getMailUsuarioRequest", output = "http://logica/Publicador/getMailUsuarioResponse")
     public String getMailUsuario(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0)
-        throws NoExistePaqueteException_Exception
-    ;
+        String arg0);
 
     /**
      * 
@@ -154,6 +153,11 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
      * @param arg0
      * @param arg6
      * @throws UsuarioConMismoMailException_Exception
@@ -241,6 +245,7 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
      *     returns logica.DataValesCanje
@@ -262,9 +267,9 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws NoSeleccionoTres_Exception
-     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -294,9 +299,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -324,9 +329,9 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -345,16 +350,6 @@ public interface Publicador {
         String arg3)
         throws ExisteRegistroEspecException_Exception, FechaPosterior_Exception, FuncionAlcanzoLimiteException_Exception
     ;
-
-    /**
-     * 
-     * @return
-     *     returns logica.ListaPaquete
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarPaquetesRequest", output = "http://logica/Publicador/listarPaquetesResponse")
-    public ListaPaquete listarPaquetes();
 
     /**
      * 
@@ -420,29 +415,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @throws UsuarioPaqueteComprado_Exception
-     * @throws NoExistePaqueteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {
-        @FaultAction(className = NoExistePaqueteException_Exception.class, value = "http://logica/Publicador/agregarCompra/Fault/NoExistePaqueteException"),
-        @FaultAction(className = UsuarioPaqueteComprado_Exception.class, value = "http://logica/Publicador/agregarCompra/Fault/UsuarioPaqueteComprado")
-    })
-    public void agregarCompra(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2)
-        throws NoExistePaqueteException_Exception, UsuarioPaqueteComprado_Exception
-    ;
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns logica.DataListArtInvi
@@ -496,10 +468,7 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg3
      * @param arg2
-     * @param arg5
-     * @param arg4
      * @param arg1
      * @param arg0
      * @throws NoExistePaqueteException_Exception
@@ -537,7 +506,6 @@ public interface Publicador {
 
     /**
      * 
-     * @param arg0
      * @return
      *     returns net.java.dev.jaxb.array.StringArray
      */
@@ -568,6 +536,16 @@ public interface Publicador {
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/finalizarEspectaculoRequest", output = "http://logica/Publicador/finalizarEspectaculoResponse")
+    public void finalizarEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 

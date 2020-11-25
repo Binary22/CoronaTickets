@@ -114,7 +114,7 @@
 								<% } %>
 							<% } %>
 						
-				 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { 
+				 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname().equals(session.getAttribute("usuario_logueado")) && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { 
 				 	%>
                         
                         <h4>Paquetes comprados</h4>
