@@ -167,14 +167,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListPaquetes }
-     * 
-     */
-    public DataListPaquetes createDataListPaquetes() {
-        return new DataListPaquetes();
-    }
-
-    /**
      * Create an instance of {@link DataListEspOrg }
      * 
      */
@@ -215,15 +207,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataFuncion }
-     * 
-     */
-    public DataFuncion createDataFuncion() {
-        return new DataFuncion();
-    }
-
-    /**
-     * Create an instance of {@link DataUsuario }
+     * Create an instance of {@link DataListPlataformas }
      * 
      */
     public DataListPlataformas createDataListPlataformas() {
@@ -231,15 +215,15 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
+     * Create an instance of {@link DataListPaquetes }
      * 
      */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
+    public DataListPaquetes createDataListPaquetes() {
+        return new DataListPaquetes();
     }
 
     /**
-     * Create an instance of {@link DataListPlataformas }
+     * Create an instance of {@link ListaPaquete }
      * 
      */
     public ListaPaquete createListaPaquete() {
@@ -255,19 +239,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataUsuario }
-     * 
-     */
-    public DataUsuario createDataUsuario() {
-        return new DataUsuario();
-    }
-
-    /**
      * Create an instance of {@link DataFuncion }
      * 
      */
     public DataFuncion createDataFuncion() {
         return new DataFuncion();
+    }
+
+    /**
+     * Create an instance of {@link DataUsuario }
+     * 
+     */
+    public DataUsuario createDataUsuario() {
+        return new DataUsuario();
     }
 
     /**
@@ -287,7 +271,7 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
+     * Create an instance of {@link DataValesCanje }
      * 
      */
     public DataValesCanje createDataValesCanje() {

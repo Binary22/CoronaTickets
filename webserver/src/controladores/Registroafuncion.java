@@ -62,6 +62,7 @@ public class Registroafuncion extends HttpServlet {
 		objSesion.setAttribute("errorFunAlcanzoLimite", false);
 		objSesion.setAttribute("funciones_vacias", false);
 		objSesion.setAttribute("fecha_invalida", false);
+		objSesion.setAttribute("vale_vacio", false);
 		
 		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
 			String userNickname = (String) objSesion.getAttribute("usuario_logueado");
@@ -200,23 +201,28 @@ public class Registroafuncion extends HttpServlet {
 				}
 	        	
 	        }else {//caso de vales
-	        	String nomPaquete = req.getParameter("vale_seleccionado");
-	        	try {
-					port.confirmarRegistroVales(nomFuncion, userNickname, espectaculo, LocalDate.now().toString(), nomPaquete);
-				} catch (ExisteRegistroEspecException_Exception e) {
-					// TODO Auto-generated catch block
-					objSesion.setAttribute("errorExisteRegFun", true);
+	        	String valeSelected = req.getParameter("vale_seleccionado");
+	        	if(valeSelected != null) {
+		        	String nomPaquete = req.getParameter("vale_seleccionado");
+		        	try {
+						port.confirmarRegistroVales(nomFuncion, userNickname, espectaculo, LocalDate.now().toString(), nomPaquete);
+					} catch (ExisteRegistroEspecException_Exception e) {
+						// TODO Auto-generated catch block
+						objSesion.setAttribute("errorExisteRegFun", true);
+						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+					} catch (FechaPosterior_Exception e) {
+						// TODO Auto-generated catch block
+						objSesion.setAttribute("fecha_invalida", true);
+						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+					} catch (FuncionAlcanzoLimiteException_Exception e) {
+						// TODO Auto-generated catch block
+						objSesion.setAttribute("errorFunAlcanzoLimite", true);
+						req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
+					}
+	        	}else {
+	        		objSesion.setAttribute("vale_vacio", true);
 					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-				} catch (FechaPosterior_Exception e) {
-					// TODO Auto-generated catch block
-					objSesion.setAttribute("fecha_invalida", true);
-					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-				} catch (FuncionAlcanzoLimiteException_Exception e) {
-					// TODO Auto-generated catch block
-					objSesion.setAttribute("errorFunAlcanzoLimite", true);
-					req.getRequestDispatcher("/WEB-INF/funciones/registroafuncion.jsp").forward(req, resp);
-				}
-	        	
+	        	}
 	        }
 
 		resp.sendRedirect("home");

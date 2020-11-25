@@ -61,6 +61,13 @@
 									</div>
 									<%} %>
 									
+									<%if((boolean)session.getAttribute("vale_vacio")){ %>
+						            <div class="alert alert-danger" role="alert">
+						            
+						  				Debe seleccionar un vale para realizar el canje
+									</div>
+									<%} %>
+									
 						            <br>
 						                    
 						             <form class="mt-2" action = "registroafuncion" method = "POST">

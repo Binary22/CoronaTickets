@@ -379,7 +379,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the esArtista property.
+     * Obtiene el valor de la propiedad esArtista.
      * 
      */
     public boolean isEsArtista() {
@@ -387,7 +387,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the esArtista property.
+     * Define el valor de la propiedad esArtista.
      * 
      */
     public void setEsArtista(boolean value) {
@@ -395,7 +395,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -407,7 +407,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -419,7 +419,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the biografia property.
+     * Obtiene el valor de la propiedad biografia.
      * 
      * @return
      *     possible object is
@@ -431,7 +431,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the biografia property.
+     * Define el valor de la propiedad biografia.
      * 
      * @param value
      *     allowed object is
@@ -443,7 +443,7 @@ public class DataUsuario {
     }
 
     /**
-     * Gets the value of the website property.
+     * Obtiene el valor de la propiedad website.
      * 
      * @return
      *     possible object is
@@ -455,7 +455,7 @@ public class DataUsuario {
     }
 
     /**
-     * Sets the value of the website property.
+     * Define el valor de la propiedad website.
      * 
      * @param value
      *     allowed object is
