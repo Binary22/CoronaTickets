@@ -40,6 +40,7 @@ navTemplate.innerHTML = `
                     <a class="dropdown-item" href="altafuncion.html">Alta de función de espectáculo</a>
                     <a class="dropdown-item" href="crearPaquete.html">Crear paquete de espectáculos</a>
                     <a class="dropdown-item" href="agregarEspectaculoaPaquete.html">Agregar espectáculo a paquete</a>
+                    <a class="dropdown-item" href="consultarEspectaculosFinalizados.html">Consultar espect�culos finalizados</a>
                     
                     <div class="dropdown-divider"></div>
                     <h5 class="dropdown-header"> Menu de usuario </h5>
