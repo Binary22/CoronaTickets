@@ -76,6 +76,10 @@
     	<servlet-name>EspectaculosDePlat</servlet-name>
     	<servlet-class>controladores.EspectaculosDePlat</servlet-class>
     </servlet>
+     <servlet>
+    	<servlet-name>FinalizarEspectaculo</servlet-name>
+    	<servlet-class>controladores.FinalizarEspectaculo</servlet-class>
+    </servlet>
     
     
     
@@ -83,8 +87,7 @@
     	<servlet-name>EspectaculosDePlat</servlet-name>
     	<url-pattern>/espectaculosdeplat</url-pattern>
     </servlet-mapping>
-    
-    
+
     <servlet-mapping>
     	<servlet-name>CargarDatos</servlet-name>
     	<url-pattern>/cargardatos</url-pattern>
@@ -178,6 +181,10 @@
     <servlet-mapping>
         <servlet-name>Buscar</servlet-name>
         <url-pattern>/buscar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>FinalizarEspectaculo</servlet-name>
+    	<url-pattern>/finalizarespectaculo</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>500</error-code>

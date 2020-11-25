@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,8 +12,12 @@
 
     <div class="container mt-6">
         <div class="d-flex justify-content-center">
-        <div class="card input-group mt-3" style="width:40rem;"">
+        <div class="card input-group mt-3" style="width:40rem;">
         <div class="card-body">
+        
+        <%
+        HashMap<String, String> form = (HashMap<String, String> ) session.getAttribute("form");
+        %>
 
         <h4> Crear Paquete de Espectáculos </h4>
         <br>
@@ -31,28 +36,28 @@
         <form action="crearPaquete" method="POST">
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control" name="nombre" placeholder="Ej. Paquete de Bandas" required>
+              <input type="text" class="form-control" name="nombre" placeholder="Ej. Paquete de Bandas"  value="<%= form.get("nombre") %>" required>
             </div>
             <div class="form-group">
               <label>Descripción</label>
-              <textarea class="form-control" name="descripcion" placeholder="Ej. Bandas de los 90's"></textarea>
+              <textarea class="form-control" name="descripcion" placeholder="Ej. Bandas de los 90's"><%= form.get("descripcion") %></textarea>
             </div>
             <div class="form-group">
               <label>Fecha de inicio</label>
-              <input type="date" name="fechaini" class="form-control" required>
+              <input type="date" name="fechaini" class="form-control" required value="<%= form.get("fechaIni") %>">
             </div>
             <!-- aca hay que agregar fecha de nacimiento -->
             <div class="form-group">
               <label>Fecha de finalización</label>
-              <input type="date" name="fechafin" class="form-control" required>
+              <input type="date" name="fechafin" class="form-control" required value="<%= form.get("fechaFin") %>">
             </div>
             <div class="form-group">
               <label>Descuento</label>
-              <input type="number" name="descuento" class="form-control" min="0" max="100" required>
+              <input type="number" name="descuento" class="form-control" min="0" max="100" required value="<%= form.get("descuento") %>">
             </div>
             <div class="form-group">
                <label>Elegir imagen</label>
-               <input type="imagen" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr">
+               <input type="imagen" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr" value="<%= form.get("imagen") %>">
             </div>
             <button type="submit" class="btn btn-primary">Confirmar</button>
         </form>

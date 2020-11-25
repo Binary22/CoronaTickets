@@ -27,6 +27,7 @@ public class dataEspectaculo {
 	private Map<String, dataFuncion> setFunciones;
 	private boolean yaFueValuado;
 	private boolean aceptado;
+	private boolean finalizado;
 	private String imagen;
 	private List<String> categorias;
 	
@@ -49,6 +50,7 @@ public class dataEspectaculo {
 		}
 		this.yaFueValuado = espect.isYaFueValuado();
 		this.aceptado = espect.isAceptado();
+		this.finalizado = espect.isFinalizado();
 		this.imagen = espect.getImagen();
 		this.categorias = new ArrayList<String>(espect.listarCategorias());
 		
@@ -194,5 +196,15 @@ public class dataEspectaculo {
 
 	public void setMinutos(String minutos) {
 		this.minutos = minutos;
+	}
+
+
+	public boolean isFinalizado() {
+		return finalizado;
+	}
+
+
+	public void setFinalizado(boolean finalizado) {
+		this.finalizado = finalizado;
 	}
 }

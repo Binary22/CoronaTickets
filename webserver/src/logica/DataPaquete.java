@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataPaquete complex type.
+ * <p>Clase Java para dataPaquete complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataPaquete">
@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fechaI" type="{http://logica/}localDate" minOccurs="0"/>
- *         &lt;element name="fechaF" type="{http://logica/}localDate" minOccurs="0"/>
- *         &lt;element name="fechaAlta" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fechaI" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaF" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaAlta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="descuento" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="espectaculos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
@@ -49,9 +49,9 @@ import javax.xml.bind.annotation.XmlType;
 public class DataPaquete {
 
     protected String nombre;
-    protected LocalDate fechaI;
-    protected LocalDate fechaF;
-    protected LocalDate fechaAlta;
+    protected String fechaI;
+    protected String fechaF;
+    protected String fechaAlta;
     protected int descuento;
     protected String descripcion;
     @XmlElement(nillable = true)
@@ -59,7 +59,7 @@ public class DataPaquete {
     protected String imagen;
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class DataPaquete {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -83,79 +83,79 @@ public class DataPaquete {
     }
 
     /**
-     * Gets the value of the fechaI property.
+     * Obtiene el valor de la propiedad fechaI.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaI() {
+    public String getFechaI() {
         return fechaI;
     }
 
     /**
-     * Sets the value of the fechaI property.
+     * Define el valor de la propiedad fechaI.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaI(LocalDate value) {
+    public void setFechaI(String value) {
         this.fechaI = value;
     }
 
     /**
-     * Gets the value of the fechaF property.
+     * Obtiene el valor de la propiedad fechaF.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaF() {
+    public String getFechaF() {
         return fechaF;
     }
 
     /**
-     * Sets the value of the fechaF property.
+     * Define el valor de la propiedad fechaF.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaF(LocalDate value) {
+    public void setFechaF(String value) {
         this.fechaF = value;
     }
 
     /**
-     * Gets the value of the fechaAlta property.
+     * Obtiene el valor de la propiedad fechaAlta.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
     /**
-     * Sets the value of the fechaAlta property.
+     * Define el valor de la propiedad fechaAlta.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaAlta(LocalDate value) {
+    public void setFechaAlta(String value) {
         this.fechaAlta = value;
     }
 
     /**
-     * Gets the value of the descuento property.
+     * Obtiene el valor de la propiedad descuento.
      * 
      */
     public int getDescuento() {
@@ -163,7 +163,7 @@ public class DataPaquete {
     }
 
     /**
-     * Sets the value of the descuento property.
+     * Define el valor de la propiedad descuento.
      * 
      */
     public void setDescuento(int value) {
@@ -171,7 +171,7 @@ public class DataPaquete {
     }
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -183,7 +183,7 @@ public class DataPaquete {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -224,7 +224,7 @@ public class DataPaquete {
     }
 
     /**
-     * Gets the value of the imagen property.
+     * Obtiene el valor de la propiedad imagen.
      * 
      * @return
      *     possible object is
@@ -236,7 +236,7 @@ public class DataPaquete {
     }
 
     /**
-     * Sets the value of the imagen property.
+     * Define el valor de la propiedad imagen.
      * 
      * @param value
      *     allowed object is
