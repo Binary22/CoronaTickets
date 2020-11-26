@@ -19,7 +19,7 @@
         <div class="d-flex justify-content-center">
         	<div class="card input-group mt-3" style="width:40rem;"">
         		<div class="card-body">
-        			<h4> Registro </h4>
+        			<h4> Inicio de Sesion </h4>
         			<form action="login" method="POST">
         				<% if (session.getAttribute("estado_sesion") == "LOGIN_INCORRECTO") { %>
         					<div class="alert alert-danger">
