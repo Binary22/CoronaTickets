@@ -24,13 +24,13 @@ import logica.Paquete;
  * Servlet implementation class Home
  */
 
-public class Home extends HttpServlet {
+public class MobileHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public Home() {
+    public MobileHome() {
     	super();
     }
      
@@ -38,33 +38,14 @@ public class Home extends HttpServlet {
 		HttpSession objSesion = req.getSession();
 		
 		String browserName = req.getHeaders("user-agent").nextElement();	
-		if (browserName.contains("Mobile") ) {
-			if (objSesion.getAttribute("estado_sesion") != "LOGIN_CORRECTO") {
-    		resp.sendRedirect("mobileHome");
-			} else {
-	    	resp.sendRedirect("espectaculos");
-			}
-    		return;
+		if (browserName.contains("Mobile")) {
+			objSesion.setAttribute("esMobile", "Yes");
+			objSesion.setAttribute("browserName", browserName);
+		} else {
+		objSesion.setAttribute("esMobile", "no");
+		objSesion.setAttribute("browserName", browserName);
 		}
-		
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		objSesion.setAttribute("espectaculos", he.getEspectaculos().values());
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
-		List<String> paquetes = hp.getNombresPaquete();
-		
-		Map<String, Paquete> mapPaq = new HashMap<String, Paquete>();
-		
-		for(String p : paquetes ) {
-			try {
-			Paquete paq = hp.getPaquete(p);
-			mapPaq.put(p, paq);
-			} catch (NoExistePaqueteException e) {
-				e.printStackTrace();
-			}
-		}
-		objSesion.setAttribute("paquetes", mapPaq.values());
-		
-		req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/home/mobileHome.jsp").forward(req, resp);
 	}
     
 	/**
