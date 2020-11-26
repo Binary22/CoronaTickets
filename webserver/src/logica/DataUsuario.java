@@ -31,12 +31,12 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="seguidos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="siguiendo" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="esArtista" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="biografia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="website" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="espectaculos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="siguiendo" type="{http://logica/}dataUsuario" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -58,12 +58,12 @@ import javax.xml.bind.annotation.XmlType;
     "password",
     "imagen",
     "seguidos",
+    "siguiendo",
     "esArtista",
     "descripcion",
     "biografia",
     "website",
-    "espectaculos",
-    "siguiendo"
+    "espectaculos"
 })
 @XmlSeeAlso({
     DataArtista.class
@@ -85,14 +85,14 @@ public class DataUsuario {
     protected String imagen;
     @XmlElement(nillable = true)
     protected List<String> seguidos;
+    @XmlElement(nillable = true)
+    protected List<String> siguiendo;
     protected boolean esArtista;
     protected String descripcion;
     protected String biografia;
     protected String website;
     @XmlElement(nillable = true)
     protected List<String> espectaculos;
-    @XmlElement(nillable = true)
-    protected List<DataUsuario> siguiendo;
 
     /**
      * Gets the value of the nickname property.
@@ -379,6 +379,35 @@ public class DataUsuario {
     }
 
     /**
+     * Gets the value of the siguiendo property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the siguiendo property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSiguiendo().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getSiguiendo() {
+        if (siguiendo == null) {
+            siguiendo = new ArrayList<String>();
+        }
+        return this.siguiendo;
+    }
+
+    /**
      * Gets the value of the esArtista property.
      * 
      */
@@ -493,35 +522,6 @@ public class DataUsuario {
             espectaculos = new ArrayList<String>();
         }
         return this.espectaculos;
-    }
-
-    /**
-     * Gets the value of the siguiendo property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the siguiendo property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getSiguiendo().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link DataUsuario }
-     * 
-     * 
-     */
-    public List<DataUsuario> getSiguiendo() {
-        if (siguiendo == null) {
-            siguiendo = new ArrayList<DataUsuario>();
-        }
-        return this.siguiendo;
     }
 
 }

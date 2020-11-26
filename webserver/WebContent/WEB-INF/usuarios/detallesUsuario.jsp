@@ -43,8 +43,8 @@
 		                        </div>
 		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
 				                        DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
-				                        if (u != userlogged) {
-				                        	if (userlogged.getSeguidos().contains(u)) { %>
+				                        if (!u.getNickname().equals(userlogged.getNickname())) {
+				                        	if (userlogged.getSeguidos().contains(u.getNickname())) { %>
 				                        		<form action="detallesUsuario" method="POST">
 				                        			<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
 				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=u.getNickname()%>"/>
@@ -114,7 +114,7 @@
 								<% } %>
 							<% } %>
 						
-				 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { 
+				 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname().equals(session.getAttribute("usuario_logueado")) && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { 
 				 	%>
                         
                         <h4>Paquetes comprados</h4>

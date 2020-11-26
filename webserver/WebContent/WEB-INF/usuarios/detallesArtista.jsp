@@ -43,8 +43,8 @@
 		                        </div>
 		                        <% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") { 
 				                        DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
-				                        if (a != userlogged) {
-				                        	if (userlogged.getSeguidos().contains(a)) { %>
+				                        if (!a.getNickname().equals(userlogged.getNickname())) {
+				                        	if (userlogged.getSeguidos().contains(a.getNickname())) { %>
 				                        		<form action="detallesUsuario" method="POST">
 				                        			<input type="hidden" name="usuariologueado" value="<%=userlogged.getNickname()%>" />
 				                        		 	<input type="hidden" name="usuarioaseguir" value="<%=a.getNickname()%>"/>
@@ -104,7 +104,7 @@
                         boolean res = false;
                         List<String> espectaculosAceptados = new ArrayList<String>();
                         for (String s : especsart) {
-                        	if (mapaespec.get(s).isAceptado()) {
+                        	if ( mapaespec.get(s).isAceptado() && !mapaespec.get(s).isFinalizado() ) {
                         		res = true;
                         		espectaculosAceptados.add(s);
                         	}	
@@ -126,6 +126,13 @@
 								        <h5 class="card-title"><%=e%></h5>
 								        <p><%=mapaespec.get(e).getDescripcion()%></p> 
 								        <a href="detallesEspectaculo?name=<%=e%>" class="btn btn-success card-text">Ver espectaculo</a>
+								        <%if (a.getNickname().equals(session.getAttribute("usuario_logueado")) && (session.getAttribute("estado_sesion") == "LOGIN_CORRECTO") ){%>
+								        <form action="finalizarespectaculo" method="POST">
+								        	<input type="hidden" name="nombreEsp" value="<%=e%>">
+								        	<br>
+								        	<button type="submit" class="btn btn-danger">Finalizar</button>
+								        </form>
+								        <%}%>
 								      </div>
 								    </div>
 								  </div>
@@ -144,7 +151,7 @@
 						
 						
 						%>					
-                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && res) {%>
+                        <% if (a.getNickname().equals(session.getAttribute("usuario_logueado")) && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && res) {%>
                         
                         <br>
                         <h4>Espectáculos ingresados</h4>
@@ -178,7 +185,7 @@
                         
                         
                         %>					
-                        <% if (a.getNickname() == session.getAttribute("usuario_logueado") && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && res){%>
+                        <% if (a.getNickname().equals(session.getAttribute("usuario_logueado")) && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO" && res){%>
                         
                         <br>
                         <h4>Espectáculos rechazados</h4>

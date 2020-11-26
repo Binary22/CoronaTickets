@@ -16,9 +16,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="espectaculo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="ident" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="paquete" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="dtoPaquete" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="espectaculo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="usado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -30,41 +31,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dataVale", propOrder = {
-    "espectaculo",
     "ident",
     "paquete",
+    "dtoPaquete",
+    "espectaculo",
     "usado"
 })
 public class DataVale {
 
-    protected String espectaculo;
     protected int ident;
     protected String paquete;
+    protected int dtoPaquete;
+    protected String espectaculo;
     protected boolean usado;
-
-    /**
-     * Gets the value of the espectaculo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEspectaculo() {
-        return espectaculo;
-    }
-
-    /**
-     * Sets the value of the espectaculo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEspectaculo(String value) {
-        this.espectaculo = value;
-    }
 
     /**
      * Gets the value of the ident property.
@@ -104,6 +83,46 @@ public class DataVale {
      */
     public void setPaquete(String value) {
         this.paquete = value;
+    }
+
+    /**
+     * Gets the value of the dtoPaquete property.
+     * 
+     */
+    public int getDtoPaquete() {
+        return dtoPaquete;
+    }
+
+    /**
+     * Sets the value of the dtoPaquete property.
+     * 
+     */
+    public void setDtoPaquete(int value) {
+        this.dtoPaquete = value;
+    }
+
+    /**
+     * Gets the value of the espectaculo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEspectaculo() {
+        return espectaculo;
+    }
+
+    /**
+     * Sets the value of the espectaculo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEspectaculo(String value) {
+        this.espectaculo = value;
     }
 
     /**

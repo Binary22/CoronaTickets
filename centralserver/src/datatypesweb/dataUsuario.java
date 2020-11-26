@@ -7,6 +7,9 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
+import excepciones.NoExistePaqueteException;
+import logica.HandlerPaquetes;
+import logica.Paquete;
 import logica.Artista;
 import logica.Espectaculo;
 import logica.Registro;
@@ -28,6 +31,7 @@ public class dataUsuario {
 	private String password;
 	private String imagen;
 	private List<String> seguidos;
+	private List<String> siguiendo;
 	
 	private boolean esArtista;
 	private String descripcion;
@@ -44,6 +48,16 @@ public class dataUsuario {
     	this.setNickname(user.getNickname());
     	this.setNombre(user.getNombre());
     	this.setPassword(user.getPassword());
+    	List<String> seguidos = new ArrayList<String>();
+    	for (Usuario usuario : user.getSeguidos()) {
+    		seguidos.add(usuario.getNickname());
+    	}
+    	this.seguidos = seguidos;
+    	List<String> siguiendo = new ArrayList<String>();
+    	for (Usuario usuario : user.getSiguiendo()) {
+    		siguiendo.add(usuario.getNickname());
+    	}
+    	this.siguiendo = siguiendo;
     	
     	if (user.esArtista()) {
     		this.esArtista = true;
@@ -234,22 +248,24 @@ public class dataUsuario {
 	}
 
 
-	public List<dataUsuario> getSiguiendo() {
+	
+	public List<String> getSiguiendo() {
 		return siguiendo;
 	}
 
-
-	public void setSiguiendo(List<dataUsuario> siguiendo) {
+	public void setSiguiendo(List<String> siguiendo) {
 		this.siguiendo = siguiendo;
 	}
 
+	public boolean isEsArtista() {
+		return esArtista;
+	}
 
-	private List<dataUsuario> siguiendo;
-	
-	
 	public dataUsuario() {
 		
 	}
+	
+	
 	
 	
 }

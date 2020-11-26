@@ -2,12 +2,14 @@ package datatypesweb;
 
 import java.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 import logica.Registro;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class dataRegistro {
-	private LocalDate fecha;
+	private String fecha;
 	private boolean yaFueCanjeado;
 	private int ident;
 	private int[] regsCanjeados;
@@ -17,7 +19,7 @@ public class dataRegistro {
 	private String espectFuncion;
 	
 	public dataRegistro(Registro reg) {
-		this.fecha = reg.getFecha();
+		this.fecha = reg.getFecha().toString();
 		this.yaFueCanjeado = reg.isCanjeado();
 		this.ident = reg.getId();
 		this.costo = reg.getCosto();
@@ -37,11 +39,11 @@ public class dataRegistro {
 		
 	}
 
-	public LocalDate getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

@@ -21,6 +21,7 @@ public class Espectaculo {
 	private Map<String, Funcion> setFunciones;
 	private boolean yaFueValuado;
 	private boolean aceptado;
+	private boolean finalizado;
 	private String imagen;
 	private List<String> categorias;
 	
@@ -170,5 +171,13 @@ public class Espectaculo {
 	
 	public void addCategoria(String cat) {
 		categorias.add(cat);
+	}
+
+	public boolean isFinalizado() {
+		return finalizado;
+	}
+
+	public void setFinalizado(boolean finalizado) {
+		this.finalizado = finalizado;
 	}
 }
