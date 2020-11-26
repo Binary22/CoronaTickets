@@ -27,7 +27,11 @@
       </head>
 
     <body>
+         <% if ((Boolean) session.getAttribute("Mobile") != null) { %>
+    	<jsp:include page="/WEB-INF/template/NavbarMobile.jsp"/>
+    <% } else { %>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
+      <% } %>
         
         <% DataEspectaculo espect = (DataEspectaculo)session.getAttribute("espectaculo_selected");%>
         <div id="espectaculo" class="container">
