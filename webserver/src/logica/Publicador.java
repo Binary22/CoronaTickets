@@ -266,9 +266,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws ExisteRegistroEspecException_Exception
-     * @throws FechaPosterior_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
      * @throws NoSeleccionoTres_Exception
      */
     @WebMethod
@@ -299,9 +299,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws ExisteRegistroEspecException_Exception
-     * @throws FechaPosterior_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -329,9 +329,9 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws ExisteRegistroEspecException_Exception
-     * @throws FechaPosterior_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -561,6 +561,32 @@ public interface Publicador {
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/buscarEspectaculosRequest", output = "http://logica/Publicador/buscarEspectaculosResponse")
+    public ListaEspectaculo buscarEspectaculos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.ListaPaquete
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/buscarPaquetesRequest", output = "http://logica/Publicador/buscarPaquetesResponse")
+    public ListaPaquete buscarPaquetes(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 

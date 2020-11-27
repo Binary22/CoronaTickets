@@ -579,7 +579,7 @@ public class Publicador {
     	Espectaculo espFinalizar = hespectaculos.getEspectaculo(nombreEspectaculo);
     	espFinalizar.setFinalizado(true);
     }
-    
+    @WebMethod
     public void dejardeseguir(String uaseguir, String uloggueado) {
     	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
     	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
@@ -588,4 +588,31 @@ public class Publicador {
     	Usuarioaseguir.quitarSiguiendo(Usuariologgueado);	
 
     }
+    @WebMethod
+	public ListaEspectaculo buscarEspectaculos(String search) {
+    	ListaEspectaculo listaesp = new ListaEspectaculo();
+		Map<String, dataEspectaculo> ret = new HashMap<String, dataEspectaculo>();
+		HandlerEspectaculos handleresp = HandlerEspectaculos.getInstance();
+		for (Entry<String, Espectaculo> entry : handleresp.getEspectaculos().entrySet()) {   
+			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
+				ret.put(entry.getValue().getNombre() ,new dataEspectaculo(entry.getValue()));
+			}
+		}
+		listaesp.setEspectaculos(ret);
+		return listaesp;
+	}
+	@WebMethod
+	public ListaPaquete buscarPaquetes(String search) {
+		ListaPaquete listapaq = new ListaPaquete();
+		List<dataPaquete> ret = new ArrayList<dataPaquete>();
+		HandlerPaquetes handlerpaq = HandlerPaquetes.getInstance();
+		for (Entry<String, Paquete> entry : handlerpaq.getPaquetes().entrySet()) {    
+			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
+				ret.add(new dataPaquete(entry.getValue()));
+			}
+		}
+		listapaq.setPaquetes(ret);
+		return listapaq;
+	}
+	
 }
