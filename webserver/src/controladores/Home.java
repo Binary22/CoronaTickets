@@ -50,10 +50,6 @@ public class Home extends HttpServlet {
     		return;
 		}
 		
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		objSesion.setAttribute("espectaculos", he.getEspectaculos().values());
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
-		List<String> paquetes = hp.getNombresPaquete();
 		PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
 	    logica.ListaEspectaculo lista = port.listarEspectaculos();
