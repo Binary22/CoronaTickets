@@ -30,7 +30,7 @@ public class Logout extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession objSesion = request.getSession();
     	
-    	String nuevoEstado = "LOGIN_INCORRECTO";
+    	String nuevoEstado = "CIERRA_SESION";
         objSesion.setAttribute("estado_sesion", nuevoEstado);
     	
     	// redirige a la página principal para que luego rediriga a la página

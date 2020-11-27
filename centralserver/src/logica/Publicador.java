@@ -7,12 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-import java.util.Set;
-
 import javax.jws.WebMethod;
-import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
@@ -24,13 +19,9 @@ import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
 import datatypesweb.ListaPaquete;
-import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
-import datatypesweb.dataEspectaculo;
-import datatypesweb.dataPaquete;
 import datatypesweb.dataPaquete;
 import datatypesweb.dataArtista;
-import datatypesweb.dataCompra;
 import datatypesweb.dataListArtInvi;
 import datatypesweb.dataListEspOrg;
 import datatypesweb.dataListPaquetes;
@@ -94,6 +85,17 @@ public class Publicador {
     	Artista user = (Artista) husers.getUsuario(nickname);
     	dataArtista dataArt = new dataArtista(user);
     	return dataArt;
+    }
+    
+    @WebMethod
+    public dataListEspOrg getEspectaculosOrgArtista(String nickname) {
+    	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+    	Artista user = (Artista) husers.getUsuario(nickname);
+    	dataListEspOrg espectaculosRetornar = new dataListEspOrg();
+    	for(int i=0; i < user.getEspectaculos().size(); i++) {
+    		espectaculosRetornar.getEspectaculosOrg().add(user.getEspectaculos().get(i).getNombre());
+    	}	
+    	return espectaculosRetornar;
     }
     
     @WebMethod
@@ -249,7 +251,6 @@ public class Publicador {
     	Usuario user = husers.getUsuario(nickname);
     	List<Vale> vales = user.getVales();
     	List<dataVale> valesCanjear = new ArrayList<dataVale>();
-    	HandlerPaquetes hPaq = HandlerPaquetes.getInstance();
     	for (int i = 0; i < vales.size(); i++) {
     		if (vales.get(i).getEspectaculo().getNombre().compareTo(nombreEspect) == 0 && !vales.get(i).isUsado()) {
     			Paquete paq = vales.get(i).getPaquete();
@@ -459,24 +460,9 @@ public class Publicador {
 		LocalDate dateini = LocalDate.parse(fechaini, formatter);
 		LocalDate datefin = LocalDate.parse(fechafin, formatter);
 		
-		HandlerPaquetes hp = HandlerPaquetes.getInstance(); 
-		hp.agregarPaquete(new Paquete(nombre, dateini, datefin, discount, desc, LocalDate.now(), imagen));
-        
-        /*
-		ctrlpaq.crearPaquete(nombre, desc, dateini, datefin, discount, LocalDate.now());
+		ctrlpaq.crearPaqueteWeb(nombre, desc, dateini, datefin, discount, LocalDate.now(), imagen);
 		ctrlpaq.confirmarCrearPaquete();
-		
-		HandlerPaquetes hp = HandlerPaquetes.getInstance(); // el que hizo esto encajo, tendrian que haber llamado al creador de la clase directo ._.
-		if (imagen != null && imagen != "") {
-			try {
-				hp.getPaquete(nombre).setImagen(imagen);
-			} catch (NoExistePaqueteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			hp.getPaquete(nombre).setImagen("resources/media/espectaculos/maracas.jpg"); // esta es la imagen por defecto, no deberia estar asi pero esto esta mal hecho \rant
-		} */
+
     }
     
     @WebMethod

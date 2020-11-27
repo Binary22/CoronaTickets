@@ -15,8 +15,11 @@
       </head>
 
     <body>
+    <% if ((Boolean) session.getAttribute("Mobile") != null) { %>
+    	<jsp:include page="/WEB-INF/template/NavbarMobile.jsp"/>
+    <% } else { %>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
-        
+      <% } %>
         <div class="container">
         
             <form class="mt-2" action = "espectaculos" method = "POST">

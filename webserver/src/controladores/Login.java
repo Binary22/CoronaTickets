@@ -38,7 +38,10 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	
 	PublicadorService service = new PublicadorService();
     Publicador port = service.getPublicadorPort();
-        
+    String browserName = request.getHeaders("user-agent").nextElement();
+    if (browserName.contains("Mobile")) {
+    	objSesion.setAttribute("Mobile", true);
+    }
 	// chequea contraseña
 	try {
 		//Usuario u = HandlerUsuarios.getInstancia().getUsuario(nickname);
@@ -47,8 +50,12 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 		if(port.loginCorrecto(nickname, password)) {
 			request.getSession().setAttribute("usuario_logueado", nickname);
 			nuevoEstado = "LOGIN_CORRECTO";
-			if(port.esArtista(nickname)) {
+			if(port.esArtista(nickname)) {			
+				if (browserName.contains("Mobile")) {
+					nuevoEstado = "LOGIN_INCORRECTO";
+				} else {
 				objSesion.setAttribute("esArtista", true);
+				}
 			}else {
 				objSesion.setAttribute("esArtista", false);
 			}
@@ -65,8 +72,7 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	// redirige a la página principal para que luego rediriga a la página
 	// que corresponde
     response.sendRedirect("home");
-}
-    
+} 
 	
     
     ////////////////////////////
