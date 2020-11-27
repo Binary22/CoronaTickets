@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +16,16 @@ import javax.servlet.http.HttpSession;
 import javax.xml.ws.Provider;
 
 import excepciones.NoExistePaqueteException;
+import logica.DataEspectaculo;
+import logica.DataPaquete;
 import logica.Espectaculo;
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
+import logica.ListaPaquete;
 import logica.Paquete;
+import logica.Publicador;
+import logica.PublicadorService;
+import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class Home
@@ -43,21 +50,24 @@ public class Home extends HttpServlet {
     		return;
 		}
 		
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		objSesion.setAttribute("espectaculos", he.getEspectaculos().values());
-		HandlerPaquetes hp = HandlerPaquetes.getInstance();
-		List<String> paquetes = hp.getNombresPaquete();
+		PublicadorService service = new PublicadorService();
+	    Publicador port = service.getPublicadorPort();
+	    logica.ListaEspectaculo lista = port.listarEspectaculos();
+		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
 		
-		Map<String, Paquete> mapPaq = new HashMap<String, Paquete>();
+    	for(Entry e : lista.getEspectaculos().getEntry()) {
+    		
+    		if(e.getValue().isYaFueValuado() && !e.getValue().isFinalizado() && e.getValue().isAceptado())
+    			list.add(e.getValue());
+    	}
+    	objSesion.setAttribute("espectaculos", list);
 		
-		for(String p : paquetes ) {
-			try {
-			Paquete paq = hp.getPaquete(p);
-			mapPaq.put(p, paq);
-			} catch (NoExistePaqueteException e) {
-				e.printStackTrace();
-			}
+		ListaPaquete paquetes = port.listarPaquetes();		
+		Map<String, DataPaquete> mapPaq = new HashMap<String, DataPaquete>();
+		for(DataPaquete p : paquetes.getPaquetes() ) {
+			mapPaq.put(p.getNombre(), p);
 		}
+		
 		objSesion.setAttribute("paquetes", mapPaq.values());
 		
 		req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);

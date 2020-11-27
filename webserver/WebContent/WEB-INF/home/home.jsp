@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%-- <%@page errorPage="/WEB-INF/500.jsp"%> --%>
-<%@page import="java.util.ArrayList, java.util.Collection, logica.Espectaculo, java.util.Iterator, logica.Paquete"%>
+<%@page import="java.util.ArrayList,java.util.List, java.util.Collection, logica.Espectaculo, java.util.Iterator, logica.DataPaquete, logica.DataEspectaculo"%>
 <!doctype html>
 <html>
    <head>
@@ -14,17 +14,17 @@
             <h3>Espectáculos seleccionados</h3>  
         <br>
         <%
-       	Collection<Espectaculo> espectaculos = (Collection<Espectaculo>) session.getAttribute("espectaculos");
+       	List<DataEspectaculo> espectaculos = (List<DataEspectaculo>) session.getAttribute("espectaculos");
         if (espectaculos.size() >= 3) { %>
         		<div class="card-deck pt-3">
         		<%  int i = 0;
-        		for (Espectaculo e: espectaculos) {
+        		for (DataEspectaculo e: espectaculos) {
         			if (i > 2) {
         				break;
         			}
         			%>
-        			<carta-espectaculo  id = "<%=e.getPlataforma().getNombre() %>" titulo = "<%=e.getNombre() %>" descripcion = "<%=e.getDescripcion() %>"
-				    	img = "<%=e.getImagen() %>" precio = <%=e.getCosto() %> artista = "<%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%>"></carta-espectaculo>
+        			<carta-espectaculo  id = "<%=e.getPlataforma()%>" titulo = "<%=e.getNombre() %>" descripcion = "<%=e.getDescripcion() %>"
+				    	img = "<%=e.getImagen() %>" precio = <%=e.getCosto() %> artista = "<%=e.getArtista()%>"></carta-espectaculo>
         			<% 
         			i++;
         		} %>
@@ -39,11 +39,11 @@
         <br>
   
         <%
-       	Collection<Paquete> paquetes = (Collection<Paquete>) session.getAttribute("paquetes");
+       	Collection<DataPaquete> paquetes = (Collection<DataPaquete>) session.getAttribute("paquetes");
         if (paquetes.size() >= 3) { %>
         		<div class="card-deck pt-3">
         		<%  int i = 0;
-        		for (Paquete p: paquetes) {
+        		for (DataPaquete p: paquetes) {
         			if (i > 2) {
         				break;
         			}
