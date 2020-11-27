@@ -266,10 +266,10 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws NoSeleccionoTres_Exception
      * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws NoSeleccionoTres_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -445,10 +445,12 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws PaqueteConMismoNombreException_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/crearPaqueteRequest", output = "http://logica/Publicador/crearPaqueteResponse", fault = {
-        @FaultAction(className = PaqueteConMismoNombreException_Exception.class, value = "http://logica/Publicador/crearPaquete/Fault/PaqueteConMismoNombreException")
+        @FaultAction(className = PaqueteConMismoNombreException_Exception.class, value = "http://logica/Publicador/crearPaquete/Fault/PaqueteConMismoNombreException"),
+        @FaultAction(className = NoExistePaqueteException_Exception.class, value = "http://logica/Publicador/crearPaquete/Fault/NoExistePaqueteException")
     })
     public void crearPaquete(
         @WebParam(name = "arg0", partName = "arg0")
@@ -463,7 +465,7 @@ public interface Publicador {
         int arg4,
         @WebParam(name = "arg5", partName = "arg5")
         String arg5)
-        throws PaqueteConMismoNombreException_Exception
+        throws NoExistePaqueteException_Exception, PaqueteConMismoNombreException_Exception
     ;
 
     /**
@@ -471,8 +473,8 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {
