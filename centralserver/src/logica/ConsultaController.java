@@ -167,4 +167,11 @@ public class ConsultaController implements IConsulta {
 		return usuario;
 	}
 
+	public DtUsuario mostrarDatosContra(String nickname) {
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		Usuario usuario = husers.getUsuario(nickname);
+		DtUsuario dtu = usuario.getDtContra();
+		return dtu;
+	}
+
 }

@@ -7,6 +7,7 @@ public class DtUsuario {
 	private String nombre;
 	private String apellido;
 	private String email;
+	private String password;
 	private LocalDate fechaNacimiento;
 	
 	
@@ -50,11 +51,26 @@ public class DtUsuario {
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	public DtUsuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String password) {
+		super();
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.fechaNacimiento = fechaNacimiento;
+		this.password = password;
+	}
 	/* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
      */
     public String toString() {
         return getNickname();
     }
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 	
 }
