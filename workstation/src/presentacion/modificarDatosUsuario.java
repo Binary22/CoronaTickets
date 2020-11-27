@@ -30,6 +30,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class modificarDatosUsuario extends JInternalFrame {
 	private JTextField textField;
@@ -44,6 +45,8 @@ public class modificarDatosUsuario extends JInternalFrame {
 	private JComboBox<String> comboBox;
 	protected DtUsuario dtu;
 	private List<JTextField> textfields;
+	private JPasswordField textField_8;
+	private JPasswordField textField_9;
 
 	/**
 	 * Launch the application.
@@ -68,12 +71,12 @@ public class modificarDatosUsuario extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 534, 441);
+		setBounds(100, 100, 564, 496);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 267, 65, 243, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 24, 0, 0, 22, 0, 0, 76, 43, 27, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 126, 267, 65, 243, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 24, 0, 0, 0, 0, 22, 0, 0, 76, 43, 27, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 
 		Fabrica fabrica = Fabrica.getInstance();
@@ -105,7 +108,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		btnVerDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				String nick = (String)comboBox.getSelectedItem();
-				dtu = icontrolador.mostrarDatos(nick);
+				dtu = icontrolador.mostrarDatosContra(nick);
 				updateData();
 			}
 		});
@@ -170,12 +173,48 @@ public class modificarDatosUsuario extends JInternalFrame {
 		getContentPane().add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
 		
+		JLabel lblNewLabel_3 = new JLabel("Contrase\u00F1a:");
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 1;
+		gbc_lblNewLabel_3.gridy = 5;
+		getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		textField_8 = new JPasswordField();
+		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
+		gbc_textField_8.gridwidth = 2;
+		gbc_textField_8.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_8.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_8.gridx = 2;
+		gbc_textField_8.gridy = 5;
+		getContentPane().add(textField_8, gbc_textField_8);
+		textField_8.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("Confirmar Contrase\u00F1a:");
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 1;
+		gbc_lblNewLabel_4.gridy = 6;
+		getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		textField_9 = new JPasswordField();
+		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
+		gbc_textField_9.gridwidth = 2;
+		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_9.gridx = 2;
+		gbc_textField_9.gridy = 6;
+		getContentPane().add(textField_9, gbc_textField_9);
+		textField_9.setColumns(10);
+		
 		JLabel lblNewLabel = new JLabel("e-mail:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 5;
+		gbc_lblNewLabel.gridy = 7;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
 		textField_3 = new JTextField();
@@ -185,7 +224,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_3.fill = GridBagConstraints.BOTH;
 		gbc_textField_3.gridx = 2;
-		gbc_textField_3.gridy = 5;
+		gbc_textField_3.gridy = 7;
 		getContentPane().add(textField_3, gbc_textField_3);
 		textField_3.setColumns(10);
 		
@@ -194,7 +233,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 6;
+		gbc_lblNewLabel_1.gridy = 8;
 		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		MaskFormatter mask = null;
@@ -210,7 +249,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_4.fill = GridBagConstraints.BOTH;
 		gbc_textField_4.gridx = 2;
-		gbc_textField_4.gridy = 6;
+		gbc_textField_4.gridy = 8;
 		getContentPane().add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
@@ -219,7 +258,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_lblDescripcion.anchor = GridBagConstraints.EAST;
 		gbc_lblDescripcion.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDescripcion.gridx = 1;
-		gbc_lblDescripcion.gridy = 8;
+		gbc_lblDescripcion.gridy = 10;
 		getContentPane().add(lblDescripcion, gbc_lblDescripcion);
 		
 		textField_5 = new JTextPane();
@@ -228,7 +267,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_textField_5.gridwidth = 3;
 		gbc_textField_5.fill = GridBagConstraints.BOTH;
 		gbc_textField_5.gridx = 2;
-		gbc_textField_5.gridy = 8;
+		gbc_textField_5.gridy = 10;
 		getContentPane().add(textField_5, gbc_textField_5);
 		
 		JLabel lblNewLabel_2 = new JLabel("Biografia:");
@@ -236,7 +275,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 1;
-		gbc_lblNewLabel_2.gridy = 9;
+		gbc_lblNewLabel_2.gridy = 11;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		textField_6 = new JTextPane();
@@ -245,7 +284,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_textField_6.gridwidth = 3;
 		gbc_textField_6.fill = GridBagConstraints.BOTH;
 		gbc_textField_6.gridx = 2;
-		gbc_textField_6.gridy = 9;
+		gbc_textField_6.gridy = 11;
 		getContentPane().add(textField_6, gbc_textField_6);
 		
 		JLabel lblWebsite = new JLabel("Website:");
@@ -253,7 +292,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_lblWebsite.anchor = GridBagConstraints.EAST;
 		gbc_lblWebsite.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWebsite.gridx = 1;
-		gbc_lblWebsite.gridy = 10;
+		gbc_lblWebsite.gridy = 12;
 		getContentPane().add(lblWebsite, gbc_lblWebsite);
 		
 		textField_7 = new JTextField();
@@ -262,46 +301,13 @@ public class modificarDatosUsuario extends JInternalFrame {
 		gbc_textField_7.gridwidth = 3;
 		gbc_textField_7.fill = GridBagConstraints.BOTH;
 		gbc_textField_7.gridx = 2;
-		gbc_textField_7.gridy = 10;
+		gbc_textField_7.gridy = 12;
 		getContentPane().add(textField_7, gbc_textField_7);
 		textField_7.setColumns(10);
 
 		IUsuario iUser = fabrica.getIUsuario();
-		
-		JButton btnAceptar = new JButton("Aceptar");
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String nick = textField.getText();
-				String nombre = textField_1.getText();
-				String apellido = textField_2.getText();
-				String mail = textField_3.getText();
-				LocalDate fechanac = LocalDate.parse(textField_4.getText(),formatter);
-				iUser.updateUsuario(nick, nombre, apellido,mail, fechanac);
-				if (icontrolador.esArtista(nick)) {
-					String desc = textField_5.getText();
-					String bio = textField_6.getText();
-					String web = textField_7.getText();
-					iUser.updateArtista(desc, bio, web);
-				}
-				int input = JOptionPane.showConfirmDialog(null, "Desea actualizar el usuario?");
-					if (input == 0) {
-						iUser.confirmarUpdateUsuario();
-						clearData();
-						dispose();
-					}
-					if (input == 2) {
-						clearData();
-						dispose();
-					}
-			}
-		});
-		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAceptar.gridx = 1;
-		gbc_btnAceptar.gridy = 12;
-		getContentPane().add(btnAceptar, gbc_btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -310,10 +316,51 @@ public class modificarDatosUsuario extends JInternalFrame {
 				dispose();
 			}
 		});
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nick = textField.getText();
+				String nombre = textField_1.getText();
+				String apellido = textField_2.getText();
+				String mail = textField_3.getText();
+				String password = String.valueOf(textField_8.getPassword());
+				String confiPassword = String.valueOf(textField_9.getPassword());
+				LocalDate fechanac = LocalDate.parse(textField_4.getText(),formatter);
+				if(password.equals(confiPassword) ) {
+					iUser.updateUsuarioContra(nick, nombre, apellido,mail, fechanac, password);
+					if (icontrolador.esArtista(nick)) {
+						String desc = textField_5.getText();
+						String bio = textField_6.getText();
+						String web = textField_7.getText();
+						iUser.updateArtista(desc, bio, web);
+					}
+					int input = JOptionPane.showConfirmDialog(null, "Desea actualizar el usuario?");
+						if (input == 0) {
+							iUser.confirmarUpdateUsuarioContra();
+							clearData();
+							dispose();
+						}
+						if (input == 2) {
+							clearData();
+							dispose();
+						}
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"Las contraseñas deben coincidir", "Registrar Usuario", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+		});
+		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
+		gbc_btnAceptar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAceptar.gridx = 2;
+		gbc_btnAceptar.gridy = 14;
+		getContentPane().add(btnAceptar, gbc_btnAceptar);
 		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
 		gbc_btnCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCancelar.gridx = 4;
-		gbc_btnCancelar.gridy = 12;
+		gbc_btnCancelar.gridy = 14;
 		getContentPane().add(btnCancelar, gbc_btnCancelar);
 
 		textfields = new ArrayList<JTextField>();
@@ -339,6 +386,9 @@ public class modificarDatosUsuario extends JInternalFrame {
 		textField_1.setText(dtu.getNombre());
 		textField_2.setText(dtu.getApellido());
 		textField_3.setText(dtu.getEmail());
+		textField_8.setText(dtu.getPassword());
+		textField_9.setText(dtu.getPassword());
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String str = dtu.getFechaNacimiento().format(formatter);
 		textField_4.setText(str);
@@ -363,6 +413,8 @@ public class modificarDatosUsuario extends JInternalFrame {
 		}
 		textField_5.setText("");
 		textField_6.setText("");
+		textField_8.setText("");
+		textField_9.setText("");
 	}
 
 }

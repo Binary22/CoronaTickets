@@ -77,6 +77,19 @@ public class Artista extends Usuario {
 		this.setSiguiendo(siguiendotemp);
 	}
 	
+	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String password,
+			String descripcion, String biografia, String website) {
+		super(nickname, nombre, apellido, email, fechaNacimiento, password);
+		this.descripcion = descripcion;
+		this.biografia = biografia;
+		this.website = website;
+		this.espectaculos = new ArrayList<Espectaculo>();
+		List<Usuario> seguidostemp = new ArrayList<Usuario>();
+		List<Usuario> siguiendotemp = new ArrayList<Usuario>();
+		this.setSeguidos(seguidostemp);
+		this.setSiguiendo(siguiendotemp);
+	}
+	
 	public Artista(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento,
 			String descripcion, String biografia, String website, String password, String imagen) {
 		super(nickname, nombre, apellido, email, fechaNacimiento, password, imagen);
@@ -182,6 +195,14 @@ public class Artista extends Usuario {
 			}
 		}
 		return lista;	
+	}
+	
+	@Override
+	public void update(Usuario artista) {
+		super.update(artista);
+		this.biografia = artista.getBiografia();
+		this.descripcion = artista.getDescripcion();
+		this.website = artista.getWebsite();
 	}
 
 }

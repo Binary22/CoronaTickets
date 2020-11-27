@@ -270,14 +270,22 @@ class UsuarioControllerTest {
 	void testConfirmarUpdateArtista() {
 		hu = HandlerUsuarios.getInstancia();
 		LocalDate fechanac = LocalDate.of(2000, 03, 29);
-		icontroller.updateUsuario("santiacq", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
+		try {
+			icontroller.altaUsuario("santiartattack", "santiago", "acquarone", "santiart@gmail.com", fechanac);
+		} catch (UsuarioConMismoNickException | UsuarioConMismoMailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		icontroller.altaArtista("desc vieja", "bio vieja", "sitio viejardo");
+		icontroller.confirmarAltaUsuario();
+		icontroller.updateUsuario("santiartattack", "santiago", "acquarone", "santiacquarone@gmail.com", fechanac);
 		icontroller.updateArtista("desc nueva", "bio nueva", "acqua.com");
 		icontroller.confirmarUpdateUsuario();
 		
-		assertTrue(hu.getUsuarios().containsKey("santiacq"));
-		assertTrue(hu.getUsuario("santiacq").esArtista() == true);
-		assertEquals(icontroller.getArtista().getDescripcion(), "desc nueva");
-		assertEquals(icontroller.getArtista().getWebsite(), "acqua.com");
+		assertTrue(hu.getUsuarios().containsKey("santiartattack"));
+		assertTrue(hu.getUsuario("santiartattack").esArtista() == true);
+		assertEquals(hu.getUsuario("santiartattack").getDescripcion(), "desc nueva");
+		assertEquals(hu.getUsuario("santiartattack").getWebsite(), "acqua.com");
 	}
 	
 

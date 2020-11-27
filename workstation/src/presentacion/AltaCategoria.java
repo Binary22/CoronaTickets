@@ -149,13 +149,12 @@ public class AltaCategoria extends JInternalFrame {
 	}
 	
 	public void cargarCategorias() {
-		comboBoxCategorias.removeAll();
+		comboBoxCategorias.removeAllItems();
 		List<String> nombres = ctrlEspect.listarCategorias();
 		nombres.sort(String::compareToIgnoreCase);
         for(int i = 0; i < nombres.size(); i++) {
-        	comboBoxCategorias.addItem(nombres.get(i));
-            	
-            	}
+        	comboBoxCategorias.addItem(nombres.get(i));	
+        }
 		
 	}
 
