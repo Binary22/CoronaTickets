@@ -318,4 +318,14 @@ public class Usuario {
 		return "estonoesunartista ney";
 	}
 
+	public void update(Usuario user) {
+		this.nombre = user.getNombre();
+		this.apellido = user.getApellido();
+		this.fechaNacimiento = user.getFechaNacimiento();
+		this.password = user.getPassword();
+		if (user.getImagen() != null && !user.getImagen().equals("resources/media/usuarios/userdefault.jpg") && !user.getImagen().equals("resources/media/usuarios/artistadefault.jpg")) {
+		this.imagen = user.getImagen();
+		}
+	}
+
 }

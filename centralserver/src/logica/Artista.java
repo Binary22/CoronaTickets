@@ -196,6 +196,14 @@ public class Artista extends Usuario {
 		}
 		return lista;	
 	}
+	
+	@Override
+	public void update(Usuario artista) {
+		super.update(artista);
+		this.biografia = artista.getBiografia();
+		this.descripcion = artista.getDescripcion();
+		this.website = artista.getWebsite();
+	}
 
 }
 

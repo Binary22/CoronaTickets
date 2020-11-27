@@ -103,10 +103,11 @@ public class HandlerUsuarios {
 	}
 
 	public void rempazar(String nick, Usuario user) {
-		if(user.getImagen().equals("resources/media/usuarios/userdefault.jpg") || user.getImagen().equals("resources/media/usuarios/artistadefault.jpg") ) {
-			
+		usuarios.get(nick).update(user);
+		System.out.print("El usuario " + nick + "Es Artista? \n");
+		if (usuarios.get(nick).esArtista()) {
+			System.out.print("Si \n");
 		}
-		
 	}
 	
 	
