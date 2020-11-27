@@ -64,6 +64,7 @@ public class Registroafuncion extends HttpServlet {
 		objSesion.setAttribute("fecha_invalida", false);
 		objSesion.setAttribute("vale_vacio", false);
 		
+		
 		if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
 			String userNickname = (String) objSesion.getAttribute("usuario_logueado");
 			String nombre = req.getParameter("name");
@@ -74,6 +75,12 @@ public class Registroafuncion extends HttpServlet {
 			{
 			    nomEspect = nombre.substring(0 , iend); 
 			    nomFun = nombre.substring(iend + 1,  nombre.length());
+			}
+			String browserName = req.getHeaders("user-agent").nextElement();	
+			if (browserName.contains("Mobile") ) {
+				String url = "consultafuncion?name=" + nomEspect + ";" + nomFun;
+				resp.sendRedirect(url);
+	    		return;
 			}
 			System.out.println("esto es una prueba de substring");
 			System.out.println("espectaculo " + nomEspect);
