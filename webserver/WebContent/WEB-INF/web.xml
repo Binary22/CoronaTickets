@@ -85,10 +85,28 @@
     	<servlet-class>controladores.EspectaculosFinalizados</servlet-class>
     </servlet>
     
+    <servlet>
+    	<servlet-name>mobileHome</servlet-name>
+    	<servlet-class>controladores.MobileHome</servlet-class>
+    </servlet>
     
+    <servlet>
+    	<servlet-name>consultaFuncion</servlet-name>
+    	<servlet-class>controladores.ConsultaFuncion</servlet-class>
+    </servlet>
     <servlet-mapping>
     	<servlet-name>EspectaculosFinalizados</servlet-name>
     	<url-pattern>/espectaculosfinalizados</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>consultaFuncion</servlet-name>
+    	<url-pattern>/consultafuncion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>mobileHome</servlet-name>
+    	<url-pattern>/mobileHome</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>

@@ -12,7 +12,7 @@
             <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
         </li>
         <li id="espectaculos" class="nav-item">
-            <a class="nav-link" href="espectaculos">Espectaculos</a>
+            <a class="nav-link" href="espectaculos">Espectáculos</a>
         </li>
         <li id="paquetes" class="nav-item">
             <a class="nav-link" href="paquetes">Paquetes</a>

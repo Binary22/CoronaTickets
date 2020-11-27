@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, java.util.HashMap, java.util.Map, logica.Espectaculo, logica.Paquete, logica.Plataforma, logica.Categoria, logica.Plataforma, java.util.Set" %>
+<%@ page import="java.util.List, java.util.HashMap, java.util.Map, logica.DataEspectaculo, logica.DataPaquete, logica.Plataforma, logica.Categoria, logica.Plataforma, java.util.Set" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -67,13 +67,14 @@
             </div>
             <br>
 		    
-			<% List<Paquete> lp =  (List<Paquete>) session.getAttribute("paquetes");
+			<% List<DataPaquete> lp =  (List<DataPaquete>) session.getAttribute("paquetes");
+			Map<String, DataEspectaculo> mapatodoslosesp =  (Map<String, DataEspectaculo>) session.getAttribute("mapatodoslosesp");
 			if (lp.isEmpty()) { %>
 			<h3 style="text-align:center">No hay paquetes que coincidan con esa busqueda</h3>
 			<% } else { %>
 				<div id="contenedorpaq" style="display:block;">
 				<h3>Paquetes:</h3>
-				<% for (Paquete p : lp) {  %>
+				<% for (DataPaquete p : lp) {  %>
 			     <div class="card mb-3 divpaq" style="max-width: 170em;">
 				  <div class="row no-gutters">
 				    <div class="col-md-5">
@@ -87,9 +88,9 @@
                         </div>
 				        <p><%=p.getDescripcion()%></p>
 				        <ul>
-				        <% for (Espectaculo e : p.getEspectaculos().values()) { %>
-				        	<li><%=e.getNombre()%> | <%=e.getArtista().getNickname()%></li>
-				        <% } %>
+				        <% for (String e : p.getEspectaculos()) { %>
+				        	<li><%=mapatodoslosesp.get(e).getNombre()%> | <%=mapatodoslosesp.get(e).getArtista()%></li>    
+				        <% } %>   
 				        </ul>
 				        <a href="detallesPaquete?name=<%=p.getNombre()%>" class="btn btn-success card-text">Ver paquete</a>
 				      </div>
@@ -101,20 +102,20 @@
 			<% } %>
 			
 			
-			<% List<Espectaculo> le =  (List<Espectaculo>) session.getAttribute("espectaculos"); 
+			<% List<DataEspectaculo> le =  (List<DataEspectaculo>) session.getAttribute("espectaculos"); 
 		    if (le.isEmpty()) { %>
 		    <h3 style="text-align:center">No hay espectaculos que coincidan con esa busqueda</h3>
 		    <br>
 		    <% } else { %>
 		    	<div id="contenedoresp">
 		    	<h3>Espectaculos:</h3>
-			    <% for (Espectaculo e : le) {  %>
-			    <% List<String> categorias = e.listarCategorias();
+			    <% for (DataEspectaculo e : le) {  %>
+			    <% List<String> categorias = e.getCategorias();
 			    String strclaves = "";
 			    String strcat = "";
 			    for (String s : categorias) {
 			    	strclaves = strclaves + " " + mapeoclave.get(s);
-			    	strclaves = strclaves + " " + mapeoclave.get(e.getPlataforma().getNombre());
+			    	strclaves = strclaves + " " + mapeoclave.get(e.getPlataforma());
 			    	strcat = strcat + " " + s;
 			    }
 			    %>
@@ -129,9 +130,9 @@
                         	<h5><%=e.getNombre()%></h5>
                             <small><%=e.getFechaReg().toString()%></small>
                         </div>
-				        <p><%=e.getArtista().getNickname()%> | <%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%></p>  
+				        <p><%=e.getArtista()%> <%-- | <%=e.getArtista().getNombre()%> <%=e.getArtista().getApellido()%> --%> </p>  
 				        <p><%=e.getDescripcion()%></p>
-				        <p><%=e.getPlataforma().getNombre()%> | <%=strcat%></p>
+				        <p><%=e.getPlataforma()%> | <%=strcat%></p>
 				        <a href="detallesEspectaculo?name=<%=e.getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
 				      </div>
 				    </div>

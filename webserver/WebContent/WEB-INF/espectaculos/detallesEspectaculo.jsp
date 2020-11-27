@@ -27,7 +27,11 @@
       </head>
 
     <body>
+         <% if ((Boolean) session.getAttribute("Mobile") != null) { %>
+    	<jsp:include page="/WEB-INF/template/NavbarMobile.jsp"/>
+    <% } else { %>
         <jsp:include page="/WEB-INF/template/navbar.jsp"/>
+      <% } %>
         
         <% DataEspectaculo espect = (DataEspectaculo)session.getAttribute("espectaculo_selected");%>
         <div id="espectaculo" class="container">
@@ -84,7 +88,7 @@
                         funciones.put(e.getKey(), e.getValue());
                     }
 	                    if(!funciones.isEmpty()){%>
-	                    	<h2 class="title">Funciones:</h2>
+	                    	<h3 class="title">Funciones:</h3>
 		                    <%ArrayList<String> nombres = new ArrayList<String>(funciones.keySet());
 		                    nombres.sort(String::compareToIgnoreCase);
 		                  		for(String key : nombres){
@@ -97,14 +101,31 @@
 			                  			}
 			                  			var = var + artistas.get(fin);
 		                  			}
-                  			
+		             
+					if (session.getAttribute("Mobile") != null) { 	
                   		%>
-                    	<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
-                    <%}
-		                  		
-                    }%>
+                  			<div class="card" style="margin-top: 10px;">
+						    	<div class="card-body d-flex flex-column">
+						        <h6 class="card-title">
+						      		 <%= funciones.get(key).getNombre() %>
+						        </h6>
+							
+						        <h6 class="card-subtitle mb-2 text-muted">Artistas Invitados:</h6>
+						        	
+						        <p id="desc" class="card-text">
+						        <%= var %>
+						        </p>
+			        			<ul class="list-group mt-auto list-group-horizontal">
+            						<a class="list-group-item card-link active flex-fill" href="registroafuncion?name=<%=espect.getNombre()%>;<%=funciones.get(key).getNombre()%>">Consultar</a>
+       							 </ul>
+						    	</div>
+						</div>
+                    <%}	else { %>
+					<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
+					<%	} } }%>
                 </div>
                 
+                <% if (session.getAttribute("Mobile") == null) { %>
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
                 <%List<DataPaquete> paquetes = (List<DataPaquete>) session.getAttribute("paquetes");
                   if(!paquetes.isEmpty()){%>
@@ -114,6 +135,7 @@
                     <%} %>
                 <%} %>
                 </div>
+                <%} %>
             </div>
         </div>
 
