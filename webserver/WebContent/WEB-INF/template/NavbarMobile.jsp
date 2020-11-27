@@ -15,9 +15,6 @@
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-        <li id="home" class="nav-item">
-            <a class="nav-link" href="espectaculos">Funciones</a>
-        </li>
         <li id="espectaculos" class="nav-item">
             <a class="nav-link" href="espectaculos">Espectáculos</a>
         </li>

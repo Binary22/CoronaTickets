@@ -39,11 +39,7 @@ public class Home extends HttpServlet {
 		
 		String browserName = req.getHeaders("user-agent").nextElement();	
 		if (browserName.contains("Mobile") ) {
-			if (objSesion.getAttribute("estado_sesion") != "LOGIN_CORRECTO") {
-    		resp.sendRedirect("mobileHome");
-			} else {
-	    	resp.sendRedirect("espectaculos");
-			}
+			resp.sendRedirect("mobileHome");
     		return;
 		}
 		
