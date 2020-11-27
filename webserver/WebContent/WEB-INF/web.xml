@@ -80,6 +80,10 @@
     	<servlet-name>FinalizarEspectaculo</servlet-name>
     	<servlet-class>controladores.FinalizarEspectaculo</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>EspectaculosFinalizados</servlet-name>
+    	<servlet-class>controladores.EspectaculosFinalizados</servlet-class>
+    </servlet>
     
     <servlet>
     	<servlet-name>mobileHome</servlet-name>
@@ -90,6 +94,10 @@
     	<servlet-name>consultaFuncion</servlet-name>
     	<servlet-class>controladores.ConsultaFuncion</servlet-class>
     </servlet>
+    <servlet-mapping>
+    	<servlet-name>EspectaculosFinalizados</servlet-name>
+    	<url-pattern>/espectaculosfinalizados</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
     	<servlet-name>consultaFuncion</servlet-name>

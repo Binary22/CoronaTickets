@@ -55,6 +55,7 @@
                 <a class="dropdown-item" href="altafuncion">Alta de función de espectáculo</a>
                 <a class="dropdown-item" href="crearPaquete">Crear paquete de espectáculos</a>
                 <a class="dropdown-item" href="agregarEspectaculoaPaquete">Agregar espectáculo a paquete</a>
+                <a class="dropdown-item" href="espectaculosfinalizados">Consultar espectáculos finalizados</a>
                 <div class="dropdown-divider"></div>
                 <%} %>
                 <h5 class="dropdown-header"> Menu de usuario </h5>
