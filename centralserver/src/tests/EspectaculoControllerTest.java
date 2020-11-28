@@ -67,7 +67,7 @@ class EspectaculoControllerTest {
 		try {
 		ie.altaEspectaculoWeb("Facebook Watch", "lospimpi", "lospimpitestfest",
 				"los pimpi testean los instrumentos", LocalTime.of(5, 30), 0, 100, "https://www.lospimpitestean.test",
-				(float) 150, LocalDate.of(2020, 10, 28), cats , "test");
+				(float) 150, LocalDate.of(2020, 10, 28), cats , "test","test");
 		} catch (NombreEspectaculoExisteException e) {
 			e.printStackTrace();
 		}
@@ -77,14 +77,14 @@ class EspectaculoControllerTest {
 		try {
 			ie.altaEspectaculoWeb("Facebook Watch", "lospimpi", "lospimpitestfest",
 					"los pimpi testean los instrumentos", LocalTime.of(5, 30), 0, 100, "https://www.lospimpitestean.test",
-					(float) 150, LocalDate.of(2020, 10, 25), cats , "test");
+					(float) 150, LocalDate.of(2020, 10, 25), cats , "test","test");
 			} catch (NombreEspectaculoExisteException e) {
 				e.printStackTrace();
 			}
 		
 		assertThrows( NombreEspectaculoExisteException.class, () ->  ie.altaEspectaculoWeb("Facebook Watch", "lospimpi", "lospimpitestfest",
 					"los pimpi testean los instrumentos", LocalTime.of(5, 30), 0, 100, "https://www.lospimpitestean.test",
-					(float) 150, LocalDate.of(2020, 10, 25), cats , "test"));
+					(float) 150, LocalDate.of(2020, 10, 25), cats , "test","test"));
 	}
 	
 	
