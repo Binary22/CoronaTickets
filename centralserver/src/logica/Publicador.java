@@ -497,6 +497,7 @@ public class Publicador {
     	Integer maximo = dataEsp.getMaxEspectadores();
     	Integer minimo = dataEsp.getMinEspectadores();
     	String url = dataEsp.getUrl();
+    	String video = dataEsp.getVideo();
     	List<String> categorias = new ArrayList<String>();
     			
     	for(String cat : dataEsp.getCategorias()) {
@@ -514,7 +515,7 @@ public class Publicador {
     	
     	ctrlE.altaEspectaculoWeb(nomPlataforma, nomArtista, nomEspectaculo, descripcion, dur,
 				minimo, maximo,
-				url, costo, hoy , categorias, imagen);
+				url, costo, hoy , categorias, imagen, video);
     }
     
     @WebMethod(operationName = "listarPlataformas")

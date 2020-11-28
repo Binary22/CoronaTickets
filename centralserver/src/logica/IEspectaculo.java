@@ -55,7 +55,7 @@ public interface IEspectaculo {
 	public void confirmarCategoria(String nombre)throws NombreCategoriaExistente;
 	
 	public void altaEspectaculoWeb(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen) throws NombreEspectaculoExisteException;
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen, String video) throws NombreEspectaculoExisteException;
 	
 	
 	public List<String> listarEspectaculosIngresados();

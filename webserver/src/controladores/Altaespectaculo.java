@@ -52,6 +52,7 @@ public class Altaespectaculo extends HttpServlet {
 		form.put("categorias", "");
 		form.put("costo", "");
 		form.put("imagen", "");
+		form.put("video", "");
     	HttpSession session = req.getSession();
     	session.setAttribute("form", form);
     	session.setAttribute("error", "no");
@@ -85,6 +86,7 @@ public class Altaespectaculo extends HttpServlet {
     	String url = req.getParameter("url");
     	String costo = req.getParameter("costo");
     	String imagen = req.getParameter("imagen");
+    	String video = req.getParameter("video");
     	String[] cats = req.getParameterValues("categoria");
     	
    	
@@ -98,6 +100,7 @@ public class Altaespectaculo extends HttpServlet {
 		form.put("url", url);
 		form.put("costo", costo);
 		form.put("imagen", imagen);
+		form.put("video", video);
     	
     	try {
     	
@@ -116,7 +119,6 @@ public class Altaespectaculo extends HttpServlet {
     	}
 	    
 	    DataEspectaculo dataEsp = new DataEspectaculo();
-	    
 	    dataEsp.setArtista(nick);
 	    dataEsp.setPlataforma(nomPlataforma);
 	    dataEsp.setNombre(nombre);
@@ -127,6 +129,7 @@ public class Altaespectaculo extends HttpServlet {
 	    dataEsp.setMinEspectadores(Integer.parseInt(minEspectadores));
 	    dataEsp.setUrl(url);
 	    dataEsp.setCosto(Float.parseFloat(costo));
+	    dataEsp.setVideo(video);
 	    if (imagen != "" && imagen != null) {
 	    dataEsp.setImagen(imagen);	    
 	    } else {

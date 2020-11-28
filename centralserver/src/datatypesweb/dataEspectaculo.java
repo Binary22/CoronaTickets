@@ -29,6 +29,7 @@ public class dataEspectaculo {
 	private boolean aceptado;
 	private boolean finalizado;
 	private String imagen;
+	private String video;
 	private List<String> categorias;
 	
 	public dataEspectaculo(Espectaculo espect) {
@@ -53,10 +54,10 @@ public class dataEspectaculo {
 		this.finalizado = espect.isFinalizado();
 		this.imagen = espect.getImagen();
 		this.categorias = new ArrayList<String>(espect.listarCategorias());
+		this.setVideo(espect.getVideo());
 		
 		
 	}
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -206,5 +207,13 @@ public class dataEspectaculo {
 
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
 	}
 }

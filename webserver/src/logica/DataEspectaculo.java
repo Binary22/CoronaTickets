@@ -56,6 +56,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;/complexType>
  *         &lt;/element>
  *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="video" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="yaFueValuado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -83,6 +84,7 @@ import javax.xml.bind.annotation.XmlType;
     "plataforma",
     "setFunciones",
     "url",
+    "video",
     "yaFueValuado"
 })
 public class DataEspectaculo {
@@ -105,6 +107,7 @@ public class DataEspectaculo {
     @XmlElement(required = true)
     protected DataEspectaculo.SetFunciones setFunciones;
     protected String url;
+    protected String video;
     protected boolean yaFueValuado;
 
     /**
@@ -454,6 +457,30 @@ public class DataEspectaculo {
      */
     public void setUrl(String value) {
         this.url = value;
+    }
+
+    /**
+     * Gets the value of the video property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVideo() {
+        return video;
+    }
+
+    /**
+     * Sets the value of the video property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVideo(String value) {
+        this.video = value;
     }
 
     /**

@@ -182,6 +182,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		textField_8 = new JPasswordField();
+		textField_8.setEditable(false);
 		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
 		gbc_textField_8.gridwidth = 2;
 		gbc_textField_8.insets = new Insets(0, 0, 5, 5);
@@ -200,6 +201,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		textField_9 = new JPasswordField();
+		textField_9.setEditable(false);
 		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
 		gbc_textField_9.gridwidth = 2;
 		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
@@ -380,6 +382,8 @@ public class modificarDatosUsuario extends JInternalFrame {
 	protected void updateData() {
 		clearData();
 		textfields.forEach((t) -> t.setEnabled(true));
+		textField_9.setEditable(true);
+		textField_8.setEditable(true);
 		Fabrica fab = Fabrica.getInstance();
 		IConsulta icontrolador = fab.getIConsulta();
 		textField.setText(dtu.getNickname());
@@ -388,6 +392,7 @@ public class modificarDatosUsuario extends JInternalFrame {
 		textField_3.setText(dtu.getEmail());
 		textField_8.setText(dtu.getPassword());
 		textField_9.setText(dtu.getPassword());
+		
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String str = dtu.getFechaNacimiento().format(formatter);
