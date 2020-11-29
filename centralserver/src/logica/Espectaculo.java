@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import excepciones.YaVotoException;
+
 public class Espectaculo {
 	private String nombre;
 	private String descripcion;
@@ -26,6 +28,7 @@ public class Espectaculo {
 	private String video;
 	private List<String> categorias;
 	private List<Integer> puntajes;
+	private List<String> votantes;
 	
 	public String getImagen() {
 		return imagen;
@@ -47,10 +50,14 @@ public class Espectaculo {
 		}
 	}
 	
-	public void agregarValoracion(int valoracion) {
+	public void agregarValoracion(int valoracion, String user) throws YaVotoException {
 		if (puntajes == null) {
 			puntajes = new ArrayList<Integer>();
 		}
+		if (getVotantes().contains(user)) {
+			throw new YaVotoException("El usuario ya valoro este espectaculo");
+		}
+		votantes.add(user);
 		puntajes.add(valoracion);
 	}
 
@@ -230,5 +237,23 @@ public class Espectaculo {
 
 	public void setVideo(String video) {
 		this.video = video;
+	}
+
+	public List<Integer> getPuntajes() {
+		if (puntajes == null) {
+			return new ArrayList<Integer>();
+		}
+		return puntajes;
+	}
+
+	public List<String> getVotantes() {
+		if (votantes == null) {
+			votantes = new ArrayList<String>();
+		}
+		return votantes;
+	}
+	
+	public void setVotantes(List<String> votantes) {
+		this.votantes = votantes;
 	}
 }

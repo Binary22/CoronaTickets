@@ -31,6 +31,7 @@ public class dataEspectaculo {
 	private String imagen;
 	private String video;
 	private List<String> categorias;
+	private List<Integer> puntajes;
 	
 	public dataEspectaculo(Espectaculo espect) {
 		this.nombre = espect.getNombre();
@@ -55,7 +56,7 @@ public class dataEspectaculo {
 		this.imagen = espect.getImagen();
 		this.categorias = new ArrayList<String>(espect.listarCategorias());
 		this.setVideo(espect.getVideo());
-		
+		this.setPuntajes(espect.getPuntajes());
 		
 	}
 	
@@ -215,5 +216,13 @@ public class dataEspectaculo {
 
 	public void setVideo(String video) {
 		this.video = video;
+	}
+
+	public List<Integer> getPuntajes() {
+		return puntajes;
+	}
+
+	public void setPuntajes(List<Integer> puntajes) {
+		this.puntajes = puntajes;
 	}
 }

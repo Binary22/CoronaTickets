@@ -18,6 +18,7 @@ import excepciones.NombreCategoriaExistente;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.YaVotoException;
 import excepciones.existeRegistroEspecException;
 import excepciones.fechaPosterior;
 import excepciones.funcionAlcanzoLimiteException;
@@ -691,6 +692,10 @@ public class EspectaculoController implements IEspectaculo {
 		espect.setYaFueValuado(true);
 		if (aceptado)
 			espect.setAceptado(aceptado);
+	}
+	
+	public void agregarValoracion(Espectaculo esp, int valoracion, String user) throws YaVotoException {
+		esp.agregarValoracion(valoracion, user);
 	}
 
 	public String getNomCategoria() {

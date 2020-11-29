@@ -11,6 +11,7 @@ import datatypes.DtRegistro;
 import excepciones.NombreCategoriaExistente;
 import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
+import excepciones.YaVotoException;
 import excepciones.existeRegistroEspecException;
 import excepciones.fechaPosterior;
 import excepciones.funcionAlcanzoLimiteException;
@@ -68,4 +69,6 @@ public interface IEspectaculo {
 	
 	public void existeRegistroEspecAFunWeb() throws existeRegistroEspecException;
 	public void funcionAlcanzoLimiteRegWeb(String nomespect) throws funcionAlcanzoLimiteException;
+	
+	public void agregarValoracion(Espectaculo esp, int valoracion, String user) throws YaVotoException;
 }
