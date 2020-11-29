@@ -27,6 +27,7 @@ public class ObjectFactory {
     private final static QName _NoSeleccionoTres_QNAME = new QName("http://logica/", "noSeleccionoTres");
     private final static QName _PaqueteConMismoNombreException_QNAME = new QName("http://logica/", "PaqueteConMismoNombreException");
     private final static QName _UsuarioPaqueteComprado_QNAME = new QName("http://logica/", "UsuarioPaqueteComprado");
+    private final static QName _YaVotoException_QNAME = new QName("http://logica/", "YaVotoException");
     private final static QName _FuncionAlcanzoLimiteException_QNAME = new QName("http://logica/", "funcionAlcanzoLimiteException");
     private final static QName _FechaPosterior_QNAME = new QName("http://logica/", "fechaPosterior");
     private final static QName _NoExistePaqueteException_QNAME = new QName("http://logica/", "NoExistePaqueteException");
@@ -84,6 +85,14 @@ public class ObjectFactory {
      */
     public NoSeleccionoTres createNoSeleccionoTres() {
         return new NoSeleccionoTres();
+    }
+
+    /**
+     * Create an instance of {@link YaVotoException }
+     * 
+     */
+    public YaVotoException createYaVotoException() {
+        return new YaVotoException();
     }
 
     /**
@@ -327,6 +336,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://logica/", name = "UsuarioPaqueteComprado")
     public JAXBElement<UsuarioPaqueteComprado> createUsuarioPaqueteComprado(UsuarioPaqueteComprado value) {
         return new JAXBElement<UsuarioPaqueteComprado>(_UsuarioPaqueteComprado_QNAME, UsuarioPaqueteComprado.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link YaVotoException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://logica/", name = "YaVotoException")
+    public JAXBElement<YaVotoException> createYaVotoException(YaVotoException value) {
+        return new JAXBElement<YaVotoException>(_YaVotoException_QNAME, YaVotoException.class, null, value);
     }
 
     /**

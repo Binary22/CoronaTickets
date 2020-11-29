@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="minutos" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="plataforma" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="puntajes" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="setFunciones">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -82,6 +83,7 @@ import javax.xml.bind.annotation.XmlType;
     "minutos",
     "nombre",
     "plataforma",
+    "puntajes",
     "setFunciones",
     "url",
     "video",
@@ -104,6 +106,8 @@ public class DataEspectaculo {
     protected String minutos;
     protected String nombre;
     protected String plataforma;
+    @XmlElement(nillable = true)
+    protected List<Integer> puntajes;
     @XmlElement(required = true)
     protected DataEspectaculo.SetFunciones setFunciones;
     protected String url;
@@ -409,6 +413,35 @@ public class DataEspectaculo {
      */
     public void setPlataforma(String value) {
         this.plataforma = value;
+    }
+
+    /**
+     * Gets the value of the puntajes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the puntajes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPuntajes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Integer }
+     * 
+     * 
+     */
+    public List<Integer> getPuntajes() {
+        if (puntajes == null) {
+            puntajes = new ArrayList<Integer>();
+        }
+        return this.puntajes;
     }
 
     /**

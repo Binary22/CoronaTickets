@@ -94,6 +94,15 @@
     	<servlet-name>consultaFuncion</servlet-name>
     	<servlet-class>controladores.ConsultaFuncion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValorarEspectaculo</servlet-name>
+        <servlet-class>controladores.ValorarEspectaculo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>ValorarEspectaculo</servlet-name>
+    	<url-pattern>/votarEspectaculo</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
     	<servlet-name>EspectaculosFinalizados</servlet-name>
     	<url-pattern>/espectaculosfinalizados</url-pattern>

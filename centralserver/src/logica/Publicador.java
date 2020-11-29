@@ -41,6 +41,7 @@ import excepciones.fechaPosterior;
 import excepciones.funcionAlcanzoLimiteException;
 import excepciones.noSeleccionoTres;
 import excepciones.UsuarioPaqueteComprado;
+import excepciones.YaVotoException;
 import excepciones.existeRegistroEspecException;
 
 @WebService
@@ -602,6 +603,18 @@ public class Publicador {
 		}
 		listapaq.setPaquetes(ret);
 		return listapaq;
+	}
+	
+	@WebMethod
+	public void valorarEspectaculo(String espec, String user, int puntaje) throws YaVotoException {
+		IEspectaculo controller = Fabrica.getInstance().getIEspectaculo();
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		System.out.print(espec);
+		Espectaculo espectaculo = he.getEspectaculo(espec);
+		if (espectaculo == null) {
+			throw new YaVotoException("no se encuentra el espectaculo");
+		}
+		controller.agregarValoracion(espectaculo, puntaje, user);
 	}
 	
 }
