@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para listaEspectaculo complex type.
+ * <p>Clase Java para dataListFunsEspect complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="listaEspectaculo">
+ * &lt;complexType name="dataListFunsEspect">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="espectaculos">
+ *         &lt;element name="funcionesEspect">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
  *                             &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                             &lt;element name="value" type="{http://logica/}dataEspectaculo" minOccurs="0"/>
+ *                             &lt;element name="value" type="{http://logica/}dataFuncion" minOccurs="0"/>
  *                           &lt;/sequence>
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -50,36 +50,36 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listaEspectaculo", propOrder = {
-    "espectaculos"
+@XmlType(name = "dataListFunsEspect", propOrder = {
+    "funcionesEspect"
 })
-public class ListaEspectaculo {
+public class DataListFunsEspect {
 
     @XmlElement(required = true)
-    protected ListaEspectaculo.Espectaculos espectaculos;
+    protected DataListFunsEspect.FuncionesEspect funcionesEspect;
 
     /**
-     * Obtiene el valor de la propiedad espectaculos.
+     * Obtiene el valor de la propiedad funcionesEspect.
      * 
      * @return
      *     possible object is
-     *     {@link ListaEspectaculo.Espectaculos }
+     *     {@link DataListFunsEspect.FuncionesEspect }
      *     
      */
-    public ListaEspectaculo.Espectaculos getEspectaculos() {
-        return espectaculos;
+    public DataListFunsEspect.FuncionesEspect getFuncionesEspect() {
+        return funcionesEspect;
     }
 
     /**
-     * Define el valor de la propiedad espectaculos.
+     * Define el valor de la propiedad funcionesEspect.
      * 
      * @param value
      *     allowed object is
-     *     {@link ListaEspectaculo.Espectaculos }
+     *     {@link DataListFunsEspect.FuncionesEspect }
      *     
      */
-    public void setEspectaculos(ListaEspectaculo.Espectaculos value) {
-        this.espectaculos = value;
+    public void setFuncionesEspect(DataListFunsEspect.FuncionesEspect value) {
+        this.funcionesEspect = value;
     }
 
 
@@ -99,7 +99,7 @@ public class ListaEspectaculo {
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
      *                   &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="value" type="{http://logica/}dataEspectaculo" minOccurs="0"/>
+     *                   &lt;element name="value" type="{http://logica/}dataFuncion" minOccurs="0"/>
      *                 &lt;/sequence>
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -117,9 +117,9 @@ public class ListaEspectaculo {
     @XmlType(name = "", propOrder = {
         "entry"
     })
-    public static class Espectaculos {
+    public static class FuncionesEspect {
 
-        protected List<ListaEspectaculo.Espectaculos.Entry> entry;
+        protected List<DataListFunsEspect.FuncionesEspect.Entry> entry;
 
         /**
          * Gets the value of the entry property.
@@ -139,13 +139,13 @@ public class ListaEspectaculo {
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link ListaEspectaculo.Espectaculos.Entry }
+         * {@link DataListFunsEspect.FuncionesEspect.Entry }
          * 
          * 
          */
-        public List<ListaEspectaculo.Espectaculos.Entry> getEntry() {
+        public List<DataListFunsEspect.FuncionesEspect.Entry> getEntry() {
             if (entry == null) {
-                entry = new ArrayList<ListaEspectaculo.Espectaculos.Entry>();
+                entry = new ArrayList<DataListFunsEspect.FuncionesEspect.Entry>();
             }
             return this.entry;
         }
@@ -162,7 +162,7 @@ public class ListaEspectaculo {
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
          *         &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="value" type="{http://logica/}dataEspectaculo" minOccurs="0"/>
+         *         &lt;element name="value" type="{http://logica/}dataFuncion" minOccurs="0"/>
          *       &lt;/sequence>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -179,7 +179,7 @@ public class ListaEspectaculo {
         public static class Entry {
 
             protected String key;
-            protected DataEspectaculo value;
+            protected DataFuncion value;
 
             /**
              * Obtiene el valor de la propiedad key.
@@ -210,10 +210,10 @@ public class ListaEspectaculo {
              * 
              * @return
              *     possible object is
-             *     {@link DataEspectaculo }
+             *     {@link DataFuncion }
              *     
              */
-            public DataEspectaculo getValue() {
+            public DataFuncion getValue() {
                 return value;
             }
 
@@ -222,10 +222,10 @@ public class ListaEspectaculo {
              * 
              * @param value
              *     allowed object is
-             *     {@link DataEspectaculo }
+             *     {@link DataFuncion }
              *     
              */
-            public void setValue(DataEspectaculo value) {
+            public void setValue(DataFuncion value) {
                 this.value = value;
             }
 

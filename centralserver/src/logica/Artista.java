@@ -3,6 +3,7 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import datatypes.DtArtista;
 import datatypes.DtEspectaculo;
@@ -183,6 +184,8 @@ public class Artista extends Usuario {
 		}
 		return lista;	
 	}
+	
+	
 
 }
 

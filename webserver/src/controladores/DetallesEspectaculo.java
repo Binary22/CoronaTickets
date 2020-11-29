@@ -2,7 +2,9 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import datatypesweb.dataEspectaculo;
+import logica.DataArtista;
 import logica.DataEspectaculo;
+import logica.DataFuncion;
+import logica.DataListEspOrg;
+import logica.DataListFunsEspect;
 import logica.DataPaquete;
+import logica.DataUsuario;
 import logica.Espectaculo;
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
@@ -43,10 +50,24 @@ public class DetallesEspectaculo extends HttpServlet {
     	PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
     	DataEspectaculo espect = port.getEspectaculo(nomEspect);
-    	
+    	String userNickname = (String) objSesion.getAttribute("usuario_logueado");
+    	if(port.esArtista(userNickname)) {
+    		List<String> espects = port.getEspectaculos(userNickname).getEspectaculosOrg();
+    		if(espects.contains(nomEspect)) {
+    			objSesion.setAttribute("esArtistaOrg", true);
+    		}else {
+    			objSesion.setAttribute("esArtistaOrg", false);
+    		}	
+    	}else {
+    		objSesion.setAttribute("esArtistaOrg", false);
+    	}
     	logica.ListaPaquete lista = port.listarPaquetesEspectaculo(nomEspect);
 		List<DataPaquete> paquetes = new ArrayList<DataPaquete>(lista.getPaquetes());
-    	
+		Map<String, DataFuncion> funciones = new HashMap<String, DataFuncion>();
+        for(logica.DataListFunsEspect.FuncionesEspect.Entry e : port.funcionesEspectaculo(nomEspect).getFuncionesEspect().getEntry()) {
+            funciones.put(e.getKey(),e.getValue());
+        }
+        objSesion.setAttribute("funciones_espectaculo", funciones);
 		objSesion.setAttribute("paquetes", paquetes);
     	objSesion.setAttribute("espectaculo_selected", espect);
     	

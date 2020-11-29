@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataArtista complex type.
+ * <p>Clase Java para dataArtista complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataArtista">
@@ -41,23 +41,23 @@ public class DataArtista
 {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<String>> rest;
 
     /**
-     * Gets the rest of the content model. 
+     * Obtiene el resto del modelo de contenido. 
      * 
      * <p>
-     * You are getting this "catch-all" property because of the following reason: 
-     * The field name "Descripcion" is used by two different parts of a schema. See: 
-     * line 270 of http://localhost:9129/publicador?xsd=1
-     * line 162 of http://localhost:9129/publicador?xsd=1
+     * Ha obtenido esta propiedad que permite capturar todo por el siguiente motivo: 
+     * El nombre de campo "Descripcion" se está utilizando en dos partes diferentes de un esquema. Consulte: 
+     * línea 309 de http://localhost:9129/publicador?xsd=1
+     * línea 76 de http://localhost:9129/publicador?xsd=1
      * <p>
-     * To get rid of this property, apply a property customization to one 
-     * of both of the following declarations to change their names: 
+     * Para deshacerse de esta propiedad, aplique una personalización de propiedad a una
+     * de las dos declaraciones siguientes para cambiarles de nombre: 
      * Gets the value of the rest property.
      * 
      * <p>

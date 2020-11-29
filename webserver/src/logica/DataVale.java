@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataVale complex type.
+ * <p>Clase Java para dataVale complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataVale">
@@ -46,7 +46,7 @@ public class DataVale {
     protected boolean usado;
 
     /**
-     * Gets the value of the ident property.
+     * Obtiene el valor de la propiedad ident.
      * 
      */
     public int getIdent() {
@@ -54,7 +54,7 @@ public class DataVale {
     }
 
     /**
-     * Sets the value of the ident property.
+     * Define el valor de la propiedad ident.
      * 
      */
     public void setIdent(int value) {
@@ -62,7 +62,7 @@ public class DataVale {
     }
 
     /**
-     * Gets the value of the paquete property.
+     * Obtiene el valor de la propiedad paquete.
      * 
      * @return
      *     possible object is
@@ -74,7 +74,7 @@ public class DataVale {
     }
 
     /**
-     * Sets the value of the paquete property.
+     * Define el valor de la propiedad paquete.
      * 
      * @param value
      *     allowed object is
@@ -86,7 +86,7 @@ public class DataVale {
     }
 
     /**
-     * Gets the value of the dtoPaquete property.
+     * Obtiene el valor de la propiedad dtoPaquete.
      * 
      */
     public int getDtoPaquete() {
@@ -94,7 +94,7 @@ public class DataVale {
     }
 
     /**
-     * Sets the value of the dtoPaquete property.
+     * Define el valor de la propiedad dtoPaquete.
      * 
      */
     public void setDtoPaquete(int value) {
@@ -102,7 +102,7 @@ public class DataVale {
     }
 
     /**
-     * Gets the value of the espectaculo property.
+     * Obtiene el valor de la propiedad espectaculo.
      * 
      * @return
      *     possible object is
@@ -114,7 +114,7 @@ public class DataVale {
     }
 
     /**
-     * Sets the value of the espectaculo property.
+     * Define el valor de la propiedad espectaculo.
      * 
      * @param value
      *     allowed object is
@@ -126,7 +126,7 @@ public class DataVale {
     }
 
     /**
-     * Gets the value of the usado property.
+     * Obtiene el valor de la propiedad usado.
      * 
      */
     public boolean isUsado() {
@@ -134,7 +134,7 @@ public class DataVale {
     }
 
     /**
-     * Sets the value of the usado property.
+     * Define el valor de la propiedad usado.
      * 
      */
     public void setUsado(boolean value) {

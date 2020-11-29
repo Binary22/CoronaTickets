@@ -63,6 +63,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataListFunsEspect }
+     * 
+     */
+    public DataListFunsEspect createDataListFunsEspect() {
+        return new DataListFunsEspect();
+    }
+
+    /**
+     * Create an instance of {@link DataListFunsEspect.FuncionesEspect }
+     * 
+     */
+    public DataListFunsEspect.FuncionesEspect createDataListFunsEspectFuncionesEspect() {
+        return new DataListFunsEspect.FuncionesEspect();
+    }
+
+    /**
      * Create an instance of {@link DataEspectaculo }
      * 
      */
@@ -183,6 +199,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataPremio }
+     * 
+     */
+    public DataPremio createDataPremio() {
+        return new DataPremio();
+    }
+
+    /**
      * Create an instance of {@link DataRegsPrevios }
      * 
      */
@@ -215,6 +239,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
+    }
+
+    /**
      * Create an instance of {@link DataListPaquetes }
      * 
      */
@@ -239,19 +271,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataFuncion }
-     * 
-     */
-    public DataFuncion createDataFuncion() {
-        return new DataFuncion();
-    }
-
-    /**
      * Create an instance of {@link DataUsuario }
      * 
      */
     public DataUsuario createDataUsuario() {
         return new DataUsuario();
+    }
+
+    /**
+     * Create an instance of {@link DataFuncion }
+     * 
+     */
+    public DataFuncion createDataFuncion() {
+        return new DataFuncion();
     }
 
     /**
@@ -292,6 +324,14 @@ public class ObjectFactory {
      */
     public ListaEspectaculo.Espectaculos.Entry createListaEspectaculoEspectaculosEntry() {
         return new ListaEspectaculo.Espectaculos.Entry();
+    }
+
+    /**
+     * Create an instance of {@link DataListFunsEspect.FuncionesEspect.Entry }
+     * 
+     */
+    public DataListFunsEspect.FuncionesEspect.Entry createDataListFunsEspectFuncionesEspectEntry() {
+        return new DataListFunsEspect.FuncionesEspect.Entry();
     }
 
     /**

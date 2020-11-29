@@ -85,6 +85,15 @@
     	<servlet-class>controladores.EspectaculosFinalizados</servlet-class>
     </servlet>
     
+    <servlet>
+    	<servlet-name>SorteoPremios</servlet-name>
+    	<servlet-class>controladores.SorteoPremios</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>SorteoPremios</servlet-name>
+    	<url-pattern>/sorteoPremios</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
     	<servlet-name>EspectaculosFinalizados</servlet-name>

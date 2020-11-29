@@ -30,7 +30,40 @@ public class dataEspectaculo {
 	private boolean finalizado;
 	private String imagen;
 	private List<String> categorias;
+	private String descPremio;
+	private int cantPremios;
+	private String videoUrl;
 	
+	public String getDescPremio() {
+		return descPremio;
+	}
+
+
+	public void setDescPremio(String descPremio) {
+		this.descPremio = descPremio;
+	}
+
+
+	public int getCantPremios() {
+		return cantPremios;
+	}
+
+
+	public void setCantPremios(int cantPremios) {
+		this.cantPremios = cantPremios;
+	}
+
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+
 	public dataEspectaculo(Espectaculo espect) {
 		this.nombre = espect.getNombre();
 		this.descripcion = espect.getDescripcion();

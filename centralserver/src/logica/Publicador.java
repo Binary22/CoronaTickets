@@ -15,6 +15,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import datatypesweb.dataEspectaculo;
+import datatypesweb.dataFuncion;
 import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
@@ -24,6 +25,7 @@ import datatypesweb.dataPaquete;
 import datatypesweb.dataArtista;
 import datatypesweb.dataListArtInvi;
 import datatypesweb.dataListEspOrg;
+import datatypesweb.dataListFunsEspect;
 import datatypesweb.dataListPaquetes;
 import datatypesweb.dataListPlataformas;
 import datatypesweb.dataUsuario;
@@ -565,7 +567,7 @@ public class Publicador {
     	Espectaculo espFinalizar = hespectaculos.getEspectaculo(nombreEspectaculo);
     	espFinalizar.setFinalizado(true);
     }
-    
+    @WebMethod
     public void dejardeseguir(String uaseguir, String uloggueado) {
     	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
     	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
@@ -573,5 +575,54 @@ public class Publicador {
     	Usuariologgueado.quitarSeguido(Usuarioaseguir);
     	Usuarioaseguir.quitarSiguiendo(Usuariologgueado);	
 
+    }
+    @WebMethod
+    public dataListFunsEspect funcionesEspectaculo(String nomEspect) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Map<String,Funcion> funs = esp.getAllFunciones();
+    	Map<String,dataFuncion> funsResp = new HashMap<String,dataFuncion>();
+    	dataFuncion nueva;
+    	for(String key : funs.keySet()) {
+    		nueva = new dataFuncion(funs.get(key));
+    		if(funs.get(key).funcionFinalizo()) {
+    			nueva.setFinalizo(true);
+    		}
+    		funsResp.put(key,nueva);
+    	}
+    	dataListFunsEspect ret = new dataListFunsEspect();
+    	ret.setFuncionesEspect(funsResp);
+    	return ret;
+    }
+    
+    @WebMethod
+    public ListaUsuario espectadoresFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	List<Usuario> users = fun.getEspectadores();
+    	List<dataUsuario> espectadores = new ArrayList<dataUsuario>();
+    	for(int i = 0; i < users.size(); i++) {
+    		espectadores.add(new dataUsuario(users.get(i)));
+    	}
+    	ListaUsuario usuarios = new ListaUsuario();
+    	usuarios.setUsuarios(espectadores);
+    	return usuarios;
+    }
+    
+    @WebMethod
+    public void sortearPremiosFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	fun.sortearPremios();
+    }
+    
+    @WebMethod
+    public dataFuncion getFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	return new dataFuncion(fun);
     }
 }
