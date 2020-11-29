@@ -25,6 +25,7 @@ public class Espectaculo {
 	private String imagen;
 	private String video;
 	private List<String> categorias;
+	private List<Integer> puntajes;
 	
 	public String getImagen() {
 		return imagen;
@@ -32,6 +33,25 @@ public class Espectaculo {
 
 	public void setYaFueValuado(boolean yaFueValuado) {
 		this.yaFueValuado = yaFueValuado;
+	}
+	
+	public int getPromedio() {
+		if (puntajes.isEmpty() || puntajes == null) {
+			return -1;
+		} else {
+			int res = 0;
+			for (int i : puntajes) {
+				res += i;
+			}
+			return (res / puntajes.size());
+		}
+	}
+	
+	public void agregarValoracion(int valoracion) {
+		if (puntajes == null) {
+			puntajes = new ArrayList<Integer>();
+		}
+		puntajes.add(valoracion);
 	}
 
 	public void setAceptado(boolean aceptado) {
