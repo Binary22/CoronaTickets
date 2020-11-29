@@ -23,6 +23,7 @@ public class Espectaculo {
 	private boolean aceptado;
 	private boolean finalizado;
 	private String imagen;
+	private String video;
 	private List<String> categorias;
 	private String descPremio;
 	private int cantPremios;
@@ -89,6 +90,28 @@ public class Espectaculo {
 			this.imagen = imagen;
 		}
 		this.categorias = categs;
+	}
+	
+	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
+			String url, LocalDate fechaReg, float costo, String imagen, List<String> categs, String video) {
+		this.nombre = nombre;
+		this.duracion = duracion;
+		this.descripcion = descripcion;
+		this.minEspectadores = minEspectadores;
+		this.maxEspectadores = maxEspectadores;
+		this.url = url;
+		this.fechaReg = fechaReg;
+		this.costo = costo;
+		this.setFunciones = new HashMap<String, Funcion>();
+		this.yaFueValuado = false;
+		this.aceptado = false;
+		if (imagen == "" || imagen == null) {
+			this.imagen = "resources/media/espectaculos/rock.jpg";
+		} else {
+			this.imagen = imagen;
+		}
+		this.categorias = categs;
+		this.video = video;
 	}
 	
 	public String getNombre() {
@@ -182,6 +205,14 @@ public class Espectaculo {
 
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
 	}
 
 	public String getDescPremio() {

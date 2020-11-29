@@ -14,6 +14,7 @@ import excepciones.NoHayPaquetesException;
 public interface IConsulta {
 	public List<String> listarUsuarios();
 	public DtUsuario mostrarDatos(String nickname);
+	public DtUsuario mostrarDatosContra(String nickname);
 	public List<DtEspectaculo> listarEspectaculosQueOrganiza();
 	public List<String> listarFuncionesQueSeRegistro(String nickname);
 	public void elegirEspectaculo(String nomespect);

@@ -31,6 +31,7 @@ public class EspectaculoController implements IEspectaculo {
 	private String descripcion;
 	private String nomfuncion;
 	private String url;
+	private String video;
 	private int minEspect;
 	private int maxEspect;
 	private float costo;
@@ -281,7 +282,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 	@Override
 	public void altaEspectaculoWeb(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen)
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen, String video)
 			throws NombreEspectaculoExisteException {
 		// TODO Auto-generated method stub
 		
@@ -299,6 +300,7 @@ public class EspectaculoController implements IEspectaculo {
 			this.fechaAlta= fechaAlta;
 			this.categorias= cat;
 			this.imagen = imagen;
+			this.video = video;
 		}
 		else throw new NombreEspectaculoExisteException("El nombre de espectaculo " + nombre + " ya esta en uso");
 		
@@ -306,7 +308,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
 		Artista art= (Artista) huser.getUsuario(nickUsuario);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias);		
+		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias,video);		
 		Fabrica fabric = Fabrica.getInstance();
 		IPlataforma iPlat = fabric.getIPlataforma();
 		esp.setPlataforma(plat);
@@ -705,6 +707,14 @@ public class EspectaculoController implements IEspectaculo {
 
 	public void setCanjeVale(boolean canjeVale) {
 		this.canjeVale = canjeVale;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
 	}
 
 

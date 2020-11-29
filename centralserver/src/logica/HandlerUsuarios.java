@@ -103,7 +103,11 @@ public class HandlerUsuarios {
 	}
 
 	public void rempazar(String nick, Usuario user) {
-		this.usuarios.put(nick, user);
+		usuarios.get(nick).update(user);
+		System.out.print("El usuario " + nick + "Es Artista? \n");
+		if (usuarios.get(nick).esArtista()) {
+			System.out.print("Si \n");
+		}
 	}
 	
 	

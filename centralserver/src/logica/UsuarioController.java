@@ -206,6 +206,18 @@ public class UsuarioController implements IUsuario{
 		};
 	}
 	
+	public void confirmarUpdateUsuarioContra() {
+		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		if (!esArtista)
+			usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento, password);
+		if (esArtista) {
+			artista = new Artista(nickname, nombre, apellido, email, fechaNacimiento, password, descrip, biografia, web);
+			husers.rempazar(nickname, artista);
+		} else {
+		husers.rempazar(nickname, usuario);
+		};
+	}
+	
 	public void confirmarUpdateUsuarioWeb() {
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
 		usuario = new Usuario(nickname, nombre, apellido, email, fechaNacimiento, password, imagen);
@@ -215,6 +227,18 @@ public class UsuarioController implements IUsuario{
 		} else {
 		husers.rempazar(nickname, usuario);
 		};
+	}
+
+	public void updateUsuarioContra(String nickviejo, String nombre, String apellido, String mail, LocalDate fechaNac,
+			String password) {
+		this.nickname = nickviejo;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = mail;
+		this.fechaNacimiento = fechaNac;
+		this.password = password;
+		this.esArtista = false;
+		
 	}
 
 }

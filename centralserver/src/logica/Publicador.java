@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -497,6 +499,7 @@ public class Publicador {
     	Integer maximo = dataEsp.getMaxEspectadores();
     	Integer minimo = dataEsp.getMinEspectadores();
     	String url = dataEsp.getUrl();
+    	String video = dataEsp.getVideo();
     	List<String> categorias = new ArrayList<String>();
     			
     	for(String cat : dataEsp.getCategorias()) {
@@ -514,7 +517,7 @@ public class Publicador {
     	
     	ctrlE.altaEspectaculoWeb(nomPlataforma, nomArtista, nomEspectaculo, descripcion, dur,
 				minimo, maximo,
-				url, costo, hoy , categorias, imagen);
+				url, costo, hoy , categorias, imagen, video);
     }
     
     @WebMethod(operationName = "listarPlataformas")
@@ -576,6 +579,33 @@ public class Publicador {
     	Usuarioaseguir.quitarSiguiendo(Usuariologgueado);	
 
     }
+    @WebMethod
+	public ListaEspectaculo buscarEspectaculos(String search) {
+    	ListaEspectaculo listaesp = new ListaEspectaculo();
+		Map<String, dataEspectaculo> ret = new HashMap<String, dataEspectaculo>();
+		HandlerEspectaculos handleresp = HandlerEspectaculos.getInstance();
+		for (Entry<String, Espectaculo> entry : handleresp.getEspectaculos().entrySet()) {   
+			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
+				ret.put(entry.getValue().getNombre() ,new dataEspectaculo(entry.getValue()));
+			}
+		}
+		listaesp.setEspectaculos(ret);
+		return listaesp;
+	}
+	@WebMethod
+	public ListaPaquete buscarPaquetes(String search) {
+		ListaPaquete listapaq = new ListaPaquete();
+		List<dataPaquete> ret = new ArrayList<dataPaquete>();
+		HandlerPaquetes handlerpaq = HandlerPaquetes.getInstance();
+		for (Entry<String, Paquete> entry : handlerpaq.getPaquetes().entrySet()) {    
+			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
+				ret.add(new dataPaquete(entry.getValue()));
+			}
+		}
+		listapaq.setPaquetes(ret);
+		return listapaq;
+	}
+	
     @WebMethod
     public dataListFunsEspect funcionesEspectaculo(String nomEspect) {
     	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();

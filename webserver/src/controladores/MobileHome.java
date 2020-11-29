@@ -1,7 +1,6 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -16,28 +15,22 @@ import javax.servlet.http.HttpSession;
 import javax.xml.ws.Provider;
 
 import excepciones.NoExistePaqueteException;
-import logica.DataEspectaculo;
-import logica.DataPaquete;
 import logica.Espectaculo;
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
-import logica.ListaPaquete;
 import logica.Paquete;
-import logica.Publicador;
-import logica.PublicadorService;
-import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class Home
  */
 
-public class Home extends HttpServlet {
+public class MobileHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public Home() {
+    public MobileHome() {
     	super();
     }
      
@@ -45,32 +38,14 @@ public class Home extends HttpServlet {
 		HttpSession objSesion = req.getSession();
 		
 		String browserName = req.getHeaders("user-agent").nextElement();	
-		if (browserName.contains("Mobile") ) {
-			resp.sendRedirect("mobileHome");
-    		return;
+		if (browserName.contains("Mobile")) {
+			objSesion.setAttribute("esMobile", "Yes");
+			objSesion.setAttribute("browserName", browserName);
+		} else {
+		objSesion.setAttribute("esMobile", "no");
+		objSesion.setAttribute("browserName", browserName);
 		}
-		
-		PublicadorService service = new PublicadorService();
-	    Publicador port = service.getPublicadorPort();
-	    logica.ListaEspectaculo lista = port.listarEspectaculos();
-		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
-		
-    	for(Entry e : lista.getEspectaculos().getEntry()) {
-    		
-    		if(e.getValue().isYaFueValuado() && !e.getValue().isFinalizado() && e.getValue().isAceptado())
-    			list.add(e.getValue());
-    	}
-    	objSesion.setAttribute("espectaculos", list);
-		
-		ListaPaquete paquetes = port.listarPaquetes();		
-		Map<String, DataPaquete> mapPaq = new HashMap<String, DataPaquete>();
-		for(DataPaquete p : paquetes.getPaquetes() ) {
-			mapPaq.put(p.getNombre(), p);
-		}
-		
-		objSesion.setAttribute("paquetes", mapPaq.values());
-		
-		req.getRequestDispatcher("/WEB-INF/home/home.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/home/mobileHome.jsp").forward(req, resp);
 	}
     
 	/**

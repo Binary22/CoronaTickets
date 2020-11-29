@@ -87,8 +87,9 @@
             </div>
             <div class="form-group">
               <label>URL*</label>
-              <input required value="<%= form.get("url") %>" name="url" type="url" class="form-control"  placeholder="Ej. https://youtube.com/rollingstoneslive">
+              <input required value="<%= form.get("url") %>" name="url" type="url" class="form-control"  placeholder="Ej. https://www.instagram.com/LosVillageVolvieron">
             </div>
+            
             <div class="form-group">
               <label>Categorias</label>
               <select name ="categoria" class="form-control" multiple>
@@ -110,6 +111,10 @@
             <div class="form-group">
                <label>Elegir imagen</label>
                <input type="url" value="<%= form.get("imagen") %>" class="form-control" name="imagen" placeholder="Ej. https://bit.ly/ijgjr">
+            </div>
+            <div class="form-group">
+              <label>Elegir video</label>
+              <input value="<%= form.get("video") %>" name="video" class="form-control"  placeholder="CS9OO0S5w2k">
             </div>
  
             <button type="submit" class="btn btn-primary"> Dar de alta el espectaculo</button>

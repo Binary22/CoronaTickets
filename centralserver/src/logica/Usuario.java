@@ -217,6 +217,24 @@ public class Usuario {
 
 	}
 	
+	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String password) {
+		super();
+		this.nickname = nickname;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.fechaNacimiento = fechaNacimiento;
+		this.compraPaquete = new ArrayList<Compra>();
+		this.vales = new ArrayList<Vale>();
+		this.registros = new ArrayList<Registro>();	
+		this.imagen = "resources/media/usuarios/userdefault.jpg";
+		this.seguidos = new ArrayList<Usuario>();
+		this.siguiendo = new ArrayList<Usuario>();
+		this.password = password;
+		
+
+	}
+	
 	public Usuario(String nickname, String nombre, String apellido, String email, LocalDate fechaNacimiento, String password, String imagen) {
 		super();
 		this.nickname = nickname;
@@ -242,6 +260,11 @@ public class Usuario {
 	public DtUsuario getDt() {
 		DtUsuario ret;
 		ret = new DtUsuario(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento());
+		return ret;
+	}
+	public DtUsuario getDtContra() {
+		DtUsuario ret;
+		ret = new DtUsuario(getNickname(), getNombre(), getApellido(), getEmail(), getFechaNacimiento(), getPassword());
 		return ret;
 	}
 	public boolean esArtistaA() {
@@ -300,6 +323,16 @@ public class Usuario {
 	
 	public String getWebsite() {
 		return "estonoesunartista ney";
+	}
+
+	public void update(Usuario user) {
+		this.nombre = user.getNombre();
+		this.apellido = user.getApellido();
+		this.fechaNacimiento = user.getFechaNacimiento();
+		this.password = user.getPassword();
+		if (user.getImagen() != null && !user.getImagen().equals("resources/media/usuarios/userdefault.jpg") && !user.getImagen().equals("resources/media/usuarios/artistadefault.jpg")) {
+		this.imagen = user.getImagen();
+		}
 	}
 
 	public List<Premio> getPremios() {
