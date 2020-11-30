@@ -1,30 +1,18 @@
 package controladores;
 
 import logica.DataEspectaculo;
-import logica.Fabrica;
-import logica.HandlerCategorias;
-import logica.HandlerEspectaculos;
-import logica.HandlerPlataforma;
-import logica.IEspectaculo;
 import logica.NombreEspectaculoExisteException_Exception;
 import logica.Publicador;
 import logica.PublicadorService;
-import net.java.dev.jaxb.array.StringArray;
-
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypesweb.dataEspectaculo;
 import excepciones.NombreEspectaculoExisteException;
 
 /**

@@ -3,22 +3,14 @@ import logica.HandlerPlataforma;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypesweb.ListaEspectaculo;
-import datatypesweb.dataEspectaculo;
 import logica.DataEspectaculo;
-import logica.Espectaculo;
-import logica.Fabrica;
 import logica.HandlerEspectaculos;
-import logica.IUsuario;
 import logica.ListaEspectaculo.Espectaculos.Entry;
 import logica.Plataforma;
 import logica.Publicador;

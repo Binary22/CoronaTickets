@@ -1,0 +1,161 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>workstation</groupId>
+  <artifactId>workstation</artifactId>
+  <version>1</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+        <executions>
+            <execution>
+                <id>tprog</id>
+                <phase>clean</phase>
+                <configuration>
+                    <file>${basedir}/lib/centralserver.jar</file>
+                    <repositoryLayout>default</repositoryLayout>
+                    <groupId>centralserver</groupId>
+                    <artifactId>centralserver</artifactId>
+                    <version>1</version>
+                    <packaging>jar</packaging>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <goals>
+                    <goal>install-file</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>tprog1</id>
+                <phase>clean</phase>
+                <configuration>
+                    <file>${basedir}/lib/jgoodies-forms-1.8.0.jar</file>
+                    <repositoryLayout>default</repositoryLayout>
+                    <groupId>jgoodies-forms-1.8.0</groupId>
+                    <artifactId>jgoodies-forms-1.8.0</artifactId>
+                    <version>1.8.0</version>
+                    <packaging>jar</packaging>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <goals>
+                    <goal>install-file</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>tprog2</id>
+                <phase>clean</phase>
+                <configuration>
+                    <file>${basedir}/lib/jgoodies-forms-1.8.0-sources.jar</file>
+                    <repositoryLayout>default</repositoryLayout>
+                    <groupId>jgoodies-forms-1.8.0-sources</groupId>
+                    <artifactId>jgoodies-forms-1.8.0-sources</artifactId>
+                    <version>1.8.0</version>
+                    <packaging>jar</packaging>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <goals>
+                    <goal>install-file</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>tprog3</id>
+                <phase>clean</phase>
+                <configuration>
+                    <file>${basedir}/lib/jcalendar-1.4.jar</file>
+                    <repositoryLayout>default</repositoryLayout>
+                    <groupId>jcalendar-1.4</groupId>
+                    <artifactId>jcalendar-1.4</artifactId>
+                    <version>1.4</version>
+                    <packaging>jar</packaging>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <goals>
+                    <goal>install-file</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    
+  
+    <plugin>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.8.1</version>
+      <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+        <encoding>utf8</encoding>
+      </configuration>
+    </plugin>
+    
+    
+    <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+        <archive>
+          <manifest>
+               <addClasspath>true</addClasspath>
+               <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>presentacion.Principal</mainClass>
+          </manifest>
+        </archive>
+        </configuration>
+      </plugin>
+      
+      
+ <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>copy-dependencies</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                <overWriteReleases>false</overWriteReleases>
+                <overWriteSnapshots>false</overWriteSnapshots>
+                <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+      
+      
+    </plugins>
+  </build>
+  
+  
+  <dependencies>
+  <dependency>
+  	<groupId>centralserver</groupId>
+  	<artifactId>centralserver</artifactId>
+  	<version>1</version>
+  </dependency>
+  <dependency>
+  	<groupId>jgoodies-forms-1.8.0</groupId>
+  	<artifactId>jgoodies-forms-1.8.0</artifactId>
+  	<version>1.8.0</version>
+  </dependency>
+  <dependency>
+  	<groupId>jgoodies-forms-1.8.0-sources</groupId>
+  	<artifactId>jgoodies-forms-1.8.0-sources</artifactId>
+  	<version>1.8.0</version>
+  </dependency>
+  <dependency>
+  	<groupId>jcalendar-1.4</groupId>
+  	<artifactId>jcalendar-1.4</artifactId>
+  	<version>1.4</version>
+  </dependency>
+  </dependencies>
+  
+</project>

@@ -14,10 +14,8 @@ import javax.servlet.http.HttpSession;
 import logica.DataEspectaculo;
 import logica.DataPaquete;
 import logica.DataUsuario;
-import logica.HandlerUsuarios;
 import logica.Publicador;
 import logica.PublicadorService;
-import logica.Usuario;
 import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**

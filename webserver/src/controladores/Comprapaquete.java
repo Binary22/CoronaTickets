@@ -6,28 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.NoExistePaqueteException;
-import excepciones.UsuarioPaqueteComprado;
-import logica.Compra;
 import logica.DataCompra;
-import logica.DataListPaquetes;
-import logica.DataPaquete;
 import logica.DataUsuario;
-import logica.Fabrica;
-import logica.HandlerPaquetes;
-import logica.HandlerUsuarios;
-import logica.IUsuario;
 import logica.NoExistePaqueteException_Exception;
-import logica.Paquete;
 import logica.Publicador;
 import logica.PublicadorService;
-import logica.Usuario;
 import logica.UsuarioPaqueteComprado_Exception;
 
 /**
