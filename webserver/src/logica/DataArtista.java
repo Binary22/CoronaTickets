@@ -41,8 +41,8 @@ public class DataArtista
 {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<String>> rest;
@@ -53,7 +53,7 @@ public class DataArtista
      * <p>
      * Ha obtenido esta propiedad que permite capturar todo por el siguiente motivo: 
      * El nombre de campo "Descripcion" se está utilizando en dos partes diferentes de un esquema. Consulte: 
-     * línea 316 de http://localhost:9129/publicador?xsd=1
+     * línea 312 de http://localhost:9129/publicador?xsd=1
      * línea 96 de http://localhost:9129/publicador?xsd=1
      * <p>
      * Para deshacerse de esta propiedad, aplique una personalización de propiedad a una

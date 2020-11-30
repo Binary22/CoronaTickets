@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fechaSorteado" type="{http://logica/}localDate" minOccurs="0"/>
+ *         &lt;element name="fechaSorteado" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="funcion" type="{http://logica/}dataFuncion" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlType;
 public class DataPremio {
 
     protected String descripcion;
-    protected LocalDate fechaSorteado;
+    protected String fechaSorteado;
     protected DataFuncion funcion;
 
     /**
@@ -68,10 +68,10 @@ public class DataPremio {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaSorteado() {
+    public String getFechaSorteado() {
         return fechaSorteado;
     }
 
@@ -80,10 +80,10 @@ public class DataPremio {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaSorteado(LocalDate value) {
+    public void setFechaSorteado(String value) {
         this.fechaSorteado = value;
     }
 

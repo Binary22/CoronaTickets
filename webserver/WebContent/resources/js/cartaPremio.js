@@ -31,6 +31,8 @@ class funcionCardPremio extends HTMLElement {
         this.querySelector('#fecha').innerHTML = this.getAttribute('fecha');
 		this.querySelector('#espect').innerHTML = this.getAttribute('espectaculo');
 		this.querySelector('#fun').innerHTML = this.getAttribute('funcion');
+		//this.querySelector('a').href = 'pdf?name=' + this.getAttribute('espectaculo') + ";" + this.getAttribute('funcion');
+
 		
 
         //let artistas = ['artista1','artista2','artista3']

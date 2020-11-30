@@ -279,10 +279,10 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
      * @throws NoSeleccionoTres_Exception
+     * @throws FechaPosterior_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -312,9 +312,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
+     * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -342,9 +342,9 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -486,8 +486,8 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws UsuarioPaqueteComprado_Exception
      * @throws NoExistePaqueteException_Exception
+     * @throws UsuarioPaqueteComprado_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {

@@ -19,17 +19,22 @@
 		<div class="container">
 			<h3 class="title">Premios Ganados:</h3>
 					<%List<DataPremio> premios = (List<DataPremio>)session.getAttribute("premios_usuario");
-					int size = premios.size();
-			        int j = 0;
-			        int i = 0;
-			        while(i < size){
-					  %>
-				        	<div class="card-deck pt-3">
-						        <%for(j = i; j <= i + 2 && j < size; j++){%>
-									<carta-premio class="card carta" titulo="<%=premios.get(j).getDescripcion() %>" fecha="<%=premios.get(j).getFechaSorteado() %>" espectaculo="<%=premios.get(j).getFuncion().getEspectaculo() %>" funcion="<%=premios.get(j).getFuncion().getNombre() %>"  style="width:18rem;"></carta-premio>
-							  	<%} %>
-				     		</div>
-					  <%i = j;} %>
+					if(!premios.isEmpty()){
+						int size = premios.size();
+				        int j = 0;
+				        int i = 0;
+				        while(i < size){
+						  %>
+					        	<div class="card-deck pt-3">
+							        <%for(j = i; j <= i + 2 && j < size; j++){%>
+										<carta-premio class="card carta" titulo="<%=premios.get(j).getDescripcion() %>" fecha="<%=premios.get(j).getFechaSorteado() %>" espectaculo="<%=premios.get(j).getFuncion().getEspectaculo() %>" funcion="<%=premios.get(j).getFuncion().getNombre() %>"  style="width:18rem;"></carta-premio>
+								  	<%} %>
+					     		</div>
+						  <%i = j;} 
+					}else{%>
+						 <h5 class="card-subtitle mb-2 text-muted">No ha ganado ningún premio</h5>
+						
+					<%} %>
 		
 		</div>
 		

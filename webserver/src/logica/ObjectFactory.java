@@ -247,14 +247,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
-     * 
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
-    }
-
-    /**
      * Create an instance of {@link DataListPaquetes }
      * 
      */
