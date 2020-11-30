@@ -1,5 +1,11 @@
 La compilación de los proyectos esta automatizada con maven.
 Primero se debe compilar la workstation de la siguiente forma:
+Compilar el proyecto centralserver (logica)
+1. Maven clean
+2. Maven package
+
+Copiar el archivo centralserver/target/centralserver-1 a workstation/lib/ con el nombre centralserver
+
 1. Maven clean
 2. Maven package
 El .jar resultante se encontrara en el directorio workstation/target con nombre workstation-1.jar, y
