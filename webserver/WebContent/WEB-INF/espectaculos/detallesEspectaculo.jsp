@@ -14,7 +14,18 @@
 
 <!doctype = html>
 <html lang="en">
+	
     <head>
+    <style>
+	body{ margin-top:20px;}
+	.glyphicon { margin-right:5px;}
+	.rating .glyphicon {font-size: 22px;}
+	.rating-num { margin-top:0px;font-size: 54px; }
+	.progress { margin-bottom: 5px;}
+	.progress-bar { text-align: left; }
+	.rating-desc .col-md-3 {padding-right: 0px;}
+	.sr-only { margin-left: 5px;overflow: visible;clip: auto; }
+	</style>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,6 +33,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        
 
         <title>CoronaTickets.uy</title>
       </head>
@@ -68,6 +80,79 @@
 							<%} %>
 							<br>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getPuntajes().size() %> valoraciones.</h6>
+                            
+                            <div class="container">
+						    <div class="row">
+						        <div class="col-xs-12 col-md-6">
+						            <div class="well well-sm">
+						                <div class="row">
+						                    <div class="col-xs-12 col-md-6 text-center">
+						                        <h1 class="rating-num">
+						                            <%= promedio/2%></h1>
+						                        <div class="rating">
+						                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+						                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+						                            </span><span class="glyphicon glyphicon-star-empty"></span>
+						                        </div>
+						                        <div>
+						                            <span class="glyphicon glyphicon-user"></span><%=espect.getPuntajes().size() %> valoraciones.
+						                        </div>
+						                    </div>
+						                    <div class="col-xs-12 col-md-6">
+						                        <div class="row rating-desc">
+						                            <div class="col-xs-3 col-md-3 text-right">
+						                                <span class="glyphicon glyphicon-star"></span>5
+						                            </div>
+						                            <div class="col-xs-8 col-md-9">
+						                                <div class="progress">
+  															<div class="progress-bar-animated progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+						                            </div>
+						                            <!-- end 5 -->
+						                            <div class="col-xs-3 col-md-3 text-right">
+						                                <span class="glyphicon glyphicon-star"></span>4
+						                            </div>
+						                            <div class="col-xs-8 col-md-9">
+						                                <div class="progress">
+  															<div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+						                            </div>
+						                            <!-- end 4 -->
+						                            <div class="col-xs-3 col-md-3 text-right">
+						                                <span class="glyphicon glyphicon-star"></span>3
+						                            </div>
+						                            <div class="col-xs-8 col-md-9">
+						                                <div class="progress">
+  															<div class="progress-bar-animated  progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+						                            </div>
+						                            <!-- end 3 -->
+						                            <div class="col-xs-3 col-md-3 text-right">
+						                                <span class="glyphicon glyphicon-star"></span>2
+						                            </div>
+						                            <div class="col-xs-8 col-md-9">
+						                                <div class="progress">
+  															<div class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+						                            </div>
+						                            <!-- end 2 -->
+						                            <div class="col-xs-3 col-md-3 text-right">
+						                                <span class="fas fa-star"></span>1
+						                            </div>
+						                            <div class="col-xs-8 col-md-9">
+						                                <div class="progress">
+  															<div class="progress-bar-animated progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+						                            </div>
+						                            <!-- end 1 -->
+						                        </div>
+						                        <!-- end row -->
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+						</div>
 							<%}%>
 							</h5>
                             <h5 class="card-title">Artista:</h5>
