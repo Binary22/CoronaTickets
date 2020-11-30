@@ -29,6 +29,9 @@ public class Espectaculo {
 	private List<String> categorias;
 	private List<Integer> puntajes;
 	private List<String> votantes;
+	private String descPremio;
+	private int cantPremios;
+	private String videoUrl;
 	
 	public String getImagen() {
 		return imagen;
@@ -117,7 +120,7 @@ public class Espectaculo {
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
-			String url, LocalDate fechaReg, float costo, String imagen, List<String> categs, String video) {
+			String url, LocalDate fechaReg, float costo, String imagen, List<String> categs, String video, String descPremio, int cantPremios) {
 		this.nombre = nombre;
 		this.duracion = duracion;
 		this.descripcion = descripcion;
@@ -136,6 +139,8 @@ public class Espectaculo {
 		}
 		this.categorias = categs;
 		this.video = video;
+		this.descPremio = descPremio;
+		this.cantPremios = cantPremios;
 	}
 	
 	public String getNombre() {
@@ -237,6 +242,30 @@ public class Espectaculo {
 
 	public void setVideo(String video) {
 		this.video = video;
+	}
+
+	public String getDescPremio() {
+		return descPremio;
+	}
+
+	public void setDescPremio(String descPremio) {
+		this.descPremio = descPremio;
+	}
+
+	public int getCantPremios() {
+		return cantPremios;
+	}
+
+	public void setCantPremios(int cantPremios) {
+		this.cantPremios = cantPremios;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 
 	public List<Integer> getPuntajes() {

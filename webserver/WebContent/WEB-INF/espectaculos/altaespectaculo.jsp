@@ -76,6 +76,17 @@
                 <input required value="<%= form.get("minutos") %>" name="minutos" type="number" min="0" max="60" class="form-control"  placeholder="Minutos">
               </div>
             </div>
+            
+            <label>Premio</label>
+            <div class="form-row">
+            <input required name="descPremio" type="text" class="form-control"  placeholder="Descripción del premio" value="<%= form.get("premio") %>" >
+              <div class="form-group col-md-6">
+              	<br>
+                <input required value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" max="23" class="form-control"  placeholder="Cantidad de Premios">
+              </div>
+              
+            </div>
+            
             <label>Máximo y mínimo de espectadores*</label>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -114,7 +125,7 @@
             </div>
             <div class="form-group">
               <label>Elegir video</label>
-              <input value="<%= form.get("video") %>" name="video" class="form-control"  placeholder="CS9OO0S5w2k">
+              <input value="<%= form.get("video") %>" name="video" class="form-control"  placeholder="Ej. CS9OO0S5w2k">
             </div>
  
             <button type="submit" class="btn btn-primary"> Dar de alta el espectaculo</button>

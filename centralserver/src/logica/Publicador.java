@@ -17,17 +17,21 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import datatypesweb.dataEspectaculo;
+import datatypesweb.dataFuncion;
 import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
 import datatypesweb.dataPaquete;
+import datatypesweb.dataPremio;
 import datatypesweb.dataArtista;
 import datatypesweb.dataListArtInvi;
 import datatypesweb.dataListEspOrg;
+import datatypesweb.dataListFunsEspect;
 import datatypesweb.dataListPaquetes;
 import datatypesweb.dataListPlataformas;
+import datatypesweb.dataListPremio;
 import datatypesweb.dataUsuario;
 import datatypesweb.dataVale;
 import datatypesweb.dataValesCanje;
@@ -95,7 +99,7 @@ public class Publicador {
     	HandlerUsuarios husers = HandlerUsuarios.getInstancia();
     	Artista user = (Artista) husers.getUsuario(nickname);
     	dataListEspOrg espectaculosRetornar = new dataListEspOrg();
-    	for(int i=0; i < user.getEspectaculos().size(); i++) {
+    	for (int i=0; i < user.getEspectaculos().size(); i++) {
     		espectaculosRetornar.getEspectaculosOrg().add(user.getEspectaculos().get(i).getNombre());
     	}	
     	return espectaculosRetornar;
@@ -105,17 +109,17 @@ public class Publicador {
     public dataListEspOrg getEspectaculosDePlataforma(String nombrePlataforma) {
     
     	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		Map<String,Espectaculo> espectaculos = hesp.getEspectaculosDePlataforma(nombrePlataforma);
+		Map<String, Espectaculo> espectaculos = hesp.getEspectaculosDePlataforma(nombrePlataforma);
     	
 		HashMap<String,Espectaculo> espectaculosPlat = new HashMap<String,Espectaculo>();
 		for (String key : espectaculos.keySet()) {
-			if(espectaculos.get(key).getPlataforma().getNombre().equals(nombrePlataforma)){
-				espectaculosPlat.put(key,espectaculos.get(key));
+			if (espectaculos.get(key).getPlataforma().getNombre().equals(nombrePlataforma)){
+				espectaculosPlat.put(key, espectaculos.get(key));
 			}		
 		}
 		
 		dataListEspOrg espectaculosPlatReal = new dataListEspOrg();
-		for(String key2 : espectaculosPlat.keySet()) {
+		for (String key2 : espectaculosPlat.keySet()) {
 			espectaculosPlatReal.getEspectaculosOrg().add(key2);
 		}
 		return espectaculosPlatReal;
@@ -159,7 +163,7 @@ public class Publicador {
     	Map<String, Paquete> mapapaquetes =  hpaquetes.getPaquetes();
 
     	List<dataPaquete> result = new ArrayList<dataPaquete>();
-    	for(Paquete entry : mapapaquetes.values()) {
+    	for (Paquete entry : mapapaquetes.values()) {
     		result.add(new dataPaquete(entry));
     	}
     	
@@ -168,6 +172,27 @@ public class Publicador {
     	return res;
     }
     
+    @WebMethod
+    public dataListFunsEspect funcionesEspectaculo(String nomEspect) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Map<String,Funcion> funs = esp.getAllFunciones();
+    	Map<String,dataFuncion> funsResp = new HashMap<String,dataFuncion>();
+    	dataFuncion nueva;
+    	for(String key : funs.keySet()) {
+    		nueva = new dataFuncion(funs.get(key));
+    		if(funs.get(key).funcionFinalizo()) {
+    			nueva.setFinalizo(true);
+    		}
+    		funsResp.put(key,nueva);
+    	}
+    	dataListFunsEspect ret = new dataListFunsEspect();
+    	ret.setFuncionesEspect(funsResp);
+    	return ret;
+    }
+    
+    
+    @WebMethod
     public dataPaquete getPaquete(String nomPaquete) throws NoExistePaqueteException {
     	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
     	return new dataPaquete(hpaq.getPaquete(nomPaquete));
@@ -177,7 +202,7 @@ public class Publicador {
     public ListaEspectaculo listarEspectaculosPlataforma(String nomPlata) {
     	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
     	HashMap<String, dataEspectaculo> res = new HashMap<String, dataEspectaculo>();
-    	for(Map.Entry<String, Espectaculo> entry : hesp.getEspectaculosDePlataforma(nomPlata).entrySet()) {
+    	for (Map.Entry<String, Espectaculo> entry : hesp.getEspectaculosDePlataforma(nomPlata).entrySet()) {
     		res.put(entry.getKey(), new dataEspectaculo(entry.getValue()));
     	}
     	ListaEspectaculo lista = new ListaEspectaculo();
@@ -189,7 +214,7 @@ public class Publicador {
     public ListaEspectaculo listarEspectaculos() {
     	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
     	HashMap<String, dataEspectaculo> res = new HashMap<String, dataEspectaculo>();
-    	for(Map.Entry<String, Espectaculo> entry : hesp.getEspectaculos().entrySet()) {
+    	for (Map.Entry<String, Espectaculo> entry : hesp.getEspectaculos().entrySet()) {
     		res.put(entry.getKey(), new dataEspectaculo(entry.getValue()));
     	}
     	ListaEspectaculo lista = new ListaEspectaculo();
@@ -240,7 +265,8 @@ public class Publicador {
         IEspectaculo ctrlE = fabrica.getIEspectaculo();
         List<dataRegistro> registrosCanjear = new ArrayList<dataRegistro>();
         List<Registro> regs = ctrlE.obtenerRegistrosPreviosWeb(nickname);
-        for(int i = 0; i < regs.size(); i++) {
+        for (int i = 0; i < regs.size(); i++) {
+        	
         	registrosCanjear.add(new dataRegistro(regs.get(i)));
         }
         dataRegsPrevios regsPrevios = new dataRegsPrevios();
@@ -283,10 +309,10 @@ public class Publicador {
         
         int[] regsCanj = new int[3];
         List<dataRegistro> regs = registros.getRegsPrevios();
-        int i = 0;
-        while(i < 3 && i < regs.size()) {
-        	regsCanj[i] = regs.get(i).getIdent();
-        	i++;
+        int iter = 0;
+        while (iter < 3 && iter < regs.size()) {
+        	regsCanj[iter] = regs.get(iter).getIdent();
+        	iter++;
         }
         ctrlE.canjearRegistros(regsCanj);
         
@@ -353,7 +379,7 @@ public class Publicador {
     public void updateArtista(String descripcion, String biografia, String website) {
     	IUsuario UController = Fabrica.getInstance().getIUsuario();
     	
-    	UController.updateArtista(descripcion,biografia,website);
+    	UController.updateArtista(descripcion, biografia, website);
     }
     
     
@@ -365,7 +391,7 @@ public class Publicador {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
         LocalDate date = LocalDate.parse(fecha, formatter);
-        LocalTime duracion = LocalTime.parse(horaInicio,dateTimeFormatter);
+        LocalTime duracion = LocalTime.parse(horaInicio, dateTimeFormatter);
         
         ArrayList<String> invitados = (ArrayList<String>) invis.getArtistasInvi();
 
@@ -382,7 +408,7 @@ public class Publicador {
         ArrayList<String> espectaculos = (ArrayList<String>) espectaculosElegidos.getEspectaculosOrg();
         
         ctrlpaq.seleccionarPaquete(nombPaqElegido);
-        if(espectaculos != null) {
+        if (espectaculos != null) {
 	    	for (int i=0; i< espectaculos.size(); i++) {
 			   ctrlpaq.elegirEspectaculo(espectaculos.get(i));
 			   ctrlpaq.confirmarAgregarEspectAPaquete();
@@ -396,7 +422,7 @@ public class Publicador {
     	ArrayList<String> artistas = (ArrayList<String>) husers.getNombresArtistas();
     	dataListArtInvi artistasinvi = new dataListArtInvi();
 		for (int i=0; i< artistas.size(); i++) {
-			if(!artistas.get(i).equals(artistaLog)){
+			if (!artistas.get(i).equals(artistaLog)){
 				artistasinvi.getArtistasInvi().add(artistas.get(i));
 			}
 		}
@@ -406,15 +432,15 @@ public class Publicador {
     @WebMethod
     public dataListEspOrg getEspectaculos(String artistaLog) {
     	HandlerEspectaculos hesp = HandlerEspectaculos.getInstance();
-		HashMap<String,Espectaculo> espectaculos = (HashMap<String, Espectaculo>) hesp.getEspectaculos();
-		HashMap<String,Espectaculo> espectaculosorg = new HashMap<String,Espectaculo>();
+		HashMap<String, Espectaculo> espectaculos = (HashMap<String, Espectaculo>) hesp.getEspectaculos();
+		HashMap<String, Espectaculo> espectaculosorg = new HashMap<String, Espectaculo>();
 		for (String key : espectaculos.keySet()) {
-			if(espectaculos.get(key).getArtista().getNickname().equals(artistaLog)){
-				espectaculosorg.put(key,espectaculos.get(key));
+			if (espectaculos.get(key).getArtista().getNickname().equals(artistaLog)){
+				espectaculosorg.put(key, espectaculos.get(key));
 			}		
 		}
 		dataListEspOrg espectaculosorgreal = new dataListEspOrg();
-		for(String key2 : espectaculosorg.keySet()) {
+		for (String key2 : espectaculosorg.keySet()) {
 			espectaculosorgreal.getEspectaculosOrg().add(key2);
 		}
 		return espectaculosorgreal;
@@ -422,8 +448,8 @@ public class Publicador {
     
     @WebMethod
     public dataListPaquetes getPaquetes() {
-    	HandlerPaquetes hp = HandlerPaquetes.getInstance();
-    	List<String> paquetes = hp.getNombresPaquete();
+    	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+    	List<String> paquetes = hpaq.getNombresPaquete();
 		List<String> paquetesList = new ArrayList<String>();
 		for (int i=0; i< paquetes.size(); i++) {
 			paquetesList.add(paquetes.get(i));
@@ -479,7 +505,7 @@ public class Publicador {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate fechaCompra = LocalDate.parse(fechaActual, formatter);
 		
-    	Compra paqueteComprado = new Compra(fechaCompra,paqueteReal);
+    	Compra paqueteComprado = new Compra(fechaCompra, paqueteReal);
     	userReal.agregarcompra(paqueteComprado);
         
         
@@ -499,9 +525,17 @@ public class Publicador {
     	Integer minimo = dataEsp.getMinEspectadores();
     	String url = dataEsp.getUrl();
     	String video = dataEsp.getVideo();
+    	String descPremio = dataEsp.getDescPremio();
+    	Integer cantPremios = dataEsp.getCantPremios();
     	List<String> categorias = new ArrayList<String>();
+    	
+    	if(dataEsp.getCategorias() != null) {
+	    	for(String cat : dataEsp.getCategorias()) {
+	    		categorias.add(cat);
+	    	}
+        }
     			
-    	for(String cat : dataEsp.getCategorias()) {
+    	for (String cat : dataEsp.getCategorias()) {
     		categorias.add(cat);
     	}
     	
@@ -516,7 +550,7 @@ public class Publicador {
     	
     	ctrlE.altaEspectaculoWeb(nomPlataforma, nomArtista, nomEspectaculo, descripcion, dur,
 				minimo, maximo,
-				url, costo, hoy , categorias, imagen, video);
+				url, costo, hoy , categorias, imagen, video, descPremio, cantPremios);
     }
     
     @WebMethod(operationName = "listarPlataformas")
@@ -529,9 +563,9 @@ public class Publicador {
     
     @WebMethod
     public String[] listarCategorias() {
-    	IEspectaculo IE = Fabrica.getInstance().getIEspectaculo();
-    	String[] arr = new String[IE.listarCategorias().size()];
-    	arr = IE.listarCategorias().toArray(arr);
+    	IEspectaculo IEesp = Fabrica.getInstance().getIEspectaculo();
+    	String[] arr = new String[IEesp.listarCategorias().size()];
+    	arr = IEesp.listarCategorias().toArray(arr);
     	return arr;
     }
     
@@ -541,8 +575,8 @@ public class Publicador {
     	Map<String, Usuario> mapausuarios =  husuarios.getUsuarios();
 
 
-    	List res = new ArrayList<dataUsuario>();
-    	for(Usuario entry : mapausuarios.values()) {
+    	List<dataUsuario> res = new ArrayList<dataUsuario>();
+    	for (Usuario entry : mapausuarios.values()) {
     		if (entry.esArtista()) {
     			res.add(new dataUsuario(entry));
     		} else {
@@ -585,7 +619,7 @@ public class Publicador {
 		HandlerEspectaculos handleresp = HandlerEspectaculos.getInstance();
 		for (Entry<String, Espectaculo> entry : handleresp.getEspectaculos().entrySet()) {   
 			if (entry.getValue().getNombre().toLowerCase().contains(search.toLowerCase()) || entry.getValue().getDescripcion().toLowerCase().contains(search.toLowerCase())) {
-				ret.put(entry.getValue().getNombre() ,new dataEspectaculo(entry.getValue()));
+				ret.put(entry.getValue().getNombre() , new dataEspectaculo(entry.getValue()));
 			}
 		}
 		listaesp.setEspectaculos(ret);
@@ -606,15 +640,86 @@ public class Publicador {
 	}
 	
 	@WebMethod
-	public void valorarEspectaculo(String espec, String user, int puntaje) throws YaVotoException {
-		IEspectaculo controller = Fabrica.getInstance().getIEspectaculo();
-		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
-		System.out.print(espec);
-		Espectaculo espectaculo = he.getEspectaculo(espec);
-		if (espectaculo == null) {
-			throw new YaVotoException("no se encuentra el espectaculo");
-		}
-		controller.agregarValoracion(espectaculo, puntaje, user);
-	}
-	
+    public ListaUsuario espectadoresFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	List<Usuario> users = fun.getEspectadores();
+    	List<dataUsuario> espectadores = new ArrayList<dataUsuario>();
+    	for(int i = 0; i < users.size(); i++) {
+    		espectadores.add(new dataUsuario(users.get(i)));
+    	}
+    	ListaUsuario usuarios = new ListaUsuario();
+    	usuarios.setUsuarios(espectadores);
+    	return usuarios;
+    }
+    
+    @WebMethod
+    public ListaUsuario espectadoresPremiados(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	List<Usuario> users = fun.getPremiados();
+    	List<dataUsuario> espectadores = new ArrayList<dataUsuario>();
+    	for(int i = 0; i < users.size(); i++) {
+    		espectadores.add(new dataUsuario(users.get(i)));
+    	}
+    	ListaUsuario usuarios = new ListaUsuario();
+    	usuarios.setUsuarios(espectadores);
+    	return usuarios;
+    }
+    
+    @WebMethod
+    public void sortearPremiosFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	fun.sortearPremios();
+    }
+    
+    @WebMethod
+    public dataFuncion getFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	return new dataFuncion(fun);
+    }
+    public static int masAlta(List<Premio> premios) {
+    	LocalDate fechaMax = premios.get(0).getFechaSorteado();
+    	int res = 0;
+    	for(int i = 1; i < premios.size(); i++) {
+    		if(premios.get(i).getFechaSorteado().isAfter(fechaMax));
+    		fechaMax = premios.get(i).getFechaSorteado();
+    		res = i;
+    	}
+    	return res;
+    }
+    
+    @WebMethod
+    public void valorarEspectaculo(String espect,String user,int puntaje) throws YaVotoException {
+    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+    	Espectaculo espe = he.getEspectaculo(espect);
+    	espe.agregarValoracion(puntaje, user);
+    }
+    
+    @WebMethod
+    public dataListPremio getPremiosUsuarios(String nickname) {
+    	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
+    	Usuario user = hUsers.getUsuario(nickname);
+    	List<dataPremio> premios = new ArrayList<dataPremio>();
+    	List<Premio> premiosUser = user.getPremios();
+    	List<Premio> nuevos = new ArrayList<Premio>();
+    	int n = premiosUser.size();
+    	for(int i = 0; i < n; i++) {
+    		int masTarde = masAlta(premiosUser);
+    		nuevos.add(premiosUser.get(masTarde));
+    		premiosUser.remove(masTarde);
+    	}
+    	for(int i = 0; i < nuevos.size(); i++) {
+    		premios.add(new dataPremio(nuevos.get(i)));
+    	}
+    	dataListPremio premiosResp = new dataListPremio();
+    	premiosResp.setPremios(premios);
+    	return premiosResp;
+    }
 }

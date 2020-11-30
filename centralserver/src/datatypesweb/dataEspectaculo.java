@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import logica.Artista;
 import logica.Espectaculo;
 import logica.Funcion;
 import logica.Plataforma;
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class dataEspectaculo {
 	private String nombre;
 	private String descripcion;
@@ -31,8 +34,41 @@ public class dataEspectaculo {
 	private String imagen;
 	private String video;
 	private List<String> categorias;
+	private String descPremio;
+	private int cantPremios;
+	private String videoUrl;
 	private List<Integer> puntajes;
 	
+	public String getDescPremio() {
+		return descPremio;
+	}
+
+
+	public void setDescPremio(String descPremio) {
+		this.descPremio = descPremio;
+	}
+
+
+	public int getCantPremios() {
+		return cantPremios;
+	}
+
+
+	public void setCantPremios(int cantPremios) {
+		this.cantPremios = cantPremios;
+	}
+
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+
 	public dataEspectaculo(Espectaculo espect) {
 		this.nombre = espect.getNombre();
 		this.descripcion = espect.getDescripcion();

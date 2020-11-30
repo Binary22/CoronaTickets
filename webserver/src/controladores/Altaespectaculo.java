@@ -41,6 +41,8 @@ public class Altaespectaculo extends HttpServlet {
 		form.put("costo", "");
 		form.put("imagen", "");
 		form.put("video", "");
+		form.put("premio", "");
+		form.put("cantPremios", "");
     	HttpSession session = req.getSession();
     	session.setAttribute("form", form);
     	session.setAttribute("error", "no");
@@ -76,8 +78,9 @@ public class Altaespectaculo extends HttpServlet {
     	String imagen = req.getParameter("imagen");
     	String video = req.getParameter("video");
     	String[] cats = req.getParameterValues("categoria");
+    	String descripPremio = req.getParameter("descPremio");
+    	String cantPremios = req.getParameter("cantPremios");
     	
-   	
     	
     	HashMap<String, String> form = new HashMap<String, String>();
 		form.put("descripcion", descripcion);
@@ -89,6 +92,8 @@ public class Altaespectaculo extends HttpServlet {
 		form.put("costo", costo);
 		form.put("imagen", imagen);
 		form.put("video", video);
+		form.put("premio", descripPremio);
+		form.put("cantPremios", cantPremios);
     	
     	try {
     	
@@ -118,6 +123,8 @@ public class Altaespectaculo extends HttpServlet {
 	    dataEsp.setUrl(url);
 	    dataEsp.setCosto(Float.parseFloat(costo));
 	    dataEsp.setVideo(video);
+	    dataEsp.setDescPremio(descripPremio);
+	    dataEsp.setCantPremios(Integer.parseInt(cantPremios));
 	    if (imagen != "" && imagen != null) {
 	    dataEsp.setImagen(imagen);	    
 	    } else {

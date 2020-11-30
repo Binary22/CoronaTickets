@@ -26,6 +26,11 @@ public class Usuario {
 	private String imagen;
 	private List<Usuario> seguidos; // usuarios a los que este usuario sigue
 	private List<Usuario> siguiendo; // usuarios que siguen a este usuario
+	private List<Premio> premios;
+	
+	public void agregarPremio(Premio premio) {
+		this.premios.add(premio);
+	}
 	
 	public void agregarSeguido(Usuario usuario) {
 		seguidos.add(usuario);
@@ -207,6 +212,7 @@ public class Usuario {
 		this.imagen = "resources/media/usuarios/userdefault.jpg";
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
+		this.premios = new ArrayList<Premio>();
 		
 
 	}
@@ -225,6 +231,7 @@ public class Usuario {
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
 		this.password = password;
+		this.premios = new ArrayList<Premio>();
 		
 
 	}
@@ -247,6 +254,7 @@ public class Usuario {
 		}
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
+		this.premios = new ArrayList<Premio>();
 		
 
 	}
@@ -326,6 +334,14 @@ public class Usuario {
 		if (user.getImagen() != null && !user.getImagen().equals("resources/media/usuarios/userdefault.jpg") && !user.getImagen().equals("resources/media/usuarios/artistadefault.jpg")) {
 		this.imagen = user.getImagen();
 		}
+	}
+
+	public List<Premio> getPremios() {
+		return premios;
+	}
+
+	public void setPremios(List<Premio> premios) {
+		this.premios = premios;
 	}
 
 }

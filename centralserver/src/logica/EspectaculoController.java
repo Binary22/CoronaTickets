@@ -49,6 +49,8 @@ public class EspectaculoController implements IEspectaculo {
 	private String imagen;
 	private boolean canjeVale = false;
 	private String nomPaquete;
+	private String descPremio; 
+	private int cantPremios;
 	
 	
 	public String getNomPaquete() {
@@ -283,7 +285,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 	@Override
 	public void altaEspectaculoWeb(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen, String video)
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen, String video,String descPremio, int cantPremios)
 			throws NombreEspectaculoExisteException {
 		// TODO Auto-generated method stub
 		
@@ -302,6 +304,8 @@ public class EspectaculoController implements IEspectaculo {
 			this.categorias= cat;
 			this.imagen = imagen;
 			this.video = video;
+			this.descPremio = descPremio;
+			this.cantPremios = cantPremios;
 		}
 		else throw new NombreEspectaculoExisteException("El nombre de espectaculo " + nombre + " ya esta en uso");
 		
@@ -309,7 +313,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
 		Artista art= (Artista) huser.getUsuario(nickUsuario);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias,video);		
+		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias,video, descPremio, cantPremios);		
 		Fabrica fabric = Fabrica.getInstance();
 		IPlataforma iPlat = fabric.getIPlataforma();
 		esp.setPlataforma(plat);
@@ -529,20 +533,20 @@ public class EspectaculoController implements IEspectaculo {
 				nuevo = new Registro(fecha, true, espectador, fun, 0);
 				nuevo.setRegsCanjeados(this.regsCanjeados);
 				
-			}else if(this.canjeVale) {
+			}else if (this.canjeVale) {
 				//Funcion fun = espect.getFuncion(nomFuncion);
 	        	//Usuario user = hu.getUsuario(userNickname);
 	        	List<Vale> vales = espectador.getVales();
-	        	int i = 0;
+	        	int iter = 0;
 	        	boolean actualizo = false;
-	        	while(i < vales.size() && !actualizo){
-	        		if(vales.get(i).getPaquete().getNombre().compareTo(this.nomPaquete) == 0) {
-	        			if(vales.get(i).getEspectaculo().getNombre().compareTo(nomespect) == 0) {
-	        				vales.get(i).setUsado(true);
+	        	while(iter < vales.size() && !actualizo){
+	        		if(vales.get(iter).getPaquete().getNombre().compareTo(this.nomPaquete) == 0) {
+	        			if(vales.get(iter).getEspectaculo().getNombre().compareTo(nomespect) == 0) {
+	        				vales.get(iter).setUsado(true);
 	        				actualizo = true;
 	        			}
 	        		}
-	        		i++;
+	        		iter++;
 	        	}
 	        	nuevo = new Registro(fecha, false, espectador, fun, espect.getCosto());
 			}

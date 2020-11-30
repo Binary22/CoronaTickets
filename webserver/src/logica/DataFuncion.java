@@ -27,6 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="registros" type="{http://logica/}dataRegistro" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="espectaculo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fueSorteado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="finalizo" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="descriPremio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaSorteo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,7 +48,11 @@ import javax.xml.bind.annotation.XmlType;
     "artistasInvitados",
     "registros",
     "espectaculo",
-    "imagen"
+    "imagen",
+    "fueSorteado",
+    "finalizo",
+    "descriPremio",
+    "fechaSorteo"
 })
 public class DataFuncion {
 
@@ -58,6 +66,10 @@ public class DataFuncion {
     protected List<DataRegistro> registros;
     protected String espectaculo;
     protected String imagen;
+    protected boolean fueSorteado;
+    protected boolean finalizo;
+    protected String descriPremio;
+    protected String fechaSorteo;
 
     /**
      * Gets the value of the nombre property.
@@ -259,6 +271,86 @@ public class DataFuncion {
      */
     public void setImagen(String value) {
         this.imagen = value;
+    }
+
+    /**
+     * Gets the value of the fueSorteado property.
+     * 
+     */
+    public boolean isFueSorteado() {
+        return fueSorteado;
+    }
+
+    /**
+     * Sets the value of the fueSorteado property.
+     * 
+     */
+    public void setFueSorteado(boolean value) {
+        this.fueSorteado = value;
+    }
+
+    /**
+     * Gets the value of the finalizo property.
+     * 
+     */
+    public boolean isFinalizo() {
+        return finalizo;
+    }
+
+    /**
+     * Sets the value of the finalizo property.
+     * 
+     */
+    public void setFinalizo(boolean value) {
+        this.finalizo = value;
+    }
+
+    /**
+     * Gets the value of the descriPremio property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescriPremio() {
+        return descriPremio;
+    }
+
+    /**
+     * Sets the value of the descriPremio property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescriPremio(String value) {
+        this.descriPremio = value;
+    }
+
+    /**
+     * Gets the value of the fechaSorteo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaSorteo() {
+        return fechaSorteo;
+    }
+
+    /**
+     * Sets the value of the fechaSorteo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaSorteo(String value) {
+        this.fechaSorteo = value;
     }
 
 }

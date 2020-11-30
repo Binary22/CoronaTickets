@@ -37,6 +37,7 @@ public class dataUsuario {
 	private String descripcion;
 	private String biografia;
 	private String website;
+	private List<dataPremio> premios;
 	
 	private List<String> espectaculos;
 	
@@ -58,6 +59,10 @@ public class dataUsuario {
     		siguiendo.add(usuario.getNickname());
     	}
     	this.siguiendo = siguiendo;
+    	this.premios = new ArrayList<dataPremio>();
+    	for(int i = 0; i < user.getPremios().size(); i++) {
+    		this.premios.add(new dataPremio(user.getPremios().get(i)));
+    	}
     	
     	if (user.esArtista()) {
     		this.esArtista = true;
@@ -263,6 +268,14 @@ public class dataUsuario {
 
 	public dataUsuario() {
 		
+	}
+
+	public List<dataPremio> getPremios() {
+		return premios;
+	}
+
+	public void setPremios(List<dataPremio> premios) {
+		this.premios = premios;
 	}
 	
 	

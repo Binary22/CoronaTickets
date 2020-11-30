@@ -28,7 +28,9 @@ import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
+import excepciones.UsuarioPaqueteComprado;
 import excepciones.noSeleccionoTres;
+import logica.Compra;
 import logica.Fabrica;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
@@ -409,10 +411,15 @@ public class Principal extends JFrame {
 		ec.aceptarRechazar("Springsteen on Broadway", true);
 		ec.aceptarRechazar("Bien de Familia", true);
 		ec.aceptarRechazar("30 años", true);
-		ec.aceptarRechazar("Grandes Éxitos 2020", false);
+		ec.aceptarRechazar("Grandes Éxitos 2020", true);
+		ec.aceptarRechazar("Llega a Casa", true);
+		ec.aceptarRechazar("Fin de Año con Alcides y amigos", false);
 		
 		HandlerEspectaculos handlerE = HandlerEspectaculos.getInstance();
 
+		handlerE.getEspectaculo("Global Spirit").setFinalizado(true);
+		handlerE.getEspectaculo("30 años").setFinalizado(true);
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("data/funciones.csv"));
 			while ((line = br.readLine()) != null)
@@ -454,8 +461,22 @@ public class Principal extends JFrame {
 			e.printStackTrace();
 		}
 
-		//este es R1
+		//Compras de paquete
+		
 		formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+		
+		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		
+		try {
+			hu.getUsuario("cbochinche").agregarcompra(new Compra(LocalDate.parse("25/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
+			hu.getUsuario("lachiqui").agregarcompra(new Compra(LocalDate.parse("26/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
+		} catch (UsuarioPaqueteComprado | NoExistePaqueteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//este es R1
 		ec.ingresarNombreFuncion("Los Village Volvieron - 1");
 		ec.ingresarNombreEspectador("costas");
 		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("09/04/20",formatter));
@@ -687,8 +708,21 @@ public class Principal extends JFrame {
 		ec.ingresarNombreFuncion("30 años - 2");
 		ec.ingresarNombreEspectador("costas");
 		ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
-			
-				
+		//R47
+		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
+		ec.ingresarNombreEspectador("cbochinche");
+		ec.canjePorVale();
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("26/11/20",formatter));	
+		//R48
+		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("27/11/20",formatter));
+		//R49
+		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
+		ec.ingresarNombreEspectador("");
+		ec.canjePorVale();
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("28/11/20",formatter));
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("data/espectaculoEnPaquete.csv"));
 			while ((line = br.readLine()) != null)
@@ -709,7 +743,6 @@ public class Principal extends JFrame {
 			e.printStackTrace();
 		}
 		// setear contraseñas a 1234
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		for (Usuario u : hu.getUsuarios().values()) {
 			u.setPassword("1234");
 		}
@@ -761,8 +794,102 @@ public class Principal extends JFrame {
 		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
 		he.agregarCategoriaAEspectaculo("Grandes Éxitos 2020","Solistas");
 		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
+		he.agregarCategoriaAEspectaculo("Noche buena con Alcides y amigos", "Música Tropical");
+		he.agregarCategoriaAEspectaculo("Fin de Año con Alcides y amigos", "Música Tropical");
+		
+		/* 	EL eleven11
+			CO costas
+			EW waston
+			GH house
+			SP sergiop
+			AR chino
+			AP tonyp
+			ML lachiqui
+			CB cbochinche
+		
+		*/
+		try {
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(5, "chino");
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(2, "tonyp");
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(3, "costas");
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(4, "chiqui");
 		
 		
+		he.getEspectaculo("Global Spirit").agregarValoracion(4, "eleven11");
+		he.getEspectaculo("Global Spirit").agregarValoracion(1, "waston");
+		he.getEspectaculo("Global Spirit").agregarValoracion(2, "sergiop");
+		he.getEspectaculo("Global Spirit").agregarValoracion(2, "tonyp");
+		he.getEspectaculo("Global Spirit").agregarValoracion(5, "cbochinche");
+		
+		he.getEspectaculo("Memphis Blues World").agregarValoracion(2, "eleven11");
+		he.getEspectaculo("Memphis Blues World").agregarValoracion(4, "house");
+		he.getEspectaculo("Memphis Blues World").agregarValoracion(2, "chino");
+		/* 	EL eleven11
+		CO costas
+		EW waston
+		GH house
+		SP sergiop
+		AR chino
+		AP tonyp
+		ML lachiqui
+		CB cbochinche
+	
+	*/
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(3, "sergiop");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(4, "house");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(2, "eleven11");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(1, "costas");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(5, "waston");
+		
+		he.getEspectaculo("Bien de Familia").agregarValoracion(1, "house");
+		he.getEspectaculo("Bien de Familia").agregarValoracion(4, "cbochinche");
+		
+		he.getEspectaculo("30 años").agregarValoracion(5, "chino");
+		he.getEspectaculo("30 años").agregarValoracion(3, "tonyp");
+		he.getEspectaculo("30 años").agregarValoracion(2, "costas");
+		
+		he.getEspectaculo("Los Village Volvieron").setDescPremio("Meet & greet (encuentro) virtual con integrantes de Village People y unaccesorio de indumentaria de la banda que será elegido por el ganador,como ser el penacho de plumas del jefe indio (sujeto a disponibilidad).Info: https://bit.ly/sorteovp");
+		he.getEspectaculo("Los Village Volvieron").setCantPremios(2);
+		he.getEspectaculo("Los Village Volvieron").setVideo("N8FxU1nmLWg");
+		
+		
+		he.getEspectaculo("Global Spirit").setDescPremio("Box Set multimedia “Depeche Mode: SPIRITS in the Forest”, quesigue a la banda en su Global Spirit Tour 2017/2018, que vio aDepeche Mode tocar para más de 3 millones de fanáticos en 115shows en todo el mundo. El Box Set contiene 2 CDs y 2 DVDs o 2CDs y 1 Blu-ray (a elección). Info: https://bit.ly/sorteodm");
+		he.getEspectaculo("Global Spirit").setCantPremios(3);
+		he.getEspectaculo("Global Spirit").setVideo("2qxcr6T9pNM");
+
+		he.getEspectaculo("Memphis Blues World").setDescPremio("Meet & greet (encuentro) virtual con la legendaria cantante e ícono del Pop, que inspiró a tantas otras cantante femeninas como Madonna y Lady Gaga (aunque ellas jamás lo admitirían).");
+		he.getEspectaculo("Memphis Blues World").setCantPremios(2);
+		he.getEspectaculo("Memphis Blues World").setVideo("ivHp3_gYXIc");
+		
+		he.getEspectaculo("Springsteen on Broadway").setDescPremio("Album completo “Springsteen On Broadway” en formato MP3 o CD (aelección). Info: https://bit.ly/sorteobs");
+		he.getEspectaculo("Springsteen on Broadway").setCantPremios(2);
+		he.getEspectaculo("Springsteen on Broadway").setVideo("M1xDzgob1JI");
+		
+		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podráshacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
+		he.getEspectaculo("Bien de Familia").setCantPremios(1);
+		he.getEspectaculo("Bien de Familia").setVideo("dPSlBRg0HeA");
+		
+		he.getEspectaculo("30 años").setDescPremio("Entrada en platea VIP para el primer show   presencial   que   realiceAlcides a partir de enero de 2021 (una vez que el artista haya recibidola vacuna contra el SARS-COV-2), más 1 litro de Fernet de marca aconfirmar.");
+		he.getEspectaculo("30 años").setCantPremios(3);
+		he.getEspectaculo("30 años").setVideo("65Pu6WP0bag");
+
+		he.getEspectaculo("Grandes Éxitos 2020").setDescPremio("Album completo “Y Ahora Que” para descargar en formato FLAC (24bits, 44.1 kHz). Info: https://bit.ly/sorteody");
+		he.getEspectaculo("Grandes Éxitos 2020").setCantPremios(2);
+		he.getEspectaculo("Grandes Éxitos 2020").setVideo("NxFeibjFt3k");
+
+		
+		he.getEspectaculo("Llega a Casa").setDescPremio("Entrada doble para espectáculo “Mi Bien” a realizarse en el AuditorioNacional del SODRE.");
+		he.getEspectaculo("Llega a Casa").setCantPremios(2);
+		he.getEspectaculo("Llega a Casa").setVideo("m7r3YIFRI3k");
+		
+		he.getEspectaculo("Noche buena con Alcides y amigos").setVideo("65Pu6WP0bag");
+
+		he.getEspectaculo("Fin de Año con Alcides y amigos").setVideo("65Pu6WP0bag");
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");	
     // aca termina el cargar datos
     }

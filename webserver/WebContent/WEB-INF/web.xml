@@ -89,6 +89,14 @@
     	<servlet-name>mobileHome</servlet-name>
     	<servlet-class>controladores.MobileHome</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>DetallesEspectaculoFinalizado</servlet-name>
+    	<servlet-class>controladores.DetallesEspectaculoFinalizado</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>SorteoPremios</servlet-name>
+    	<servlet-class>controladores.SorteoPremios</servlet-class>
+    </servlet>
     
     <servlet>
     	<servlet-name>consultaFuncion</servlet-name>
@@ -98,9 +106,26 @@
         <servlet-name>ValorarEspectaculo</servlet-name>
         <servlet-class>controladores.ValorarEspectaculo</servlet-class>
     </servlet>
+    
+    <servlet>
+    	<servlet-name>VerPremios</servlet-name>
+    	<servlet-class>controladores.VerPremios</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
     	<servlet-name>ValorarEspectaculo</servlet-name>
     	<url-pattern>/votarEspectaculo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>VerPremios</servlet-name>
+    	<url-pattern>/verPremios</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet-mapping>
+    	<servlet-name>SorteoPremios</servlet-name>
+    	<url-pattern>/sorteoPremios</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
@@ -220,6 +245,10 @@
     <servlet-mapping>
     	<servlet-name>FinalizarEspectaculo</servlet-name>
     	<url-pattern>/finalizarespectaculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>DetallesEspectaculoFinalizado</servlet-name>
+    	<url-pattern>/detallesEspectaculoFinalizado</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>500</error-code>

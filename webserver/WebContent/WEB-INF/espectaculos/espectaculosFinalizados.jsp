@@ -42,8 +42,8 @@
 	        	<div class="card-deck pt-3">
 			        <%for(j = i; j <= i + 2 && j < size; j++){%>
 						
-				    	<carta-espectaculo  id = "<%=espectaculos.get(j).getPlataforma() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
-				    	img = "<%=espectaculos.get(j).getImagen() %>" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista() %>></carta-espectaculo>
+				    	<carta-espectaculo-finalizado  id = "<%=espectaculos.get(j).getPlataforma() %>" titulo = "<%=espectaculos.get(j).getNombre() %>" descripcion = "<%=espectaculos.get(j).getDescripcion() %>"
+				    	img = "<%=espectaculos.get(j).getImagen() %>" precio = <%=espectaculos.get(j).getCosto() %> artista = <%=espectaculos.get(j).getArtista() %>></carta-espectaculo-finalizado>
 				  	<%} %>
 	     		</div>
 			     
@@ -59,7 +59,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="resources/js/espectaculos.js"></script>
-    <script src="resources/js/cartaEspectaculo.js"></script>
+    <script src="resources/js/cartaEspectaculoFinalizado.js"></script>
     <script src="resources/js/navbar.js"></script>
 
     <!-- style -->

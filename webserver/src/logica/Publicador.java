@@ -156,6 +156,19 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListFunsEspect
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/funcionesEspectaculoRequest", output = "http://logica/Publicador/funcionesEspectaculoResponse")
+    public DataListFunsEspect funcionesEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @return
      *     returns logica.ListaEspectaculo
      */
@@ -279,10 +292,10 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws NoSeleccionoTres_Exception
-     * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws FechaPosterior_Exception
+     * @throws NoSeleccionoTres_Exception
+     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -312,9 +325,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
+     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
-     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -342,9 +355,9 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
+     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
-     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -603,6 +616,67 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns logica.ListaUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/espectadoresFuncionRequest", output = "http://logica/Publicador/espectadoresFuncionResponse")
+    public ListaUsuario espectadoresFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns logica.DataFuncion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
+    public DataFuncion getFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns logica.ListaUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/espectadoresPremiadosRequest", output = "http://logica/Publicador/espectadoresPremiadosResponse")
+    public ListaUsuario espectadoresPremiados(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/sortearPremiosFuncionRequest", output = "http://logica/Publicador/sortearPremiosFuncionResponse")
+    public void sortearPremiosFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0
@@ -621,6 +695,32 @@ public interface Publicador {
         int arg2)
         throws YaVotoException_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListPremio
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getPremiosUsuariosRequest", output = "http://logica/Publicador/getPremiosUsuariosResponse")
+    public DataListPremio getPremiosUsuarios(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
+    public DataEspectaculo getEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 
@@ -659,19 +759,6 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/getUsuarioRequest", output = "http://logica/Publicador/getUsuarioResponse")
     public DataUsuario getUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.DataEspectaculo
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getEspectaculoRequest", output = "http://logica/Publicador/getEspectaculoResponse")
-    public DataEspectaculo getEspectaculo(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

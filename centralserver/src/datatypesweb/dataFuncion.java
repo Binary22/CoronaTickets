@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 import logica.Espectaculo;
 import logica.Funcion;
+import logica.Premio;
 import logica.Registro;
 import logica.Usuario;
 
@@ -22,7 +23,25 @@ public class dataFuncion {
 	private List<dataRegistro> registros;
 	private String espectaculo;
 	private String imagen;
+	//private dataPremio premio;
+	private boolean fueSorteado;
+	private boolean finalizo;
+	private String descriPremio;
+	private String fechaSorteo;
 	
+	
+	public boolean isFueSorteado() {
+		return fueSorteado;
+	}
+
+
+
+	public void setFueSorteado(boolean fueSorteado) {
+		this.fueSorteado = fueSorteado;
+	}
+
+
+
 	public dataFuncion(Funcion fun) {
 		this.nombre = fun.getNombre();
 		this.fecha = fun.getFecha().toString();
@@ -41,6 +60,12 @@ public class dataFuncion {
     	
     	this.espectaculo = fun.getEspectaculo().getNombre();
     	this.imagen = fun.getImagen();
+    	this.finalizo = false;
+    	this.fueSorteado = fun.isFueSorteado();
+    	if(fun.getPremio() != null) {
+    	this.descriPremio = fun.getEspectaculo().getDescPremio();
+    	this.fechaSorteo = fun.getPremio().getFechaSorteado().toString();
+    	}
 		
 	}
 	
@@ -113,6 +138,42 @@ public class dataFuncion {
 	
 	public dataFuncion(){
 		
+	}
+
+
+
+	public boolean isFinalizo() {
+		return finalizo;
+	}
+
+
+
+	public void setFinalizo(boolean finalizo) {
+		this.finalizo = finalizo;
+	}
+
+
+
+	public String getDescriPremio() {
+		return descriPremio;
+	}
+
+
+
+	public void setDescriPremio(String descriPremio) {
+		this.descriPremio = descriPremio;
+	}
+
+
+
+	public String getFechaSorteo() {
+		return fechaSorteo;
+	}
+
+
+
+	public void setFechaSorteo(String fechaSorteo) {
+		this.fechaSorteo = fechaSorteo;
 	}
 	
 	

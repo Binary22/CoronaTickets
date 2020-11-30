@@ -118,10 +118,8 @@
                 <div class="col-sm-3 pt-5 pb-5 .px-2">
                
                     
-                    <%Map<String, DataFuncion> funciones = new HashMap<String, DataFuncion>();
-                    for(DataEspectaculo.SetFunciones.Entry e : espect.getSetFunciones().getEntry()) {
-                        funciones.put(e.getKey(), e.getValue());
-                    }
+                    <%Map<String, DataFuncion> funciones = (HashMap<String, DataFuncion>)session.getAttribute("funciones_espectaculo");
+                    
 	                    if(!funciones.isEmpty()){%>
 	                    	<h3 class="title">Funciones:</h3>
 		                    <%ArrayList<String> nombres = new ArrayList<String>(funciones.keySet());
@@ -136,28 +134,27 @@
 			                  			}
 			                  			var = var + artistas.get(fin);
 		                  			}
+		                  			if((boolean)session.getAttribute("esArtistaOrg")){
+		                  				if(funciones.get(key).isFueSorteado()){%>
+  					                    	<carta-funcion-sorteada img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion-sorteada>
+		                  					
+		                  					
+		                  				<%}else if(funciones.get(key).isFinalizo()){%>
+  					                    		<carta-funcion-premio img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion-premio>
+		                  					
+		                  					<% }else{%>
+		                  						<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
+		                  			
+		                  			<%} %>
+                  			
+                  		<%}else{%>
+                    	<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
+                    <%}
+		                  		
+                    }
+                  }%>
 		             
-					if (session.getAttribute("Mobile") != null) { 	
-                  		%>
-                  			<div class="card" style="margin-top: 10px;">
-						    	<div class="card-body d-flex flex-column">
-						        <h6 class="card-title">
-						      		 <%= funciones.get(key).getNombre() %>
-						        </h6>
-							
-						        <h6 class="card-subtitle mb-2 text-muted">Artistas Invitados:</h6>
-						        	
-						        <p id="desc" class="card-text">
-						        <%= var %>
-						        </p>
-			        			<ul class="list-group mt-auto list-group-horizontal">
-            						<a class="list-group-item card-link active flex-fill" href="registroafuncion?name=<%=espect.getNombre()%>;<%=funciones.get(key).getNombre()%>">Consultar</a>
-       							 </ul>
-						    	</div>
-						</div>
-                    <%}	else { %>
-					<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
-					<%	} } }%>
+					
                 </div>
                 
                 <% if (session.getAttribute("Mobile") == null) { %>
@@ -184,6 +181,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="resources/js/espectaculos.js"></script>
+    <script src="resources/js/cartaFuncionPremio.js"></script>
+    <script src="resources/js/cartaFuncionSorteada.js"></script>
     <script src="resources/js/cartaFuncion.js"></script>
     <script src="resources/js/cartaPaquete.js"></script>
     <script src="resources/js/navbar.js"></script>

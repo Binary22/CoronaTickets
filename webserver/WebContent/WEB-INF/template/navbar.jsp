@@ -62,6 +62,7 @@
                 <div class="dropdown-divider"></div>
                 <% String url = "detallesUsuario?name=" + nickname; %>
                 <a class="dropdown-item" href="<%=url%>"> Mi perfil </a>
+                <a class="dropdown-item" href="verPremios"> Premios </a>
                 <a class="dropdown-item" href="modificarusuario"> Modificar usuario</a>
                 <a class="dropdown-item" id="logout" href="logout">Salir de mi perfil</a>
                 
