@@ -1,0 +1,12 @@
+Se pueden configurar la url donde la workstation publica los webservices, y tambien la direccion
+donde el webserver los consume.
+
+Al configurar el url tambien se puede configurar el puerto.
+
+La configuración de la workstation se encuentra en el directorio ~/.coronaTickets/config.properties
+este archivo es generado automaticamente con una configuracion por defecto si se ejecuta el programa
+sin una configuracion en esa ruta.
+
+La configuracion del webserver se encuentra en las primeras lineas del archivo web.xml, en la entrada
+"urlwebservices".
+Se debe modificar esto en la carpeta generada en el apache.
