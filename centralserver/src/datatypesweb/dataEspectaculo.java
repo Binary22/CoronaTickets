@@ -93,6 +93,8 @@ public class dataEspectaculo {
 		this.categorias = new ArrayList<String>(espect.listarCategorias());
 		this.setVideo(espect.getVideo());
 		this.setPuntajes(espect.getPuntajes());
+		this.descPremio = espect.getDescPremio();
+		this.cantPremios = espect.getCantPremios();
 		
 	}
 	

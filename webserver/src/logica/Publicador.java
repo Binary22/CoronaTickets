@@ -499,8 +499,8 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {

@@ -79,10 +79,10 @@
             
             <label>Premio</label>
             <div class="form-row">
-            <input required name="descPremio" type="text" class="form-control"  placeholder="Descripción del premio" value="<%= form.get("premio") %>" >
+            <input  name="descPremio" type="text" class="form-control"  placeholder="Descripción del premio" value="<%= form.get("premio") %>" >
               <div class="form-group col-md-6">
               	<br>
-                <input required value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" max="23" class="form-control"  placeholder="Cantidad de Premios">
+                <input value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" max="23" class="form-control"  placeholder="Cantidad de Premios">
               </div>
               
             </div>

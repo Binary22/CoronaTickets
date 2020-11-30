@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataPremio complex type.
+ * <p>Clase Java para dataPremio complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataPremio">
@@ -40,7 +40,7 @@ public class DataPremio {
     protected DataFuncion funcion;
 
     /**
-     * Gets the value of the descripcion property.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
@@ -52,7 +52,7 @@ public class DataPremio {
     }
 
     /**
-     * Sets the value of the descripcion property.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
@@ -64,7 +64,7 @@ public class DataPremio {
     }
 
     /**
-     * Gets the value of the fechaSorteado property.
+     * Obtiene el valor de la propiedad fechaSorteado.
      * 
      * @return
      *     possible object is
@@ -76,7 +76,7 @@ public class DataPremio {
     }
 
     /**
-     * Sets the value of the fechaSorteado property.
+     * Define el valor de la propiedad fechaSorteado.
      * 
      * @param value
      *     allowed object is
@@ -88,7 +88,7 @@ public class DataPremio {
     }
 
     /**
-     * Gets the value of the funcion property.
+     * Obtiene el valor de la propiedad funcion.
      * 
      * @return
      *     possible object is
@@ -100,7 +100,7 @@ public class DataPremio {
     }
 
     /**
-     * Sets the value of the funcion property.
+     * Define el valor de la propiedad funcion.
      * 
      * @param value
      *     allowed object is

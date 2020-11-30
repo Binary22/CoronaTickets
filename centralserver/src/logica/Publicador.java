@@ -535,9 +535,7 @@ public class Publicador {
 	    	}
         }
     			
-    	for (String cat : dataEsp.getCategorias()) {
-    		categorias.add(cat);
-    	}
+    	
     	
     	Float costo = dataEsp.getCosto();
     	String imagen = dataEsp.getImagen();

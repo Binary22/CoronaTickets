@@ -124,7 +124,9 @@ public class Altaespectaculo extends HttpServlet {
 	    dataEsp.setCosto(Float.parseFloat(costo));
 	    dataEsp.setVideo(video);
 	    dataEsp.setDescPremio(descripPremio);
-	    dataEsp.setCantPremios(Integer.parseInt(cantPremios));
+	    if(cantPremios != "" && cantPremios != null) {
+	    	dataEsp.setCantPremios(Integer.parseInt(cantPremios));
+	    }
 	    if (imagen != "" && imagen != null) {
 	    dataEsp.setImagen(imagen);	    
 	    } else {
