@@ -16,6 +16,7 @@ public class dataRegistro {
 	private float costo;
 	private String usuario;
 	private String funcion;
+	private String fechaFuncion;
 	private String espectFuncion;
 	
 	public dataRegistro(Registro reg) {
@@ -29,7 +30,7 @@ public class dataRegistro {
 			this.regsCanjeados[1] = reg.getRegsCanjeados()[1].getId();
 			this.regsCanjeados[2] = reg.getRegsCanjeados()[2].getId();
 		}
-		
+		this.setFechaFuncion(reg.getFuncion().getFecha().toString());
 		this.usuario = reg.getUsuario().getNickname();
 		this.funcion = reg.getFuncion().getNombre();
 		this.espectFuncion = reg.getFuncion().getEspectaculo().getNombre();
@@ -103,6 +104,14 @@ public class dataRegistro {
 
 	public void setEspectFuncion(String espectFuncion) {
 		this.espectFuncion = espectFuncion;
+	}
+
+	public String getFechaFuncion() {
+		return fechaFuncion;
+	}
+
+	public void setFechaFuncion(String fechaFuncion) {
+		this.fechaFuncion = fechaFuncion;
 	}
 
 }

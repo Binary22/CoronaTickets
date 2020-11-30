@@ -21,13 +21,8 @@ import logica.DataListEspOrg;
 import logica.DataListFunsEspect;
 import logica.DataPaquete;
 import logica.DataUsuario;
-import logica.Espectaculo;
-import logica.HandlerEspectaculos;
-import logica.HandlerPaquetes;
-import logica.Paquete;
 import logica.Publicador;
 import logica.PublicadorService;
-import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class DetallesEspectaculo

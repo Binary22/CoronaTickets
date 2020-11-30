@@ -1,0 +1,22 @@
+La compilación de los proyectos esta automatizada con maven.
+Primero se debe compilar la workstation de la siguiente forma:
+Compilar el proyecto centralserver (logica)
+1. Maven clean
+2. Maven package
+
+Copiar el archivo centralserver/target/centralserver-1 a workstation/lib/ con el nombre centralserver
+
+1. Maven clean
+2. Maven package
+El .jar resultante se encontrara en el directorio workstation/target con nombre workstation-1.jar, y
+en la carpeta workstation/target/lib/ se encuentran librerias necesarias.
+
+Para compilar el webserver se hace lo siguiente:
+1. Maven clean
+2. Maven package
+El .jar resultante se encontrara en el directorio webserver/target con nombre webserver-1.war
+
+Para ejecutarlo:
+El jar de la workstation debe ser ejecutado en el mismo directorio que la carpeta lib, y si se desean cargar datos tambien debe estar en el mismo directorio que la carpeta data.
+
+El war del webserver se debe copiar en el directorio webapps del servidor tomcat, y cambiarle el nombre a "ROOT" antes de ejecutarlo.
