@@ -1,7 +1,9 @@
 package logica;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
@@ -81,7 +83,40 @@ public class Publicador {
 	        endpoint = Endpoint.publish(url, this);
 		
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
+			File theDir = new File(System.getProperty("user.home") + "/.coronaTickets");
+			if (!theDir.exists()){
+			    theDir.mkdirs();
+			}
+			
+			File nuevaconf = new File(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+			try {
+				nuevaconf.createNewFile();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			try {
+				FileWriter myWriter = new FileWriter(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+				myWriter.write("URL=http://localhost:9129/publicador");
+				myWriter.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			try {
+				input = new FileInputStream(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+		
+				Properties prop = new Properties();	
+				try {
+					prop.load(input);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}	
+				String url = prop.getProperty("URL");
+		        endpoint = Endpoint.publish(url, this);
+			} catch (FileNotFoundException e2) {
+				e2.printStackTrace();
+			}
 		}
     }
 
