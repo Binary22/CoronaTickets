@@ -707,7 +707,7 @@ public class Publicador {
     	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
     	Usuario user = hUsers.getUsuario(nickname);
     	List<dataPremio> premios = new ArrayList<dataPremio>();
-    	List<Premio> premiosUser = user.getPremios();
+    	List<Premio> premiosUser = new ArrayList<Premio>(user.getPremios());
     	List<Premio> nuevos = new ArrayList<Premio>();
     	int n = premiosUser.size();
     	for(int i = 0; i < n; i++) {

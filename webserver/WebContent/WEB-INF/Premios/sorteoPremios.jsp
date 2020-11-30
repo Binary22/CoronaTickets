@@ -18,9 +18,9 @@
 		<div class="container">
 		<%DataFuncion funcion = (DataFuncion)session.getAttribute("funcion_sorteada");%>
 				<form class="mt-2" action = "sorteoPremios" method = "POST">
-					<h2 class="title">Premio:</h2>
+					<!-- <h2 class="title">Premio:</h2>
 					<h5 class="card-title">Descripción:</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getDescriPremio() %></h6>
+                    <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getDescriPremio() %></h6> -->
 					<%if(funcion.isFueSorteado()){ %>
 						<h5 class="card-title">Fecha Sorteo:</h5>
 	                    <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getFechaSorteo() %></h6>
