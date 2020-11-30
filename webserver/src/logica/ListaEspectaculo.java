@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para listaEspectaculo complex type.
+ * <p>Java class for listaEspectaculo complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="listaEspectaculo">
@@ -59,7 +59,7 @@ public class ListaEspectaculo {
     protected ListaEspectaculo.Espectaculos espectaculos;
 
     /**
-     * Obtiene el valor de la propiedad espectaculos.
+     * Gets the value of the espectaculos property.
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class ListaEspectaculo {
     }
 
     /**
-     * Define el valor de la propiedad espectaculos.
+     * Sets the value of the espectaculos property.
      * 
      * @param value
      *     allowed object is
@@ -84,9 +84,9 @@ public class ListaEspectaculo {
 
 
     /**
-     * <p>Clase Java para anonymous complex type.
+     * <p>Java class for anonymous complex type.
      * 
-     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+     * <p>The following schema fragment specifies the expected content contained within this class.
      * 
      * <pre>
      * &lt;complexType>
@@ -152,9 +152,9 @@ public class ListaEspectaculo {
 
 
         /**
-         * <p>Clase Java para anonymous complex type.
+         * <p>Java class for anonymous complex type.
          * 
-         * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+         * <p>The following schema fragment specifies the expected content contained within this class.
          * 
          * <pre>
          * &lt;complexType>
@@ -182,7 +182,7 @@ public class ListaEspectaculo {
             protected DataEspectaculo value;
 
             /**
-             * Obtiene el valor de la propiedad key.
+             * Gets the value of the key property.
              * 
              * @return
              *     possible object is
@@ -194,7 +194,7 @@ public class ListaEspectaculo {
             }
 
             /**
-             * Define el valor de la propiedad key.
+             * Sets the value of the key property.
              * 
              * @param value
              *     allowed object is
@@ -206,7 +206,7 @@ public class ListaEspectaculo {
             }
 
             /**
-             * Obtiene el valor de la propiedad value.
+             * Gets the value of the value property.
              * 
              * @return
              *     possible object is
@@ -218,7 +218,7 @@ public class ListaEspectaculo {
             }
 
             /**
-             * Define el valor de la propiedad value.
+             * Sets the value of the value property.
              * 
              * @param value
              *     allowed object is
