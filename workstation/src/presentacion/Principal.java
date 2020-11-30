@@ -28,7 +28,9 @@ import excepciones.NombreEspectaculoExisteException;
 import excepciones.NombreFuncionexisteException;
 import excepciones.UsuarioConMismoMailException;
 import excepciones.UsuarioConMismoNickException;
+import excepciones.UsuarioPaqueteComprado;
 import excepciones.noSeleccionoTres;
+import logica.Compra;
 import logica.Fabrica;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
@@ -409,10 +411,15 @@ public class Principal extends JFrame {
 		ec.aceptarRechazar("Springsteen on Broadway", true);
 		ec.aceptarRechazar("Bien de Familia", true);
 		ec.aceptarRechazar("30 años", true);
-		ec.aceptarRechazar("Grandes Éxitos 2020", false);
+		ec.aceptarRechazar("Grandes Éxitos 2020", true);
+		ec.aceptarRechazar("Llega a Casa", true);
+		ec.aceptarRechazar("Fin de Año con Alcides y amigos", false);
 		
 		HandlerEspectaculos handlerE = HandlerEspectaculos.getInstance();
 
+		handlerE.getEspectaculo("Global Spirit").setFinalizado(true);
+		handlerE.getEspectaculo("30 años").setFinalizado(true);
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("data/funciones.csv"));
 			while ((line = br.readLine()) != null)
@@ -454,8 +461,22 @@ public class Principal extends JFrame {
 			e.printStackTrace();
 		}
 
-		//este es R1
+		//Compras de paquete
+		
 		formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+		
+		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		
+		try {
+			hu.getUsuario("cbochinche").agregarcompra(new Compra(LocalDate.parse("25/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
+			hu.getUsuario("lachiqui").agregarcompra(new Compra(LocalDate.parse("26/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
+		} catch (UsuarioPaqueteComprado | NoExistePaqueteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//este es R1
 		ec.ingresarNombreFuncion("Los Village Volvieron - 1");
 		ec.ingresarNombreEspectador("costas");
 		ec.confirmarRegistro("Los Village Volvieron", LocalDate.parse("09/04/20",formatter));
@@ -687,8 +708,21 @@ public class Principal extends JFrame {
 		ec.ingresarNombreFuncion("30 años - 2");
 		ec.ingresarNombreEspectador("costas");
 		ec.confirmarRegistro("30 años", LocalDate.parse("02/09/20",formatter));
-			
-				
+		//R47
+		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
+		ec.ingresarNombreEspectador("cbochinche");
+		ec.canjePorVale();
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("26/11/20",formatter));	
+		//R48
+		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
+		ec.ingresarNombreEspectador("costas");
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("27/11/20",formatter));
+		//R49
+		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
+		ec.ingresarNombreEspectador("");
+		ec.canjePorVale();
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("28/11/20",formatter));
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("data/espectaculoEnPaquete.csv"));
 			while ((line = br.readLine()) != null)
@@ -709,7 +743,6 @@ public class Principal extends JFrame {
 			e.printStackTrace();
 		}
 		// setear contraseñas a 1234
-		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		for (Usuario u : hu.getUsuarios().values()) {
 			u.setPassword("1234");
 		}
@@ -761,8 +794,65 @@ public class Principal extends JFrame {
 		he.agregarCategoriaAEspectaculo("30 años","Musica Tropical");
 		he.agregarCategoriaAEspectaculo("Grandes Éxitos 2020","Solistas");
 		he.agregarCategoriaAEspectaculo("Llega a Casa","Bandas Latinas");
+		he.agregarCategoriaAEspectaculo("Noche buena con Alcides y amigos", "Música Tropical");
+		he.agregarCategoriaAEspectaculo("Fin de Año con Alcides y amigos", "Música Tropical");
+		
+		/* 	EL eleven11
+			CO costas
+			EW waston
+			GH house
+			SP sergiop
+			AR chino
+			AP tonyp
+			ML lachiqui
+			CB cbochinche
+		
+		*/
+		try {
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(5, "chino");
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(2, "tonyp");
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(3, "costas");
+		he.getEspectaculo("Los Village Volvieron").agregarValoracion(4, "chiqui");
 		
 		
+		he.getEspectaculo("Global Spirit").agregarValoracion(4, "eleven11");
+		he.getEspectaculo("Global Spirit").agregarValoracion(1, "waston");
+		he.getEspectaculo("Global Spirit").agregarValoracion(2, "sergiop");
+		he.getEspectaculo("Global Spirit").agregarValoracion(2, "tonyp");
+		he.getEspectaculo("Global Spirit").agregarValoracion(5, "cbochinche");
+		
+		he.getEspectaculo("Memphis Blues World").agregarValoracion(2, "eleven11");
+		he.getEspectaculo("Memphis Blues World").agregarValoracion(4, "house");
+		he.getEspectaculo("Memphis Blues World").agregarValoracion(2, "chino");
+		/* 	EL eleven11
+		CO costas
+		EW waston
+		GH house
+		SP sergiop
+		AR chino
+		AP tonyp
+		ML lachiqui
+		CB cbochinche
+	
+	*/
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(3, "sergiop");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(4, "house");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(2, "eleven11");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(1, "costas");
+		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(5, "waston");
+		
+		he.getEspectaculo("Bien de Familia").agregarValoracion(1, "house");
+		he.getEspectaculo("Bien de Familia").agregarValoracion(4, "cbochinche");
+		
+		he.getEspectaculo("30 años").agregarValoracion(5, "chino");
+		he.getEspectaculo("30 años").agregarValoracion(3, "tonyp");
+		he.getEspectaculo("30 años").agregarValoracion(2, "costas");
+
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");	
     // aca termina el cargar datos
     }
