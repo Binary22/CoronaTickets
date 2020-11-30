@@ -172,6 +172,27 @@ public class Publicador {
     	return res;
     }
     
+    @WebMethod
+    public dataListFunsEspect funcionesEspectaculo(String nomEspect) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Map<String,Funcion> funs = esp.getAllFunciones();
+    	Map<String,dataFuncion> funsResp = new HashMap<String,dataFuncion>();
+    	dataFuncion nueva;
+    	for(String key : funs.keySet()) {
+    		nueva = new dataFuncion(funs.get(key));
+    		if(funs.get(key).funcionFinalizo()) {
+    			nueva.setFinalizo(true);
+    		}
+    		funsResp.put(key,nueva);
+    	}
+    	dataListFunsEspect ret = new dataListFunsEspect();
+    	ret.setFuncionesEspect(funsResp);
+    	return ret;
+    }
+    
+    
+    @WebMethod
     public dataPaquete getPaquete(String nomPaquete) throws NoExistePaqueteException {
     	HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
     	return new dataPaquete(hpaq.getPaquete(nomPaquete));

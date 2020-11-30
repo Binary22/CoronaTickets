@@ -156,6 +156,19 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListFunsEspect
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/funcionesEspectaculoRequest", output = "http://logica/Publicador/funcionesEspectaculoResponse")
+    public DataListFunsEspect funcionesEspectaculo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @return
      *     returns logica.ListaEspectaculo
      */
@@ -173,8 +186,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -211,8 +224,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -281,8 +294,8 @@ public interface Publicador {
      * @param arg0
      * @throws FuncionAlcanzoLimiteException_Exception
      * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws NoSeleccionoTres_Exception
+     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -457,8 +470,8 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws PaqueteConMismoNombreException_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/crearPaqueteRequest", output = "http://logica/Publicador/crearPaqueteResponse", fault = {
