@@ -29,7 +29,11 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="minutos" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="plataforma" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+<<<<<<< HEAD
  *         &lt;element name="artista" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+=======
+ *         &lt;element name="puntajes" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
+>>>>>>> master
  *         &lt;element name="setFunciones">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -81,7 +85,11 @@ import javax.xml.bind.annotation.XmlType;
     "minutos",
     "fechaReg",
     "plataforma",
+<<<<<<< HEAD
     "artista",
+=======
+    "puntajes",
+>>>>>>> master
     "setFunciones",
     "yaFueValuado",
     "aceptado",
@@ -105,7 +113,12 @@ public class DataEspectaculo {
     protected String minutos;
     protected String fechaReg;
     protected String plataforma;
+<<<<<<< HEAD
     protected String artista;
+=======
+    @XmlElement(nillable = true)
+    protected List<Integer> puntajes;
+>>>>>>> master
     @XmlElement(required = true)
     protected DataEspectaculo.SetFunciones setFunciones;
     protected boolean yaFueValuado;
@@ -456,7 +469,40 @@ public class DataEspectaculo {
     }
 
     /**
+<<<<<<< HEAD
      * Obtiene el valor de la propiedad video.
+=======
+     * Gets the value of the puntajes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the puntajes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPuntajes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Integer }
+     * 
+     * 
+     */
+    public List<Integer> getPuntajes() {
+        if (puntajes == null) {
+            puntajes = new ArrayList<Integer>();
+        }
+        return this.puntajes;
+    }
+
+    /**
+     * Gets the value of the setFunciones property.
+>>>>>>> master
      * 
      * @return
      *     possible object is

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List, java.util.ArrayList" %>
+<%@ page import="logica.Usuario,logica.Registro,logica.Funcion,logica.Espectaculo,logica.Compra,logica.Paquete,java.util.List, java.util.ArrayList, java.time.LocalDate" %>
 <%@page import="logica.DataUsuario, logica.DataRegistro, logica.DataEspectaculo, java.util.Map, logica.DataPaquete, logica.DataCompra"%>
 <!doctype = html>
 <html lang="en">
@@ -107,6 +107,8 @@
 									        <h5 class="card-title"><%=r.getFuncion()%></h5>
 									        <p><%=mapaespec.get(r.getEspectFuncion()).getNombre()%></p>
 									        <a href="detallesEspectaculo?name=<%=mapaespec.get(r.getEspectFuncion()).getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
+									        <% if(LocalDate.parse((mapaespec.get(r.getEspectFuncion()).getFechaReg())).isBefore(LocalDate.now()) && (u.getNombre().equals(session.getAttribute("usuario_logueado")))) %>
+									        <a href="votarEspectaculo?name=<%=mapaespec.get(r.getEspectFuncion()).getNombre()%>" class="btn btn-primary card-text">Valorar espectaculo</a>
 									      </div>
 									    </div>
 									  </div>

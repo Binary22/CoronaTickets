@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import excepciones.YaVotoException;
+
 public class Espectaculo {
 	private String nombre;
 	private String descripcion;
@@ -25,6 +27,8 @@ public class Espectaculo {
 	private String imagen;
 	private String video;
 	private List<String> categorias;
+	private List<Integer> puntajes;
+	private List<String> votantes;
 	private String descPremio;
 	private int cantPremios;
 	private String videoUrl;
@@ -35,6 +39,29 @@ public class Espectaculo {
 
 	public void setYaFueValuado(boolean yaFueValuado) {
 		this.yaFueValuado = yaFueValuado;
+	}
+	
+	public int getPromedio() {
+		if (puntajes.isEmpty() || puntajes == null) {
+			return -1;
+		} else {
+			int res = 0;
+			for (int i : puntajes) {
+				res += i;
+			}
+			return (res / puntajes.size());
+		}
+	}
+	
+	public void agregarValoracion(int valoracion, String user) throws YaVotoException {
+		if (puntajes == null) {
+			puntajes = new ArrayList<Integer>();
+		}
+		if (getVotantes().contains(user)) {
+			throw new YaVotoException("El usuario ya valoro este espectaculo");
+		}
+		votantes.add(user);
+		puntajes.add(valoracion);
 	}
 
 	public void setAceptado(boolean aceptado) {
@@ -239,5 +266,23 @@ public class Espectaculo {
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public List<Integer> getPuntajes() {
+		if (puntajes == null) {
+			return new ArrayList<Integer>();
+		}
+		return puntajes;
+	}
+
+	public List<String> getVotantes() {
+		if (votantes == null) {
+			votantes = new ArrayList<String>();
+		}
+		return votantes;
+	}
+	
+	public void setVotantes(List<String> votantes) {
+		this.votantes = votantes;
 	}
 }

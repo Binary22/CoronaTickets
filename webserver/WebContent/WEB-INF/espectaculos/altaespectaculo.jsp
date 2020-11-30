@@ -125,7 +125,7 @@
             </div>
             <div class="form-group">
               <label>Elegir video</label>
-              <input value="<%= form.get("video") %>" name="video" class="form-control"  placeholder="CS9OO0S5w2k">
+              <input value="<%= form.get("video") %>" name="video" class="form-control"  placeholder="Ej. CS9OO0S5w2k">
             </div>
  
             <button type="submit" class="btn btn-primary"> Dar de alta el espectaculo</button>
