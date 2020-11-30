@@ -64,22 +64,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListFunsEspect }
-     * 
-     */
-    public DataListFunsEspect createDataListFunsEspect() {
-        return new DataListFunsEspect();
-    }
-
-    /**
-     * Create an instance of {@link DataListFunsEspect.FuncionesEspect }
-     * 
-     */
-    public DataListFunsEspect.FuncionesEspect createDataListFunsEspectFuncionesEspect() {
-        return new DataListFunsEspect.FuncionesEspect();
-    }
-
-    /**
      * Create an instance of {@link DataEspectaculo }
      * 
      */
@@ -341,14 +325,6 @@ public class ObjectFactory {
      */
     public ListaEspectaculo.Espectaculos.Entry createListaEspectaculoEspectaculosEntry() {
         return new ListaEspectaculo.Espectaculos.Entry();
-    }
-
-    /**
-     * Create an instance of {@link DataListFunsEspect.FuncionesEspect.Entry }
-     * 
-     */
-    public DataListFunsEspect.FuncionesEspect.Entry createDataListFunsEspectFuncionesEspectEntry() {
-        return new DataListFunsEspect.FuncionesEspect.Entry();
     }
 
     /**

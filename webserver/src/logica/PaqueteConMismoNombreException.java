@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para PaqueteConMismoNombreException complex type.
+ * <p>Java class for PaqueteConMismoNombreException complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="PaqueteConMismoNombreException">
@@ -34,7 +34,7 @@ public class PaqueteConMismoNombreException {
     protected String message;
 
     /**
-     * Obtiene el valor de la propiedad message.
+     * Gets the value of the message property.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class PaqueteConMismoNombreException {
     }
 
     /**
-     * Define el valor de la propiedad message.
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is

@@ -618,4 +618,87 @@ public class Publicador {
 		return listapaq;
 	}
 	
+	@WebMethod
+    public ListaUsuario espectadoresFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	List<Usuario> users = fun.getEspectadores();
+    	List<dataUsuario> espectadores = new ArrayList<dataUsuario>();
+    	for(int i = 0; i < users.size(); i++) {
+    		espectadores.add(new dataUsuario(users.get(i)));
+    	}
+    	ListaUsuario usuarios = new ListaUsuario();
+    	usuarios.setUsuarios(espectadores);
+    	return usuarios;
+    }
+    
+    @WebMethod
+    public ListaUsuario espectadoresPremiados(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	List<Usuario> users = fun.getPremiados();
+    	List<dataUsuario> espectadores = new ArrayList<dataUsuario>();
+    	for(int i = 0; i < users.size(); i++) {
+    		espectadores.add(new dataUsuario(users.get(i)));
+    	}
+    	ListaUsuario usuarios = new ListaUsuario();
+    	usuarios.setUsuarios(espectadores);
+    	return usuarios;
+    }
+    
+    @WebMethod
+    public void sortearPremiosFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	fun.sortearPremios();
+    }
+    
+    @WebMethod
+    public dataFuncion getFuncion(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	return new dataFuncion(fun);
+    }
+    public static int masAlta(List<Premio> premios) {
+    	LocalDate fechaMax = premios.get(0).getFechaSorteado();
+    	int res = 0;
+    	for(int i = 1; i < premios.size(); i++) {
+    		if(premios.get(i).getFechaSorteado().isAfter(fechaMax));
+    		fechaMax = premios.get(i).getFechaSorteado();
+    		res = i;
+    	}
+    	return res;
+    }
+    
+    @WebMethod
+    public void valorarEspectaculo(String espect,String user,int puntaje) throws YaVotoException {
+    	HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+    	Espectaculo espe = he.getEspectaculo(espect);
+    	espe.agregarValoracion(puntaje, user);
+    }
+    
+    @WebMethod
+    public dataListPremio getPremiosUsuarios(String nickname) {
+    	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
+    	Usuario user = hUsers.getUsuario(nickname);
+    	List<dataPremio> premios = new ArrayList<dataPremio>();
+    	List<Premio> premiosUser = user.getPremios();
+    	List<Premio> nuevos = new ArrayList<Premio>();
+    	int n = premiosUser.size();
+    	for(int i = 0; i < n; i++) {
+    		int masTarde = masAlta(premiosUser);
+    		nuevos.add(premiosUser.get(masTarde));
+    		premiosUser.remove(masTarde);
+    	}
+    	for(int i = 0; i < nuevos.size(); i++) {
+    		premios.add(new dataPremio(nuevos.get(i)));
+    	}
+    	dataListPremio premiosResp = new dataListPremio();
+    	premiosResp.setPremios(premios);
+    	return premiosResp;
+    }
 }
