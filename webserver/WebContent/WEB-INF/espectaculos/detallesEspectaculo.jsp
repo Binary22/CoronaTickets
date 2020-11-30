@@ -107,7 +107,7 @@
 						                <div class="row">
 						                    <div class="col-xs-12 col-md-6 text-center">
 						                        <h1 class="rating-num" style="margin-top: 0.95rem">
-						                            <%= promedioF / total %></h1>
+						                            <%= String.format("%.1f", (promedioF / total)) %></h1>
 						                        <h6 class="card-subtitle mb-2 text-muted" >Promedio</h6>
 						                        <div class="rating">
 						                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
