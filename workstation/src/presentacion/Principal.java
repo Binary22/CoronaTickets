@@ -847,7 +847,44 @@ public class Principal extends JFrame {
 		he.getEspectaculo("30 años").agregarValoracion(5, "chino");
 		he.getEspectaculo("30 años").agregarValoracion(3, "tonyp");
 		he.getEspectaculo("30 años").agregarValoracion(2, "costas");
+		
+		he.getEspectaculo("Los Village Volvieron").setDescPremio("Meet & greet (encuentro) virtual con integrantes de Village People y unaccesorio de indumentaria de la banda que será elegido por el ganador,como ser el penacho de plumas del jefe indio (sujeto a disponibilidad).Info: https://bit.ly/sorteovp");
+		he.getEspectaculo("Los Village Volvieron").setCantPremios(2);
+		he.getEspectaculo("Los Village Volvieron").setVideo("N8FxU1nmLWg");
+		
+		
+		he.getEspectaculo("Global Spirit").setDescPremio("Box Set multimedia “Depeche Mode: SPIRITS in the Forest”, quesigue a la banda en su Global Spirit Tour 2017/2018, que vio aDepeche Mode tocar para más de 3 millones de fanáticos en 115shows en todo el mundo. El Box Set contiene 2 CDs y 2 DVDs o 2CDs y 1 Blu-ray (a elección). Info: https://bit.ly/sorteodm");
+		he.getEspectaculo("Global Spirit").setCantPremios(3);
+		he.getEspectaculo("Global Spirit").setVideo("2qxcr6T9pNM");
 
+		he.getEspectaculo("Memphis Blues World").setDescPremio("Meet & greet (encuentro) virtual con la legendaria cantante e ícono del Pop, que inspiró a tantas otras cantante femeninas como Madonna y Lady Gaga (aunque ellas jamás lo admitirían).");
+		he.getEspectaculo("Memphis Blues World").setCantPremios(2);
+		he.getEspectaculo("Memphis Blues World").setVideo("ivHp3_gYXIc");
+		
+		he.getEspectaculo("Springsteen on Broadway").setDescPremio("Album completo “Springsteen On Broadway” en formato MP3 o CD (aelección). Info: https://bit.ly/sorteobs");
+		he.getEspectaculo("Springsteen on Broadway").setCantPremios(2);
+		he.getEspectaculo("Springsteen on Broadway").setVideo("M1xDzgob1JI");
+		
+		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podráshacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
+		he.getEspectaculo("Bien de Familia").setCantPremios(1);
+		he.getEspectaculo("Bien de Familia").setVideo("dPSlBRg0HeA");
+		
+		he.getEspectaculo("30 años").setDescPremio("Entrada en platea VIP para el primer show   presencial   que   realiceAlcides a partir de enero de 2021 (una vez que el artista haya recibidola vacuna contra el SARS-COV-2), más 1 litro de Fernet de marca aconfirmar.");
+		he.getEspectaculo("30 años").setCantPremios(3);
+		he.getEspectaculo("30 años").setVideo("65Pu6WP0bag");
+
+		he.getEspectaculo("Grandes Éxitos 2020").setDescPremio("Album completo “Y Ahora Que” para descargar en formato FLAC (24bits, 44.1 kHz). Info: https://bit.ly/sorteody");
+		he.getEspectaculo("Grandes Éxitos 2020").setCantPremios(2);
+		he.getEspectaculo("Grandes Éxitos 2020").setVideo("NxFeibjFt3k");
+
+		
+		he.getEspectaculo("Llega a Casa").setDescPremio("Entrada doble para espectáculo “Mi Bien” a realizarse en el AuditorioNacional del SODRE.");
+		he.getEspectaculo("Llega a Casa").setCantPremios(2);
+		he.getEspectaculo("Llega a Casa").setVideo("m7r3YIFRI3k");
+		
+		he.getEspectaculo("Noche buena con Alcides y amigos").setVideo("65Pu6WP0bag");
+
+		he.getEspectaculo("Fin de Año con Alcides y amigos").setVideo("65Pu6WP0bag");
 		
 		
 		} catch (Exception e) {
