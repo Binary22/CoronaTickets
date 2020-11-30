@@ -57,8 +57,25 @@
                             <% if(espect.getPuntajes().size() != 0) { %>
                             <h5 class="card-title">
                             <%
+                            int total = 0;
+                            int cant5 = 0;
+                            int cant4 = 0;
+                            int cant3 = 0;
+                            int cant2 = 0;
+                            int cant1 = 0;
                             int promedio = 0;
                             for (int i : espect.getPuntajes()) {
+                            	total++;
+                            	if(i == 5)
+                            		cant5++;
+                            	if(i == 4)
+                            		cant4++;
+                            	if(i == 3)
+                            		cant3++;
+                            	if(i == 2)
+                            		cant2++;
+                            	if(i == 1)
+                            		cant1++;
                             	promedio += i*2;
                             }
                             promedio = promedio / (espect.getPuntajes().size());
@@ -105,7 +122,7 @@
 						                            </div>
 						                            <div class="col-xs-8 col-md-9">
 						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  															<div class="progress-bar-animated progress-bar-striped bg-warning" role="progressbar" style="width: <%= total> 0 ? (cant5 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 														</div>
 						                            </div>
 						                            <!-- end 5 -->
@@ -114,7 +131,7 @@
 						                            </div>
 						                            <div class="col-xs-8 col-md-9">
 						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  															<div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: <%= total> 0 ? (cant4 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 														</div>
 						                            </div>
 						                            <!-- end 4 -->
@@ -123,7 +140,7 @@
 						                            </div>
 						                            <div class="col-xs-8 col-md-9">
 						                                <div class="progress">
-  															<div class="progress-bar-animated  progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  															<div class="progress-bar-animated  progress-bar-striped bg-info" role="progressbar" style="width: <%= total> 0 ? (cant3 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 														</div>
 						                            </div>
 						                            <!-- end 3 -->
@@ -132,7 +149,7 @@
 						                            </div>
 						                            <div class="col-xs-8 col-md-9">
 						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  															<div class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: <%= total> 0 ? (cant2 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 														</div>
 						                            </div>
 						                            <!-- end 2 -->
@@ -141,7 +158,7 @@
 						                            </div>
 						                            <div class="col-xs-8 col-md-9">
 						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  															<div class="progress-bar-animated progress-bar-striped bg-danger" role="progressbar" style="width: <%= total> 0 ? (cant1 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 														</div>
 						                            </div>
 						                            <!-- end 1 -->
