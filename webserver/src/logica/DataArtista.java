@@ -53,7 +53,7 @@ public class DataArtista
      * <p>
      * You are getting this "catch-all" property because of the following reason: 
      * The field name "Descripcion" is used by two different parts of a schema. See: 
-     * line 319 of http://localhost:9129/publicador?xsd=1
+     * line 320 of http://localhost:9129/publicador?xsd=1
      * line 98 of http://localhost:9129/publicador?xsd=1
      * <p>
      * To get rid of this property, apply a property customization to one 

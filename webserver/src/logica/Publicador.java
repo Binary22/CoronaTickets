@@ -186,8 +186,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoNickException_Exception
      * @throws UsuarioConMismoMailException_Exception
+     * @throws UsuarioConMismoNickException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -224,8 +224,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoNickException_Exception
      * @throws UsuarioConMismoMailException_Exception
+     * @throws UsuarioConMismoNickException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -293,9 +293,9 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws FechaPosterior_Exception
      * @throws NoSeleccionoTres_Exception
      * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -326,8 +326,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -356,8 +356,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -499,8 +499,8 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {

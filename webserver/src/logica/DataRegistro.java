@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="usuario" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="funcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaFuncion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="espectFuncion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -44,6 +45,7 @@ import javax.xml.bind.annotation.XmlType;
     "costo",
     "usuario",
     "funcion",
+    "fechaFuncion",
     "espectFuncion"
 })
 public class DataRegistro {
@@ -56,6 +58,7 @@ public class DataRegistro {
     protected float costo;
     protected String usuario;
     protected String funcion;
+    protected String fechaFuncion;
     protected String espectFuncion;
 
     /**
@@ -205,6 +208,30 @@ public class DataRegistro {
      */
     public void setFuncion(String value) {
         this.funcion = value;
+    }
+
+    /**
+     * Gets the value of the fechaFuncion property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaFuncion() {
+        return fechaFuncion;
+    }
+
+    /**
+     * Sets the value of the fechaFuncion property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaFuncion(String value) {
+        this.fechaFuncion = value;
     }
 
     /**
