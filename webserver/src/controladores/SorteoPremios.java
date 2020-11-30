@@ -52,6 +52,11 @@ public class SorteoPremios extends HttpServlet {
 		objSesion.setAttribute("funcion_sorteada", fun);
 		List<DataUsuario> espectadores = port.espectadoresFuncion(nomEspect, nomFun).getUsuarios();
 		objSesion.setAttribute("espectadores_premios", espectadores);
+		if(fun.isFueSorteado()) {
+			List<DataUsuario> premiados = port.espectadoresPremiados(nomEspect, nomFun).getUsuarios();
+			objSesion.setAttribute("espectadores_premiados", premiados);
+		}
+		
     	
 		req.getRequestDispatcher("/WEB-INF/Premios/sorteoPremios.jsp").forward(req, resp);
 	}

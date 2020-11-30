@@ -93,7 +93,7 @@ public class Espectaculo {
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
-			String url, LocalDate fechaReg, float costo, String imagen, List<String> categs, String video) {
+			String url, LocalDate fechaReg, float costo, String imagen, List<String> categs, String video, String descPremio, int cantPremios) {
 		this.nombre = nombre;
 		this.duracion = duracion;
 		this.descripcion = descripcion;
@@ -112,6 +112,8 @@ public class Espectaculo {
 		}
 		this.categorias = categs;
 		this.video = video;
+		this.descPremio = descPremio;
+		this.cantPremios = cantPremios;
 	}
 	
 	public String getNombre() {

@@ -149,22 +149,24 @@ public class Funcion {
 		this.fueSorteado = true;
 		List<Usuario> espectadores = this.getEspectadores();
 		int cantPremios = this.espectaculo.getCantPremios();
-		List<Usuario> elegidos = new ArrayList<Usuario>();
-		Random rand = new Random();
-		for (int i = 0; i < cantPremios; i++) {
-	        int randomIndex = rand.nextInt(espectadores.size());
-	        Usuario randomUser = espectadores.get(randomIndex);
-	        elegidos.add(randomUser);
-	        espectadores.remove(randomIndex);
-	    }
-		Premio nuevo = new Premio(LocalDate.now());
-		nuevo.setDescripcion(this.espectaculo.getDescPremio());
-		nuevo.setFuncion(this);
-		this.premio = nuevo;
-		this.premiados = elegidos;
-		this.fueSorteado = true;
-		for(int i = 0; i < elegidos.size(); i++) {
-			elegidos.get(i).agregarPremio(nuevo);
+		if(espectadores.size() >= cantPremios) {
+			List<Usuario> elegidos = new ArrayList<Usuario>();
+			Random rand = new Random();
+			for (int i = 0; i < cantPremios; i++) {
+		        int randomIndex = rand.nextInt(espectadores.size());
+		        Usuario randomUser = espectadores.get(randomIndex);
+		        elegidos.add(randomUser);
+		        espectadores.remove(randomIndex);
+		    }
+			Premio nuevo = new Premio(LocalDate.now());
+			nuevo.setDescripcion(this.espectaculo.getDescPremio());
+			nuevo.setFuncion(this);
+			this.premio = nuevo;
+			this.premiados = elegidos;
+			this.fueSorteado = true;
+			for(int i = 0; i < elegidos.size(); i++) {
+				elegidos.get(i).agregarPremio(nuevo);
+			}
 		}
 	}
 	public List<Usuario> getPremiados() {

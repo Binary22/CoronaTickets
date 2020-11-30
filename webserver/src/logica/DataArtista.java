@@ -41,9 +41,9 @@ public class DataArtista
 {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "website", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<String>> rest;
 
@@ -51,10 +51,10 @@ public class DataArtista
      * Obtiene el resto del modelo de contenido. 
      * 
      * <p>
-     * You are getting this "catch-all" property because of the following reason: 
-     * The field name "Descripcion" is used by two different parts of a schema. See: 
-     * line 271 of http://localhost:9129/publicador?xsd=1
-     * line 183 of http://localhost:9129/publicador?xsd=1
+     * Ha obtenido esta propiedad que permite capturar todo por el siguiente motivo: 
+     * El nombre de campo "Descripcion" se está utilizando en dos partes diferentes de un esquema. Consulte: 
+     * línea 316 de http://localhost:9129/publicador?xsd=1
+     * línea 96 de http://localhost:9129/publicador?xsd=1
      * <p>
      * Para deshacerse de esta propiedad, aplique una personalización de propiedad a una
      * de las dos declaraciones siguientes para cambiarles de nombre: 

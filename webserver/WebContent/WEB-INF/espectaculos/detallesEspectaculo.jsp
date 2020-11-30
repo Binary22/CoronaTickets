@@ -126,27 +126,7 @@
                     }
                   }%>
 		             
-					if (session.getAttribute("Mobile") != null) { 	
-                  		%>
-                  			<div class="card" style="margin-top: 10px;">
-						    	<div class="card-body d-flex flex-column">
-						        <h6 class="card-title">
-						      		 <%= funciones.get(key).getNombre() %>
-						        </h6>
-							
-						        <h6 class="card-subtitle mb-2 text-muted">Artistas Invitados:</h6>
-						        	
-						        <p id="desc" class="card-text">
-						        <%= var %>
-						        </p>
-			        			<ul class="list-group mt-auto list-group-horizontal">
-            						<a class="list-group-item card-link active flex-fill" href="registroafuncion?name=<%=espect.getNombre()%>;<%=funciones.get(key).getNombre()%>">Consultar</a>
-       							 </ul>
-						    	</div>
-						</div>
-                    <%}	else { %>
-					<carta-funcion img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion>
-					<%	} } }%>
+					
                 </div>
                 
                 <% if (session.getAttribute("Mobile") == null) { %>

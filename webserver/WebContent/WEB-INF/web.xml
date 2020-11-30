@@ -98,6 +98,18 @@
     	<servlet-name>consultaFuncion</servlet-name>
     	<servlet-class>controladores.ConsultaFuncion</servlet-class>
     </servlet>
+    
+    <servlet>
+    	<servlet-name>VerPremios</servlet-name>
+    	<servlet-class>controladores.VerPremios</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>VerPremios</servlet-name>
+    	<url-pattern>/verPremios</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet-mapping>
     	<servlet-name>SorteoPremios</servlet-name>
     	<url-pattern>/sorteoPremios</url-pattern>

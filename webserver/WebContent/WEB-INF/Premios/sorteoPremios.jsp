@@ -22,27 +22,42 @@
 					<h5 class="card-title">Descripción:</h5>
                     <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getDescriPremio() %></h6>
 					<%if(funcion.isFueSorteado()){ %>
-					<h5 class="card-title">Fecha Sorteo:</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getFechaSorteo() %></h6>
-					<%} %>
-					<h3 class="title">Espectadores de la función:</h3>
-					<%List<DataUsuario> usuarios = (List<DataUsuario>)session.getAttribute("espectadores_premios");
-					int size = usuarios.size();
-			        int j = 0;
-			        int i = 0;
-			        while(i < size){
-					  %>
-				        	<div class="card-deck pt-3">
-						        <%for(j = i; j <= i + 2 && j < size; j++){
-									String descripcion = usuarios.get(j).getNombre() + " " + usuarios.get(j).getApellido(); %>
-									<carta-usuario class="card carta" img="<%=usuarios.get(j).getImagen() %>" descripcion="<%=descripcion %>" titulo="<%=usuarios.get(j).getNickname() %>" style="width:18rem;"></carta-usuario>
-							  	<%} %>
-				     		</div>
-					  <%i = j;} %>
-					
-					<br>
-					<%if(!funcion.isFueSorteado()){ %>  
-					<button type="submit" class="btn btn-success">Sortear</button>
+						<h5 class="card-title">Fecha Sorteo:</h5>
+	                    <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getFechaSorteo() %></h6>
+	                    <h3 class="title">Espectadores de la función:</h3>
+	                    
+	                    <%List<DataUsuario> usuarios = (List<DataUsuario>)session.getAttribute("espectadores_premiados");
+	                      int size = usuarios.size();
+				          int j = 0;
+				          int i = 0;
+				          while(i < size){%>
+				          		<div class="card-deck pt-3">
+							        <%for(j = i; j <= i + 2 && j < size; j++){
+										String descripcion = usuarios.get(j).getNombre() + " " + usuarios.get(j).getApellido(); %>
+										<carta-usuario class="card carta" img="<%=usuarios.get(j).getImagen() %>" descripcion="<%=descripcion %>" titulo="<%=usuarios.get(j).getNickname() %>" style="width:18rem;"></carta-usuario>
+								  	<%} %>
+					     		</div>
+						  <%i = j;} %>
+					<%}else{ %>
+						<h3 class="title">Espectadores de la función:</h3>
+						
+						<%List<DataUsuario> usuarios = (List<DataUsuario>)session.getAttribute("espectadores_premios");
+						int size = usuarios.size();
+				        int j = 0;
+				        int i = 0;
+				        while(i < size){
+						  %>
+					        	<div class="card-deck pt-3">
+							        <%for(j = i; j <= i + 2 && j < size; j++){
+										String descripcion = usuarios.get(j).getNombre() + " " + usuarios.get(j).getApellido(); %>
+										<carta-usuario class="card carta" img="<%=usuarios.get(j).getImagen() %>" descripcion="<%=descripcion %>" titulo="<%=usuarios.get(j).getNickname() %>" style="width:18rem;"></carta-usuario>
+								  	<%} %>
+					     		</div>
+						  <%i = j;} %>
+						
+						<br>
+						
+						<button type="submit" class="btn btn-success">Sortear</button>
 					<%} %>
 				</form>
 		

@@ -24,12 +24,14 @@ import datatypesweb.ListaEspectaculo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
 import datatypesweb.dataPaquete;
+import datatypesweb.dataPremio;
 import datatypesweb.dataArtista;
 import datatypesweb.dataListArtInvi;
 import datatypesweb.dataListEspOrg;
 import datatypesweb.dataListFunsEspect;
 import datatypesweb.dataListPaquetes;
 import datatypesweb.dataListPlataformas;
+import datatypesweb.dataListPremio;
 import datatypesweb.dataUsuario;
 import datatypesweb.dataVale;
 import datatypesweb.dataValesCanje;
@@ -500,10 +502,14 @@ public class Publicador {
     	Integer minimo = dataEsp.getMinEspectadores();
     	String url = dataEsp.getUrl();
     	String video = dataEsp.getVideo();
+    	String descPremio = dataEsp.getDescPremio();
+    	Integer cantPremios = dataEsp.getCantPremios();
     	List<String> categorias = new ArrayList<String>();
-    			
-    	for(String cat : dataEsp.getCategorias()) {
-    		categorias.add(cat);
+    	
+    	if(dataEsp.getCategorias() != null) {
+	    	for(String cat : dataEsp.getCategorias()) {
+	    		categorias.add(cat);
+	    	}
     	}
     	
     	Float costo = dataEsp.getCosto();
@@ -517,7 +523,7 @@ public class Publicador {
     	
     	ctrlE.altaEspectaculoWeb(nomPlataforma, nomArtista, nomEspectaculo, descripcion, dur,
 				minimo, maximo,
-				url, costo, hoy , categorias, imagen, video);
+				url, costo, hoy , categorias, imagen, video, descPremio, cantPremios);
     }
     
     @WebMethod(operationName = "listarPlataformas")
@@ -641,6 +647,21 @@ public class Publicador {
     }
     
     @WebMethod
+    public ListaUsuario espectadoresPremiados(String nomEspect, String nomFuncion) {
+    	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
+    	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
+    	Funcion fun = esp.getFuncion(nomFuncion);
+    	List<Usuario> users = fun.getPremiados();
+    	List<dataUsuario> espectadores = new ArrayList<dataUsuario>();
+    	for(int i = 0; i < users.size(); i++) {
+    		espectadores.add(new dataUsuario(users.get(i)));
+    	}
+    	ListaUsuario usuarios = new ListaUsuario();
+    	usuarios.setUsuarios(espectadores);
+    	return usuarios;
+    }
+    
+    @WebMethod
     public void sortearPremiosFuncion(String nomEspect, String nomFuncion) {
     	HandlerEspectaculos hEsp = HandlerEspectaculos.getInstance();
     	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
@@ -654,5 +675,36 @@ public class Publicador {
     	Espectaculo esp = hEsp.getEspectaculo(nomEspect);
     	Funcion fun = esp.getFuncion(nomFuncion);
     	return new dataFuncion(fun);
+    }
+    public static int masAlta(List<Premio> premios) {
+    	LocalDate fechaMax = premios.get(0).getFechaSorteado();
+    	int res = 0;
+    	for(int i = 1; i < premios.size(); i++) {
+    		if(premios.get(i).getFechaSorteado().isAfter(fechaMax));
+    		fechaMax = premios.get(i).getFechaSorteado();
+    		res = i;
+    	}
+    	return res;
+    }
+    
+    @WebMethod
+    public dataListPremio getPremiosUsuarios(String nickname) {
+    	HandlerUsuarios hUsers = HandlerUsuarios.getInstancia();
+    	Usuario user = hUsers.getUsuario(nickname);
+    	List<dataPremio> premios = new ArrayList<dataPremio>();
+    	List<Premio> premiosUser = user.getPremios();
+    	List<Premio> nuevos = new ArrayList<Premio>();
+    	int n = premiosUser.size();
+    	for(int i = 0; i < n; i++) {
+    		int masTarde = masAlta(premiosUser);
+    		nuevos.add(premiosUser.get(masTarde));
+    		premiosUser.remove(masTarde);
+    	}
+    	for(int i = 0; i < nuevos.size(); i++) {
+    		premios.add(new dataPremio(nuevos.get(i)));
+    	}
+    	dataListPremio premiosResp = new dataListPremio();
+    	premiosResp.setPremios(premios);
+    	return premiosResp;
     }
 }

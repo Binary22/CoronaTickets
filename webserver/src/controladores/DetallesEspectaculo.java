@@ -51,13 +51,17 @@ public class DetallesEspectaculo extends HttpServlet {
 	    Publicador port = service.getPublicadorPort();
     	DataEspectaculo espect = port.getEspectaculo(nomEspect);
     	String userNickname = (String) objSesion.getAttribute("usuario_logueado");
-    	if(port.esArtista(userNickname)) {
-    		List<String> espects = port.getEspectaculos(userNickname).getEspectaculosOrg();
-    		if(espects.contains(nomEspect)) {
-    			objSesion.setAttribute("esArtistaOrg", true);
-    		}else {
-    			objSesion.setAttribute("esArtistaOrg", false);
-    		}	
+    	if(objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+	    	if(port.esArtista(userNickname)) {
+	    		List<String> espects = port.getEspectaculos(userNickname).getEspectaculosOrg();
+	    		if(espects.contains(nomEspect)) {
+	    			objSesion.setAttribute("esArtistaOrg", true);
+	    		}else {
+	    			objSesion.setAttribute("esArtistaOrg", false);
+	    		}	
+	    	}else {
+	    		objSesion.setAttribute("esArtistaOrg", false);
+	    	}
     	}else {
     		objSesion.setAttribute("esArtistaOrg", false);
     	}

@@ -48,6 +48,8 @@ public class EspectaculoController implements IEspectaculo {
 	private String imagen;
 	private boolean canjeVale = false;
 	private String nomPaquete;
+	private String descPremio; 
+	private int cantPremios;
 	
 	
 	public String getNomPaquete() {
@@ -282,7 +284,7 @@ public class EspectaculoController implements IEspectaculo {
 	
 	@Override
 	public void altaEspectaculoWeb(String nomPlataforma, String nickArtista, String nombre, String descripcion,
-			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen, String video)
+			LocalTime duracion, int minEspec, int maxEspec, String url, float costo, LocalDate fechaAlta, List<String> cat, String imagen, String video,String descPremio, int cantPremios)
 			throws NombreEspectaculoExisteException {
 		// TODO Auto-generated method stub
 		
@@ -301,6 +303,8 @@ public class EspectaculoController implements IEspectaculo {
 			this.categorias= cat;
 			this.imagen = imagen;
 			this.video = video;
+			this.descPremio = descPremio;
+			this.cantPremios = cantPremios;
 		}
 		else throw new NombreEspectaculoExisteException("El nombre de espectaculo " + nombre + " ya esta en uso");
 		
@@ -308,7 +312,7 @@ public class EspectaculoController implements IEspectaculo {
 		HandlerPlataforma hplat= HandlerPlataforma.getInstance();
 		Artista art= (Artista) huser.getUsuario(nickUsuario);
 		Plataforma plat= hplat.getPlataforma(nomPlataforma);
-		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias,video);		
+		Espectaculo esp= new Espectaculo(nomespec, duracion, descripcion, minEspect, maxEspect, url, fechaAlta, costo, imagen, categorias,video, descPremio, cantPremios);		
 		Fabrica fabric = Fabrica.getInstance();
 		IPlataforma iPlat = fabric.getIPlataforma();
 		esp.setPlataforma(plat);

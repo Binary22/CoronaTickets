@@ -231,6 +231,7 @@ public class Usuario {
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
 		this.password = password;
+		this.premios = new ArrayList<Premio>();
 		
 
 	}

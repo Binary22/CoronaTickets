@@ -239,6 +239,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataListPremio }
+     * 
+     */
+    public DataListPremio createDataListPremio() {
+        return new DataListPremio();
+    }
+
+    /**
      * Create an instance of {@link LocalDate }
      * 
      */

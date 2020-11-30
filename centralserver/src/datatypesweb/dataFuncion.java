@@ -62,8 +62,10 @@ public class dataFuncion {
     	this.imagen = fun.getImagen();
     	this.finalizo = false;
     	this.fueSorteado = fun.isFueSorteado();
-    	this.setDescriPremio(fun.getPremio().getDescripcion());
-    	this.setFechaSorteo(fun.getPremio().getFechaSorteado().toString());
+    	if(fun.getPremio() != null) {
+    	this.descriPremio = fun.getEspectaculo().getDescPremio();
+    	this.fechaSorteo = fun.getPremio().getFechaSorteado().toString();
+    	}
 		
 	}
 	

@@ -19,22 +19,17 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="aceptado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="artista" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         &lt;element name="descPremio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="finalizado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="maxEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="minEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="minutos" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="minEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="maxEspectadores" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="costo" type="{http://www.w3.org/2001/XMLSchema}float"/>
+ *         &lt;element name="duracion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="minutos" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="fechaReg" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="plataforma" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="artista" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="setFunciones">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -57,9 +52,15 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="url" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="video" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="yaFueValuado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="aceptado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="finalizado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="video" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="descPremio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="videoUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -70,175 +71,76 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dataEspectaculo", propOrder = {
-    "aceptado",
-    "artista",
-    "cantPremios",
-    "categorias",
-    "costo",
-    "descPremio",
+    "nombre",
     "descripcion",
+    "url",
+    "minEspectadores",
+    "maxEspectadores",
+    "costo",
     "duracion",
+    "minutos",
     "fechaReg",
+    "plataforma",
+    "artista",
+    "setFunciones",
+    "yaFueValuado",
+    "aceptado",
     "finalizado",
     "imagen",
-    "maxEspectadores",
-    "minEspectadores",
-    "minutos",
-    "nombre",
-    "plataforma",
-    "setFunciones",
-    "url",
     "video",
-    "yaFueValuado"
+    "categorias",
+    "descPremio",
+    "cantPremios",
+    "videoUrl"
 })
 public class DataEspectaculo {
 
-    protected boolean aceptado;
-    protected String artista;
-    protected int cantPremios;
-    @XmlElement(nillable = true)
-    protected List<String> categorias;
-    protected float costo;
-    protected String descPremio;
-    protected String descripcion;
-    protected String duracion;
-    protected String fechaReg;
-    protected boolean finalizado;
-    protected String imagen;
-    protected int maxEspectadores;
-    protected int minEspectadores;
-    protected String minutos;
     protected String nombre;
+    protected String descripcion;
+    protected String url;
+    protected int minEspectadores;
+    protected int maxEspectadores;
+    protected float costo;
+    protected String duracion;
+    protected String minutos;
+    protected String fechaReg;
     protected String plataforma;
+    protected String artista;
     @XmlElement(required = true)
     protected DataEspectaculo.SetFunciones setFunciones;
-    protected String url;
-    protected String video;
     protected boolean yaFueValuado;
+    protected boolean aceptado;
+    protected boolean finalizado;
+    protected String imagen;
+    protected String video;
+    @XmlElement(nillable = true)
+    protected List<String> categorias;
+    protected String descPremio;
+    protected int cantPremios;
+    protected String videoUrl;
 
     /**
-     * Obtiene el valor de la propiedad aceptado.
-     * 
-     */
-    public boolean isAceptado() {
-        return aceptado;
-    }
-
-    /**
-     * Define el valor de la propiedad aceptado.
-     * 
-     */
-    public void setAceptado(boolean value) {
-        this.aceptado = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad artista.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getArtista() {
-        return artista;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * Define el valor de la propiedad artista.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setArtista(String value) {
-        this.artista = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad cantPremios.
-     * 
-     */
-    public int getCantPremios() {
-        return cantPremios;
-    }
-
-    /**
-     * Define el valor de la propiedad cantPremios.
-     * 
-     */
-    public void setCantPremios(int value) {
-        this.cantPremios = value;
-    }
-
-    /**
-     * Gets the value of the categorias property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the categorias property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCategorias().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getCategorias() {
-        if (categorias == null) {
-            categorias = new ArrayList<String>();
-        }
-        return this.categorias;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad costo.
-     * 
-     */
-    public float getCosto() {
-        return costo;
-    }
-
-    /**
-     * Define el valor de la propiedad costo.
-     * 
-     */
-    public void setCosto(float value) {
-        this.costo = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad descPremio.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDescPremio() {
-        return descPremio;
-    }
-
-    /**
-     * Define el valor de la propiedad descPremio.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescPremio(String value) {
-        this.descPremio = value;
+    public void setNombre(String value) {
+        this.nombre = value;
     }
 
     /**
@@ -266,6 +168,78 @@ public class DataEspectaculo {
     }
 
     /**
+     * Obtiene el valor de la propiedad url.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * Define el valor de la propiedad url.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUrl(String value) {
+        this.url = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad minEspectadores.
+     * 
+     */
+    public int getMinEspectadores() {
+        return minEspectadores;
+    }
+
+    /**
+     * Define el valor de la propiedad minEspectadores.
+     * 
+     */
+    public void setMinEspectadores(int value) {
+        this.minEspectadores = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad maxEspectadores.
+     * 
+     */
+    public int getMaxEspectadores() {
+        return maxEspectadores;
+    }
+
+    /**
+     * Define el valor de la propiedad maxEspectadores.
+     * 
+     */
+    public void setMaxEspectadores(int value) {
+        this.maxEspectadores = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad costo.
+     * 
+     */
+    public float getCosto() {
+        return costo;
+    }
+
+    /**
+     * Define el valor de la propiedad costo.
+     * 
+     */
+    public void setCosto(float value) {
+        this.costo = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad duracion.
      * 
      * @return
@@ -290,6 +264,30 @@ public class DataEspectaculo {
     }
 
     /**
+     * Obtiene el valor de la propiedad minutos.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMinutos() {
+        return minutos;
+    }
+
+    /**
+     * Define el valor de la propiedad minutos.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMinutos(String value) {
+        this.minutos = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad fechaReg.
      * 
      * @return
@@ -311,6 +309,110 @@ public class DataEspectaculo {
      */
     public void setFechaReg(String value) {
         this.fechaReg = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad plataforma.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPlataforma() {
+        return plataforma;
+    }
+
+    /**
+     * Define el valor de la propiedad plataforma.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPlataforma(String value) {
+        this.plataforma = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad artista.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getArtista() {
+        return artista;
+    }
+
+    /**
+     * Define el valor de la propiedad artista.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setArtista(String value) {
+        this.artista = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad setFunciones.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DataEspectaculo.SetFunciones }
+     *     
+     */
+    public DataEspectaculo.SetFunciones getSetFunciones() {
+        return setFunciones;
+    }
+
+    /**
+     * Define el valor de la propiedad setFunciones.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DataEspectaculo.SetFunciones }
+     *     
+     */
+    public void setSetFunciones(DataEspectaculo.SetFunciones value) {
+        this.setFunciones = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad yaFueValuado.
+     * 
+     */
+    public boolean isYaFueValuado() {
+        return yaFueValuado;
+    }
+
+    /**
+     * Define el valor de la propiedad yaFueValuado.
+     * 
+     */
+    public void setYaFueValuado(boolean value) {
+        this.yaFueValuado = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad aceptado.
+     * 
+     */
+    public boolean isAceptado() {
+        return aceptado;
+    }
+
+    /**
+     * Define el valor de la propiedad aceptado.
+     * 
+     */
+    public void setAceptado(boolean value) {
+        this.aceptado = value;
     }
 
     /**
@@ -354,159 +456,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Obtiene el valor de la propiedad maxEspectadores.
-     * 
-     */
-    public int getMaxEspectadores() {
-        return maxEspectadores;
-    }
-
-    /**
-     * Define el valor de la propiedad maxEspectadores.
-     * 
-     */
-    public void setMaxEspectadores(int value) {
-        this.maxEspectadores = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad minEspectadores.
-     * 
-     */
-    public int getMinEspectadores() {
-        return minEspectadores;
-    }
-
-    /**
-     * Define el valor de la propiedad minEspectadores.
-     * 
-     */
-    public void setMinEspectadores(int value) {
-        this.minEspectadores = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad minutos.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMinutos() {
-        return minutos;
-    }
-
-    /**
-     * Define el valor de la propiedad minutos.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMinutos(String value) {
-        this.minutos = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad nombre.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Define el valor de la propiedad nombre.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNombre(String value) {
-        this.nombre = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad plataforma.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPlataforma() {
-        return plataforma;
-    }
-
-    /**
-     * Define el valor de la propiedad plataforma.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPlataforma(String value) {
-        this.plataforma = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad setFunciones.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DataEspectaculo.SetFunciones }
-     *     
-     */
-    public DataEspectaculo.SetFunciones getSetFunciones() {
-        return setFunciones;
-    }
-
-    /**
-     * Define el valor de la propiedad setFunciones.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DataEspectaculo.SetFunciones }
-     *     
-     */
-    public void setSetFunciones(DataEspectaculo.SetFunciones value) {
-        this.setFunciones = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad url.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Define el valor de la propiedad url.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
-
-    /**
-     * Gets the value of the video property.
+     * Obtiene el valor de la propiedad video.
      * 
      * @return
      *     possible object is
@@ -518,7 +468,7 @@ public class DataEspectaculo {
     }
 
     /**
-     * Sets the value of the video property.
+     * Define el valor de la propiedad video.
      * 
      * @param value
      *     allowed object is
@@ -530,7 +480,76 @@ public class DataEspectaculo {
     }
 
     /**
-     * Gets the value of the yaFueValuado property.
+     * Gets the value of the categorias property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the categorias property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCategorias().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getCategorias() {
+        if (categorias == null) {
+            categorias = new ArrayList<String>();
+        }
+        return this.categorias;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad descPremio.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescPremio() {
+        return descPremio;
+    }
+
+    /**
+     * Define el valor de la propiedad descPremio.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescPremio(String value) {
+        this.descPremio = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantPremios.
+     * 
+     */
+    public int getCantPremios() {
+        return cantPremios;
+    }
+
+    /**
+     * Define el valor de la propiedad cantPremios.
+     * 
+     */
+    public void setCantPremios(int value) {
+        this.cantPremios = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad videoUrl.
      * 
      * @return
      *     possible object is
@@ -551,22 +570,6 @@ public class DataEspectaculo {
      */
     public void setVideoUrl(String value) {
         this.videoUrl = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad yaFueValuado.
-     * 
-     */
-    public boolean isYaFueValuado() {
-        return yaFueValuado;
-    }
-
-    /**
-     * Define el valor de la propiedad yaFueValuado.
-     * 
-     */
-    public void setYaFueValuado(boolean value) {
-        this.yaFueValuado = value;
     }
 
 
