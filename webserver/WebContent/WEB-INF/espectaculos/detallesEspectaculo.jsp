@@ -40,8 +40,20 @@
                     <div class="card" style="width: 100%;">
                         <img class="card-img-top" src="<%=espect.getImagen() %>" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"></slot>Espectáculo:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
+                        	<div class="row">
+                        		<div class="col-6">
+		                            <h5 class="card-title"></slot>Espectáculo:</h5>
+		                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
+		                        </div>
+		                        <div class="col-6"> 
+		                        	<p style="float:right" class="text-muted">
+		                        	
+		                            <a href="favoritonoseque"><img src="resources/media/coralleno.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+		                       		
+		                       		5 favoritos
+		                            </p>
+		                        </div>
+	                        </div>
                             <% if(espect.getPuntajes().size() != 0) { %>
                             <h5 class="card-title">
                             <%
