@@ -1,5 +1,11 @@
 package logica;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -60,7 +67,57 @@ public class Publicador {
 
     @WebMethod(exclude = true)
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9129/publicador", this);
+    	
+		InputStream input;
+		try {
+			
+			input = new FileInputStream(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+	
+			Properties prop = new Properties();	
+			try {
+				prop.load(input);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+			String url = prop.getProperty("URL");
+	        endpoint = Endpoint.publish(url, this);
+		
+		} catch (FileNotFoundException e) {
+			
+			File theDir = new File(System.getProperty("user.home") + "/.coronaTickets");
+			if (!theDir.exists()){
+			    theDir.mkdirs();
+			}
+			
+			File nuevaconf = new File(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+			try {
+				nuevaconf.createNewFile();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			try {
+				FileWriter myWriter = new FileWriter(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+				myWriter.write("URL=http://localhost:9129/publicador");
+				myWriter.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			try {
+				input = new FileInputStream(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+		
+				Properties prop = new Properties();	
+				try {
+					prop.load(input);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}	
+				String url = prop.getProperty("URL");
+		        endpoint = Endpoint.publish(url, this);
+			} catch (FileNotFoundException e2) {
+				e2.printStackTrace();
+			}
+		}
     }
 
     @WebMethod(exclude = true)
@@ -535,9 +592,7 @@ public class Publicador {
 	    	}
         }
     			
-    	for (String cat : dataEsp.getCategorias()) {
-    		categorias.add(cat);
-    	}
+    	
     	
     	Float costo = dataEsp.getCosto();
     	String imagen = dataEsp.getImagen();

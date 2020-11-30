@@ -203,7 +203,11 @@
                             <h5 class="card-title"></slot>Espectadores:</h5>
                             <h6 class="card-subtitle mb-2 text-muted">De <%=espect.getMinEspectadores() %> a <%=espect.getMaxEspectadores() %></h6>
                             <h5 class="card-title"></slot>Fecha de alta:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getFechaReg() %></h6>  
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getFechaReg() %></h6>
+                            <%if(!espect.getDescPremio().isEmpty()){ %>
+                            <h5 class="card-title">Premio:</h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDescPremio() %></h6>
+                            <%} %>  
                             <% if( espect.getVideo() != "" && espect.getVideo() != null ) { %>
                             <h5 class="card-title"></slot>Video:</h5>
 	                		<div class="embed-responsive embed-responsive-4by3">
@@ -257,7 +261,7 @@
   					                    	<carta-funcion-sorteada img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion-sorteada>
 		                  					
 		                  					
-		                  				<%}else if(funciones.get(key).isFinalizo()){%>
+		                  				<%}else if(funciones.get(key).isFinalizo() && (espect.getDescPremio() != null && espect.getDescPremio() != "") && espect.getCantPremios() > 0){%>
   					                    		<carta-funcion-premio img="resources/media/espectaculos/maracas.jpg" titulo= "<%=funciones.get(key).getNombre() %>" artistas = "<%= var %>" nombreEspectaculo = "<%=espect.getNombre() %>" ></carta-funcion-premio>
 		                  					
 		                  					<% }else{%>

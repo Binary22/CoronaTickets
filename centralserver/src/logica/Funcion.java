@@ -167,6 +167,16 @@ public class Funcion {
 			for(int i = 0; i < elegidos.size(); i++) {
 				elegidos.get(i).agregarPremio(nuevo);
 			}
+		}else {
+			Premio nuevo = new Premio(LocalDate.now());
+			nuevo.setDescripcion(this.espectaculo.getDescPremio());
+			nuevo.setFuncion(this);
+			this.premio = nuevo;
+			this.premiados = espectadores;
+			this.fueSorteado = true;
+			for(int i = 0; i < espectadores.size(); i++) {
+				espectadores.get(i).agregarPremio(nuevo);
+			}
 		}
 	}
 	public List<Usuario> getPremiados() {

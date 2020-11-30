@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataFuncion complex type.
+ * <p>Clase Java para dataFuncion complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataFuncion">
@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="finalizo" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="descriPremio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaSorteo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,7 +53,8 @@ import javax.xml.bind.annotation.XmlType;
     "fueSorteado",
     "finalizo",
     "descriPremio",
-    "fechaSorteo"
+    "fechaSorteo",
+    "cantPremios"
 })
 public class DataFuncion {
 
@@ -70,9 +72,10 @@ public class DataFuncion {
     protected boolean finalizo;
     protected String descriPremio;
     protected String fechaSorteo;
+    protected int cantPremios;
 
     /**
-     * Gets the value of the nombre property.
+     * Obtiene el valor de la propiedad nombre.
      * 
      * @return
      *     possible object is
@@ -84,7 +87,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Define el valor de la propiedad nombre.
      * 
      * @param value
      *     allowed object is
@@ -96,7 +99,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the fecha property.
+     * Obtiene el valor de la propiedad fecha.
      * 
      * @return
      *     possible object is
@@ -108,7 +111,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the fecha property.
+     * Define el valor de la propiedad fecha.
      * 
      * @param value
      *     allowed object is
@@ -120,7 +123,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the horaInicio property.
+     * Obtiene el valor de la propiedad horaInicio.
      * 
      * @return
      *     possible object is
@@ -132,7 +135,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the horaInicio property.
+     * Define el valor de la propiedad horaInicio.
      * 
      * @param value
      *     allowed object is
@@ -144,7 +147,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the fechaReg property.
+     * Obtiene el valor de la propiedad fechaReg.
      * 
      * @return
      *     possible object is
@@ -156,7 +159,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the fechaReg property.
+     * Define el valor de la propiedad fechaReg.
      * 
      * @param value
      *     allowed object is
@@ -226,7 +229,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the espectaculo property.
+     * Obtiene el valor de la propiedad espectaculo.
      * 
      * @return
      *     possible object is
@@ -238,7 +241,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the espectaculo property.
+     * Define el valor de la propiedad espectaculo.
      * 
      * @param value
      *     allowed object is
@@ -250,7 +253,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the imagen property.
+     * Obtiene el valor de la propiedad imagen.
      * 
      * @return
      *     possible object is
@@ -262,7 +265,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the imagen property.
+     * Define el valor de la propiedad imagen.
      * 
      * @param value
      *     allowed object is
@@ -274,7 +277,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the fueSorteado property.
+     * Obtiene el valor de la propiedad fueSorteado.
      * 
      */
     public boolean isFueSorteado() {
@@ -282,7 +285,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the fueSorteado property.
+     * Define el valor de la propiedad fueSorteado.
      * 
      */
     public void setFueSorteado(boolean value) {
@@ -290,7 +293,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the finalizo property.
+     * Obtiene el valor de la propiedad finalizo.
      * 
      */
     public boolean isFinalizo() {
@@ -298,7 +301,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the finalizo property.
+     * Define el valor de la propiedad finalizo.
      * 
      */
     public void setFinalizo(boolean value) {
@@ -306,7 +309,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the descriPremio property.
+     * Obtiene el valor de la propiedad descriPremio.
      * 
      * @return
      *     possible object is
@@ -318,7 +321,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the descriPremio property.
+     * Define el valor de la propiedad descriPremio.
      * 
      * @param value
      *     allowed object is
@@ -330,7 +333,7 @@ public class DataFuncion {
     }
 
     /**
-     * Gets the value of the fechaSorteo property.
+     * Obtiene el valor de la propiedad fechaSorteo.
      * 
      * @return
      *     possible object is
@@ -342,7 +345,7 @@ public class DataFuncion {
     }
 
     /**
-     * Sets the value of the fechaSorteo property.
+     * Define el valor de la propiedad fechaSorteo.
      * 
      * @param value
      *     allowed object is
@@ -351,6 +354,22 @@ public class DataFuncion {
      */
     public void setFechaSorteo(String value) {
         this.fechaSorteo = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cantPremios.
+     * 
+     */
+    public int getCantPremios() {
+        return cantPremios;
+    }
+
+    /**
+     * Define el valor de la propiedad cantPremios.
+     * 
+     */
+    public void setCantPremios(int value) {
+        this.cantPremios = value;
     }
 
 }

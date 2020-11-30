@@ -28,6 +28,7 @@ public class dataFuncion {
 	private boolean finalizo;
 	private String descriPremio;
 	private String fechaSorteo;
+	private int cantPremios;
 	
 	
 	public boolean isFueSorteado() {
@@ -62,10 +63,12 @@ public class dataFuncion {
     	this.imagen = fun.getImagen();
     	this.finalizo = false;
     	this.fueSorteado = fun.isFueSorteado();
-    	if(fun.getPremio() != null) {
+    	
     	this.descriPremio = fun.getEspectaculo().getDescPremio();
+    	if(fun.getPremio() != null) {
     	this.fechaSorteo = fun.getPremio().getFechaSorteado().toString();
     	}
+    	this.cantPremios = fun.getEspectaculo().getCantPremios();
 		
 	}
 	
@@ -174,6 +177,18 @@ public class dataFuncion {
 
 	public void setFechaSorteo(String fechaSorteo) {
 		this.fechaSorteo = fechaSorteo;
+	}
+
+
+
+	public int getCantPremios() {
+		return cantPremios;
+	}
+
+
+
+	public void setCantPremios(int cantPremios) {
+		this.cantPremios = cantPremios;
 	}
 	
 	

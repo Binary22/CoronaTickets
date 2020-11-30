@@ -33,6 +33,7 @@
 						  <%i = j;} 
 					}else{%>
 						 <h5 class="card-subtitle mb-2 text-muted">No ha ganado ningún premio</h5>
+						 <img alt="" src="resources/media/stuartTriste.png">
 						
 					<%} %>
 		

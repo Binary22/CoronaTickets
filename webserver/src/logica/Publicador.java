@@ -90,19 +90,6 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
-    public DataListEspOrg getEspectaculos(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.DataListEspOrg
-     */
-    @WebMethod
-    @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/getEspectaculosDePlataformaRequest", output = "http://logica/Publicador/getEspectaculosDePlataformaResponse")
     public DataListEspOrg getEspectaculosDePlataforma(
         @WebParam(name = "arg0", partName = "arg0")
@@ -143,16 +130,6 @@ public interface Publicador {
     @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/listarPaquetesRequest", output = "http://logica/Publicador/listarPaquetesResponse")
     public ListaPaquete listarPaquetes();
-
-    /**
-     * 
-     * @return
-     *     returns logica.DataListPaquetes
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
-    public DataListPaquetes getPaquetes();
 
     /**
      * 
@@ -454,6 +431,29 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListEspOrg
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
+    public DataListEspOrg getEspectaculos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns logica.DataListPaquetes
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
+    public DataListPaquetes getPaquetes();
+
+    /**
+     * 
      * @return
      *     returns logica.DataListPlataformas
      */
@@ -499,8 +499,8 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {
@@ -635,22 +635,6 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @return
-     *     returns logica.DataFuncion
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
-    public DataFuncion getFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
      *     returns logica.ListaUsuario
      */
     @WebMethod
@@ -670,6 +654,22 @@ public interface Publicador {
     @WebMethod
     @Action(input = "http://logica/Publicador/sortearPremiosFuncionRequest", output = "http://logica/Publicador/sortearPremiosFuncionResponse")
     public void sortearPremiosFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns logica.DataFuncion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
+    public DataFuncion getFuncion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
