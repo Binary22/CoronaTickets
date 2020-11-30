@@ -89,6 +89,10 @@
     	<servlet-name>mobileHome</servlet-name>
     	<servlet-class>controladores.MobileHome</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>DetallesEspectaculoFinalizado</servlet-name>
+    	<servlet-class>controladores.DetallesEspectaculoFinalizado</servlet-class>
+    </servlet>
     
     <servlet>
     	<servlet-name>consultaFuncion</servlet-name>
@@ -220,6 +224,10 @@
     <servlet-mapping>
     	<servlet-name>FinalizarEspectaculo</servlet-name>
     	<url-pattern>/finalizarespectaculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>DetallesEspectaculoFinalizado</servlet-name>
+    	<url-pattern>/detallesEspectaculoFinalizado</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>500</error-code>
