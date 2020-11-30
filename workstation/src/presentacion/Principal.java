@@ -761,7 +761,7 @@ public class Principal extends JFrame {
 		// cargar imagenes a paquetes
 		HandlerPaquetes hp = HandlerPaquetes.getInstance();
 		try {
-			hp.getPaquete("Paquete de Bandas").setImagen("resources/media/paquetes/bandas.png");
+			hp.getPaquete("Paquete de Bandas").setImagen("resources/media/paquetes/bandas.jpg");
 		} catch (NoExistePaqueteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -774,6 +774,12 @@ public class Principal extends JFrame {
 		}
 		try {
 			hp.getPaquete("Paquete Latino").setImagen("resources/media/paquetes/latino.jpeg");
+		} catch (NoExistePaqueteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			hp.getPaquete("La Triple Dyango").setImagen("resources/media/paquetes/triple.jpg");
 		} catch (NoExistePaqueteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
