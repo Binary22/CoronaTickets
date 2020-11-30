@@ -131,7 +131,8 @@
 													</svg> 4
 						                            <div class="col-xs-8 col-md-9">
 						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: <%= total> 0 ? (cant4 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+  															<div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: <%= total> 0 ? (cant4 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+  															</div>
 														</div>
 						                            </div>
 						                            <!-- end 4 -->
