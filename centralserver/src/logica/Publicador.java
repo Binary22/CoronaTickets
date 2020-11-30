@@ -1,5 +1,9 @@
 package logica;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -60,7 +65,24 @@ public class Publicador {
 
     @WebMethod(exclude = true)
     public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9129/publicador", this);
+    	
+		InputStream input;
+		try {
+			
+			input = new FileInputStream(System.getProperty("user.home") + "/.coronaTickets/config.properties");
+	
+			Properties prop = new Properties();	
+			try {
+				prop.load(input);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+			String url = prop.getProperty("URL");
+	        endpoint = Endpoint.publish(url, this);
+		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
     }
 
     @WebMethod(exclude = true)
