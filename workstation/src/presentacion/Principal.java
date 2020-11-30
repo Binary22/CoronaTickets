@@ -865,7 +865,7 @@ public class Principal extends JFrame {
 		he.getEspectaculo("Springsteen on Broadway").setCantPremios(2);
 		he.getEspectaculo("Springsteen on Broadway").setVideo("M1xDzgob1JI");
 		
-		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podráshacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
+		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podrás hacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
 		he.getEspectaculo("Bien de Familia").setCantPremios(1);
 		he.getEspectaculo("Bien de Familia").setVideo("dPSlBRg0HeA");
 		
