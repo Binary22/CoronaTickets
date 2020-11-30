@@ -11,16 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypesweb.dataEspectaculo;
 import logica.DataEspectaculo;
 import logica.DataPaquete;
-import logica.Espectaculo;
-import logica.HandlerEspectaculos;
-import logica.HandlerPaquetes;
-import logica.Paquete;
 import logica.Publicador;
 import logica.PublicadorService;
-import logica.ListaEspectaculo.Espectaculos.Entry;
 
 /**
  * Servlet implementation class DetallesEspectaculo

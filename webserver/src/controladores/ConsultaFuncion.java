@@ -1,8 +1,6 @@
 package controladores;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import logica.DataEspectaculo;
 import logica.DataFuncion;
-import logica.DataRegistro;
-import logica.DataUsuario;
-import logica.DataVale;
 import logica.Publicador;
 import logica.PublicadorService;
-import logica.UsuarioConMismoMailException_Exception;
-import logica.UsuarioConMismoNickException_Exception;
 
 public class ConsultaFuncion extends HttpServlet {
 	

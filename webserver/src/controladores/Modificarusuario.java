@@ -6,23 +6,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypesweb.dataArtista;
-import datatypesweb.dataUsuario;
-import logica.Artista;
 import logica.DataArtista;
 import logica.DataUsuario;
-import logica.Fabrica;
-import logica.HandlerUsuarios;
-import logica.IUsuario;
 import logica.Publicador;
 import logica.PublicadorService;
-import logica.Usuario;
 
 /**
  * Servlet implementation class Modificarusuario

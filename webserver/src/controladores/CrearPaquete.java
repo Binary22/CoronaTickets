@@ -12,12 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import excepciones.NoExistePaqueteException;
-import excepciones.PaqueteConMismoNombreException;
-import logica.Fabrica;
-import logica.HandlerPaquetes;
-import logica.IEspectaculo;
-import logica.IPaquete;
 import logica.NoExistePaqueteException_Exception;
 import logica.PaqueteConMismoNombreException_Exception;
 import logica.Publicador;
