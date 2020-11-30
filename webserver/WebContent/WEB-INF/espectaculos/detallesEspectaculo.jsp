@@ -144,7 +144,6 @@
 						        <h6 class="card-title">
 						      		 <%= funciones.get(key).getNombre() %>
 						        </h6>
-							
 						        <h6 class="card-subtitle mb-2 text-muted">Artistas Invitados:</h6>
 						        	
 						        <p id="desc" class="card-text">
