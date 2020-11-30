@@ -96,7 +96,6 @@ class HandlerUsuariosTest {
 		fail("Not yet implemented");
 	}
 
-
 	@Test
 	void testExisteMail() {
 		fail("Not yet implemented");
@@ -154,7 +153,7 @@ class HandlerUsuariosTest {
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		};
+	};
 
 		splitBy = ";";
 		try {

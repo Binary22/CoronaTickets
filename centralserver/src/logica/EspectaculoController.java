@@ -529,20 +529,20 @@ public class EspectaculoController implements IEspectaculo {
 				nuevo = new Registro(fecha, true, espectador, fun, 0);
 				nuevo.setRegsCanjeados(this.regsCanjeados);
 				
-			}else if(this.canjeVale) {
+			}else if (this.canjeVale) {
 				//Funcion fun = espect.getFuncion(nomFuncion);
 	        	//Usuario user = hu.getUsuario(userNickname);
 	        	List<Vale> vales = espectador.getVales();
-	        	int i = 0;
+	        	int iter = 0;
 	        	boolean actualizo = false;
-	        	while(i < vales.size() && !actualizo){
-	        		if(vales.get(i).getPaquete().getNombre().compareTo(this.nomPaquete) == 0) {
-	        			if(vales.get(i).getEspectaculo().getNombre().compareTo(nomespect) == 0) {
-	        				vales.get(i).setUsado(true);
+	        	while(iter < vales.size() && !actualizo){
+	        		if(vales.get(iter).getPaquete().getNombre().compareTo(this.nomPaquete) == 0) {
+	        			if(vales.get(iter).getEspectaculo().getNombre().compareTo(nomespect) == 0) {
+	        				vales.get(iter).setUsado(true);
 	        				actualizo = true;
 	        			}
 	        		}
-	        		i++;
+	        		iter++;
 	        	}
 	        	nuevo = new Registro(fecha, false, espectador, fun, espect.getCosto());
 			}
