@@ -36,6 +36,11 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
     String browserName = request.getHeaders("user-agent").nextElement();
     if (browserName.contains("Mobile")) {
     	objSesion.setAttribute("Mobile", true);
+    	if (request.getParameter("recordar") != null) {
+    		objSesion.setMaxInactiveInterval(-1); // no expira la sesion
+    	} else {
+    		objSesion.setMaxInactiveInterval(5); // la sesion expira 5 segundos despues de la ultima request.
+    	}
     }
 	// chequea contraseña
 	try {
