@@ -12,9 +12,11 @@ templatefuncardsorteada.innerHTML = `
         <p id="desc" class="card-text">
         </p>
 		
-        <ul class="list-group mt-auto list-group-horizontal">
-            <a class="list-group-item card-link active flex-fill">Ver Sorteo</a>
+		 <ul class="list-group mt-auto list-group-horizontal">
+			<a class="btn btn-success" role="button">Ver Sorteo</a>	
+           
         </ul>
+        
     </div>
     `
 

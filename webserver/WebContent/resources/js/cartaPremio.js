@@ -12,7 +12,7 @@ templatefuncardpremio.innerHTML = `
         
         <p id="desc" class="card-text">
         </p>
-		
+		<a class="btn btn-success" role="button">Descargar PDF</a>
         
     </div>
     `
@@ -31,7 +31,7 @@ class funcionCardPremio extends HTMLElement {
         this.querySelector('#fecha').innerHTML = this.getAttribute('fecha');
 		this.querySelector('#espect').innerHTML = this.getAttribute('espectaculo');
 		this.querySelector('#fun').innerHTML = this.getAttribute('funcion');
-		//this.querySelector('a').href = 'pdf?name=' + this.getAttribute('espectaculo') + ";" + this.getAttribute('funcion');
+		this.querySelector('a').href = 'pdfgenerador?name=' + this.getAttribute('espectaculo') + ";" + this.getAttribute('funcion');
 
 		
 

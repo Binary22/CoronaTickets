@@ -13,7 +13,8 @@ templatefuncardpremio.innerHTML = `
         </p>
 		
         <ul class="list-group mt-auto list-group-horizontal">
-            <a class="list-group-item card-link active flex-fill">Sortear Premios</a>
+			<a class="btn btn-success" role="button">Sortear Premios</a>	
+           
         </ul>
     </div>
     `

@@ -24,7 +24,7 @@
 					<%if(funcion.isFueSorteado()){ %>
 						<h5 class="card-title">Fecha Sorteo:</h5>
 	                    <h6 class="card-subtitle mb-2 text-muted"><%=funcion.getFechaSorteo() %></h6>
-	                    <h3 class="title">Espectadores de la función:</h3>
+	                    <h3 class="title">Espectadores premiados:</h3>
 	                    
 	                    <%List<DataUsuario> usuarios = (List<DataUsuario>)session.getAttribute("espectadores_premiados");
 	                      int size = usuarios.size();

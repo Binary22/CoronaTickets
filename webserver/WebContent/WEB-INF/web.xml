@@ -117,6 +117,16 @@
     	<servlet-class>controladores.VerPremios</servlet-class>
     </servlet>
     
+    <servlet>
+    	<servlet-name>PdfGenerator</servlet-name>
+    	<servlet-class>controladores.PdfGenerator</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>PdfGenerator</servlet-name>
+    	<url-pattern>/pdfgenerador</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
     	<servlet-name>ValorarEspectaculo</servlet-name>
     	<url-pattern>/votarEspectaculo</url-pattern>
