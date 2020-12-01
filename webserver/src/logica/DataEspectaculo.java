@@ -62,6 +62,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="videoUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="puntajes" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="votantes" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="favoritos" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -95,6 +96,7 @@ import javax.xml.bind.annotation.XmlType;
     "cantPremios",
     "videoUrl",
     "puntajes",
+    "votantes",
     "favoritos"
 })
 public class DataEspectaculo {
@@ -124,6 +126,8 @@ public class DataEspectaculo {
     protected String videoUrl;
     @XmlElement(nillable = true)
     protected List<Integer> puntajes;
+    @XmlElement(nillable = true)
+    protected List<String> votantes;
     protected int favoritos;
 
     /**
@@ -606,6 +610,35 @@ public class DataEspectaculo {
             puntajes = new ArrayList<Integer>();
         }
         return this.puntajes;
+    }
+
+    /**
+     * Gets the value of the votantes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the votantes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getVotantes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getVotantes() {
+        if (votantes == null) {
+            votantes = new ArrayList<String>();
+        }
+        return this.votantes;
     }
 
     /**
