@@ -32,7 +32,16 @@ public class Espectaculo {
 	private String descPremio;
 	private int cantPremios;
 	private String videoUrl;
+	private int favoritos;
 	
+	public int getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(int favoritos) {
+		this.favoritos = favoritos;
+	}
+
 	public String getImagen() {
 		return imagen;
 	}
@@ -96,6 +105,7 @@ public class Espectaculo {
 		this.categorias = new ArrayList<String>();
 		this.imagen = "resources/media/espectaculos/rock.jpg";
 		HandlerUsuarios husers = HandlerUsuarios.getInstancia();
+		this.setFavoritos(0);
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
@@ -117,6 +127,7 @@ public class Espectaculo {
 			this.imagen = imagen;
 		}
 		this.categorias = categs;
+		this.setFavoritos(0);
 	}
 	
 	public Espectaculo(String nombre, LocalTime duracion, String descripcion, int minEspectadores, int maxEspectadores,
@@ -141,6 +152,7 @@ public class Espectaculo {
 		this.video = video;
 		this.descPremio = descPremio;
 		this.cantPremios = cantPremios;
+		this.setFavoritos(0);
 	}
 	
 	public String getNombre() {

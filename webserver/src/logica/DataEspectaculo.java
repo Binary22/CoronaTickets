@@ -62,6 +62,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cantPremios" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="videoUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="puntajes" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="favoritos" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -93,7 +94,8 @@ import javax.xml.bind.annotation.XmlType;
     "descPremio",
     "cantPremios",
     "videoUrl",
-    "puntajes"
+    "puntajes",
+    "favoritos"
 })
 public class DataEspectaculo {
 
@@ -122,6 +124,7 @@ public class DataEspectaculo {
     protected String videoUrl;
     @XmlElement(nillable = true)
     protected List<Integer> puntajes;
+    protected int favoritos;
 
     /**
      * Gets the value of the nombre property.
@@ -603,6 +606,22 @@ public class DataEspectaculo {
             puntajes = new ArrayList<Integer>();
         }
         return this.puntajes;
+    }
+
+    /**
+     * Gets the value of the favoritos property.
+     * 
+     */
+    public int getFavoritos() {
+        return favoritos;
+    }
+
+    /**
+     * Sets the value of the favoritos property.
+     * 
+     */
+    public void setFavoritos(int value) {
+        this.favoritos = value;
     }
 
 

@@ -39,6 +39,18 @@ public class dataEspectaculo {
 	private String videoUrl;
 	private List<Integer> puntajes;
 	
+	private int favoritos;
+	
+	public int getFavoritos() {
+		return favoritos;
+	}
+
+
+	public void setFavoritos(int favoritos) {
+		this.favoritos = favoritos;
+	}
+
+
 	public String getDescPremio() {
 		return descPremio;
 	}
@@ -95,6 +107,7 @@ public class dataEspectaculo {
 		this.setPuntajes(espect.getPuntajes());
 		this.descPremio = espect.getDescPremio();
 		this.cantPremios = espect.getCantPremios();
+		this.favoritos = espect.getFavoritos();
 		
 	}
 	

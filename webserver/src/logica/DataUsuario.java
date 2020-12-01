@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="website" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="premios" type="{http://logica/}dataPremio" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="espectaculos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="favoritos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -65,7 +66,8 @@ import javax.xml.bind.annotation.XmlType;
     "biografia",
     "website",
     "premios",
-    "espectaculos"
+    "espectaculos",
+    "favoritos"
 })
 @XmlSeeAlso({
     DataArtista.class
@@ -97,6 +99,8 @@ public class DataUsuario {
     protected List<DataPremio> premios;
     @XmlElement(nillable = true)
     protected List<String> espectaculos;
+    @XmlElement(nillable = true)
+    protected List<String> favoritos;
 
     /**
      * Gets the value of the nickname property.
@@ -555,6 +559,35 @@ public class DataUsuario {
             espectaculos = new ArrayList<String>();
         }
         return this.espectaculos;
+    }
+
+    /**
+     * Gets the value of the favoritos property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the favoritos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFavoritos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getFavoritos() {
+        if (favoritos == null) {
+            favoritos = new ArrayList<String>();
+        }
+        return this.favoritos;
     }
 
 }

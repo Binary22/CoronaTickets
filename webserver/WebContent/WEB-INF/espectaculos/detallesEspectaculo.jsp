@@ -3,6 +3,7 @@
 <%@page import="logica.DataEspectaculo"%>
 <%@page import="logica.DataEspectaculo.SetFunciones"%>
 <%@page import="logica.DataPaquete"%>
+<%@page import="logica.DataUsuario"%>
 <%@page import="logica.DataFuncion"%>
 <%@page import="logica.Funcion"%>
 <%@page import="java.util.List"%>
@@ -52,8 +53,33 @@
                     <div class="card" style="width: 100%;">
                         <img class="card-img-top" src="<%=espect.getImagen() %>" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"></slot>Espectáculo:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
+                        	<div class="row">
+                        		<div class="col-6">
+		                            <h5 class="card-title"></slot>Espectáculo:</h5>
+		                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
+		                        </div>
+		                        <div class="col-6"> 
+		                        	<p style="float:right" class="text-muted">
+		                        	
+	                        	<% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") {
+	                        		DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
+	                        		            
+	                        		if (userlogged.getFavoritos().contains((String) espect.getNombre())) { 
+			                        	
+			                        	%>
+			                        		<a href="favoritos?espec=<%=espect.getNombre()%>&user=<%=userlogged.getNickname()%>&accion=quitar"><img src="resources/media/coralleno.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } else {  %>
+			                        		<a href="favoritos?espec=<%=espect.getNombre()%>&user=<%=userlogged.getNickname()%>&accion=agregar"><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } %>
+			                        	
+		                       		<% } else { %>
+		                       		<a href="registro"><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+		                       		<% } %>
+		                       		
+		                       		<%=espect.getFavoritos()%> favoritos
+		                            </p>
+		                        </div>
+	                        </div>
                             <% if(espect.getPuntajes().size() != 0) { %>
                             <h5 class="card-title">
                             <%
