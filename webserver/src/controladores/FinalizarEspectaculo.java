@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +39,8 @@ public class FinalizarEspectaculo extends HttpServlet {
     	PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
 	    port.finalizarEspectaculo(nombreEspFin);
-	    resp.sendRedirect("detallesUsuario?name="+nombreUser);
+	    resp.setCharacterEncoding("UTF-8");
+	    resp.sendRedirect("detallesUsuario?name="+URLEncoder.encode(nombreUser, "UTF-8"));
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
