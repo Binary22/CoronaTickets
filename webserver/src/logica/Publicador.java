@@ -292,10 +292,10 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
+     * @throws NoSeleccionoTres_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
-     * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws NoSeleccionoTres_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -326,8 +326,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -356,8 +356,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws ExisteRegistroEspecException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -635,22 +635,6 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @return
-     *     returns logica.DataFuncion
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
-    public DataFuncion getFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
      *     returns logica.ListaUsuario
      */
     @WebMethod
@@ -805,6 +789,22 @@ public interface Publicador {
         String arg0)
         throws NoExistePaqueteException_Exception
     ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns logica.DataFuncion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
+    public DataFuncion getFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 

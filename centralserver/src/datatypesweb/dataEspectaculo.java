@@ -38,6 +38,7 @@ public class dataEspectaculo {
 	private int cantPremios;
 	private String videoUrl;
 	private List<Integer> puntajes;
+	private List<String> votantes;
 	
 	private int favoritos;
 	
@@ -108,6 +109,7 @@ public class dataEspectaculo {
 		this.descPremio = espect.getDescPremio();
 		this.cantPremios = espect.getCantPremios();
 		this.favoritos = espect.getFavoritos();
+		this.votantes = espect.getVotantes();
 		
 	}
 	
@@ -275,5 +277,15 @@ public class dataEspectaculo {
 
 	public void setPuntajes(List<Integer> puntajes) {
 		this.puntajes = puntajes;
+	}
+
+
+	public List<String> getVotantes() {
+		return votantes;
+	}
+
+
+	public void setVotantes(List<String> votantes) {
+		this.votantes = votantes;
 	}
 }
