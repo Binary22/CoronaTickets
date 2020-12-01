@@ -48,7 +48,9 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 		
 		
 		if(port.loginCorrecto(nickname, password)) {
+			String img = port.getUsuario(nickname).getImagen();
 			request.getSession().setAttribute("usuario_logueado", nickname);
+			request.getSession().setAttribute("usuario_avatar", img);
 			nuevoEstado = "LOGIN_CORRECTO";
 			if(port.esArtista(nickname)) {			
 				if (browserName.contains("Mobile")) {
