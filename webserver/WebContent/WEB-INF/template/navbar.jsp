@@ -44,7 +44,7 @@
 	    <li class="nav-item avatar">
 	        <a class="nav-link p-0" href="#">
 	          <img src="<%=(String)session.getAttribute("usuario_avatar")%>" class="rounded-circle z-depth-0 mr-2"
-	            alt="avatar image" height="40" style="max-width:40px">
+	            alt="avatar image" height="40" style="width:40px; height:40px; object-fit: cover;">
 	    </a>
         <li class="nav-item dropdown">
         
