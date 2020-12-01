@@ -39,7 +39,7 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
     	if (request.getParameter("recordar") != null) {
     		objSesion.setMaxInactiveInterval(-1); // no expira la sesion
     	} else {
-    		objSesion.setMaxInactiveInterval(5); // la sesion expira 5 segundos despues de la ultima request.
+    		objSesion.setMaxInactiveInterval(10*60); // la sesion expira 10 minutos despues de la ultima request.
     	}
     }
 	// chequea contraseña

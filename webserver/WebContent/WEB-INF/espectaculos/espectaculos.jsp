@@ -71,7 +71,9 @@
 									<!--  esto es para lo del favorito -->
 									<p style="float:right" class="text-muted">
 		                        	
-	                        	<% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") {
+	                        	<% 
+	                        	if ((session.getAttribute("Mobile") == null)) {
+	                        		if ((session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") ) {
 	                        		DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
 	                        		            
 	                        		if (userlogged.getFavoritos().contains((String) espectaculos.get(j).getNombre())) { 
@@ -88,7 +90,7 @@
 		                       		
 		                       		<%=espectaculos.get(j).getFavoritos()%>
 		                            </p>
-
+									<% } %>
 									<!--  termina lo del favorito -->
 								    </div>
 							    </div>
