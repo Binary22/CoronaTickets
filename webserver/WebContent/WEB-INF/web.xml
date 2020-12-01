@@ -116,6 +116,10 @@
     	<servlet-name>VerPremios</servlet-name>
     	<servlet-class>controladores.VerPremios</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>Favoritos</servlet-name>
+    	<servlet-class>controladores.Favoritos</servlet-class>
+    </servlet>
     
     <servlet>
     	<servlet-name>PdfGenerator</servlet-name>
@@ -264,6 +268,10 @@
     <servlet-mapping>
     	<servlet-name>DetallesEspectaculoFinalizado</servlet-name>
     	<url-pattern>/detallesEspectaculoFinalizado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>Favoritos</servlet-name>
+    	<url-pattern>/favoritos</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>500</error-code>

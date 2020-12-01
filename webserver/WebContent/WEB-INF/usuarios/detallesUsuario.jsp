@@ -107,7 +107,7 @@
 									        <h5 class="card-title"><%=r.getFuncion()%></h5>
 									        <p><%=mapaespec.get(r.getEspectFuncion()).getNombre()%></p>
 									        <a href="detallesEspectaculo?name=<%=mapaespec.get(r.getEspectFuncion()).getNombre()%>" class="btn btn-primary card-text">Ver espectaculo</a>
-									        <% if(LocalDate.parse((r.getFechaFuncion())).isBefore(LocalDate.now()) && (u.getNickname().equals(session.getAttribute("usuario_logueado")))) { %>
+									        <% if(LocalDate.parse((r.getFechaFuncion())).isBefore(LocalDate.now()) && (u.getNickname().equals(session.getAttribute("usuario_logueado"))) && (!mapaespec.get(r.getEspectFuncion()).getVotantes().contains(u.getNickname()))) { %>
 									        <a href="votarEspectaculo?name=<%=mapaespec.get(r.getEspectFuncion()).getNombre()%>" class="btn btn-primary card-text">Valorar espectaculo</a>
 									        <%} %>
 									      </div>

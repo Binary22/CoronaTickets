@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataUsuario complex type.
+ * <p>Java class for dataUsuario complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataUsuario">
@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="website" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="premios" type="{http://logica/}dataPremio" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="espectaculos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="favoritos" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -65,7 +66,8 @@ import javax.xml.bind.annotation.XmlType;
     "biografia",
     "website",
     "premios",
-    "espectaculos"
+    "espectaculos",
+    "favoritos"
 })
 @XmlSeeAlso({
     DataArtista.class
@@ -97,9 +99,11 @@ public class DataUsuario {
     protected List<DataPremio> premios;
     @XmlElement(nillable = true)
     protected List<String> espectaculos;
+    @XmlElement(nillable = true)
+    protected List<String> favoritos;
 
     /**
-     * Obtiene el valor de la propiedad nickname.
+     * Gets the value of the nickname property.
      * 
      * @return
      *     possible object is
@@ -111,7 +115,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad nickname.
+     * Sets the value of the nickname property.
      * 
      * @param value
      *     allowed object is
@@ -123,7 +127,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -135,7 +139,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -147,7 +151,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad apellido.
+     * Gets the value of the apellido property.
      * 
      * @return
      *     possible object is
@@ -159,7 +163,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad apellido.
+     * Sets the value of the apellido property.
      * 
      * @param value
      *     allowed object is
@@ -171,7 +175,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad email.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
@@ -183,7 +187,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad email.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is
@@ -195,7 +199,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaNacimiento.
+     * Gets the value of the fechaNacimiento property.
      * 
      * @return
      *     possible object is
@@ -207,7 +211,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad fechaNacimiento.
+     * Sets the value of the fechaNacimiento property.
      * 
      * @param value
      *     allowed object is
@@ -306,7 +310,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad password.
+     * Gets the value of the password property.
      * 
      * @return
      *     possible object is
@@ -318,7 +322,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad password.
+     * Sets the value of the password property.
      * 
      * @param value
      *     allowed object is
@@ -330,7 +334,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
+     * Gets the value of the imagen property.
      * 
      * @return
      *     possible object is
@@ -342,7 +346,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad imagen.
+     * Sets the value of the imagen property.
      * 
      * @param value
      *     allowed object is
@@ -412,7 +416,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad esArtista.
+     * Gets the value of the esArtista property.
      * 
      */
     public boolean isEsArtista() {
@@ -420,7 +424,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad esArtista.
+     * Sets the value of the esArtista property.
      * 
      */
     public void setEsArtista(boolean value) {
@@ -428,7 +432,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad descripcion.
+     * Gets the value of the descripcion property.
      * 
      * @return
      *     possible object is
@@ -440,7 +444,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad descripcion.
+     * Sets the value of the descripcion property.
      * 
      * @param value
      *     allowed object is
@@ -452,7 +456,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad biografia.
+     * Gets the value of the biografia property.
      * 
      * @return
      *     possible object is
@@ -464,7 +468,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad biografia.
+     * Sets the value of the biografia property.
      * 
      * @param value
      *     allowed object is
@@ -476,7 +480,7 @@ public class DataUsuario {
     }
 
     /**
-     * Obtiene el valor de la propiedad website.
+     * Gets the value of the website property.
      * 
      * @return
      *     possible object is
@@ -488,7 +492,7 @@ public class DataUsuario {
     }
 
     /**
-     * Define el valor de la propiedad website.
+     * Sets the value of the website property.
      * 
      * @param value
      *     allowed object is
@@ -555,6 +559,35 @@ public class DataUsuario {
             espectaculos = new ArrayList<String>();
         }
         return this.espectaculos;
+    }
+
+    /**
+     * Gets the value of the favoritos property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the favoritos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFavoritos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getFavoritos() {
+        if (favoritos == null) {
+            favoritos = new ArrayList<String>();
+        }
+        return this.favoritos;
     }
 
 }

@@ -31,7 +31,9 @@ import excepciones.UsuarioConMismoNickException;
 import excepciones.UsuarioPaqueteComprado;
 import excepciones.noSeleccionoTres;
 import logica.Compra;
+import logica.Espectaculo;
 import logica.Fabrica;
+import logica.Funcion;
 import logica.HandlerCategorias;
 import logica.HandlerEspectaculos;
 import logica.HandlerPaquetes;
@@ -40,6 +42,7 @@ import logica.IEspectaculo;
 import logica.IPaquete;
 import logica.IPlataforma;
 import logica.IUsuario;
+import logica.Premio;
 import logica.Publicador;
 import logica.Usuario;
 
@@ -893,6 +896,25 @@ public class Principal extends JFrame {
 		he.getEspectaculo("Fin de Año con Alcides y amigos").setVideo("65Pu6WP0bag");
 		
 		
+		cargarGanador("Memphis Blues World", "eleven11","Memphis Blues World - B");
+		cargarGanador("Memphis Blues World", "house","Memphis Blues World - B");
+		
+		cargarGanador("Memphis Blues World", "lachiqui","Memphis Blues World - A");
+
+		
+		cargarGanador("Memphis Blues World", "waston","Memphis Blues World - C");
+		cargarGanador("Memphis Blues World", "eleven11","Memphis Blues World - C");
+		
+		
+		cargarGanador("Grandes Éxitos 2020", "sergiop","Grandes Éxitos 2020 - Dia");
+		cargarGanador("Grandes Éxitos 2020", "eleven11","Grandes Éxitos 2020 - Dia");
+		cargarGanador("Grandes Éxitos 2020", "tonyp","Grandes Éxitos 2020 - Dia");
+
+		cargarGanador("Grandes Éxitos 2020", "chino","Grandes Éxitos 2020 - Noche");
+		cargarGanador("Grandes Éxitos 2020", "tonyp","Grandes Éxitos 2020 - Noche");
+		cargarGanador("Grandes Éxitos 2020", "costas","Grandes Éxitos 2020 - Noche");
+
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -900,7 +922,27 @@ public class Principal extends JFrame {
     // aca termina el cargar datos
     }
 	
-
+	private void cargarGanador(String espec, String user, String nomFun) {
+		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		
+		Espectaculo esp = he.getEspectaculo(espec);
+		Funcion fun = esp.getFuncion(nomFun);
+		Premio p = new Premio(LocalDate.of(2020, 8, 17));
+		p.setDescripcion(esp.getDescPremio());
+		p.setFuncion(fun);
+		
+		fun.setPremio(p);
+		fun.setFueSorteado(true);
+		
+		List<Usuario> ganadores = fun.getPremiados();
+		ganadores.add(hu.getUsuario(user));
+		
+		fun.setPremiados(ganadores);
+		hu.getUsuario(user).agregarPremio(p);
+	}
+	
+	
 	public static LocalTime String2LocalTime(String str){
 		return LocalTime.of(Integer.parseInt(str) / 60, Integer.parseInt(str) % 60);
 	}

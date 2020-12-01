@@ -777,4 +777,26 @@ public class Publicador {
     	premiosResp.setPremios(premios);
     	return premiosResp;
     }
+    
+    @WebMethod
+    public void quitarFavorito(String espec, String user) {
+    	HandlerEspectaculos hespec = HandlerEspectaculos.getInstance();
+    	Espectaculo espectaculo = hespec.getEspectaculo(espec);
+    	espectaculo.setFavoritos(espectaculo.getFavoritos() - 1);
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario usuario = husuarios.getUsuario(user);
+    	usuario.quitarFavorito(espectaculo);
+    }
+    
+    @WebMethod
+    public void agregarFavorito(String espec, String user) {
+    	HandlerEspectaculos hespec = HandlerEspectaculos.getInstance();
+    	Espectaculo espectaculo = hespec.getEspectaculo(espec);
+    	espectaculo.setFavoritos(espectaculo.getFavoritos() + 1);
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario usuario = husuarios.getUsuario(user);
+    	usuario.agregarFavorito(espectaculo);
+    }
+    
+    
 }

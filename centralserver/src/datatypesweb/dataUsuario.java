@@ -41,6 +41,8 @@ public class dataUsuario {
 	
 	private List<String> espectaculos;
 	
+	private List<String> favoritos;
+	
 	public dataUsuario(Usuario user) {
 		this.setApellido(user.getApellido());
     	this.setEmail(user.getEmail());
@@ -98,6 +100,11 @@ public class dataUsuario {
     	List<Usuario> segs = user.getSeguidos();
     	for(int i = 0; i < segs.size(); i++) {
     		this.seguidos.add(segs.get(i).getNickname());
+    	}
+    	
+    	this.favoritos = new ArrayList<String>();
+    	for (Espectaculo espec : user.getFavoritos()) {
+    		favoritos.add(espec.getNombre());
     	}
     	
 		

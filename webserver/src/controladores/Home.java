@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.DataEspectaculo;
 import logica.DataPaquete;
+import logica.DataUsuario;
 import logica.ListaPaquete;
 import logica.Publicador;
 import logica.PublicadorService;
@@ -41,10 +42,16 @@ public class Home extends HttpServlet {
     		return;
 		}
 		
+		
 		PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
 	    logica.ListaEspectaculo lista = port.listarEspectaculos();
 		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
+		
+		if (objSesion.getAttribute("estado_sesion") == "LOGIN_CORRECTO") {
+			DataUsuario userlogged = port.getUsuario((String) objSesion.getAttribute("usuario_logueado"));
+			objSesion.setAttribute("userlogged", userlogged);
+		}
 		
     	for(Entry e : lista.getEspectaculos().getEntry()) {
     		

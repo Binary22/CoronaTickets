@@ -41,6 +41,11 @@
 			              <input type="password" class="form-control" name = "password" placeholder="" value="" required>
 			            </div>
 			            <br>
+			            <div>
+			            	<label>No cerrar sesión</label>
+			            	<input type="checkbox" name="recordar" value="true">
+			            </div>
+			            <br>
             			<button type="submit" class="btn btn-primary">Iniciar Sesion</button>
         			</form>
        		 	</div>

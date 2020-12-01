@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%-- <%@page errorPage="/WEB-INF/500.jsp"%> --%>
-<%@page import="java.util.ArrayList,java.util.List, java.util.Collection, logica.Espectaculo, java.util.Iterator, logica.DataPaquete, logica.DataEspectaculo"%>
+<%@page import="java.util.ArrayList,java.util.List, java.util.Collection, logica.Espectaculo, java.util.Iterator, logica.DataPaquete, logica.DataEspectaculo, logica.DataUsuario"%>
 <!doctype html>
 <html>
    <head>
@@ -23,8 +23,54 @@
         				break;
         			}
         			%>
-        			<carta-espectaculo  id = "<%=e.getPlataforma()%>" titulo = "<%=e.getNombre() %>" descripcion = "<%=e.getDescripcion() %>"
-				    	img = "<%=e.getImagen() %>" precio = <%=e.getCosto() %> artista = "<%=e.getArtista()%>"></carta-espectaculo>
+        			
+        			
+        			
+        			<div class="card" style="flex: 0 0 30%;">
+						    <img class="card-img-top" style="object-fit: cover; height:15rem;" src="<%=e.getImagen() %>">
+						    <div class="card-body d-flex flex-column">
+						    	<div class="row">
+						    		<div class="col-9">
+								        <h5 class="card-title"><%=e.getNombre() %></h5>
+								        <h6 class="card-subtitle mb-2 text-muted"><%=e.getArtista() %></h6>
+								    </div>
+								    <div class="col-3">	
+									<!--  esto es para lo del favorito -->
+									<p style="float:right" class="text-muted">
+		                        	
+	                        	<% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") {
+	                        		DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
+	                        		            
+	                        		if (userlogged.getFavoritos().contains((String) e.getNombre())) { 
+			                        	
+			                        	%>
+			                        		<a href="favoritos?espec=<%=e.getNombre()%>&user=<%=userlogged.getNickname()%>&accion=quitar"><img src="resources/media/coralleno.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } else {  %>
+			                        		<a href="favoritos?espec=<%=e.getNombre()%>&user=<%=userlogged.getNickname()%>&accion=agregar"><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } %>
+			                        	
+		                       		<% } else { %>
+		                       		<a href="registro"><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+		                       		<% } %>
+		                       		
+		                       		<%=e.getFavoritos()%>
+		                            </p>
+
+									<!--  termina lo del favorito -->
+								    </div>
+							    </div>
+						        <p id="desc" class="card-text"><%=e.getDescripcion() %></p>
+						        <ul class="list-group mt-auto list-group-horizontal">
+						            <a class="list-group-item card-link active flex-fill" href="detallesEspectaculo?name=<%=e.getNombre() %>">Ver Espectaculo</a>
+						            <li id="precio" class="list-group-item">$<%=e.getCosto() %></li>
+						        </ul>
+						    </div>
+						</div>
+        			
+        			
+        			
+        			
+        			
         			<% 
         			i++;
         		} %>

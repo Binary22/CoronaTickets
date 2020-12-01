@@ -90,7 +90,7 @@
                                 <h5 class="card-title">Biografía:</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><%=a.getBiografia()%></h6>
                                 <h5 class="card-title">Website:</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><%=a.getWebsite()%></h6>
+                                <a href="https://<%=a.getWebsite()%>" class="card-subtitle mb-2"><%=a.getWebsite()%></a>
                                 
                             </div>
                         </div>

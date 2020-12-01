@@ -36,6 +36,11 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
     String browserName = request.getHeaders("user-agent").nextElement();
     if (browserName.contains("Mobile")) {
     	objSesion.setAttribute("Mobile", true);
+    	if (request.getParameter("recordar") != null) {
+    		objSesion.setMaxInactiveInterval(-1); // no expira la sesion
+    	} else {
+    		objSesion.setMaxInactiveInterval(5); // la sesion expira 5 segundos despues de la ultima request.
+    	}
     }
 	// chequea contraseña
 	try {
@@ -43,7 +48,9 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 		
 		
 		if(port.loginCorrecto(nickname, password)) {
+			String img = port.getUsuario(nickname).getImagen();
 			request.getSession().setAttribute("usuario_logueado", nickname);
+			request.getSession().setAttribute("usuario_avatar", img);
 			nuevoEstado = "LOGIN_CORRECTO";
 			if(port.esArtista(nickname)) {			
 				if (browserName.contains("Mobile")) {
