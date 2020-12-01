@@ -90,6 +90,19 @@ public interface Publicador {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
+    public DataListEspOrg getEspectaculos(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.DataListEspOrg
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://logica/Publicador/getEspectaculosDePlataformaRequest", output = "http://logica/Publicador/getEspectaculosDePlataformaResponse")
     public DataListEspOrg getEspectaculosDePlataforma(
         @WebParam(name = "arg0", partName = "arg0")
@@ -133,6 +146,16 @@ public interface Publicador {
 
     /**
      * 
+     * @return
+     *     returns logica.DataListPaquetes
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
+    public DataListPaquetes getPaquetes();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns logica.DataListFunsEspect
@@ -163,8 +186,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -201,8 +224,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -269,10 +292,10 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
+     * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
      * @throws NoSeleccionoTres_Exception
-     * @throws ExisteRegistroEspecException_Exception
-     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -302,9 +325,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -332,9 +355,9 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws FuncionAlcanzoLimiteException_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FechaPosterior_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -428,29 +451,6 @@ public interface Publicador {
     public DataListArtInvi getArtistas(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.DataListEspOrg
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getEspectaculosRequest", output = "http://logica/Publicador/getEspectaculosResponse")
-    public DataListEspOrg getEspectaculos(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns logica.DataListPaquetes
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getPaquetesRequest", output = "http://logica/Publicador/getPaquetesResponse")
-    public DataListPaquetes getPaquetes();
 
     /**
      * 
@@ -635,6 +635,22 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @return
+     *     returns logica.DataFuncion
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
+    public DataFuncion getFuncion(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
      *     returns logica.ListaUsuario
      */
     @WebMethod
@@ -654,22 +670,6 @@ public interface Publicador {
     @WebMethod
     @Action(input = "http://logica/Publicador/sortearPremiosFuncionRequest", output = "http://logica/Publicador/sortearPremiosFuncionResponse")
     public void sortearPremiosFuncion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns logica.DataFuncion
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/getFuncionRequest", output = "http://logica/Publicador/getFuncionResponse")
-    public DataFuncion getFuncion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -708,6 +708,32 @@ public interface Publicador {
     public DataListPremio getPremiosUsuarios(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/quitarFavoritoRequest", output = "http://logica/Publicador/quitarFavoritoResponse")
+    public void quitarFavorito(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/agregarFavoritoRequest", output = "http://logica/Publicador/agregarFavoritoResponse")
+    public void agregarFavorito(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
     /**
      * 

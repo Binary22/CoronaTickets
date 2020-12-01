@@ -27,7 +27,24 @@ public class Usuario {
 	private List<Usuario> seguidos; // usuarios a los que este usuario sigue
 	private List<Usuario> siguiendo; // usuarios que siguen a este usuario
 	private List<Premio> premios;
+	private List<Espectaculo> favoritos;
 	
+	public List<Espectaculo> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(List<Espectaculo> favoritos) {
+		this.favoritos = favoritos;
+	}
+	
+	public void agregarFavorito(Espectaculo espectaculo) {
+		this.favoritos.add(espectaculo);
+	}
+	
+	public void quitarFavorito(Espectaculo espectaculo) {
+		this.favoritos.remove(espectaculo);
+	}
+
 	public void agregarPremio(Premio premio) {
 		this.premios.add(premio);
 	}
@@ -213,7 +230,7 @@ public class Usuario {
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
 		this.premios = new ArrayList<Premio>();
-		
+		this.favoritos = new ArrayList<Espectaculo>();
 
 	}
 	
@@ -232,6 +249,7 @@ public class Usuario {
 		this.siguiendo = new ArrayList<Usuario>();
 		this.password = password;
 		this.premios = new ArrayList<Premio>();
+		this.favoritos = new ArrayList<Espectaculo>();
 		
 
 	}
@@ -255,6 +273,7 @@ public class Usuario {
 		this.seguidos = new ArrayList<Usuario>();
 		this.siguiendo = new ArrayList<Usuario>();
 		this.premios = new ArrayList<Premio>();
+		this.favoritos = new ArrayList<Espectaculo>();
 		
 
 	}

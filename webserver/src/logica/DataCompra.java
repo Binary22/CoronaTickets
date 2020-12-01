@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataCompra complex type.
+ * <p>Java class for dataCompra complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataCompra">
@@ -37,7 +37,7 @@ public class DataCompra {
     protected String paquete;
 
     /**
-     * Obtiene el valor de la propiedad fecha.
+     * Gets the value of the fecha property.
      * 
      * @return
      *     possible object is
@@ -49,7 +49,7 @@ public class DataCompra {
     }
 
     /**
-     * Define el valor de la propiedad fecha.
+     * Sets the value of the fecha property.
      * 
      * @param value
      *     allowed object is
@@ -61,7 +61,7 @@ public class DataCompra {
     }
 
     /**
-     * Obtiene el valor de la propiedad paquete.
+     * Gets the value of the paquete property.
      * 
      * @return
      *     possible object is
@@ -73,7 +73,7 @@ public class DataCompra {
     }
 
     /**
-     * Define el valor de la propiedad paquete.
+     * Sets the value of the paquete property.
      * 
      * @param value
      *     allowed object is

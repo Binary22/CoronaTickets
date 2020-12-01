@@ -3,6 +3,7 @@
 <%@page import="logica.DataEspectaculo"%>
 <%@page import="logica.DataEspectaculo.SetFunciones"%>
 <%@page import="logica.DataPaquete"%>
+<%@page import="logica.DataUsuario"%>
 <%@page import="logica.DataFuncion"%>
 <%@page import="logica.Funcion"%>
 <%@page import="java.util.List"%>
@@ -48,9 +49,22 @@
 		                        <div class="col-6"> 
 		                        	<p style="float:right" class="text-muted">
 		                        	
-		                            <a href="favoritonoseque"><img src="resources/media/coralleno.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+	                        	<% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") {
+	                        		DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
+	                        		            
+	                        		if (userlogged.getFavoritos().contains((String) espect.getNombre())) { 
+			                        	
+			                        	%>
+			                        		<a href="favoritos?espec=<%=espect.getNombre()%>&user=<%=userlogged.getNickname()%>&accion=quitar"><img src="resources/media/coralleno.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } else {  %>
+			                        		<a href="favoritos?espec=<%=espect.getNombre()%>&user=<%=userlogged.getNickname()%>&accion=agregar"><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } %>
+			                        	
+		                       		<% } else { %>
+		                       		<a href="registro"><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+		                       		<% } %>
 		                       		
-		                       		5 favoritos
+		                       		<%=espect.getFavoritos()%> favoritos
 		                            </p>
 		                        </div>
 	                        </div>
