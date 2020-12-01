@@ -46,7 +46,11 @@ public class Usuario {
 	}
 
 	public void agregarPremio(Premio premio) {
+		if (premios == null) {
+			premios = new ArrayList<Premio>();
+		}
 		this.premios.add(premio);
+
 	}
 	
 	public void agregarSeguido(Usuario usuario) {
@@ -356,6 +360,9 @@ public class Usuario {
 	}
 
 	public List<Premio> getPremios() {
+		if (premios == null) {
+			premios = new ArrayList<Premio>();
+		}
 		return premios;
 	}
 
