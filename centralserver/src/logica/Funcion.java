@@ -180,6 +180,9 @@ public class Funcion {
 		}
 	}
 	public List<Usuario> getPremiados() {
+		if (premiados == null) {
+			premiados = new ArrayList<Usuario>();
+		}
 		return premiados;
 	}
 	public void setPremiados(List<Usuario> premiados) {
