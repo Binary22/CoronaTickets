@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +49,8 @@ public class Favoritos extends HttpServlet {
 	    	port.agregarFavorito(espec, user);
 	    }
 	    
-	    response.sendRedirect("detallesEspectaculo?name=" + espec);
+	    response.setCharacterEncoding("UTF-8");
+	    response.sendRedirect("detallesEspectaculo?name=" + URLEncoder.encode(espec, "UTF-8"));
 	}
 
 	/**
