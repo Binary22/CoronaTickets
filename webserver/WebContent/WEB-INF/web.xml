@@ -125,7 +125,16 @@
     	<servlet-name>PdfGenerator</servlet-name>
     	<servlet-class>controladores.PdfGenerator</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>InfoAccesos</servlet-name>
+    	<servlet-class>controladores.InfoAccesos</servlet-class>
+    </servlet>
     
+    
+    <servlet-mapping>
+    	<servlet-name>InfoAccesos</servlet-name>
+    	<url-pattern>/infoaccesos</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
     	<servlet-name>PdfGenerator</servlet-name>
     	<url-pattern>/pdfgenerador</url-pattern>

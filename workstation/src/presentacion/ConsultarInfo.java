@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
+import java.util.UUID;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -56,9 +57,13 @@ public class ConsultarInfo extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				HandlerInformacion handInfo = HandlerInformacion.getInstancia();
-				String acceso = handInfo.getAcceso();
+				// String acceso = handInfo.getAcceso();
+				
+		    	String random = UUID.randomUUID().toString();
+		    	handInfo.setAcceso(random);
+
 				handInfo.setAhora(LocalTime.now());
-				textField.setText(acceso);
+				textField.setText("infoaccesos?id=" + random);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
