@@ -590,6 +590,48 @@ public interface Publicador {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://logica/Publicador/agregarInfoRequest", output = "http://logica/Publicador/agregarInfoResponse")
+    public void agregarInfo(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3);
+
+    /**
+     * 
+     * @return
+     *     returns logica.ListaInfo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarInfoRequest", output = "http://logica/Publicador/listarInfoResponse")
+    public ListaInfo listarInfo();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/consultaAccesosValidaRequest", output = "http://logica/Publicador/consultaAccesosValidaResponse")
+    public boolean consultaAccesosValida(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns logica.ListaEspectaculo

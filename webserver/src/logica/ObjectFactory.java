@@ -208,6 +208,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataListEspOrg }
+     * 
+     */
+    public DataListEspOrg createDataListEspOrg() {
+        return new DataListEspOrg();
+    }
+
+    /**
      * Create an instance of {@link DataPremio }
      * 
      */
@@ -261,6 +269,14 @@ public class ObjectFactory {
      */
     public DataListPaquetes createDataListPaquetes() {
         return new DataListPaquetes();
+    }
+
+    /**
+     * Create an instance of {@link DataInfo }
+     * 
+     */
+    public DataInfo createDataInfo() {
+        return new DataInfo();
     }
 
     /**

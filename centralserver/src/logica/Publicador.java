@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -25,9 +26,11 @@ import javax.xml.ws.Endpoint;
 
 import datatypesweb.dataEspectaculo;
 import datatypesweb.dataFuncion;
+import datatypesweb.dataInfo;
 import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
+import datatypesweb.ListaInfo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
 import datatypesweb.dataPaquete;
@@ -666,6 +669,33 @@ public class Publicador {
     	Usuariologgueado.quitarSeguido(Usuarioaseguir);
     	Usuarioaseguir.quitarSiguiendo(Usuariologgueado);	
 
+    }
+    @WebMethod
+    public void agregarInfo(String ip, String url, String browser, String os) {
+    	dataInfo info = new dataInfo(ip,url,browser,os);
+    	HandlerInformacion handlerinfo = HandlerInformacion.getInstancia();
+    	LocalTime tiempoPasado = handlerinfo.getAhora();
+    	LocalTime tresMinDespues = tiempoPasado.plusMinutes(3);
+    	if( tresMinDespues.equals(LocalTime.now()) && handlerinfo.getAcceso().equals("") ) {
+    		String random = UUID.randomUUID().toString();
+    		random.replace("-", "");
+    		handlerinfo.setAcceso(random);
+    	}
+    	handlerinfo.agregarInformacion(info);
+    }
+    @WebMethod
+    public ListaInfo listarInfo() {
+    	HandlerInformacion hinfo = HandlerInformacion.getInstancia();
+    	List<dataInfo> listaInformacion =  hinfo.obtenerInformacion();
+    	
+    	List<dataInfo> res = new ArrayList<dataInfo>();
+    	for(int i = 0; i < listaInformacion.size(); i++) {
+    		dataInfo respaldo = new dataInfo(listaInformacion.get(i).getIp(),listaInformacion.get(i).getURL(),listaInformacion.get(i).getNavegador(),listaInformacion.get(i).getSO());
+    		res.add(respaldo);
+    	}
+    	ListaInfo listaRetornar = new ListaInfo();
+    	listaRetornar.setinformacion(res);
+    	return listaRetornar;
     }
     @WebMethod
 	public ListaEspectaculo buscarEspectaculos(String search) {
