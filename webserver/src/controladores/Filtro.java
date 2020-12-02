@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -72,14 +74,14 @@ public class Filtro implements Filter {
 		String url = req.getRequestURI();
 		String os = "";
 		String browser = "";
-		String userAgent = req.getHeaders("user-agent").toString();
+		String userAgent = req.getHeaders("User-Agent").nextElement();
 		String user = req.getHeaders("user-agent").toString().toLowerCase();
 		 if (userAgent.toLowerCase().indexOf("windows") >= 0 )
          {
              os = "Windows";
          } else if(userAgent.toLowerCase().indexOf("mac") >= 0)
          {
-             os = "Mac";
+             os = "OS X";
          } else if(userAgent.toLowerCase().indexOf("x11") >= 0)
          {
              os = "Unix";
@@ -88,42 +90,30 @@ public class Filtro implements Filter {
              os = "Android";
          } else if(userAgent.toLowerCase().indexOf("iphone") >= 0)
          {
-             os = "IPhone";
+             os = "iOS";
          }else{
-             os = "UnKnown, More-Info: "+userAgent;
+             os = "Unknown sistema operitivo sad";
          }
          //===============Browser===========================
-        if (user.contains("msie"))
-        {
-            String substring=userAgent.substring(userAgent.indexOf("MSIE")).split(";")[0];
-            browser=substring.split(" ")[0].replace("MSIE", "IE")+"-"+substring.split(" ")[1];
-        } else if (user.contains("safari") && user.contains("version"))
-        {
-            browser=(userAgent.substring(userAgent.indexOf("Safari")).split(" ")[0]).split("/")[0]+"-"+(userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
-        } else if ( user.contains("opr") || user.contains("opera"))
-        {
-            if(user.contains("opera"))
-                browser=(userAgent.substring(userAgent.indexOf("Opera")).split(" ")[0]).split("/")[0]+"-"+(userAgent.substring(userAgent.indexOf("Version")).split(" ")[0]).split("/")[1];
-            else if(user.contains("opr"))
-                browser=((userAgent.substring(userAgent.indexOf("OPR")).split(" ")[0]).replace("/", "-")).replace("OPR", "Opera");
-        } else if (user.contains("chrome"))
-        {
-            browser=(userAgent.substring(userAgent.indexOf("Chrome")).split(" ")[0]).replace("/", "-");
-        } else if ((user.indexOf("mozilla/7.0") > -1) || (user.indexOf("netscape6") != -1)  || (user.indexOf("mozilla/4.7") != -1) || (user.indexOf("mozilla/4.78") != -1) || (user.indexOf("mozilla/4.08") != -1) || (user.indexOf("mozilla/3") != -1) )
-        {
-            //browser=(userAgent.substring(userAgent.indexOf("MSIE")).split(" ")[0]).replace("/", "-");
-            browser = "Netscape-?";
-
-        } else if (user.contains("firefox"))
-        {
-            browser=(userAgent.substring(userAgent.indexOf("Firefox")).split(" ")[0]).replace("/", "-");
-        } else if(user.contains("rv"))
-        {
-            browser="IE-" + user.substring(user.indexOf("rv") + 3, user.indexOf(")"));
-        } else
-        {
-            browser = "UnKnown, More-Info: "+userAgent;
-        }
+		 if (userAgent.toLowerCase().indexOf("firefox") >= 0 )
+         {
+             browser = "Mozilla Firefox";
+         } else if(userAgent.toLowerCase().indexOf("chrome") >= 0)
+         {
+        	 browser = "Google Chrome";
+         } else if(userAgent.toLowerCase().indexOf("safari") >= 0)
+         {
+        	 browser = "Safari";
+         } else if(userAgent.toLowerCase().indexOf("opera") >= 0)
+         {
+        	 browser = "Opera";
+         } else if(userAgent.toLowerCase().indexOf("vivaldi") >= 0)
+         {
+        	 browser = "Vivaldi";
+         }else{
+        	 browser = "Unknown browser :(";
+         }
+		 
 		PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
 	    port.agregarInfo(ip,url,browser,os);

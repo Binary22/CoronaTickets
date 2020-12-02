@@ -22,7 +22,6 @@ import logica.PublicadorService;
 /**
  * Servlet implementation class InfoAccesos
  */
-@WebServlet("/InfoAccesos")
 public class InfoAccesos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,11 +37,18 @@ public class InfoAccesos extends HttpServlet {
 	    Publicador port = service.getPublicadorPort();
 		
 		HttpSession objSesion = req.getSession();
-		logica.ListaInfo listaInformacion = port.listarInfo();
-		List<DataInfo> listaInformacionReal = listaInformacion.getInformacion();
-		objSesion.setAttribute("dataInformacion", listaInformacionReal );
+		String id = req.getParameter("id");
+		System.out.print(id);
+		if (port.consultaAccesosValida(id)) {
+			logica.ListaInfo listaInformacion = port.listarInfo();
+			List<DataInfo> listaInformacionReal = listaInformacion.getInformacion();
+			objSesion.setAttribute("dataInformacion", listaInformacionReal );
+			
+			req.getRequestDispatcher("/WEB-INF/Accesos/infoAccesos.jsp").forward(req, resp);
+		} else {
+			resp.sendRedirect("home");
+		}
 		
-		req.getRequestDispatcher("/WEB-INF/Accesos/infoAccesos.jsp").forward(req, resp);
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
