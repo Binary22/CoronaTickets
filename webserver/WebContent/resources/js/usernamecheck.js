@@ -7,7 +7,7 @@ $(document).ready(function() {
 				} else {
 					$.ajax({
 						type: "POST",
-						url: "/webserver/usernameChecker",
+						url: "/usernameChecker",
 						data: $('#signupform').serialize(),
 						dataType: "html",
 						cache: false,
