@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataListPlataformas complex type.
+ * <p>Java class for listaInfo complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="dataListPlataformas">
+ * &lt;complexType name="listaInfo">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="plataformas" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="informacion" type="{http://logica/}dataInfo" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dataListPlataformas", propOrder = {
-    "plataformas"
+@XmlType(name = "listaInfo", propOrder = {
+    "informacion"
 })
-public class DataListPlataformas {
+public class ListaInfo {
 
     @XmlElement(nillable = true)
-    protected List<String> plataformas;
+    protected List<DataInfo> informacion;
 
     /**
-     * Gets the value of the plataformas property.
+     * Gets the value of the informacion property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the plataformas property.
+     * This is why there is not a <CODE>set</CODE> method for the informacion property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPlataformas().add(newItem);
+     *    getInformacion().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link DataInfo }
      * 
      * 
      */
-    public List<String> getPlataformas() {
-        if (plataformas == null) {
-            plataformas = new ArrayList<String>();
+    public List<DataInfo> getInformacion() {
+        if (informacion == null) {
+            informacion = new ArrayList<DataInfo>();
         }
-        return this.plataformas;
+        return this.informacion;
     }
 
 }

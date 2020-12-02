@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataArtista complex type.
+ * <p>Java class for dataArtista complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataArtista">
@@ -48,16 +48,16 @@ public class DataArtista
     protected List<JAXBElement<String>> rest;
 
     /**
-     * Obtiene el resto del modelo de contenido. 
+     * Gets the rest of the content model. 
      * 
      * <p>
-     * Ha obtenido esta propiedad que permite capturar todo por el siguiente motivo: 
-     * El nombre de campo "Descripcion" se está utilizando en dos partes diferentes de un esquema. Consulte: 
-     * línea 320 de http://localhost:9129/publicador?xsd=1
-     * línea 98 de http://localhost:9129/publicador?xsd=1
+     * You are getting this "catch-all" property because of the following reason: 
+     * The field name "Descripcion" is used by two different parts of a schema. See: 
+     * line 246 of http://localhost:9129/publicador?xsd=1
+     * line 269 of http://localhost:9129/publicador?xsd=1
      * <p>
-     * Para deshacerse de esta propiedad, aplique una personalización de propiedad a una
-     * de las dos declaraciones siguientes para cambiarles de nombre: 
+     * To get rid of this property, apply a property customization to one 
+     * of both of the following declarations to change their names: 
      * Gets the value of the rest property.
      * 
      * <p>
