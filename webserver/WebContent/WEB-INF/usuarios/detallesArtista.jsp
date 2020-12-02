@@ -109,7 +109,7 @@
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:15rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">

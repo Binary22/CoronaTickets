@@ -37,8 +37,12 @@
                     <%}%>
                     </select>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Comprar</button>
+				<% if(!paquetes.isEmpty()) { %>
+                	<button type="submit" class="btn btn-primary">Comprar</button>
+                <% } else { %>
+                	<a href="home" class="btn btn-primary">Inicio</a>
+                <% } %>
+               
             </form>
             </div>
             </div>
