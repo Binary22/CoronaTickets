@@ -55,11 +55,12 @@
           </div>
         <%}%>
         <br>
-        <form action="registro" method="POST">
+        <form action="registro" method="POST" id="signupform">
             <div class="form-group" >
               <label>Nickname</label>
-              <input type="text" class="form-control" name = "nickname" placeholder="Ej. Rigo23" value="<%= form.get("nickname") %>" required>
+              <input id="nickname" type="text" class="form-control" name = "nickname" placeholder="Ej. Rigo23" value="<%= form.get("nickname") %>" required>
             </div>
+            <div id="msg"></div>
             <div class="form-group">
               <label>Nombre</label>
               <input type="text" class="form-control" name = "nombre" placeholder="Ej. Rigoberto" value="<%= form.get("nombre") %>" required>
@@ -120,10 +121,14 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.5.1.js"
+			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+			  crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="resources/js/navbar.js"></script>
     <script src="resources/js/registro.js"></script>
+    <script src="resources/js/usernamecheck.js"></script>
 </body>
 </html>

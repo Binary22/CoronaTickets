@@ -192,19 +192,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataListEspOrg }
-     * 
-     */
-    public DataListEspOrg createDataListEspOrg() {
-        return new DataListEspOrg();
-    }
-
-    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
     public DataRegistro createDataRegistro() {
         return new DataRegistro();
+    }
+
+    /**
+     * Create an instance of {@link DataListEspOrg }
+     * 
+     */
+    public DataListEspOrg createDataListEspOrg() {
+        return new DataListEspOrg();
     }
 
     /**
@@ -280,19 +280,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataUsuario }
-     * 
-     */
-    public DataUsuario createDataUsuario() {
-        return new DataUsuario();
-    }
-
-    /**
      * Create an instance of {@link DataFuncion }
      * 
      */
     public DataFuncion createDataFuncion() {
         return new DataFuncion();
+    }
+
+    /**
+     * Create an instance of {@link DataUsuario }
+     * 
+     */
+    public DataUsuario createDataUsuario() {
+        return new DataUsuario();
     }
 
     /**

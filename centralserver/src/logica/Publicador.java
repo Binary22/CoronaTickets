@@ -798,5 +798,9 @@ public class Publicador {
     	usuario.agregarFavorito(espectaculo);
     }
     
-    
+    @WebMethod
+    public boolean existeUsuario(String username) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	return husuarios.getNombres().contains(username);
+    }
 }

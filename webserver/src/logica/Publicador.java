@@ -186,8 +186,8 @@ public interface Publicador {
      * @param arg1
      * @param arg0
      * @param arg6
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaUsuarioWebRequest", output = "http://logica/Publicador/altaUsuarioWebResponse", fault = {
@@ -224,8 +224,8 @@ public interface Publicador {
      * @param arg6
      * @param arg9
      * @param arg8
-     * @throws UsuarioConMismoMailException_Exception
      * @throws UsuarioConMismoNickException_Exception
+     * @throws UsuarioConMismoMailException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/altaArtistaWebRequest", output = "http://logica/Publicador/altaArtistaWebResponse", fault = {
@@ -292,10 +292,10 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws NoSeleccionoTres_Exception
-     * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws NoSeleccionoTres_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -325,9 +325,9 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroValesRequest", output = "http://logica/Publicador/confirmarRegistroValesResponse", fault = {
@@ -355,9 +355,9 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws FechaPosterior_Exception
-     * @throws ExisteRegistroEspecException_Exception
      * @throws FuncionAlcanzoLimiteException_Exception
+     * @throws ExisteRegistroEspecException_Exception
+     * @throws FechaPosterior_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroTradicionalRequest", output = "http://logica/Publicador/confirmarRegistroTradicionalResponse", fault = {
@@ -470,8 +470,8 @@ public interface Publicador {
      * @param arg4
      * @param arg1
      * @param arg0
-     * @throws PaqueteConMismoNombreException_Exception
      * @throws NoExistePaqueteException_Exception
+     * @throws PaqueteConMismoNombreException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/crearPaqueteRequest", output = "http://logica/Publicador/crearPaqueteResponse", fault = {
@@ -723,6 +723,42 @@ public interface Publicador {
      * 
      * @param arg0
      * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/existeUsuarioRequest", output = "http://logica/Publicador/existeUsuarioResponse")
+    public boolean existeUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns net.java.dev.jaxb.array.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarPlataformasRequest", output = "http://logica/Publicador/listarPlataformasResponse")
+    public StringArray listarPlataformas();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns logica.ListaEspectaculo
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://logica/Publicador/listarEspectaculosPlataformaRequest", output = "http://logica/Publicador/listarEspectaculosPlataformaResponse")
+    public ListaEspectaculo listarEspectaculosPlataforma(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns logica.DataEspectaculo
      */
     @WebMethod
@@ -805,28 +841,5 @@ public interface Publicador {
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
-
-    /**
-     * 
-     * @return
-     *     returns net.java.dev.jaxb.array.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarPlataformasRequest", output = "http://logica/Publicador/listarPlataformasResponse")
-    public StringArray listarPlataformas();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns logica.ListaEspectaculo
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://logica/Publicador/listarEspectaculosPlataformaRequest", output = "http://logica/Publicador/listarEspectaculosPlataformaResponse")
-    public ListaEspectaculo listarEspectaculosPlataforma(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
 
 }

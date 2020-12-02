@@ -172,6 +172,14 @@
     	<url-pattern>/cargardatos</url-pattern>
     </servlet-mapping>
    
+   <servlet>
+        <servlet-name>UsernameChecker</servlet-name>
+        <servlet-class>controladores.UsernameChecker</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsernameChecker</servlet-name>
+        <url-pattern>/usernameChecker</url-pattern>
+    </servlet-mapping>
    
     <servlet-mapping>
         <servlet-name>Paquetes</servlet-name>
