@@ -52,6 +52,12 @@
       </head>
 </head>
 <body>
+
+    <div class="custom-control custom-switch" style="margin-left:1em; display:none;">
+	  <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+	  <label class="custom-control-label" for="darkSwitch"></label>
+	</div>
+	<script src="resources/js/dark-mode-switch.js"></script>
 	
 
 	<div class="container">
