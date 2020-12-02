@@ -674,14 +674,10 @@ public class Publicador {
     public void agregarInfo(String ip, String url, String browser, String os) {
     	dataInfo info = new dataInfo(ip,url,browser,os);
     	HandlerInformacion handlerinfo = HandlerInformacion.getInstancia();
-    	LocalTime tiempoPasado = handlerinfo.getAhora();
-    	LocalTime tresMinDespues = tiempoPasado.plusMinutes(3);
-    	if( tresMinDespues.equals(LocalTime.now()) && handlerinfo.getAcceso().equals("") ) {
-    		String random = UUID.randomUUID().toString();
-    		random.replace("-", "");
-    		handlerinfo.setAcceso(random);
+    	if (!handlerinfo.obtenerInformacion().contains(info)) {
+        	handlerinfo.agregarInformacion(info);
     	}
-    	handlerinfo.agregarInformacion(info);
+
     }
     @WebMethod
     public ListaInfo listarInfo() {
@@ -697,6 +693,19 @@ public class Publicador {
     	listaRetornar.setinformacion(res);
     	return listaRetornar;
     }
+    
+    @WebMethod
+    public boolean consultaAccesosValida(String id) {
+    	HandlerInformacion hinfo = HandlerInformacion.getInstancia();
+    	LocalTime guardado = hinfo.getAhora().plusMinutes(3);
+    	
+    	if (id.equals(hinfo.getAcceso()) && (LocalTime.now().isBefore(guardado) || LocalTime.now().equals(guardado))) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
     @WebMethod
 	public ListaEspectaculo buscarEspectaculos(String search) {
     	ListaEspectaculo listaesp = new ListaEspectaculo();
