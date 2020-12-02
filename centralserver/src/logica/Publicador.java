@@ -438,8 +438,10 @@ public class Publicador {
     @WebMethod
     public void updateArtista(String nickname, String nombre, String apellido, String mail, String fechanac, String password, String imagen, String descripcion, String biografia, String website) {
     	IUsuario UController = Fabrica.getInstance().getIUsuario();
+    	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(fechanac, formatter);
+        
     	UController.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
     	UController.updateArtista(descripcion, biografia, website);
     	UController.confirmarUpdateUsuarioWeb();

@@ -53,7 +53,7 @@ public class Artista extends Usuario {
 	}
 
 	public Artista(Usuario usuario, String desc, String bio, String web) {
-		super(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNacimiento());
+		super(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNacimiento(), usuario.getPassword());
 		this.descripcion = desc;
 		this.biografia = bio;
 		this.website = web;
