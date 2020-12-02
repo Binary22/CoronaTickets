@@ -28,10 +28,10 @@
                     <select class="form-control" name="paquetes">
                     <%List<String> paquetes = (ArrayList) session.getAttribute("paquetes");
 					for(String paq: paquetes){%>
-						<%if(session.getAttribute("paqueteComprar") != paq){%>	 
+						<%if(!session.getAttribute("paqueteComprar").equals(paq)){%>	 
                       		<option><%=paq%></option>
                       	<%}%>
-                      	<%if(session.getAttribute("paqueteComprar") == paq){%>	
+                      	<%if(session.getAttribute("paqueteComprar").equals(paq)){%>	
                       		<option selected><%=paq%></option>
                       	<%}%>
                     <%}%>
