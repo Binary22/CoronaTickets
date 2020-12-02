@@ -264,7 +264,7 @@
                             <h5 class="card-title">Premio:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDescPremio() %></h6>
                             <%} %>  
-                            <% if( espect.getVideo() != "" && espect.getVideo() != null ) { %>
+                            <% if(espect.getVideo() != null && !espect.getVideo().isEmpty() ) { %>
                             <h5 class="card-title"></slot>Video:</h5>
 	                		<div class="embed-responsive embed-responsive-4by3">
 	  						<iframe class="embed-responsive-item" style="" src="https://www.youtube.com/embed/<%=espect.getVideo()%>"></iframe>
