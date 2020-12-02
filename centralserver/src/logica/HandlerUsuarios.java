@@ -106,6 +106,8 @@ public class HandlerUsuarios {
 		usuarios.get(nick).update(user);
 		System.out.print("El usuario " + nick + "Es Artista? \n");
 		if (usuarios.get(nick).esArtista()) {
+			Artista artUser = (Artista) usuarios.get(nick);
+			artUser.update(user);
 			System.out.print("Si \n");
 		}
 	}
