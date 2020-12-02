@@ -6,20 +6,19 @@
 <html>
 <head>
 
-	<title>Registro de accesos:</title>
-
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<jsp:include page="/WEB-INF/template/head.jsp"/>
 	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="resources/css/colorFlecha.css">
-
-
 </head>
 <body>
+
+<div class="custom-control custom-switch" style="margin-left:1em; display:none;">
+  <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+  <label class="custom-control-label" for="darkSwitch"></label>
+</div>
+<script src="resources/js/dark-mode-switch.js"></script>
+
+
+
 <table class="table table-bordered">
   <thead>
     <tr>

@@ -27,16 +27,7 @@
 	.rating-desc .col-md-3 {padding-right: 0px;}
 	.sr-only { margin-left: 5px;overflow: visible;clip: auto; }
 	</style>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-        
-
-        <title>CoronaTickets.uy</title>
+        <jsp:include page="/WEB-INF/template/head.jsp"/>
       </head>
 
     <body>
