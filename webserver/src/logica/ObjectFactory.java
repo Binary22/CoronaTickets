@@ -192,6 +192,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListaInfo }
+     * 
+     */
+    public ListaInfo createListaInfo() {
+        return new ListaInfo();
+    }
+
+    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
@@ -261,6 +269,14 @@ public class ObjectFactory {
      */
     public DataListPaquetes createDataListPaquetes() {
         return new DataListPaquetes();
+    }
+
+    /**
+     * Create an instance of {@link DataInfo }
+     * 
+     */
+    public DataInfo createDataInfo() {
+        return new DataInfo();
     }
 
     /**

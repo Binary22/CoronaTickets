@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import datatypesweb.dataInfo;
-import logica.DataInfo;
 import logica.Publicador;
 import logica.PublicadorService;
 

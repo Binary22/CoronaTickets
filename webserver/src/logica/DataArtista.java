@@ -41,9 +41,9 @@ public class DataArtista
 {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "website", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<String>> rest;
 
@@ -53,8 +53,8 @@ public class DataArtista
      * <p>
      * You are getting this "catch-all" property because of the following reason: 
      * The field name "Descripcion" is used by two different parts of a schema. See: 
-     * line 231 of http://localhost:9129/publicador?xsd=1
-     * line 254 of http://localhost:9129/publicador?xsd=1
+     * line 246 of http://localhost:9129/publicador?xsd=1
+     * line 269 of http://localhost:9129/publicador?xsd=1
      * <p>
      * To get rid of this property, apply a property customization to one 
      * of both of the following declarations to change their names: 

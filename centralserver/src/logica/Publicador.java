@@ -30,6 +30,7 @@ import datatypesweb.dataInfo;
 import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
+import datatypesweb.ListaInfo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
 import datatypesweb.dataPaquete;
@@ -681,6 +682,20 @@ public class Publicador {
     		handlerinfo.setAcceso(random);
     	}
     	handlerinfo.agregarInformacion(info);
+    }
+    @WebMethod
+    public ListaInfo listarInfo() {
+    	HandlerInformacion hinfo = HandlerInformacion.getInstancia();
+    	List<dataInfo> listaInformacion =  hinfo.obtenerInformacion();
+    	
+    	List<dataInfo> res = new ArrayList<dataInfo>();
+    	for(int i = 0; i < listaInformacion.size(); i++) {
+    		dataInfo respaldo = new dataInfo(listaInformacion.get(i).getIp(),listaInformacion.get(i).getURL(),listaInformacion.get(i).getNavegador(),listaInformacion.get(i).getSO());
+    		res.add(respaldo);
+    	}
+    	ListaInfo listaRetornar = new ListaInfo();
+    	listaRetornar.setinformacion(res);
+    	return listaRetornar;
     }
     @WebMethod
 	public ListaEspectaculo buscarEspectaculos(String search) {
