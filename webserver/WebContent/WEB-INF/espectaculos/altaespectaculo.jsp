@@ -76,7 +76,7 @@
             	</div>
               	<br>
               	<div class="form-group col-md-6">
-                <input value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" max="23" class="form-control"  placeholder="Cantidad de Premios">
+                <input value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" class="form-control"  placeholder="Cantidad de Premios">
                 </div>
             </div>
             
