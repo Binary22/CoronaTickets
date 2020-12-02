@@ -192,19 +192,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListaInfo }
+     * 
+     */
+    public ListaInfo createListaInfo() {
+        return new ListaInfo();
+    }
+
+    /**
      * Create an instance of {@link DataRegistro }
      * 
      */
     public DataRegistro createDataRegistro() {
         return new DataRegistro();
-    }
-
-    /**
-     * Create an instance of {@link DataListEspOrg }
-     * 
-     */
-    public DataListEspOrg createDataListEspOrg() {
-        return new DataListEspOrg();
     }
 
     /**
