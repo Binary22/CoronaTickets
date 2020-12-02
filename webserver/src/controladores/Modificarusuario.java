@@ -75,12 +75,13 @@ public class Modificarusuario extends HttpServlet {
         LocalDate date = LocalDate.parse(fechanac, formatter);
         
 	    if( (password.equals(confipassword) ) && ( ( date.isEqual(LocalDate.now())) || ( date.isBefore(LocalDate.now()) ) ) ) {    
-	    	port.updateUsuarioWeb(nickname, nombre, apellido, mail, fechanac, password, imagen);
+	    	if(!port.esArtista(nickname) )
+	    		port.updateUsuarioWeb(nickname, nombre, apellido, mail, fechanac, password, imagen);
 	        if(port.esArtista(nickname)) {
 	        	String descripcion = req.getParameter("descripcion");
 	        	String biografia = req.getParameter("biografia");
 	        	String website = req.getParameter("website");    
-	        	port.updateArtista(descripcion, biografia, website);
+	        	port.updateArtista(nickname, nombre, apellido, mail, fechanac, password, imagen, descripcion, biografia, website);
 	        }
 	        resp.sendRedirect("home");
 	    }

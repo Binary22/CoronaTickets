@@ -41,9 +41,9 @@ public class DataArtista
 {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "website", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "descripcion", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "biografia", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<String>> rest;
 
