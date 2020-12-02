@@ -3,11 +3,11 @@ $(document).ready(function() {
 				$('#msg').hide();
 				if ($('#nickname').val() == null || $('#nickname').val() == "") {
 					$('#msg').show();
-					$("#msg").html("Username is required field.").css("color", "red");
+					$("#msg").html("El nombre de usuario es un campo requerido.").css("color", "red");
 				} else {
 					$.ajax({
 						type: "POST",
-						url: "http://localhost:8080/webserver/usernameChecker",
+						url: "/webserver/usernameChecker",
 						data: $('#signupform').serialize(),
 						dataType: "html",
 						cache: false,

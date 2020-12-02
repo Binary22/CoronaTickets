@@ -31,9 +31,11 @@ void processRequest(HttpServletRequest request, HttpServletResponse response) th
 	
 	PublicadorService service = new PublicadorService();
     Publicador port = service.getPublicadorPort();
-	
+	int i;
     if (port.existeUsuario(username)) {
-	out.print("<span style=\"color:red;\">Username unavailable</span>");
+    	for(i = 1; port.existeUsuario(username.concat(String.valueOf(i))); i++) {
+    	}
+	out.print("<span style=\"color:red;\">El usuario "+username+" no esta disponible.</span> <span> Sugerencia: "+username.concat(String.valueOf(i))+"</span>");
     }
 	
 } 
