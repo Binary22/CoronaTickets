@@ -71,12 +71,13 @@
             
             <label>Premio</label>
             <div class="form-row">
-            <input  name="descPremio" type="text" class="form-control"  placeholder="Descripción del premio" value="<%= form.get("premio") %>" >
-              <div class="form-group col-md-6">
+            	<div class="form-group col-md-12">
+            	<textarea name="descPremio" class="form-control" placeholder="Ej. Television Samsung"><%= form.get("premio") %></textarea>
+            	</div>
               	<br>
+              	<div class="form-group col-md-6">
                 <input value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" max="23" class="form-control"  placeholder="Cantidad de Premios">
-              </div>
-              
+                </div>
             </div>
             
             <label>Máximo y mínimo de espectadores*</label>
