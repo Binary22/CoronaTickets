@@ -49,6 +49,7 @@ public class Espectaculos extends HttpServlet {
     		logica.ListaEspectaculo lista = port.listarEspectaculosPlataforma(nomPlat);
     		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
 	    	for(Entry e : lista.getEspectaculos().getEntry()) {
+	    		if( (e.getValue().isYaFueValuado()) && (!e.getValue().isFinalizado()) && (e.getValue().isAceptado()) )
 	    		list.add(e.getValue());
 	    	}
 	    	objSesion.setAttribute("espectaculosPlat", list);
@@ -59,7 +60,7 @@ public class Espectaculos extends HttpServlet {
     		
 	    	for(Entry e : lista.getEspectaculos().getEntry()) {
 	    		
-	    		if(e.getValue().isYaFueValuado() && !e.getValue().isFinalizado() && e.getValue().isAceptado())
+	    		if( (e.getValue().isYaFueValuado()) && (!e.getValue().isFinalizado()) && (e.getValue().isAceptado()) )
 	    			list.add(e.getValue());
 	    	}
 	    	objSesion.setAttribute("espectaculosPlat", list);
