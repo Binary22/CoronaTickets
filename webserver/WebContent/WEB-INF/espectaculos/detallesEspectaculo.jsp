@@ -260,7 +260,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">De <%=espect.getMinEspectadores() %> a <%=espect.getMaxEspectadores() %></h6>
                             <h5 class="card-title"></slot>Fecha de alta:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getFechaReg() %></h6>
-                            <%if(!espect.getDescPremio().isEmpty()){ %>
+                            <%if(espect.getDescPremio() != null && !espect.getDescPremio().isEmpty()){ %>
                             <h5 class="card-title">Premio:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getDescPremio() %></h6>
                             <%} %>  

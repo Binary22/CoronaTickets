@@ -150,6 +150,9 @@ public class Espectaculo {
 		}
 		this.categorias = categs;
 		this.video = video;
+		if (descPremio == null) {
+			descPremio = "";
+		}
 		this.descPremio = descPremio;
 		this.cantPremios = cantPremios;
 		this.setFavoritos(0);
