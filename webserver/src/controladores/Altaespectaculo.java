@@ -95,11 +95,26 @@ public class Altaespectaculo extends HttpServlet {
 		form.put("premio", descripPremio);
 		form.put("cantPremios", cantPremios);
     	
+		if (cantPremios == "") {
+    		cantPremios = "0";
+    	}
+		
+		
     	try {
     	
     	if (Integer.parseInt(minEspectadores) > Integer.parseInt(maxEspectadores) ) {
     		throw(new NombreEspectaculoExisteException("El mínimo debe ser menor al máximo de espectadores"));
     	}
+    	
+    	if((cantPremios == "" || (Integer.parseInt(cantPremios) == 0)) && !descripPremio.isEmpty()) {
+    		throw (new NombreEspectaculoExisteException("La cantidad de premios debe ser mayor a 0 si desea agregar un premio."));
+    	}
+    	
+    	
+    	if(Integer.parseInt(cantPremios) > 0 && descripPremio.isEmpty()) {
+    		throw (new NombreEspectaculoExisteException("La descripcion del premio no puede ser vacia si desea agregar "+ cantPremios +" premios"));
+    	}
+    	
     	
     	PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
