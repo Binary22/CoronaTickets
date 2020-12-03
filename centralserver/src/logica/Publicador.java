@@ -656,6 +656,7 @@ public class Publicador {
     public void finalizarEspectaculo(String nombreEspectaculo) {
     	HandlerEspectaculos hespectaculos = HandlerEspectaculos.getInstance();
     	Espectaculo espFinalizar = hespectaculos.getEspectaculo(nombreEspectaculo);
+    	espFinalizar.setFechaFinalizado(LocalDate.now());
     	espFinalizar.setFinalizado(true);
     }
     @WebMethod

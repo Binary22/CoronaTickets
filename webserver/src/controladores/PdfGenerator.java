@@ -51,7 +51,7 @@ public class PdfGenerator extends HttpServlet {
     	HttpSession objSesion = req.getSession();
     	if (objSesion.getAttribute("estado_sesion") == "LOGIN_INCORRECTO") {
 			resp.sendRedirect("home");
-		};
+		}
 		PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
 		String nickname = (String)objSesion.getAttribute("usuario_logueado");

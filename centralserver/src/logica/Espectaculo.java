@@ -33,6 +33,7 @@ public class Espectaculo {
 	private int cantPremios;
 	private String videoUrl;
 	private int favoritos;
+	private LocalDate fechaFinalizado;
 	
 	public int getFavoritos() {
 		return favoritos;
@@ -296,5 +297,13 @@ public class Espectaculo {
 	
 	public void setVotantes(List<String> votantes) {
 		this.votantes = votantes;
+	}
+
+	public LocalDate getFechaFinalizado() {
+		return fechaFinalizado;
+	}
+
+	public void setFechaFinalizado(LocalDate fechaFinalizado) {
+		this.fechaFinalizado = fechaFinalizado;
 	}
 }
