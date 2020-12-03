@@ -110,7 +110,7 @@
 				 	<% if (!u.getCompraPaquete().isEmpty() && u.getNickname().equals(session.getAttribute("usuario_logueado")) && session.getAttribute("estado_sesion") == "LOGIN_CORRECTO")  { 
 				 	%>
                         
-                        <h4>Paquetes comprados</h4>
+                        <h4>Paquetes comprados:</h4>
                         
 	                        <% List<DataCompra> l = u.getCompraPaquete();
 	                        Map<String, DataPaquete> mapapaquetes = (Map<String, DataPaquete>) session.getAttribute("mapapaquetes");

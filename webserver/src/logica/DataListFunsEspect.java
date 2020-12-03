@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataListFunsEspect complex type.
+ * <p>Clase Java para dataListFunsEspect complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataListFunsEspect">
@@ -59,7 +59,7 @@ public class DataListFunsEspect {
     protected DataListFunsEspect.FuncionesEspect funcionesEspect;
 
     /**
-     * Gets the value of the funcionesEspect property.
+     * Obtiene el valor de la propiedad funcionesEspect.
      * 
      * @return
      *     possible object is
@@ -71,7 +71,7 @@ public class DataListFunsEspect {
     }
 
     /**
-     * Sets the value of the funcionesEspect property.
+     * Define el valor de la propiedad funcionesEspect.
      * 
      * @param value
      *     allowed object is
@@ -84,9 +84,9 @@ public class DataListFunsEspect {
 
 
     /**
-     * <p>Java class for anonymous complex type.
+     * <p>Clase Java para anonymous complex type.
      * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
+     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
      * 
      * <pre>
      * &lt;complexType>
@@ -152,9 +152,9 @@ public class DataListFunsEspect {
 
 
         /**
-         * <p>Java class for anonymous complex type.
+         * <p>Clase Java para anonymous complex type.
          * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
+         * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
          * 
          * <pre>
          * &lt;complexType>
@@ -182,7 +182,7 @@ public class DataListFunsEspect {
             protected DataFuncion value;
 
             /**
-             * Gets the value of the key property.
+             * Obtiene el valor de la propiedad key.
              * 
              * @return
              *     possible object is
@@ -194,7 +194,7 @@ public class DataListFunsEspect {
             }
 
             /**
-             * Sets the value of the key property.
+             * Define el valor de la propiedad key.
              * 
              * @param value
              *     allowed object is
@@ -206,7 +206,7 @@ public class DataListFunsEspect {
             }
 
             /**
-             * Gets the value of the value property.
+             * Obtiene el valor de la propiedad value.
              * 
              * @return
              *     possible object is
@@ -218,7 +218,7 @@ public class DataListFunsEspect {
             }
 
             /**
-             * Sets the value of the value property.
+             * Define el valor de la propiedad value.
              * 
              * @param value
              *     allowed object is

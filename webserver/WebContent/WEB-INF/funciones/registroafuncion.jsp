@@ -195,18 +195,21 @@
 		        </div>
 		        
 		        <div class="col-sm-3 pt-5 pb-5 .px-2">
-		        	<h4> Funciones a la que se registró: </h4>
+		        	
                     <%List<DataRegistro> regs = (List<DataRegistro>)session.getAttribute("registros_usuario");
-                    for(int i = 0; i < regs.size(); i++){
-                    	String var = " ";
-                    	if(regs.get(i).isYaFueCanjeado() && regs.get(i).getCosto() == 0){
-                    		var = "Canjeado";
-                    	}else{
-                    		var = "Abonado";
-                    	}
-		                  		%>
-                    	<carta-funcion-chica img="resources/media/espectaculos/maracas.jpg" titulo= "<%=regs.get(i).getFuncion() %>" precioreg = "<%= regs.get(i).getCosto() %>" fechareg = "<%=regs.get(i).getFecha() %>" canjeadoreg = <%=var %> ></carta-funcion-chica>
-                    <%}%>
+                    if(!regs.isEmpty()){ %>
+	                    <h4> Funciones a la que se registró: </h4>
+	                    <%for(int i = 0; i < regs.size(); i++){
+	                    	String var = " ";
+	                    	if(regs.get(i).isYaFueCanjeado() && regs.get(i).getCosto() == 0){
+	                    		var = "Canjeado";
+	                    	}else{
+	                    		var = "Abonado";
+	                    	}
+			                  		%>
+	                    	<carta-funcion-chica img="resources/media/espectaculos/maracas.jpg" titulo= "<%=regs.get(i).getFuncion() %>" precioreg = "<%= regs.get(i).getCosto() %>" fechareg = "<%=regs.get(i).getFecha() %>" canjeadoreg = <%=var %> ></carta-funcion-chica>
+	                    <%}
+                    }%>
                 </div>
 	        </div>
         <br>
