@@ -225,7 +225,7 @@ public class UsuarioController implements IUsuario{
 			artista = new Artista(usuario, descrip, biografia, web);
 			husers.rempazar(nickname, artista);
 		} else {
-		husers.rempazar(nickname, usuario);
+			husers.rempazar(nickname, usuario);
 		};
 	}
 

@@ -8,15 +8,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-    <title>CoronaTickets.uy</title>
+    <jsp:include page="/WEB-INF/template/head.jsp"/>
   </head>
   <body>
 
@@ -79,12 +71,13 @@
             
             <label>Premio</label>
             <div class="form-row">
-            <input  name="descPremio" type="text" class="form-control"  placeholder="Descripción del premio" value="<%= form.get("premio") %>" >
-              <div class="form-group col-md-6">
+            	<div class="form-group col-md-12">
+            	<textarea name="descPremio" class="form-control" placeholder="Ej. Television Samsung"><%= form.get("premio") %></textarea>
+            	</div>
               	<br>
-                <input value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" max="23" class="form-control"  placeholder="Cantidad de Premios">
-              </div>
-              
+              	<div class="form-group col-md-6">
+                <input value="<%= form.get("cantPremios") %>" name="cantPremios" type="number" min="0" class="form-control"  placeholder="Cantidad de Premios">
+                </div>
             </div>
             
             <label>Máximo y mínimo de espectadores*</label>

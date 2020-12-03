@@ -59,7 +59,7 @@
 			        <%for(j = i; j <= i + 2 && j < size; j++){%>
 						
 				    	
-				    	<div class="card" style="flex: 0 0 30%;">
+				    	<div class="card carta" style="flex: 0 0 30%;">
 						    <img class="card-img-top" style="object-fit: cover; height:15rem;" src="<%=espectaculos.get(j).getImagen() %>">
 						    <div class="card-body d-flex flex-column">
 						    	<div class="row">
@@ -71,7 +71,9 @@
 									<!--  esto es para lo del favorito -->
 									<p style="float:right" class="text-muted">
 		                        	
-	                        	<% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") {
+	                        	<% 
+	                        	if ((session.getAttribute("Mobile") == null)) {
+	                        		if ((session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") ) {
 	                        		DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
 	                        		            
 	                        		if (userlogged.getFavoritos().contains((String) espectaculos.get(j).getNombre())) { 
@@ -88,7 +90,7 @@
 		                       		
 		                       		<%=espectaculos.get(j).getFavoritos()%>
 		                            </p>
-
+									<% } %>
 									<!--  termina lo del favorito -->
 								    </div>
 							    </div>

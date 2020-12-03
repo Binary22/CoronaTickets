@@ -26,7 +26,7 @@
         			
         			
         			
-        			<div class="card" style="flex: 0 0 30%;">
+        			<div class="card carta" style="flex: 0 0 30%;">
 						    <img class="card-img-top" style="object-fit: cover; height:15rem;" src="<%=e.getImagen() %>">
 						    <div class="card-body d-flex flex-column">
 						    	<div class="row">

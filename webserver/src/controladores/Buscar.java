@@ -66,10 +66,11 @@ public class Buscar extends HttpServlet {
     	logica.ListaEspectaculo listae2 = port.listarEspectaculos();
 		Map<String, DataEspectaculo> mapatodoslosesp = new HashMap<String, DataEspectaculo>();
 		
+		
     	for(Entry e : listae2.getEspectaculos().getEntry()) { // aca en vez de get espectaculos habria que hacer busqueda
     		
-    		if(e.getValue().isYaFueValuado() && !e.getValue().isFinalizado() && e.getValue().isAceptado())
-    			mapatodoslosesp.put(e.getKey(),e.getValue());
+    		
+    			mapatodoslosesp.put(e.getValue().getNombre(),e.getValue());
     	}
 		
 		ListaPaquete paquetes = port.buscarPaquetes(search);	 	

@@ -83,7 +83,7 @@ public class Registro extends HttpServlet {
 		
 		PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
-        
+	    
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date =  LocalDate.parse(fechanac, formatter);
 		//si es artista
@@ -102,6 +102,11 @@ public class Registro extends HttpServlet {
 					req.getSession().setAttribute("usuario_logueado", nickname);
 					objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
 					objSesion.setAttribute("esArtista", true);
+					// para que desp de registrarte te muestre la imagen en el circulito
+					String img = port.getUsuario(nickname).getImagen();
+					req.getSession().setAttribute("usuario_logueado", nickname);
+					req.getSession().setAttribute("usuario_avatar", img);
+					
 					resp.sendRedirect("home");
 				} catch (UsuarioConMismoNickException_Exception e) {
 					objSesion.setAttribute("mismoNick", true);
@@ -124,6 +129,11 @@ public class Registro extends HttpServlet {
 					req.getSession().setAttribute("usuario_logueado", nickname);
 					objSesion.setAttribute("estado_sesion", "LOGIN_CORRECTO");	
 					objSesion.setAttribute("esArtista", false);
+					// para que desp de registrarte te muestre la imagen en el circulito
+					String img = port.getUsuario(nickname).getImagen();
+					req.getSession().setAttribute("usuario_logueado", nickname);
+					req.getSession().setAttribute("usuario_avatar", img);
+					
 					resp.sendRedirect("home");
 				} catch (UsuarioConMismoNickException_Exception e) {
 					objSesion.setAttribute("mismoNick", true);

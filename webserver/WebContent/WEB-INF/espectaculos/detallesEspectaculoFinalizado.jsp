@@ -3,6 +3,7 @@
 <%@page import="logica.DataEspectaculo"%>
 <%@page import="logica.DataEspectaculo.SetFunciones"%>
 <%@page import="logica.DataPaquete"%>
+<%@page import="logica.DataUsuario"%>
 <%@page import="logica.DataFuncion"%>
 <%@page import="logica.Funcion"%>
 <%@page import="java.util.List"%>
@@ -15,15 +16,7 @@
 <!doctype = html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-        <title>CoronaTickets.uy</title>
+        <jsp:include page="/WEB-INF/template/head.jsp"/>
       </head>
 
     <body>
@@ -40,8 +33,30 @@
                     <div class="card" style="width: 100%;">
                         <img class="card-img-top" src="<%=espect.getImagen() %>" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"></slot>Espectáculo:</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
+                        	<div class="row">
+                        		<div class="col-6">
+		                            <h5 class="card-title"></slot>Espectáculo:</h5>
+		                            <h6 class="card-subtitle mb-2 text-muted"><%=espect.getNombre() %></h6>
+		                        </div>
+		                        <div class="col-6"> 
+		                        	<p style="float:right" class="text-muted">
+		                        	
+	                        	<% if (session.getAttribute("estado_sesion")  == "LOGIN_CORRECTO") {
+	                        		DataUsuario userlogged = (DataUsuario) session.getAttribute("userlogged");
+	                        		            
+	                        		if (userlogged.getFavoritos().contains((String) espect.getNombre())) { 
+			                        	
+			                        	%>
+			                        		<a><img src="resources/media/coralleno.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } else {  %>
+			                        		<a><img src="resources/media/coravacio.svg" style="float:right; width: 1.5em; height: 1.5em; margin-left: 0.5em;"/></a>
+			                        	<% } %>
+			                        	
+		                       		<%}%>
+		                       		<%=espect.getFavoritos()%> favoritos
+		                            </p>
+		                        </div>
+	                        </div>
                             <% if(espect.getPuntajes().size() != 0) { %>
                             <h5 class="card-title">
                             <%
@@ -90,76 +105,105 @@
                             <h6 class="card-subtitle mb-2 text-muted" ><%=espect.getPuntajes().size() %> valoraciones.</h6>
                            
 						    <div class="row">
-						        <div class="col-xs-12 col-md-6">
-						            <div class="well well-sm">
-						                <div class="row">
-						                    <div class="col-xs-12 col-md-6 text-center">
-						                        <h1 class="rating-num" style="margin-top: 0.95rem">
-						                            <%= String.format("%.1f", (promedioF / total)) %></h1>
-						                        <h6 class="card-subtitle mb-2 text-muted" >Promedio</h6>
-						                        <div class="rating">
-						                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
-						                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
-						                            </span><span class="glyphicon glyphicon-star-empty"></span>
-						                        </div>
-						                    </div>
-						                    <div class="col-xs-12 col-md-6">
-						                        <div class="row rating-desc">
-						                           <svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
-  													<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-													</svg> 5
-						                            <div class="col-xs-8 col-md-9">
-						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-warning" role="progressbar" style="width:<%= total> 0 ? ((cant5 / total) * 100) : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-														</div>
-						                            </div>
-						                            <!-- end 5 -->
-						                            <svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
-  													<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-													</svg> 4
-						                            <div class="col-xs-8 col-md-9">
-						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: <%= total> 0 ? (cant4 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-														</div>
-						                            </div>
-						                            <!-- end 4 -->
-						                            <svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
-  													<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-													</svg> 3
-						                            <div class="col-xs-8 col-md-9">
-						                                <div class="progress">
-  															<div class="progress-bar-animated  progress-bar-striped bg-info" role="progressbar" style="width: <%= total > 0 ? (cant3 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-														</div>
-						                            </div>
-						                            <!-- end 3 -->
-						                            <svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
-  													<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-													</svg> 2
-						                            <div class="col-xs-8 col-md-9">
-						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" style="width: <%= total> 0 ? (cant2 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-														</div>
-						                            </div>
-						                            <!-- end 2 -->
-						                            <svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
-  													<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-													</svg> 1
-						                            <div class="col-xs-8 col-md-9">
-						                                <div class="progress">
-  															<div class="progress-bar-animated progress-bar-striped bg-danger" role="progressbar" style="width: <%= total> 0 ? (cant1 / total) * 100 : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-														</div>
-						                            </div>
-						                            <!-- end 1 -->
-						                        </div>
-						                        <!-- end row -->
-						                    </div>
-						                </div>
-						            </div>
-						        </div>
+						        
+			              
+			                    <div class="col-md-4 col-sm-12 text-center">
+			                        <h1 class="rating-num" style="margin-top: 0.95rem">
+			                            <%= String.format("%.1f", (promedioF / total)) %></h1>
+			                        <h6 class="card-subtitle mb-2 text-muted" >Promedio</h6>
+			                        <div class="rating">
+			                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+			                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+			                            </span><span class="glyphicon glyphicon-star-empty"></span>
+			                        </div>
+			                    </div>
+			                    <div class="col-md-8 col-sm-12">
+			                        <div class="row">
+			                        	<div class="col-3">                      
+			                            	<svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
+												<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+											</svg> 5     
+										</div>
+										<div class="col-6">  
+			                                <div class="progress">
+												<div class="progress-bar bg-success" role="progressbar" style="width:<%= total> 0 ? ((cant5 / total) * 100) : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-3">
+											<%= total> 0 ? (int) ((cant5 / total) * 100) : 0 %>%
+										</div>
+									</div>
+									<!-- fin 5 -->
+			                        <div class="row">
+			                        	<div class="col-3">                      
+			                            	<svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
+												<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+											</svg> 4     
+										</div>
+										<div class="col-6">  
+			                                <div class="progress">
+												<div class="progress-bar bg-success" role="progressbar" style="width:<%= total> 0 ? ((cant4 / total) * 100) : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-3">
+											<%= total> 0 ? (int) ((cant4 / total) * 100) : 0 %>%
+										</div>
+									</div>
+									<!-- fin 4 -->
+			                        <div class="row">
+			                        	<div class="col-3">                      
+			                            	<svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
+												<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+											</svg> 3     
+										</div>
+										<div class="col-6">  
+			                                <div class="progress">
+												<div class="progress-bar bg-warning" role="progressbar" style="width:<%= total> 0 ? ((cant3 / total) * 100) : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-3">
+											<%= total> 0 ? (int) ((cant3 / total) * 100) : 0 %>%
+										</div>
+									</div>
+									<div class="row">
+			                        	<div class="col-3">                      
+			                            	<svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
+												<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+											</svg> 2     
+										</div>
+										<div class="col-6">  
+			                                <div class="progress">
+												<div class="progress-bar bg-warning" role="progressbar" style="width:<%= total> 0 ? ((cant2 / total) * 100) : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-3">
+											<%= total> 0 ? (int) ((cant2 / total) * 100) : 0 %>%
+										</div>
+									</div>
+			                        <div class="row">
+			                        	<div class="col-3">                      
+			                            	<svg width="1.40em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#FBE45D" xmlns="http://www.w3.org/2000/svg">
+												<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+											</svg> 1
+										</div>
+										<div class="col-6">  
+			                                <div class="progress">
+												<div class="progress-bar bg-danger" role="progressbar" style="width:<%= total> 0 ? ((cant1 / total) * 100) : 0 %>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-3">
+											<%= total> 0 ? (int) ((cant1 / total) * 100) : 0 %>%
+										</div>
+									</div>
+			                        
+			                       
+			               
+			        				</div>
 						    </div>
 						</div>
-						<%}%>
 						 <div class="container">
+							<%}%>
+							</h5>
                             <h5 class="card-title"></slot>Artista:</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><%=espect.getArtista() %></h6>
                             <h5 class="card-title">Descripcion:</h6>

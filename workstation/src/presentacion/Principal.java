@@ -1,3 +1,4 @@
+
 package presentacion;
 
 import java.awt.BorderLayout;
@@ -65,6 +66,7 @@ public class Principal extends JFrame {
 	private JInternalFrame AgregarEspectaculoInternalFrame;
 	private JInternalFrame AltaCategoriaFrame;
 	private JInternalFrame AceptarRechazarEspectFrame;
+	private JInternalFrame ConsultarInfoFrame;
 	
 
 	/**
@@ -247,7 +249,24 @@ public class Principal extends JFrame {
 		});
 		mnEspectaculos.add(mntmAcpetarrechazarEspectaculo);
 		
+		JMenu mnAccesos = new JMenu("Accesos");
+		menuBar.add(mnAccesos);
 		
+		JMenuItem mntmRegAccesos = new JMenuItem("Registro de Accesos al Sitio");
+		mntmRegAccesos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				ConsultarInfoFrame = new ConsultarInfo();
+				ConsultarInfoFrame.setClosable(true);
+				ConsultarInfoFrame.setVisible(true);
+				getContentPane().add(ConsultarInfoFrame,BorderLayout.CENTER);
+				
+			}
+		
+		});
+		
+		mnAccesos.add(mntmRegAccesos);
+		
+		////////
 
 		JMenu mnPruebas = new JMenu("Pruebas");
 		menuBar.add(mnPruebas);
@@ -298,7 +317,9 @@ public class Principal extends JFrame {
 		// EL CODIGO QUE SE AGREGA (SIN SER RESPUESTAS A EVENTOS) VA ACA ABAJO  //
         //////////////////////////////////////////////////////////////////////////
 		
-		
+		ConsultarInfoFrame = new ConsultarInfo();
+		ConsultarInfoFrame.setVisible(false);
+        getContentPane().add(ConsultarInfoFrame);
         
         AltaUsuarioInternalFrame = new AltaUsuario();
         AltaUsuarioInternalFrame.setVisible(false);
@@ -874,7 +895,7 @@ public class Principal extends JFrame {
 		he.getEspectaculo("Springsteen on Broadway").setCantPremios(2);
 		he.getEspectaculo("Springsteen on Broadway").setVideo("M1xDzgob1JI");
 		
-		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podráshacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
+		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podrás hacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
 		he.getEspectaculo("Bien de Familia").setCantPremios(1);
 		he.getEspectaculo("Bien de Familia").setVideo("dPSlBRg0HeA");
 		

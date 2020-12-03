@@ -4,19 +4,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-        <title>CoronaTickets.uy</title>
+		<jsp:include page="/WEB-INF/template/head.jsp"/>
 
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/template/navbar.jsp"/>
 		
 		<div class="container">
+		<div class="row d-flex justify-content-center">
+		<div class="col-md-8">
 			<h3 class="title">Premios Ganados:</h3>
 					<%List<DataPremio> premios = (List<DataPremio>)session.getAttribute("premios_usuario");
 					if(!premios.isEmpty()){
@@ -25,11 +21,11 @@
 				        int i = 0;
 				        while(i < size){
 						  %>
-					        	<div class="card-deck pt-3">
+					        	
 							        <%for(j = i; j <= i + 2 && j < size; j++){%>
-										<carta-premio class="card carta" titulo="<%=premios.get(j).getDescripcion() %>" fecha="<%=premios.get(j).getFechaSorteado() %>" espectaculo="<%=premios.get(j).getFuncion().getEspectaculo() %>" funcion="<%=premios.get(j).getFuncion().getNombre() %>"  style="width:18rem;"></carta-premio>
+										<carta-premio class="card carta" titulo="<%=premios.get(j).getDescripcion() %>" fecha="<%=premios.get(j).getFechaSorteado() %>" espectaculo="<%=premios.get(j).getFuncion().getEspectaculo() %>" funcion="<%=premios.get(j).getFuncion().getNombre() %>"></carta-premio>
 								  	<%} %>
-					     		</div>
+					     		
 						  <%i = j;} 
 					}else{%>
 						 <h5 class="card-subtitle mb-2 text-muted">No ha ganado ningún premio</h5>
@@ -37,6 +33,8 @@
 						
 					<%} %>
 		
+		</div>
+		</div>
 		</div>
 		
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

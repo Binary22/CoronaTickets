@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -25,9 +26,11 @@ import javax.xml.ws.Endpoint;
 
 import datatypesweb.dataEspectaculo;
 import datatypesweb.dataFuncion;
+import datatypesweb.dataInfo;
 import datatypesweb.dataRegistro;
 import datatypesweb.dataRegsPrevios;
 import datatypesweb.ListaEspectaculo;
+import datatypesweb.ListaInfo;
 import datatypesweb.ListaPaquete;
 import datatypesweb.ListaUsuario;
 import datatypesweb.dataPaquete;
@@ -433,10 +436,15 @@ public class Publicador {
     }
     
     @WebMethod
-    public void updateArtista(String descripcion, String biografia, String website) {
+    public void updateArtista(String nickname, String nombre, String apellido, String mail, String fechanac, String password, String imagen, String descripcion, String biografia, String website) {
     	IUsuario UController = Fabrica.getInstance().getIUsuario();
     	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(fechanac, formatter);
+        
+    	UController.updateUsuarioWeb(nickname, nombre, apellido, mail, date, password, imagen);
     	UController.updateArtista(descripcion, biografia, website);
+    	UController.confirmarUpdateUsuarioWeb();
     }
     
     
@@ -669,6 +677,42 @@ public class Publicador {
 
     }
     @WebMethod
+    public void agregarInfo(String ip, String url, String browser, String os) {
+    	dataInfo info = new dataInfo(ip,url,browser,os);
+    	HandlerInformacion handlerinfo = HandlerInformacion.getInstancia();
+    	if (!handlerinfo.obtenerInformacion().contains(info)) {
+        	handlerinfo.agregarInformacion(info);
+    	}
+
+    }
+    @WebMethod
+    public ListaInfo listarInfo() {
+    	HandlerInformacion hinfo = HandlerInformacion.getInstancia();
+    	List<dataInfo> listaInformacion =  hinfo.obtenerInformacion();
+    	
+    	List<dataInfo> res = new ArrayList<dataInfo>();
+    	for(int i = 0; i < listaInformacion.size(); i++) {
+    		dataInfo respaldo = new dataInfo(listaInformacion.get(i).getIp(),listaInformacion.get(i).getURL(),listaInformacion.get(i).getNavegador(),listaInformacion.get(i).getSO());
+    		res.add(respaldo);
+    	}
+    	ListaInfo listaRetornar = new ListaInfo();
+    	listaRetornar.setinformacion(res);
+    	return listaRetornar;
+    }
+    
+    @WebMethod
+    public boolean consultaAccesosValida(String id) {
+    	HandlerInformacion hinfo = HandlerInformacion.getInstancia();
+    	LocalTime guardado = hinfo.getAhora().plusMinutes(3);
+    	
+    	if (id.equals(hinfo.getAcceso()) && (LocalTime.now().isBefore(guardado) || LocalTime.now().equals(guardado))) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    @WebMethod
 	public ListaEspectaculo buscarEspectaculos(String search) {
     	ListaEspectaculo listaesp = new ListaEspectaculo();
 		Map<String, dataEspectaculo> ret = new HashMap<String, dataEspectaculo>();
@@ -799,5 +843,9 @@ public class Publicador {
     	usuario.agregarFavorito(espectaculo);
     }
     
-    
+    @WebMethod
+    public boolean existeUsuario(String username) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	return husuarios.getNombres().contains(username);
+    }
 }

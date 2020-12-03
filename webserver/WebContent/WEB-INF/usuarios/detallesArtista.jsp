@@ -5,17 +5,7 @@
 <!doctype = html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="resources/css/colorFlecha.css">
-
-
-        <title>CoronaTickets.uy</title>
+        <jsp:include page="/WEB-INF/template/head.jsp"/>
       </head>
 
     <body>
@@ -119,7 +109,7 @@
 		                    	<div class="card mb-3" style="max-width: 200em;">
 								  <div class="row no-gutters">
 								    <div class="col-md-5">
-								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:10rem;">
+								      <img src="<%=mapaespec.get(e).getImagen()%>" class="card-img" style="object-fit: cover; height:15rem;">
 								    </div>
 								    <div class="col-md-7">
 								      <div class="card-body">
