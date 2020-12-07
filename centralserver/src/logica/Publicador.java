@@ -848,4 +848,14 @@ public class Publicador {
     	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
     	return husuarios.getNombres().contains(username);
     }
+    
+    @WebMethod
+    public boolean existeEmail(String email) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	List<String> emails = new ArrayList<String>();
+    	husuarios.getUsuarios().forEach((k,v) -> {
+    		emails.add(v.getEmail());
+    		});
+    	return emails.contains(email);
+    }
 }

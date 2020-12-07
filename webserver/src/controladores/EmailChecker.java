@@ -12,31 +12,25 @@ import javax.servlet.http.HttpSession;
 import logica.Publicador;
 import logica.PublicadorService;
 
-public class UsernameChecker extends HttpServlet {
+public class EmailChecker extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsernameChecker() {
+    public EmailChecker() {
         super();
     }
     
  
 void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	request.setCharacterEncoding("UTF-8");
-	String username = request.getParameter("nickname");
 	String email = request.getParameter("mail");
 	PrintWriter out = response.getWriter();
 	
 	PublicadorService service = new PublicadorService();
     Publicador port = service.getPublicadorPort();
 	int i;
-    if (port.existeUsuario(username)) {
-    	for(i = 1; port.existeUsuario(username.concat(String.valueOf(i))); i++) {
-    	}
-	out.print("<span style=\"color:red;\">El usuario "+username+" no esta disponible.</span> <span> Sugerencia: "+username.concat(String.valueOf(i))+"</span>");
-    }
     if (port.existeEmail(email)) {
     	out.print("<span style=\"color:red;\">El email "+email+" ya esta en uso. </span>");
     }

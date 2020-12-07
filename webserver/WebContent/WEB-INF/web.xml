@@ -190,6 +190,16 @@
         <url-pattern>/usernameChecker</url-pattern>
     </servlet-mapping>
    
+   <servlet>
+        <servlet-name>EmailChecker</servlet-name>
+        <servlet-class>controladores.EmailChecker</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmailChecker</servlet-name>
+        <url-pattern>/emailChecker</url-pattern>
+    </servlet-mapping>
+   
+   
     <servlet-mapping>
         <servlet-name>Paquetes</servlet-name>
         <url-pattern>/paquetes</url-pattern>

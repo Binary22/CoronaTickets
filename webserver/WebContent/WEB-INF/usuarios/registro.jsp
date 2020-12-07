@@ -70,7 +70,8 @@
             </div>
             <div class="form-group">
               <label>Mail</label>
-              <input type="email" class="form-control" name = "mail" placeholder="Ej. rigo23@gmail.com" value="<%= form.get("mail") %>" required>
+              <input id="email" type="email" class="form-control" name = "mail" placeholder="Ej. rigo23@gmail.com" value="<%= form.get("mail") %>" required>
+              <div id="msg2"></div>
             </div>
             <div class="form-group">
               <label>Fecha de nacimiento</label>
