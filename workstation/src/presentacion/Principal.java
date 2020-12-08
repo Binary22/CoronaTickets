@@ -484,6 +484,28 @@ public class Principal extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//Agrega Espectaculos a Paquete
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("data/espectaculoEnPaquete.csv"));
+			while ((line = br.readLine()) != null)
+			{
+				String[] espac = line.split(splitBy);
+				try{
+					pqc.seleccionarPaquete(espac[0]);
+					pqc.elegirEspectaculo(espac[1]);
+					pqc.confirmarAgregarEspectAPaquete();;
+				} catch(Exception e) {
+					System.out.print(e.getMessage());
+					e.printStackTrace();
+				}
+				pqc.confirmarCrearPaquete();
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		//Compras de paquete
 		
@@ -493,6 +515,16 @@ public class Principal extends JFrame {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		
 		try {
+			hu.getUsuario("tonyp").agregarcompra(new Compra(LocalDate.parse("01/05/20",formatter), hpaq.getPaquete("Paquete de Bandas")));
+			hu.getUsuario("lachiqui").agregarcompra(new Compra(LocalDate.parse("20/05/20",formatter), hpaq.getPaquete("Paquete de Bandas")));
+			
+			hu.getUsuario("costas").agregarcompra(new Compra(LocalDate.parse("08/09/20",formatter), hpaq.getPaquete("Paquete Latino")));
+
+			hu.getUsuario("eleven11").agregarcompra(new Compra(LocalDate.parse("16/08/20",formatter), hpaq.getPaquete("Paquete Solistas")));
+			hu.getUsuario("waston").agregarcompra(new Compra(LocalDate.parse("26/08/20",formatter), hpaq.getPaquete("Paquete Solistas")));
+
+			
+			
 			hu.getUsuario("cbochinche").agregarcompra(new Compra(LocalDate.parse("25/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
 			hu.getUsuario("lachiqui").agregarcompra(new Compra(LocalDate.parse("26/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
 		} catch (UsuarioPaqueteComprado | NoExistePaqueteException e1) {
@@ -735,6 +767,7 @@ public class Principal extends JFrame {
 		//R47
 		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
 		ec.ingresarNombreEspectador("cbochinche");
+		ec.ingresarNombrePaquete("Grandes Éxitos 2020");
 		ec.canjePorVale();
 		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("26/11/20",formatter));	
 		//R48
@@ -743,29 +776,12 @@ public class Principal extends JFrame {
 		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("27/11/20",formatter));
 		//R49
 		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
-		ec.ingresarNombreEspectador("");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.ingresarNombrePaquete("Grandes Éxitos 2020");
 		ec.canjePorVale();
 		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("28/11/20",formatter));
 		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("data/espectaculoEnPaquete.csv"));
-			while ((line = br.readLine()) != null)
-			{
-				String[] espac = line.split(splitBy);
-				try{
-					pqc.seleccionarPaquete(espac[0]);
-					pqc.elegirEspectaculo(espac[1]);
-					pqc.confirmarAgregarEspectAPaquete();;
-				} catch(Exception e) {
-					System.out.print(e.getMessage());
-					e.printStackTrace();
-				}
-				pqc.confirmarCrearPaquete();
-			}
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		// setear contraseñas a 1234
 		for (Usuario u : hu.getUsuarios().values()) {
 			u.setPassword("1234");
