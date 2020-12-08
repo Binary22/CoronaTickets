@@ -88,8 +88,9 @@
             </div>
             <div class="form-group">
                <label>Elegir imagen</label>
-               <input type="url" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr" value="<%= form.get("imagen") %>">
+               <input id="imagen" type="url" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr" value="<%= form.get("imagen") %>">
             </div>
+            <div id="msg3"></div>
             <div class="form-group form-check">
               <input type="checkbox" name = "esArtista" class="form-check-input" id="artista" onclick="mostrarCamposArtista(this)"> 
               <label class="form-check-label"> Artista </label>

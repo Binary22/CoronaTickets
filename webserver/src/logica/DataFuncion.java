@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataFuncion complex type.
+ * <p>Java class for dataFuncion complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataFuncion">
@@ -75,7 +75,7 @@ public class DataFuncion {
     protected int cantPremios;
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Gets the value of the nombre property.
      * 
      * @return
      *     possible object is
@@ -87,7 +87,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Sets the value of the nombre property.
      * 
      * @param value
      *     allowed object is
@@ -99,7 +99,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad fecha.
+     * Gets the value of the fecha property.
      * 
      * @return
      *     possible object is
@@ -111,7 +111,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad fecha.
+     * Sets the value of the fecha property.
      * 
      * @param value
      *     allowed object is
@@ -123,7 +123,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad horaInicio.
+     * Gets the value of the horaInicio property.
      * 
      * @return
      *     possible object is
@@ -135,7 +135,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad horaInicio.
+     * Sets the value of the horaInicio property.
      * 
      * @param value
      *     allowed object is
@@ -147,7 +147,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaReg.
+     * Gets the value of the fechaReg property.
      * 
      * @return
      *     possible object is
@@ -159,7 +159,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad fechaReg.
+     * Sets the value of the fechaReg property.
      * 
      * @param value
      *     allowed object is
@@ -229,7 +229,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad espectaculo.
+     * Gets the value of the espectaculo property.
      * 
      * @return
      *     possible object is
@@ -241,7 +241,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad espectaculo.
+     * Sets the value of the espectaculo property.
      * 
      * @param value
      *     allowed object is
@@ -253,7 +253,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad imagen.
+     * Gets the value of the imagen property.
      * 
      * @return
      *     possible object is
@@ -265,7 +265,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad imagen.
+     * Sets the value of the imagen property.
      * 
      * @param value
      *     allowed object is
@@ -277,7 +277,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad fueSorteado.
+     * Gets the value of the fueSorteado property.
      * 
      */
     public boolean isFueSorteado() {
@@ -285,7 +285,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad fueSorteado.
+     * Sets the value of the fueSorteado property.
      * 
      */
     public void setFueSorteado(boolean value) {
@@ -293,7 +293,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad finalizo.
+     * Gets the value of the finalizo property.
      * 
      */
     public boolean isFinalizo() {
@@ -301,7 +301,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad finalizo.
+     * Sets the value of the finalizo property.
      * 
      */
     public void setFinalizo(boolean value) {
@@ -309,7 +309,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad descriPremio.
+     * Gets the value of the descriPremio property.
      * 
      * @return
      *     possible object is
@@ -321,7 +321,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad descriPremio.
+     * Sets the value of the descriPremio property.
      * 
      * @param value
      *     allowed object is
@@ -333,7 +333,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad fechaSorteo.
+     * Gets the value of the fechaSorteo property.
      * 
      * @return
      *     possible object is
@@ -345,7 +345,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad fechaSorteo.
+     * Sets the value of the fechaSorteo property.
      * 
      * @param value
      *     allowed object is
@@ -357,7 +357,7 @@ public class DataFuncion {
     }
 
     /**
-     * Obtiene el valor de la propiedad cantPremios.
+     * Gets the value of the cantPremios property.
      * 
      */
     public int getCantPremios() {
@@ -365,7 +365,7 @@ public class DataFuncion {
     }
 
     /**
-     * Define el valor de la propiedad cantPremios.
+     * Sets the value of the cantPremios property.
      * 
      */
     public void setCantPremios(int value) {

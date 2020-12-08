@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para dataInfo complex type.
+ * <p>Java class for dataInfo complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="dataInfo">
@@ -46,7 +46,7 @@ public class DataInfo {
     protected String url;
 
     /**
-     * Obtiene el valor de la propiedad ip.
+     * Gets the value of the ip property.
      * 
      * @return
      *     possible object is
@@ -58,7 +58,7 @@ public class DataInfo {
     }
 
     /**
-     * Define el valor de la propiedad ip.
+     * Sets the value of the ip property.
      * 
      * @param value
      *     allowed object is
@@ -70,7 +70,7 @@ public class DataInfo {
     }
 
     /**
-     * Obtiene el valor de la propiedad navegador.
+     * Gets the value of the navegador property.
      * 
      * @return
      *     possible object is
@@ -82,7 +82,7 @@ public class DataInfo {
     }
 
     /**
-     * Define el valor de la propiedad navegador.
+     * Sets the value of the navegador property.
      * 
      * @param value
      *     allowed object is
@@ -94,7 +94,7 @@ public class DataInfo {
     }
 
     /**
-     * Obtiene el valor de la propiedad so.
+     * Gets the value of the so property.
      * 
      * @return
      *     possible object is
@@ -106,7 +106,7 @@ public class DataInfo {
     }
 
     /**
-     * Define el valor de la propiedad so.
+     * Sets the value of the so property.
      * 
      * @param value
      *     allowed object is
@@ -118,7 +118,7 @@ public class DataInfo {
     }
 
     /**
-     * Obtiene el valor de la propiedad url.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
@@ -130,7 +130,7 @@ public class DataInfo {
     }
 
     /**
-     * Define el valor de la propiedad url.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is
