@@ -767,15 +767,17 @@ public class Principal extends JFrame {
 		//R47
 		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
 		ec.ingresarNombreEspectador("cbochinche");
-		//ec.canjePorVale();
-		//ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("26/11/20",formatter));	
+		ec.ingresarNombrePaquete("Grandes Éxitos 2020");
+		ec.canjePorVale();
+		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("26/11/20",formatter));	
 		//R48
 		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
 		ec.ingresarNombreEspectador("costas");
 		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("27/11/20",formatter));
 		//R49
 		ec.ingresarNombreFuncion("Grandes Éxitos 2020 - Dia");
-		ec.ingresarNombreEspectador("");
+		ec.ingresarNombreEspectador("lachiqui");
+		ec.ingresarNombrePaquete("Grandes Éxitos 2020");
 		ec.canjePorVale();
 		ec.confirmarRegistro("Grandes Éxitos 2020", LocalDate.parse("28/11/20",formatter));
 		
