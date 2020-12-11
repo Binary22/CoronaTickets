@@ -21,7 +21,7 @@
 	<jsp:include page="/WEB-INF/template/NavbarMobile.jsp"/>
 	<div class="container mt-6">
 		<br>
-		<h3> Bienvenido! </h3>
+		<h3> Bienvenide! </h3>
 	</div>
 	<% } else { %>
     <div class="container mt-6">
