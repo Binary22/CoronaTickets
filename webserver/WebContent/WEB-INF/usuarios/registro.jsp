@@ -80,12 +80,13 @@
             <!-- aca hay que agregar fecha de nacimiento -->
             <div class="form-group">
               <label>Contraseña</label>
-              <input type="password" class="form-control" name = "password" placeholder="Ej. 123456" value="<%= form.get("password") %>" required>
+              <input id="pass" type="password" class="form-control" name = "password" placeholder="Ej. 123456" value="<%= form.get("password") %>" required>
             </div>
             <div class="form-group">
               <label>Confirmar contraseña</label>
-              <input type="password" class="form-control" name = "confPassword" placeholder="Ej. 123456" value="<%= form.get("confipassword") %>" required>
+              <input id="pass2" type="password" class="form-control" name = "confPassword" placeholder="Ej. 123456" value="<%= form.get("confipassword") %>" required>
             </div>
+            <div id="msgPass"></div>
             <div class="form-group">
                <label>Elegir imagen</label>
                <input id="imagen" type="url" class="form-control" name = "imagen" placeholder="Ej. https://bit.ly/ijgjr" value="<%= form.get("imagen") %>">
@@ -131,5 +132,6 @@
     <script src="resources/js/navbar.js"></script>
     <script src="resources/js/registro.js"></script>
     <script src="resources/js/usernamecheck.js"></script>
+    <script src="resources/js/passwordChecker.js"></script>
 </body>
 </html>

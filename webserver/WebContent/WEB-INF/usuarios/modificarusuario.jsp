@@ -56,12 +56,13 @@
                 <!-- aca hay que agregar fecha de nacimiento -->
                 <div class="form-group">
                   <label>Contraseña</label>
-                  <input type="password" class="form-control" id="password" name = "password"  value="<%=usuariolog.getPassword()%>">
+                  <input id="pass" type="password" class="form-control" id="password" name = "password"  value="<%=usuariolog.getPassword()%>">
                 </div>
                 <div class="form-group">
                   <label>Confirmar contraseña</label>
-                  <input type="password" class="form-control" id="confirmpassword" name= "confirmpassword"  value="<%=usuariolog.getPassword()%>">
-                </div>              
+                  <input id="pass2" type="password" class="form-control" id="confirmpassword" name= "confirmpassword"  value="<%=usuariolog.getPassword()%>">
+                </div> 
+                <div id="msgPass"></div>      
                 <div class="form-group">
                   <label>Elegir imagen</label>
                   <br>
@@ -106,6 +107,8 @@
     <script src="resources/js/login.js"></script>
     <script src="resources/js/navbar.js"></script>
     <script src="resources/js/registro.js"></script>
+    <script src="resources/js/passwordChecker.js"></script>
+    
 
 </body>
 </html>

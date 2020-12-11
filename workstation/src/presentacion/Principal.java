@@ -1075,6 +1075,7 @@ public class Principal extends JFrame {
 	private void agregarFav(String nomU, String nomE) {
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		Espectaculo espec = HandlerEspectaculos.getInstance().getEspectaculo(nomE);
+		espec.setFavoritos(espec.getFavoritos() + 1);
 		hu.getUsuario(nomU).agregarFavorito(espec);
 	}
 		
