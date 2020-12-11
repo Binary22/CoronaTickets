@@ -81,8 +81,13 @@ public class Registroafuncion extends HttpServlet {
             for(DataEspectaculo.SetFunciones.Entry en : e.getSetFunciones().getEntry()) {
                 funs.put(en.getKey(), en.getValue());
             }
+            List<String> nombresFun = new ArrayList<String>(funs.keySet());
+            nombresFun.sort(String::compareToIgnoreCase);
+            List<DataFuncion> funcionesEspect = new ArrayList<DataFuncion>();
+            for(String key : nombresFun) {
+            	funcionesEspect.add(funs.get(key));
+            }
             DataFuncion funPrimera = funs.get(nomFun);
-	    	List<DataFuncion> funcionesEspect = new ArrayList<DataFuncion>(funs.values());
 	    	int itemPos = funcionesEspect.indexOf(funPrimera);
 	    	funcionesEspect.remove(itemPos);
 	    	funcionesEspect.add(0, funPrimera);

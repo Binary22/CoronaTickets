@@ -294,8 +294,8 @@ public interface Publicador {
      * @param arg0
      * @throws FechaPosterior_Exception
      * @throws ExisteRegistroEspecException_Exception
-     * @throws FuncionAlcanzoLimiteException_Exception
      * @throws NoSeleccionoTres_Exception
+     * @throws FuncionAlcanzoLimiteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/confirmarRegistroPreviosRequest", output = "http://logica/Publicador/confirmarRegistroPreviosResponse", fault = {
@@ -520,8 +520,8 @@ public interface Publicador {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @throws NoExistePaqueteException_Exception
      * @throws UsuarioPaqueteComprado_Exception
+     * @throws NoExistePaqueteException_Exception
      */
     @WebMethod
     @Action(input = "http://logica/Publicador/agregarCompraRequest", output = "http://logica/Publicador/agregarCompraResponse", fault = {

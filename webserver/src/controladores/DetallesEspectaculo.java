@@ -67,12 +67,22 @@ public class DetallesEspectaculo extends HttpServlet {
     	}
     	logica.ListaPaquete lista = port.listarPaquetesEspectaculo(nomEspect);
 		List<DataPaquete> paquetes = new ArrayList<DataPaquete>(lista.getPaquetes());
+		Map<String, DataPaquete> paqs = new HashMap<String, DataPaquete>();
+		for(int i = 0; i < paquetes.size(); i++) {
+			paqs.put(paquetes.get(i).getNombre(), paquetes.get(i));
+		}
+		List<String> nombresPaq = new ArrayList<String>(paqs.keySet());
+		nombresPaq.sort(String::compareToIgnoreCase);
+		List<DataPaquete> paquetesEspect = new ArrayList<DataPaquete>();
+		for(String key : nombresPaq) {
+			paquetesEspect.add(paqs.get(key));
+			}
 		Map<String, DataFuncion> funciones = new HashMap<String, DataFuncion>();
         for(logica.DataListFunsEspect.FuncionesEspect.Entry e : port.funcionesEspectaculo(nomEspect).getFuncionesEspect().getEntry()) {
             funciones.put(e.getKey(),e.getValue());
         }
         objSesion.setAttribute("funciones_espectaculo", funciones);
-		objSesion.setAttribute("paquetes", paquetes);
+		objSesion.setAttribute("paquetes", paquetesEspect);
     	objSesion.setAttribute("espectaculo_selected", espect);
     	
 		req.getRequestDispatcher("/WEB-INF/espectaculos/detallesEspectaculo.jsp").forward(req, resp);

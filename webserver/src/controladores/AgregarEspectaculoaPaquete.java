@@ -39,10 +39,12 @@ public class AgregarEspectaculoaPaquete extends HttpServlet {
 	    
 	    	DataListPaquetes paquetes = port.getPaquetes();
 	    	List<String> paquetesList = paquetes.getPaquetes();
+	    	paquetesList.sort(String::compareToIgnoreCase);
 			objSesion.setAttribute("paquetes",paquetesList);	
 	
 			DataListPlataformas plataformas = port.getPlataformas();
 	    	List<String> plataformasList = plataformas.getPlataformas();
+	    	plataformasList.sort(String::compareToIgnoreCase);
 			objSesion.setAttribute("plataformas",plataformasList);
 			
 			req.getRequestDispatcher("/WEB-INF/espectaculos/agregarEspectaculoaPaquete.jsp").forward(req, resp);

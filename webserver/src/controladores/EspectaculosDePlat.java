@@ -51,7 +51,7 @@ public class EspectaculosDePlat extends HttpServlet {
 					if(!espdelPaqElegido.contains(espectaculosPlatElegida.get(i)))
 						espectaculosList.add(espectaculosPlatElegida.get(i));
 				}
-				
+				espectaculosList.sort(String::compareToIgnoreCase);
 				objSesion.setAttribute("espectaculos",espectaculosList);
 				req.getRequestDispatcher("/WEB-INF/espectaculos/espectaculosdeplat.jsp").forward(req, resp);
 			} catch (NoExistePaqueteException_Exception e) {

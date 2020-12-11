@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dataInfo complex type.
+ * <p>Clase Java para dataInfo complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="dataInfo">
@@ -46,7 +46,7 @@ public class DataInfo {
     protected String url;
 
     /**
-     * Gets the value of the ip property.
+     * Obtiene el valor de la propiedad ip.
      * 
      * @return
      *     possible object is
@@ -58,7 +58,7 @@ public class DataInfo {
     }
 
     /**
-     * Sets the value of the ip property.
+     * Define el valor de la propiedad ip.
      * 
      * @param value
      *     allowed object is
@@ -70,7 +70,7 @@ public class DataInfo {
     }
 
     /**
-     * Gets the value of the navegador property.
+     * Obtiene el valor de la propiedad navegador.
      * 
      * @return
      *     possible object is
@@ -82,7 +82,7 @@ public class DataInfo {
     }
 
     /**
-     * Sets the value of the navegador property.
+     * Define el valor de la propiedad navegador.
      * 
      * @param value
      *     allowed object is
@@ -94,7 +94,7 @@ public class DataInfo {
     }
 
     /**
-     * Gets the value of the so property.
+     * Obtiene el valor de la propiedad so.
      * 
      * @return
      *     possible object is
@@ -106,7 +106,7 @@ public class DataInfo {
     }
 
     /**
-     * Sets the value of the so property.
+     * Define el valor de la propiedad so.
      * 
      * @param value
      *     allowed object is
@@ -118,7 +118,7 @@ public class DataInfo {
     }
 
     /**
-     * Gets the value of the url property.
+     * Obtiene el valor de la propiedad url.
      * 
      * @return
      *     possible object is
@@ -130,7 +130,7 @@ public class DataInfo {
     }
 
     /**
-     * Sets the value of the url property.
+     * Define el valor de la propiedad url.
      * 
      * @param value
      *     allowed object is

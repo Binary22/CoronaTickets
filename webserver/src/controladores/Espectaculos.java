@@ -2,7 +2,10 @@ package controladores;
 import logica.HandlerPlataforma;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,23 +50,34 @@ public class Espectaculos extends HttpServlet {
     	if(nomPlat != null) {
     		Plataforma plat = hp.getPlataforma(nomPlat);
     		logica.ListaEspectaculo lista = port.listarEspectaculosPlataforma(nomPlat);
-    		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
+    		Map<String, DataEspectaculo> list = new HashMap<String,DataEspectaculo>();
 	    	for(Entry e : lista.getEspectaculos().getEntry()) {
 	    		if( (e.getValue().isYaFueValuado()) && (!e.getValue().isFinalizado()) && (e.getValue().isAceptado()) )
-	    		list.add(e.getValue());
+	    		list.put(e.getKey(), e.getValue());
 	    	}
-	    	objSesion.setAttribute("espectaculosPlat", list);
+	    	List<String> nombresEspect = new ArrayList<String>(list.keySet());
+	    	nombresEspect.sort(String::compareToIgnoreCase);
+	    	List<DataEspectaculo> espects = new ArrayList<DataEspectaculo>();
+	    	for(String key : nombresEspect) {
+	    		espects.add(list.get(key));
+	    	}
+	    	objSesion.setAttribute("espectaculosPlat", espects);
 	    	objSesion.setAttribute("nombrePlat", null);
     	}else {
     		logica.ListaEspectaculo lista = port.listarEspectaculos();
-    		List<DataEspectaculo> list = new ArrayList<DataEspectaculo>();
+    		Map<String, DataEspectaculo> list = new HashMap<String,DataEspectaculo>();
     		
-	    	for(Entry e : lista.getEspectaculos().getEntry()) {
-	    		
+    		for(Entry e : lista.getEspectaculos().getEntry()) {
 	    		if( (e.getValue().isYaFueValuado()) && (!e.getValue().isFinalizado()) && (e.getValue().isAceptado()) )
-	    			list.add(e.getValue());
+	    		list.put(e.getKey(), e.getValue());
 	    	}
-	    	objSesion.setAttribute("espectaculosPlat", list);
+	    	List<String> nombresEspect = new ArrayList<String>(list.keySet());
+	    	nombresEspect.sort(String::compareToIgnoreCase);
+	    	List<DataEspectaculo> espects = new ArrayList<DataEspectaculo>();
+	    	for(String key : nombresEspect) {
+	    		espects.add(list.get(key));
+	    	}
+	    	objSesion.setAttribute("espectaculosPlat", espects);
     	}
     	
     	objSesion.setAttribute("plataformas", port.listarPlataformas().getItem());

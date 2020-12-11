@@ -43,13 +43,17 @@
                     </div>
                 </div>
                 <div class="col-sm pt-5 pb-5">
-                    <h2>Espectaculos del Paquete:</h2>
-                    <% for (DataEspectaculo e : (List<DataEspectaculo>) session.getAttribute("espectaculos")) { %>
                     
-                    <carta-espectaculo img="<%=e.getImagen()%>" titulo="<%=e.getNombre()%>" artista="<%=e.getArtista()%>" precio="<%= e.getCosto() %>"></carta-espectaculo>
-                    <div class="mb-4"></div>
+                    <% List<DataEspectaculo> espects = (List<DataEspectaculo>) session.getAttribute("espectaculos");
+                    if(!espects.isEmpty()){%>
+                    	<h2>Espectaculos del Paquete:</h2>
+	                    <%for (DataEspectaculo e : espects) { %>
+	                    
+	                    <carta-espectaculo img="<%=e.getImagen()%>" titulo="<%=e.getNombre()%>" artista="<%=e.getArtista()%>" precio="<%= e.getCosto() %>"></carta-espectaculo>
+	                    <div class="mb-4"></div>
                     
-                    <% }%>
+                    <% }
+                    }%>
                 </div>
             </div>
         </div>

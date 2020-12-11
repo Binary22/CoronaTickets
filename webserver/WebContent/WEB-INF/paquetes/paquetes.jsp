@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.Map, logica.DataPaquete" %>
+    <%@ page import="java.util.Map, logica.DataPaquete, java.util.List, java.util.ArrayList" %>
 <!doctype = html>
 <html lang="en">
     <head>
@@ -13,9 +13,11 @@
               
          <% Map<String, DataPaquete> m = (Map<String, DataPaquete>) session.getAttribute("paquetes");
         int i = 0;
-        for (Map.Entry<String, DataPaquete> entry : m.entrySet()) {      	
-	        	String key = entry.getKey();
-	        	DataPaquete value = entry.getValue();
+        List<String> nombresPaq = new ArrayList<String>(m.keySet());
+        nombresPaq.sort(String::compareToIgnoreCase);
+        for (String name : nombresPaq) {      	
+	        	String key = name;
+	        	DataPaquete value = m.get(name);
 	
 	    		String descripcion = value.getDescripcion();
 	    		String imagen = value.getImagen();

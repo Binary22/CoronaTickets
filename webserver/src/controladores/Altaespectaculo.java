@@ -7,6 +7,8 @@ import logica.PublicadorService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,8 +58,12 @@ public class Altaespectaculo extends HttpServlet {
 		PublicadorService service = new PublicadorService();
 	    Publicador port = service.getPublicadorPort();
 		;
-    	session.setAttribute("plataformas", port.listarPlataformas().getItem());
-    	session.setAttribute("categorias", port.listarCategorias().getItem());
+		List<String> nombresPlat = new ArrayList<String>(port.listarPlataformas().getItem());
+		nombresPlat.sort(String::compareToIgnoreCase);
+		List<String> nombresCats = new ArrayList<String>(port.listarCategorias().getItem());
+		nombresCats.sort(String::compareToIgnoreCase);
+    	session.setAttribute("plataformas", nombresPlat);
+    	session.setAttribute("categorias", nombresCats);
 		req.getRequestDispatcher("/WEB-INF/espectaculos/altaespectaculo.jsp").forward(req, resp);
 	}
     
