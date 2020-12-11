@@ -43,6 +43,7 @@ public class DetallesPaquete extends HttpServlet {
 			p = port.getPaquete(nomp);
 			objSesion.setAttribute("paquete", p);
 			List<DataEspectaculo> especs = new ArrayList<DataEspectaculo>();
+			p.getEspectaculos().sort(String::compareToIgnoreCase);
 			for (String esp : p.getEspectaculos()) {
 				especs.add(port.getEspectaculo(esp));
 			}

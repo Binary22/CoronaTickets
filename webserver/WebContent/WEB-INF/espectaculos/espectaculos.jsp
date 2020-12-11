@@ -26,8 +26,9 @@
             <form class="mt-2" action = "espectaculos" method = "POST">
                 <h2>Plataforma:</h2>
                     <select class="form-control" id="plataforma" name = "opcionesPlat" >
-                    <option default disabled selected value="">--Elegir Plataforma--</option> 
+                    <option default disabled selected value="">Todas</option> 
                     <% List<String> plataformas = (List<String>) session.getAttribute("plataformas");
+                       plataformas.sort(String::compareToIgnoreCase);
 			        	for(String key : plataformas){
 						%>
 						<option value="<%= key %>" id = "idPlat"><%= key %></option>

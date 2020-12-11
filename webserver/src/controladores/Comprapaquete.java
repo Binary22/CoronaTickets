@@ -54,7 +54,8 @@ public class Comprapaquete extends HttpServlet {
 			for (int i=0; i< paquetes.size(); i++) {
 				if(!compradosPack.contains(paquetes.get(i)))	
 					paquetesList.add(paquetes.get(i));
-			}	
+			}
+			paquetesList.sort(String::compareToIgnoreCase);
 			objSesion.setAttribute("paquetes",paquetesList);
 	    	req.getRequestDispatcher("/WEB-INF/paquetes/comprapaquete.jsp").forward(req, resp);
     	}

@@ -55,6 +55,7 @@ public class Altafuncion extends HttpServlet {
 			
 			DataListArtInvi artistasInvi = port.getArtistas(nickname);
 			List<String> artistasInviReal = artistasInvi.getArtistasInvi();
+			artistasInviReal.sort(String::compareToIgnoreCase);
 			objSesion.setAttribute("artistas", artistasInviReal);
 			
 			DataListEspOrg espectaculosOrg = port.getEspectaculos(nickname);
