@@ -360,6 +360,30 @@ public class Principal extends JFrame {
 
 	public void cargarDatos() throws UsuarioConMismoNickException, UsuarioConMismoMailException, NumberFormatException, NombreEspectaculoExisteException, NombreFuncionexisteException, noSeleccionoTres {
 		// TODO Auto-generated method stub
+		
+		String EL = "eleven11";
+		String CO = "costas";
+		String EW = "waston";
+		String GH = "house";
+		String SP = "sergiop";
+		String AR = "chino";
+		String AP = "tonyp";
+		String ML = "lachiqui";
+		String CB = "cbochinche";
+		
+		String E1 = "Los Village Volvieron";
+		String E2 = "Global Spirit";
+		String E3 = "Memphis Blues World";
+		String E4 = "Springsteen on Broadway";
+		String E5 = "Bien de Familia";
+		String E6 = "30 años";
+		String E7 = "Grandes Éxitos 2020";
+		String E8 = "Llega a Casa";
+		String E9 = "Nochebuena con Alcides y amigos";
+		String E10 = "Fin de Año con Alcides y amigos";
+		
+		
+		
 		Fabrica f = Fabrica.getInstance();
 		IPlataforma pc = f.getIPlataforma();
 		
@@ -950,7 +974,24 @@ public class Principal extends JFrame {
 		cargarGanador("Grandes Éxitos 2020", "chino","Grandes Éxitos 2020 - Noche");
 		cargarGanador("Grandes Éxitos 2020", "tonyp","Grandes Éxitos 2020 - Noche");
 		cargarGanador("Grandes Éxitos 2020", "costas","Grandes Éxitos 2020 - Noche");
-
+			
+		agregarFav(EL, E2);
+		agregarFav(EL, E6);
+		agregarFav(CO, E1);
+		agregarFav(CO, E2);
+		agregarFav(CO, E3);
+		agregarFav(EW, E4);
+		agregarFav(GH, E3);
+		agregarFav(GH, E4);
+		agregarFav(SP, E4);
+		agregarFav(SP, E6);
+		agregarFav(AR, E1);
+		agregarFav(AR, E2);
+		agregarFav(AR, E6);
+		agregarFav(AP, E5);
+		agregarFav(ML, E1);
+		agregarFav(CB, E2);
+		
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -958,6 +999,12 @@ public class Principal extends JFrame {
 		JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito.");	
     // aca termina el cargar datos
     }
+	
+	private void agregarFav(String nomU, String nomE) {
+		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
+		Espectaculo espec = HandlerEspectaculos.getInstance().getEspectaculo(nomE);
+		hu.getUsuario(nomU).agregarFavorito(espec);
+	}
 	
 	private void cargarGanador(String espec, String user, String nomFun) {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
