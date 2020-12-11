@@ -538,19 +538,25 @@ public class Principal extends JFrame {
 		HandlerPaquetes hpaq = HandlerPaquetes.getInstance();
 		HandlerUsuarios hu = HandlerUsuarios.getInstancia();
 		
+		String P1 = "Paquete de Bandas";
+		String P2 = "Paquete Solistas";
+		String P3 = "Paquete Latino";
+		String P4 = "La Triple Dyango";
+		
+		
 		try {
-			hu.getUsuario("tonyp").agregarcompra(new Compra(LocalDate.parse("01/05/20",formatter), hpaq.getPaquete("Paquete de Bandas")));
-			hu.getUsuario("lachiqui").agregarcompra(new Compra(LocalDate.parse("20/05/20",formatter), hpaq.getPaquete("Paquete de Bandas")));
+			hu.getUsuario(AP).agregarcompra(new Compra(LocalDate.parse("01/05/20",formatter), hpaq.getPaquete(P1)));
+			hu.getUsuario(ML).agregarcompra(new Compra(LocalDate.parse("20/05/20",formatter), hpaq.getPaquete(P1)));
 			
-			hu.getUsuario("costas").agregarcompra(new Compra(LocalDate.parse("08/09/20",formatter), hpaq.getPaquete("Paquete Latino")));
+			hu.getUsuario(CO).agregarcompra(new Compra(LocalDate.parse("08/09/20",formatter), hpaq.getPaquete(P3)));
 
-			hu.getUsuario("eleven11").agregarcompra(new Compra(LocalDate.parse("16/08/20",formatter), hpaq.getPaquete("Paquete Solistas")));
-			hu.getUsuario("waston").agregarcompra(new Compra(LocalDate.parse("26/08/20",formatter), hpaq.getPaquete("Paquete Solistas")));
+			hu.getUsuario(EL).agregarcompra(new Compra(LocalDate.parse("16/08/20",formatter), hpaq.getPaquete(P2)));
+			hu.getUsuario(EW).agregarcompra(new Compra(LocalDate.parse("26/08/20",formatter), hpaq.getPaquete(P2)));
 
 			
 			
-			hu.getUsuario("cbochinche").agregarcompra(new Compra(LocalDate.parse("25/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
-			hu.getUsuario("lachiqui").agregarcompra(new Compra(LocalDate.parse("26/11/20",formatter), hpaq.getPaquete("La Triple Dyango")));
+			hu.getUsuario(CB).agregarcompra(new Compra(LocalDate.parse("25/11/20",formatter), hpaq.getPaquete(P4)));
+			hu.getUsuario(ML).agregarcompra(new Compra(LocalDate.parse("26/11/20",formatter), hpaq.getPaquete(P4)));
 		} catch (UsuarioPaqueteComprado | NoExistePaqueteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -957,23 +963,23 @@ public class Principal extends JFrame {
 		he.getEspectaculo("Fin de Año con Alcides y amigos").setVideo("65Pu6WP0bag");
 		
 		
-		cargarGanador("Memphis Blues World", "eleven11","Memphis Blues World - B");
-		cargarGanador("Memphis Blues World", "house","Memphis Blues World - B");
+		cargarGanador("Memphis Blues World", EL,"Memphis Blues World - B");
+		cargarGanador("Memphis Blues World", GH,"Memphis Blues World - B");
 		
-		cargarGanador("Memphis Blues World", "lachiqui","Memphis Blues World - A");
+		cargarGanador("Memphis Blues World", ML,"Memphis Blues World - A");
 
 		
-		cargarGanador("Memphis Blues World", "waston","Memphis Blues World - C");
-		cargarGanador("Memphis Blues World", "eleven11","Memphis Blues World - C");
+		cargarGanador("Memphis Blues World", EW,"Memphis Blues World - C");
+		cargarGanador("Memphis Blues World", CO,"Memphis Blues World - C");
 		
 		
-		cargarGanador("Grandes Éxitos 2020", "sergiop","Grandes Éxitos 2020 - Dia");
-		cargarGanador("Grandes Éxitos 2020", "eleven11","Grandes Éxitos 2020 - Dia");
-		cargarGanador("Grandes Éxitos 2020", "tonyp","Grandes Éxitos 2020 - Dia");
+		cargarGanador("Grandes Éxitos 2020", SP,"Grandes Éxitos 2020 - Dia");
+		cargarGanador("Grandes Éxitos 2020", EL,"Grandes Éxitos 2020 - Dia");
+		cargarGanador("Grandes Éxitos 2020", AP,"Grandes Éxitos 2020 - Dia");
 
-		cargarGanador("Grandes Éxitos 2020", "chino","Grandes Éxitos 2020 - Noche");
-		cargarGanador("Grandes Éxitos 2020", "tonyp","Grandes Éxitos 2020 - Noche");
-		cargarGanador("Grandes Éxitos 2020", "costas","Grandes Éxitos 2020 - Noche");
+		cargarGanador("Grandes Éxitos 2020", AR,"Grandes Éxitos 2020 - Noche");
+		cargarGanador("Grandes Éxitos 2020", AP,"Grandes Éxitos 2020 - Noche");
+		cargarGanador("Grandes Éxitos 2020", CO,"Grandes Éxitos 2020 - Noche");
 			
 		agregarFav(EL, E2);
 		agregarFav(EL, E6);
