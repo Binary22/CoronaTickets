@@ -885,78 +885,69 @@ public class Principal extends JFrame {
 		
 		*/
 		try {
-		he.getEspectaculo("Los Village Volvieron").agregarValoracion(5, "chino");
-		he.getEspectaculo("Los Village Volvieron").agregarValoracion(2, "tonyp");
-		he.getEspectaculo("Los Village Volvieron").agregarValoracion(3, "costas");
-		he.getEspectaculo("Los Village Volvieron").agregarValoracion(4, "chiqui");
+		he.getEspectaculo(E1).agregarValoracion(5, AR);
+		he.getEspectaculo(E1).agregarValoracion(2, AP);
+		he.getEspectaculo(E1).agregarValoracion(3, CO);
+		he.getEspectaculo(E1).agregarValoracion(4, ML);
 		
 		
-		he.getEspectaculo("Global Spirit").agregarValoracion(4, "eleven11");
-		he.getEspectaculo("Global Spirit").agregarValoracion(1, "waston");
-		he.getEspectaculo("Global Spirit").agregarValoracion(2, "sergiop");
-		he.getEspectaculo("Global Spirit").agregarValoracion(2, "tonyp");
-		he.getEspectaculo("Global Spirit").agregarValoracion(5, "cbochinche");
+		he.getEspectaculo(E2).agregarValoracion(4, EL);
+		he.getEspectaculo(E2).agregarValoracion(1, EW);
+		he.getEspectaculo(E2).agregarValoracion(2, SP);
+		he.getEspectaculo(E2).agregarValoracion(2, AP);
+        he.getEspectaculo(E2).agregarValoracion(5, CB);
+        he.getEspectaculo(E2).agregarValoracion(5, AR);
 		
-		he.getEspectaculo("Memphis Blues World").agregarValoracion(2, "eleven11");
-		he.getEspectaculo("Memphis Blues World").agregarValoracion(4, "house");
-		he.getEspectaculo("Memphis Blues World").agregarValoracion(2, "chino");
-		/* 	EL eleven11
-		CO costas
-		EW waston
-		GH house
-		SP sergiop
-		AR chino
-		AP tonyp
-		ML lachiqui
-		CB cbochinche
-	
-	*/
-		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(3, "sergiop");
-		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(4, "house");
-		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(2, "eleven11");
-		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(1, "costas");
-		he.getEspectaculo("Springsteen on Broadway").agregarValoracion(5, "waston");
-		
-		he.getEspectaculo("Bien de Familia").agregarValoracion(1, "house");
-		he.getEspectaculo("Bien de Familia").agregarValoracion(4, "cbochinche");
-		
-		he.getEspectaculo("30 años").agregarValoracion(5, "chino");
-		he.getEspectaculo("30 años").agregarValoracion(3, "tonyp");
-		he.getEspectaculo("30 años").agregarValoracion(2, "costas");
-		
-		he.getEspectaculo("Los Village Volvieron").setDescPremio("Meet & greet (encuentro) virtual con integrantes de Village People y unaccesorio de indumentaria de la banda que será elegido por el ganador,como ser el penacho de plumas del jefe indio (sujeto a disponibilidad).Info: https://bit.ly/sorteovp");
-		he.getEspectaculo("Los Village Volvieron").setCantPremios(2);
-		he.getEspectaculo("Los Village Volvieron").setVideo("N8FxU1nmLWg");
-		
-		
-		he.getEspectaculo("Global Spirit").setDescPremio("Box Set multimedia “Depeche Mode: SPIRITS in the Forest”, quesigue a la banda en su Global Spirit Tour 2017/2018, que vio aDepeche Mode tocar para más de 3 millones de fanáticos en 115shows en todo el mundo. El Box Set contiene 2 CDs y 2 DVDs o 2CDs y 1 Blu-ray (a elección). Info: https://bit.ly/sorteodm");
-		he.getEspectaculo("Global Spirit").setCantPremios(3);
-		he.getEspectaculo("Global Spirit").setVideo("2qxcr6T9pNM");
+		he.getEspectaculo(E3).agregarValoracion(2, EL);
+		he.getEspectaculo(E3).agregarValoracion(4, GH);
+		he.getEspectaculo(E3).agregarValoracion(2, AR);
 
-		he.getEspectaculo("Memphis Blues World").setDescPremio("Meet & greet (encuentro) virtual con la legendaria cantante e ícono del Pop, que inspiró a tantas otras cantante femeninas como Madonna y Lady Gaga (aunque ellas jamás lo admitirían).");
-		he.getEspectaculo("Memphis Blues World").setCantPremios(2);
-		he.getEspectaculo("Memphis Blues World").setVideo("ivHp3_gYXIc");
+		he.getEspectaculo(E4).agregarValoracion(3, SP);
+		he.getEspectaculo(E4).agregarValoracion(4, GH);
+		he.getEspectaculo(E4).agregarValoracion(2, EL);
+		he.getEspectaculo(E4).agregarValoracion(1, CO);
+		he.getEspectaculo(E4).agregarValoracion(5, EW);
 		
-		he.getEspectaculo("Springsteen on Broadway").setDescPremio("Album completo “Springsteen On Broadway” en formato MP3 o CD (aelección). Info: https://bit.ly/sorteobs");
-		he.getEspectaculo("Springsteen on Broadway").setCantPremios(2);
-		he.getEspectaculo("Springsteen on Broadway").setVideo("M1xDzgob1JI");
+		he.getEspectaculo(E5).agregarValoracion(1, GH);
+        he.getEspectaculo(E5).agregarValoracion(4, CB);
 		
-		he.getEspectaculo("Bien de Familia").setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podrás hacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
-		he.getEspectaculo("Bien de Familia").setCantPremios(1);
-		he.getEspectaculo("Bien de Familia").setVideo("dPSlBRg0HeA");
+        he.getEspectaculo(E6).agregarValoracion(5, AR);
+		he.getEspectaculo(E6).agregarValoracion(3, AP);
+        he.getEspectaculo(E6).agregarValoracion(2, CO);
 		
-		he.getEspectaculo("30 años").setDescPremio("Entrada en platea VIP para el primer show   presencial   que   realiceAlcides a partir de enero de 2021 (una vez que el artista haya recibidola vacuna contra el SARS-COV-2), más 1 litro de Fernet de marca aconfirmar.");
-		he.getEspectaculo("30 años").setCantPremios(3);
-		he.getEspectaculo("30 años").setVideo("65Pu6WP0bag");
+		he.getEspectaculo(E1).setDescPremio("Meet & greet (encuentro) virtual con integrantes de Village People y unaccesorio de indumentaria de la banda que será elegido por el ganador,como ser el penacho de plumas del jefe indio (sujeto a disponibilidad).Info: https://bit.ly/sorteovp");
+		he.getEspectaculo(E1).setCantPremios(2);
+		he.getEspectaculo(E1).setVideo("N8FxU1nmLWg");
+		
+		
+		he.getEspectaculo(E2).setDescPremio("Box Set multimedia “Depeche Mode: SPIRITS in the Forest”, quesigue a la banda en su Global Spirit Tour 2017/2018, que vio aDepeche Mode tocar para más de 3 millones de fanáticos en 115shows en todo el mundo. El Box Set contiene 2 CDs y 2 DVDs o 2CDs y 1 Blu-ray (a elección). Info: https://bit.ly/sorteodm");
+		he.getEspectaculo(E2).setCantPremios(3);
+		he.getEspectaculo(E2).setVideo("2qxcr6T9pNM");
 
-		he.getEspectaculo("Grandes Éxitos 2020").setDescPremio("Album completo “Y Ahora Que” para descargar en formato FLAC (24bits, 44.1 kHz). Info: https://bit.ly/sorteody");
-		he.getEspectaculo("Grandes Éxitos 2020").setCantPremios(2);
-		he.getEspectaculo("Grandes Éxitos 2020").setVideo("NxFeibjFt3k");
+		he.getEspectaculo(E3).setDescPremio("Meet & greet (encuentro) virtual con la legendaria cantante e ícono del Pop, que inspiró a tantas otras cantante femeninas como Madonna y Lady Gaga (aunque ellas jamás lo admitirían).");
+		he.getEspectaculo(E3).setCantPremios(2);
+		he.getEspectaculo(E3).setVideo("ivHp3_gYXIc");
+		
+		he.getEspectaculo(E4).setDescPremio("Album completo “Springsteen On Broadway” en formato MP3 o CD (aelección). Info: https://bit.ly/sorteobs");
+		he.getEspectaculo(E4).setCantPremios(2);
+		he.getEspectaculo(E4).setVideo("M1xDzgob1JI");
+		
+		he.getEspectaculo(E5).setDescPremio("¿Es cierto que son hermanos? ¿La voz de Lucía puede romper una copade cristal? ¿Joaquín quiere dejar Pimpinela y ser el vocalista de unabanda de heavy metal? Todas estas preguntas y muchas más podrás hacérselas  a  tus  ídolos  en  un  encuentro  on-line   exclusivo  para losganadores de este sorteo.");
+		he.getEspectaculo(E5).setCantPremios(1);
+		he.getEspectaculo(E5).setVideo("dPSlBRg0HeA");
+		
+		he.getEspectaculo(E6).setDescPremio("Entrada en platea VIP para el primer show   presencial   que   realiceAlcides a partir de enero de 2021 (una vez que el artista haya recibidola vacuna contra el SARS-COV-2), más 1 litro de Fernet de marca aconfirmar.");
+		he.getEspectaculo(E6).setCantPremios(3);
+		he.getEspectaculo(E6).setVideo("65Pu6WP0bag");
+
+		he.getEspectaculo(E7).setDescPremio("Album completo “Y Ahora Que” para descargar en formato FLAC (24bits, 44.1 kHz). Info: https://bit.ly/sorteody");
+		he.getEspectaculo(E7).setCantPremios(2);
+		he.getEspectaculo(E7).setVideo("NxFeibjFt3k");
 
 		
-		he.getEspectaculo("Llega a Casa").setDescPremio("Entrada doble para espectáculo “Mi Bien” a realizarse en el AuditorioNacional del SODRE.");
-		he.getEspectaculo("Llega a Casa").setCantPremios(2);
-		he.getEspectaculo("Llega a Casa").setVideo("m7r3YIFRI3k");
+		he.getEspectaculo(E8).setDescPremio("Entrada doble para espectáculo “Mi Bien” a realizarse en el AuditorioNacional del SODRE.");
+		he.getEspectaculo(E8).setCantPremios(2);
+		he.getEspectaculo(E8).setVideo("m7r3YIFRI3k");
 		
 		he.getEspectaculo("Noche buena con Alcides y amigos").setVideo("65Pu6WP0bag");
 
