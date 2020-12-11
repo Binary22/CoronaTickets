@@ -371,6 +371,16 @@ public class Principal extends JFrame {
 		String ML = "lachiqui";
 		String CB = "cbochinche";
 		
+		String VP = "vpeople";
+		String DM = "dmode";
+		String CL = "clauper";
+		String BS = "bruceTheBoss";
+		String TN = "tripleNelson";
+		String LL = "la_ley";
+		String PI = "lospimpi";
+		String DY = "dyangounchained";
+		String AL = "alcides";
+		
 		String E1 = "Los Village Volvieron";
 		String E2 = "Global Spirit";
 		String E3 = "Memphis Blues World";
@@ -992,6 +1002,71 @@ public class Principal extends JFrame {
 		agregarFav(ML, E1);
 		agregarFav(CB, E2);
 		
+		// cargar seguidos
+		
+		seguir(VP, BS);
+		seguir(DM, CL);
+		seguir(DM, BS);
+		seguir(CL, VP);
+		seguir(CL, DM);
+		seguir(CL, DY);
+		seguir(BS, VP);
+		seguir(BS, DM);
+		seguir(BS, CL);
+		seguir(BS, GH);
+		seguir(TN, CL);
+		seguir(TN, LL);
+		seguir(TN, EW);
+		seguir(LL, DM);
+		seguir(LL, PI);
+		seguir(LL, EW);
+		seguir(PI, DM);
+		seguir(PI, DY);
+		seguir(PI, AL);
+		seguir(DY, TN);
+		seguir(DY, PI);
+		seguir(AL, PI);
+		seguir(AL, SP);
+		seguir(EL, PI);
+		seguir(EL, DY);
+		seguir(EL, EW);
+		seguir(EL, AR);
+		seguir(EL, AP);
+		seguir(CO, VP);
+		seguir(CO, DM);
+		seguir(CO, CL);
+		seguir(CO, BS);
+		seguir(CO, TN);
+		seguir(CO, LL);
+		seguir(CO, PI);
+		seguir(CO, DY);
+		seguir(CO, AL);
+		seguir(EW, DM);
+		seguir(EW, CL);
+		seguir(EW, BS);
+		seguir(EW, GH);
+		seguir(GH, BS);
+		seguir(GH, LL);
+		seguir(GH, DY);
+		seguir(SP, VP);
+		seguir(SP, LL);
+		seguir(SP, PI);
+		seguir(SP, AR);
+		seguir(SP, AP);
+		seguir(SP, ML);
+		seguir(AR, AL);
+		seguir(AR, SP);
+		seguir(AP, AL);
+		seguir(AP, SP);
+		seguir(ML, PI);
+		seguir(ML, AL);
+		seguir(CB, LL);
+		seguir(CB, PI);
+		seguir(CB, AL);
+		seguir(CB, AR);
+		seguir(CB, AP);
+		seguir(CB, ML);
+		
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1005,6 +1080,14 @@ public class Principal extends JFrame {
 		Espectaculo espec = HandlerEspectaculos.getInstance().getEspectaculo(nomE);
 		hu.getUsuario(nomU).agregarFavorito(espec);
 	}
+		
+    private void seguir(String uloggueado, String uaseguir) {
+    	HandlerUsuarios husuarios = HandlerUsuarios.getInstancia();
+    	Usuario Usuarioaseguir = husuarios.getUsuario(uaseguir);
+    	Usuario Usuariologgueado = husuarios.getUsuario(uloggueado);
+    	Usuariologgueado.agregarSeguido(Usuarioaseguir);
+    	Usuarioaseguir.agregarSiguiendo(Usuariologgueado);
+    }
 	
 	private void cargarGanador(String espec, String user, String nomFun) {
 		HandlerEspectaculos he = HandlerEspectaculos.getInstance();
